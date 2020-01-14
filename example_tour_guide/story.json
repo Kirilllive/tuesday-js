@@ -368,7 +368,6 @@
                 }
             ]
         },{
-            "background_music":"audio/bg_music",
             "background_image": {
                 "ru":"img/sky_tree_2.jpg",
                 "en":"img/sky_tree_2.jpg",
@@ -396,7 +395,6 @@
                 }
             ]
         },{
-            "background_music":"audio/bg_music",
             "background_image": {
                 "ru":"img/sky_tree_3.jpg",
                 "en":"img/sky_tree_3.jpg",

@@ -127,14 +127,13 @@ function get_lang() {
     }
     creation_dialog ();
     if(story_json[story][scene].background_music){
-        var m = document.getElementById("tue_bg_music");
-        if (m.canPlayType("audio/mpeg")) {
-            m.setAttribute("src", story_json[story][scene].background_music+".m4a");
+        if (tue_bg_music.canPlayType("audio/mpeg")) {
+            tue_bg_music.setAttribute("src", story_json[story][scene].background_music+".m4a");
             } else {
-            m.setAttribute("src", story_json[story][scene].background_music+".ogg");
+            tue_bg_music.setAttribute("src", story_json[story][scene].background_music+".ogg");
         }
-        m.loop = true;
-        m.play();
+        tue_bg_music.loop = true;
+        tue_bg_music.play();
     }
 } function creation_dialog () {
     if (story_json[story][scene].dialogs[dialog].color_panel) {text_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].color_panel;}
@@ -239,6 +238,7 @@ function get_lang() {
     dialog = localStorage.getItem("tuesday_dialog");
     story = localStorage.getItem("tuesday_story");
     creation_scene();
+	search_music ();
 } function go_to(go) {
     del_element("tue_select")
     dialog = 0;
@@ -258,4 +258,17 @@ function get_lang() {
     text_view.innerHTML = dialog_text.slice(0,dialog_letter);
     dialog_letter++;
     anim_text();
+} function search_music() {
+	 for (var i = scene; i >= 0; i--) {
+		if(story_json[story][i].background_music){
+			if (tue_bg_music.canPlayType("audio/mpeg")) {
+				tue_bg_music.setAttribute("src", story_json[story][i].background_music+".m4a");
+				} else {
+				tue_bg_music.setAttribute("src", story_json[story][i].background_music+".ogg");
+			}
+			tue_bg_music.loop = true;
+			tue_bg_music.play();
+			break;
+		}
+	}
 }
