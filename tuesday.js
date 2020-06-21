@@ -177,12 +177,16 @@ function get_lang() {
             if(story_json[story][scene].dialogs[dialog].select[i].style){select.style = story_json[story][scene].dialogs[dialog].select[i].style;}
             select.classList.add("tue_select");
             select.style.position = "absolute";
-            select.style.width = story_json[story][scene].dialogs[dialog].select[i].size[0];
-            select.style.height = story_json[story][scene].dialogs[dialog].select[i].size[1];
             select.style.backgroundColor = story_json[story][scene].dialogs[dialog].select[i].color;
             select.style.backgroundRepeat = "no-repeat";
             select.style.backgroundPosition = "center";
             select.style.backgroundImage = "url('" + story_json[story][scene].dialogs[dialog].select[i].art + "')";
+            if (select.style.width = story_json[story][scene].dialogs[dialog].select[i].size[0] != 0) {
+                select.style.width = story_json[story][scene].dialogs[dialog].select[i].size[0];}
+            if (select.style.height = story_json[story][scene].dialogs[dialog].select[i].size[1] != 0) {
+                select.style.height = story_json[story][scene].dialogs[dialog].select[i].size[1];
+                select.style.lineHeight = story_json[story][scene].dialogs[dialog].select[i].size[1];
+            }
             if (story_json[story][scene].dialogs[dialog].select[i].art_size){select.style.backgroundSize = story_json[story][scene].dialogs[dialog].select[i].art_size[0] + " " + story_json[story][scene].dialogs[dialog].select[i].art_size[1];}
             if (story_json[story][scene].dialogs[dialog].select[i].position[0] != 0){select.style.left = story_json[story][scene].dialogs[dialog].select[i].position[0];}
             if (story_json[story][scene].dialogs[dialog].select[i].position[1] != 0){select.style.right = story_json[story][scene].dialogs[dialog].select[i].position[1];}
@@ -192,7 +196,6 @@ function get_lang() {
             select.style.padding = story_json[story][scene].dialogs[dialog].select[i].indent_text;
             select.style.fontSize = story_json[story][scene].dialogs[dialog].select[i].size_text;
             select.style.textAlign = "center";
-            select.style.lineHeight = story_json[story][scene].dialogs[dialog].select[i].size[1];
             if(story_json[story][scene].dialogs[dialog].select[i].text){select.innerHTML = story_json[story][scene].dialogs[dialog].select[i].text[languare];}
             var g = story_json[story][scene].dialogs[dialog].select[i].go_to;
             if (g == "load") {select.setAttribute("onclick","load_stag()");}
