@@ -27,61 +27,71 @@ function get_lang() {
     if (!support){
         languare = story_json.parameters.languares[0]
     }
-} function load_story(url) {
+} function load_story(tip, url) {
+    if (tip == 'data'){
+        story_json = url;
+        base_creation()
+    } else if (tip == 'file') {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && (this.status == 200 || this.status == 0)) {
                 story_json = JSON.parse(this.responseText);
-                get_lang();
-                dialog_speed = story_json.parameters.text_panel.dialog_speed;
-                tuesday = document.getElementById("tuesday");
-                tuesday.style.backgroundRepeat = "no-repeat";
-                tuesday.style.backgroundSize = "cover";
-                tuesday.style.backgroundPosition = "center";
-                tuesday.style.position = "relative"
-                tuesday.style.overflow = "hidden";
-                tuesday.innerHTML = "<table id='text_block' align='center'><tbody><tr><td id='text_view'></td></tr></tbody></table>";
-                text_block = document.getElementById("text_block");
-                if(story_json.parameters.text_panel.className){text_block.className = story_json.parameters.text_panel.className;}
-                if(story_json.parameters.text_panel.style){text_block.style = story_json.parameters.text_panel.style;}
-                text_block.style.position = "absolute";
-                text_block.style.bottom = story_json.parameters.text_panel.indent_bottom;
-                text_block.style.width = story_json.parameters.text_panel.size_panel[0];
-                text_block.style.height = story_json.parameters.text_panel.size_panel[1];
-                text_block.style.left= "0";
-                text_block.style.right= "0";
-                text_block.style.zIndex = "1000";
-                text_view = document.getElementById("text_view");
-                text_view.style.padding = story_json.parameters.text_panel.indent_text;
-                text_view.style.fontSize = story_json.parameters.text_panel.size_text;
-                if (story_json.parameters.name_panel) {
-                    if(story_json.parameters.name_panel.className){name_block.className = story_json.parameters.name_panel.className;}
-                    if(story_json.parameters.name_panel.style){name_block.style = story_json.parameters.name_panel.style;}
-                    name_block.style.position = "absolute";
-                    name_block.id = "name_block";
-                    name_block.style.padding = story_json.parameters.name_panel.indent_text;
-                    name_block.style.fontSize = story_json.parameters.name_panel.size_text;
-                    name_block.style.textAlign = "center";
-                    if (name_block.style.width = story_json.parameters.name_panel.size_panel[0] != 0) {name_block.style.width = story_json.parameters.name_panel.size_panel[0];}
-                    name_block.style.height = story_json.parameters.name_panel.size_panel[1];
-                    name_block.style.lineHeight = story_json.parameters.name_panel.size_panel[1];
-                    if (story_json.parameters.name_panel.position[0] != 0){name_block.style.left = story_json.parameters.name_panel.position[0];}
-                    if (story_json.parameters.name_panel.position[1] != 0){name_block.style.right = story_json.parameters.name_panel.position[1];}
-                    if (story_json.parameters.name_panel.position[2] != 0){name_block.style.top = story_json.parameters.name_panel.position[2];}
-                    if (story_json.parameters.name_panel.position[3] != 0){name_block.style.bottom = story_json.parameters.name_panel.position[3];}
-                    name_block.style.zIndex = 1001;
-                    text_block.appendChild(name_block);
-                }
-                tue_bg_music = document.createElement("AUDIO");
-                tue_bg_music.id = "tue_bg_music";
-                tuesday.appendChild(tue_bg_music);
-                story = story_json.parameters.launch_story
-                creation_buttons();
-                creation_scene();
+                base_creation()
             }
         };
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
+        
+} function base_creation() {
+
+    get_lang();
+    dialog_speed = story_json.parameters.text_panel.dialog_speed;
+    tuesday = document.getElementById("tuesday");
+    tuesday.style.backgroundRepeat = "no-repeat";
+    tuesday.style.backgroundSize = "cover";
+    tuesday.style.backgroundPosition = "center";
+    tuesday.style.position = "relative"
+    tuesday.style.overflow = "hidden";
+    tuesday.innerHTML = "<table id='text_block' align='center'><tbody><tr><td id='text_view'></td></tr></tbody></table>";
+    text_block = document.getElementById("text_block");
+    if(story_json.parameters.text_panel.className){text_block.className = story_json.parameters.text_panel.className;}
+    if(story_json.parameters.text_panel.style){text_block.style = story_json.parameters.text_panel.style;}
+    text_block.style.position = "absolute";
+    text_block.style.bottom = story_json.parameters.text_panel.indent_bottom;
+    text_block.style.width = story_json.parameters.text_panel.size_panel[0];
+    text_block.style.height = story_json.parameters.text_panel.size_panel[1];
+    text_block.style.left= "0";
+    text_block.style.right= "0";
+    text_block.style.zIndex = "1000";
+    text_view = document.getElementById("text_view");
+    text_view.style.padding = story_json.parameters.text_panel.indent_text;
+    text_view.style.fontSize = story_json.parameters.text_panel.size_text;
+    if (story_json.parameters.name_panel) {
+        if(story_json.parameters.name_panel.className){name_block.className = story_json.parameters.name_panel.className;}
+        if(story_json.parameters.name_panel.style){name_block.style = story_json.parameters.name_panel.style;}
+        name_block.style.position = "absolute";
+        name_block.id = "name_block";
+        name_block.style.padding = story_json.parameters.name_panel.indent_text;
+        name_block.style.fontSize = story_json.parameters.name_panel.size_text;
+        name_block.style.textAlign = "center";
+        if (name_block.style.width = story_json.parameters.name_panel.size_panel[0] != 0) {name_block.style.width = story_json.parameters.name_panel.size_panel[0];}
+        name_block.style.height = story_json.parameters.name_panel.size_panel[1];
+        name_block.style.lineHeight = story_json.parameters.name_panel.size_panel[1];
+        if (story_json.parameters.name_panel.position[0] != 0){name_block.style.left = story_json.parameters.name_panel.position[0];}
+        if (story_json.parameters.name_panel.position[1] != 0){name_block.style.right = story_json.parameters.name_panel.position[1];}
+        if (story_json.parameters.name_panel.position[2] != 0){name_block.style.top = story_json.parameters.name_panel.position[2];}
+        if (story_json.parameters.name_panel.position[3] != 0){name_block.style.bottom = story_json.parameters.name_panel.position[3];}
+        name_block.style.zIndex = 1001;
+        text_block.appendChild(name_block);
+    }
+    tue_bg_music = document.createElement("AUDIO");
+    tue_bg_music.id = "tue_bg_music";
+    tuesday.appendChild(tue_bg_music);
+    story = story_json.parameters.launch_story
+    creation_buttons();
+    creation_scene();
+    
+}
 } function creation_buttons() {
     for (i = 0; i < story_json.parameters.buttons.length; i++){
         var button = document.createElement("div");
