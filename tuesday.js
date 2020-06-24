@@ -1,4 +1,4 @@
-var story_json;
+let story_json = new Array();
 var tuesday;
 var text_view;
 var text_block;
@@ -12,6 +12,7 @@ var dialog_letter = 0;
 var dialog_timeout;
 var story;
 var tue_bg_music;
+
 function get_lang() {
     if (navigator.languages != undefined) {
         languare = navigator.languages[0].substring(0,2);
@@ -30,20 +31,21 @@ function get_lang() {
 } function load_story(tip, url) {
     if (tip == 'data'){
         story_json = url;
-        base_creation()
+        base_creation();
+        
     } else if (tip == 'file') {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && (this.status == 200 || this.status == 0)) {
                 story_json = JSON.parse(this.responseText);
-                base_creation()
+                base_creation();
             }
         };
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
-        
-} function base_creation() {
 
+        
+    } function base_creation() {
     get_lang();
     dialog_speed = story_json.parameters.text_panel.dialog_speed;
     tuesday = document.getElementById("tuesday");
@@ -122,13 +124,36 @@ function get_lang() {
     }
     if(document.getElementById('save')){document.getElementById('save').addEventListener('click',
          function() {
-         localStorage.setItem("tuesday_scene", scene);
-         localStorage.setItem("tuesday_dialog", dialog);
-         localStorage.setItem("tuesday_story", story);
+            localStorage.setItem("tuesday_scene", scene);
+            localStorage.setItem("tuesday_dialog", dialog);
+            localStorage.setItem("tuesday_story", story);
+            localStorage.setItem("subject_choice", JSON.stringify( story_json.parameters.subject_choice ));
          }
     );}
     if(document.getElementById('load')){document.getElementById('load').addEventListener('click',function(){load_stag()});}
 } function creation_scene() {
+    if (story_json[story][scene].legacy_choice){
+            alert (JSON.stringify( story_json.parameters.subject_choice ))
+        for (var i = 0; i < story_json[story][scene].legacy_choice.length; i++) {
+            var choice_n = story_json[story][scene].legacy_choice[i][0];
+            var choice_s = story_json[story][scene].legacy_choice[i][1];
+            var choice_v = story_json[story][scene].legacy_choice[i][2];
+            var choice_g = story_json[story][scene].legacy_choice[i][3];
+            if (choice_s == ">" && story_json.parameters.subject_choice[choice_n] > choice_v) {
+                go_to(choice_g);
+                break;
+            } else if (choice_s == "<" && story_json.parameters.subject_choice[choice_n] < choice_v) {
+                go_to(choice_g);
+                break;
+            } else if (choice_s == "=" && story_json.parameters.subject_choice[choice_n] == choice_v) {
+                go_to(choice_g);
+                break;
+            } else if (story_json[story][scene].legacy_choice[i].go_to) {
+                go_to(story_json[story][scene].legacy_choice[i].go_to);
+                break;
+            }
+        }
+    } else
     if(story_json[story][scene].background_image){tuesday.style.backgroundImage = "url('" + story_json[story][scene].background_image[languare] + "')";}
     var buttons = document.getElementById("tuesday").getElementsByClassName("tue_controll");
     for (var i = 0; i < buttons.length; i++) {
@@ -144,6 +169,16 @@ function get_lang() {
         }
         tue_bg_music.loop = true;
         tue_bg_music.play();
+    }
+    if (story_json[story][scene].subject_choice) {
+        for (var i = 0; i < story_json[story][scene].subject_choice.length; i++) {
+            var choice_n = story_json[story][scene].subject_choice[i][0]
+            if (story_json[story][scene].subject_choice[i][1] == "add") {
+                story_json.parameters.subject_choice[choice_n] = story_json.parameters.subject_choice[choice_n] + story_json[story][scene].subject_choice[i][2];
+            } else if (story_json[story][scene].subject_choice[i][1] == "set") {
+                story_json.parameters.subject_choice[choice_n] = story_json[story][scene].subject_choice[i][2];
+            }
+        }
     }
 } function creation_dialog () {
     if (story_json[story][scene].dialogs[dialog].color_panel) {text_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].color_panel;}
@@ -250,6 +285,8 @@ function get_lang() {
     scene = localStorage.getItem("tuesday_scene");
     dialog = localStorage.getItem("tuesday_dialog");
     story = localStorage.getItem("tuesday_story");
+    story_json.parameters.subject_choice = JSON.parse(localStorage.getItem("subject_choice"));
+    alert (JSON.stringify( story_json.parameters.subject_choice ))
     creation_scene();
 	search_music ();
 } function go_to(go) {

@@ -41,7 +41,6 @@
                         "size_text": "20px",
                         "className": "borders",
                         "dialog_speed": 10
-
                     },
                     "name_panel": {
                         "size_panel": ["0","48px"],
@@ -53,6 +52,11 @@
                     },
                     "launch_story": "main_menu",
                     "languares": ["ru","ja"],
+                    "subject_choice": {
+                        "ointment": 10,
+                        "chantal": 0,
+                        "scarlet": 0
+                    },
                     "buttons": [
                         {
                             "name": "back",
@@ -3805,6 +3809,7 @@
                 }
             ], "city_shelter_chantal": [
                 {
+                        "subject_choice": [["scarlet","set", 0],["chantal","set", 1]],
                         "background_image": {
                             "ru":"img/sky_tree_1.jpg",
                             "en":"img/sky_tree_1.jpg",
@@ -4335,6 +4340,7 @@
                 }
             ], "city_shelter_scarlet": [
                 {
+                        "subject_choice": [["scarlet","set", 1],["chantal","set", 0]],
                         "background_image": {
                             "ru":"img/sky_tree_1.jpg",
                             "en":"img/sky_tree_1.jpg",
@@ -5097,58 +5103,10 @@
                     }
                 ], "add_social_link": [
                     {
-                            "background_image": {
-                                "ru":"img/sky_tree_1.jpg",
-                                "en":"img/sky_tree_1.jpg",
-                                "ja":"img/sky_tree_1.jpg",
-                                "ko":"img/sky_tree_1.jpg"
-                            },
-                            "dialogs":[
-                            {
-                                "color_panel": "rgba(155,155,155,0.75)",
-                                "color_text": "#fff",
-                                "text": {
-                                    "ru":"Еще нужно реализовать запоминания предылущих выборов",
-                                    "en":"",
-                                    "ja":""
-                                },
-                                "name": {
-                                    "color_text": "#fff",
-                                    "color_panel": "#ffaa95",
-                                    "ru":"Developer",
-                                    "en":"",
-                                    "ja":""
-                                },
-                                "select": [
-                                    {
-                                        "go_to": "city_shelter_chantal3",
-                                        "position": ["40%","0","0","30%"],
-                                        "size": ["256px","48px"],
-                                        "className": "borders button_border",
-                                        "color": "#888",
-                                        "style": "transform: translateX(-50%) translateY(-50%); border-radius:24px; box-shadow: 0 0 10px rgba(0,0,0,0.5);",
-                                        "color_text": "#fff",
-                                        "art_size": ["100%","100%"],
-                                        "text": {
-                                            "ru":"Пойти с Шанталь"
-                                        }
-                                    },{
-                                        
-                                        "go_to": "city_shelter_scarlet3",
-                                        "position": ["60%","0","0","30%"],
-                                        "size": ["256px","48px"],
-                                        "className": "borders button_border",
-                                        "color": "#888",
-                                        "style": "transform: translateX(-50%) translateY(-50%); border-radius:24px; box-shadow: 0 0 10px rgba(0,0,0,0.5);",
-                                        "color_text": "#fff",
-                                        "art_size": ["100%","100%"],
-                                        "text": {
-                                            "ru":"Пойти со Скарлет"
-                                        }
-                                    }
-                                ]
-                                
-                            }
+                        "legacy_choice": [
+                            ["scarlet","=", 1, "city_shelter_scarlet3"],
+                            ["chantal","=", 1, "city_shelter_chantal3"],
+                            {"go_to": "main_menu"}
                         ]
                     }
                 ], "city_shelter_caretaker3": [
