@@ -12,7 +12,6 @@ var dialog_letter = 0;
 var dialog_timeout;
 var story;
 var tue_bg_music;
-
 document.addEventListener('keydown', function(event) {
     var k = event.key;
     if (k == story_json.parameters.key.next) {go_story ();}
@@ -40,7 +39,6 @@ function get_lang() {
     if (tip == 'data'){
         story_json = url;
         base_creation();
-        
     } else if (tip == 'file') {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -51,14 +49,14 @@ function get_lang() {
         };
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
-
-        
     }
 } function base_creation() {
     get_lang();
     dialog_speed = story_json.parameters.text_panel.dialog_speed;
-    if (story_json.parameters.title[languare]) {document.title = story_json.parameters.title[languare];}
-    else if (story_json.parameters.title) {document.title = story_json.parameters.title;}
+    
+    if (story_json.parameters.title){if (story_json.parameters.title[languare]){document.title = story_json.parameters.title[languare];}
+        else {document.title = story_json.parameters.title;}}
+    
     tuesday = document.getElementById("tuesday");
     tuesday.style.backgroundRepeat = "no-repeat";
     tuesday.style.backgroundSize = "cover";
@@ -103,7 +101,6 @@ function get_lang() {
     story = story_json.parameters.launch_story
     creation_buttons();
     creation_scene();
-    
 } function creation_buttons() {
     for (i = 0; i < story_json.parameters.buttons.length; i++){
         var button = document.createElement("div");
@@ -194,12 +191,14 @@ function get_lang() {
         dialog_letter = 0;
         clearTimeout(dialog_timeout);
         anim_text();
+        if(story_json[story][scene].dialogs[dialog].text.className){ text_block.className = story_json[story][scene].dialogs[dialog].text.className}
     } else {text_block.style.visibility = 'hidden';}
     if (story_json[story][scene].dialogs[dialog].name) {
         name_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].name.color_panel;
         name_block.style.color = story_json[story][scene].dialogs[dialog].name.color_text;
         name_block.innerHTML = story_json[story][scene].dialogs[dialog].name[languare]
         name_block.style.visibility = 'visible';
+        if(story_json[story][scene].dialogs[dialog].name.className){ name_block.className = story_json[story][scene].dialogs[dialog].name.className}
     } else {name_block.style.visibility = 'hidden';}
     del_element("tue_art");
     if (story_json[story][scene].dialogs[dialog].art){
@@ -212,8 +211,10 @@ function get_lang() {
             art.className = "tue_art"
             if(story_json[story][scene].dialogs[dialog].art[i].style){art.style = story_json[story][scene].dialogs[dialog].art[i].style;}
             art.style.position = "absolute";
-            art.style.width = story_json[story][scene].dialogs[dialog].art[i].size[0];
-            art.style.height = story_json[story][scene].dialogs[dialog].art[i].size[1];
+            if (story_json[story][scene].dialogs[dialog].art[i].size) {
+                art.style.width = story_json[story][scene].dialogs[dialog].art[i].size[0];
+                art.style.height = story_json[story][scene].dialogs[dialog].art[i].size[1];
+            }
             if (story_json[story][scene].dialogs[dialog].art[i].position[0] != 0){art.style.left= story_json[story][scene].dialogs[dialog].art[i].position[0];}
             if (story_json[story][scene].dialogs[dialog].art[i].position[1] != 0){art.style.right= story_json[story][scene].dialogs[dialog].art[i].position[1];}
             if (story_json[story][scene].dialogs[dialog].art[i].position[2] != 0){art.style.top= story_json[story][scene].dialogs[dialog].art[i].position[2];}
@@ -271,6 +272,7 @@ function get_lang() {
             creation_scene();
         }
     }
+    if (story_json.parameters.autosave){save_stag()}
 } function back_story() {
     if (story_json[story][scene].dialogs[dialog].back_to) {
         var go = story_json[story][scene].dialogs[dialog].back_to;
@@ -286,6 +288,7 @@ function get_lang() {
             creation_scene();
         }
     }
+    if (story_json.parameters.autosave){save_stag()}
 } function save_stag(){
     {
        localStorage.setItem("tuesday_scene", scene);
