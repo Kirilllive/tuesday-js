@@ -17,8 +17,9 @@ document.addEventListener('keydown', function(event) {
     if (k == story_json.parameters.key.next) {go_story ();}
     else if (k == story_json.parameters.key.back) {back_story ();}
     else if (k == story_json.parameters.key.launch_story) {var g = story_json.parameters.launch_story; go_to(g);}
-    else if (k == story_json.parameters.key.save_stag) {save_stag();}
-    else if (k == story_json.parameters.key.load_stag) {load_stag();}
+    else if (k == story_json.parameters.key.save_stag) {save_stag('bookmark');}
+    else if (k == story_json.parameters.key.load_stag) {load_stag('bookmark');}
+    else if (k == story_json.parameters.key.load_autosave) {load_stag('auto');}
 });
 function get_lang() {
     if (navigator.languages != undefined) {
@@ -129,8 +130,8 @@ function get_lang() {
         var g = story_json.parameters.launch_story;
         document.getElementById('home').addEventListener('click', function() {go_to(g)});
     }
-    if(document.getElementById('save')){document.getElementById('save').addEventListener('click',function(){save_stag()});}
-    if(document.getElementById('load')){document.getElementById('load').addEventListener('click',function(){load_stag()});}
+    if(document.getElementById('save')){document.getElementById('save').addEventListener('click',function(){save_stag('bookmark')});}
+    if(document.getElementById('load')){document.getElementById('load').addEventListener('click',function(){load_stag('bookmark')});}
 } function creation_scene() {
     if (story_json[story][scene].legacy_choice){
         for (var i = 0; i < story_json[story][scene].legacy_choice.length; i++) {
@@ -250,7 +251,8 @@ function get_lang() {
             select.style.textAlign = "center";
             if(story_json[story][scene].dialogs[dialog].select[i].text){select.innerHTML = story_json[story][scene].dialogs[dialog].select[i].text[languare];}
             var g = story_json[story][scene].dialogs[dialog].select[i].go_to;
-            if (g == "load") {select.setAttribute("onclick","load_stag()");}
+            if (g == "load_autosave") {select.setAttribute("onclick","load_stag('auto')");}
+            else if (g == "load") {select.setAttribute("onclick","load_stag('bookmark')");}
             else {
                 select.setAttribute("onclick","go_to('" + g + "')");
             }
@@ -272,7 +274,7 @@ function get_lang() {
             creation_scene();
         }
     }
-    if (story_json.parameters.autosave){save_stag()}
+    if (story_json.parameters.autosave){save_stag('auto')}
 } function back_story() {
     if (story_json[story][scene].dialogs[dialog].back_to) {
         var go = story_json[story][scene].dialogs[dialog].back_to;
@@ -288,20 +290,20 @@ function get_lang() {
             creation_scene();
         }
     }
-    if (story_json.parameters.autosave){save_stag()}
-} function save_stag(){
+    if (story_json.parameters.autosave){save_stag('auto')}
+} function save_stag(tip){
     {
-       localStorage.setItem("tuesday_scene", scene);
-       localStorage.setItem("tuesday_dialog", dialog);
-       localStorage.setItem("tuesday_story", story);
-       localStorage.setItem("subject_choice", JSON.stringify( story_json.parameters.subject_choice ));
+       localStorage.setItem("tuesday_" + tip + "_scene", scene);
+       localStorage.setItem("tuesday_" + tip + "_dialog", dialog);
+       localStorage.setItem("tuesday_" + tip + "_story", story);
+       localStorage.setItem("tuesday_" + tip + "_data", JSON.stringify( story_json.parameters.subject_choice ));
     }
-} function load_stag() {
+} function load_stag(tip) {
     del_element("tue_select")
-    scene = localStorage.getItem("tuesday_scene");
-    dialog = localStorage.getItem("tuesday_dialog");
-    story = localStorage.getItem("tuesday_story");
-    story_json.parameters.subject_choice = JSON.parse(localStorage.getItem("subject_choice"));
+    scene = localStorage.getItem("tuesday_" + tip + "_scene");
+    dialog = localStorage.getItem("tuesday_" + tip + "_dialog");
+    story = localStorage.getItem("tuesday_" + tip + "_story");
+    story_json.parameters.subject_choice = JSON.parse(localStorage.getItem("tuesday_" + tip + "_data"));
     creation_scene();
 	search_music ();
 } function go_to(go) {
