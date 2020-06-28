@@ -22,20 +22,13 @@ document.addEventListener('keydown', function(event) {
     else if (k == story_json.parameters.key.load_autosave) {load_stag('auto');}
 });
 function get_lang() {
-    if (navigator.languages != undefined) {
-        languare = navigator.languages[0].substring(0,2);
-    } else {
-        languare = navigator.languagesubstring(0,2)
-    }
+    if (navigator.languages != undefined) {languare = navigator.languages[0].substring(0,2);}
+    else {languare = navigator.languagesubstring(0,2)}
     var support;
     for (i = 0; i < story_json.parameters.languares.length; i++){
-        if (languare == story_json.parameters.languares[i]) {
-            support = true
-        }
+        if (languare == story_json.parameters.languares[i]) {support = true }
     }
-    if (!support){
-        languare = story_json.parameters.languares[0]
-    }
+    if (!support){languare = story_json.parameters.languares[0]}
 } function load_story(tip, url) {
     if (tip == 'data'){
         story_json = url;
@@ -54,10 +47,9 @@ function get_lang() {
 } function base_creation() {
     get_lang();
     dialog_speed = story_json.parameters.text_panel.dialog_speed;
-    
-    if (story_json.parameters.title){if (story_json.parameters.title[languare]){document.title = story_json.parameters.title[languare];}
-        else {document.title = story_json.parameters.title;}}
-    
+    if (story_json.parameters.title){
+        if (story_json.parameters.title[languare]){document.title = story_json.parameters.title[languare];
+        } else {document.title = story_json.parameters.title;}}
     tuesday = document.getElementById("tuesday");
     tuesday.style.backgroundRepeat = "no-repeat";
     tuesday.style.backgroundSize = "cover";
@@ -176,127 +168,133 @@ function get_lang() {
             var choice_n = story_json[story][scene].subject_choice[i][0]
             if (story_json[story][scene].subject_choice[i][1] == "add") {
                 story_json.parameters.subject_choice[choice_n] = story_json.parameters.subject_choice[choice_n] + story_json[story][scene].subject_choice[i][2];
-            } else if (story_json[story][scene].subject_choice[i][1] == "set") {
-                story_json.parameters.subject_choice[choice_n] = story_json[story][scene].subject_choice[i][2];
-            }
+            } else if (story_json[story][scene].subject_choice[i][1] == "set") {story_json.parameters.subject_choice[choice_n] = story_json[story][scene].subject_choice[i][2];}
         }
     }
 } function creation_dialog () {
-    if (story_json[story][scene].dialogs[dialog].color_panel) {text_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].color_panel;}
-    else if (story_json.parameters.text_panel.color_panel) {text_block.style.backgroundColor = story_json.parameters.text_panel.color_panel;}
-    text_view.style.color = story_json[story][scene].dialogs[dialog].color_text;
-    if (story_json[story][scene].dialogs[dialog].text){
-        text_block.style.visibility = 'visible';
-        text_view.innerHTML = "";
-        dialog_text = story_json[story][scene].dialogs[dialog].text[languare];
-        dialog_letter = 0;
-        clearTimeout(dialog_timeout);
-        anim_text();
-        if(story_json[story][scene].dialogs[dialog].text.className){ text_block.className = story_json[story][scene].dialogs[dialog].text.className}
-    } else {text_block.style.visibility = 'hidden';}
-    if (story_json[story][scene].dialogs[dialog].name) {
-        name_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].name.color_panel;
-        name_block.style.color = story_json[story][scene].dialogs[dialog].name.color_text;
-        name_block.innerHTML = story_json[story][scene].dialogs[dialog].name[languare]
-        name_block.style.visibility = 'visible';
-        if(story_json[story][scene].dialogs[dialog].name.className){ name_block.className = story_json[story][scene].dialogs[dialog].name.className}
-    } else {name_block.style.visibility = 'hidden';}
-    del_element("tue_art");
-    if (story_json[story][scene].dialogs[dialog].art){
-        for (i = 0; i < story_json[story][scene].dialogs[dialog].art.length; i++){
-            var art = document.createElement("img");
-            if (story_json[story][scene].dialogs[dialog].art[i].url[languare]){
-            art.src = story_json[story][scene].dialogs[dialog].art[i].url[languare];}
-            else if (story_json[story][scene].dialogs[dialog].art[i].url){
-            art.src = story_json[story][scene].dialogs[dialog].art[i].url;}
-            art.className = "tue_art"
-            if(story_json[story][scene].dialogs[dialog].art[i].style){art.style = story_json[story][scene].dialogs[dialog].art[i].style;}
-            art.style.position = "absolute";
-            if (story_json[story][scene].dialogs[dialog].art[i].size) {
-                art.style.width = story_json[story][scene].dialogs[dialog].art[i].size[0];
-                art.style.height = story_json[story][scene].dialogs[dialog].art[i].size[1];
+		next.style.visibility = 'visible';
+        if (story_json[story][scene].dialogs[dialog].color_panel) {text_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].color_panel;}
+        else if (story_json.parameters.text_panel.color_panel) {text_block.style.backgroundColor = story_json.parameters.text_panel.color_panel;}
+        text_view.style.color = story_json[story][scene].dialogs[dialog].color_text;
+        if (story_json[story][scene].dialogs[dialog].text){
+            text_block.style.visibility = 'visible';
+            text_view.innerHTML = "";
+            dialog_text = story_json[story][scene].dialogs[dialog].text[languare];
+            dialog_letter = 0;
+            clearTimeout(dialog_timeout);
+            anim_text();
+            if(story_json[story][scene].dialogs[dialog].text.className){ text_block.className = story_json[story][scene].dialogs[dialog].text.className}
+        } else {text_block.style.visibility = 'hidden';}
+        if (story_json[story][scene].dialogs[dialog].name) {
+            name_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].name.color_panel;
+            name_block.style.color = story_json[story][scene].dialogs[dialog].name.color_text;
+            name_block.innerHTML = story_json[story][scene].dialogs[dialog].name[languare]
+            name_block.style.visibility = 'visible';
+            if(story_json[story][scene].dialogs[dialog].name.className){ name_block.className = story_json[story][scene].dialogs[dialog].name.className}
+        } else {name_block.style.visibility = 'hidden';}
+        del_element("tue_art");
+        if (story_json[story][scene].dialogs[dialog].art){
+            for (i = 0; i < story_json[story][scene].dialogs[dialog].art.length; i++){
+                var art = document.createElement("img");
+                if (story_json[story][scene].dialogs[dialog].art[i].url[languare]){
+                art.src = story_json[story][scene].dialogs[dialog].art[i].url[languare];}
+                else if (story_json[story][scene].dialogs[dialog].art[i].url){
+                art.src = story_json[story][scene].dialogs[dialog].art[i].url;}
+                art.className = "tue_art"
+                if(story_json[story][scene].dialogs[dialog].art[i].style){art.style = story_json[story][scene].dialogs[dialog].art[i].style;}
+                art.style.position = "absolute";
+                if (story_json[story][scene].dialogs[dialog].art[i].size) {
+                    art.style.width = story_json[story][scene].dialogs[dialog].art[i].size[0];
+                    art.style.height = story_json[story][scene].dialogs[dialog].art[i].size[1];
+                }
+                if (story_json[story][scene].dialogs[dialog].art[i].position[0] != 0){art.style.left= story_json[story][scene].dialogs[dialog].art[i].position[0];}
+                if (story_json[story][scene].dialogs[dialog].art[i].position[1] != 0){art.style.right= story_json[story][scene].dialogs[dialog].art[i].position[1];}
+                if (story_json[story][scene].dialogs[dialog].art[i].position[2] != 0){art.style.top= story_json[story][scene].dialogs[dialog].art[i].position[2];}
+                if (story_json[story][scene].dialogs[dialog].art[i].position[3] != 0){art.style.bottom= story_json[story][scene].dialogs[dialog].art[i].position[3];}
+                tuesday.appendChild(art);
             }
-            if (story_json[story][scene].dialogs[dialog].art[i].position[0] != 0){art.style.left= story_json[story][scene].dialogs[dialog].art[i].position[0];}
-            if (story_json[story][scene].dialogs[dialog].art[i].position[1] != 0){art.style.right= story_json[story][scene].dialogs[dialog].art[i].position[1];}
-            if (story_json[story][scene].dialogs[dialog].art[i].position[2] != 0){art.style.top= story_json[story][scene].dialogs[dialog].art[i].position[2];}
-            if (story_json[story][scene].dialogs[dialog].art[i].position[3] != 0){art.style.bottom= story_json[story][scene].dialogs[dialog].art[i].position[3];}
-            tuesday.appendChild(art);
         }
-    }
-    if (story_json[story][scene].dialogs[dialog].select) {
-        for (i = 0; i < story_json[story][scene].dialogs[dialog].select.length; i++) {
-            var select = document.createElement("div");
-            if(story_json[story][scene].dialogs[dialog].select[i].className){select.className = story_json[story][scene].dialogs[dialog].select[i].className;}
-            if(story_json[story][scene].dialogs[dialog].select[i].style){select.style = story_json[story][scene].dialogs[dialog].select[i].style;}
-            select.classList.add("tue_select");
-            select.style.position = "absolute";
-            select.style.backgroundColor = story_json[story][scene].dialogs[dialog].select[i].color;
-            select.style.backgroundRepeat = "no-repeat";
-            select.style.backgroundPosition = "center";
-            select.style.backgroundImage = "url('" + story_json[story][scene].dialogs[dialog].select[i].art + "')";
-            if (select.style.width = story_json[story][scene].dialogs[dialog].select[i].size[0] != 0) {
-                select.style.width = story_json[story][scene].dialogs[dialog].select[i].size[0];}
-            if (select.style.height = story_json[story][scene].dialogs[dialog].select[i].size[1] != 0) {
-                select.style.height = story_json[story][scene].dialogs[dialog].select[i].size[1];
-                select.style.lineHeight = story_json[story][scene].dialogs[dialog].select[i].size[1];
+        if (story_json[story][scene].dialogs[dialog].select) {
+			next.style.visibility = 'hidden';
+            for (i = 0; i < story_json[story][scene].dialogs[dialog].select.length; i++) {
+                var select = document.createElement("div");
+                if(story_json[story][scene].dialogs[dialog].select[i].className){select.className = story_json[story][scene].dialogs[dialog].select[i].className;}
+                if(story_json[story][scene].dialogs[dialog].select[i].style){select.style = story_json[story][scene].dialogs[dialog].select[i].style;}
+                select.classList.add("tue_select");
+                select.style.position = "absolute";
+                select.style.backgroundColor = story_json[story][scene].dialogs[dialog].select[i].color;
+                select.style.backgroundRepeat = "no-repeat";
+                select.style.backgroundPosition = "center";
+                select.style.backgroundImage = "url('" + story_json[story][scene].dialogs[dialog].select[i].art + "')";
+                if (select.style.width = story_json[story][scene].dialogs[dialog].select[i].size[0] != 0) {
+                    select.style.width = story_json[story][scene].dialogs[dialog].select[i].size[0];}
+                if (select.style.height = story_json[story][scene].dialogs[dialog].select[i].size[1] != 0) {
+                    select.style.height = story_json[story][scene].dialogs[dialog].select[i].size[1];
+                    select.style.lineHeight = story_json[story][scene].dialogs[dialog].select[i].size[1];
+                }
+                if (story_json[story][scene].dialogs[dialog].select[i].art_size){
+                    select.style.backgroundSize = story_json[story][scene].dialogs[dialog].select[i].art_size[0] + " " + story_json[story][scene].dialogs[dialog].select[i].art_size[1];
+                }
+                if (story_json[story][scene].dialogs[dialog].select[i].position[0] != 0){select.style.left = story_json[story][scene].dialogs[dialog].select[i].position[0];}
+                if (story_json[story][scene].dialogs[dialog].select[i].position[1] != 0){select.style.right = story_json[story][scene].dialogs[dialog].select[i].position[1];}
+                if (story_json[story][scene].dialogs[dialog].select[i].position[2] != 0){select.style.top = story_json[story][scene].dialogs[dialog].select[i].position[2];}
+                if (story_json[story][scene].dialogs[dialog].select[i].position[3] != 0){select.style.bottom = story_json[story][scene].dialogs[dialog].select[i].position[3];}
+                select.style.color = story_json[story][scene].dialogs[dialog].select[i].color_text;
+                select.style.padding = story_json[story][scene].dialogs[dialog].select[i].indent_text;
+                select.style.fontSize = story_json[story][scene].dialogs[dialog].select[i].size_text;
+                select.style.textAlign = "center";
+                if(story_json[story][scene].dialogs[dialog].select[i].text){select.innerHTML = story_json[story][scene].dialogs[dialog].select[i].text[languare];}
+                if (story_json[story][scene].dialogs[dialog].select[i].go_to) {
+					var g = story_json[story][scene].dialogs[dialog].select[i].go_to;
+					if (g == "load_autosave") {select.setAttribute("onclick","load_stag('auto')");}
+					else if (g == "load") {select.setAttribute("onclick","load_stag('bookmark')");}
+					else {select.setAttribute("onclick","go_to('" + g + "')");}
+					tuesday.appendChild(select);
+				} else {select.setAttribute("onclick","go_story(true); del_element('tue_select')"); tuesday.appendChild(select);}
             }
-            if (story_json[story][scene].dialogs[dialog].select[i].art_size){select.style.backgroundSize = story_json[story][scene].dialogs[dialog].select[i].art_size[0] + " " + story_json[story][scene].dialogs[dialog].select[i].art_size[1];}
-            if (story_json[story][scene].dialogs[dialog].select[i].position[0] != 0){select.style.left = story_json[story][scene].dialogs[dialog].select[i].position[0];}
-            if (story_json[story][scene].dialogs[dialog].select[i].position[1] != 0){select.style.right = story_json[story][scene].dialogs[dialog].select[i].position[1];}
-            if (story_json[story][scene].dialogs[dialog].select[i].position[2] != 0){select.style.top = story_json[story][scene].dialogs[dialog].select[i].position[2];}
-            if (story_json[story][scene].dialogs[dialog].select[i].position[3] != 0){select.style.bottom = story_json[story][scene].dialogs[dialog].select[i].position[3];}
-            select.style.color = story_json[story][scene].dialogs[dialog].select[i].color_text;
-            select.style.padding = story_json[story][scene].dialogs[dialog].select[i].indent_text;
-            select.style.fontSize = story_json[story][scene].dialogs[dialog].select[i].size_text;
-            select.style.textAlign = "center";
-            if(story_json[story][scene].dialogs[dialog].select[i].text){select.innerHTML = story_json[story][scene].dialogs[dialog].select[i].text[languare];}
-            var g = story_json[story][scene].dialogs[dialog].select[i].go_to;
-            if (g == "load_autosave") {select.setAttribute("onclick","load_stag('auto')");}
-            else if (g == "load") {select.setAttribute("onclick","load_stag('bookmark')");}
-            else {
-                select.setAttribute("onclick","go_to('" + g + "')");
-            }
-            tuesday.appendChild(select);
         }
-    }
-} function go_story() {
-    if (story_json[story][scene].dialogs[dialog].go_to) {
-        var go = story_json[story][scene].dialogs[dialog].go_to;
-        go_to(go)
-    } else if (dialog < story_json[story][scene].dialogs.length - 1){
-        dialog++;
-        creation_dialog ();
-    } else {
-        scene++;
-        if (scene >= story_json[story].length){scene = story_json[story].length - 1;}
-        else {
-            dialog = 0;
-            creation_scene();
-        }
-    }
-    if (story_json.parameters.autosave){save_stag('auto')}
+} function go_story(choice) {
+	if (!story_json[story][scene].dialogs[dialog].select || choice) {
+		if (story_json[story][scene].dialogs[dialog].go_to) {
+			var go = story_json[story][scene].dialogs[dialog].go_to;
+			go_to(go)
+		} else if (dialog < story_json[story][scene].dialogs.length - 1){
+			dialog++;
+			if (story_json[story][scene].dialogs[dialog].text){
+				if (story_json[story][scene].dialogs[dialog].text[languare] == 'skip'){go_story()} 
+				else {creation_dialog();};
+			} else { creation_dialog();}
+		} else {
+			scene++;
+			if (scene >= story_json[story].length){scene = story_json[story].length - 1;}
+			else {
+				dialog = 0;
+				creation_scene();
+			}
+		}
+		if (story_json.parameters.autosave){save_stag('auto')}
+	} 
 } function back_story() {
     if (story_json[story][scene].dialogs[dialog].back_to) {
         var go = story_json[story][scene].dialogs[dialog].back_to;
         go_to(go)
     } else if (dialog > 0){
         dialog = dialog - 1;
-        creation_dialog ();
+        if (story_json[story][scene].dialogs[dialog].text[languare] != 'skip'){
+            creation_dialog();
+			del_element("tue_select")
+        } else {back_story()};
     } else {
         scene = scene - 1;
         if (scene < 0){ scene = 0; }
-        else {
-            dialog = story_json[story][scene].dialogs.length - 1;
-            creation_scene();
-        }
-    }
-    if (story_json.parameters.autosave){save_stag('auto')}
+        else {dialog = story_json[story][scene].dialogs.length - 1;creation_scene();}
+    } if (story_json.parameters.autosave){save_stag('auto')}
 } function save_stag(tip){
     {
        localStorage.setItem("tuesday_" + tip + "_scene", scene);
        localStorage.setItem("tuesday_" + tip + "_dialog", dialog);
        localStorage.setItem("tuesday_" + tip + "_story", story);
-       localStorage.setItem("tuesday_" + tip + "_data", JSON.stringify( story_json.parameters.subject_choice ));
+        if (story_json.parameters.subject_choice){localStorage.setItem("tuesday_" + tip + "_data", JSON.stringify( story_json.parameters.subject_choice ));};
     }
 } function load_stag(tip) {
     del_element("tue_select")
@@ -315,9 +313,7 @@ function get_lang() {
 } function del_element (element) {
     var del = document.getElementById("tuesday").getElementsByClassName(element);
     var len = del.length;
-    for (var i = 0; i < len; i++) {
-            del[0].parentNode.removeChild(del[0]);
-    }
+    for (var i = 0; i < len; i++) {del[0].parentNode.removeChild(del[0]);}
 } function anim_text() {
     if (dialog_speed == 0){text_view.innerHTML = dialog_text;}
     else if (dialog_speed != 0 && dialog_letter <= dialog_text.length){dialog_timeout = setTimeout(add_letter, dialog_speed);}
@@ -330,9 +326,7 @@ function get_lang() {
 		if(story_json[story][i].background_music){
 			if (tue_bg_music.canPlayType("audio/mpeg")) {
 				tue_bg_music.setAttribute("src", story_json[story][i].background_music+".m4a");
-				} else {
-				tue_bg_music.setAttribute("src", story_json[story][i].background_music+".ogg");
-			}
+            } else {tue_bg_music.setAttribute("src", story_json[story][i].background_music+".ogg");}
 			tue_bg_music.loop = true;
 			tue_bg_music.play();
 			break;

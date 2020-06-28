@@ -21,6 +21,14 @@
             "className": "borders",
             "size_text": "18px"
         },
+        "key": {
+            "save_stag": "s",
+            "load_stag": "l",
+            "load_autosave": "c",
+            "launch_story": "Escape",
+            "next": "ArrowRight",
+            "back": "ArrowLeft"
+        },
         "launch_story": "main_menu",
         "languares": ["en","ru","ja","ko"],
         "buttons": [
