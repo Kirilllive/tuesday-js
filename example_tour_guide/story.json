@@ -33,7 +33,7 @@
         "languares": ["en","ru","ja","ko"],
         "buttons": [
             {
-                "name": "back",
+                "name": "tue_back",
                 "art":"img/back.svg",
                 "art_size": ["24px","24px"],
                 "position": ["0","55%","0","8px"],
@@ -45,7 +45,7 @@
                 "size_text": "18px",
                 "sound":"audio/click"
             },{
-                "name": "next",
+                "name": "tue_next",
                 "art":"img/next.svg",
                 "art_size": ["24px","24px"],
                 "position": ["55%","0","0","8px"],
@@ -57,7 +57,7 @@
                 "size_text": "18px",
                 "sound":"audio/click"
             },{
-                "name": "home",
+                "name": "tue_home",
                 "art":"img/menu.svg",
                 "art_size": ["24px","24px"],
                 "position": ["0","50%","0","8px"],
@@ -69,7 +69,7 @@
                 "size_text": "18px",
                 "sound":"audio/click"
             },{
-                "name": "save",
+                "name": "tue_save",
                 "art":"img/save.svg",
                 "art_size": ["36px","36px"],
                 "position": ["10px","0","8px","0"],
@@ -81,7 +81,7 @@
                 "size_text": "18px",
                 "sound":"audio/click"
             },{
-                "name": "load",
+                "name": "tue_load",
                 "art":"img/load.svg",
                 "art_size": ["36px","36px"],
                 "position": ["128px","0","8px","0"],
@@ -115,7 +115,7 @@
                             "size": ["auto","100%"]
                         }
                     ],
-                    "select": [
+                    "choice": [
                         {
                             "go_to": "sky_tree",
                             "position": ["0","33%","24.4%","0"],
