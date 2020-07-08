@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <script type="text/javascript" src="../tuesday.js"></script>
-        <title>Insurance in post apocalypse</title>
+        <title>Insurance agent</title>
         <meta name="viewport" content="initial-scale=1, width=device-width, height=device-height, viewport-fit=cover">
         <style>
         body {
@@ -120,8 +120,8 @@
                     "launch_story": "main_menu",
                     "languares": ["ru","ja", "en"],
                     "title": {
-                        "ru": "Страхование в пустоши",
-                        "en": "Insurance in wasteland",
+                        "ru": "Страховой агент",
+                        "en": "Insurance agent",
                         "ja": "荒れ地の保険"
                     },
                     "variables": {
@@ -843,9 +843,9 @@
 								"name": "doctor",
 								"text": {
 									"className": "girl_text",
-									"ru":"Здесь ровно <number_doses> доз. Расходуй экономно. ",
+									"ru":"Здесь ровно <ointment> доз. Расходуй экономно. ",
 									"en":"",
-									"ja":"ここにちょうど <number_doses> 回の投与分があります。節約しながら使ってください。"
+									"ja":"ここにちょうど <ointment> 回の投与分があります。節約しながら使ってください。"
 								}
 							 },{
 								"name": "doctor",
@@ -927,9 +927,9 @@
 								},
 								"text": {
 									"className": "girl_text",
-									"ru":"Очень хорошо: медосмотр показал, что тебе можно позволить еще <number_doses> доз. ",
+									"ru":"Очень хорошо: медосмотр показал, что тебе можно позволить еще <ointment> доз. ",
 									"en":"",
-									"ja":"とても良いです、身体検査の結果、あなたにもう <number_doses>分処方できます。"
+									"ja":"とても良いです、身体検査の結果、あなたにもう <ointment>分処方できます。"
 								}
 							 }
 						]
@@ -1266,7 +1266,7 @@
 					}
                 ],"garage": [
                      {
-                     "background_image": "img/cover.jpg",
+                     "background_image": "img/bg/7.png",
                      "dialogs":[
                         {
                             "name": "tom",
@@ -1401,7 +1401,7 @@
                         }
                     ]
                 },{
-                "background_image": "img/cover.jpg",
+                "background_image": "img/bg/8.png",
                 "dialogs":[
                        {
                            "text": {
@@ -1417,22 +1417,20 @@
                                "en":"",
                                "ja":""
                            }
-                       },{
-                           "text": {
-                               "className": "default",
-                               "ru":"Окей, байк - какие есть данные по «убежищу» ?",
-                               "en":"",
-                               "ja":""
-                           }
-                       },{
-                           "name":"assis",
-                           "text": {
-                               "className": "assistent_text",
-                               "ru":"Приветствую тебя путник.",
-                               "en":"",
-                               "ja":""
-                           }
-                       },{
+                        }
+                    ]
+             },{
+             "background_image": "img/bg/9.png",
+             "dialogs":[
+                        {
+                            "name":"assis",
+                            "text": {
+                                "className": "assistent_text",
+                                "ru":"Приветствую тебя путник.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
                            "text": {
                                "className": "default",
                                "ru":"Ты ещё что за хрень?",
@@ -1446,7 +1444,12 @@
                                "en":"",
                                "ja":""
                            }
-                       },{
+                        }
+                ]
+                     },{
+                     "background_image": "img/bg/10.png",
+                     "dialogs":[
+                        {
                            "name":"assis",
                            "text": {
                                "className": "assistent_text",
@@ -1500,7 +1503,12 @@
                                "en":"",
                                "ja":""
                            }
-                       },{
+                       }
+                    ]
+                 },{
+                 "background_image": "img/bg/8.png",
+                 "dialogs":[
+                        {
                            "text": {
                                "className": "default",
                                "ru":"Итак, что известно по «убежищу»?",
@@ -1576,7 +1584,7 @@
                 }
             ],"shelter_town_dead": [
                 {
-                        "background_image": "img/cover.jpg",
+                        "background_image": "img/bg/23.png",
                         "dialogs":[
                          {
                             "go_to": "main_menu",
@@ -1591,7 +1599,7 @@
                 }
             ],"shelter_town": [
                  {
-                    "background_image": "img/cover.jpg",
+                    "background_image": "img/bg/11.png",
                     "dialogs":[
                         {
                             "name":"assis",
@@ -1683,8 +1691,21 @@
                                 "ru":"ЭЙ!!! ТУТ ЕСТЬ КТО-НИБУДЬ!!!",
                                 "en":"",
                                 "ja":""
+                               }
                             }
-                        },{
+                       ]
+                   },{
+                   "background_image": "img/bg/000.png",
+                   "dialogs":[
+                        {
+                            "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/guard.png",
+                                  "position": ["47%","0","60%","0"],
+                                  "size": ["auto","100%"]
+                                  }
+                            ],
                            "name": {
                                "className":"nitral",
                                "ru":"Guard",
@@ -1698,6 +1719,14 @@
                                "ja":""
                            }
                         },{
+                            "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/guard.png",
+                                  "position": ["47%","0","60%","0"],
+                                  "size": ["auto","100%"]
+                                  }
+                            ],
                             "choice": [
                                 {
                                     "go_to": "shelter_town_dead",
@@ -1727,6 +1756,14 @@
                                 }
                             ]
                         },{
+                            "art": [
+                                  {
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "url": "img/chr/guard.png",
+                                      "position": ["47%","0","60%","0"],
+                                      "size": ["auto","100%"]
+                                  }
+                            ],
                            "name": {
                                "className":"nitral",
                                "ru":"Guard",
@@ -1738,8 +1775,14 @@
                                "ru":"Хорошо. Вы можете пройти.",
                                "en":"",
                                "ja":""
-                           }
-                        },{
+                              }
+                      
+                        }
+                      ]
+                   },{
+                   "background_image": "img/bg/16.png",
+                   "dialogs":[
+                              {
                            "name": {
                                "className":"nitral",
                                "ru":"Guard",
@@ -1787,7 +1830,20 @@
                                "en":"",
                                "ja":""
                             }
-                        },{
+                        }
+                    ]
+               },{
+               "background_image": "img/bg/000.png",
+               "dialogs":[
+                          {
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "name": "rem",
                             "text": {
                                "className": "negativ_text",
@@ -1795,7 +1851,15 @@
                                "en":"",
                                "ja":""
                             }
-                        },{
+                          },{
+                          "art": [
+                               {
+                                   "style": "transform: translateX(-50%) translateY(-50%);",
+                                   "url": "img/chr/rem.png",
+                                   "position": ["47%","0","90%","0"],
+                                   "size": ["auto","160%"]
+                               }
+                           ],
                             "name": "rem",
                            "text": {
                                "className": "negativ_text",
@@ -1804,6 +1868,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "text": {
                                "className": "default",
                                "ru":"Нет, из Метрополии.",
@@ -1811,6 +1883,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "text": {
                                "className": "default",
                                "ru":"Я никогда не слышал про \"город под куполом\".",
@@ -1818,6 +1898,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "text": {
                                "className": "default",
                                "ru":"Там еще одно убежище?",
@@ -1825,6 +1913,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "name": "rem",
                            "text": {
                                "className": "negativ_text",
@@ -1833,6 +1929,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "text": {
                                "className": "default",
                                "ru":"Для экономии ресурсов, людям там разрешили жить только до 30 лет. Потом они проходят обряд огненной карусели.",
@@ -1840,6 +1944,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "name":"assis",
                             "text": {
                                "className": "assistent_text",
@@ -1848,6 +1960,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "name":"assis",
                             "text": {
                                "className": "assistent_text",
@@ -1856,6 +1976,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "text": {
                                "className": "default",
                                "ru":"Похоже на фильм «Logans run»",
@@ -1863,6 +1991,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "name":"rem",
                             "text": {
                                "className": "negativ_text",
@@ -1871,6 +2007,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
                             "choice": [
                                 {
                                     "go_to": "shelter_town_dead",
@@ -1900,7 +2044,15 @@
                                 }
                             ]
                         },{
-                             "name": "rem",
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                            ],
+                            "name": "rem",
                             "text": {
                                 "className": "negativ_text",
                                 "ru":"Озера, что ты видел за пределами, абсолютно чисты от радиации и вредных примесей.",
@@ -1908,6 +2060,14 @@
                                 "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                                  ],
                             "text": {
                                "className": "default",
                                "ru":"Я бы хотел посмотреть на этот процесс.",
@@ -1915,6 +2075,14 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                                  ],
                              "name": "rem",
                             "text": {
                                 "className": "negativ_text",
@@ -1923,6 +2091,14 @@
                                 "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  }
+                                  ],
                             "text": {
                                "className": "default",
                                "ru":"Эм… Для развития туризма…",
@@ -1930,6 +2106,19 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "url": "img/chr/rem.png",
+                                      "position": ["47%","0","90%","0"],
+                                      "size": ["auto","160%"]
+                                  },{
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "url": "img/chr/guard.png",
+                                      "position": ["17%","0","80%","0"],
+                                      "size": ["auto","100%"]
+                                  }
+                            ],
                            "name": {
                                  "className":"nitral",
                                  "ru":"Guard",
@@ -1943,6 +2132,19 @@
                                 "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  },{
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/guard.png",
+                                  "position": ["17%","0","80%","0"],
+                                  "size": ["auto","100%"]
+                                  }
+                                  ],
                             "name": "rem",
                             "text": {
                                 "className": "negativ_text",
@@ -1951,6 +2153,19 @@
                                 "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  },{
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/guard.png",
+                                  "position": ["17%","0","80%","0"],
+                                  "size": ["auto","100%"]
+                                  }
+                                  ],
                             "name": "rem",
                             "text": {
                                 "className": "negativ_text",
@@ -1959,6 +2174,19 @@
                                 "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  },{
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/guard.png",
+                                  "position": ["17%","0","80%","0"],
+                                  "size": ["auto","100%"]
+                                  }
+                                  ],
                             "name": "rem",
                             "text": {
                                 "className": "negativ_text",
@@ -1967,6 +2195,19 @@
                                 "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  },{
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/guard.png",
+                                  "position": ["17%","0","80%","0"],
+                                  "size": ["auto","100%"]
+                                  }
+                                  ],
                             "name": "rem",
                             "text": {
                                 "className": "negativ_text",
@@ -1975,6 +2216,19 @@
                                 "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  },{
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/guard.png",
+                                  "position": ["17%","0","80%","0"],
+                                  "size": ["auto","100%"]
+                                  }
+                                  ],
                             "text": {
                                "className": "default",
                                "ru":"Ээээ... да вы чего?!",
@@ -1982,6 +2236,19 @@
                                "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  },{
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/guard.png",
+                                  "position": ["17%","0","80%","0"],
+                                  "size": ["auto","100%"]
+                                  }
+                                  ],
                             "name": "rem",
                             "text": {
                                 "className": "negativ_text",
@@ -1990,6 +2257,19 @@
                                 "ja":""
                             }
                         },{
+                          "art": [
+                                  {
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/rem.png",
+                                  "position": ["47%","0","90%","0"],
+                                  "size": ["auto","160%"]
+                                  },{
+                                  "style": "transform: translateX(-50%) translateY(-50%);",
+                                  "url": "img/chr/guard.png",
+                                  "position": ["17%","0","80%","0"],
+                                  "size": ["auto","100%"]
+                                  }
+                                  ],
                              "name": {
                                 "className":"nitral",
                                 "ru":"Guard",
@@ -2005,7 +2285,7 @@
                         }
                     ]
                 },{
-                    "background_image": "img/cover.jpg",
+                    "background_image": "img/bg/12.png",
                     "dialogs":[
                         {
                             "text": {
@@ -2166,7 +2446,12 @@
                                "en":"",
                                "ja":""
                             }
-                        },{
+                        }
+                    ]
+               },{
+               "background_image": "img/bg/13.png",
+               "dialogs":[
+                          {
                            "name": {
                                  "className":"girl",
                                  "ru":"Hermits",
@@ -2262,9 +2547,17 @@
                         }
                     ]
                 },{
-                        "background_image": "img/cover.jpg",
+                        "background_image": "img/bg/000.png",
                         "dialogs":[
                          {
+                           "art": [
+                                {
+                                   "style": "transform: translateX(-50%) translateY(-50%);",
+                                   "url": "img/chr/rem.png",
+                                   "position": ["47%","0","90%","0"],
+                                   "size": ["auto","160%"]
+                                }
+                            ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2273,6 +2566,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2281,6 +2582,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Я игровой персонаж который по прихоти сценария должен оказаться здесь.",
@@ -2288,6 +2597,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2296,6 +2613,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Ладно, ладно - не кипятись.",
@@ -2303,6 +2628,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Я прибыл из города Метрополь.",
@@ -2310,6 +2643,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Забавно, что я страховой агент, и хотел предложить застраховать город от подобных инцидентов.",
@@ -2317,6 +2658,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Поэтому, я хотел взглянуть на генераторы воды.",
@@ -2324,6 +2673,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2332,6 +2689,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2340,6 +2705,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2348,6 +2721,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2356,6 +2737,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "name":"assis",
                              "text": {
                                 "className": "assistent_text",
@@ -2364,6 +2753,14 @@
                                 "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2372,6 +2769,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "name":"assis",
                              "text": {
                                 "className": "assistent_text",
@@ -2380,6 +2785,14 @@
                                 "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "name":"assis",
                              "text": {
                                 "className": "assistent_text",
@@ -2388,6 +2801,14 @@
                                 "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Как это ни парадоксально, но наши с ними интересы не совпадают.",
@@ -2395,6 +2816,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"В моем байке есть траектория моего движения и другие доказательства.",
@@ -2402,6 +2831,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2410,6 +2847,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2418,6 +2863,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Ну... то что я сегодня увидел называется страховым случаем.",
@@ -2425,6 +2878,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Если бы во время атаки был нанесен какой-нибудь ущерб, мое агентство выплатило бы компенсацию, согласно страховому плану.",
@@ -2432,6 +2893,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                             "name": "rem",
                              "text": {
                                  "className": "negativ_text",
@@ -2440,6 +2909,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"С помощью компенсации вы сможете быстрей восстановиться и вернуться к обычной жизни!",
@@ -2447,6 +2924,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "name": "rem",
                               "text": {
                                   "className": "negativ_text",
@@ -2455,6 +2940,14 @@
                                   "ja":""
                               }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                               "name": "rem",
                               "text": {
                                   "className": "negativ_text",
@@ -2463,6 +2956,14 @@
                                   "ja":""
                               }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"За подобную поддержку нужно вносить скромные взносы через некоторое время.",
@@ -2470,6 +2971,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Эти средства пойдут на выплаты ваших страховых случаев и на помощь многим другим, кому повезло меньше.",
@@ -2477,6 +2986,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Таким образом, страховые выплаты могут быть больше, чем сумма всех ваших взносов.",
@@ -2484,6 +3001,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "name": "rem",
                               "text": {
                                   "className": "negativ_text",
@@ -2492,6 +3017,14 @@
                                   "ja":""
                               }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/rem.png",
+                                           "position": ["47%","0","90%","0"],
+                                           "size": ["auto","160%"]
+                                           }
+                                           ],
                              "name": "rem",
                               "text": {
                                   "className": "negativ_text",
@@ -2500,6 +3033,19 @@
                                   "ja":""
                               }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/schatal.png",
+                                           "position": ["30%","0","70%","0"],
+                                           "size": ["auto","90%"]
+                                           },{
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/scarlet.png",
+                                           "position": ["70%","0","70%","0"],
+                                           "size": ["auto","90%"]
+                                           }
+                                           ],
                              "choice": [
                                  {
                                      "go_to": "shelter_chantal",
@@ -2526,7 +3072,7 @@
                 }
             ],"shelter_chantal": [
                  {
-                    "background_image": "img/cover.jpg",
+                    "background_image": "img/bg/15_s.png",
                     "dialogs":[
                         {
                             "variables": [["chantal","set", 1],["scarlet","set", 0]],
@@ -2858,7 +3404,7 @@
                 }
             ],"shelter_scarlet": [
                  {
-                    "background_image": "img/cover.jpg",
+                    "background_image": "img/bg/15_c.png",
                     "dialogs":[
                         {
                             "variables": [["chantal","set", 0],["scarlet","set", 1]],
@@ -3048,7 +3594,7 @@
                 }
             ],"shelter_scarlet_2": [
                 {
-                   "background_image": "img/cover.jpg",
+                   "background_image": "img/bg/15_c.png",
                    "dialogs":[
                        {
                            "variables": [["scarlet","set", 2]],
@@ -3195,7 +3741,7 @@
                 }
             ],"shelter_caretaker": [
                 {
-                   "background_image": "img/cover.jpg",
+                   "background_image": "img/bg/17.png",
                    "dialogs":[
                         {
                            "name": "сaretaker",
@@ -3257,7 +3803,7 @@
                 }
         ],"shelter_caretaker_2": [
               {
-                 "background_image": "img/cover.jpg",
+                 "background_image": "img/bg/17.png",
                  "dialogs":[
                         {
                            "name": "сaretaker",
@@ -3302,7 +3848,7 @@
                 }
             ],"shelter_caretaker_3": [
                 {
-                   "background_image": "img/cover.jpg",
+                   "background_image": "img/bg/17.png",
                    "dialogs":[
                         {
                            "name": "сaretaker",
@@ -3402,7 +3948,7 @@
                 }
             ],"shelter_chantal_1": [
                 {
-                        "background_image": "img/cover.jpg",
+                        "background_image": "img/bg/18_s.png",
                         "dialogs":[
                          {
                             "name": "chantal",
@@ -3502,7 +4048,12 @@
                                      }
                                  }
                              ]
-                         },{
+                           }
+                       ]
+                   },{
+                   "background_image": "img/bg/24.png",
+                   "dialogs":[
+                          {
                             "name": "chantal",
                             "text": {
                                 "className": "girl_text",
@@ -3554,7 +4105,12 @@
                                      }
                                  }
                              ]
-                         },{
+                             }
+                         ]
+                     },{
+                     "background_image": "img/bg/19.png",
+                     "dialogs":[
+                            {
                              "text": {
                                  "className": "default",
                                  "ru":"Кажется, мне не хорошо…",
@@ -3636,7 +4192,7 @@
                 }
             ],"shelter_scarlet_3": [
                 {
-                        "background_image": "img/cover.jpg",
+                        "background_image": "img/bg/18_c.png",
                         "dialogs":[
                          {
                             "name": "scarlet",
@@ -3887,7 +4443,7 @@
                 }
             ],"shelter_caretaker_4": [
                 {
-                        "background_image": "img/cover.jpg",
+                        "background_image": "img/bg/17.png",
                         "dialogs":[
                         {
                              "text": {
@@ -3941,7 +4497,7 @@
         }
             ],"shelter_caretaker_5": [
                 {
-                        "background_image": "img/cover.jpg",
+                        "background_image": "img/bg/17.png",
                         "dialogs":[
                         {
                              "name": "сaretaker",
@@ -4056,7 +4612,12 @@
                                  "en":"",
                                  "ja":""
                              }
-                        },{
+                        }
+                    ]
+                },{
+                "background_image": "img/bg/20.png",
+                "dialogs":[
+                       {
                             "text": {
                                 "className": "default",
                                 "ru":"Так! Кто тут у нас? Ты хотела так просидеть всю дорогу ?",
@@ -4102,7 +4663,12 @@
                                  "en":"",
                                  "ja":""
                              }
-                        },{
+                        }
+                    ]
+                },{
+                "background_image": "img/bg/22.png",
+                "dialogs":[
+                       {
                             "text": {
                                 "className": "default",
                                 "ru":"У меня нет времени возиться еще и с тобой.",
@@ -4232,7 +4798,7 @@
                 }
             ],"shelter_scarlet_4": [
                 {
-                        "background_image": "img/cover.jpg",
+                        "background_image": "img/bg/25.png",
                         "dialogs":[
                          {
                             "name": "scarlet",
@@ -4339,7 +4905,12 @@
                                 "en":"",
                                 "ja":""
                             }
-                         },{
+                         }
+                     ]
+                 },{
+                 "background_image": "img/bg/26.png",
+                 "dialogs":[
+                        {
                             "name": {
                                  "className":"negativ",
                                  "ru":"Бывший",
@@ -4500,7 +5071,7 @@
                          }
                      ]
                  },{
-                     "background_image": "img/cover.jpg",
+                     "background_image": "img/bg/15_c.png",
                      "dialogs":[
                       {
                          "name": "scarlet",
@@ -4606,9 +5177,17 @@
                 }
             ],"shelter_attack": [
                 {
-                        "background_image": "img/cover.jpg",
+                        "background_image": "img/bg/000.png",
                         "dialogs":[
                          {
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/inga.png",
+                                           "position": ["47%","0","60%","0"],
+                                           "size": ["auto","100%"]
+                                           }
+                                           ],
                              "name":"inga",
                              "text": {
                                  "className": "girl_text",
@@ -4617,6 +5196,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/inga.png",
+                                           "position": ["47%","0","60%","0"],
+                                           "size": ["auto","100%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Мне бы забрать мой байк.",
@@ -4624,6 +5211,14 @@
                                  "ja":""
                             }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/inga.png",
+                                           "position": ["47%","0","60%","0"],
+                                           "size": ["auto","100%"]
+                                           }
+                                           ],
                              "text": {
                                  "className": "default",
                                  "ru":"Я не думаю, что после этого меня снова пустят в город.",
@@ -4631,6 +5226,14 @@
                                  "ja":""
                             }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/inga.png",
+                                           "position": ["47%","0","60%","0"],
+                                           "size": ["auto","100%"]
+                                           }
+                                           ],
                              "name":"inga",
                              "text": {
                                  "className": "girl_text",
@@ -4639,6 +5242,14 @@
                                  "ja":""
                              }
                          },{
+                                   "art": [
+                                           {
+                                           "style": "transform: translateX(-50%) translateY(-50%);",
+                                           "url": "img/chr/inga.png",
+                                           "position": ["47%","0","60%","0"],
+                                           "size": ["auto","100%"]
+                                           }
+                                           ],
                              "name":"inga",
                              "text": {
                                  "className": "girl_text",
@@ -4649,7 +5260,7 @@
                          }
                     ]
                 },{
-                    "background_image": "img/cover.jpg",
+                    "background_image": "img/bg/14_a.png",
                     "dialogs":[
                          {
                             "text": {
@@ -4904,7 +5515,7 @@
                }
            ],"shelter_attack_2": [
                {
-                   "background_image": "img/cover.jpg",
+                   "background_image": "img/bg/000.png",
                    "dialogs":[
                         {
                             "text": {
