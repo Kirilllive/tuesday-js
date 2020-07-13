@@ -125,7 +125,7 @@
                         "ja": "荒れ地の保険"
                     },
                     "variables": {
-                        "ointment": 0,
+                        "ointment": 10,
                         "rey": 0,
                         "chantal": 0,
                         "scarlet": 0
@@ -3140,7 +3140,7 @@
                         },{
                             "choice": [
                                 {
-                                    "go_to": "shelter_town_dead",
+                                    "go_to": "dead",
                                     "position": ["50%","0","0","55%"],
                                     "size": ["286px","0"],
                                     "className": "buttons",
@@ -4700,6 +4700,7 @@
                         },{
                             "choice": [
                                 {
+                                    "go_to": "shelter_chantal_3",
                                     "position": ["50%","0","0","65%"],
                                     "size": ["356px","0"],
                                     "className": "buttons",
@@ -4708,6 +4709,7 @@
                                         "ru":"Применить шокер."
                                     }
                                 },{
+                                    "go_to": "shelter_chantal_3",
                                     "position": ["50%","0","0","50%"],
                                     "size": ["356px","0"],
                                     "className": "buttons",
@@ -4794,6 +4796,46 @@
                                 "ja":""
                            }
                         }
+                    ]
+                }
+            ],"shelter_chantal_3": [
+                {
+                        "background_image": "img/bg/22.png",
+                        "dialogs":[
+                         {
+                            "go_to": "shelter_town_dead",
+                            "name": "chantal",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"ОХРАНА!!!",
+                                "en":"",
+                                "ja":""
+                            }
+                         }
+                    ]
+                }
+            ],"shelter_scarlet_5": [
+                {
+                        "background_image": "img/bg/26.png",
+                        "dialogs":[
+                         {
+                            "name": "scarlet",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Ты что задумал?",
+                                "en":"",
+                                "ja":""
+                            }
+                         },{
+                            "go_to": "shelter_town_dead",
+                            "name": "scarlet",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Я вызываю охрану!!!",
+                                "en":"",
+                                "ja":""
+                            }
+                         }
                     ]
                 }
             ],"shelter_scarlet_4": [
@@ -5026,7 +5068,7 @@
                                          "ru":"Да, давай разберемся по-мужски."
                                      }
                                  },{
-                                    "go_to": "shelter_town_dead",
+                                    "go_to": "shelter_scarlet_5",
                                      "position": ["50%","0","0","50%"],
                                      "size": ["356px","0"],
                                      "className": "buttons",
@@ -5162,16 +5204,19 @@
                 }
             ],"shelter_town_end": [
                 {
-                        "background_image": "img/cover.jpg",
+                        "background_image": "img/bg/8.png",
                         "dialogs":[
                          {
                             "go_to": "main_menu",
-                             "text": {
-                                "className": "negativ",
-                                 "ru":"Конец истории!",
-                                 "en":"",
-                                 "ja":""
-                             }
+                         }
+                    ]
+                }
+            ],"dead": [
+                {
+                        "background_image": "img/bg/27.png",
+                        "dialogs":[
+                         {
+                            "go_to": "main_menu",
                          }
                     ]
                 }
@@ -5515,7 +5560,7 @@
                }
            ],"shelter_attack_2": [
                {
-                   "background_image": "img/bg/000.png",
+                   "background_image": "img/bg/14_a.png",
                    "dialogs":[
                         {
                             "text": {
