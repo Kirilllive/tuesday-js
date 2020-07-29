@@ -143,6 +143,10 @@ function get_lang() {
             } else if (story_json[story][scene].legacy_choice[i].go_to) {
                 go_to(story_json[story][scene].legacy_choice[i].go_to);
                 break;
+            } else if (i == story_json[story][scene].legacy_choice.length-1) {
+                scene++;
+                dialog = 0;
+                creation_scene();
             }
         }
     } else
@@ -303,13 +307,13 @@ function get_lang() {
         var go = story_json[story][scene].dialogs[dialog].back_to;
         go_to(go)
     } else if (dialog > 0){
-        dialog = dialog - 1;
+        dialog -= 1;
         if (story_json[story][scene].dialogs[dialog].text[languare] != 'skip'){
             creation_dialog();
 			del_element("tue_choice")
         } else {back_story()};
     } else {
-        scene = scene - 1;
+        scene -= 1;
         if (scene < 0){ scene = 0; }
         else {dialog = story_json[story][scene].dialogs.length - 1;creation_scene();}
     } if (story_json.parameters.autosave){save_stag('auto')}

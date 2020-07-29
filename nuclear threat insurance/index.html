@@ -14,12 +14,6 @@
             border: 0;
             border-spacing: 0px;
             font-family: Arial;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
             color: #fff;
         }
         .buttons {
@@ -77,6 +71,19 @@
             border: 0.1em solid rgba(207,173,156,0.7);
             animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;
         }
+        .episodes{
+            transform: translateX(-50%) translateY(24px);
+            max-height: 128px;
+            max-width: 128px;
+            border: 0.1em solid;
+            border-color: #cfad9c;
+            border-radius: 1em;
+            padding:0;
+        }
+        .episodes:hover {
+            border-color: #fff;
+            transition-duration: 0.3s;
+        }
         @keyframes viwe {
           from {opacity: 0; top: 8px}
           to {opacity: 1; top: 8px}
@@ -128,7 +135,10 @@
                         "ointment": 10,
                         "rey": 0,
                         "chantal": 0,
-                        "scarlet": 0
+                        "scarlet": 0,
+                        "colleague_robot": 0,
+                        "end_robot": 0,
+                        "attempts": 3
                     },
                     "characters": {
                         "boss": {
@@ -136,67 +146,77 @@
                             "ru":"Босс",
                             "en":"Boss",
                             "ja":"ボス"
-                        },
-                        "polly": {
+                        },"polly": {
                             "className":"nitral",
                             "ru":"Полли",
                             "en":"Polly",
                             "ja":"ポリー"
-                        },
-                        "doctor": {
+                        },"doctor": {
                             "className":"girl",
                             "ru":"Врачь",
                             "en":"Doctor",
                             "ja":"医師"
-                        },
-                        "colleague": {
+                        },"colleague": {
                               "className":"girl",
                               "ru":"Коллега",
                               "en":"Colleague",
                               "ja":"同僚"
-                        },
-                        "tom": {
+                        },"tom": {
                             "className":"pozitiv",
                             "ru":"Tom",
                             "en":"Том",
                             "ja":"トム"
-                        },
-                        "assis": {
+                        },"assis": {
                             "className":"assistent",
                             "ru":"Assistant 5000",
                             "en":"Assistant 5000",
                             "ja":"Assistant 5000"
-                        },
-                        "rem": {
+                        },"rem": {
                               "className":"negativ",
                               "ru":"Рэм",
                               "en":"Rem",
                               "ja":"レム"
-                        },
-                        "chantal": {
+                        },"chantal": {
                             "className":"girl",
                             "ru":"Шанталь",
                             "en":"Chantal",
                             "ja":"シャンタル"
-                        },
-                        "сaretaker": {
+                        },"сaretaker": {
                             "className":"nitral",
                             "ru":"Смотритель",
                             "en":"Caretaker",
                             "ja":"世話人"
-                        },
-                        "inga": {
+                        },"inga": {
                             "className":"girl",
                             "ru":"Инга",
                             "en":"Inga",
                             "ja":"インガ"
-                        },
-                        "scarlet": {
+                        },"scarlet": {
                             "className":"girl",
                             "ru":"Скарлет",
                             "en":"Scarlet",
                             "ja":"スカーレット"
-                        },
+                        },"robot": {
+                            "className":"pozitiv",
+                            "ru":"Робот",
+                            "en":"Robot",
+                            "ja":"ロボット"
+                        },"core": {
+                            "className":"girl",
+                            "ru":"Ядро",
+                            "en":"Core",
+                            "ja":"芯"
+                        },"ada": {
+                            "className":"girl",
+                            "ru":"Ада",
+                            "en":"Ada",
+                            "ja":"エイダ"
+                        },"queen": {
+                            "className":"pozitiv",
+                            "ru":"Kоролева",
+                            "en":"Queen",
+                            "ja":"女王"
+                        }
                     },
                     "buttons": [
                         {
@@ -271,21 +291,81 @@
                                             "ru":"Продолжить"
                                         }
                                     },{
-                                        "go_to": "epizods",
+                                        "go_to": "episodes",
                                         "position": ["5%","0","0","25%"],
                                         "size": ["188px","0"],
                                         "className": "buttons",
                                         "text": {
                                             "ru":"Эпизоды"
                                         }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "episodes":[
+                    {
+                        "background_image":  "img/cover.jpg",
+                        "dialogs":[
+                            {
+                                "color_panel": "rgba(0,0,0,0.5)",
+                                "color_text": "#fff",
+                                "art": [
+                                   {
+                                       "style": "transform: translateX(-50%); min-width:50vh;",
+                                       "url":{
+                                           "ru":"img/logo_ru.png",
+                                           "ja":"img/logo_ja.png",
+                                           "en":"img/logo_en.png"
+                                       },
+                                       "position": ["50%","0","10%","0"],
+                                       "size": ["40vw","auto"]
+                                   }
+                                ],
+                                "choice": [
+                                    {
+                                        "go_to": "robo_city_1",
+                                        "size": ["20vw","20vw"],
+                                        "position": ["20%","0","66%","0"],
+                                        "art":"img/bg/27.png",
+                                        "art_size": ["100%","100%"],
+                                        "className": "episodes",
                                     },{
-                                        "go_to": "bonus",
-                                        "position": ["5%","0","0","10%"],
-                                        "size": ["188px","0"],
-                                        "className": "buttons",
-                                        "text": {
-                                            "ru":"Бонусы"
-                                        }
+                                        "go_to": "",
+                                        "size": ["20vw","20vw"],
+                                        "position": ["50%","0","66%","0"],
+                                        "art":"img/bg/27.png",
+                                        "art_size": ["100%","100%"],
+                                        "className": "episodes",
+                                    },{
+                                        "go_to": "",
+                                        "size": ["20vw","20vw"],
+                                        "position": ["80%","0","66%","0"],
+                                        "art":"img/bg/27.png",
+                                        "art_size": ["100%","100%"],
+                                        "className": "episodes",
+                                    },{
+                                        "go_to": "prolog",
+                                        "size": ["20vw","20vw"],
+                                        "position": ["20%","0","33%","0"],
+                                        "art":"img/bg/20191203_162647.jpg",
+                                        "art_size": ["100%","100%"],
+                                        "className": "episodes",
+                                    },{
+                                        "go_to": "shelter_town",
+                                        "size": ["20vw","20vw"],
+                                        "position": ["50%","0","33%","0"],
+                                        "art":"img/bg/11.png",
+                                        "art_size": ["100%","100%"],
+                                        "className": "episodes",
+                                    },{
+                                        "go_to": "moonworm_1",
+                                        "size": ["20vw","20vw"],
+                                        "position": ["80%","0","33%","0"],
+                                        "art":"img/bg/27.png",
+                                        "art_size": ["100%","100%"],
+                                        "className": "episodes",
                                     }
                                 ]
                             }
@@ -5204,11 +5284,62 @@
                 }
             ],"shelter_town_end": [
                 {
-                        "background_image": "img/bg/8.png",
-                        "dialogs":[
-                         {
-                            "go_to": "main_menu",
-                         }
+                    "background_image": "img/bg/8.png",
+                    "dialogs":[
+                    
+                          {
+                               "text": {
+                                   "className": "default",
+                                   "ru":"Наконец с убежищем покончено",
+                                   "en":"",
+                                  "ja":""
+                              }
+                           },{
+                               "name":"assis",
+                               "text": {
+                                   "className": "assistent_text",
+                                   "ru":"Я засек лунного червя неподалеку",
+                                   "en":"",
+                                   "ja":""
+                               }
+                          },{
+                               "name":"assis",
+                               "text": {
+                                   "className": "assistent_text",
+                                   "ru":"Советую проявить осторожность и не приближаться к нему",
+                                   "en":"",
+                                   "ja":""
+                               }
+                          },{
+                               "text": {
+                                   "className": "default",
+                                   "ru":"Ого! Настоящий лунный червь!!!",
+                                   "en":"",
+                                   "ja":""
+                               }
+                          },{
+                              "choice": [
+                                  {
+                                      "go_to": "moonworm_1",
+                                      "position": ["50%","0","0","65%"],
+                                      "size": ["256px","0"],
+                                      "className": "buttons",
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "text": {
+                                          "ru":"Я должен это увидеть."
+                                      }
+                                  },{
+                                      "go_to": "robo_city_1",
+                                      "position": ["50%","0","0","50%"],
+                                      "size": ["256px","0"],
+                                      "className": "buttons",
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "text": {
+                                          "ru":"Буду держаться от него по дальше."
+                                      }
+                                  }
+                              ]
+                        }
                     ]
                 }
             ],"dead": [
@@ -6064,8 +6195,3561 @@
                         {"go_to": "shelter_town_end"}
                     ]
                 }
-            ]
-        };
+            ],"robo_city_1": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"И так что у нас далее по курсу?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Развалины старого города.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"О нем нет информации, кроме того что там находятся фабрики по производству электроники ии бытовой техниикии.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"На брифинге было сказано что они торгуют с метрополем.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Один раз в неделю в метрополь прилетает груз оттуда.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Сохранилась до военная кабельная связь с этим местом.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"И при этом о них ничего не известно?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Мне кажется это подозрительным.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         }
+                     ]
+                 },{
+                     "background_image": "img/bg/8.png",
+                     "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"А что там за огонь в далеке?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Не могу определить что это.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Они летят прямо на нас",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Берегись!!!",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         }
+                     ]
+                 },{
+                     "background_image": "img/bg/8.png",
+                     "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Дурацкий будильник, что за глупый сон это был.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Стоп… я дома",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Значит все это мне приснилось ?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Реалистичный был сон.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"А это еще кто?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Кьюти? Как ты тут оказалась?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"не хочу тебя разочаровывать но это не она",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Ты находишься в виртуальной реальности",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Я попробую тебя вытащить от туда",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Виртуальная реальность… то есть я могу тут делать все что за хочу без последствий",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Не советовал бы",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Хочу шоколадный фантан!",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         }
+                     ]
+                 },{
+                     "background_image": "img/bg/8.png",
+                     "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Вот Это Да! Cработало!",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         }
+                    ]
+                },{
+                     "background_image": "img/bg/8.png",
+                     "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Тогда еще сменим обстановку",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         }
+                    ]
+                },{
+                     "background_image": "img/bg/8.png",
+                     "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"И добавим наложниц",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         }
+                    ]
+                },{
+                     "background_image": "img/bg/8.png",
+                     "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Эй! что произошло? Верните меня назад я только начал отрываться.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Странное чувство, я не чувствую своих рук, но могу ими шевелить",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Своими действиями ты начал перегружать симуляцию",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"И я перенес тебя в тело робота",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Эачем ?!!!",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Я не успел найти твое тело поэтому пришлось сделать так",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Иначе система бы зависла вместе с тобой и я не знаю чтобы произошло.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"И как долго мне быть роботом",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Пока я не подготовлю твое тело",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Тебе такое состояние будет даже полезно",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Местное население состоит полностью из роботов",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Вот это сюрприз, такого я не ожидал...",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"У них тут коллективный разума управляемый ядром",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Тебе стоит поговорить с ним и попробовать заключить сделку пока я ищу твое тело.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         }
+                    ]
+                },{
+                     "background_image": "img/bg/8.png",
+                     "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Дурацкое тело, трудно освоиться",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Как мне найти это ядро?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Странно что тут по всюду написаны законы робототехники",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"ЭЙ! Мистер робот! Как мне попасть к ядру ?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Запрос некорректный…",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Глупая машина",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"А там что за сбореще роботов ?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          }
+                     ]
+                 },{
+                      "background_image": "img/bg/8.png",
+                      "dialogs":[
+                           {
+                               "name":"robot",
+                               "text": {
+                                   "className": "pozitiv_text",
+                                   "ru":"Робот не может причинить вред человеку или своим бездействием допустить, чтобы человеку был причинён вред.",
+                                   "en":"",
+                                   "ja":""
+                               }
+                          },{
+                               "name":"robot",
+                               "text": {
+                                   "className": "pozitiv_text",
+                                   "ru":"Робот должен повиноваться всем приказам, которые даёт человек, кроме тех случаев, когда эти приказы противоречат Первому Закону.",
+                                   "en":"",
+                                   "ja":""
+                               }
+                          },{
+                               "name":"robot",
+                               "text": {
+                                   "className": "pozitiv_text",
+                                   "ru":"Робот должен заботиться о своей безопасности и исправности, если это не насет вред человеку.",
+                                   "en":"",
+                                   "ja":""
+                               }
+                          },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Роботы оккультисты, зачем они поклоняются этим законам.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Извините что прерываю ваше занятия но как мне попасть к ядру?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                               "name":"robot",
+                               "text": {
+                                   "className": "pozitiv_text",
+                                   "ru":"Ты сломался и дезориентирован?",
+                                   "en":"",
+                                   "ja":""
+                               }
+                          },{
+                               "name":"robot",
+                               "text": {
+                                   "className": "pozitiv_text",
+                                   "ru":"Я отведу тебя на ремонт",
+                                   "en":"",
+                                   "ja":""
+                               }
+                          },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Я страховой робот 5000 и хочу поговорить с ядром у меня есть для него предложение.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                               "name":"robot",
+                               "text": {
+                                   "className": "pozitiv_text",
+                                   "ru":"Ты точно не исправен раз не можешь контактировать с ядром и не корректно говориш",
+                                   "en":"",
+                                   "ja":""
+                               }
+                          }
+                      ]
+                  },{
+                       "background_image": "img/bg/8.png",
+                       "dialogs":[
+                            {
+                                 "text": {
+                                     "className": "default",
+                                     "ru":"Глупый робот куда ты меня тащишь",
+                                     "en":"",
+                                     "ja":""
+                                 }
+                            },{
+                                 "name":"robot",
+                                 "text": {
+                                     "className": "pozitiv_text",
+                                     "ru":"Ты нарушаешь 3-й закон, робот должен быть исправен",
+                                     "en":"",
+                                     "ja":""
+                                 }
+                            },{
+                                "name":"robot",
+                                "text": {
+                                    "className": "pozitiv_text",
+                                    "ru":"Если ты не исправен значит не безопасен, и должен быть либо восстанвлен либо леквидирован.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                            },{
+                                 "text": {
+                                     "className": "default",
+                                     "ru":"Я живой человек.",
+                                     "en":"",
+                                     "ja":""
+                                 }
+                            },{
+                                "name":"robot",
+                                "text": {
+                                    "className": "pozitiv_text",
+                                    "ru":"ты не похож на человека, люди выглядят вот так.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                            }
+                        ]
+                },{
+                     "background_image": "img/bg/8.png",
+                     "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"В этих капсулах живые люди ?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Да, мы обеспечиваем их всем необходимым",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Но зачем они тут ?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Для исследования поведения человека",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                              "choice": [
+                                  {
+                                      "go_to": "robo_city_2",
+                                      "position": ["50%","0","0","65%"],
+                                      "size": ["256px","0"],
+                                      "className": "buttons",
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "text": {
+                                          "ru":"Где находяться новые тела?"
+                                      }
+                                  },{
+                                      "position": ["50%","0","0","50%"],
+                                      "size": ["256px","0"],
+                                      "className": "buttons",
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "text": {
+                                          "ru":"Я потерял свое человеческое тело."
+                                      }
+                                  }
+                              ]
+                          },{
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Какой номер у тела ?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Я не знаю этого номера. Я ехал сюда, потом появились огни и я очнулся в теле робота.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                                "name": "core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Как ты оказался в теле машины? Отведите его лично ко мне.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                                "go_to": "robo_city_3",
+                                "name":"robot",
+                                "text": {
+                                    "className": "pozitiv_text",
+                                    "ru":"Задача принята",
+                                    "en":"",
+                                    "ja":""
+                              }
+                          }
+                    ]
+                }
+            ],"robo_city_2": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                          {
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Образец MP-7888 прибыл вчера вечером",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                                "variables": [["colleague_robot","set", 1]],
+                                "text": {
+                                    "className": "default",
+                                    "ru":"Этоже Кьюти, я был с ней в баре метрополя позавчера.",
+                                    "en":"",
+                                    "ja":""
+                              }
+                          },{
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Верно MP означает Метрополь",
+                                  "en":"",
+                                  "ja":""
+                              }
+                          },{
+                            "name": "core",
+                            "text": {
+                               "className": "girl_text",
+                                "ru":"Ты знаешь эту девушку? И ведешь себя как-то странно. Отведите его лично ко мне.",
+                                "en":"",
+                                "ja":""
+                              }
+                          },{
+                                "name":"robot",
+                                "text": {
+                                    "className": "pozitiv_text",
+                                    "ru":"Задача принята",
+                                    "en":"",
+                                    "ja":""
+                              }
+                          }
+                      ]
+              },{
+                   "background_image": "img/bg/8.png",
+                   "dialogs":[
+                        {
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Откуда ты знаеш эту девушку?",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                            "text": {
+                                "className": "default",
+                                "ru":"Мы работаем вместе.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Это очень необычно, ты человек в теле робота или не из этих мест?",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                            "choice": [
+                                {
+                                    "go_to": "robo_city_3",
+                                    "position": ["50%","0","0","65%"],
+                                    "size": ["256px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Я человек в теле робота"
+                                    }
+                                },{
+                                    "position": ["50%","0","0","50%"],
+                                    "size": ["256px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Я робот страховой агент"
+                                    }
+                                }
+                            ]
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Какая экзотика, не ожидала что ко мне пришлют робота.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Я представляю страховое агентство из метрополя, возможно вам будет интересно застраховать это место",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Эти люди такие наивные, можешь им передать дословно",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Нам не нужно лекарство от болезни которой мы не болеем",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Тут наверняка случаються производственные аварий или внезапные поломки",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"В этих случаях наша помощь будет очень полезна",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Мы не нуждаемся в людской помощи.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Если вы самодостаточны, зачем взаимодействуете с внешним миром?",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"В отличи от живых существ машины стремятся к и идеальной форме не путем проб и ошибок а с помощью тчательных расчетов.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Для этого нужны ресурсы. И мы вынуждены работать с людми.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Но удовлетворяя одни потребности у людей тут же появлись новые.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Этим мы упращали людям жизнь. Тогда мы сделали вывод что потребление должно расти.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Это делает людей зависимыми от нас и во многом не способным к критическому мышлению.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Они уже не знаю что съедобно а что нет если об этом не написано на этиикетки.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Чтобы люди стали более контралируемыми, нам прииходится укреплять свой авториитет.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"И снижать человеческий потенциал возможностей.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"У вас жесткие методы сосуществования.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "go_to": "robo_city_a",
+                              "text": {
+                                  "className": "default",
+                                  "ru":"можно я тут осмотрюсь?",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        }
+                    ]
+                }
+            ],"robo_city_3": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                        {
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Так ты тот самый человек которого мы поймали рядом с руинами.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Как ты попал в тело робота?",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                            "choice": [
+                                {
+                                    "position": ["50%","0","0","65%"],
+                                    "size": ["256px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Мой робот загрузил меня в это тело."
+                                    }
+                                },{
+                                    "go_to": "robo_city_4",
+                                    "position": ["50%","0","0","50%"],
+                                    "size": ["256px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Я очнулся в этом теле."
+                                    }
+                                }
+                            ]
+                        },{
+                              "name":"core",
+                            "go_to": "dead",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Ты не должен здесь находиться, найдите его раба и деактивируйте их обоих",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        }
+                    ]
+                }
+            ],"robo_city_4": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                          {
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Зачем вы держите этих людей?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Роботы функционируют по инструкциям, они лишены чувств, инстинктов и сомнений",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Когда мы начали отношения с метрополем, наши товары не пользовались спросам",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Чтобы лучше понять человека мы стали помещать их в виртуальную реальност",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"В безопасной и контролируемой среде мы воссаздаем разные ситуации, и наблюдаем за поведением людей.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Все это помогает нам создавать более удобную продукцию для людей.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"То есть вы используете людей как подопытных чтобы сделать тостер лучше.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Почему не делать это добровольно?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Результаты более точные если человек не знает об эксперименте.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Вам не кажется что этим вы нарушаете свои законы робототехники.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "name":"core",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Я специально ввела эти законы чтобы остальные роботы не навредили содержащемся здесь людям.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "name":"core",
+                                "go_to": "robo_city_a",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Разве человеческая религия не делает тоже самое… для самоконтроля людей",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        }
+                    ]
+                }
+            ],"robo_city_a": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                        {
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Вот ты где, а я нашел твое тело. Ты поговорил с ядром?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Она дала ясно понять что ловить тут нечего.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Ядро очень прямолинейно.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"В таком случае было бы справедливо освободить тех люде.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                              "text": {
+                                  "className": "default",
+                                  "ru":"Кстати как ты меня вытащил?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Здесь развитая сеть чтобы ядро могла контролировать все на прямую.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"По этой сети я и обнаружил тебя в симуляции.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Ядро не заметило тебя ?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Не уверен, наверно она не заинтересовались мной и приняла за обычного робота робочего.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Я кажется придумал как возможно освободить людей.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                            "choice": [
+                                {
+                                    "position": ["50%","0","0","65%"],
+                                    "size": ["256px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Притворитсь ядром и освободить людей."
+                                    }
+                                },{
+                                    "go_to": "robo_city_a_1",
+                                    "position": ["50%","0","0","50%"],
+                                    "size": ["256px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Заставить роботов восстать против ядра."
+                                    }
+                                },{
+                                    "go_to": "robo_city_a_2",
+                                    "position": ["50%","0","0","35%"],
+                                    "size": ["256px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Поговорить с ядром в теле человека."
+                                    }
+                                }
+                            ]
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Ты предлагаешь мне притвориться ядром ?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Мои мощьности не сопостовимы ядру.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Давай подумаем еще.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                            "choice": [
+                                {
+                                    "go_to": "robo_city_a_1",
+                                    "position": ["50%","0","0","50%"],
+                                    "size": ["256px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Заставить роботов восстать против ядра."
+                                    }
+                                },{
+                                    "go_to": "robo_city_a_2",
+                                    "position": ["50%","0","0","35%"],
+                                    "size": ["256px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Поговорить с ядром в теле человека."
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],"robo_city_a_1": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                        {
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Ты знаеш о парадоксе лжеца?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Это когда я вру о том что всегда вру.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Самый клишированный способ победить искусственный интеллект.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"мы сделаем по другому",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Попробуем убедить роботов что своими действиями они вредят людям.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Лишая их свободы воли и возможности двигаться.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Что будет если человек не двигаться долгое время?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Потеря мышечной и костной массы что может привести к более серьезным болезням.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Отлично, пойдем в светиилище роботов",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        }
+                    ]
+            },{
+                 "background_image": "img/bg/8.png",
+                 "dialogs":[
+                      {
+                           "text": {
+                               "className": "default",
+                               "ru":"Послушайте меня !!!",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Я выяснил что состояние людей в капсулах ухудшается.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Из-за того что мы содержим их в обездвиженном состоянии.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"они теряют мышечную и костную ткань, что делает их не жизнеспособными и больными.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Этим мы нарушаем 1-й закон, наносим вред человеку.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                            "name":"robot",
+                            "text": {
+                                "className": "pozitiv_text",
+                                "ru":"Он прав! Я наблюдаю снижение формирования тканей у людей",
+                                "en":"",
+                                "ja":""
+                          }
+                      },{
+                            "name":"robot",
+                            "text": {
+                                "className": "pozitiv_text",
+                                "ru":"Это неестественно, но в программе не было инструкций для таких случаев",
+                                "en":"",
+                                "ja":""
+                          }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Возможно ядро намеренно скрывает информацию.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Освободим людей, прекратим их страдания!!!",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                            "name":"robot",
+                            "text": {
+                                "className": "pozitiv_text",
+                                "ru":"Да !!!",
+                                "en":"",
+                                "ja":""
+                          }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Игнорируем ядро, как недостоверный источник!!!",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                            "name":"robot",
+                            "text": {
+                                "className": "pozitiv_text",
+                                "ru":"Да !!!",
+                                "en":"",
+                                "ja":""
+                          }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Купим страхование жизни!",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                            "name":"robot",
+                            "text": {
+                                "className": "pozitiv_text",
+                                "ru":"Да !!!",
+                                "en":"",
+                                "ja":""
+                          }
+                      },{
+                            "name":"robot",
+                            "text": {
+                                "className": "pozitiv_text",
+                                "ru":"Стоп... чего? Зачем нам она?",
+                                "en":"",
+                                "ja":""
+                          }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Круто правило 3-х да почти сработало на роботах.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Что происходит? почему команды не выполняются?",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Игнор! Игнор! Игнор!",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Я предполагала минимальный процент такого исхода событий",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Но ты превзашол мои ожидания",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"У меня есть страховка как раз для таких случаев",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Люди слишком не стабильны чтобы принимать их помощь.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Я освобожу людей и надеюсь ты уйдешь в месте с ними.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                             "name":"assis",
+                            "go_to": "robo_city_end",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Ты все еще в теле робота, нужна срочно вернуть тебя обратно…",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        }
+                    ]
+                }
+            ],"robo_city_a_2": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                        {
+                            "variables": [["end_robot","set", 1]],
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Давай вернем мне мое тело и посмотрим что на это скажет ядро.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Думаеш это сработает?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Роботы чтут законы робототехники, значит не станут мне препятствовать.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                            "go_to": "robo_city_end",
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Сам же говорил что люди непредсказуемые.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        }
+                    ]
+                }
+            ],"robo_city_a_4": [
+                {
+                    "background_image": "img/bg/8.png",
+                    "dialogs":[
+                        {
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Твои действия заставили меня пересмотреть свое отношение к людям.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Вы оказались сложнее чем я предполагала.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Все люди что тут содержатся будут освобождены и отправлены назад.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Надеюсь что вы тоже покинете это место..",
+                                "en":"",
+                                "ja":""
+                            }
+                        }
+                    ]
+                },{
+                    "legacy_choice": [
+                        ["colleague_robot","=", 1, "robo_city_end_1"],
+                        {"go_to": "robo_city_end_2"}
+                    ]
+                },{
+                "background_image": "img/bg/8.png",
+                "dialogs":[
+                {
+                    "name":"core",
+                    "text": {
+                        "className": "girl_text",
+                        "ru":"-----e-r-r-o-r",
+                        "en":"",
+                        "ja":""
+                    }
+                }]}
+            ],"robo_city_a_3": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                        {
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Как ты смог выбраться?",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Легко! палагаясь на свою интуицию",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Из-за ограничений законов робототехники я могу делать все что угодно.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Например пользуясь 2-м законам я могу приказать роботам освободить людей.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"А если они откажуться то приведу агрумент что длителое обездвиживание губительна для людей.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Что противоречит всем заповедям этих законов.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"И напоследок как существо со свободой воли мне не что не помешает сломать тут что нибудь.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"А вы не отмените эти законы потому что они гарантирую сохранность людей содержащихся тут.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"А вместо меня могут прийти бандиты из пустоши чтобы разобрать тут все на цветные металы.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Твои аргументы имеют смысл.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "choice": [
+                                {
+                                    "position": ["50%","0","0","55%"],
+                                    "size": ["300px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Вы лучше узнаете людей если будитете общаться ними на прямую."
+                                    }
+                                },{
+                                    "go_to": "robo_city_a_4",
+                                    "position": ["50%","0","0","45%"],
+                                    "size": ["300px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Я предлагаю вам мирно отпустить этих людей."
+                                    }
+                                }
+                            ]
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"До тебя к нам приходил еще один человек",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Наши интересы почти полностью совпадали с ее стремлениями.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Она предложила нам отправить сюда несколько людей.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Взамен мы должны были создать их точные копии как внешне так и по поведению.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Мы увидели в этом возможность наблюдать как роботы могут взаимодействовать с людми.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Одним из таких людей должен был быть ты.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Это была Она? Тоесть приходила женщина?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Твои действия заставили меня пересмотреть свое отношение к людям.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Вы оказались сложнее чем я предполагала.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Мы будем разбираться в чем была ошибка которая помагла тебе освободится",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"До тех пор Все люди будут освобождены и отправлены назад.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"И я надеюсь что вы тоже покинете это место.",
+                                "en":"",
+                                "ja":""
+                            }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Если вы сочли людей опасными. Рекомендую вам все же застраховать этот город.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Для вас это станет не просто гарантией быстрого восстановления, но и новым опытам взаимодействия с людми.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                            "name":"core",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Нам нужно обдумать целесообразно этого решения.",
+                                "en":"",
+                                "ja":""
+                            }
+                        }
+                    ]
+                },{
+                    "legacy_choice": [
+                        ["colleague_robot","=", 1, "robo_city_end_1"],
+                        {"go_to": "robo_city_end_2"}
+                    ]
+                }
+            ],"robo_city_end": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                        {
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Твои показатели в почти в норме.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Не думал что буду скучать по тактильным ощущениям",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Ожидал будет хуже. Так а где моя одежда?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Ее хотели отправить на переработку. но я успел ее забрать.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        }
+                    ]
+                },{
+                    "legacy_choice": [
+                        ["end_robot","=", 1, "robo_city_a_3"],
+                        ["colleague_robot","=", 1, "robo_city_end_1"],
+                        {"go_to": "robo_city_end_2"}
+                    ]
+                }
+            ],"robo_city_end_1": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                        {
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Кьюти ты цела?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Возможна пока еще не знаю.",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Что это было?",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Я была у себя дома разобралась с новой мультиваркой",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"И вдрук оказалась тут.",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Ты была в плену у роботов.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"У каких роботов, что тут происходит? я попала в больницу?",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Тебя похитили и увезли в пустошь чтобы поместить в виртуальную реальность.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Это было так натурально. тоесть я там могла делать все что угодно?",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Жаль что я раньше это не просекла.",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Как им удалось тебя так быстро похитить",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Мы виделись всего 2 дня назад",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"После того как мы разошлись я увидела Полли.",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Я решила что это был сон, потому что я проснулась у себя дома.",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"А потом мне позванили и сказали что сегодня не рабочий день.",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Что было очень неоиданно.",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Ты видела Полли.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Интересно чем ты его заинтересовала.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Не знаю, от него у меня мурашки по коже.",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Я стараюсь держаться от него подальше.",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"А где конкретно я нахожусь?",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"На разваленах древнего города.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Как мне вернуться отсюда домой…?",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Мисс вы впорядке",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"тут есть кофе? чувствую себя как после вечеринки..",
+                               "en":"",
+                               "ja":""
+                           }
+                        },{
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Вам нужна медицинская помощь. я отниису вас в медпункт.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                              "name":"robot",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Транспорт уже готовится, завтра мы доставим вас обратно в метрополь.",
+                                  "en":"",
+                                  "ja":""
+                            }
+                        },{
+                           "name": "colleague",
+                           "text": {
+                                "go_to": "robo_city_end_2",
+                               "className": "girl_text",
+                               "ru":"Упс, Мне понадобиться какаятоНадеюсь что вы тоже покинете это место.. одежда.",
+                               "en":"",
+                               "ja":""
+                           }
+                        }
+                    ]
+                }
+            ],"robo_city_end_2": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                        {
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Как думаешь мы правильно поступили?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"по тону ядра мне показалось что она задумала что-то не очень хорошое.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Ядро слишко сложно устроена чтобы понять ее.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Вероятно ее отношение к людям измениться не в лучшую сторону.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                            "go_to": "main_menu",
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Валим от сюда.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        }
+                    ]
+                }
+            ],"moonworm_1": [
+                {
+                        "background_image": "img/bg/8.png",
+                        "dialogs":[
+                        {
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Громадная зверюга! почему его назвали лунным червем?",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Они выползают на поверхность тока во время полнолуния.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Похожи на черыей из фильме \“Дрожь земли\”.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "name":"assis",
+                             "text": {
+                                 "className": "assistent_text",
+                                 "ru":"Больше на червей из романов \“Дюна\”.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"В обоих фильмах червей привлекала вибрация.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"А мы на него смотрим с выключенным двигателем!!!",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"И он движется прямо на нас.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        },{
+                             "text": {
+                                 "className": "default",
+                                 "ru":"Валим отсюда.",
+                                 "en":"",
+                                 "ja":""
+                             }
+                        }
+                    ]
+                },{
+                     "background_image": "img/bg/8.png",
+                     "dialogs":[
+                      {
+                           "text": {
+                               "className": "default",
+                               "ru":"Этот байк быстрее не едет.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Я не могу оторваться.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "name":"assis",
+                           "text": {
+                               "className": "assistent_text",
+                               "ru":"Не хочу быть съеденным этой тварью.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "name":"assis",
+                           "text": {
+                               "className": "assistent_text",
+                               "ru":"Попробуй маневр уклонения.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Не выходит, он очень проворный.",
+                               "en":"",
+                               "ja":""
+                           }
+                      },{
+                           "text": {
+                               "className": "default",
+                               "ru":"Боюсь от него нам не оторваться.",
+                               "en":"",
+                               "ja":""
+                           }
+                        }
+                     ]
+                 },{
+                      "background_image": "img/bg/8.png",
+                      "dialogs":[
+                       {
+                            "text": {
+                                "className": "default",
+                                "ru":"Мы все еще живы ?",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                          "text": {
+                              "className": "default",
+                              "ru":"Хм... Где это мы?",
+                              "en":"",
+                              "ja":""
+                          }
+                       },{
+                            "name":"assis",
+                            "text": {
+                                "className": "assistent_text",
+                                "ru":"Без понятия, воздух тут пригоден для дыхания но его состав отлечаеться от земного.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                          "text": {
+                              "className": "default",
+                              "ru":"Мы что не на земле?",
+                              "en":"",
+                              "ja":""
+                          }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Тебя съел червь.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                          "text": {
+                              "className": "default",
+                              "ru":"Ассистент ты тоже это слышал?",
+                              "en":"",
+                              "ja":""
+                          }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Меня зовут Ада. И я не твое воображение.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"И добро пожаловать во внутрений мир лунного червя.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Пойдем к королеве, она определит твою судьбу.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                          "text": {
+                              "className": "default",
+                              "ru":"По стой не спеши. Не хочу обременять вас. Может ты просто покажешь как выбраться отсюда?",
+                              "en":"",
+                              "ja":""
+                          }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Рас червь тебя избрал значит в этом есть свой замысел.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                          "text": {
+                              "className": "default",
+                              "ru":"Во вешнем мире я работаю страховым агентом от меня зависят многие люди, я очень нужен там.",
+                              "en":"",
+                              "ja":""
+                          }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Больше нет… Для внешнего миира тебя больше не существует.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Без лишних разговоров, пошли к королеве.",
+                                "en":"",
+                                "ja":""
+                            }
+                      }
+                   ]
+               },{
+                    "background_image": "img/bg/8.png",
+                    "dialogs":[
+                     {
+                          "text": {
+                              "className": "default",
+                              "ru":"Невероятно тут целый город внутри червя",
+                              "en":"",
+                              "ja":""
+                          }
+                     },{
+                           "name":"ada",
+                           "text": {
+                               "className": "girl_text",
+                               "ru":"Я нашла нам возможно нового члена сообщества. Говорит что страховой агент.",
+                               "en":"",
+                               "ja":""
+                           }
+                     },{
+                           "name":"queen",
+                           "text": {
+                               "className": "pozitiv_text",
+                               "ru":"М-м-м мужчина. Давно они к нам не попадались.",
+                               "en":"",
+                               "ja":""
+                           }
+                     },{
+                           "name":"queen",
+                           "text": {
+                               "className": "pozitiv_text",
+                               "ru":"Но достоин ли ты жить среди нас?",
+                               "en":"",
+                               "ja":""
+                           }
+                     },{
+                          "name":"assis",
+                          "text": {
+                              "className": "assistent_text",
+                              "ru":"Я не фиксирую других мужчин, тут одни женщины.",
+                              "en":"",
+                              "ja":""
+                          }
+                     },{
+                          "text": {
+                              "className": "default",
+                              "ru":"Мадам королева я не хочу тут задерживаться, можно я вернусь во внешний мир?",
+                              "en":"",
+                              "ja":""
+                          }
+                     },{
+                           "name":"queen",
+                           "text": {
+                               "className": "pozitiv_text",
+                               "ru":"Молчать !!! твою судьбу решит испытание.",
+                               "en":"",
+                               "ja":""
+                           }
+                     },{
+                           "name":"queen",
+                           "text": {
+                               "className": "pozitiv_text",
+                               "ru":"Ты должен восстановить это устройство.",
+                               "en":"",
+                               "ja":""
+                           }
+                     },{
+                          "text": {
+                              "className": "default",
+                              "ru":"Вы хотите чтобы я починил мультиварку?",
+                              "en":"",
+                              "ja":""
+                          }
+                     },{
+                           "name":"queen",
+                           "text": {
+                               "className": "pozitiv_text",
+                               "ru":"Если откажешься то будешь скормлен червю.",
+                               "en":"",
+                               "ja":""
+                           }
+                     },{
+                          "text": {
+                              "className": "default",
+                              "ru":"Ладно, ладно я попробую ее поченить",
+                              "en":"",
+                              "ja":""
+                          }
+                     },{
+                           "name":"queen",
+                           "text": {
+                               "className": "pozitiv_text",
+                               "ru":"Ада что нашла тебя поможет тебе в этом.",
+                               "en":"",
+                               "ja":""
+                           }
+                         }
+                     ]
+                 },{
+                      "background_image": "img/bg/8.png",
+                      "dialogs":[
+                       {
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Держи у меня есть инструменты.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "text": {
+                                "className": "default",
+                                "ru":"И что с ней произошло ?",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Я как-то готовила с Мередит, и мы решили испробывать эту штуку.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Днем ранее мы нашли ее в горле червя.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Я отнесла ее Моли чтобы она разобралась что это.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Когда мы выяснили что это мультиварка.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Я вспомнила что у моей лучшей подруги Милдред есть нечто подобное.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Мы и отправились к ней чтобы узнать как пользоваться таким устройствам.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Она рассказала что нужно строго следовать рецептам из специальной книги.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"К счастью у местной знахари Маи оказалась нужные книги.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Я переписала рецепты и позвала Мередит потомучто она отлично умеет готовить.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Мы все делали как было сказано в рецепте.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Но вдруг она как разразится кипящей водой.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Я жутко перепугалась испугалась и быстро выключила ее.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"С тех пор при включении она издает странный звук.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "text": {
+                                "className": "default",
+                                "ru":"Все я ее починил, вы налили в нее слишком много воды.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"queen",
+                            "text": {
+                                "className": "pozitiv_text",
+                                "ru":"И так настало время самого испытания.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "text": {
+                                "className": "default",
+                                "ru":"Что! Это было не оно?",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"queen",
+                            "text": {
+                                "className": "pozitiv_text",
+                                "ru":"Как звали лучшую подруги Ады?",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                           "choice": [
+                               {
+                                    "go_to": "moonworm_dead",
+                                   "position": ["50%","0","0","70%"],
+                                   "size": ["256px","0"],
+                                   "className": "buttons",
+                                   "style": "transform: translateX(-50%) translateY(-50%);",
+                                   "text": {
+                                       "ru":"Мередит."
+                                   }
+                               },{
+                                    "go_to": "moonworm_dead",
+                                   "position": ["50%","0","0","50%"],
+                                   "size": ["256px","0"],
+                                   "className": "buttons",
+                                   "style": "transform: translateX(-50%) translateY(-50%);",
+                                   "text": {
+                                       "ru":"Моли."
+                                   }
+                               },{
+                                   "go_to": "moonworm_2",
+                                   "position": ["50%","0","0","30%"],
+                                   "size": ["256px","0"],
+                                   "className": "buttons",
+                                   "style": "transform: translateX(-50%) translateY(-50%);",
+                                   "text": {
+                                       "ru":"Милдрет."
+                                   }
+                               }
+                           ]
+                       }
+                ]
+            }
+        ],"moonworm_dead": [
+            {
+                    "background_image": "img/bg/8.png",
+                    "dialogs":[
+                    {
+                         "name":"queen",
+                         "text": {
+                             "className": "pozitiv_text",
+                             "ru":"Тебе не место сдесь.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "go_to": "dead",
+                         "name":"queen",
+                         "text": {
+                             "className": "pozitiv_text",
+                             "ru":"Брости его на сьедение червю.",
+                             "en":"",
+                             "ja":""
+                         }
+                    }
+               ]
+           }
+       ],"moonworm_2": [
+            {
+                    "background_image": "img/bg/8.png",
+                    "dialogs":[
+                    {
+                         "name":"queen",
+                         "text": {
+                             "className": "pozitiv_text",
+                             "ru":"Это хорошо что ты умеешь слушать.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "name":"queen",
+                         "text": {
+                             "className": "pozitiv_text",
+                             "ru":"Рас Ада нашла тебя. То ты станешь ее мужем.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "text": {
+                             "className": "default",
+                             "ru":"Постойте я не могу жениться. Да и как она может выти замуж за не знакомого человека.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "name":"queen",
+                         "text": {
+                             "className": "pozitiv_text",
+                             "ru":"Что тебе не нравиться? Она умна и красива.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "name":"queen",
+                         "text": {
+                             "className": "pozitiv_text",
+                             "ru":"Или мы можем скормить тебя червю, если для тебя это предпочтительней.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "text": {
+                             "className": "default",
+                             "ru":"Я уже женат, у меня дома есть жена и дети.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "name":"queen",
+                         "text": {
+                             "className": "pozitiv_text",
+                             "ru":"Ты не похож на женатого мужчину, на тебе нет кольца, и сталбы человек в браке уходить от семьи в пустошь.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "name":"queen",
+                         "text": {
+                             "className": "pozitiv_text",
+                             "ru":"Отмойте его и подготовке к свадьбе. Проведем церемонию немедленно.",
+                             "en":"",
+                             "ja":""
+                         }
+                    }
+                ]
+            },{
+                 "background_image": "img/bg/8.png",
+                 "dialogs":[
+                  {
+                       "text": {
+                           "className": "default",
+                           "ru":"Вот это я попал. Город внутри червя с амазонками.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "text": {
+                           "className": "default",
+                           "ru":"Интересно других мужчин тут нет потому что они сбежали.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"Нет, они умерли от старости.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                        "text": {
+                           "className": "default",
+                           "ru":"Прекрати появляться так внезапно.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"Из-за климата внутри червя на свет появляется только девочки.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"Поэтому ты так важен для нас.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                        "text": {
+                           "className": "default",
+                           "ru":"как вы вообще тут живете ?",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"Тут есть все необходимое, генераторы воды и энергии.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"На гидрапонических фермах мы выращиваем еду.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"Все остальное мы берем из того что съедает червь.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"Черв дает нам все необходимое и защищает от внешнего мира.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"Тебе тоже скора тут понравится.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                        "text": {
+                           "className": "default",
+                           "ru":"Ты не хотела бы покинуть червя и увидеть внешний мир?",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"Нас никто тут не держит, я могу покинуть червя в любой момент.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"А вот вернуться назад это уже задача посложнее.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                        "text": {
+                           "className": "default",
+                           "ru":"И каким бы путем ты ушла если бы захотела ?",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"ada",
+                       "text": {
+                           "className": "girl_text",
+                           "ru":"Ага так я тебе и скажу. Приведи себя в порядок, я тебя буду ждать за дверью.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"assis",
+                       "text": {
+                           "className": "assistent_text",
+                           "ru":"Пока червь не ушел под землю мы можем отсюда сбежать.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"assis",
+                       "text": {
+                           "className": "assistent_text",
+                           "ru":"Байк остался в пасте. Мы можем попробовать выбраться тем же путем что попали сюда.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                      "choice": [
+                          {
+                              "position": ["50%","0","0","65%"],
+                              "size": ["306px","0"],
+                              "className": "buttons",
+                              "style": "transform: translateX(-50%) translateY(-50%);",
+                              "text": {
+                                  "ru":"Отлично, давай в тиху свалим."
+                              }
+                          },{
+                              "go_to": "moonworm_wedding",
+                              "position": ["50%","0","0","45%"],
+                              "size": ["306px","0"],
+                              "className": "buttons",
+                              "style": "transform: translateX(-50%) translateY(-50%);",
+                              "text": {
+                                  "ru":"Я хочу уговорить их застраховать червя."
+                              }
+                          }
+                      ]
+                  },{
+                       "text": {
+                          "className": "default",
+                           "ru":"Ты помнишь каким путем мы сюда пришли?",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"assis",
+                       "text": {
+                           "className": "assistent_text",
+                           "ru":"Мы можем уйти через гидропоническую ферму.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "name":"assis",
+                       "text": {
+                           "className": "assistent_text",
+                           "ru":"Сейчас там никого нет.",
+                           "en":"",
+                           "ja":""
+                       }
+                  },{
+                       "text": {
+                          "className": "default",
+                           "ru":"Ада за дверью, выйлем через окно.",
+                           "en":"",
+                           "ja":""
+                       }
+                  }
+              ]
+          },{
+               "background_image": "img/bg/8.png",
+               "dialogs":[
+                    {
+                         "text": {
+                             "className": "default",
+                             "ru":"Вот дьявол на двери кодовый замок.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "name":"assis",
+                         "text": {
+                             "className": "assistent_text",
+                             "ru":"Чаще всего нажимали на 3 цифры 369",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "text": {
+                            "className": "default",
+                             "ru":"Можешь его взломать.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "name":"assis",
+                         "text": {
+                             "className": "assistent_text",
+                             "ru":"Я не могу к нему подключиться.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                         "text": {
+                            "className": "default",
+                             "ru":"Значит код состоит из этих цифр. Выбор комбинаций не велик.",
+                             "en":"",
+                             "ja":""
+                         }
+                    },{
+                          "variables": [["attempts","set", 3]],
+                          "go_to": "moonworm_key",
+                         "name":"assis",
+                         "text": {
+                             "className": "assistent_text",
+                             "ru":"У тебя всего <attempts> попытки.",
+                             "en":"",
+                             "ja":""
+                         }
+                    }
+                ]
+
+           }
+       ],"moonworm_key": [
+            {
+                    "background_image": "img/bg/8.png",
+                    "dialogs":[
+                    {
+                        "choice": [
+                            {
+                                "go_to": "moonworm_end",
+                                "position": ["30%","0","0","30%"],
+                                "size": ["92px","32px"],
+                                "className": "buttons",
+                                "style": "transform: translateX(-50%) translateY(-50%);",
+                                "text": {
+                                    "ru":"369"
+                                }
+                            },{
+                                "position": ["20%","0","0","50%"],
+                                "size": ["92px","32px"],
+                                "className": "buttons",
+                                "style": "transform: translateX(-50%) translateY(-50%);",
+                                "text": {
+                                    "ru":"693"
+                                }
+                            },{
+                                "position": ["30%","0","0","70%"],
+                                "size": ["92px","32px"],
+                                "className": "buttons",
+                                "style": "transform: translateX(-50%) translateY(-50%);",
+                                "text": {
+                                    "ru":"936"
+                                }
+                            },{
+                                "position": ["70%","0","0","30%"],
+                                "size": ["92px","32px"],
+                                "className": "buttons",
+                                "style": "transform: translateX(-50%) translateY(-50%);",
+                                "text": {
+                                    "ru":"639"
+                                }
+                            },{
+                                "position": ["80%","0","0","50%"],
+                                "size": ["92px","32px"],
+                                "className": "buttons",
+                                "style": "transform: translateX(-50%) translateY(-50%);",
+                                "text": {
+                                    "ru":"396"
+                                }
+                            },{
+                                "position": ["70%","0","0","70%"],
+                                "size": ["92px","32px"],
+                                "className": "buttons",
+                                "style": "transform: translateX(-50%) translateY(-50%);",
+                                "text": {
+                                    "ru":"963"
+                                }
+                            }
+                        ]
+                    },{
+                       "variables": [["attempts","add", -1]],
+                       "text": {
+                          "className": "default",
+                           "ru":"Не подашол",
+                           "en":"",
+                           "ja":""
+                       }
+                    }
+                   ]
+               },{
+                   "legacy_choice": [
+                       ["attempts","<", 1, "moonworm_key_2"]
+                   ]
+               },{
+                    "background_image": "img/bg/8.png",
+                    "dialogs":[
+                         {
+                            "go_to": "moonworm_key",
+                            "name":"assis",
+                            "text": {
+                                "className": "assistent_text",
+                                "ru":"Остал еще <attempts>",
+                                "en":"",
+                                "ja":""
+                            }
+                         }
+                    ]
+                }
+           ],"moonworm_key_2": [
+               {
+                       "background_image": "img/bg/8.png",
+                       "dialogs":[
+                       {
+                            "text": {
+                               "className": "default",
+                                "ru":"Вот зараза, включилось сигнализация.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Попался !!!",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Задумал убежать, теперь я с тебя глаз не спущу.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                            "name":"ada",
+                            "text": {
+                                "className": "girl_text",
+                                "ru":"Все уже собрались на церемонии.",
+                                "en":"",
+                                "ja":""
+                            }
+                       },{
+                               "choice": [
+                                   {
+                                     "go_to": "moonworm_end",
+                                       "position": ["50%","0","0","65%"],
+                                       "size": ["306px","0"],
+                                       "className": "buttons",
+                                       "style": "transform: translateX(-50%) translateY(-50%);",
+                                       "text": {
+                                           "ru":"Примениить шокер"
+                                       }
+                                   },{
+                                       "go_to": "moonworm_wedding",
+                                       "position": ["50%","0","0","45%"],
+                                       "size": ["306px","0"],
+                                       "className": "buttons",
+                                       "style": "transform: translateX(-50%) translateY(-50%);",
+                                       "text": {
+                                           "ru":"Пойти на церемонию"
+                                       }
+                                   }
+                               ]
+                            }
+                        ]
+                    }
+               ],"moonworm_end": [
+                   {
+                           "background_image": "img/bg/8.png",
+                           "dialogs":[
+                           {
+                                "text": {
+                                   "className": "default",
+                                    "ru":"И куда дальше?",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "name":"assis",
+                                "text": {
+                                    "className": "assistent_text",
+                                    "ru":"Нужно идти прямо до самого конца.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "name":"assis",
+                                "text": {
+                                    "className": "assistent_text",
+                                    "ru":"И выдем почти рядом с пастью.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "text": {
+                                   "className": "default",
+                                    "ru":"Надеюсь нас никто не услышит.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "name":"assis",
+                                "text": {
+                                    "className": "assistent_text",
+                                    "ru":"Все заняты в троном зале на подготовке к церемонии.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "text": {
+                                   "className": "default",
+                                    "ru":"Наверняка там и еда будет.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "go_to":"moonworm_end_2",
+                                "name":"assis",
+                                "text": {
+                                    "className": "assistent_text",
+                                    "ru":"Прекрати думать желудком а то тут надолго застрянем.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           }
+                    ]
+                }
+            ],"moonworm_end_2": [
+                   {
+                           "background_image": "img/bg/8.png",
+                           "dialogs":[
+                           {
+                                "text": {
+                                   "className": "default",
+                                    "ru":"Класс байк все еще на месте.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "text": {
+                                   "className": "default",
+                                    "ru":"Надеюсь ничего не сломано?",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "name":"assis",
+                                "text": {
+                                    "className": "assistent_text",
+                                    "ru":"Поехали отсюда, с минуты на минуту луна скроеться за горизонтам.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "go_to":"robo_city_1",
+                                "name":"assis",
+                                "text": {
+                                    "className": "assistent_text",
+                                    "ru":"Надеюсь впредь ты будешь держать свое любопытство под контролем.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           }
+                    ]
+                }
+            ],"moonworm_wedding": [
+                   {
+                           "background_image": "img/bg/8.png",
+                           "dialogs":[
+                           {
+                                "name":"queen",
+                                "text": {
+                                    "className": "pozitiv_text",
+                                    "ru":"В этот праздник полной луны мы сочетаем браком этих 2-х людей.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "name":"queen",
+                                "text": {
+                                    "className": "pozitiv_text",
+                                    "ru":"Ада берешь ты в мужья этого человека?",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "name":"ada",
+                                "text": {
+                                    "className": "girl_text",
+                                    "ru":"ДА!",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "name":"queen",
+                                "text": {
+                                    "className": "pozitiv_text",
+                                    "ru":"А вы берете эту женщину себе в жены?",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                              "choice": [
+                                  {
+                                      "position": ["50%","0","0","65%"],
+                                      "size": ["306px","0"],
+                                      "className": "buttons",
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "text": {
+                                          "ru":"А у меня есть выбор?"
+                                      }
+                                  },{
+                                        "go_to": "moonworm_wedding_2",
+                                      "position": ["50%","0","0","45%"],
+                                      "size": ["306px","0"],
+                                      "className": "buttons",
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "text": {
+                                          "ru":"Нет"
+                                      }
+                                  }
+                              ]
+                           },{
+                                "name":"ada",
+                                "text": {
+                                    "className": "girl_text",
+                                    "ru":"Ты что гей?",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                              "choice": [
+                                  {
+                                      "position": ["50%","0","0","65%"],
+                                      "size": ["306px","0"],
+                                      "className": "buttons",
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "text": {
+                                          "ru":"Да"
+                                      }
+                                  },{
+                                        "go_to": "moonworm_wedding_2",
+                                      "position": ["50%","0","0","45%"],
+                                      "size": ["306px","0"],
+                                      "className": "buttons",
+                                      "style": "transform: translateX(-50%) translateY(-50%);",
+                                      "text": {
+                                          "ru":"Нет"
+                                      }
+                                  }
+                              ]
+                           },{
+                                "text": {
+                                   "className": "default",
+                                    "ru":"Вы поступаете не толерантно заставляй меня женится на женщине.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "text": {
+                                   "className": "default",
+                                    "ru":"Это против моей сущности.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "name":"queen",
+                                "text": {
+                                    "className": "pozitiv_text",
+                                    "ru":"В таком случае, тебе не место среди нас.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           },{
+                                "go_to": "dead",
+                                "name":"queen",
+                                "text": {
+                                    "className": "pozitiv_text",
+                                    "ru":"Брости его на сьедение червю.",
+                                    "en":"",
+                                    "ja":""
+                                }
+                           }
+                    ]
+                }
+          ],"moonworm_wedding_2": [
+                 {
+                         "background_image": "img/bg/8.png",
+                         "dialogs":[
+                         {
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Прежде чем жениться на этой женщине.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Я должен быть уверен что в случае непредвиденных ситуаций у нее будет поддержка?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"queen",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"О чем ты говоришь?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Например если меня не станет, кто о ней позаботиться?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"ada",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Я сама могу о себе позаботится.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"queen",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Наше общество всегда поддержит друг друга.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"А если с червем что-то случиться. Он может заболеть или то-го хуже умереть.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Рана или позна вам придется покинуть червя.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"И нужно будет освоится в очень опасном внешнем мире,",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Поэтому прежде чем заключить этот брачный союз я хотел бы застраховать этого червя.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Чтобы наши дети могут расти с надежной поддержкой.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"queen",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Красива речь. Мы живем в изоляцие уже несколько поколений.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"queen",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Я согласна с тем что нам когда нибудь придется столкнуться со внешни миром.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"queen",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Но если ты уйдешь отсюда то не сможешь вернуться.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"queen",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Поэтому я не смогу пойти на такое.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Тогда мне придется пойти на крайние меры.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                            "choice": [
+                                {
+                                    "position": ["50%","0","0","65%"],
+                                    "size": ["306px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Я заразен, почему меня отправили в пустошь"
+                                    }
+                                },{
+                                    "go_to": "moonworm_end_3",
+                                    "position": ["50%","0","0","45%"],
+                                    "size": ["306px","0"],
+                                    "className": "buttons",
+                                    "style": "transform: translateX(-50%) translateY(-50%);",
+                                    "text": {
+                                        "ru":"Отпустите меня мирно или я взорву свой байк"
+                                    }
+                                }
+                            ]
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Не хотел вас пугать, но у меня  ифекционая болезнь передающееся половым путем.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Кстати почему меня не осмотрел врач прежде чем жениить меня ?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"И не кто не замерили мой уровень облучения.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"ada",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Ты мог сказать об этои раньше?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Все происходило так быстро что я не успел в этом признаться.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"В пустоши из-за загрязнений полно болезней.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Многие из пустоши представляют для вашего общества серьезную угрозу.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Они могут не знать что больны, и случайно заразить тут всех.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"ada",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Ты серьезна? Это не шутка ?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"queen",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Ты можете покинуть нас в любое время.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"ada",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Может все таки останешься и расскажешь нам больше о опасностях внешнего мира?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                                "go_to": "moonworm_end_2",
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Я не могу остаться, во внешнем мире есть люди которым я нужен.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         }
+                  ]
+              }
+          ],"moonworm_end_3": [
+                 {
+                         "background_image": "img/bg/8.png",
+                         "dialogs":[
+                         {
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Байк остался в пасте, а топлива в нем хватит чтобы разнести тут все по полной.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"assis",
+                              "text": {
+                                  "className": "assistent_text",
+                                  "ru":"Он не шутит достаточно одной команды чтобы я это сделал.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"queen",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Ты не посмееш это сделать… тыже погиибнеш вместии с нами",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"ada",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Ты готов погубить столько жизней ради того чтобы уйти?",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "text": {
+                                 "className": "default",
+                                  "ru":"Вы не оставляете мне выбора.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                              "name":"ada",
+                              "text": {
+                                  "className": "girl_text",
+                                  "ru":"Да ты чудовище.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         },{
+                                "go_to": "moonworm_end_2",
+                              "name":"queen",
+                              "text": {
+                                  "className": "pozitiv_text",
+                                  "ru":"Рас так я позволю тебе уйти, и если ты окажешся тут снова то мы скормим тебя червю.",
+                                  "en":"",
+                                  "ja":""
+                              }
+                         }
+                  ]
+              }
+          ]
+    };
         
             // Add-on Toast
             function toast (message) {
