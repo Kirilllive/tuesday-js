@@ -1,5 +1,5 @@
 let story_json = new Array();
-var tuesday;
+var tuesday = document.getElementById("tuesday");
 var tue_text_view;
 var tue_text_block;
 var tue_name_block = document.createElement("div");
@@ -39,6 +39,7 @@ function get_lang() {
             if (this.readyState == 4 && (this.status == 200 || this.status == 0)) {
                 story_json = JSON.parse(this.responseText);
                 base_creation();
+                tuesday.dispatchEvent(new Event('script_loaded'));
             }
         };
         xmlhttp.open("GET", url, true);
@@ -50,7 +51,6 @@ function get_lang() {
     if (story_json.parameters.title){
         if (story_json.parameters.title[languare]){document.title = story_json.parameters.title[languare];
         } else {document.title = story_json.parameters.title;}}
-    tuesday = document.getElementById("tuesday");
     tuesday.style.backgroundRepeat = "no-repeat";
     tuesday.style.backgroundSize = "cover";
     tuesday.style.backgroundPosition = "center";
@@ -258,17 +258,19 @@ function get_lang() {
 					var g = story_json[story][scene].dialogs[dialog].choice[i].go_to;
 					if (g == "load_autosave") {choice.setAttribute("onclick","load_stag('auto')");}
 					else if (g == "load") {choice.setAttribute("onclick","load_stag('bookmark')");}
-					else {choice.setAttribute("onclick","go_to('" + g + "')");}
+					else {choice.setAttribute("onclick","go_to('" + g + "'); tuesday.dispatchEvent(new Event('choice'));");}
 					tuesday.appendChild(choice);
-				} else {choice.setAttribute("onclick","go_story(true); del_element('tue_choice')"); tuesday.appendChild(choice);}
+				} else {choice.setAttribute("onclick","go_story(true); del_element('tue_choice'); tuesday.dispatchEvent(new Event('choice'));"); tuesday.appendChild(choice);}
             }
         }
 		if (story_json[story][scene].dialogs[dialog].variables) {
 			for (var i = 0; i < story_json[story][scene].dialogs[dialog].variables.length; i++) {
 				var choice_n = story_json[story][scene].dialogs[dialog].variables[i][0]
 				if (story_json[story][scene].dialogs[dialog].variables[i][1] == "add") {
-					story_json.parameters.variables[choice_n] = story_json.parameters.variables[choice_n] + story_json[story][scene].dialogs[dialog].variables[i][2];
+					story_json.parameters.variables[choice_n] += story_json[story][scene].dialogs[dialog].variables[i][2];
+                    tuesday.dispatchEvent(new Event( story_json[story][scene].dialogs[dialog].variables[i][0] + '_add'));
 				} else if (story_json[story][scene].dialogs[dialog].variables[i][1] == "set") {story_json.parameters.variables[choice_n] = story_json[story][scene].dialogs[dialog].variables[i][2];}
+                    tuesday.dispatchEvent(new Event( story_json[story][scene].dialogs[dialog].variables[i][0] + '_set'));
 			}
 		}
 } function values_in_text() {
@@ -300,7 +302,7 @@ function get_lang() {
 				creation_scene();
 			}
 		}
-		if (story_json.parameters.autosave){save_stag('auto')}
+        if (story_json.parameters.autosave){save_stag('auto')};
 	} 
 } function back_story() {
     if (story_json[story][scene].dialogs[dialog].back_to) {
@@ -318,12 +320,11 @@ function get_lang() {
         else {dialog = story_json[story][scene].dialogs.length - 1;creation_scene();}
     } if (story_json.parameters.autosave){save_stag('auto')}
 } function save_stag(tip){
-    {
-       localStorage.setItem("tue_" + tip + "_scene", scene);
-       localStorage.setItem("tue_" + tip + "_dialog", dialog);
-       localStorage.setItem("tue_" + tip + "_story", story);
-        if (story_json.parameters.variables){localStorage.setItem("tue_" + tip + "_data", JSON.stringify( story_json.parameters.variables ));};
-    }
+    localStorage.setItem("tue_" + tip + "_scene", scene);
+    localStorage.setItem("tue_" + tip + "_dialog", dialog);
+    localStorage.setItem("tue_" + tip + "_story", story);
+    if (story_json.parameters.variables){localStorage.setItem("tue_" + tip + "_data", JSON.stringify( story_json.parameters.variables ));};
+    if (tip == "bookmark"){tuesday.dispatchEvent(new Event('save'));}
 } function load_stag(tip) {
     del_element("tue_choice")
     scene = localStorage.getItem("tue_" + tip + "_scene");
@@ -332,6 +333,7 @@ function get_lang() {
     story_json.parameters.variables = JSON.parse(localStorage.getItem("tue_" + tip + "_data"));
     creation_scene();
 	search_music ();
+    tuesday.dispatchEvent(new Event('load'));
 } function go_to(go) {
     del_element("tue_choice")
     dialog = 0;
