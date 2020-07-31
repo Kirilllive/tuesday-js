@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+
+<head>
+	<head>
+	  <title>TuesDay</title>
+	</head>
+    <meta charset="UTF-8">
+    <style>
+		*{
+			border-collapse: collapse;
+			border: none;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			border-spacing: 0px;
+		}
+		.panel {
+			background-color: #fff;
+			box-shadow: 0px 2px 24px rgba(92,43,69,0.25);
+			border-radius: 16px;
+			padding: 8px;
+		}
+        .story_block {
+             min-height: 28px;
+             width:192px;
+			 position: absolute;
+			 cursor: all-scroll;
+        }
+		#world {
+			 position: absolute;
+        }
+		line {
+			stroke:#888;
+			stroke-dasharray: 20;
+			stroke-width:2;
+			animation: dash 4s linear infinite;
+		}
+
+		@keyframes dash {
+		  from {
+			stroke-dashoffset: 0
+		  }
+		  to {
+			stroke-dashoffset: 200;
+		  }
+		}
+		#menu_panel {
+			z-index: 1000;
+			top:0; 
+			left:0; 
+			background-color: #fff;
+			box-shadow: 0px 2px 24px rgba(174,189,204,0.25);
+			border-radius: 0 0 16px 0;
+			position: fixed; 
+			height: 40px;
+			width: 192px;
+        }
+		.button_block {
+			height: 28px;
+			width: 28px;
+		}
+    </style>
+</head>
+<body onload="world_size(); lines();">
+
+	<div id="menu_panel">
+		<table  width="100%" height="100%">
+			<tbody>
+				<tr>
+					<td align='center'>N</td>
+					<td align='center' onclick='json_file.click()'>L</td>
+					<td align='center' onclick='save_file()'>S</td>
+					<td align='center' >R</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<input type="file" id="json_file" style="display: none; position: fixed;"/>
+	<a id="downloadAnchorElem" style="display:none; position: fixed;"></a>
+	
+	<svg id="story_lines" xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+		<rect width="100%" height="100%" fill="#eee"></rect>
+		<line id="ball1_line" x1="0" y1="0" x2="200" y2="200"/>
+		<line id="ball2_line" x1="0" y1="0" x2="200" y2="200"/>
+		<line id="ball3_line" x1="0" y1="0" x2="200" y2="200"/>
+		<line id="ball4_line" x1="0" y1="0" x2="200" y2="200"/>
+	</svg>
+	<div id="story_blocks">
+		<div onmouseover="new_id(this.id)" class="story_block panel" style="top:100px; left:100px;" title='ball3' id="ball1">
+		<table height="100%" width="100%">
+			<tbody><tr><td align='center' class='button_block'>e</td><td align='center'>name</td><td align='center' onclick="block_open('ball3_content')" class='button_block'>o</td></tr></tbody></table>
+			<div id="ball3_content" style="display: none;">654</div>
+		</div>
+		<div onmouseover="new_id(this.id)" class="story_block panel" style="top:400px; left:300px;" title='ball1' id="ball2">ball2</div>
+		<div onmouseover="new_id(this.id)" class="story_block panel" style="top:100px; left:600px;" title='ball2' id="ball3">ball3</div>
+		<div onmouseover="new_id(this.id)" class="story_block panel" style="top:400px; left:600px;" title='ball2' id="ball4">ball4</div>
+	<div>
+	
+<script>
+var body = document.body,
+html = document.documentElement;
+var act_ball;
+var all_blocks = document.getElementsByClassName("story_block");
+var story_lines = document.getElementById("story_lines");
+let story_script = {"parameters":{"title":"new","launch_story":"main_menu"}};
+
+var img_file = document.getElementById('json_file');
+img_file.addEventListener('change', loadFiles);
+function loadFiles(e) {
+	load_story(URL.createObjectURL(e.target.files[0]))
+}
+function load_story(url) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			story_script = JSON.parse(this.responseText);
+			parse_story()
+		}
+	};
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
+
+function parse_story() {
+
+	story_blocks = document.getElementById("story_blocks");
+	story_lines = document.getElementById("story_lines");
+	var i = 0;
+	while (Object.getOwnPropertyNames(story_script)[i]) {
+		var chapter = document.createElement("div");
+		chapter.id = Object.getOwnPropertyNames(story_script)[i];
+		chapter.innerHTML = "<table height='100%' width='100%'><tbody><tr><td align='center' class'button_block'>e</td><td align='center'>"+chapter.id+"</td><td align='center' onclick=\"block_open('"+chapter.id+"_content')\" class='button_block'>o</td></tr></tbody></table><div id='"+chapter.id+"_content' style='display: none;'>654</div>";
+		chapter.title = chapter.id;
+		chapter.className = "story_block panel";
+		chapter.setAttribute("onmouseover", "new_id(this.id)" );
+		chapter.style.left = "50%";
+		chapter.style.top = "50%";
+		story_blocks.appendChild(chapter);
+		
+		var newLine = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+		newLine.id = chapter.id + "_line"
+		story_lines.appendChild(newLine);
+		i++;
+	}
+}
+
+function save_file() {
+    var d = new Date();
+	var n = "new";
+	var dm = String(d.getMonth());
+	var dd = String(d.getDay());
+	var dh = String(d.getHours());
+	var dm = String(d.getMinutes());
+	var ds = String(d.getSeconds());
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(story_script));
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+	if (story_script.parameters.title.en){n = story_script.parameters.title.en;}
+	else if (story_script.parameters.title){n = story_script.parameters.title;}
+
+    dlAnchorElem.setAttribute("href", dataStr );
+    dlAnchorElem.setAttribute("download", n + '_' + d.getFullYear() + '_' + (dm.length <2 ? '0'+ dm : dm) + '_' + (dd.length <2 ? '0'+ dd : dd) +'_'+ (dh.length <2 ? '0'+ dh : dh) + (dm.length <2 ? '0'+ dm : dm) + (ds.length <2 ? '0'+ ds : ds) +'.json');
+    dlAnchorElem.click();
+}
+
+function lines() {
+		var ball_length = all_blocks.length;
+		for (var x = 0 ; x < ball_length; x++){
+		var ser_ball = document.getElementById(all_blocks[x].title);
+		
+		for (var y = 0 ; y < ball_length; y++){
+			var l1 = parseInt(all_blocks[y].style.left);
+			var l2 = parseInt(ser_ball.style.left)
+			if (ser_ball.id == all_blocks[y].title){
+				if (l1 > l2){
+					moveSlider(l1, 'x2', all_blocks[y].id);
+					moveSlider(parseInt(all_blocks[y].style.top)+28, 'y2', all_blocks[y].id);
+					moveSlider(l2+208, 'x1', all_blocks[y].id);
+					moveSlider(parseInt(ser_ball.style.top)+28, 'y1', all_blocks[y].id);
+				} else {
+					moveSlider(l1+208, 'x2', all_blocks[y].id);
+					moveSlider(parseInt(all_blocks[y].style.top)+28, 'y2', all_blocks[y].id);
+					moveSlider(l2, 'x1', all_blocks[y].id);
+					moveSlider(parseInt(ser_ball.style.top)+28, 'y1', all_blocks[y].id);
+				}
+			}
+		}
+	}
+}
+var moveSlider = function(slider, direction,id) {
+	var value = slider;
+	var element = document.getElementById(id + "_line");
+	var coord = direction;
+	element.setAttributeNS(null, coord, value);
+}
+function new_id(id){
+	if (document.onmousemove == null) {
+		act_ball = document.getElementById(id);
+		act_ball.onmousedown = function(e) {
+		  var coords = getCoords(act_ball);
+		  var shiftX = e.pageX - coords.left;
+		  var shiftY = e.pageY - coords.top;
+		  act_ball.style.position = 'absolute';
+		  document.body.appendChild(act_ball);
+		  
+		  moveAt(e);
+		  function moveAt(e) {
+			act_ball.style.left = e.pageX - shiftX + 'px';
+			act_ball.style.top = e.pageY - shiftY + 'px';
+			lines()
+		  }
+		  document.onmousemove = function(e) {
+			moveAt(e);
+		  };
+		  act_ball.onmouseup = function() {
+			document.onmousemove = null;
+			act_ball.onmouseup = null;
+			world_size()
+		  };
+		}
+		act_ball.ondragstart = function() {
+		  return false;
+		};
+		function getCoords(elem) {
+		  var box = elem.getBoundingClientRect();
+		  return {
+			top: box.top + pageYOffset,
+			left: box.left + pageXOffset
+		  };
+		}
+	}
+}
+function world_size() {
+	var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+	var width = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
+	story_lines.setAttribute("height", height);
+	story_lines.setAttribute("width", width);
+	story_lines.setAttribute("viewBox", "0,0,"+ width +","+ height);
+}
+function block_open(id){
+	var e = document.getElementById(id);
+	if (e.style.display === "block") {
+	  e.style.display = "none";
+	} else {
+	  e.style.display = "block";
+	}
+}
+</script>
+
+
+</body>
+
+</html>
