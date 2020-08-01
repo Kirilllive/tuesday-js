@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
 	<head>
 	  <title>TuesDay</title>
@@ -14,6 +13,12 @@
 			padding: 0;
 			border: 0;
 			border-spacing: 0px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
 		}
 		.panel {
 			background-color: #fff;
@@ -59,19 +64,28 @@
 		.button_block {
 			height: 28px;
 			width: 28px;
+            background-size: 70% 70%;
+            background-repeat:
+            no-repeat;
+            background-position: center;
 		}
+        .button_menu {
+            background-size: 55% 55%;
+            background-repeat:
+            no-repeat;
+            background-position: center; }
     </style>
 </head>
-<body onload="world_size(); lines();">
+<body onload="world_size(); lines(); control_dlock();">
 
 	<div id="menu_panel">
 		<table  width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center'>N</td>
-					<td align='center' onclick='json_file.click()'>L</td>
-					<td align='center' onclick='save_file()'>S</td>
-					<td align='center' >R</td>
+					<td align='center' onclick='new_navel()' class='button_menu' style='background-image: url(img/new.svg)'></td>
+                    <td align='center' onclick='json_file.click()' class='button_menu' style='background-image: url(img/load.svg)'></td>
+					<td align='center' onclick='save_file()' class='button_menu' style='background-image: url(img/save.svg)'></td>
+					<td align='center' onclick='play_navel()' class='button_menu' style='background-image: url(img/play.svg)'></td>
 				</tr>
 			</tbody>
 		</table>
@@ -87,24 +101,21 @@
 		<line id="ball4_line" x1="0" y1="0" x2="200" y2="200"/>
 	</svg>
 	<div id="story_blocks">
-		<div onmouseover="new_id(this.id)" class="story_block panel" style="top:100px; left:100px;" title='ball3' id="ball1">
+		<div onmousedown="movie_dlock(this.id)" class="story_block panel" style="top:100px; left:100px;" title='ball3' id="ball1">
 		<table height="100%" width="100%">
-			<tbody><tr><td align='center' class='button_block'>e</td><td align='center'>name</td><td align='center' onclick="block_open('ball3_content')" class='button_block'>o</td></tr></tbody></table>
+			<tbody><tr><td align='center' class='button_block' style='background-image: url(img/edit.svg)'></td><td align='center'>name</td><td align='center' onclick="block_open('ball3_content')" class='button_block' style='background-image: url(img/show.svg)'></td></tr></tbody></table>
 			<div id="ball3_content" style="display: none;">654</div>
 		</div>
-		<div onmouseover="new_id(this.id)" class="story_block panel" style="top:400px; left:300px;" title='ball1' id="ball2">ball2</div>
-		<div onmouseover="new_id(this.id)" class="story_block panel" style="top:100px; left:600px;" title='ball2' id="ball3">ball3</div>
-		<div onmouseover="new_id(this.id)" class="story_block panel" style="top:400px; left:600px;" title='ball2' id="ball4">ball4</div>
+		<div class="story_block panel" style="top:400px; left:300px;" title='ball1' id="ball2">ball2</div>
+		<div class="story_block panel" style="top:100px; left:600px;" title='ball2' id="ball3">ball3</div>
+		<div class="story_block panel" style="top:400px; left:600px;" title='ball2' id="ball4">ball4</div>
 	<div>
-	
 <script>
 var body = document.body,
 html = document.documentElement;
-var act_ball;
 var all_blocks = document.getElementsByClassName("story_block");
 var story_lines = document.getElementById("story_lines");
 let story_script = {"parameters":{"title":"new","launch_story":"main_menu"}};
-
 var img_file = document.getElementById('json_file');
 img_file.addEventListener('change', loadFiles);
 function loadFiles(e) {
@@ -121,30 +132,29 @@ function load_story(url) {
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 }
-
 function parse_story() {
-
 	story_blocks = document.getElementById("story_blocks");
 	story_lines = document.getElementById("story_lines");
 	var i = 0;
 	while (Object.getOwnPropertyNames(story_script)[i]) {
-		var chapter = document.createElement("div");
-		chapter.id = Object.getOwnPropertyNames(story_script)[i];
-		chapter.innerHTML = "<table height='100%' width='100%'><tbody><tr><td align='center' class'button_block'>e</td><td align='center'>"+chapter.id+"</td><td align='center' onclick=\"block_open('"+chapter.id+"_content')\" class='button_block'>o</td></tr></tbody></table><div id='"+chapter.id+"_content' style='display: none;'>654</div>";
-		chapter.title = chapter.id;
-		chapter.className = "story_block panel";
-		chapter.setAttribute("onmouseover", "new_id(this.id)" );
-		chapter.style.left = "50%";
-		chapter.style.top = "50%";
-		story_blocks.appendChild(chapter);
-		
-		var newLine = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-		newLine.id = chapter.id + "_line"
-		story_lines.appendChild(newLine);
+        creation_block(i);
 		i++;
 	}
+    control_dlock()
 }
-
+function creation_block(i) {
+    var chapter = document.createElement("div");
+    chapter.id = Object.getOwnPropertyNames(story_script)[i];
+    chapter.innerHTML = "<table height='100%' width='100%'><tbody><tr><td align='center' class='button_block' style='background-image: url(img/edit.svg)'></td><td align='center'>"+chapter.id+"</td><td align='center' onclick=\"block_open('"+chapter.id+"_content')\" class='button_block' style='background-image: url(img/show.svg)'></td></tr></tbody></table><div id='"+chapter.id+"_content' style='display: none;'>654</div>";
+    chapter.title = chapter.id;
+    chapter.className = "story_block panel";
+    chapter.style.left = "50%";
+    chapter.style.top = "50%";
+    story_blocks.appendChild(chapter);
+    var newLine = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+    newLine.id = chapter.id + "_line"
+    story_lines.appendChild(newLine);
+}
 function save_file() {
     var d = new Date();
 	var n = "new";
@@ -157,31 +167,28 @@ function save_file() {
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
 	if (story_script.parameters.title.en){n = story_script.parameters.title.en;}
 	else if (story_script.parameters.title){n = story_script.parameters.title;}
-
     dlAnchorElem.setAttribute("href", dataStr );
     dlAnchorElem.setAttribute("download", n + '_' + d.getFullYear() + '_' + (dm.length <2 ? '0'+ dm : dm) + '_' + (dd.length <2 ? '0'+ dd : dd) +'_'+ (dh.length <2 ? '0'+ dh : dh) + (dm.length <2 ? '0'+ dm : dm) + (ds.length <2 ? '0'+ ds : ds) +'.json');
     dlAnchorElem.click();
 }
-
 function lines() {
 		var ball_length = all_blocks.length;
 		for (var x = 0 ; x < ball_length; x++){
 		var ser_ball = document.getElementById(all_blocks[x].title);
-		
 		for (var y = 0 ; y < ball_length; y++){
 			var l1 = parseInt(all_blocks[y].style.left);
 			var l2 = parseInt(ser_ball.style.left)
 			if (ser_ball.id == all_blocks[y].title){
 				if (l1 > l2){
 					moveSlider(l1, 'x2', all_blocks[y].id);
-					moveSlider(parseInt(all_blocks[y].style.top)+28, 'y2', all_blocks[y].id);
+					moveSlider(parseInt(all_blocks[y].style.top)+22, 'y2', all_blocks[y].id);
 					moveSlider(l2+208, 'x1', all_blocks[y].id);
-					moveSlider(parseInt(ser_ball.style.top)+28, 'y1', all_blocks[y].id);
+					moveSlider(parseInt(ser_ball.style.top)+22, 'y1', all_blocks[y].id);
 				} else {
 					moveSlider(l1+208, 'x2', all_blocks[y].id);
-					moveSlider(parseInt(all_blocks[y].style.top)+28, 'y2', all_blocks[y].id);
+					moveSlider(parseInt(all_blocks[y].style.top)+22, 'y2', all_blocks[y].id);
 					moveSlider(l2, 'x1', all_blocks[y].id);
-					moveSlider(parseInt(ser_ball.style.top)+28, 'y1', all_blocks[y].id);
+					moveSlider(parseInt(ser_ball.style.top)+22, 'y1', all_blocks[y].id);
 				}
 			}
 		}
@@ -193,32 +200,36 @@ var moveSlider = function(slider, direction,id) {
 	var coord = direction;
 	element.setAttributeNS(null, coord, value);
 }
-function new_id(id){
-	if (document.onmousemove == null) {
-		act_ball = document.getElementById(id);
-		act_ball.onmousedown = function(e) {
-		  var coords = getCoords(act_ball);
+function control_dlock () {
+    all_blocks = document.getElementsByClassName("story_block");
+    for (var i=0; i < all_blocks.length; i++){
+        movie_dlock(all_blocks[i].id)
+    }
+}
+function movie_dlock(id){
+		var focus_dlock = document.getElementById(id);
+		focus_dlock.onmousedown = function(e) {
+		  var coords = getCoords(focus_dlock);
 		  var shiftX = e.pageX - coords.left;
 		  var shiftY = e.pageY - coords.top;
-		  act_ball.style.position = 'absolute';
-		  document.body.appendChild(act_ball);
-		  
+		  focus_dlock.style.position = 'absolute';
+		  document.body.appendChild(focus_dlock);
 		  moveAt(e);
 		  function moveAt(e) {
-			act_ball.style.left = e.pageX - shiftX + 'px';
-			act_ball.style.top = e.pageY - shiftY + 'px';
+			focus_dlock.style.left = e.pageX - shiftX + 'px';
+			focus_dlock.style.top = e.pageY - shiftY + 'px';
 			lines()
 		  }
 		  document.onmousemove = function(e) {
 			moveAt(e);
 		  };
-		  act_ball.onmouseup = function() {
+		  focus_dlock.onmouseup = function() {
 			document.onmousemove = null;
-			act_ball.onmouseup = null;
+			focus_dlock.onmouseup = null;
 			world_size()
 		  };
 		}
-		act_ball.ondragstart = function() {
+		focus_dlock.ondragstart = function() {
 		  return false;
 		};
 		function getCoords(elem) {
@@ -228,7 +239,6 @@ function new_id(id){
 			left: box.left + pageXOffset
 		  };
 		}
-	}
 }
 function world_size() {
 	var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
@@ -237,7 +247,7 @@ function world_size() {
 	story_lines.setAttribute("width", width);
 	story_lines.setAttribute("viewBox", "0,0,"+ width +","+ height);
 }
-function block_open(id){
+function block_open(id) {
 	var e = document.getElementById(id);
 	if (e.style.display === "block") {
 	  e.style.display = "none";
@@ -246,8 +256,5 @@ function block_open(id){
 	}
 }
 </script>
-
-
 </body>
-
 </html>
