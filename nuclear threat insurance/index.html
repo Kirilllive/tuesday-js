@@ -138,8 +138,8 @@
                             "launch_story": "Escape",
                             "next": "ArrowRight",
                             "back": "ArrowLeft",
-                            "save": "s",
-                            "load": "l"
+                            "save": "KeyS",
+                            "load": "KeyL"
                         },
                         "autosave": true,
                         "launch_story": "main_menu",
@@ -412,6 +412,7 @@
                                 "background_image": "img/bg/20191201_093304.jpg",
                                 "dialogs":[
                                  {
+                                     "event": "oooo_12",
                                      "text": {
                                         "className": "default",
                                         "ru":"Идет 110й год календаря новой эпохи.",
@@ -909,10 +910,24 @@
                                 "background_image": "img/bg/3_a.png",
                                 "dialogs":[
                                  {
-                                    "go_to": "ambulance",
                                      "text": {
                                         "className": "default",
                                          "ru":"Мерзавец!!!",
+                                         "en":"",
+                                         "ja":""
+                                     }
+                                 },{
+                                     "text": {
+                                        "className": "default",
+                                         "ru":"Ай!!! почему меня ударило токам?",
+                                         "en":"",
+                                         "ja":""
+                                     }
+                                 },{
+                                    "go_to": "ambulance",
+                                     "text": {
+                                        "className": "default",
+                                         "ru":"Да что с тобой стало не так?",
                                          "en":"",
                                          "ja":""
                                      }
@@ -9797,10 +9812,11 @@
     }
     tuesday.addEventListener('load', function(event) { toast("load") } );
     tuesday.addEventListener('save', function(event) { toast("save") } );
-    tuesday.addEventListener('choice', function(event) { toast("choice") } );
     
     tuesday.addEventListener('ointment_add', function(event) { toast("Добавлена мазь от облучения") } );
     tuesday.addEventListener('ointment_set', function(event) { toast("Получена мазь от облучения") } );
+    
+     tuesday.addEventListener('oooo_12', function(event) { toast("8585") } );
     
 </script>
 </body>

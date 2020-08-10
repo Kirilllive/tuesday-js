@@ -13,7 +13,7 @@ var dialog_timeout;
 var story;
 var tue_bg_music;
 document.addEventListener('keydown', function(event) {
-    var k = event.key;
+    var k = event.code;
     if (k == story_json.parameters.key.next) {go_story ();}
     else if (k == story_json.parameters.key.back) {back_story ();}
     else if (k == story_json.parameters.key.main) {var g = story_json.parameters.launch_story; go_to(g);}
@@ -258,9 +258,9 @@ function get_lang() {
 					var g = story_json[story][scene].dialogs[dialog].choice[i].go_to;
 					if (g == "load_autosave") {choice.setAttribute("onclick","load_stag('auto')");}
 					else if (g == "load") {choice.setAttribute("onclick","load_stag('bookmark')");}
-					else {choice.setAttribute("onclick","go_to('" + g + "'); tuesday.dispatchEvent(new Event('choice'));");}
+					else {choice.setAttribute("onclick","go_to('" + g + "');");}
 					tuesday.appendChild(choice);
-				} else {choice.setAttribute("onclick","go_story(true); del_element('tue_choice'); tuesday.dispatchEvent(new Event('choice'));"); tuesday.appendChild(choice);}
+				} else {choice.setAttribute("onclick","go_story(true); del_element('tue_choice');"); tuesday.appendChild(choice);}
             }
         }
 		if (story_json[story][scene].dialogs[dialog].variables) {
@@ -273,6 +273,9 @@ function get_lang() {
                     tuesday.dispatchEvent(new Event( story_json[story][scene].dialogs[dialog].variables[i][0] + '_set'));
 			}
 		}
+        if (story_json[story][scene].dialogs[dialog].event) {
+            tuesday.dispatchEvent(new Event( story_json[story][scene].dialogs[dialog].event ));
+        }
 } function values_in_text() {
     var str = story_json[story][scene].dialogs[dialog].text[languare];
     let regexp = /<(.*?)>/g;
