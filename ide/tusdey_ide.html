@@ -22,7 +22,7 @@
 		}
 		.panel {
 			background-color: #fff;
-			box-shadow: 0px 2px 24px rgba(92,43,69,0.25);
+			box-shadow: 0px 2px 24px rgba(0,120,200,0.25);
 			border-radius: 16px;
 			padding: 8px;
 		}
@@ -55,7 +55,7 @@
 			top:0; 
 			left:0; 
 			background-color: #fff;
-			box-shadow: 0px 2px 24px rgba(174,189,204,0.25);
+			box-shadow: 0px 2px 24px rgba(0,120,200,0.25);
 			border-radius: 0 0 16px 0;
 			position: fixed; 
 			height: 40px;
@@ -73,7 +73,11 @@
             background-size: 55% 55%;
             background-repeat:
             no-repeat;
-            background-position: center; }
+            background-position: center;
+        }
+        .button_menu:hover {
+            background-color: #9cf;
+        }
     </style>
 </head>
 <body onload="world_size(); lines(); control_dlock();">
@@ -85,7 +89,7 @@
 					<td align='center' onclick='new_navel()' class='button_menu' style='background-image: url(img/new.svg)'></td>
                     <td align='center' onclick='json_file.click()' class='button_menu' style='background-image: url(img/load.svg)'></td>
 					<td align='center' onclick='save_file()' class='button_menu' style='background-image: url(img/save.svg)'></td>
-					<td align='center' onclick='play_navel()' class='button_menu' style='background-image: url(img/play.svg)'></td>
+					<td align='center' onclick='play_navel()' class='button_menu' style='background-image: url(img/play.svg); border-radius: 0 0 16px 0;'></td>
 				</tr>
 			</tbody>
 		</table>

@@ -114,8 +114,10 @@
             </table>
         </div>
         <!--Add-on Toast-->
-<!--        <script type="text/javascript" src="cordova.js"></script>-->
+        
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
         <script type="text/javascript" src="../tuesday.js"></script>
+        <script type="text/javascript" src="../plugins/touch_swipe.js"></script>
         <script>
                 let data = {
                     "parameters": {
@@ -412,7 +414,7 @@
                                 "background_image": "img/bg/20191201_093304.jpg",
                                 "dialogs":[
                                  {
-                                     "event": "oooo_12",
+                                    "event": "start_story",
                                      "text": {
                                         "className": "default",
                                         "ru":"Идет 110й год календаря новой эпохи.",
@@ -9788,7 +9790,7 @@
                                       "ja":""
                                   }
                              },{
-                                    "go_to": "moonworm_end_2",
+                                 "go_to": "moonworm_end_2",
                                   "name":"queen",
                                   "text": {
                                       "className": "pozitiv_text",
@@ -9815,8 +9817,6 @@
     
     tuesday.addEventListener('ointment_add', function(event) { toast("Добавлена мазь от облучения") } );
     tuesday.addEventListener('ointment_set', function(event) { toast("Получена мазь от облучения") } );
-    
-     tuesday.addEventListener('oooo_12', function(event) { toast("8585") } );
     
 </script>
 </body>

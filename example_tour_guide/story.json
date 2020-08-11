@@ -22,15 +22,21 @@
             "size_text": "18px"
         },
         "key": {
-            "save_stag": "s",
-            "load_stag": "l",
-            "load_autosave": "c",
+            "load_autosave": "KeyC",
             "launch_story": "Escape",
             "next": "ArrowRight",
-            "back": "ArrowLeft"
+            "back": "ArrowLeft",
+            "save": "KeyS",
+            "load": "KeyL"
         },
         "launch_story": "main_menu",
         "languares": ["en","ru","ja","ko"],
+        "title": {
+            "ru": "Страховой агент",
+            "en": "Insurance agent",
+            "ja": "荒れ地の保険",
+            "ko": "荒れ地の保険"
+        },
         "buttons": [
             {
                 "name": "tue_back",

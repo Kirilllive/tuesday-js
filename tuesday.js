@@ -25,7 +25,7 @@ function get_lang() {
     if (navigator.languages != undefined) {languare = navigator.languages[0].substring(0,2);}
     else {languare = navigator.languagesubstring(0,2)}
     var support;
-    for (i = 0; i < story_json.parameters.languares.length; i++){
+    for (var i = 0; i < story_json.parameters.languares.length; i++){
         if (languare == story_json.parameters.languares[i]) {support = true }
     }
     if (!support){languare = story_json.parameters.languares[0]}
@@ -50,7 +50,8 @@ function get_lang() {
     dialog_speed = story_json.parameters.text_panel.dialog_speed;
     if (story_json.parameters.title){
         if (story_json.parameters.title[languare]){document.title = story_json.parameters.title[languare];
-        } else {document.title = story_json.parameters.title;}}
+        } else {document.title = story_json.parameters.title;}
+    }
     tuesday.style.backgroundRepeat = "no-repeat";
     tuesday.style.backgroundSize = "cover";
     tuesday.style.backgroundPosition = "center";

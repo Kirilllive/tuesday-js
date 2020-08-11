@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ * {
+    font-family: Arial;
+	font-size: 14px;
+    border-collapse: collapse;
+    border: none;
+    margin: 0;
+    padding: 0;
+    
+    border-spacing: 0px;
+    color: #000;
+    text-decoration: none;
+    outline: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#textbook{
+	width:100%;
+	height:100vh;
+	overflow-y: scroll;
+	overflow-x: auto;
+}
+#bookmarks{
+	width:256px;
+	height:100vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	border-right: 1px solid #9cf;
+}
+.border_b {border-bottom: 1px solid #ccc;}
+.border_t {border-top: 1px solid #ccc;}
+.shadow{box-shadow: 0px 2px 24px rgba(0,120,200,0.25);}
+.accordion {
+	width:100%;
+	outline: none;
+}
+.block:hover {
+    background-color: #9cf;
+}
+.panel {
+	display: none;
+}
+.block {
+	padding:8px;
+}
+dd { 
+  display: block;
+  margin-left: 64px;
+}
+dt { 
+  display: block;
+  margin-left: 32px;
+}
+#search_bookmarks {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA0OCA0OCI+CiAgPGNpcmNsZSBmaWxsPSdub25lJyBzdHJva2U9JyNjY2MnIHN0cm9rZS13aWR0aD0nNCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBjeD0iMzIiIGN5PSIxNyIgcj0iMTQiIC8+CiAgPHBhdGggZmlsbD0nbm9uZScgc3Ryb2tlPScjY2NjJyBzdHJva2Utd2lkdGg9JzQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgIGQ9Ik0gNCw0NSAyMiwyNyIvPgo8L3N2Zz4K");
+  background-position: 6px 6px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  width: calc(100% - 32px);
+  height: 32px;
+  padding-left: 32px;
+  border-bottom: 1px solid #ccc;
+  -webkit-appearance: none;
+}
+</style>
+</head>
+<body style='scrolling: no' onload='start_hash()'>
+
+<table style='height: 100vh;  width:100vw;'>
+<tbody>
+<tr>
+<td width='256px' valign='top' align='left'>
+
+
+
+<div id='bookmarks' class='shadow'>
+
+<input type="text" id="search_bookmarks" onkeyup="search_bookmarks()" placeholder="Search for element" title="Type in a name">
+
+<div class='block'>Starting</div>
+<div class='block'>Base</div>
+<div class="accordion "><div class='block'>Parameters</div></div>
+<div class="panel border_b border_t">
+	<div class="accordion "><div class='block'><dt>text_panel</div></div>
+	<div class="panel border_b border_t">
+		<div class='block'><dd>size_panel</div>
+		<div class='block'><dd>style</div>
+		<div class='block'><dd>color_panel</div>
+		<div class='block'><dd>color_text</div>
+		<div class='block'><dd>indent_bottom</div>
+		<div class='block'><dd>indent_panel</div>
+		<div class='block'><dd>indent_text</div>
+		<div class='block'><dd>size_text</div>
+		<div class='block'><dd>className</div>
+		<div class='block'><dd>dialog_speed</div>
+	</div>
+	<div class="accordion"><div class='block'><dt>name_panel</div></div>
+	<div class="panel border_b border_t">
+		<div class='block'><dd>size_panel</div>
+		<div class='block'><dd>style</div>
+		<div class='block'><dd>position</div>
+		<div class='block'><dd>indent_text</div>
+		<div class='block'><dd>className</div>
+		<div class='block'><dd>size_text</div>
+	</div>
+	<div class='block'><dt>key</div>
+	<div class='block'><dt>launch_story</div>
+	<div class='block'><dt>languares</div>
+	<div class='block'><dt>autosave</div>
+	<div class='block'><dt>title</div>
+	<div class='block'><dt>variables</div>
+	<div class='block'><dt>characters</div>
+	<div class="accordion"><div class='block'><dt>buttons</div></div>
+	<div class="panel border_b border_t">
+		<div class='block'><dd>name</div>
+		<div class='block'><dd>art</div>
+		<div class='block'><dd>art_size</div>
+		<div class='block'><dd>position</div>
+		<div class='block'><dd>size</div>
+		<div class='block'><dd>color</div>
+		<div class='block'><dd>className</div>
+		<div class='block'><dd>style</div>
+		<div class='block'><dd>indent_text</div>
+		<div class='block'><dd>size_text</div>
+		<div class='block'><dd>sound</div>
+	</div>
+
+</div>
+<div class="accordion"><div class='block'>Story block</div></div>
+<div class="panel border_b border_t">
+	<div class='block'><dt>background_music</div>
+	<div class='block'><dt>background_image</div>
+	<div class="accordion"><div class='block'><dt>dialogs</div></div>
+	<div class="panel border_b border_t">
+		<div class='block'><dd>back_to</div>
+		<div class='block'><dd>color_panel</div>
+		<div class='block'><dd>color_text</div>
+		<div class='block'><dd>text</div>
+		<div class='block'><dd>name</div>
+		<div class='block'><dd>go_to</div>
+		<div class='block'><dd>back_to</div>
+		<div class='block'><dd>variables</div>
+		<div class='block'><dd>event</div>
+		<div class="accordion"><div class='block'><dd>art</div></div>
+		<div class="panel border_b border_t">
+			<div class='block' style='margin-left: 92px;'>style</div>
+			<div class='block' style='margin-left: 92px;'>url</div>
+			<div class='block' style='margin-left: 92px;'>position</div>
+			<div class='block' style='margin-left: 92px;'>size</div>
+		</div>
+		<div class="accordion"><div class='block'><dd>choice</div></div>
+		<div class="panel border_b border_t">
+			<div class='block' style='margin-left: 92px;'>go_to</div>
+			<div class='block' style='margin-left: 92px;'>position</div>
+			<div class='block' style='margin-left: 92px;'>size</div>
+			<div class='block' style='margin-left: 92px;'>className</div>
+			<div class='block' style='margin-left: 92px;'>text</div>
+			<div class='block' style='margin-left: 92px;'>color</div>
+			<div class='block' style='margin-left: 92px;'>art_size</div>
+			<div class='block' style='margin-left: 92px;'>art</div>
+			<div class='block' style='margin-left: 92px;'>color_text</div>
+		</div>
+	</div>
+	<div class="accordion"><div class='block'><dt>legacy_choice</div></div>
+	<div class="panel border_b border_t">
+		<div class='block'><dd>go_to</div>
+</div>
+</div>
+<div class='block'>Events</div>
+<div class="accordion "><div class='block'>Plugins</div></div>
+<div class="panel border_b border_t">
+    <div class='block'><dt>Touch Swipe</div>
+</div>
+<div class='block'>Example</div>
+</div>
+</td>
+<td valign='top' align='left' style='background-color:#eee;'>
+<div id='textbook'>
+
+<a id="top"></a><a id="ready"></a>
+
+<div>
+</td>
+</tr>
+</tbody>
+</table>
+<script>
+var textbook = document.getElementById("textbook");
+var acc = document.getElementsByClassName("accordion");
+for (var i = 0; i < acc.length; i++) {
+	acc[i].addEventListener("click", function() {
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {panel.style.display = "none";}
+	else {panel.style.display = "block";}
+  });
+}
+function go_to(name) {window.location.hash = name; scroll_to(name);}
+function start_hash() {if(window.location.hash){scroll_to(window.location.hash.replace('#',''))}}
+function scroll_to(name) {var e = document.getElementById('5ready'); textbook.scrollTop = e.offsetTop;}
+
+function search_bookmarks() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("search_bookmarks");
+    filter = input.value.toUpperCase();
+	bookmarks = document.getElementById("bookmarks");
+	li = bookmarks.getElementsByClassName("block");
+	
+	if (filter.length == 0) {
+		var panel =  document.getElementsByClassName("panel");
+		for (var i = 0; i < panel.length; i++) {panel[i].style.display = "none";}
+	} else {
+		var panel =  document.getElementsByClassName("panel");
+		for (var i = 0; i < panel.length; i++) {panel[i].style.display = "block";}
+	}
+
+    for (i = 0; i < li.length; i++) {
+        a = li[i];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "block";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+</body>
+</html>
