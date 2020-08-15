@@ -74,7 +74,11 @@ function get_lang() {
     if (story_json.parameters.name_panel) {
         if(story_json.parameters.name_panel.className){tue_name_block.className = story_json.parameters.name_panel.className;}
         if(story_json.parameters.name_panel.style){tue_name_block.style = story_json.parameters.name_panel.style;}
-        tue_name_block.style.position = "absolute";
+		
+		if(story_json.parameters.name_panel.color_panel){tue_name_block.style.backgroundColor = story_json.parameters.name_panel.color_panel;}
+		if(story_json.parameters.name_panel.color_text){tue_name_block.style.color = story_json.parameters.name_panel.color_text;}
+        
+		tue_name_block.style.position = "absolute";
         tue_name_block.id = "tue_name_block";
         tue_name_block.style.padding = story_json.parameters.name_panel.indent_text;
         tue_name_block.style.fontSize = story_json.parameters.name_panel.size_text;
@@ -98,6 +102,16 @@ function get_lang() {
 } function creation_buttons() {
     for (i = 0; i < story_json.parameters.buttons.length; i++){
         var button = document.createElement("div");
+        
+        if(story_json.parameters.buttons[i].text){
+            button.innerHTML = (story_json.parameters.buttons[i].text[languare])?story_json.parameters.buttons[i].text[languare]:story_json.parameters.buttons[i].text;
+            button.style.textAlign = "center";
+            button.style.color = story_json.parameters.buttons[i].color_text;
+            button.style.padding = story_json.parameters.buttons[i].indent_text;
+            button.style.fontSize = story_json.parameters.buttons[i].size_text;
+        }
+        
+        
         if(story_json.parameters.buttons[i].className){button.className = story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style = story_json.parameters.buttons[i].style;}
         button.style.zIndex = 2000 + i;
@@ -110,7 +124,7 @@ function get_lang() {
         button.style.backgroundRepeat = "no-repeat";
         button.style.backgroundPosition = "center";
         button.style.backgroundImage = "url('" + story_json.parameters.buttons[i].art + "')";
-        button.style.backgroundSize = story_json.parameters.buttons[i].art_size[0] + " " + story_json.parameters.buttons[i].art_size[1];
+        if (story_json.parameters.buttons[i].art_size) {button.style.backgroundSize = story_json.parameters.buttons[i].art_size[0] + " " + story_json.parameters.buttons[i].art_size[1];}
         if (story_json.parameters.buttons[i].position[0] != 0){button.style.left = story_json.parameters.buttons[i].position[0];}
         if (story_json.parameters.buttons[i].position[1] != 0){button.style.right = story_json.parameters.buttons[i].position[1];}
         if (story_json.parameters.buttons[i].position[2] != 0){button.style.top = story_json.parameters.buttons[i].position[2];}
@@ -150,9 +164,12 @@ function get_lang() {
                 creation_scene();
             }
         }
-    } else
-    if(story_json[story][scene].background_image[languare]){tuesday.style.backgroundImage = "url('" + story_json[story][scene].background_image[languare] + "')";}
-    else if(story_json[story][scene].background_image){tuesday.style.backgroundImage = "url('" + story_json[story][scene].background_image + "')";}
+    }
+    if (story_json[story][scene].background_image){
+        if (story_json[story][scene].background_image[languare]) {tuesday.style.backgroundImage = "url('" + story_json[story][scene].background_image[languare] + "')";}
+        else {tuesday.style.backgroundImage = "url('" + story_json[story][scene].background_image + "')";}
+    }
+    
     var buttons = document.getElementById("tuesday").getElementsByClassName("tue_controll");
     for (var i = 0; i < buttons.length; i++) {
         if (story == story_json.parameters.launch_story){buttons[i].style.visibility = "hidden";}
@@ -172,7 +189,8 @@ function get_lang() {
 		tue_next.style.visibility = 'visible';
         if (story_json[story][scene].dialogs[dialog].color_panel) {tue_text_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].color_panel;}
         else if (story_json.parameters.text_panel.color_panel) {tue_text_block.style.backgroundColor = story_json.parameters.text_panel.color_panel;}
-        tue_text_view.style.color = story_json[story][scene].dialogs[dialog].color_text;
+        if (story_json[story][scene].dialogs[dialog].color_text) {tue_text_view.style.color = story_json[story][scene].dialogs[dialog].color_text;}
+		else if (story_json.parameters.text_panel.color_text) {tue_text_view.style.color = story_json.parameters.text_panel.color_text;}
         if (story_json[story][scene].dialogs[dialog].text){
             tue_text_block.style.visibility = 'visible';
             tue_text_view.innerHTML = "";
@@ -188,7 +206,7 @@ function get_lang() {
                 tue_name_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].name.color_panel;
                 tue_name_block.style.color = story_json[story][scene].dialogs[dialog].name.color_text;
                 if(story_json[story][scene].dialogs[dialog].name.className){ tue_name_block.className = story_json[story][scene].dialogs[dialog].name.className}
-            } else if (story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name]){
+            } else if (story_json[story][scene].dialogs[dialog].name[languare]){
                 tue_name_block.innerHTML = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name][languare]
                 tue_name_block.style.backgroundColor = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name].color_panel;
                 tue_name_block.style.color = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name].color_text;
@@ -254,7 +272,8 @@ function get_lang() {
                 choice.style.padding = story_json[story][scene].dialogs[dialog].choice[i].indent_text;
                 choice.style.fontSize = story_json[story][scene].dialogs[dialog].choice[i].size_text;
                 choice.style.textAlign = "center";
-                if(story_json[story][scene].dialogs[dialog].choice[i].text){choice.innerHTML = story_json[story][scene].dialogs[dialog].choice[i].text[languare];}
+                if (story_json[story][scene].dialogs[dialog].choice[i].text[languare]){choice.innerHTML = story_json[story][scene].dialogs[dialog].choice[i].text[languare];}
+                else if (story_json[story][scene].dialogs[dialog].choice[i].text){choice.innerHTML = story_json[story][scene].dialogs[dialog].choice[i].text;}
                 if (story_json[story][scene].dialogs[dialog].choice[i].go_to) {
 					var g = story_json[story][scene].dialogs[dialog].choice[i].go_to;
 					if (g == "load_autosave") {choice.setAttribute("onclick","load_stag('auto')");}
@@ -278,7 +297,7 @@ function get_lang() {
             tuesday.dispatchEvent(new Event( story_json[story][scene].dialogs[dialog].event ));
         }
 } function values_in_text() {
-    var str = story_json[story][scene].dialogs[dialog].text[languare];
+    var str = (story_json[story][scene].dialogs[dialog].text[languare])? story_json[story][scene].dialogs[dialog].text[languare]: story_json[story][scene].dialogs[dialog].text;
     let regexp = /<(.*?)>/g;
     let matchAll = str.matchAll(regexp);
     matchAll = Array.from(matchAll);

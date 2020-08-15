@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
  * {
@@ -11,31 +12,24 @@
     margin: 0;
     padding: 0;
     border-spacing: 0px;
-    color: #000;
     text-decoration: none;
     outline: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 #textbook{
-    width:100%;
     height:100vh;
     overflow-y: scroll;
     overflow-x: auto;
+	padding:16px;
 }
 #bookmarks{
-    width:256px;
+    width:100%;
     height:100vh;
     overflow-y: auto;
     overflow-x: hidden;
     border-right: 1px solid #9cf;
 }
 .border_t {
-    border-top: 1px solid #9cf;
+    border-bottom: 1px solid #9cf;
     border-left: 8px solid #9cf;
 }
 .shadow{box-shadow: 0px 2px 24px rgba(0,120,200,0.25);}
@@ -73,14 +67,30 @@
   border-bottom: 1px solid #ccc;
   -webkit-appearance: none;
 }
+.code_box {
+	font-family: monospace;
+	color: #888;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #fff;
+	white-space: pre;
+}
+.text_name {
+	margin-top: 16px;
+	font-weight:bold ;
+}
+.comm {
+    color: #9cf;
+}
 </style>
 </head>
-<body style='scrolling: no' onload='start_hash()'>
+<body style='scrolling: no; overflow-y: hidden;' onload='start_hash()'>
 
-<table style='height: 100vh;  width:100vw;'>
+<table style="height: 100vh; width:100vw;">
 <tbody>
 <tr>
-<td width='256px' valign='top' align='left'>
+<td valign='top' align='left' style='width:256px; min-width:220px;'>
 
 
 
@@ -88,8 +98,7 @@
 
 <input type="text" id="search_bookmarks" onkeyup="search_bookmarks()" placeholder="Search for element" title="Type in a name">
 
-<div class='block'>Starting</div>
-<div class='block'>Base</div>
+<a href="#start_use"><div class='block'>Starting</div></a>
 <div class="accordion "><div class='block block_open'>Parameters</div></div>
 <div class="panel border_b border_t">
     <div class="accordion "><div class='block block_open'><span class='three_1'>text_panel</div></div>
@@ -135,7 +144,6 @@
         <div class='block'><span class='three_2'>size_text</div>
         <div class='block'><span class='three_2'>sound</div>
     </div>
-
 </div>
 <div class="accordion"><div class='block block_open'>Story block</div></div>
 <div class="panel border_b border_t">
@@ -185,12 +193,143 @@
 <div class='block'>Example</div>
 </div>
 </td>
-<td valign='top' align='left' style='background-color:#eee;'>
-<div id='textbook'>
+<td valign='top' style='background-color:#eee;'>
 
-<a id="top"></a><a id="ready"></a>
+<div id='textbook' align='center'>
+<div style='max-width:800px; margin-bottom:128px;' align='left'>
+<div align='center' style='margin-top:32px; margin-bottom:32px;'>
+	<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+	  <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" d="M17,10.015H64c26.346,0,48,21.763,48,48.18s-21.654,48.18-48,48.18V102.36"/>
+	  <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" d="M42,108V10m22,0v98"/>
+	  <circle fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" cx="53" cy="108" r="11"/>
+	</svg>
+	<p style='font-size: 64px;'>TuesDay</p><p style='font-size:30px;'>visual novel engine</p>
+</div>
+<p><span class='three_2'></span><b>Tuesday</b> бесплатный движок с открытым исходным кодом для создания визуальных новелл, интерактивных историй и текстовых приключенческих игр. Написан на языке JavaScript без использования сторонних библиотек. Существует поддержка инфраструктуры Apache Cordova для создания нативных приложений для мобильных устройств и настольных компьютеров. Движок использует стандартные элементы Html документа, как div и img, что делает возможным использование почти любых медиа форматов поддерживаемых браузерами, включая векторную графику в формате svg, gif анимации и использование обширных возможностей css стилей.</p>
 
-<div>
+<br>
+<a id="start_use"></a>
+<p><span class='text_name'>Начало использования</span></p>
+<p>Для работы подойдет любой текстовый редактор или IDE с поддержикой работы с ASCII текстом</p>
+<p>Рекомендуемое программное обеспечения для использования</p>
+<p><b><span class='three_2'></span>MS Windows</b>: <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a></p>
+<p><b><span class='three_2'></span>Mac OS</b>: <a href="https://developer.apple.com/xcode/" target="_blank">Xcode</a></p>
+<br>
+<p>Базоая основа для отображения новеллы состоит из 3-х элементов</p>
+<br>
+<p><span class='text_name'>1 Файл движка «tuesday.js»</span> его можно скачать из <a href="https://github.com/Kirilllive/Tuesday" target="_blank">GitHub</a></p>
+<br>
+<p><span class='text_name'>2 Файл index.html</span> с элементам для отображения новеллы</p>
+<pre class='code_box'>
+<code>&lt;html&gt;
+	&lt;head&gt;
+	&lt;/head&gt;
+	<span class='comm'>&lt;&#33--После загрузки запускается функция load_story, с указанием файла или массив с историей--></span>
+	&lt;body onload="load_story('file','story.json')"&gt;
+		<span class='comm'>&lt;&#33--Область отображения--></span>
+		&lt;div id='tuesday' style='width:100vw; height:100vh;'&gt;&lt;/div&gt;
+		<span class='comm'>&lt;&#33--путь к файлу движка, обязательно в конце страницы--></span>
+		&lt;script type="text/javascript" src="tuesday.js"&gt;&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<br>
+<p><span class='text_name'>3 Файл истории story.json</span></p>
+<pre class='code_box'>
+<code>{"parameters": {
+        "text_panel": {
+            "size_panel": ["95%","25%"],
+            "color_panel": "#9cf",
+            "indent_bottom": "32px",
+            "size_text": "20px",
+            "dialog_speed": 20
+        },
+        "name_panel": {
+            "size_panel": ["0","48px"],
+            "position": ["0","0","0px","0"],
+            "size_text": "18px"
+        },
+        "launch_story": "main_menu",
+        "languares": ["en"],
+        "buttons": [
+            {
+                "name": "tue_back",
+                "position": ["0","55%","0","8px"],
+                "size": ["52px","52px"],
+                "color": "#888",
+                "size_text": "48px",
+                "text":"<"
+            },{
+                "name": "tue_next",
+                "position": ["55%","0","0","8px"],
+                "size": ["52px","52px"],
+                "color": "#888",
+                "size_text": "48px",
+                "text":">"
+            }
+        ]
+    },"main_menu":[
+        {
+            "dialogs":[
+                {
+                    "choice":[
+                        {
+                            "go_to": "story",
+                            "position": ["50%","0","0","50%"],
+                            "size": ["128px","48px"],
+                            "color": "#888",
+                            "color_text": "#fff",
+                            "text": "Start"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],"story": [
+        {
+            "dialogs":[
+                {
+                    "back_to": "main_menu",
+                    "text":"1234567890",
+                    "name":"numbers"
+                },{
+                    "go_to": "main_menu",
+                    "text":"ABCDEFZHIKLMNOPQRSTVX",
+                    "name":"letters"
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<br>
+<p><span class='text_name'>Проблемы запуска и их решения</span></p>
+<p>Если новелла не отобразилось то возможна возникла проблема c ограничением cross domain web security. эту проблему можно решить несколькими способами</p>
+<br>
+<p>1. Решение - Перенести содержимое из json файла в index.html как массив JavaScript</p>
+<pre class='code_box'>
+<code>&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    <span class='comm'>&lt;&#33--Измениить значениия load_story c ('file','story.json') на ('data','story') --></span>
+    &lt;body onload="load_story('data','story')"&gt;
+        &lt;div id='tuesday' style='width:100vw; height:100vh;'&gt;&lt;/div&gt;
+        <span class='comm'>&lt;&#33--Добавит тег script перед tuesday.js --></span> ;
+        &lt;script&gt;
+            let story = <span class='comm'>&lt;&#33--вставить содержимое из story.json --></span> ;
+        &lt;/script&gt;
+        &lt;script type="text/javascript" src="tuesday.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<br>
+<p>2. Решение - В некоторых браузерах можно отключить cross domain (не рекомендуется)</p>
+<br>
+<p><span class='text_name'>FireFox</span> - в адресной строке введите about:config в появившехся настройках найдите пункт security.fileuri.strict_origin_policy и установить ему значение false для отключения или true для включения</p>
+
+
+</div>
+</div>
 </td>
 </tr>
 </tbody>
@@ -208,7 +347,6 @@ for (var i = 0; i < acc.length; i++) {
 function go_to(name) {window.location.hash = name; scroll_to(name);}
 function start_hash() {if(window.location.hash){scroll_to(window.location.hash.replace('#',''))}}
 function scroll_to(name) {var e = document.getElementById('5ready'); textbook.scrollTop = e.offsetTop;}
-
 function search_bookmarks() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("search_bookmarks");

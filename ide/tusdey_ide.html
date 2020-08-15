@@ -1,9 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<head>
-	  <title>TuesDay</title>
-	</head>
+	<title>TuesDay</title>
     <meta charset="UTF-8">
     <style>
 		*{
@@ -36,7 +34,7 @@
 			 position: absolute;
         }
 		line {
-			stroke:#888;
+			stroke:#8cf;
 			stroke-dasharray: 20;
 			stroke-width:2;
 			animation: dash 4s linear infinite;
@@ -105,7 +103,7 @@
 		<line id="ball4_line" x1="0" y1="0" x2="200" y2="200"/>
 	</svg>
 	<div id="story_blocks">
-		<div onmousedown="movie_dlock(this.id)" class="story_block panel" style="top:100px; left:100px;" title='ball3' id="ball1">
+		<div class="story_block panel" style="top:100px; left:100px;" title='ball3' id="ball1">
 		<table height="100%" width="100%">
 			<tbody><tr><td align='center' class='button_block' style='background-image: url(img/edit.svg)'></td><td align='center'>name</td><td align='center' onclick="block_open('ball3_content')" class='button_block' style='background-image: url(img/show.svg)'></td></tr></tbody></table>
 			<div id="ball3_content" style="display: none;">654</div>
@@ -210,38 +208,41 @@ function control_dlock () {
         movie_dlock(all_blocks[i].id)
     }
 }
+var scroll_block = false;
 function movie_dlock(id){
 		var focus_dlock = document.getElementById(id);
 		focus_dlock.onmousedown = function(e) {
-		  var coords = getCoords(focus_dlock);
-		  var shiftX = e.pageX - coords.left;
-		  var shiftY = e.pageY - coords.top;
-		  focus_dlock.style.position = 'absolute';
-		  document.body.appendChild(focus_dlock);
-		  moveAt(e);
-		  function moveAt(e) {
-			focus_dlock.style.left = e.pageX - shiftX + 'px';
-			focus_dlock.style.top = e.pageY - shiftY + 'px';
-			lines()
-		  }
+			var coords = getCoords(focus_dlock);
+			var shiftX = e.pageX - coords.left;
+			var shiftY = e.pageY - coords.top;
+			scroll_block = true;
+			focus_dlock.style.position = 'absolute';
+			document.body.appendChild(focus_dlock);
+			moveAt(e);
+			function moveAt(e) {
+				focus_dlock.style.left = e.pageX - shiftX + 'px';
+				focus_dlock.style.top = e.pageY - shiftY + 'px';
+				lines()
+			}
 		  document.onmousemove = function(e) {
 			moveAt(e);
 		  };
 		  focus_dlock.onmouseup = function() {
 			document.onmousemove = null;
 			focus_dlock.onmouseup = null;
+			scroll_block = false;
 			world_size()
 		  };
 		}
 		focus_dlock.ondragstart = function() {
-		  return false;
+			return false;
 		};
 		function getCoords(elem) {
-		  var box = elem.getBoundingClientRect();
-		  return {
-			top: box.top + pageYOffset,
-			left: box.left + pageXOffset
-		  };
+			var box = elem.getBoundingClientRect();
+			return {
+				top: box.top + pageYOffset,
+				left: box.left + pageXOffset
+			};
 		}
 }
 function world_size() {
@@ -259,6 +260,55 @@ function block_open(id) {
 	  e.style.display = "block";
 	}
 }
+
+
+var startmove_x = null;
+var startmove_y = null;
+var scroll_x = null;
+var scroll_y = null;
+
+
+// map_controll touch
+html.ontouchstart = function(e) {
+	if (!scroll_block) {
+		startmove_x = e.touches[0].clientX;
+		startmove_y = e.touches[0].clientY;	
+		scroll_x = html.scrollTop;
+		scroll_y = html.scrollLeft;
+		html.ontouchmove = function(e) {
+			html.scrollTop = scroll_x - (e.touches[0].clientY - startmove_y);
+			html.scrollLeft = scroll_y - (e.touches[0].clientX - startmove_x);
+		};
+		html.ontouchend = function (e){
+			startmove_x = null;
+			startmove_y = null;
+			html.ontouchmove = null;
+			html.ontouchend = null;
+		};
+	}
+}
+
+// map_controll mouse
+html.onmousedown = function(e) {
+	if (!scroll_block) {
+		startmove_x = e.clientX;
+		startmove_y = e.clientY;
+		scroll_x = html.scrollTop;
+		scroll_y = html.scrollLeft;
+		html.onmousemove = function(e) {
+			//info.innerHTML =  (move_x - startmove_x) + "/" + (move_y - startmove_y);
+			html.scrollTop = scroll_x - (e.clientY - startmove_y);
+			html.scrollLeft = scroll_y - (e.clientX - startmove_x);
+		};
+		html.onmouseup = function (e){
+			startmove_x = null;
+			startmove_y = null;
+			html.onmousemove = null;
+			html.onmouseup = null;
+		};
+	}
+}
+
 </script>
 </body>
 </html>
