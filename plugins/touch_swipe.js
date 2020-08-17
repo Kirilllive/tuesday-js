@@ -13,10 +13,10 @@ window.addEventListener("touchend",function(event){
 	var timeDiff = endTime - startTime;
 	if(starttouch && timeDiff < 500){
 		var end = event.changedTouches.item(0).clientX;
-		if(end > starttouch + 100){
+		if(end > starttouch + 20){
 			back_story()
 		}
-		if(end < starttouch - 100 ){
+		if(end < starttouch - 20 ){
 			go_story()
 		}
 	}

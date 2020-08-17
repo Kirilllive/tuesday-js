@@ -74,10 +74,8 @@ function get_lang() {
     if (story_json.parameters.name_panel) {
         if(story_json.parameters.name_panel.className){tue_name_block.className = story_json.parameters.name_panel.className;}
         if(story_json.parameters.name_panel.style){tue_name_block.style = story_json.parameters.name_panel.style;}
-		
 		if(story_json.parameters.name_panel.color_panel){tue_name_block.style.backgroundColor = story_json.parameters.name_panel.color_panel;}
 		if(story_json.parameters.name_panel.color_text){tue_name_block.style.color = story_json.parameters.name_panel.color_text;}
-        
 		tue_name_block.style.position = "absolute";
         tue_name_block.id = "tue_name_block";
         tue_name_block.style.padding = story_json.parameters.name_panel.indent_text;
@@ -102,7 +100,6 @@ function get_lang() {
 } function creation_buttons() {
     for (i = 0; i < story_json.parameters.buttons.length; i++){
         var button = document.createElement("div");
-        
         if(story_json.parameters.buttons[i].text){
             button.innerHTML = (story_json.parameters.buttons[i].text[languare])?story_json.parameters.buttons[i].text[languare]:story_json.parameters.buttons[i].text;
             button.style.textAlign = "center";
@@ -110,8 +107,6 @@ function get_lang() {
             button.style.padding = story_json.parameters.buttons[i].indent_text;
             button.style.fontSize = story_json.parameters.buttons[i].size_text;
         }
-        
-        
         if(story_json.parameters.buttons[i].className){button.className = story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style = story_json.parameters.buttons[i].style;}
         button.style.zIndex = 2000 + i;
@@ -169,7 +164,6 @@ function get_lang() {
         if (story_json[story][scene].background_image[languare]) {tuesday.style.backgroundImage = "url('" + story_json[story][scene].background_image[languare] + "')";}
         else {tuesday.style.backgroundImage = "url('" + story_json[story][scene].background_image + "')";}
     }
-    
     var buttons = document.getElementById("tuesday").getElementsByClassName("tue_controll");
     for (var i = 0; i < buttons.length; i++) {
         if (story == story_json.parameters.launch_story){buttons[i].style.visibility = "hidden";}
@@ -272,8 +266,10 @@ function get_lang() {
                 choice.style.padding = story_json[story][scene].dialogs[dialog].choice[i].indent_text;
                 choice.style.fontSize = story_json[story][scene].dialogs[dialog].choice[i].size_text;
                 choice.style.textAlign = "center";
-                if (story_json[story][scene].dialogs[dialog].choice[i].text[languare]){choice.innerHTML = story_json[story][scene].dialogs[dialog].choice[i].text[languare];}
-                else if (story_json[story][scene].dialogs[dialog].choice[i].text){choice.innerHTML = story_json[story][scene].dialogs[dialog].choice[i].text;}
+                if (story_json[story][scene].dialogs[dialog].choice[i].text){
+                    if (story_json[story][scene].dialogs[dialog].choice[i].text[languare]){choice.innerHTML = story_json[story][scene].dialogs[dialog].choice[i].text[languare];}
+                    else {choice.innerHTML = story_json[story][scene].dialogs[dialog].choice[i].text;}
+                }
                 if (story_json[story][scene].dialogs[dialog].choice[i].go_to) {
 					var g = story_json[story][scene].dialogs[dialog].choice[i].go_to;
 					if (g == "load_autosave") {choice.setAttribute("onclick","load_stag('auto')");}

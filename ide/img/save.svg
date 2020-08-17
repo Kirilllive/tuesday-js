@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 256 256">
-  <path fill="none" fill-opacity="0" stroke="#000" stroke-width="12" stroke-linejoin="round" d="M238,51.919V228a10,10,0,0,1-10,10H27a10,10,0,0,1-10-10V27A10,10,0,0,1,27,17H203.118Z"/>
-  <path fill="none" fill-opacity="0" stroke="#000" stroke-width="12" stroke-linejoin="round" d="M39,238V127a10,10,0,0,1,10-10H205a10,10,0,0,1,10,10V238H39ZM174.2,95.65H79.8a10,10,0,0,1-10-10V17H184.2V85.65A10,10,0,0,1,174.2,95.65ZM168,42a10,10,0,0,0-10-10H144a10,10,0,0,0-10,10V71a10,10,0,0,0,10,10h14a10,10,0,0,0,10-10V42Z"/>
-  <path fill="none" fill-opacity="0" stroke="#000" stroke-width="12" stroke-linejoin="round" d="M63,162H192m0,49H63"/>
-</svg>
