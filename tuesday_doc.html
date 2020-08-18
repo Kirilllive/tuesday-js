@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ * {
+    font-family: Arial;
+    font-size: 14px;
+    border-collapse: collapse;
+    border: none;
+    margin: 0;
+    padding: 0;
+    border-spacing: 0px;
+    text-decoration: none;
+    outline: none;
+}
+a:link {color: #000;}
+a:visited {color: #000;}
+a:hover {color: #000;}
+a:active {color: #000;}
+#textbook{
+    height:100vh;
+    overflow-y: scroll;
+    overflow-x: auto;
+	padding:16px;
+}
+#bookmarks{
+    width:100%;
+    height:100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-right: 1px solid #9cf;
+}
+.border_t {
+    border-bottom: 1px solid #9cf;
+    border-left: 8px solid #9cf;
+}
+.shadow{box-shadow: 0px 2px 24px rgba(0,120,200,0.25);}
+.accordion {
+    width:100%;
+    outline: none;
+}
+.block:hover {
+    background-color: #9cf;
+}
+.panel {
+    display: none;
+}
+.block {
+    padding:8px;
+    padding-bottom:10px;
+}
+.block_open {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsNDBIMTAiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsMTMwSDEwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjQ2LDIyMEgxMCIvPg0KPC9zdmc+");
+    background-position: right 6px top 9px;
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+}
+.three_1 {margin-left: 16px;}
+.three_2 {margin-left: 24px;}
+.three_3 {margin-left: 32px;}
+#search_bookmarks {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA0OCA0OCI+CiAgPGNpcmNsZSBmaWxsPSdub25lJyBzdHJva2U9JyNjY2MnIHN0cm9rZS13aWR0aD0nNCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBjeD0iMzIiIGN5PSIxNyIgcj0iMTQiIC8+CiAgPHBhdGggZmlsbD0nbm9uZScgc3Ryb2tlPScjY2NjJyBzdHJva2Utd2lkdGg9JzQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgIGQ9Ik0gNCw0NSAyMiwyNyIvPgo8L3N2Zz4K");
+  background-position: 6px 6px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  width: calc(100% - 32px);
+  height: 32px;
+  padding-left: 32px;
+  border-bottom: 1px solid #ccc;
+  -webkit-appearance: none;
+}
+.code_box {
+	font-family: monospace;
+	color: #888;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #fff;
+	white-space: pre;
+}
+.text_name {
+	margin-top: 16px;
+	font-weight:bold ;
+}
+.comm {
+    color: #9cf;
+}
+hr {border: solid 1px #ccc;}
+</style>
+</head>
+<body style='scrolling: no; overflow-y: hidden;' onload='start_hash()'>
+
+<table style="height: 100vh; width:100vw;">
+<tbody>
+<tr>
+<td valign='top' align='left' style='width:256px; min-width:220px;'>
+
+
+
+<div id='bookmarks' class='shadow'>
+
+<input type="text" id="search_bookmarks" onkeyup="search_bookmarks()" placeholder="Search for element" title="Type in a name">
+
+<a href="#start_use"><div class='block'>Starting</div></a>
+<div class="accordion "><div class='block block_open'>Parameters</div></div>
+<div class="panel border_b border_t">
+    <div class="accordion "><div class='block block_open'><span class='three_1'>text_panel</div></div>
+    <div class="panel border_b border_t">
+        <div class='block'><span class='three_2'>size_panel</div>
+        <div class='block'><span class='three_2'>style</div>
+        <div class='block'><span class='three_2'>color_panel</div>
+        <div class='block'><span class='three_2'>color_text</div>
+        <div class='block'><span class='three_2'>indent_bottom</div>
+        <div class='block'><span class='three_2'>indent_panel</div>
+        <div class='block'><span class='three_2'>indent_text</div>
+        <div class='block'><span class='three_2'>size_text</div>
+        <div class='block'><span class='three_2'>className</div>
+        <div class='block'><span class='three_2'>dialog_speed</div>
+    </div>
+    <div class="accordion"><div class='block block_open'><span class='three_1'>name_panel</div></div>
+    <div class="panel border_b border_t">
+        <div class='block'><span class='three_2'>size_panel</div>
+        <div class='block'><span class='three_2'>style</div>
+        <div class='block'><span class='three_2'>position</div>
+        <div class='block'><span class='three_2'>indent_text</div>
+        <div class='block'><span class='three_2'>className</div>
+        <div class='block'><span class='three_2'>size_text</div>
+    </div>
+    <div class='block'><span class='three_1'>key</div>
+    <div class='block'><span class='three_1'>launch_story</div>
+    <div class='block'><span class='three_1'>languares</div>
+    <div class='block'><span class='three_1'>autosave</div>
+    <div class='block'><span class='three_1'>title</div>
+    <div class='block'><span class='three_1'>variables</div>
+    <div class='block'><span class='three_1'>characters</div>
+    <div class="accordion"><div class='block block_open'><span class='three_1'>buttons</div></div>
+    <div class="panel border_b border_t">
+        <div class='block'><span class='three_2'>name</div>
+        <div class='block'><span class='three_2'>art</div>
+        <div class='block'><span class='three_2'>art_size</div>
+        <div class='block'><span class='three_2'>position</div>
+        <div class='block'><span class='three_2'>size</div>
+        <div class='block'><span class='three_2'>color</div>
+        <div class='block'><span class='three_2'>className</div>
+        <div class='block'><span class='three_2'>style</div>
+        <div class='block'><span class='three_2'>indent_text</div>
+        <div class='block'><span class='three_2'>size_text</div>
+        <div class='block'><span class='three_2'>sound</div>
+    </div>
+</div>
+<div class="accordion"><div class='block block_open'>Story block</div></div>
+<div class="panel border_b border_t">
+    <div class='block'><span class='three_1'>background_music</div>
+    <div class='block'><span class='three_1'>background_image</div>
+    <div class="accordion"><div class='block block_open'><span class='three_1'>dialogs</div></div>
+    <div class="panel border_b border_t">
+        <div class='block'><span class='three_2'>back_to</div>
+        <div class='block'><span class='three_2'>color_panel</div>
+        <div class='block'><span class='three_2'>color_text</div>
+        <div class='block'><span class='three_2'>text</div>
+        <div class='block'><span class='three_2'>name</div>
+        <div class='block'><span class='three_2'>go_to</div>
+        <div class='block'><span class='three_2'>back_to</div>
+        <div class='block'><span class='three_2'>variables</div>
+        <div class='block'><span class='three_2'>event</div>
+        <div class="accordion"><div class='block block_open'><span class='three_2'>art</div></div>
+        <div class="panel border_b border_t">
+            <div class='block'><span class='three_3'></span>style</div>
+            <div class='block'><span class='three_3'></span>url</div>
+            <div class='block'><span class='three_3'></span>position</div>
+            <div class='block'><span class='three_3'></span>size</div>
+        </div>
+        <div class="accordion"><div class='block block_open'><span class='three_2'>choice</div></div>
+        <div class="panel border_b border_t">
+            <div class='block'><span class='three_3'></span>go_to</div>
+            <div class='block'><span class='three_3'></span>position</div>
+            <div class='block'><span class='three_3'></span>size</div>
+            <div class='block'><span class='three_3'></span>className</div>
+			<div class='block'><span class='three_3'></span>variables</div>
+            <div class='block'><span class='three_3'></span>text</div>
+            <div class='block'><span class='three_3'></span>color</div>
+            <div class='block'><span class='three_3'></span>art_size</div>
+            <div class='block'><span class='three_3'></span>art</div>
+            <div class='block'><span class='three_3'></span>color_text</div>
+        </div>
+    </div>
+    <div class="accordion"><div class='block block_open'><span class='three_1'>legacy_choice</div></div>
+    <div class="panel border_b border_t">
+        <div class='block'><span class='three_2'>go_to</div>
+</div>
+</div>
+<div class="accordion "><div class='block block_open'>System Buttons</div></div>
+<div class="panel border_b border_t">
+    <div class='block'><span class='three_1'>load_autosave</div>
+	<div class='block'><span class='three_1'>load</div>
+	<div class='block'><span class='three_1'>save</div>
+</div>
+<div class='block'>Events</div>
+<div class="accordion "><div class='block block_open'>Plugins</div></div>
+<div class="panel border_b border_t">
+    <div class='block'><span class='three_1'>Touch Swipe</div>
+	<div class='block'><span class='three_1'>Toast</div>
+</div>
+<div class='block'>Example</div>
+</div>
+</td>
+<td valign='top' style='background-color:#eee;'>
+
+<div id='textbook' align='center'>
+<div style='max-width:800px; margin-bottom:128px;' align='left'>
+<div align='center' style='margin-top:32px; margin-bottom:32px;'>
+	<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+	  <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" d="M17,10.015H64c26.346,0,48,21.763,48,48.18s-21.654,48.18-48,48.18V102.36"/>
+	  <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" d="M42,108V10m22,0v98"/>
+	  <circle fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" cx="53" cy="108" r="11"/>
+	</svg>
+	<p style='font-size: 64px;'>TuesDay</p><p style='font-size:30px;'>visual novel engine</p>
+</div>
+<p><span class='three_2'></span><b>Tuesday</b> бесплатный движок с открытым исходным кодом для создания визуальных новелл, интерактивных историй и текстовых приключенческих игр. Написан на языке JavaScript без использования сторонних библиотек. Существует поддержка инфраструктуры Apache Cordova для создания нативных приложений для мобильных устройств и настольных компьютеров. Движок использует стандартные элементы Html документа, как div и img, что делает возможным использование почти любых медиа форматов поддерживаемых браузерами, включая векторную графику в формате svg, gif анимации и использование обширных возможностей css стилей.</p>
+
+<br>
+<hr>
+<br>
+<a id="start_use"></a>
+<p><span class='text_name'>Начало использования</span></p>
+<p>Для работы подойдет любой текстовый редактор или IDE с поддержикой работы с ASCII текстом</p>
+<p>Рекомендуемое программное обеспечения для использования</p>
+<p><b><span class='three_2'></span>MS Windows</b>: <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a></p>
+<p><b><span class='three_2'></span>Mac OS</b>: <a href="https://developer.apple.com/xcode/" target="_blank">Xcode</a></p>
+<br>
+<p>Базоая основа для отображения новеллы состоит из 3-х элементов</p>
+<br>
+<p><span class='text_name'>1 Файл движка «tuesday.js»</span> его можно скачать из <a href="https://github.com/Kirilllive/Tuesday" target="_blank">GitHub</a></p>
+<br>
+<p><span class='text_name'>2 Файл index.html</span> с элементам для отображения новеллы</p>
+<pre class='code_box'>
+<code>&lt;html&gt;
+	&lt;head&gt;
+	&lt;/head&gt;
+	<span class='comm'>&lt;&#33--После загрузки запускается функция load_story, с указанием файла или массив с историей--></span>
+	&lt;body onload="load_story('file','story.json')"&gt;
+		<span class='comm'>&lt;&#33--Область отображения--></span>
+		&lt;div id='tuesday' style='width:100%; height:90vh;'&gt;&lt;/div&gt;
+		<span class='comm'>&lt;&#33--путь к файлу движка, обязательно в конце страницы--></span>
+		&lt;script type="text/javascript" src="tuesday.js"&gt;&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<br>
+<p><span class='text_name'>3 Файл истории story.json</span></p>
+<pre class='code_box'>
+<code>{
+    "parameters": {
+        "text_panel": {
+            "size_panel": ["95%","25%"],
+            "color_panel": "#9cf",
+            "indent_bottom": "32px",
+            "size_text": "20px",
+            "dialog_speed": 20
+        },
+        "name_panel": {
+            "size_panel": ["0","48px"],
+            "position": ["0","0","0px","0"],
+            "size_text": "18px"
+        },
+        "launch_story": "main_menu",
+        "languares": ["en"],
+        "buttons": [
+            {
+                "name": "tue_back",
+                "position": ["0","55%","0","8px"],
+                "size": ["52px","52px"],
+                "color": "#888",
+                "size_text": "48px",
+                "text":"<"
+            },{
+                "name": "tue_next",
+                "position": ["55%","0","0","8px"],
+                "size": ["52px","52px"],
+                "color": "#888",
+                "size_text": "48px",
+                "text":">"
+            }
+        ]
+    },"main_menu":[
+        {
+            "dialogs":[
+                {
+                    "choice":[
+                        {
+                            "go_to": "story",
+                            "position": ["50%","0","0","50%"],
+                            "size": ["128px","48px"],
+                            "color": "#888",
+                            "color_text": "#fff",
+                            "text": "Start"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],"story": [
+        {
+            "dialogs":[
+                {
+                    "back_to": "main_menu",
+                    "text":"1234567890",
+                    "name":"numbers"
+                },{
+                    "go_to": "main_menu",
+                    "text":"ABCDEFZHIKLMNOPQRSTVX",
+                    "name":"letters"
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<br>
+<a download="tusday_base_example.zip" href="data:@file/zip;base64,UEsDBBQAAAAIAGmGElG10bivvQAAACcBAAAKAAAAaW5kZXguaHRtbE1Q2wrCMAx9F/yHUpAqqJ2Pbu3Af/Bdqu1spFvHGqf9e7sLsjyEnNxOToTF2pXrFUkmrFF6jkeMgM6U17cJWkXBJzj38kWzuHsdiW+cV1rSwd8C+i5uWQXOsD0b0fEVfMN2dMmgoSegJcOJg5GA0RnJKt/goVI1uJhfOlCuIB/QaPNTlm0KYg08LebnrLcFKwVPa5Zbw6ODFgnG1kiK5ov8pXo1ZSkJ3UPSmTDdRNP8VPpLG+QkIPj8nPXqB1BLAwQUAAAACAAwSBJRkSIuicwBAABxBwAACgAAAHN0b3J5Lmpzb27NlV1PgzAUhq818T+YLt7tgrFN2WJM/IzGb2eM0SyksMKI0BIoyXTZf7etQIGO1QsvJNlWOE85fc972i13tnfZBWKYwAhRlKRgvJs/FAGKFtSOIUahDJTBNPhCZfAdjIZ7oAtM9j3tNkiXhCQpUdAZuR5oMgGeIUxth1BKIk71zXjBKTUnXxUnTGMNMQtgSHw7jRGaMcg0ZHxVYQFmin8rzWDCBla8UJXFJA1oQHCJiQ8j+Wi6cfU9/sKWxYUww+7cTilJPjkbwQDbEcIZqFPYz2CCUpEd4VpC4GSUEixitWU0xMpq8EQ0Q7YD3Q+ZZ5PYIbdcjKrFUSQLfijs5D+SVJtEtIdlWUp+pXzcj7XUDwAO89rK+up0YzZRq7vQ/G91HzV1y9spG8pOq3bVuNIiy7UbKq0xDVbVNCeBi8SULXHVQXWCT2xKuDzR8k19GkeMiiP8Tqlzuzs9k5WzbXfrrdLTpW8dz/O0Uwp4QmFCQTu8UkPSYJVUCRkpRIPisPnjVuCnCfNWOcVEW+SCmQ39wXD/wBoZtRKpOxXgLHL4/5RC8Q1evNUn2ozHJ6dn5xdvl1fXN7d39w+PT5Pnl1dd8hBRqiTXlzl/wkbfUEsBAj8AFAAAAAgAaYYSUbXRuK+9AAAAJwEAAAoAJAAAAAAAAAAgAAAAAAAAAGluZGV4Lmh0bWwKACAAAAAAAAEAGAAXvbSkZnXWARe9tKRmddYBiqXwBCV11gFQSwECPwAUAAAACAAwSBJRkSIuicwBAABxBwAACgAkAAAAAAAAACAAAADlAAAAc3RvcnkuanNvbgoAIAAAAAAAAQAYAIql8AQlddYBiqXwBCV11gGKpfAEJXXWAVBLBQYAAAAAAgACALgAAADZAgAAAAA="><b><p>Download example</p></b></a>
+<br>
+<hr>
+<br><br>
+<p><span class='text_name'>Проблемы запуска и их решения</span></p>
+<p>Если новелла не отобразилось то возможна возникла проблема c ограничением cross domain web security. эту проблему можно решить несколькими способами</p>
+<br>
+<p>1. Решение - Перенести содержимое из json файла в index.html как массив JavaScript</p>
+<pre class='code_box'>
+<code>&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    <span class='comm'>&lt;&#33--Измениить значениия load_story c ('file','story.json') на ('data','story') --></span>
+    &lt;body onload="load_story('data','story')"&gt;
+	&lt;div id='tuesday' style='width:100%; height:90vh;'&gt;&lt;/div&gt;
+        <span class='comm'>&lt;&#33--Добавит тег script перед tuesday.js --></span> ;
+        &lt;script&gt;
+            let story = <span class='comm'>&lt;&#33--вставить содержимое из story.json --></span> ;
+        &lt;/script&gt;
+        &lt;script type="text/javascript" src="tuesday.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<br>
+<p>2. Решение - В некоторых браузерах можно отключить cross domain (не рекомендуется)</p>
+<br>
+<p><span class='text_name'>FireFox</span> - в адресной строке введите about:config в появившехся настройках найдите пункт security.fileuri.strict_origin_policy и установить ему значение false для отключения или true для включения</p>
+<br>
+<hr>
+<br>
+
+
+
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<script>
+var textbook = document.getElementById("textbook");
+var acc = document.getElementsByClassName("accordion");
+for (var i = 0; i < acc.length; i++) {
+	acc[i].addEventListener("click", function() {
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {panel.style.display = "none";}
+	else {panel.style.display = "block";}
+  });
+}
+function go_to(name) {window.location.hash = name; scroll_to(name);}
+function start_hash() {if(window.location.hash){scroll_to(window.location.hash.replace('#',''))}}
+function scroll_to(name) {var e = document.getElementById('5ready'); textbook.scrollTop = e.offsetTop;}
+function search_bookmarks() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("search_bookmarks");
+    filter = input.value.toUpperCase();
+	bookmarks = document.getElementById("bookmarks");
+	li = bookmarks.getElementsByClassName("block");
+	if (filter.length == 0) {
+		var panel =  document.getElementsByClassName("panel");
+		for (var i = 0; i < panel.length; i++) {
+            panel[i].style.display = "none";
+            panel[i].className = "panel border_t";
+        }
+	} else {
+		var panel =  document.getElementsByClassName("panel");
+		for (var i = 0; i < panel.length; i++) {
+            panel[i].style.display = "block";
+            panel[i].className = "panel";
+        }
+	}
+    for (i = 0; i < li.length; i++) {
+        a = li[i];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "block";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+</body>
+</html>
