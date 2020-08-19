@@ -200,7 +200,7 @@ function get_lang() {
                 tue_name_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].name.color_panel;
                 tue_name_block.style.color = story_json[story][scene].dialogs[dialog].name.color_text;
                 if(story_json[story][scene].dialogs[dialog].name.className){ tue_name_block.className = story_json[story][scene].dialogs[dialog].name.className}
-            } else if (story_json[story][scene].dialogs[dialog].name[languare]){
+            } else if (story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name]){
                 tue_name_block.innerHTML = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name][languare]
                 tue_name_block.style.backgroundColor = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name].color_panel;
                 tue_name_block.style.color = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name].color_text;
