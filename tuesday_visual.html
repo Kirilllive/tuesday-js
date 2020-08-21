@@ -63,8 +63,7 @@
 		height: 28px;
 		width: 28px;
 		background-size: 70% 70%;
-		background-repeat:
-		no-repeat;
+		background-repeat: no-repeat;
 		background-position: center;
 	}
 	.icon {
@@ -201,11 +200,11 @@ function loadFiles(e) {
 		}
 	}
 	if (files.length == 1) {
-		load_story(URL.createObjectURL(t.target.files[files[0][0]]))
+		load_story_edit(URL.createObjectURL(t.target.files[files[0][0]]))
 	} else {
 		var html = "<div class='window' style='padding: 0px 8px;'>"
 		for (var f=0; f < files.length; f++) {
-			html += "<table class='button' style='margin: 8px 0px;' onclick='load_story(open_file(\"" + files[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td align='center' width='48px' height='48px' class='icon icon_new'> </td><td align='center' style=''>" + files[f][1] + "</td><td align='center' width='48px'></td></tr></tbody></table>"
+			html += "<table class='button' style='margin: 8px 0px;' onclick='load_story_edit(open_file(\"" + files[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td align='center' width='48px' height='48px' class='icon icon_new'> </td><td align='center' style=''>" + files[f][1] + "</td><td align='center' width='48px'></td></tr></tbody></table>"
 		} 
 		html += "</div>"
 		modal_window("open", html)
@@ -228,7 +227,7 @@ function new_navel () {
 		story_lines.removeChild(story_lines.firstChild);
 	}
 }
-function load_story(url) {
+function load_story_edit(url) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -426,7 +425,6 @@ var startmove_x = null;
 var startmove_y = null;
 var scroll_x = null;
 var scroll_y = null;
-// map_controll touch
 html.ontouchstart = function(e) {
 	if (!scroll_block) {
 		startmove_x = e.touches[0].clientX;
@@ -480,7 +478,8 @@ function modal_window(action, content) {
     }
 }
 function play_navel() {
-  window.open("file:///C:/Users/_/Desktop/tools/Tuesday/example_tour_guide/index.html", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=640,height=320");
+    var preview = window.open("", "preview", "location=no,scrollbars=no,width=640,height=480");
+    preview.document.write("<iframe scrolling='no' frameborder='0' style='width:100%; height:100%; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; ' srcdoc=\"<div id='tuesday' style='width:100%; height:100vh;'></div><script type='text/javascript' src='tuesday.js'><\/script><script> load_story('file','example_tour_guide/story.json')<\/script>\" src=\"demo_iframe_srcdoc.htm\"><\/iframe>");
 }
 </script>
 </body>
