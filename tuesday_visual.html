@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <style>
 	*{
+		font-family: Calibri;
 		border-collapse: collapse;
 		border: none;
 		margin: 0;
@@ -66,10 +67,12 @@
 		no-repeat;
 		background-position: center;
 	}
+	.icon {
+		background-size: 22px 22px;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
 	.button_menu {
-		background-size: 55% 55%;
-		background-repeat:
-		no-repeat;
 		background-position: center;
 	}
 	.button_menu:hover {
@@ -104,6 +107,7 @@
 		margin-top: 8px;
 		border-radius: 8px;
 		background-color: #fff;
+		font-size: 12px;
 	}
 	.scene_bg {
 		padding: 4px 8px;
@@ -119,7 +123,7 @@
 		padding: 4px 4px;
 		margin-top: 8px;
 		border-radius: 8px;
-		background-color: #fff;
+		background-color: #cec8e3;
 	}
 	.choice_b {
 		background-color: #efefff;
@@ -128,33 +132,56 @@
 		text-align: center;
 		padding: 4px;
 	}
+	#window_zone {
+		height: 100vh; 
+		width:100%; 
+		position: fixed;
+		background-color: rgba(255,255,255,0.5);
+		position: fixed;
+		left: 0;
+		top: 0;
+		visibility:hidden;
+		transition-duration: 0.5s;
+	}
+	.window {
+		position: absolute;
+		top: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		left: 50%;
+		background-color:#fff;
+		border-radius: 16px;
+		box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
+		z-index: 10000;
+	}
+	.button{
+		border-radius: 8px;
+		width: 100%;
+		height: 90%;
+		background-color:#efefff;
+	}
+	.button:hover {
+		background-color:#cec8e3;
+	}
     </style>
 </head>
 <body onload="world_size(); lines(); control_dlock();" style='background-color: #efefff;'>
-
 	<div id="menu_panel">
 		<table  width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center' onclick='new_navel()' class='button_menu icon_new'></td>
-                    <td align='center' onclick='json_file.click()' class='button_menu icon_load'></td>
-					<td align='center' onclick='save_file()' class='button_menu icon_save'></td>
-					<td align='center' onclick='play_navel()' class='button_menu icon_play' style='border-radius: 0 0 16px 0;'></td>
+					<td align='center' onclick='new_navel()' class='icon button_menu icon_new'></td>
+                    <td align='center' onclick='json_file.click()' class='icon button_menu icon_load'></td>
+					<td align='center' onclick='save_file()' class='icon button_menu icon_save'></td>
+					<td align='center' onclick='play_navel()' class='icon button_menu icon_play' style='border-radius: 0 0 16px 0;'></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<input type="file" id="json_file" style="display: none; position: fixed;"/>
+	<input type="file" id="json_file" style="display: none; position: fixed;" multiple webkitdirectory/>
 	<a id="downloadAnchorElem" style="display:none; position: fixed;"></a>
-	
-	<svg id="story_lines" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-
-	</svg>
-	<div id="story_blocks">
-
-	<div>
-	
-	<div id='helper' style='position:fixed; top:10px; left:50%;'>000</div>
+	<svg id="story_lines" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"></svg>
+	<div id="story_blocks"></div>
+	<div id='window_zone' align='center'></div>
 <script>
 var body = document.body,
 html = document.documentElement;
@@ -163,9 +190,35 @@ var story_lines = document.getElementById("story_lines");
 let story_script = {"parameters":{"title":"new","launch_story":"main_menu"}};
 let line_controll = [];
 var img_file = document.getElementById('json_file');
+var t;
 img_file.addEventListener('change', loadFiles);
 function loadFiles(e) {
-	load_story(URL.createObjectURL(e.target.files[0]))
+	t = e
+	var files = [];
+	for (var i=0; i < t.target.files.length; i++) {
+		if (t.target.files[i].type == "application/json"){
+			files.push([i,t.target.files[i].name])
+		}
+	}
+	if (files.length == 1) {
+		load_story(URL.createObjectURL(t.target.files[files[0][0]]))
+	} else {
+		var html = "<div class='window' style='padding: 0px 8px;'>"
+		for (var f=0; f < files.length; f++) {
+			html += "<table class='button' style='margin: 8px 0px;' onclick='load_story(open_file(\"" + files[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td align='center' width='48px' height='48px' class='icon icon_new'> </td><td align='center' style=''>" + files[f][1] + "</td><td align='center' width='48px'></td></tr></tbody></table>"
+		} 
+		html += "</div>"
+		modal_window("open", html)
+	}
+}
+function open_file (name) {
+	if (name) {
+	name = name.split("/")[name.split("/").length-1];
+	for (var i=0; i < t.target.files.length; i++) {
+		if (t.target.files[i].name == name){
+			return (URL.createObjectURL(t.target.files[i]))
+		}
+	}}
 }
 function new_navel () {
 	story_blocks.innerHTML = ""
@@ -210,19 +263,25 @@ function creation_block(b) {
 	if ( chapter.id != "parameters") {
 		for (var i=0; i < story_script[chapter.id].length; i++){
 			element += "<div class='scene'>" 
-			if (story_script[chapter.id][i].background_image){element += "<div class='scene_bg' style=' background-image: url(" + story_script[chapter.id][i].background_image.ru + ")' width='100%'></div>"}
+			if (story_script[chapter.id][i].background_image){element += "<div class='scene_bg' style=' background-image: url(" + open_file (story_script[chapter.id][i].background_image.ja) + ")' width='100%'></div>"}
 			if (story_script[chapter.id][i].dialogs) {
 				for (var d=0; d < story_script[chapter.id][i].dialogs.length; d++){
-					if (story_script[chapter.id][i].dialogs[d].text) {element += "<div class='dialog'>" + story_script[chapter.id][i].dialogs[d].text.ru + "</div>"}
-					else if (story_script[chapter.id][i].dialogs[d].choice) {
+					if (story_script[chapter.id][i].dialogs[d].text) {element += "<div class='dialog'>" + story_script[chapter.id][i].dialogs[d].text.ja + "</div>"}
+					if (story_script[chapter.id][i].dialogs[d].go_to) {
+						var id = story_script[chapter.id][i].dialogs[d].go_to
+						element += "<div id='go_" + id + "_" + chapter.id + "' class='choice to_go'>" + id + "</div>";
+						line_controll.push( [id, chapter.id, "go_" + id + "_"+chapter.id] );
+						creaton_line ("go_" + id + "_" + chapter.id)
+					}
+					if (story_script[chapter.id][i].dialogs[d].choice) {
 						element += "<div id='' class='choice'>"
 						for (var c=0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++){
-							id = story_script[chapter.id][i].dialogs[d].choice[c].go_to
+							var id = story_script[chapter.id][i].dialogs[d].choice[c].go_to
 							if (id && id != "load" && id != "load_autosave" && id != "" && id != "undefined") {
 								element += "<div id='c_" + id + "' class='choice_b to_go'>" + id + "</div>"
 								line_controll.push( [id, chapter.id, "c_"+id] );
 								creaton_line ("c_" + id)
-							} //else {alert(id)}
+							}
 						}
 						element += "</div>"
 					}
@@ -230,10 +289,6 @@ function creation_block(b) {
 			}
 			element += "</div>"
 		}
-	}
-	
-	else {
-		//line_controll.push( [story_script.parameters.launch_story, chapter.id, story_script.parameters.launch_story] );
 	}
     chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' class='button_block icon_edit'></td><td align='center'>"+chapter.id+"</td><td align='center' onclick=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
     chapter.className = "story_block panel";
@@ -409,6 +464,23 @@ html.onmousedown = function(e) {
 			html.onmouseup = null;
 		};
 	}
+}
+function modal_window(action, content) {
+    var window_zone = document.getElementById("window_zone");
+    if (action == 'close') {
+        window_zone.style.visibility = "hidden"
+        window_zone.style.backgroundColor = 'rgba(255,255,255,0)';
+        document.body.style.overflow = 'scroll';
+        window_zone.innerHTML = "";
+    } else if (action == 'open') {
+        window_zone.style.visibility = "visible";
+        window_zone.style.backgroundColor = 'rgba(255,255,255,0.5)';
+        document.body.style.overflow = 'hidden';
+		window_zone.innerHTML = content;
+    }
+}
+function play_navel() {
+  window.open("file:///C:/Users/_/Desktop/tools/Tuesday/example_tour_guide/index.html", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=640,height=320");
 }
 </script>
 </body>
