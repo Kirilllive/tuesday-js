@@ -201,7 +201,7 @@ function loadFiles(e) {
 	}
 	if (files.length == 1) {
 		load_story_edit(URL.createObjectURL(t.target.files[files[0][0]]))
-	} else {
+	} else if (files.length > 1) {
 		var html = "<div class='window' style='padding: 0px 8px;'>"
 		for (var f=0; f < files.length; f++) {
 			html += "<table class='button' style='margin: 8px 0px;' onclick='load_story_edit(open_file(\"" + files[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td align='center' width='48px' height='48px' class='icon icon_new'> </td><td align='center' style=''>" + files[f][1] + "</td><td align='center' width='48px'></td></tr></tbody></table>"
@@ -289,7 +289,7 @@ function creation_block(b) {
 			element += "</div>"
 		}
 	}
-    chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' class='button_block icon_edit'></td><td align='center'>"+chapter.id+"</td><td align='center' onclick=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
+    chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' class='button_block icon_edit'></td><td align='center'>"+chapter.id+"</td><td align='center' onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
     chapter.className = "story_block panel";
     chapter.style.left = "50%";
     chapter.style.top = "50%";
