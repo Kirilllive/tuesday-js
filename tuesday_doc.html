@@ -12,9 +12,9 @@
     margin: 0;
     padding: 0;
     border-spacing: 0px;
-    text-decoration: none;
     outline: none;
 }
+a:{text-decoration: underline;}
 a:link {color: #000;}
 a:visited {color: #000;}
 a:hover {color: #000;}
@@ -32,8 +32,8 @@ a:active {color: #000;}
     overflow-x: hidden;
 }
 .border_t {
-    border-bottom: 1px solid #aae;
-    border-left: 8px solid #aae;
+    border-bottom: 1px solid #cec8e3;
+    border-left: 8px solid #cec8e3;
 }
 .shadow{box-shadow: 0px 2px 24px rgba(110,95,165,0.25);}
 .accordion {
@@ -41,10 +41,15 @@ a:active {color: #000;}
     outline: none;
 }
 .block:hover {
-    background-color: #aae;
+    background-color: #cec8e3;
 }
 .panel {
     display: none;
+}
+.element {
+	background-color: #cec8e3;
+	padding: 16px;
+	border-radius: 8px;
 }
 .block {
     padding:8px;
@@ -67,7 +72,7 @@ a:active {color: #000;}
   width: calc(100% - 32px);
   height: 32px;
   padding-left: 32px;
-  border-bottom: 1px solid #aae;
+  border-bottom: 1px solid #cec8e3;
   -webkit-appearance: none;
 }
 .code_box {
@@ -78,6 +83,7 @@ a:active {color: #000;}
 	margin-bottom: 10px;
 	background-color: #fff;
 	white-space: pre;
+	border-radius: 8px;
 }
 .text_name {
 	margin-top: 16px;
@@ -86,7 +92,8 @@ a:active {color: #000;}
 .comm {
     color: #aae;
 }
-hr {border: solid 1px #aae;}
+hr {border: solid 1px #cec8e3;}
+.title_name {font-size:30px;}
 </style>
 </head>
 <body style='scrolling: no; overflow-y: hidden;' onload='start_hash()'>
@@ -102,57 +109,59 @@ hr {border: solid 1px #aae;}
 
 <input type="text" id="search_bookmarks" onkeyup="search_bookmarks()" placeholder="Search for element" title="Type in a name">
 
-<a href="#start_use"><div class='block'>Starting</div></a>
-<div class="accordion "><div class='block block_open'>Parameters</div></div>
+<a href="#start_use" style='text-decoration: none;'><div class='block'>Starting</div></a>
+<div class="accordion "><a href="#parameters" style='text-decoration: none;'><div class='block block_open'>Parameters</div></a></div>
 <div class="panel border_b border_t">
-    <div class="accordion "><div class='block block_open'><span class='three_1'>text_panel</div></div>
-    <div class="panel border_b border_t">
-        <div class='block'><span class='three_2'>size_panel</div>
-        <div class='block'><span class='three_2'>style</div>
-        <div class='block'><span class='three_2'>color_panel</div>
-        <div class='block'><span class='three_2'>color_text</div>
-        <div class='block'><span class='three_2'>indent_bottom</div>
-        <div class='block'><span class='three_2'>indent_panel</div>
-        <div class='block'><span class='three_2'>indent_text</div>
-        <div class='block'><span class='three_2'>size_text</div>
-        <div class='block'><span class='three_2'>className</div>
-        <div class='block'><span class='three_2'>dialog_speed</div>
-    </div>
-    <div class="accordion"><div class='block block_open'><span class='three_1'>name_panel</div></div>
-    <div class="panel border_b border_t">
-        <div class='block'><span class='three_2'>size_panel</div>
-        <div class='block'><span class='three_2'>style</div>
-        <div class='block'><span class='three_2'>position</div>
-        <div class='block'><span class='three_2'>indent_text</div>
-        <div class='block'><span class='three_2'>className</div>
-        <div class='block'><span class='three_2'>size_text</div>
-    </div>
-    <div class='block'><span class='three_1'>key</div>
-    <div class='block'><span class='three_1'>launch_story</div>
-    <div class='block'><span class='three_1'>languares</div>
-    <div class='block'><span class='three_1'>autosave</div>
-    <div class='block'><span class='three_1'>title</div>
-    <div class='block'><span class='three_1'>variables</div>
-    <div class='block'><span class='three_1'>characters</div>
+	<div class='block'><span class='three_1'>autosave</div>
     <div class="accordion"><div class='block block_open'><span class='three_1'>buttons</div></div>
-    <div class="panel border_b border_t">
-        <div class='block'><span class='three_2'>name</div>
-        <div class='block'><span class='three_2'>art</div>
+	    <div class="panel border_b border_t">
+		<div class='block'><span class='three_2'>art</div>
         <div class='block'><span class='three_2'>art_size</div>
+		<div class='block'><span class='three_2'>className</div>
+		<div class='block'><span class='three_2'>color</div>
+		<div class='block'><span class='three_2'>indent_text</div>
+        <div class='block'><span class='three_2'>name</div>
         <div class='block'><span class='three_2'>position</div>
         <div class='block'><span class='three_2'>size</div>
-        <div class='block'><span class='three_2'>color</div>
-        <div class='block'><span class='three_2'>className</div>
         <div class='block'><span class='three_2'>style</div>
-        <div class='block'><span class='three_2'>indent_text</div>
         <div class='block'><span class='three_2'>size_text</div>
         <div class='block'><span class='three_2'>sound</div>
     </div>
+	<div class='block'><span class='three_1'>characters</div>
+	<div class='block'><span class='three_1'>languares</div>
+	<div class='block'><span class='three_1'>launch_story</div>
+    <div class="accordion"><div class='block block_open'><span class='three_1'>name_panel</div></div>
+    <div class="panel border_b border_t">
+		<div class='block'><span class='three_2'>className</div>
+		<div class='block'><span class='three_2'>indent_text</div>
+		<div class='block'><span class='three_2'>position</div>
+        <div class='block'><span class='three_2'>size_panel</div>
+		<div class='block'><span class='three_2'>size_text</div>
+        <div class='block'><span class='three_2'>style</div>
+    </div>
+    <div class="accordion "><div class='block block_open'><span class='three_1'>text_panel</div></div>
+    <div class="panel border_b border_t">
+		<div class='block'><span class='three_2'>color_panel</div>
+        <div class='block'><span class='three_2'>color_text</div>
+		<div class='block'><span class='three_2'>className</div>
+        <div class='block'><span class='three_2'>dialog_speed</div>
+        <div class='block'><span class='three_2'>indent_bottom</div>
+        <div class='block'><span class='three_2'>indent_panel</div>
+        <div class='block'><span class='three_2'>indent_text</div>
+        <div class='block'><span class='three_2'>size_panel</div>
+		<div class='block'><span class='three_2'>size_text</div>
+        <div class='block'><span class='three_2'>style</div>
+    </div>
+	<div class='block'><span class='three_1'>title</div>
+    <div class='block'><span class='three_1'>key</div>
+    <div class='block'><span class='three_1'>variables</div>
+    
+
 </div>
 <div class="accordion"><div class='block block_open'>Story block</div></div>
 <div class="panel border_b border_t">
     <div class='block'><span class='three_1'>background_music</div>
-    <div class='block'><span class='three_1'>background_image</div>
+    <a href="#background_image" style='text-decoration: none;'><div class='block'><span class='three_1'>background_image</div></a>
     <div class="accordion"><div class='block block_open'><span class='three_1'>dialogs</div></div>
     <div class="panel border_b border_t">
         <div class='block'><span class='three_2'>back_to</div>
@@ -164,12 +173,13 @@ hr {border: solid 1px #aae;}
         <div class='block'><span class='three_2'>back_to</div>
         <div class='block'><span class='three_2'>variables</div>
         <div class='block'><span class='three_2'>event</div>
-        <div class="accordion"><div class='block block_open'><span class='three_2'>art</div></div>
+        <div class="accordion"><div class='block block_open'><a href="#art" style='text-decoration: none;'><span class='three_2'>art</span></a></div></div>
         <div class="panel border_b border_t">
-            <div class='block'><span class='three_3'></span>style</div>
-            <div class='block'><span class='three_3'></span>url</div>
-            <div class='block'><span class='three_3'></span>position</div>
-            <div class='block'><span class='three_3'></span>size</div>
+            <a href="#art_style" style='text-decoration: none;'><div class='block'><span class='three_3'><span class='three_2'></span>style</div></a>
+            <a href="#art_url" style='text-decoration: none;'><div class='block'><span class='three_3'><span class='three_2'></span>url</div></a>
+            <a href="#art_position" style='text-decoration: none;'><div class='block'><span class='three_3'><span class='three_2'></span>position</div></a>
+            <a href="#art_size" style='text-decoration: none;'><div class='block'><span class='three_3'><span class='three_2'></span>size</div></a>
+			<a href="#art_className" style='text-decoration: none;'><div class='block'><span class='three_3'></span><span class='three_2'></span>className</div></a>
         </div>
         <div class="accordion"><div class='block block_open'><span class='three_2'>choice</div></div>
         <div class="panel border_b border_t">
@@ -190,11 +200,23 @@ hr {border: solid 1px #aae;}
         <div class='block'><span class='three_2'>go_to</div>
 </div>
 </div>
-<div class="accordion "><div class='block block_open'>System Buttons</div></div>
+<div class="accordion "><a href="#system_Buttons" style='text-decoration: none;'><div class='block block_open'>System Buttons</div></a></div>
 <div class="panel border_b border_t">
-    <div class='block'><span class='three_1'>load_autosave</div>
-	<div class='block'><span class='three_1'>load</div>
-	<div class='block'><span class='three_1'>save</div>
+	<a href="#tue_load" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_load</div></a>
+	<a href="#tue_save" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_save</div></a>
+	<a href="#tue_home" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_home</div></a>
+	<a href="#tue_next" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_next</div></a>
+	<a href="#tue_back" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_back</div></a>
+	<a href="#tue_load_autosave" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_load_autosave</div></a>
+</div>
+<div class="accordion "><a href="#function" style='text-decoration: none;'><div class='block block_open'>Function</div></a></div>
+<div class="panel border_b border_t">
+    <a href="#load_story" style='text-decoration: none;'><div class='block'><span class='three_1'>load_story(tip, url)</div></a>
+	<a href="#go_story" style='text-decoration: none;'><div class='block'><span class='three_1'>go_story()</div></a>
+	<a href="#back_story" style='text-decoration: none;'><div class='block'><span class='three_1'>back_story()</div></a>
+	<a href="#save_stag" style='text-decoration: none;'><div class='block'><span class='three_1'>save_stag(tip)</div></a>
+	<a href="#load_stag" style='text-decoration: none;'><div class='block'><span class='three_1'>load_stag(tip)</div></a>
+	<a href="#go_to" style='text-decoration: none;'><div class='block'><span class='three_1'>go_to(go)</div></a>
 </div>
 <div class='block'>Events</div>
 <div class="accordion "><div class='block block_open'>Plugins</div></div>
@@ -217,14 +239,28 @@ hr {border: solid 1px #aae;}
 	</svg>
 	<p style='font-size: 64px;'>TuesDay</p><p style='font-size:30px;'>visual novel engine</p>
 </div>
-<p><span class='three_2'></span><b>Tuesday</b> бесплатный движок с открытым исходным кодом для создания визуальных новелл, интерактивных историй и текстовых приключенческих игр. Написан на языке JavaScript без использования сторонних библиотек. Существует поддержка инфраструктуры Apache Cordova для создания нативных приложений для мобильных устройств и настольных компьютеров. Движок использует стандартные элементы Html документа, как div и img, что делает возможным использование почти любых медиа форматов поддерживаемых браузерами, включая векторную графику в формате svg, gif анимации и использование обширных возможностей css стилей.</p>
+<p><span class='three_2'></span><b>Tuesday</b> бесплатный движок с открытым исходным кодом для создания визуальных новелл, интерактивных историй и текстовых приключенческих игр. Написан на языке JavaScript без использования сторонних библиотек. присутствует поддержка инфраструктуры Apache Cordova для создания нативных приложений для мобильных устройств и настольных компьютеров. Движок использует стандартные элементы Html документа, как div и img, что делает возможным использование почти любых медиа форматов поддерживаемых браузерами, включая векторную графику в формате svg, gif анимации и обширные возможности css стилей.</p>
 
 <br>
 <hr>
 <br>
+<br>
+<a id="structure"></a>
+<p><span class='text_name'>Структура</span></p>
+<p>Отображение истории на html-странице происходит через элемент <b>div с id tuesday</b>. Параметры отображения можно задать в стиле css или любым другим подходящим способом. Все содержание будет отображаться с учетом параметров этого элемента.</p>
+<br>
+<p>Сценарий истории со всеми данными задается в структуре <b> <a href="https://ru.wikipedia.org/wiki/JSON" target="_blank">JSON</a></b>. Этот независим текстовый формат обмена данными и может быть интерпретирован практически любым другим языком программирования или игровым движком. (это дает возможность переноса истории на другой движок)</p>
+<br>
+<p>Для запуска истории нужно выполнить функцию <b>load_story('тип',файл/массив)</b> с указанием типа данных</p>
+<p><span class='three_2'></span><b>data</b>: указание переменной с массивом истории из кода javascript</p>
+<p><span class='three_2'></span><b>file</b>: путь к json файлу с историей (может не работать локально, если в браузере включена <a href="#cross_domain_error" target="_blank">cross domain</a> защита)</p>
+<br>
+<hr>
+<br>
+<br>
 <a id="start_use"></a>
 <p><span class='text_name'>Начало использования</span></p>
-<p>Для работы подойдет любой текстовый редактор или IDE с поддержикой работы с ASCII текстом</p>
+<p>Для работы подойдет любой текстовый редактор или IDE с поддержикой работы с текстовым форматом ASCII</p>
 <p>Рекомендуемое программное обеспечения для использования</p>
 <p><b><span class='three_2'></span>MS Windows</b>: <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a></p>
 <p><b><span class='three_2'></span>Mac OS</b>: <a href="https://developer.apple.com/xcode/" target="_blank">Xcode</a></p>
@@ -321,7 +357,9 @@ hr {border: solid 1px #aae;}
 <a download="tusday_base_example.zip" href="data:@file/zip;base64,UEsDBBQAAAAIAGmGElG10bivvQAAACcBAAAKAAAAaW5kZXguaHRtbE1Q2wrCMAx9F/yHUpAqqJ2Pbu3Af/Bdqu1spFvHGqf9e7sLsjyEnNxOToTF2pXrFUkmrFF6jkeMgM6U17cJWkXBJzj38kWzuHsdiW+cV1rSwd8C+i5uWQXOsD0b0fEVfMN2dMmgoSegJcOJg5GA0RnJKt/goVI1uJhfOlCuIB/QaPNTlm0KYg08LebnrLcFKwVPa5Zbw6ODFgnG1kiK5ov8pXo1ZSkJ3UPSmTDdRNP8VPpLG+QkIPj8nPXqB1BLAwQUAAAACAAwSBJRkSIuicwBAABxBwAACgAAAHN0b3J5Lmpzb27NlV1PgzAUhq818T+YLt7tgrFN2WJM/IzGb2eM0SyksMKI0BIoyXTZf7etQIGO1QsvJNlWOE85fc972i13tnfZBWKYwAhRlKRgvJs/FAGKFtSOIUahDJTBNPhCZfAdjIZ7oAtM9j3tNkiXhCQpUdAZuR5oMgGeIUxth1BKIk71zXjBKTUnXxUnTGMNMQtgSHw7jRGaMcg0ZHxVYQFmin8rzWDCBla8UJXFJA1oQHCJiQ8j+Wi6cfU9/sKWxYUww+7cTilJPjkbwQDbEcIZqFPYz2CCUpEd4VpC4GSUEixitWU0xMpq8EQ0Q7YD3Q+ZZ5PYIbdcjKrFUSQLfijs5D+SVJtEtIdlWUp+pXzcj7XUDwAO89rK+up0YzZRq7vQ/G91HzV1y9spG8pOq3bVuNIiy7UbKq0xDVbVNCeBi8SULXHVQXWCT2xKuDzR8k19GkeMiiP8Tqlzuzs9k5WzbXfrrdLTpW8dz/O0Uwp4QmFCQTu8UkPSYJVUCRkpRIPisPnjVuCnCfNWOcVEW+SCmQ39wXD/wBoZtRKpOxXgLHL4/5RC8Q1evNUn2ozHJ6dn5xdvl1fXN7d39w+PT5Pnl1dd8hBRqiTXlzl/wkbfUEsBAj8AFAAAAAgAaYYSUbXRuK+9AAAAJwEAAAoAJAAAAAAAAAAgAAAAAAAAAGluZGV4Lmh0bWwKACAAAAAAAAEAGAAXvbSkZnXWARe9tKRmddYBiqXwBCV11gFQSwECPwAUAAAACAAwSBJRkSIuicwBAABxBwAACgAkAAAAAAAAACAAAADlAAAAc3RvcnkuanNvbgoAIAAAAAAAAQAYAIql8AQlddYBiqXwBCV11gGKpfAEJXXWAVBLBQYAAAAAAgACALgAAADZAgAAAAA="><b><p>Download example </p></b></a>
 <br>
 <hr>
-<br><br>
+<br>
+<br>
+<a id="cross_domain_error"></a>
 <p><span class='text_name'>Проблемы запуска и их решения</span></p>
 <p>Если новелла не отобразилось то возможна возникла проблема c ограничением cross domain web security. эту проблему можно решить несколькими способами</p>
 <br>
@@ -347,6 +385,274 @@ hr {border: solid 1px #aae;}
 <p><span class='text_name'>FireFox</span> - в адресной строке введите about:config в появившехся настройках найдите пункт security.fileuri.strict_origin_policy и установить ему значение false для отключения или true для включения</p>
 <br>
 <hr>
+<br>
+<br>
+
+<p style='font-size:30px;' align='center'>Параметры проекта</p>
+<br>
+<a id="parameters"></a>
+<p>Базовые параметры и настройки всего проекта задаются в разделе "parameters". От его настроек зависит внешний вид проекта и его некоторый функционал. </p>
+<pre class='code_box'><code>{
+    "parameters": {
+		"autosave": настройка автосохранения прогресса true / false,
+		"buttons": [Кнопки интерфейса и их параметры],
+		"characters" : [Глобальные настройки отображения персонажей],
+		"languares": [коды языков на которые переведен проект],
+		"launch_story": "сцена с которой начинается проект",
+		Параметры панели для отображения аватара и имени персонажа
+		"name_panel": {
+			"size_panel": ["ширина", "высота"],
+			"position": [позиция X, позицияY отнасительно text_panel],
+			"size_text": "Размер текста",
+		},
+		Параметры панели для отображения текстов
+		"text_panel": {
+			"size_panel": ["ширина", "высота"],
+			"color_panel": "цвет в форматах hex rgb или rgba",
+			"indent_bottom": "отступ текстовой панели от нижнего края",
+			"size_text": "Размер текста",
+			"dialog_speed": Скорость появления символов диалога
+		},
+		"title": "Название проекта",
+		"key": [Указание кнопок управления для клавиатуры],
+		"variables": [набор глобальных переменых использованых в проекте],
+}
+</code></pre>
+<br>
+
+<div class='element'>
+<a id="autosave"></a>
+<p><b>"autosave"</b> - Параметр отвечает за автоматическое сохранение прогресса истории  и значений переменных каждый после запуска диалога. Это позволяет выключить проект и в дальнейшем продолжить его с того же места.</p>
+<pre class='code_box'><code>	"autosave": true / false</code></pre>
+<p>За продолжения с последнего места отвечает кнопка "load_autosave"</p>
+</div>
+<br>
+<hr>
+<br>
+<br>
+
+<div class='element'>
+<a id="buttons"></a>
+<p><b>"buttons"</b> - Набор кнопок и их параметры для основного интерфейса как управление диалогами, сохранения и загруска . Они не будут отображаться в сцене указанной в launch_story.</p>
+<pre class='code_box'><code>	"buttons": [{
+		"name": "Название функцианала или id кнопки",
+		"art":"путь на фоновую картинку кнопки",
+		"art_size": ["ширина", "высота"] изображения на кнопке,
+		"position": [лево, право, верх, низ] позиция отнасительна края сцены, 
+		"size": ["ширина", "высота"],
+		"color": "цвет в форматах hex rgb или rgba",
+		"className": "набор классов стилей css",
+		"style": "параметры css и их значения",
+		"indent_text": "отступы для текста",
+		"size_text": "Размер текста"
+	}]</code></pre>
+	
+	<br>
+	<a id="b_name"></a>
+	<p><b>"name"</b> - идентификатор кнопки (аналог <a href="https://www.w3schools.com/html/html_id.asp" target="_blank">id</a> в html), он будет определять функциональность этой кнопки. Для интерфейса понадобятся следующий набор кнопок:</p>
+	<p><span class='three_2'></span><b>"tue_load"</b> - Загрузка стадии истории</p>
+	<p><span class='three_2'></span><b>"tue_save"</b> - Сохранение стадии истории</p>
+	<p><span class='three_2'></span><b>"tue_home"</b> - Переход на главный экран указанный в parameters launch_story</p>
+	<p><span class='three_2'></span><b>"tue_next"</b> - Следующий диалог истории</p>
+	<p><span class='three_2'></span><b>"tue_back"</b> - Предыдущий диалог истории</p></p>
+	Больше функцианала в разделе <a href="#system_Buttons">System Buttons</a>
+	<pre class='code_box'><code>		"name": "Название функцианала или id кнопки",</code></pre>
+	Добавить функционал кнопкам по средствам javaScript,
+	<pre class='code_box'><code>document.getElementById('/** name кноки */').onclick = function(){ '/** функцианал кнопки */ }</code></pre>
+	<br>
+	<a id="b_art"></a>
+	<p><b>"art"</b> - Аналог css стиля <a href="https://www.w3schools.com/cssref/pr_background-image.asp" target="_blank">background_image</a>. указывает фоновфй рисунок для кнопки.</p></p>
+	<pre class='code_box'><code>		"art":"путь на фоновую картинку кнопки",</code></pre>
+	<br>
+	<a id="b_art_size"></a>
+	<p><b>"art_size"</b> - Устанавливает размер изображения внутри кнопки, иначе оно отображаться в исходном размере, обязательно должны быть указаны единицы измерения принятые в CSS. Задав размер высоты и ширены 100%, размер изображения будет полностью соответствовать размеру кнопки (параметр size). заменив одно из значений на «авто», тогда размер изображения будет пропорционален размеру указанной высоты или ширины кнопки </p></p>
+	<pre class='code_box'><code>		"art_size": ["ширина", "высота"] изображения на кнопке,</code></pre>
+	<br>
+	<a id="b_color"></a>
+	<p><b>"position"</b> - Расположение кнопки относительно краев сцены, обязательно должны быть указаны единицы измерения принятые в CSS. Например значения [0, 10px, 10px, 0] означают, что кнопка появится в правом верхнем углу с отступом в 10 пикселей.</p>
+	<pre class='code_box'><code>		"position": [лево, право, верх, низ] позиция отнасительна края сцены, </code></pre>
+	<br>	<a id="b_color"></a>
+	<p><b>"size"</b> - </p>
+	<pre class='code_box'><code>		"size": ["ширина", "высота"],</code></pre>
+	<br>	<a id="b_color"></a>
+	<p><b>"color"</b> - </p>
+	<pre class='code_box'><code>		"color": "цвет в форматах hex rgb или rgba",</code></pre>
+	<br>
+	<a id="b_className"></a>
+	<p><b>"className"</b> - </p>
+	<pre class='code_box'><code>		"className": "набор классов стилей css",</code></pre>
+	<br>
+	<a id="b_style"></a>
+	<p><b>"style"</b> - </p>
+	<pre class='code_box'><code>		"style": "параметры css и их значения",</code></pre>
+	<br>
+	<a id="b_indent_text"></a>
+	<p><b>"indent_text"</b> - </p>
+	<pre class='code_box'><code>		"indent_text": "отступы для текста",</code></pre>
+	<br>
+	<a id="b_size_text"></a>
+	<p><b>"size_text"</b> - </p>
+	<pre class='code_box'><code>		"size_text": "Размер текста"</code></pre>
+</div>
+<br>
+<hr>
+<br>
+<br>
+
+
+
+
+
+
+<p style='font-size:30px;' align='center'>Графические элементы</p>
+<br><br>
+<div class='element'>
+<a id="background_image"></a>
+<p class='title_name'>Element "background_image"</p>
+<br>
+<p>Аналог css параметра <a href="https://www.w3schools.com/cssref/pr_background-image.asp" target="_blank">background_image</a>. Предназначен для отображения заднего фона в сцене.</p>
+<pre class='code_box'><code>	"background_image": "путь и название файла"</code></pre>
+<p>По умолчанию выравнивается по центру стены и пропорционально заполняет весь фон, независимо от размера сцены или самого файла.</p>
+<br>
+<p>Поддерживает локализацию если есть фон для конкретного перевода.</p>
+<pre class='code_box'><code>	"background_image": {
+			"en":"путь и название файла для английского языка",
+			"ja":"путь и название файла для японского языка",
+			"ru":"путь и название файла для русского языка"
+		}
+</code></pre>
+</div>
+<br>
+<hr>
+<br>
+<br>
+<div class='element'>
+<a id="art"></a>
+<p class='title_name'>Element "art"</p>
+<br>
+<p>Аналог html тега <a href="https://www.w3schools.com/tags/tag_img.asp" target="_blank">&lt;img&gt;</a>. Предназначен для отображения графических элементов в сцене.</p>
+
+<pre class='code_box'><code>"art": [{		
+		"url":"путь и название файла",
+		"position": [позиция X, позицияY],
+		"size": ["ширина", "высота"],
+		"style": "параметры css и их значения",
+		"className": "набор классов стилей css"
+	}]
+</code></pre>
+<br>
+<a id="art_url"></a>
+<p><b>"url"</b> - Указывает путь к файлу (аналог src в html).  </p>
+<pre class='code_box'><code>		"url": "путь и название файла"</code></pre>
+<p>Поддерживает локализацию если есть изображения созданные для конкретного перевода.</p>
+<pre class='code_box'><code>		"url": {
+				"en":"путь и название файла для английского языка",
+				"ja":"путь и название файла для японского языка",
+				"ru":"путь и название файла для русского языка"
+			}
+</code></pre>
+<br>
+<a id="art_size"></a>
+<p><b>"size"</b> - Устанавливает размер изображения в сцене, иначе оно отображаться в исходном размере, обязательно должны быть указаны единицы измерения принятые в CSS </p>
+<pre class='code_box'><code>		"size": ["ширина", "высота"]</code></pre>
+<br>
+<a id="art_position"></a>
+<p><b>"position"</b> - Устанавливает позицию изображения в сцене, обязательно должны быть указаны единицы измерения принятые в CSS</p>
+<pre class='code_box'><code>		"position": [позиция X, позицияY]</code></pre>
+<br>
+<a id="art_style"></a>
+<p><b>"style"</b> - необязательный параметр (аналог <a href="https://www.w3schools.com/html/html_styles.asp" target="_blank">style</a> в html) персональный css стиль для этого изображения</p>
+<pre class='code_box'><code>		"style": "параметры и их значения css"</code></pre>
+<br>
+<a id="art_className"></a>
+<p><b>"className"</b> - необязательный параметр (аналог <a href="https://www.w3schools.com/tags/att_class.asp" target="_blank">class</a> в html), указывает имя класса стиля из css. Можно задать несколько классов через пробел.</p>
+<pre class='code_box'><code>		"className": "параметры css и их значения "</code></pre>
+<br>
+<p>Можно добавить в сцену несколько изображений, создав в массиве дополнительные элементы в фигурных скобках со всеми необходимыми параметрами.</p>
+<pre class='code_box'><code>"art": [{		
+		"url":"Изображени 1",
+		"position": [позиция X, позицияY],
+		"size": ["ширина", "высота"]
+	},{		
+		"url":"Изображени 2",
+		"position": [позиция X, позицияY],
+		"size": ["ширина", "высота"]
+	}]
+</code></pre>
+<br>
+<p><b>Full example element art</b></p>
+<pre class='code_box'><code>"art": [{		
+		"position": ["75%", "50%"],
+		"size": ["auto", "90%"],
+		"style": "transform: translateX(-50%) translateY(-50%);",
+		"className": "example",
+		"url": {
+				"en":"img/example_en.png",
+				"ja":"img/example_ja.png",
+				"ru":"img/example_ru.png"
+		}
+	},{		
+		"position": ["25%", "50%"],
+		"size": ["auto", "90%"],
+		"style": "transform: translateX(-50%) translateY(-50%);",
+		"className": "example",
+		"url":"img/character.png"
+	}]
+</code></pre>
+</div>
+<br>
+<hr>
+<br>
+<br>
+<a id="system_Buttons"></a>
+<p style='font-size:30px;' align='center'>Системные кнопки</p>
+<br>
+<a id="tue_load"></a>
+<p><b>"tue_load"</b> - Загрузка стадии истории</p>
+<br>
+<a id="tue_save"></a>
+<p><b>"tue_save"</b> - Сохранение стадии истории</p>
+<br>
+<a id="tue_home"></a>
+<p><b>"tue_home"</b> - Переход на главный экран указанный в parameters launch_story</p>
+<br>
+<a id="tue_next"></a>
+<p><b>"tue_next"</b> - Следующий диалог истории</p>
+<br>
+<a id="tue_back"></a>
+<p><b>"tue_back"</b> - Предыдущий диалог истории</p>
+<br>
+<a id="tue_load_autosave"></a>
+<p><b>"tue_load_autosave"</b> - Загрузка стадии из авто сохранения</p>
+<br>
+<hr>
+<br>
+<br>
+<a id="function"></a>
+<p style='font-size:30px;' align='center'>Функции tuesday.js</p>
+<br>
+<a id="load_story"></a>
+<p><b>load_story(tip, url)</b> - запуск сценария истории, tip отвечает за тип сценария значение </p>
+<p>"file" если сценария в json файл и в значение "url" нужно указать путь к файлу</span></p>
+<p>"data" если сценария в let массиве и в значение "url" нужно указать название массива </span></p>
+<br>
+<a id="go_story"></a>
+<p><b>go_story()</b> - двигает историю вперед по сюжету. Автоматически переходит к следующему блоку, сцене и диалогу строго по их последовательности.</p>
+<br>
+<a id="back_story"></a>
+<p><b>back_story()</b> - Откатывает историю назад. Автоматически переходит к предыдущему блоку, сцене и диалогу строго по их последовательности. </p>
+<br>
+<a id="save_stag"></a>
+<p><b>save_stag(tip)</b> - Сохранение массива текущего состояния истории, такие занижения как текущая сцена диалог блок и все значения из раздела variables в localStorage параметр "tip" название сохранения. Если указать "slot" то в localStorage ото отобразится как tue_slot_data. Занятые названия bookmark для ручного сохранения и auto для автоматического сохранения.</p>
+<br>
+<a id="load_stag"></a>
+<p><b>load_stag(tip)</b> - Загрузка массива стадии истории. Параметр "tip" название сохранения, bookmark для ручного сохранения и auto для автоматического сохранения. Или возможно использовать любое другое название которое применялось при использовании функции save_stag(tip)</p>
+<br>
+<a id="go_to"></a>
+<p><b>go_to(go)</b> - Переход в определенный блок истории указав в параметре go его название</p>
+<br>
+<hr>
+<br>
 <br>
 
 
