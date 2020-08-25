@@ -94,21 +94,31 @@ function get_lang() {
     tue_bg_music = document.createElement("AUDIO");
     tue_bg_music.id = "tue_bg_music";
     tuesday.appendChild(tue_bg_music);
-    story = story_json.parameters.launch_story
-    creation_buttons();
+    if (story_json.parameters.launch_story){
+		story = story_json.parameters.launch_story;
+	} else {
+		for (var i = 0; i < 2; i++) {
+			if (Object.getOwnPropertyNames(story_json)[i] != "parameters") {
+				story_json.parameters.launch_story = Object.getOwnPropertyNames(story_json)[1] ;
+				story = story_json.parameters.launch_story; 
+				break;
+			}
+		}
+	}
+	creation_buttons();
     creation_scene();
 } function creation_buttons() {
     for (i = 0; i < story_json.parameters.buttons.length; i++){
         var button = document.createElement("div");
-        if(story_json.parameters.buttons[i].text){
+        if(story_json.parameters.buttons[i].className){button.className = story_json.parameters.buttons[i].className;}
+        if(story_json.parameters.buttons[i].style){button.style = story_json.parameters.buttons[i].style;}
+		if(story_json.parameters.buttons[i].text){
             button.innerHTML = (story_json.parameters.buttons[i].text[languare])?story_json.parameters.buttons[i].text[languare]:story_json.parameters.buttons[i].text;
             button.style.textAlign = "center";
             button.style.color = story_json.parameters.buttons[i].color_text;
             button.style.padding = story_json.parameters.buttons[i].indent_text;
             button.style.fontSize = story_json.parameters.buttons[i].size_text;
         }
-        if(story_json.parameters.buttons[i].className){button.className = story_json.parameters.buttons[i].className;}
-        if(story_json.parameters.buttons[i].style){button.style = story_json.parameters.buttons[i].style;}
         button.style.zIndex = 2000 + i;
         button.id = story_json.parameters.buttons[i].name;
         button.classList.add("tue_controll");
