@@ -63,8 +63,8 @@ function get_lang() {
     if(story_json.parameters.text_panel.style){tue_text_block.style = story_json.parameters.text_panel.style;}
     tue_text_block.style.position = "absolute";
     tue_text_block.style.bottom = story_json.parameters.text_panel.indent_bottom;
-    tue_text_block.style.width = story_json.parameters.text_panel.size_panel[0];
-    tue_text_block.style.height = story_json.parameters.text_panel.size_panel[1];
+    tue_text_block.style.width = story_json.parameters.text_panel.size[0];
+    tue_text_block.style.height = story_json.parameters.text_panel.size[1];
     tue_text_block.style.left= "0";
     tue_text_block.style.right= "0";
     tue_text_block.style.zIndex = "1000";
@@ -74,16 +74,16 @@ function get_lang() {
     if (story_json.parameters.name_panel) {
         if(story_json.parameters.name_panel.className){tue_name_block.className = story_json.parameters.name_panel.className;}
         if(story_json.parameters.name_panel.style){tue_name_block.style = story_json.parameters.name_panel.style;}
-		if(story_json.parameters.name_panel.color_panel){tue_name_block.style.backgroundColor = story_json.parameters.name_panel.color_panel;}
+		if(story_json.parameters.name_panel.color){tue_name_block.style.backgroundColor = story_json.parameters.name_panel.color;}
 		if(story_json.parameters.name_panel.color_text){tue_name_block.style.color = story_json.parameters.name_panel.color_text;}
 		tue_name_block.style.position = "absolute";
         tue_name_block.id = "tue_name_block";
         tue_name_block.style.padding = story_json.parameters.name_panel.indent_text;
         tue_name_block.style.fontSize = story_json.parameters.name_panel.size_text;
         tue_name_block.style.textAlign = "center";
-        if (tue_name_block.style.width = story_json.parameters.name_panel.size_panel[0] != 0) {tue_name_block.style.width = story_json.parameters.name_panel.size_panel[0];}
-        tue_name_block.style.height = story_json.parameters.name_panel.size_panel[1];
-        tue_name_block.style.lineHeight = story_json.parameters.name_panel.size_panel[1];
+        if (tue_name_block.style.width = story_json.parameters.name_panel.size[0] != 0) {tue_name_block.style.width = story_json.parameters.name_panel.size[0];}
+        tue_name_block.style.height = story_json.parameters.name_panel.size[1];
+        tue_name_block.style.lineHeight = story_json.parameters.name_panel.size[1];
         if (story_json.parameters.name_panel.position[0] != 0){tue_name_block.style.left = story_json.parameters.name_panel.position[0];}
         if (story_json.parameters.name_panel.position[1] != 0){tue_name_block.style.right = story_json.parameters.name_panel.position[1];}
         if (story_json.parameters.name_panel.position[2] != 0){tue_name_block.style.top = story_json.parameters.name_panel.position[2];}
@@ -191,8 +191,8 @@ function get_lang() {
     }
 } function creation_dialog () {
 		tue_next.style.visibility = 'visible';
-        if (story_json[story][scene].dialogs[dialog].color_panel) {tue_text_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].color_panel;}
-        else if (story_json.parameters.text_panel.color_panel) {tue_text_block.style.backgroundColor = story_json.parameters.text_panel.color_panel;}
+        if (story_json[story][scene].dialogs[dialog].color) {tue_text_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].color;}
+        else if (story_json.parameters.text_panel.color) {tue_text_block.style.backgroundColor = story_json.parameters.text_panel.color;}
         if (story_json[story][scene].dialogs[dialog].color_text) {tue_text_view.style.color = story_json[story][scene].dialogs[dialog].color_text;}
 		else if (story_json.parameters.text_panel.color_text) {tue_text_view.style.color = story_json.parameters.text_panel.color_text;}
         if (story_json[story][scene].dialogs[dialog].text){
@@ -207,19 +207,19 @@ function get_lang() {
         if (story_json[story][scene].dialogs[dialog].name) {
             if (story_json[story][scene].dialogs[dialog].name[languare]) {
                 tue_name_block.innerHTML = story_json[story][scene].dialogs[dialog].name[languare]
-                tue_name_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].name.color_panel;
+                tue_name_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].name.color;
                 tue_name_block.style.color = story_json[story][scene].dialogs[dialog].name.color_text;
                 if(story_json[story][scene].dialogs[dialog].name.className){ tue_name_block.className = story_json[story][scene].dialogs[dialog].name.className}
             } else if (story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name]){
                 tue_name_block.innerHTML = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name][languare]
-                tue_name_block.style.backgroundColor = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name].color_panel;
+                tue_name_block.style.backgroundColor = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name].color;
                 tue_name_block.style.color = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name].color_text;
                 if(story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name].className){
                     tue_name_block.className = story_json.parameters.characters[story_json[story][scene].dialogs[dialog].name].className
                 }
             } else {
                 tue_name_block.innerHTML = story_json[story][scene].dialogs[dialog].name
-                tue_name_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].name.color_panel;
+                tue_name_block.style.backgroundColor = story_json[story][scene].dialogs[dialog].name.color;
                 tue_name_block.style.color = story_json[story][scene].dialogs[dialog].name.color_text;
                 if(story_json[story][scene].dialogs[dialog].name.className){ tue_name_block.className = story_json[story][scene].dialogs[dialog].name.className}
             }
