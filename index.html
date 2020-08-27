@@ -14,7 +14,8 @@
 	text-decoration: none;
 }
 .main {
-	width:800px;
+	max-width:800px;
+	width:100%;
 	height:98vh;
 	position:relative;
 }
@@ -29,7 +30,8 @@
 }
 .box {
 	background-color: rgba(107,107,178,0.5); 
-	border-radius: 16px; padding: 26px;
+	border-radius: 16px; 
+	padding: 16px;
 }
 </style>
 </head>
@@ -94,7 +96,7 @@
     <ellipse transform="rotate(-14.984929)" style="fill:#ffffff;fill-opacity:0.95111114;stroke:none;stroke-opacity:1" id="ellipse974" cx="351.97125" cy="333.94833" rx="3.187973" ry="4.6980653" />
 </svg>
 
-<div class = "logo_box box">
+<div class = "logo_box box" style='padding: 26px;'>
 	<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
 		<path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" d="M17,10.015H64c26.346,0,48,21.763,48,48.18s-21.654,48.18-48,48.18V102.36"/>
 		<path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" d="M42,108V10m22,0v98"/>
@@ -103,18 +105,25 @@
 	<p style='font-size: 52px; color:#fff;'>TuesDay</p><p style='font-size:24px; color:#fff;'>visual novel engine</p>
 </div>
 
-<div class = "box" style="position:absolute;  right: 0; bottom: 366px; width:256px;">
-	<a href="https://github.com/Kirilllive/Tuesday"><p style='font-size: 28px; color:#fff;'>GitHub</p></a>
-</div>
-<div class = "box" style="position:absolute;  right: 0; bottom: 246px; width:256px;">
-	<a href="tuesday_visual.html"><p style='font-size: 28px; color:#fff;'>Visual editor</p></a>
-</div>
-<div class = "box" style="position:absolute;  right: 0; bottom: 128px; width:256px;">
-	<a download href="tuesday.js"><p style='font-size: 28px; color:#fff;'>Download</p></a>
-</div>
-<div class = "box" style="position:absolute;  right: 0; bottom: 16px; width:256px;">
-	<a href="tuesday_doc.html"><p style='font-size: 28px; color:#fff;'>Documentation</p></a>
-</div>
+
+<table style="position:absolute;  right: 0; bottom: 10vh; width:256px; border-spacing: 10px; border-collapse: separate;">
+	<tbody>
+	<tr>
+		<td class = "box"><a href="https://github.com/Kirilllive/Tuesday"><p style='font-size: 24px; color:#fff;'>GitHub</p></a></td>
+	</tr>
+	<tr>
+		<td class = "box"><a href="tuesday_visual.html"><p style='font-size: 24px; color:#fff;'>Visual editor</p></a></td>
+	</tr>
+	<tr>
+		<td class = "box"><a download href="tuesday.js"><p style='font-size: 24px; color:#fff;'>Download</p></a></td>
+	</tr>
+	<tr>
+		<td class = "box"><a href="tuesday_doc.html"><p style='font-size: 24px; color:#fff;'>Documentation</p></a></td>
+	</tr>
+	</tbody>
+</table>
+
+
 
 </div>
 </div>
