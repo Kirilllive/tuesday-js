@@ -25,31 +25,52 @@ body {background-color:#efefff;}
 .main_block {
 	max-width:800px;
 	width:100%;
-	height:90vh;
+	height:75vh;
+    min-height:328px;
 	position:relative;
+    z-index: 0;
 }
 .art {
 	position:absolute;
-	left: 0px;
-	top: 0px; 
-}
-.logo_box {
-	position:absolute; 
-	left: 30vh; 
-	top: 5vh; 
+	right: 80px;
+	top: 20px;
+    height:110vh;
+    min-height:640px;
 }
 .box {
-	background-color: rgba(107,107,178,0.5); 
-	border-radius: 16px; 
+	background-color: rgba(107,107,178,0.75);
 	padding: 16px;
+}
+.buttons {
+    background-color: rgba(107,107,178,0.75);
+    padding: 16px;
+    transition-duration: 0.8s;
+}
+.buttons:hover {
+    background-color: rgba(107,107,178,1);
+    transition-duration: 0.3s;
+}
+.buttons_panel {
+    width:256px;
+    border-spacing: 10px;
+    border-collapse: separate;
+    transform: rotateY(35deg) scaleX(1.1);
+    transition-duration: 0.8s;
+}
+.buttons_panel:hover {
+    transform: rotateY(30deg) scaleX(1.1);
+    transition-duration: 0.3s;
 }
 </style>
 </head>
 <body>
-
-<div style=" width:100%; margin-bottom:100px;" align="center">
-<div class="main_block" align="left">
-<svg class='art' xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="50vh" height="100%" viewBox="0 0 896 1792">
+<svg style='position:absolute; right: 0px; top: -20px; width:100%; min-width:800px;'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 512">
+    <clipPath id='cut'><path fill="#949494" d="M0,216L1028,0V440L0,511V216Z"/></clipPath>
+    <rect fill='rgba(207,207,255,1)' x='0' y='0' width='1024' height='512' clip-path='url(#cut)'/>
+</svg>
+<div style=" width:100%; height:120vh;" align="center">
+<div class="main_block" align="center">
+<svg class='art' xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 896 1792">
     <defs id="defs6">
         <linearGradient id="linearGradient941">
             <stop id="stop937" offset="0" style="stop-color:#ffffff;stop-opacity:1;" />
@@ -105,38 +126,35 @@ body {background-color:#efefff;}
     <ellipse transform="rotate(-11.721709)" ry="4.6980653" rx="3.187973" cy="311.87039" cx="280.58521" id="path972" style="fill:#ffffff;fill-opacity:0.95111114;stroke:none;stroke-opacity:1" />
     <ellipse transform="rotate(-14.984929)" style="fill:#ffffff;fill-opacity:0.95111114;stroke:none;stroke-opacity:1" id="ellipse974" cx="351.97125" cy="333.94833" rx="3.187973" ry="4.6980653" />
 </svg>
-
-<div align="center" class = "logo_box box" style='padding: 26px;'>
-	<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+<div style="position:absolute;  left: 0; top: 10%;  transform-style: preserve-3d; perspective: 600px; perspective-origin: 100px 200px; ">
+<table class="buttons_panel">
+    <tbody>
+    <tr>
+        <td class="buttons"><a href="https://github.com/Kirilllive/Tuesday"><p style='font-size: 24px; color:#fff;'>GitHub</p></a></td>
+    </tr>
+    <tr>
+        <td class="buttons"><a href="tuesday_visual.html"><p style='font-size: 24px; color:#fff;'>Visual editor</p></a></td>
+    </tr>
+    <tr>
+        <td class="buttons"><a download href="tuesday.js"><p style='font-size: 24px; color:#fff;'>Download</p></a></td>
+    </tr>
+    <tr>
+        <td class="buttons"><a href="tuesday_doc.html"><p style='font-size: 24px; color:#fff;'>Documentation</p></a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<div align="center" class = "logo_box box" style='padding: 26px; border-radius: 16px; position:absolute; right:20px; top: 5vh; '>
+	<svg xmlns="http://www.w3.org/2000/svg" width="92" height="92" viewBox="0 0 128 128">
 		<path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" d="M17,10.015H64c26.346,0,48,21.763,48,48.18s-21.654,48.18-48,48.18V102.36"/>
 		<path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" d="M42,108V10m22,0v98"/>
 		<circle fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" cx="53" cy="108" r="11"/>
 	</svg>
-	<p style='font-size: 52px; color:#fff;'>TuesDay</p><p style='font-size:24px; color:#fff;'>visual novel engine</p>
+	<p style='font-size: 38px; color:#fff;'>TuesDay</p><p style='font-size:18px; color:#fff;'>visual novel engine</p>
 </div>
-
-
-<table style="position:absolute;  right: 0; bottom: 10vh; width:256px; border-spacing: 10px; border-collapse: separate;">
-	<tbody>
-	<tr>
-		<td class = "box"><a href="https://github.com/Kirilllive/Tuesday"><p style='font-size: 24px; color:#fff;'>GitHub</p></a></td>
-	</tr>
-	<tr>
-		<td class = "box"><a href="tuesday_visual.html"><p style='font-size: 24px; color:#fff;'>Visual editor</p></a></td>
-	</tr>
-	<tr>
-		<td class = "box"><a download href="tuesday.js"><p style='font-size: 24px; color:#fff;'>Download</p></a></td>
-	</tr>
-	<tr>
-		<td class = "box"><a href="tuesday_doc.html"><p style='font-size: 24px; color:#fff;'>Documentation</p></a></td>
-	</tr>
-	</tbody>
-</table>
-
-
-
 </div>
-<div class='box' align="left" style='max-width:800px; width:100%; color:#fff; font-size: 18px;'><p><b>TuesDay.js</b> is a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. There is support for the Apache Cordova framework for building native mobile and desktop applications. The engine uses standard Html document elements like div and img, which makes it possible to use almost any media format supported by browsers, including vector graphics in svg format, gif animations and the use of extensive css styles.</p></div>
+<div class='box' align="left" style='position:absolute; left:50%; transform: translateX(-50%); max-width:760px; width: 90vw; color:#fff; border-radius: 16px; font-size: 18px;'><p><b>TuesDay.js</b> is a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. There is support for the Apache Cordova framework for building native mobile and desktop applications. The engine uses standard Html document elements like div and img, which makes it possible to use almost any media format supported by browsers, including vector graphics in svg format, gif animations and the use of extensive css styles.</p></div>
+
 </div>
 </body>
 </html>
