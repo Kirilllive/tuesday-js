@@ -156,7 +156,7 @@ hr {border: solid 1px #cec8e3;}
     
 
 </div>
-<div class="accordion"><div class='block block_open'>Story block</div></div>
+<div class="accordion"><a href="#block" style='text-decoration: none;'><div class='block block_open'>Story block</div></a></div>
 <div class="panel border_b border_t">
     <div class='block'><span class='three_1'>background_music</div>
     <a href="#background_image" style='text-decoration: none;'><div class='block'><span class='three_1'>background_image</div></a>
@@ -244,7 +244,7 @@ hr {border: solid 1px #cec8e3;}
 	</svg>
 	<p style='font-size: 64px;'>TuesDay</p><p style='font-size:30px;'>visual novel engine</p>
 </div>
-<p><span class='three_2'></span><b>Tuesday</b> бесплатный движок с открытым исходным кодом для создания визуальных новелл, интерактивных историй и текстовых приключенческих игр. Написан на языке JavaScript без использования сторонних библиотек. присутствует поддержка инфраструктуры Apache Cordova для создания нативных приложений для мобильных устройств и настольных компьютеров. Движок использует стандартные элементы Html документа, как div и img, что делает возможным использование почти любых медиа форматов поддерживаемых браузерами, включая векторную графику в формате svg, gif анимации и обширные возможности css стилей.</p>
+<p><span class='three_2'></span><b>Tuesday</b> бесплатный движок с открытым исходным кодом для создания визуальных новелл, интерактивных историй и текстовых приключенческих игр. Написан на языке JavaScript без использования сторонних библиотек. Присутствует поддержка инфраструктуры Apache Cordova для создания нативных приложений для мобильных устройств и настольных компьютеров. Движок использует стандартные элементы Html документа, как div и img, что делает возможным использование почти любых медиа-форматов поддерживаемых браузерами, включая векторную графику в формате svg, gif анимации и обширные возможности css стилей.</p>
 
 <br>
 <br>
@@ -254,11 +254,12 @@ hr {border: solid 1px #cec8e3;}
 <br>
 <a id="structure"></a>
 <p><span class='text_name'>Структура</span></p>
-<p>Отображение истории на html-странице происходит через элемент <b>div с id tuesday</b>. Параметры отображения можно задать в стиле css или любым другим подходящим способом. Все содержание будет отображаться с учетом параметров этого элемента.</p>
 <br>
-<p>Сценарий истории со всеми данными задается в структуре <b> <a href="https://ru.wikipedia.org/wiki/JSON" target="_blank">JSON</a></b>. Этот независим текстовый формат обмена данными и может быть интерпретирован практически любым другим языком программирования или игровым движком. (это дает возможность переноса истории на другой движок)</p>
+<p>Отображение истории на веб-странице происходит через элемент div с <b>id="tuesday"</b>. Параметры отображения можно задать в стиле css или любым другим подходящим способом. Все содержание будет отображаться с учетом параметров этого элемента.</p>
 <br>
-<p>Для запуска истории нужно выполнить функцию <b>load_story('тип',файл/массив)</b> с указанием типа данных</p>
+<p>Сценарий истории со всеми элементами указывается в структуре формата <b><a href="https://ru.wikipedia.org/wiki/JSON" target="_blank">JSON</a></b>. Этот формат может быть прочитан практически любым другим языком программирования или движком. (что дает возможность при необходимости перенести историю на другой движок)</p>
+<br>
+<p>Сценарий история запускаеться функцию <b>load_story('тип',файл/массив)</b>с указанием типов данных (data или file) и их источника (адрес файла или массив)</p><br>
 <p><span class='three_2'></span><b>data</b>: указание переменной с массивом истории из кода javascript</p>
 <p><span class='three_2'></span><b>file</b>: путь к json файлу с историей (может не работать локально, если в браузере включена <a href="#cross_domain_error" target="_blank">cross domain</a> защита)</p>
 <br>
@@ -269,12 +270,14 @@ hr {border: solid 1px #cec8e3;}
 <br>
 <a id="start_use"></a>
 <p><span class='text_name'>Начало использования</span></p>
-<p>Для работы подойдет любой текстовый редактор или IDE с поддержикой работы с текстовым форматом ASCII</p>
-<p>Рекомендуемое программное обеспечения для использования</p>
+<p>Для работы подойдет любой текстовый редактор или IDE</p>
+<br>
+<p>Рекомендуемое программное обеспечения для использования:</p>
+<br>
 <p><b><span class='three_2'></span>MS Windows</b>: <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a></p>
 <p><b><span class='three_2'></span>Mac OS</b>: <a href="https://developer.apple.com/xcode/" target="_blank">Xcode</a></p>
 <br>
-<p>Базоая основа для отображения новеллы состоит из 3-х элементов</p>
+<p>Базоая основа для отображения сценария состоит из 3-х элементов</p>
 <br>
 <p><span class='text_name'>1 Файл движка «tuesday.js»</span> его можно скачать из <a href="https://github.com/Kirilllive/Tuesday" target="_blank">GitHub</a></p>
 <br>
@@ -363,18 +366,20 @@ hr {border: solid 1px #cec8e3;}
 }
 </code></pre>
 <br>
-<a download="tusday_base_example.zip" href="data:@file/zip;base64,UEsDBBQAAAAIAGN9G1HrsEui1gAAAEwBAAAKAAAAaW5kZXguaHRtbE1QwWrDMAy9F/oPxjC8wRZnxyV2YP+w+3Brp1anxsFWs/rvm9ShRAehJyS996Q8XbDb79gcyjtj1/qBCQhd93N1yZqsZIHrrNwMq0OwmYUBg7GaL/k3UYj5VfSATryLB6rOKQzijW8ZLEwMrBZUOARLlNFp0YeBPnpzAczNdwSDLfsHS775rOuXlnkHJ0/NVz35VnRKzme2V9MxwkiM8ug0J3cjeTaTKV3OUjxq7onG1Ej5BxEQESZXnYD89VBBkKtjWVQtwvlMUvaf/hfPM1By/eB+dwdQSwMEFAAAAAgAh30bUWIjIlrJAQAAXwcAAAoAAABzdG9yeS5qc29uzZVdT8IwFIavNfE/mBLvuBgDdBBj4mc0fosxRkKWMrqxuLXL1iUo4b97WhljLaM3XrgE6Hae7vQ972mZ7+3uw4USnOKYcJJmqL+/fCgDnMy4m2BKompABrPwm8DjIep1D1AT2fA9aiqMxyKWAoQaPc9HajSkE0K5O2acs1hQbTuZAaXnccVKBGFbG4hJiCMWuFlCyAQg2yrjizUWUVBplmOBmI6TzHQ1CctCHjK6wuQHSDEabV13S7ywZlkRzqk3dTPO0i/BxjikbkxojqoUDXKckkxmJ7SSEI1zqCGVscoyFJllHUQinhN3jL3PIs92sV1hsxypxdFr2JVGwo9K6o3hOI6SXy+f9GMj9QugY1SNLZom3RQmGnUXmv+t7hNVd3k7gmHZaetd1R+W1HzjVsoqjMLqmqYs9IicsiMvBdQmBMzlTMiTLa/qMzhirTsCd1qd691p2VDOut1ttspMr3xr+L5vnFLAA45TjurhhRIqDTaQQCiRQjQqDps/bgVxmoC32ikm22IpGGxod7qHR07PUkqk7lRE83gs/pV0CjZ48daAGTOenp1fXF59XN/c3t0/PD49vwxe395NySPCuZbcXOblExj9AFBLAQI/ABQAAAAIAGN9G1HrsEui1gAAAEwBAAAKACQAAAAAAAAAIAAAAAAAAABpbmRleC5odG1sCgAgAAAAAAABABgAlHk6m2981gGUeTqbb3zWAYql8AQlddYBUEsBAj8AFAAAAAgAh30bUWIjIlrJAQAAXwcAAAoAJAAAAAAAAAAgAAAA/gAAAHN0b3J5Lmpzb24KACAAAAAAAAEAGACQgn7Eb3zWAZCCfsRvfNYBiqXwBCV11gFQSwUGAAAAAAIAAgC4AAAA7wIAAAAA"><b><p>Download example </p></b></a>
+<a download="tusday_base_example.zip" href="data:@file/zip;base64,UEsDBBQAAAAIAGN9G1HrsEui1gAAAEwBAAAKAAAAaW5kZXguaHRtbE1QwWrDMAy9F/oPxjC8wRZnxyV2YP+w+3Brp1anxsFWs/rvm9ShRAehJyS996Q8XbDb79gcyjtj1/qBCQhd93N1yZqsZIHrrNwMq0OwmYUBg7GaL/k3UYj5VfSATryLB6rOKQzijW8ZLEwMrBZUOARLlNFp0YeBPnpzAczNdwSDLfsHS775rOuXlnkHJ0/NVz35VnRKzme2V9MxwkiM8ug0J3cjeTaTKV3OUjxq7onG1Ej5BxEQESZXnYD89VBBkKtjWVQtwvlMUvaf/hfPM1By/eB+dwdQSwMEFAAAAAgAh30bUWIjIlrJAQAAXwcAAAoAAABzdG9yeS5qc29uzZVdT8IwFIavNfE/mBLvuBgDdBBj4mc0fosxRkKWMrqxuLXL1iUo4b97WhljLaM3XrgE6Hae7vQ972mZ7+3uw4USnOKYcJJmqL+/fCgDnMy4m2BKompABrPwm8DjIep1D1AT2fA9aiqMxyKWAoQaPc9HajSkE0K5O2acs1hQbTuZAaXnccVKBGFbG4hJiCMWuFlCyAQg2yrjizUWUVBplmOBmI6TzHQ1CctCHjK6wuQHSDEabV13S7ywZlkRzqk3dTPO0i/BxjikbkxojqoUDXKckkxmJ7SSEI1zqCGVscoyFJllHUQinhN3jL3PIs92sV1hsxypxdFr2JVGwo9K6o3hOI6SXy+f9GMj9QugY1SNLZom3RQmGnUXmv+t7hNVd3k7gmHZaetd1R+W1HzjVsoqjMLqmqYs9IicsiMvBdQmBMzlTMiTLa/qMzhirTsCd1qd691p2VDOut1ttspMr3xr+L5vnFLAA45TjurhhRIqDTaQQCiRQjQqDps/bgVxmoC32ikm22IpGGxod7qHR07PUkqk7lRE83gs/pV0CjZ48daAGTOenp1fXF59XN/c3t0/PD49vwxe395NySPCuZbcXOblExj9AFBLAQI/ABQAAAAIAGN9G1HrsEui1gAAAEwBAAAKACQAAAAAAAAAIAAAAAAAAABpbmRleC5odG1sCgAgAAAAAAABABgAlHk6m2981gGUeTqbb3zWAYql8AQlddYBUEsBAj8AFAAAAAgAh30bUWIjIlrJAQAAXwcAAAoAJAAAAAAAAAAgAAAA/gAAAHN0b3J5Lmpzb24KACAAAAAAAAEAGACQgn7Eb3zWAZCCfsRvfNYBiqXwBCV11gFQSwUGAAAAAAIAAgC4AAAA7wIAAAAA"><b><p>Download base example </p></b></a>
 <br>
 <br>
 <br>
 <hr>
 <br>
 <br>
-<a id="cross_domain_error"></a>
-<p><span class='text_name'>Проблемы запуска и их решения</span></p>
-<p>Если новелла не отобразилось то возможна возникла проблема c ограничением cross domain web security. эту проблему можно решить несколькими способами</p>
 <br>
-<p>1. Решение - Перенести содержимое из json файла в index.html как массив JavaScript</p>
+<a id="cross_domain_error"></a>
+<p><span class='text_name'>Возможные проблемы запуска и их решения</span></p>
+<br>
+<p>Если сценарий не отобразился то возможна есть проблема c ограничением cross domain web security. это можно решить несколькими способами</p>
+<br>
+<p><b>1. Решение</b> - Перенести содержимое из json файла в index.html как массив JavaScript</p>
 <pre class='code_box'>
 <code>&lt;html&gt;
 	&lt;head&gt;
@@ -391,7 +396,8 @@ hr {border: solid 1px #cec8e3;}
 &lt;/html&gt;
 </code></pre>
 <br>
-<p>2. Решение - В некоторых браузерах можно отключить cross domain (не рекомендуется)</p>
+<br>
+<p><b>2. Решение</b> - В некоторых браузерах можно отключить cross domain (не рекомендуется)</p>
 <br>
 <p><span class='text_name'>FireFox</span> - в адресной строке введите about:config в появившехся настройках найдите пункт security.fileuri.strict_origin_policy и установить ему значение false для отключения или true для включения</p>
 <br>
@@ -446,10 +452,10 @@ hr {border: solid 1px #cec8e3;}
 <a id="autosave"></a>
 <p class='title_name'>AutoSave</p>
 <br>
-<p>Параметр отвечает за автоматическое сохранение прогресса истории  и значений переменных каждый после запуска диалога. Это позволяет выключить проект и в дальнейшем продолжить его с того же места.</p>
+<p>Параметр отвечает за автоматическое сохранение прогресса сценария и значений из массива <b><a href="#variables" >variables</a></b> на каждом диалоге. Это позволит продолжить историю с момента завершения последней сессии.</p>
 <pre class='code_box'><code>	"autosave": <span class='comm'>настройка автосохранения прогресса true / false</span>,</code></pre>
 <br>
-<p>За продолжения с последнего места отвечает кнопка "load_autosave"</p>
+<p>За загрузку автосохранения отвечает атрибут "<b><a href="#tue_load_autosave" >tue_load_autosave</a></b>" указаный в "<b><a href="#buttons_name" >name</a>"</b> или "<b><a href="#go_to" >go_to</a>"</b></p>
 <br>
 </div>
 <br>
@@ -459,7 +465,7 @@ hr {border: solid 1px #cec8e3;}
 <a id="buttons"></a>
 <p class='title_name'>Buttons</p>
 <br>
-Набор кнопок и их параметры для основного интерфейса как управление диалогами, сохранения и загруска . Они не будут отображаться в сцене указанной в <b><a href="#launch_story" >launch_story</a></b>.</p>
+<p>Набор кнопок и параметров для основного интерфейса (управление диалогами, сохранения и загруска). Они не будут отображаться в блоке указанной в <b><a href="#launch_story" >launch_story</a></b>.</p>
 <pre class='code_box'><code>	"buttons": [{
 		"<a href="#buttons_name" class='code_link'>name</a>": "<span class='comm'>Название функцианала или id кнопки</span>",
 		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку кнопки</span>",
@@ -526,7 +532,7 @@ hr {border: solid 1px #cec8e3;}
 <a id="characters"></a>
 <p class='title_name'>Characters</p>
 <br>
-<p>Глобальные параметры для персонажей, на которые можно ссылаться в параметрах диалога. В случае изменений персонажа вам не приодеться вносить изменять во всем сценарии, достаточно будет только внести изменения в этом параметре.</p>
+<p>Глобальные параметры для отобрадения персонажей в <b>"<a href="#name_panel">name_panel</a>"</b>. Достаточно указать имя id персонажа, и все остальные параметры, включая локализацию, будут взяты из этого массива. За исключением если в <b>"<a href="#name_panel">name_panel</a>"</b> самого диалога уже заданы свои параметры.</p>
 <pre class='code_box'><code>	"characters": {
 		"<span class='comm'>id персонажа</span>": {
 			"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет фона панели с именем name_panel</span>",
@@ -557,6 +563,9 @@ hr {border: solid 1px #cec8e3;}
 		}
 	},
 </code></pre>
+<br>
+<p>В случае изменений персонажа не приодеться вносить изменять во всем сценарии, достаточно будет только внести изменения в этом массиве.</p>
+<br>
 </div>
 <br>
 <br>
@@ -565,10 +574,10 @@ hr {border: solid 1px #cec8e3;}
 <a id="languares"></a>
 <p class='title_name'>Languares</p>
 <br>
-<p>Массив поддерживаемых языков проектом, по умолчанию установлен английский «en». Tuesday автоматически определяет язык браузера и при наличии подходящей локализации автоматически переключается на нее. В противном случае язык по умолчанию будет включен в английский если он доступен, или на первый язык в этом списке.</p>
+<p>Массив поддерживаемых языков сценария, по умолчанию установлен английский "en". Движок на старте автоматически определяет язык браузера и при наличии подходящей локализации автоматически переключается на нее. В ином случае язык по умолчанию будет английский если он доступен, если нет то на первый язык в этом списке. Значения язоковых диалектов (как en_GB и en_US) не поддерживаються.</p>
 <pre class='code_box'><code>	"languares": [<span class='comm'>коды языков на которые переведен проект</span>],</code></pre>
 <br>
-<p>Все коды языков можно узнать тут: <a href="https://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">"HTML Language Code Reference"</a></p>
+<p>Все коды языков можно узнать на: <a href="https://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">"HTML Language Code Reference"</a></p>
 <br>
 <p><b>Working example "languares"</b></p>
 <pre class='code_box'><code>	"languares": ["en","ja","ru"],</code></pre>
@@ -580,7 +589,7 @@ hr {border: solid 1px #cec8e3;}
 <a id="launch_story"></a>
 <p class='title_name'>Launch story</p>
 <br>
-<p>Задает id идентификатор блока в сценарии, с которого будет начинаться повествование или блок с главным меню. Если не указать этот параметр, проект начнется с первого блока. </p>
+<p>Id имя блока с которого начинается сценарий (к примеру блок с главным меню). Если данный параметр не казан, то сценарий начнется с первого по списку блока.</p>
 <pre class='code_box'><code>	"launch_story": "<span class='comm'>id блока с которой начинается сценария</span>",</code></pre>
 </div>
 <br>
@@ -590,7 +599,7 @@ hr {border: solid 1px #cec8e3;}
 <a id="name_panel"></a>
 <p class='title_name'>Name panel</p>
 <br>
-<p>Параметры панели для отображения имени и изображения персонажа. его расположение зависит от параметров текстовой панели <b><a href="#text_panel" >text_panel</a></b></p>
+<p>Панель для отображения имени и изображения персонажа. его расположение отнасительно от параметров текстовой панели <b><a href="#text_panel" >text_panel</a></b></p>
 <pre class='code_box'><code>	"name_panel": {
 		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на аватар персонажа или фотоновый рисунок</span>",
 		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на кнопке</span>,
@@ -619,7 +628,7 @@ hr {border: solid 1px #cec8e3;}
 <a id="text_panel"></a>
 <p class='title_name'>Text panel</p>
 <br>
-<p>Основной набор параметров для текстовой панели и отображения на текста в сцене</p>
+<p>Основные настройки панели для отображения текстов в сцене</p>
 <pre class='code_box'><code>	"text_panel": {
 		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
 		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет в форматах</span>",
@@ -656,10 +665,10 @@ hr {border: solid 1px #cec8e3;}
 <a id="title"></a>
 <p class='title_name'>Title</p>
 <br>
-<p>Название проекта, которое будет отображаться на вкладке страницы и других заголовках.</p>
+<p>Название проекта для отображения во вкладке страницы и других заголовках.</p>
 <pre class='code_box'><code>	"title": "<span class='comm'>Название проекта</span>",</code></pre>
 <br>
-<p>Можно указать имя для всех поддерживаемых языков, указанных в параметре <b><a href="#languares" >languares</a></b>.</p>
+<p>Поддерживается локализация для указанных языков в параметре <b><a href="#languares" >languares</a></b>.</p>
 <pre class='code_box'><code>	"title": {
 			"en":"<span class='comm'>Название на английского языка</span>",
 			"ja":"<span class='comm'>Название на японского языка</span>",
@@ -674,15 +683,15 @@ hr {border: solid 1px #cec8e3;}
 <a id="key"></a>
 <p class='title_name'>Key</p>
 <br>
-<p>Назначение определенных функций клавишам клавиатуры с помощью идентификатора клавиши <a href="https://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">event.code</a>.</p>
+<p>Назначение функцианала клавишам клавиатуры через идентификатора клавиш <a href="https://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">event.code</a>.</p>
 <pre class='code_box'><code>	"key": "<span class='comm'>настройки управления с клавиатуры</span>",</code></pre>
 <br>
-<p><b>load_autosave</b> - Продолжить с последнего автосохранения прогресса истории</p>
+<p><b>load_autosave</b> - Продолжить с последнего автосохранения прогресса сценария</p>
 <p><b>launch_story</b> - Вернуться на главный экран или начать рассказ</p>
 <p><b>next</b> - следующая реплика</p>
 <p><b>back</b> - предыдущая реплика</p>
-<p><b>save</b> - Сохранить стадию истории</p>
-<p><b>load</b> - Загрузить последнюю стадию истории</p>
+<p><b>save</b> - Сохранить стадию сценария</p>
+<p><b>load</b> - Загрузить последнюю стадию сценария</p>
 <br>
 <p><b>Working example "key"</b></p>
 <pre class='code_box'><code>	"key": {
@@ -702,8 +711,8 @@ hr {border: solid 1px #cec8e3;}
 <a id="variables"></a>
 <p class='title_name'>Variables</p>
 <br>
-<p>Массив именованных переменных для хранения данных и отслеживания прогресса истории. При сохраняете прогресса истории эти данные также сохраняются. </p>
-<p>Эти значения используются в элементах истории, таких как <b>"<a href="#variables" >variables</a>"</b> для изменения значения переменной в ходе истории и <b>"<a href="#legacy_choice" >legacy_choice</a>"</b> для автоматического определения следующего блока истории. </p>
+<p>Массив переменных для хранения данных. При сохранение прогресса сценария эти данные также сохраняются. </p>
+<p>Эти значения используются в элементах сценарии, таких как <b>"<a href="#variables" >variables</a>"</b> для изменения значения и в ходе сценарии и <b>"<a href="#legacy_choice" >legacy_choice</a>"</b> для автоматического определения следующего блока сценария. </p>
 <pre class='code_box'><code>	"variables": [<span class='comm'>набор глобальных переменых использованых в проекте</span>],</code></pre>
 <br>
 <p><b>Working example "variables"</b></p>
@@ -713,6 +722,22 @@ hr {border: solid 1px #cec8e3;}
 		"health_points": 100
 	],
 </code></pre>
+<br>
+<p>Значения переменных можно выводить в <b><a href="#text_panel" >text_panel</a></b> укажете ее имя в угловых скобках</p>
+<pre class='code_box'><code>{
+	"parameters": {
+		<span class='comm'>другие значения</span>
+		"<a href="#variables" class='code_link'>variables</a>": [
+			"health_points": 100
+		],
+	}
+	"example_block_1": [{
+		"<a href="#dialogs" class='code_link'>dialogs</a>": [{
+			"text": "You have &lt;<span class='comm'>health_points</span>&gt; health points left"
+		}]
+	}]
+}</code></pre>
+<br>
 </div>
 <br>
 <br>
@@ -723,7 +748,7 @@ hr {border: solid 1px #cec8e3;}
 <p style='font-size:30px;' align='center'>Сценарий истории</p>
 <br>
 <a id="block"></a>
-<p>Структура сценария проекта разделена на несколько элементов. Основным элементом является блок истории, который является частью повествования или сюжетной линии, их последовательность будет определяться выбором игрока (выбор идти влево или вправо может означать, что игрок продолжит текущий блок сюжета или перейдет к другому. блок с альтернативным сюжетом развития). Блоки состоят из сцен с собственным набором графических и звуковых элементов. И уже внутри сцены есть последовательность диалогов и других элементов как выбор и последствий, которые могут привести к другому блоку или продолжить текущий.</p>
+<p>Структура сценария разделена на несколько элементов. Основным элементом является "блок" это часть повествования или сюжетная линия, и их последовательность будет определяться выборами пользователя (выбор идти налево или направо может означать, что игрок продолжено продолжить текущий блок сюжета или перейдет к другому блоку с альтернативным развития сюжетом). Блоки состоят из сцен с набором графических и звуковых элементов. И уже внутри сцены указывается последовательность диалогов и других элементов как выбор "<b><a href="#text_panel" >choice</a></b>" и "<b><a href="#go_to" >go_to</a></b>", которые могут привести к другому блоку.</p>
 <br>
 <pre class='code_box'><code>"<span class='comm'>Блок 1</span>": [
 	{
@@ -822,8 +847,9 @@ hr {border: solid 1px #cec8e3;}
 <a id="background_image"></a>
 <p class='title_name'>Background image</p>
 <br>
-<p>Аналог css <a href="https://www.w3schools.com/cssref/pr_background-image.asp" target="_blank">параметра background_image</a>. Предназначен для отображения заднего фона в сцене.</p>
+<p>Аналог параметра <a href="https://www.w3schools.com/cssref/pr_background-image.asp" target="_blank">css background_image</a>. Предназначен для отображения заднего фона в сцене.</p>
 <pre class='code_box'><code>	"background_image": "<span class='comm'>путь и название файла</span>"</code></pre>
+<br>
 <p>По умолчанию выравнивается по центру стены и пропорционально заполняет весь фон, независимо от размера сцены или самого файла.</p>
 <br>
 <p>Поддерживает локализацию если есть фон для конкретного перевода.</p>
@@ -841,7 +867,7 @@ hr {border: solid 1px #cec8e3;}
 <a id="dialogs"></a>
 <p class='title_name'>Dialogs</p>
 <br>
-<p>Массив последовательности диалогов в сцене и всех ее атрибутов, таких как спрайты в сцене <b>art</b> и кнопки выбора <b><a href="#choice" >Choice</a></b>.</p>
+<p>Массив последовательности диалогов в сцене и ее атрибутов, таких как <b><a href="#art" >art</a></b> и кнопки выбора <b><a href="#choice" >Choice</a></b>.</p>
 <pre class='code_box'><code>	"dialogs":[
 			{<span class='comm'>Параметры и элементы реплики 1й диалога</span>},
 			{<span class='comm'>Параметры и элементы реплики 2й диалога</span>},
@@ -861,7 +887,7 @@ hr {border: solid 1px #cec8e3;}
 <a id="e_art"></a>
 <p class='title_name'>Art</p>
 <br>
-<p>Аналог html тега <a href="https://www.w3schools.com/tags/tag_img.asp" target="_blank">&lt;img&gt;</a>. Предназначен для отображения графических элементов в сцене.</p>
+<p>Онже "sprite" или "изображение". Аналог html <a href="https://www.w3schools.com/tags/tag_img.asp" target="_blank">тега &lt;img&gt;</a>. Предназначен для отображения графических элементов в сцене, такие как персонажи или предметы.</p>
 <pre class='code_box'><code>"art": [{		
 		"<a href="#className" class='code_link'>url</a>":"<span class='comm'>путь и название файла</span>",
 		"<a href="#className" class='code_link'>position</a>": [<span class='comm'>позиция X, позицияY</span>],
@@ -917,7 +943,7 @@ hr {border: solid 1px #cec8e3;}
 <a id="e_text"></a>
 <p class='title_name'>Text</p>
 <br>
-<p>Элемент, содержащий диалоги персонажей и другие тексты. А также элементы для изменения текста <b><a href="#text_panel" >text_panel</a></b>" на своей реплике.</p>
+<p>Диалог персонажа и другие тексты в конкретной сцене. А также элементы для изменения <b><a href="#text_panel" >text_panel</a></b>" на данном тексте.</p>
 <pre class='code_box'><code>	"text": {
 		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку кнопки</span>",
 		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на кнопке</span>,
@@ -933,7 +959,7 @@ hr {border: solid 1px #cec8e3;}
 	}
 </code></pre>
 <br>
-<p>Можно просто указать реплику, в этом случае все недостающие параметры будут взяты из раздела <b>"parameters" / "<a href="#text_panel" >text_panel</a>"</b></p>
+<p>Можно просто указать реплику, в этом случае все недостающие параметры будут взяты по умолчанию из раздела <b>"parameters" / "<a href="#text_panel" >text_panel</a>"</b></p>
 <pre class='code_box'><code>	"text": "<span class='comm'>Hello how are you</span>"</code></pre>
 <br>
 <p>Возможно добавить локализованный вариант диалога для указанных языков в разделе <b>"parameters" / "<a href="#languares" >languares</a>"</b></p>
@@ -961,7 +987,7 @@ hr {border: solid 1px #cec8e3;}
 <br>
 <p>В этом случае появится фраза "You have 100 health points left"</p>
 <br>
-<p>Иногда бывает, что в одной локации может быть больше или меньше реплик, чем в другой. В этом случае вы можете указать значение 'skip', тогда эта реплика будет автоматически пропущена.</p>
+<p>В одной локации может быть больше или меньше реплик чем в другой. В этом случае можно указать значение 'skip', тогда эта реплика будет автоматически пропущена.</p>
 <pre class='code_box'><code>{
 	"text": {
 		"en":"Hello!",
@@ -988,7 +1014,7 @@ hr {border: solid 1px #cec8e3;}
 <br>
 <p>Параметр для отображения имени и аватара персонажа в текстовой панели. Эти данные можно указать несколькими способами.</p>
 <br>
-<p>Самый простой вариант просто указать его имя. Если это имя не совпадает с id  идентификатором имен в разделе <b>"parameters" / "<a href="#characters" >characters</a>"</b>, тогда имя будет отображаться на панели в том виде, в котором вы указали его в этом месте. </p>
+<p>Самый простой вариант просто указать его имя. Если это имя не совпадает с id идентификатором в разделе <b>"parameters" / "<a href="#characters" >characters</a>"</b>, тогда имя отобразится так как указанно в этом параметре. </p>
 <pre class='code_box'><code>	"name": "<span class='comm'>Boss</span>"</code></pre>
 <br>
 <p>Возможно задать локализованный вариант имени  для указанных языков в разделе <b>"parameters" / "<a href="#languares" >languares</a>"</b></p>
@@ -1019,7 +1045,7 @@ hr {border: solid 1px #cec8e3;}
 }
 </code></pre>
 <br>
-<p>Также элементы может изменения "<b><a href="#name_panel" >name_panel</a></b>" на реплике или имени. Параметры для изменения также можно указать как в "<b><a href="#dialogs" >dialogs</a></b>", так и в массиве "<b><a href="#characters" >characters</a></b>".</p>
+<p>Параметры для изменения "<b><a href="#name_panel" >name_panel</a></b>" можно указать как в "<b><a href="#dialogs" >dialogs</a></b>" для текущей реплики, так и в массиве "<b><a href="#characters" >characters</a></b>" для конкретного имени.</p>
 <pre class='code_box'><code>	"text": {
 		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку кнопки</span>",
 		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на кнопке</span>,
@@ -1035,7 +1061,7 @@ hr {border: solid 1px #cec8e3;}
 	}
 </code></pre>
 <br>
-<p>Если какой-то элемент будет не указан, то будет взято значение по умолчанию из parameters" / "<a href="#name_panel" >name_panel</a>". Если имени или его id  идентификатора будут отсутствовать, то эта панель отображаться не будет. </p>
+<p>Если какой-то элемент будет не указан, то будет взято значение по умолчанию из <b>"parameters" / "<a href="#name_panel" >name_panel</a>"</b>. Если имени или его id  идентификатора будут отсутствовать, то эта панель не появиться в сцене. </p>
 <br>
 </div>
 <br>
@@ -1045,7 +1071,7 @@ hr {border: solid 1px #cec8e3;}
 <a id="choice"></a>
 <p class='title_name'>Choice</p>
 <br>
-<p>Элемент с кнопками для выбора дальнейшего сюжетного блока и изменения значений в переменных. Аналогичен параметру <b>"<a href="#buttons" >buttons</a>"</b> за исключением того, что кнопки выбора появляются в определенном диалоговом окне. </p>
+<p>Кнопки для выбора дальнейшего сюжетного блока и изменения значений в массиве переменных <b>"parameters" / "<a href="#variables" >variables</a>"</b>. Аналогичен параметру <b>"<a href="#buttons" >buttons</a>"</b> за исключением того что кнопки выбора появляются в определенной реплике. </p>
 <pre class='code_box'><code>	"choice": [{
 		"<a href="#go_to" class='code_link'>go_to</a>": "<span class='comm'>id блока для перехода</span>",
 		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>позиция X, позицияY</span>],
@@ -1265,7 +1291,7 @@ javascript - реагирование на событие
 <br>
 <br>
 <a id="go_to"></a>
-<p><b>"go_to"</b> - Переход по нажатию кнопки далее (tue_next) или кнопки выбора к указанному id имени блоку</p>
+<p><b>"go_to"</b> - Переход в блок с указанным id именем, или можно указать функцианал одной из системных кнопок <a href="#system_Buttons"><b>System Buttons</b></a></p>
 <pre class='code_box'><code>		"go_to": "<span class='comm'>Следующий id блока</span>"</code></pre>
 <br>
 <br>

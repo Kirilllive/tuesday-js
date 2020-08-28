@@ -293,7 +293,7 @@ function get_lang() {
 				}
                 if (story_json[story][scene].dialogs[dialog].choice[i].go_to) {
 					var g = story_json[story][scene].dialogs[dialog].choice[i].go_to;
-					if (g == "load_autosave") {choice.setAttribute("onclick","load_stag('auto')");}
+					if (g == "tue_load_autosave") {choice.setAttribute("onclick","load_stag('auto')");}
 					else if (g == "load") {choice.setAttribute("onclick","load_stag('bookmark')");}
 					else {
 						choice.setAttribute("onclick", v + "go_to('" + g + "');");
