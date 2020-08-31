@@ -157,7 +157,7 @@ hr {border: solid 1px #cec8e3;}
         <a href="#back_to" style='text-decoration: none;'><div class='block'><span class='three_2'>back_to</div>
         <a href="#color" style='text-decoration: none;'><div class='block'><span class='three_2'>color</div>
         <a href="#color_text" style='text-decoration: none;'><div class='block'><span class='three_2'>color_text</div>
-        <a href="#text" style='text-decoration: none;'><div class='block'><span class='three_2'>text</div>
+        <a href="#e_text" style='text-decoration: none;'><div class='block'><span class='three_2'>text</div>
 		<a href="#text_add" style='text-decoration: none;'><div class='block'><span class='three_2'>text_add</div>
         <a href="#e_name" style='text-decoration: none;'><div class='block'><span class='three_2'>name</div>
         <a href="#go_to" style='text-decoration: none;'><div class='block'><span class='three_2'>go_to</div>
@@ -1034,7 +1034,7 @@ hr {border: solid 1px #cec8e3;}
 <br>
 <p>Диалог персонажа или иные тексты в конкретной сцене. А также элементы для изменения <b><a href="#text_panel" >text_panel</a></b>" на данном тексте.</p>
 <pre class='code_box'><code>	"text": {
-		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку кнопки</span>",
+		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку панели</span>",
 		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на кнопке</span>,
 		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
 		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>цвет текста</span>",
@@ -1103,8 +1103,8 @@ hr {border: solid 1px #cec8e3;}
 <br>
 <p>Аналог обычного элемента <b>"<a href="#text" >text</a>"</b> за исключением того что текст из данного элемента добавляеться к уже существующиму тексту в <b><a href="#text_panel" >text_panel</a></b>". Основной элемен для кинетических новеллы</p>
 <pre class='code_box'><code>	"text_add": {
-		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку кнопки</span>",
-		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на кнопке</span>,
+		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку панели</span>",
+		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на панеле</span>,
 		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
 		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>цвет текста</span>",
 		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет в форматах</span>",
@@ -1116,9 +1116,17 @@ hr {border: solid 1px #cec8e3;}
 		"en":"<span class='comm'>Boss</span>"
 	}
 </code></pre>
-
+<br>
+<p><b>Working example "variables"</b></p>
+<pre class='code_box'><code>{
+	"text": "Hello! "
+},{
+	"text_add": "will you go for a walk?"
+}
+</code></pre>
+В текстовой панеле сначала появиться "Hello!" затем вся фраза целиком "Hello! will you go for a walk?"
+<br>
 </div>
-
 <br>
 <br>
 <br>
@@ -1162,7 +1170,7 @@ hr {border: solid 1px #cec8e3;}
 <p>Параметры для изменения "<b><a href="#name_panel" >name_panel</a></b>" можно указать как в "<b><a href="#dialogs" >dialogs</a></b>" для текущей реплики, так и в массиве "<b><a href="#characters" >characters</a></b>" для конкретного имени.</p>
 <pre class='code_box'><code>	"text": {
 		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку кнопки</span>",
-		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на понеле</span>,
+		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на панеле</span>,
 		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
 		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Цвет текста</span>",
 		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет элемента</span>",
