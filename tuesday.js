@@ -198,31 +198,40 @@ function get_lang() {
         if (story_json[tue_story][scene].dialogs[dialog].text){
             tue_text_block.style.visibility = 'visible';
             tue_text_view.innerHTML = "";
-            values_in_text();
-            dialog_letter = 0;
+            values_in_text(false);
             clearTimeout(dialog_timeout);
             anim_text();
             if(story_json[tue_story][scene].dialogs[dialog].text.className){ tue_text_block.className = story_json[tue_story][scene].dialogs[dialog].text.className}
-        } else {tue_text_block.style.visibility = 'hidden';}
+        } else if (story_json[tue_story][scene].dialogs[dialog].text_add) {
+			tue_text_block.style.visibility = 'visible';
+			tue_text_view.innerHTML = "";
+			values_in_text(true);
+            clearTimeout(dialog_timeout);
+            anim_text();
+		} else {tue_text_block.style.visibility = 'hidden';}
         if (story_json[tue_story][scene].dialogs[dialog].name) {
             if (story_json[tue_story][scene].dialogs[dialog].name[languare]) {
                 tue_name_block.innerHTML = story_json[tue_story][scene].dialogs[dialog].name[languare]
                 tue_name_block.style.backgroundColor = story_json[tue_story][scene].dialogs[dialog].name.color;
                 tue_name_block.style.color = story_json[tue_story][scene].dialogs[dialog].name.color_text;
                 if(story_json[tue_story][scene].dialogs[dialog].name.className){ tue_name_block.className = story_json[tue_story][scene].dialogs[dialog].name.className}
-            } else if (story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name]){
+            } else if (story_json.parameters.characters) {
+				if (story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name]){
                 tue_name_block.innerHTML = story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name][languare]
                 tue_name_block.style.backgroundColor = story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].color;
                 tue_name_block.style.color = story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].color_text;
-                if(story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].className){
-                    tue_name_block.className = story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].className
-                }
-            } else {
-                tue_name_block.innerHTML = story_json[tue_story][scene].dialogs[dialog].name
-                tue_name_block.style.backgroundColor = story_json[tue_story][scene].dialogs[dialog].name.color;
-                tue_name_block.style.color = story_json[tue_story][scene].dialogs[dialog].name.color_text;
-                if(story_json[tue_story][scene].dialogs[dialog].name.className){ tue_name_block.className = story_json[tue_story][scene].dialogs[dialog].name.className}
-            }
+					if(story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].className){
+						tue_name_block.className = story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].className
+					}
+				} else {
+					tue_name_block.innerHTML = story_json[tue_story][scene].dialogs[dialog].name
+					tue_name_block.style.backgroundColor = story_json[tue_story][scene].dialogs[dialog].name.color;
+					tue_name_block.style.color = story_json[tue_story][scene].dialogs[dialog].name.color_text;
+					if(story_json[tue_story][scene].dialogs[dialog].name.className){ tue_name_block.className = story_json[tue_story][scene].dialogs[dialog].name.className}
+				}	
+			} else {
+				tue_name_block.innerHTML = story_json[tue_story][scene].dialogs[dialog].name
+			}
             tue_name_block.style.visibility = 'visible';
         } else {tue_name_block.style.visibility = 'hidden';}
         del_element("tue_art");
@@ -315,16 +324,24 @@ function get_lang() {
         if (story_json[tue_story][scene].dialogs[dialog].event) {
             tuesday.dispatchEvent(new Event( story_json[tue_story][scene].dialogs[dialog].event ));
         }
-} function values_in_text() {
-    var str = (story_json[tue_story][scene].dialogs[dialog].text[languare])? story_json[tue_story][scene].dialogs[dialog].text[languare]: story_json[tue_story][scene].dialogs[dialog].text;
+} function values_in_text(add) {
+	var str = ""
+	if (!add) {
+		dialog_letter = 0
+		str = (story_json[tue_story][scene].dialogs[dialog].text[languare])? story_json[tue_story][scene].dialogs[dialog].text[languare]: story_json[tue_story][scene].dialogs[dialog].text;
+	} else {
+		dialog_letter = dialog_text.length;
+		str = dialog_text
+		str += (story_json[tue_story][scene].dialogs[dialog].text_add[languare])? story_json[tue_story][scene].dialogs[dialog].text_add[languare]: story_json[tue_story][scene].dialogs[dialog].text_add;
+	}
     let regexp = /<(.*?)>/g;
     let matchAll = str.matchAll(regexp);
     matchAll = Array.from(matchAll);
     for (var i = 0; i < matchAll.length; i++) {
         let firstMatch = matchAll[i];
         str = str.replace( firstMatch[0] , story_json.parameters.variables[firstMatch[1]])
-    }
-    dialog_text = str
+    };
+	dialog_text = str
 } function go_story(choice) {
 	if (!story_json[tue_story][scene].dialogs[dialog].choice || choice) {
 		if (story_json[tue_story][scene].dialogs[dialog].go_to) {
@@ -334,6 +351,9 @@ function get_lang() {
 			dialog++;
 			if (story_json[tue_story][scene].dialogs[dialog].text){
 				if (story_json[tue_story][scene].dialogs[dialog].text[languare] == 'skip'){go_story()} 
+				else {creation_dialog();};
+			} else if (story_json[tue_story][scene].dialogs[dialog].text_add){
+				if (story_json[tue_story][scene].dialogs[dialog].text_add[languare] == 'skip'){go_story()} 
 				else {creation_dialog();};
 			} else { creation_dialog();}
 		} else {
@@ -352,10 +372,26 @@ function get_lang() {
         go_to(go)
     } else if (dialog > 0){
         dialog -= 1;
-        if (story_json[tue_story][scene].dialogs[dialog].text[languare] != 'skip'){
-            creation_dialog();
+		if (story_json[tue_story][scene].dialogs[dialog].text) {
+			if (story_json[tue_story][scene].dialogs[dialog].text[languare] == 'skip'){back_story()}
+			else {creation_dialog();};
+		}
+		else if (story_json[tue_story][scene].dialogs[dialog].text_add) {
+			if (story_json[tue_story][scene].dialogs[dialog].text_add[languare] == 'skip'){back_story()}
+			else {
+				if (story_json[tue_story][scene].dialogs[dialog].text_add[languare]){
+					dialog_text = dialog_text.replace(story_json[tue_story][scene].dialogs[dialog].text_add[languare], "")
+				} else {dialog_text = dialog_text.replace(story_json[tue_story][scene].dialogs[dialog].text_add, "")};
+				if (story_json[tue_story][scene].dialogs[dialog+1].text_add[languare]){
+					dialog_text = dialog_text.replace(story_json[tue_story][scene].dialogs[dialog+1].text_add[languare], "")
+				} else {dialog_text = dialog_text.replace(story_json[tue_story][scene].dialogs[dialog+1].text_add, "")};
+				creation_dialog();
+			};
+		}
+		else {
+			creation_dialog();
 			del_element("tue_choice")
-        } else {back_story()};
+		};
     } else {
         scene -= 1;
         if (scene < 0){ scene = 0; }

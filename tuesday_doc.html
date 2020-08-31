@@ -158,6 +158,7 @@ hr {border: solid 1px #cec8e3;}
         <a href="#color" style='text-decoration: none;'><div class='block'><span class='three_2'>color</div>
         <a href="#color_text" style='text-decoration: none;'><div class='block'><span class='three_2'>color_text</div>
         <a href="#text" style='text-decoration: none;'><div class='block'><span class='three_2'>text</div>
+		<a href="#text_add" style='text-decoration: none;'><div class='block'><span class='three_2'>text_add</div>
         <a href="#e_name" style='text-decoration: none;'><div class='block'><span class='three_2'>name</div>
         <a href="#go_to" style='text-decoration: none;'><div class='block'><span class='three_2'>go_to</div>
         <a href="#back_to" style='text-decoration: none;'><div class='block'><span class='three_2'>back_to</div>
@@ -885,6 +886,11 @@ hr {border: solid 1px #cec8e3;}
 					"ja":"<span class='comm'>Перевод текста на японский</span>",
 					"ru":"<span class='comm'>Перевод текста на русский</span>"
 				},
+				"<a href="#text_add" class='code_link'>text_add</a>": {
+					"en":"<span class='comm'>Перевод текста на англиский</span>",
+					"ja":"<span class='comm'>Перевод текста на японский</span>",
+					"ru":"<span class='comm'>Перевод текста на русский</span>"
+				},
 				"<a href="#e_name" class='code_link'>name</a>": "<span class='comm'>id персонажа из parameters/characters</span>"
 				"<a href="#e_art" class='code_link'>art</a>": [{
 					"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
@@ -1088,6 +1094,31 @@ hr {border: solid 1px #cec8e3;}
 <br>
 <p>В этом случае в японской локализации будет пропущена 2-я реплика</p>
 </div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="text_add"></a>
+<p class='title_name'>Text add</p>
+<br>
+<p>Аналог обычного элемента <b>"<a href="#text" >text</a>"</b> за исключением того что текст из данного элемента добавляеться к уже существующиму тексту в <b><a href="#text_panel" >text_panel</a></b>". Основной элемен для кинетических новеллы</p>
+<pre class='code_box'><code>	"text_add": {
+		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку кнопки</span>",
+		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на кнопке</span>,
+		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>цвет текста</span>",
+		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет в форматах</span>",
+		"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "<span class='comm'>отступ текстовой панели от нижнего края</span>",
+		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>лево</span>, <span class='comm'>право</span>, <span class='comm'>верх</span>, <span class='comm'>низ</span>] <span class='comm'>позиция отнасительна краев сцены</span>, 
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+		"<a href="#size_text" class='code_link'>size_text</a>": "<span class='comm'>Размер текста</span>",
+		"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>"
+		"en":"<span class='comm'>Boss</span>"
+	}
+</code></pre>
+
+</div>
+
 <br>
 <br>
 <br>
