@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tuesday js Документация</title>
+<style>
+ * {
+    font-family: Arial;
+    font-size: 14px;
+    border-collapse: collapse;
+    border: none;
+    margin: 0;
+    padding: 0;
+    border-spacing: 0px;
+    outline: none;
+}
+a:{text-decoration: underline;}
+a:link {color: #000;}
+a:visited {color: #000;}
+a:hover {color: #000;}
+a:active {color: #000;}
+#textbook{
+    height:100vh;
+    overflow-y:scroll;
+    overflow-x:auto;
+	padding:0px;
+}
+#bookmarks{
+    width:100%;
+    height:100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.border_t {
+    border-bottom: 1px solid #cec8e3;
+    border-left: 8px solid #cec8e3;
+}
+.shadow{box-shadow: 0px 2px 24px rgba(110,95,165,0.25);}
+.accordion {
+    width:100%;
+    outline: none;
+}
+.block:hover {
+    background-color: #cec8e3;
+}
+.panel {
+    display: none;
+}
+.element {
+	background-color: #cec8e3;
+	padding: 16px;
+	border-radius: 8px;
+}
+.block {
+    padding:8px;
+    padding-bottom:10px;
+}
+.block_open {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsNDBIMTAiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsMTMwSDEwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjQ2LDIyMEgxMCIvPg0KPC9zdmc+");
+    background-position: right 6px top 9px;
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+}
+.three_1 {margin-left: 16px;}
+.three_2 {margin-left: 24px;}
+.three_3 {margin-left: 32px;}
+#search_bookmarks {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA0OCA0OCI+CiAgPGNpcmNsZSBmaWxsPSdub25lJyBzdHJva2U9JyNjY2MnIHN0cm9rZS13aWR0aD0nNCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBjeD0iMzIiIGN5PSIxNyIgcj0iMTQiIC8+CiAgPHBhdGggZmlsbD0nbm9uZScgc3Ryb2tlPScjY2NjJyBzdHJva2Utd2lkdGg9JzQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgIGQ9Ik0gNCw0NSAyMiwyNyIvPgo8L3N2Zz4K");
+  background-position: 6px 6px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  width: calc(100% - 32px);
+  height: 32px;
+  padding-left: 32px;
+  border-bottom: 1px solid #cec8e3;
+  -webkit-appearance: none;
+}
+.code_box {
+	font-family: monospace;
+	color: #777;
+	padding: 10px;
+	margin-top: 10px;
+	background-color: #fff;
+	white-space: pre;
+	border-radius: 8px;
+}
+.text_name {
+	margin-top: 16px;
+	font-weight:bold ;
+}
+.comm {
+    color: #aae;
+}
+a.code_link {text-decoration: none; color: #777;}
+hr {border: solid 1px #cec8e3;}
+.title_name {font-size:30px;}
+.cls-1 {
+  fill: none;
+  stroke: #000;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  fill-rule: evenodd;
+}
+.svg_text {
+  text-anchor: middle;
+  cursor:pointer;
+}
+</style>
+</head>
+<body style='scrolling: no; overflow-y: hidden;' onload='start_hash()'>
+<table style="height:100vh; width:100vw;">
+<tbody>
+<tr>
+<td valign='top' align='left' style='width:256px; min-width:220px;'>
+<div id='bookmarks' class='shadow'>
+<input type="text" id="search_bookmarks" onkeyup="search_bookmarks()" placeholder="Search for element" title="Type in a name">
+<a href="#description" style='text-decoration: none;'><div class='block'>Description</div></a>
+<a href="#compatibility" style='text-decoration: none;'><div class='block'>Compatibility</div></a>
+<a href="#structure" style='text-decoration: none;'><div class='block'>Structure</div></a>
+<a href="#start_use" style='text-decoration: none;'><div class='block'>Starting</div></a>
+<div class="accordion "><a href="#parameters" style='text-decoration: none;'><div class='block block_open'>Parameters</div></a></div>
+<div class="panel border_b border_t">
+	<a href="#autosave" style='text-decoration: none;'><div class='block'><span class='three_1'>autosave</div></a>
+    <div class="accordion"><a href="#buttons" style='text-decoration: none;'><div class='block block_open'><span class='three_1'>buttons</div></a></div>
+	    <div class="panel border_b border_t">
+		<a href="#art" style='text-decoration: none;'><div class='block'><span class='three_2'>art</div></a>
+        <a href="#art_size" style='text-decoration: none;'><div class='block'><span class='three_2'>art_size</div></a>
+		<a href="#className" style='text-decoration: none;'><div class='block'><span class='three_2'>className</div></a>
+		<a href="#color" style='text-decoration: none;'><div class='block'><span class='three_2'>color</div></a>
+		<a href="#indent_text" style='text-decoration: none;'><div class='block'><span class='three_2'>indent_text</div></a>
+        <a href="#buttons_name" style='text-decoration: none;'><div class='block'><span class='three_2'>name</div></a>
+        <a href="#position" style='text-decoration: none;'><div class='block'><span class='three_2'>position</div></a>
+        <a href="#size" style='text-decoration: none;'><div class='block'><span class='three_2'>size</div></a>
+        <a href="#style" style='text-decoration: none;'><div class='block'><span class='three_2'>style</div></a>
+        <a href="#size_text" style='text-decoration: none;'><div class='block'><span class='three_2'>size_text</div></a>
+    </div>
+	<a href="#characters" style='text-decoration: none;'><div class='block'><span class='three_1'>characters</div></a>
+	<a href="#languares" style='text-decoration: none;'><div class='block'><span class='three_1'>languares</div></a>
+	<a href="#launch_story" style='text-decoration: none;'><div class='block'><span class='three_1'>launch_story</div></a>
+    <div class="accordion"><a href="#name_panel" style='text-decoration: none;'><div class='block block_open'><span class='three_1'>name_panel</div></a></div>
+    <div class="panel border_b border_t">
+		<a href="#className" style='text-decoration: none;'><div class='block'><span class='three_2'>className</div></a>
+		<a href="#indent_text" style='text-decoration: none;'><div class='block'><span class='three_2'>indent_text</div></a>
+		<a href="#position" style='text-decoration: none;'><div class='block'><span class='three_2'>position</div></a>
+        <a href="#size" style='text-decoration: none;'><div class='block'><span class='three_2'>size</div></a>
+		<a href="#size_text" style='text-decoration: none;'><div class='block'><span class='three_2'>size_text</div></a>
+        <a href="#style" style='text-decoration: none;'><div class='block'><span class='three_2'>style</div></a>
+    </div>
+	<a href="#sounds" style='text-decoration: none;'><div class='block'><span class='three_1'>sounds</div></a>
+    <div class="accordion "><a href="#text_panel" style='text-decoration: none;'><div class='block block_open'><span class='three_1'>text_panel</div></a></div>
+    <div class="panel border_b border_t">
+		<a href="#color" style='text-decoration: none;'><div class='block'><span class='three_2'>color</div></a>
+        <a href="#color_text" style='text-decoration: none;'><div class='block'><span class='three_2'>color_text</div></a>
+		<a href="#className" style='text-decoration: none;'><div class='block'><span class='three_2'>className</div></a>
+        <a href="#dialog_speed" style='text-decoration: none;'><div class='block'><span class='three_2'>dialog_speed</div></a>
+        <a href="#indent_bottom" style='text-decoration: none;'><div class='block'><span class='three_2'>indent_bottom</div></a>
+        <a href="#indent_text" style='text-decoration: none;'><div class='block'><span class='three_2'>indent_text</div></a>
+        <a href="#size" style='text-decoration: none;'><div class='block'><span class='three_2'>size</div></a>
+		<a href="#size_text" style='text-decoration: none;'><div class='block'><span class='three_2'>size_text</div></a>
+        <a href="#style" style='text-decoration: none;'><div class='block'><span class='three_2'>style</div></a>
+    </div>
+	<a href="#title" style='text-decoration: none;'><div class='block'><span class='three_1'>title</div></a>
+    <a href="#key" style='text-decoration: none;'><div class='block'><span class='three_1'>key</div></a>
+    <a href="#variables" style='text-decoration: none;'><div class='block'><span class='three_1'>variables</div></a>
+</div>
+<div class="accordion"><a href="#block" style='text-decoration: none;'><div class='block block_open'>Story block</div></a></div>
+<div class="panel border_b border_t">
+	<a href="#background_music" style='text-decoration: none;'><div class='block'><span class='three_1'>background_music</div></a>
+    <a href="#background_image" style='text-decoration: none;'><div class='block'><span class='three_1'>background_image</div></a>
+    <div class="accordion"><a href="#dialogs" style='text-decoration: none;'><div class='block block_open'><span class='three_1'>dialogs</div></a></div>
+    <div class="panel border_b border_t">
+        <a href="#back_to" style='text-decoration: none;'><div class='block'><span class='three_2'>back_to</div>
+        <a href="#color" style='text-decoration: none;'><div class='block'><span class='three_2'>color</div>
+        <a href="#color_text" style='text-decoration: none;'><div class='block'><span class='three_2'>color_text</div>
+		<a href="#sound" style='text-decoration: none;'><div class='block'><span class='three_2'>sound</div>
+		<a href="#sound_stop" style='text-decoration: none;'><div class='block'><span class='three_2'>sound_stop</div>
+        <a href="#e_text" style='text-decoration: none;'><div class='block'><span class='three_2'>text</div>
+		<a href="#text_add" style='text-decoration: none;'><div class='block'><span class='three_2'>text_add</div>
+        <a href="#e_name" style='text-decoration: none;'><div class='block'><span class='three_2'>name</div>
+        <a href="#go_to" style='text-decoration: none;'><div class='block'><span class='three_2'>go_to</div>
+        <a href="#back_to" style='text-decoration: none;'><div class='block'><span class='three_2'>back_to</div>
+        <a href="#e_variable" style='text-decoration: none;'><div class='block'><span class='three_2'>variables</div>
+        <a href="#event" style='text-decoration: none;'><div class='block'><span class='three_2'>event</div>
+        <div class="accordion"><a href="#e_art" style='text-decoration: none;'><div class='block block_open'><span class='three_2'>art</span></div></a></div>
+        <div class="panel border_b border_t">
+            <a href="#style" style='text-decoration: none;'><div class='block'><span class='three_3'><span class='three_2'></span>style</div></a>
+            <a href="#url" style='text-decoration: none;'><div class='block'><span class='three_3'><span class='three_2'></span>url</div></a>
+            <a href="#position" style='text-decoration: none;'><div class='block'><span class='three_3'><span class='three_2'></span>position</div></a>
+            <a href="#size" style='text-decoration: none;'><div class='block'><span class='three_3'><span class='three_2'></span>size</div></a>
+			<a href="#className" style='text-decoration: none;'><div class='block'><span class='three_3'></span><span class='three_2'></span>className</div></a>
+        </div>
+        <div class="accordion"><a href="#choice" style='text-decoration: none;'><div class='block block_open'><span class='three_2'>choice</div></a></div>
+        <div class="panel border_b border_t">
+            <a href="#go_to" style='text-decoration: none;'><div class='block'><span class='three_3'></span>go_to</div></a>
+            <a href="#position" style='text-decoration: none;'><div class='block'><span class='three_3'></span>position</div></a>
+            <a href="#size" style='text-decoration: none;'><div class='block'><span class='three_3'></span>size</div></a>
+            <a href="#className" style='text-decoration: none;'><div class='block'><span class='three_3'></span>className</div></a>
+			<a href="#e_variable" style='text-decoration: none;'><div class='block'><span class='three_3'></span>variables</div></a>
+			<a href="#sound" style='text-decoration: none;'><div class='block'><span class='three_2'>sound</div>
+			<a href="#sound_stop" style='text-decoration: none;'><div class='block'><span class='three_2'>sound_stop</div>
+            <a href="#text" style='text-decoration: none;'><div class='block'><span class='three_3'></span>text</div></a>
+            <a href="#color" style='text-decoration: none;'><div class='block'><span class='three_3'></span>color</div></a>
+            <a href="#art_size" style='text-decoration: none;'><div class='block'><span class='three_3'></span>art_size</div></a>
+            <a href="#art" style='text-decoration: none;'><div class='block'><span class='three_3'></span>art</div></a>
+            <a href="#color_text" style='text-decoration: none;'><div class='block'><span class='three_3'></span>color_text</div></a>
+        </div>
+    </div>
+    <div class="accordion"><a href="#legacy_choice" style='text-decoration: none;'><div class='block block_open'><span class='three_1'>legacy_choice</div></a></div>
+    <div class="panel border_b border_t">
+        <a href="#go_to" style='text-decoration: none;'><div class='block'><span class='three_2'>go_to</div></a>
+</div>
+</div>
+<div class="accordion "><a href="#system_Buttons" style='text-decoration: none;'><div class='block block_open'>System Buttons</div></a></div>
+<div class="panel border_b border_t">
+	<a href="#tue_load" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_load</div></a>
+	<a href="#tue_save" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_save</div></a>
+	<a href="#tue_home" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_home</div></a>
+	<a href="#tue_next" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_next</div></a>
+	<a href="#tue_back" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_back</div></a>
+	<a href="#tue_load_autosave" style='text-decoration: none;'><div class='block'><span class='three_1'>tue_load_autosave</div></a>
+</div>
+<div class="accordion "><a href="#function" style='text-decoration: none;'><div class='block block_open'>Function</div></a></div>
+<div class="panel border_b border_t">
+    <a href="#load_story" style='text-decoration: none;'><div class='block'><span class='three_1'>load_story(tip, url)</div></a>
+	<a href="#go_story" style='text-decoration: none;'><div class='block'><span class='three_1'>go_story()</div></a>
+	<a href="#back_story" style='text-decoration: none;'><div class='block'><span class='three_1'>back_story()</div></a>
+	<a href="#save_stag" style='text-decoration: none;'><div class='block'><span class='three_1'>save_stag(tip)</div></a>
+	<a href="#load_stag" style='text-decoration: none;'><div class='block'><span class='three_1'>load_stag(tip)</div></a>
+	<a href="#go_to" style='text-decoration: none;'><div class='block'><span class='three_1'>go_to(go)</div></a>
+</div>
+<div class="accordion "><a href="#events" style='text-decoration: none;'><div class='block block_open'>Events</div></a></div>
+<div class="panel border_b border_t">
+    <a href="#event_save" style='text-decoration: none;'><div class='block'><span class='three_1'>save</div></a>
+	<a href="#event_load" style='text-decoration: none;'><div class='block'><span class='three_1'>load</div></a>
+	<a href="#event_script_loaded" style='text-decoration: none;'><div class='block'><span class='three_1'>script_loaded </div></a>
+	<a href="#event_add" style='text-decoration: none;'><div class='block'><span class='three_1'>_add</div></a>
+	<a href="#event_set" style='text-decoration: none;'><div class='block'><span class='three_1'>_set</div></a>
+</div>
+<div class="accordion "><a href="#plugins" style='text-decoration: none;'><div class='block block_open'>Plugins</div></a></div>
+<div class="panel border_b border_t">
+    <a href="#touch_swipe" style='text-decoration: none;'><div class='block'><span class='three_1'>Touch Swipe</div></a>
+	<a href="#toast" style='text-decoration: none;'><div class='block'><span class='three_1'>Toast</div></a>
+</div>
+</td>
+<td valign='top' style='background-color:#efefff;'>
+<div id='textbook' align='center'>
+<div style='max-width:800px; margin-bottom:128px;' align='left'>
+<a id="description"></a>
+<div align='center' style='margin-top:32px; margin-bottom:32px;'>
+	<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+	  <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" d="M17,10.015H64c26.346,0,48,21.763,48,48.18s-21.654,48.18-48,48.18V102.36"/>
+	  <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" d="M42,108V10m22,0v98"/>
+	  <circle fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" cx="53" cy="108" r="11"/>
+	</svg>
+	<p style='font-size: 64px;'>TuesDay</p><p style='font-size:30px;'>visual novel engine</p>
+</div>
+<p><span class='three_2'></span><b>Tuesday</b> бесплатный движок с открытым исходным кодом для создания визуальных новелл, интерактивных историй и текстовых приключенческих игр. Написан на языке javaScript без использования сторонних библиотек. Присутствует поддержка инфраструктуры Apache Cordova для создания нативных приложений для мобильных устройств и настольных компьютеров. Движок использует стандартные элементы Html документа, как div и img, что делает возможным использование почти любых медиа-форматов поддерживаемых браузерами, включая векторную графику в формате svg, gif анимации и обширные возможности css стилей.</p>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<a id="compatibility"></a>
+<p><span class='text_name'>Совместимость</span></p>
+<br>
+<p>На данный момент есть проблемы с совместимостью в Internet Explorer и Microsoft Edge</p>
+<br>
+<p>Минимальные версии совместимых браузеров</p>
+<table style="border-spacing: 10px; border-collapse: separate;">
+<tbody>
+<tr>
+<td align='right'>Chrome</td>
+<td width="8">-</td>
+<td>3</td>
+</tr>
+<tr>
+<td align='right'>Chrome for Android</td>
+<td>-</td>
+<td>18</td>
+</tr>
+<tr>
+<td align='right'>Firefox</td>
+<td>-</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td align='right'>Firefox for Android</td>
+<td>-</td>
+<td>4</td>
+</tr>
+<tr>
+<td align='right'>Safari</td>
+<td>-</td>
+<td>4</td>
+</tr>
+<tr>
+<td align='right'>Safari on iOS</td>
+<td>-</td>
+<td>4</td>
+</tr>
+<tr>
+<td align='right'>Samsung Internet</td>
+<td>-</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td align='right'>Opera</td>
+<td>-</td>
+<td>10.5</td>
+</tr>
+<tr>
+<td align='right'>Opera for Android</td>
+<td>-</td>
+<td>11</td>
+</tr>
+<tr>
+<td align='right'>Android webview</td>
+<td>-</td>
+<td>37</td>
+</tr>
+<tr>
+<td align='right'>Internet Explorer</td>
+<td>-</td>
+<td style='color:#f00;'>No</td>
+</tr>
+<tr>
+<td align='right'>Microsoft Edge</td>
+<td>-</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>При локальном запуске может возникнуть проблема с защитой браузера <a href="#cross_domain_error" target="_blank"><b>cross domain web security</b> решение этой проблемы описано ниже. </a></p>
+<br>
+<p>Для портирования на мобильные устройства подойдет любая актуальная версия frameWorks: <a href="https://ionicframework.com/" target="_blank"><b>ionic</b></a>, <a href="https://cordova.apache.org/" target="_blank"><b>Cordova</b></a> и <a href="https://phonegap.com/" target="_blank"><b>PhoneGap</b></a></p>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<a id="structure"></a>
+<p><span class='text_name'>Структура</span></p>
+<br>
+<p>Проект состоит из 3-х основных элементов. Html файла (index.html) с подключенным к нему файлом движка tuesday.js и сценарией истории в json файле или let массиве.
+Отображение сценария на html странице происходит через элемент div с <b>id="tuesday"</b>. Параметры отображения можно задать в стиле css или любым другим подходящим способом. Все содержание будет отображаться с учетом параметров этого элемента.</p>
+<br>
+<p>Сценарий истории со всеми элементами указывается в структуре формата <b><a href="https://ru.wikipedia.org/wiki/JSON" target="_blank">JSON</a></b>. Этот формат может быть прочитан практически любым другим языком программирования или движком. (что дает возможность при необходимости перенести историю на другой движок)</p>
+<br>
+<p>Сценарий запускается функцией <b>load_story( 'тип', файл / массив )</b> с указанием типа данных (data или file) и их источник (адрес файла или массив)</p><br>
+<p><span class='three_2'></span><b>data</b>: указание переменной с массивом сценаря из кода javaScript</p>
+<p><span class='three_2'></span><b>file</b>: путь к json файлу со сценарием (может не работать локально, если в браузере включена <a href="#cross_domain_error" target="_blank">cross domain</a> защита)</p>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<a id="start_use"></a>
+<p><span class='text_name'>Начало использования</span></p>
+<p>Для работы подойдет любой текстовый редактор или IDE</p>
+<br>
+<p>Рекомендуемое программное обеспечения для использования:</p>
+<br>
+<p><b><span class='three_2'></span>MS Windows</b>: <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a></p>
+<p><b><span class='three_2'></span>Mac OS</b>: <a href="https://developer.apple.com/xcode/" target="_blank">Xcode</a></p>
+<br>
+<p>Базоая основа для отображения сценария состоит из 3-х элементов</p>
+<br>
+<p><span class='text_name'>1 Файл движка «tuesday.js»</span></p><p>Его можно скачать с <a href="https://github.com/Kirilllive/Tuesday" target="_blank">GitHub</a>. </p><p>Или указать прямую ссылку на файл <a href="https://kirilllive.github.io/Tuesday/tuesday.js" target="_blank">https://kirilllive.github.io/Tuesday/tuesday.js </a></p> 
+<pre class='code_box'>
+<code>
+<span class='comm'>&lt;&#33-- локально вместе с остальными файлами проекта --></span>
+&lt;script type="text/javaScript" src="tuesday.js"&gt;&lt;/script&gt;
+
+<span class='comm'>&lt;&#33-- ссылка на файл из GitHub --></span>
+&lt;script type="text/javaScript" src="https://kirilllive.github.io/Tuesday/tuesday.js"&gt;&lt;/script&gt;
+
+</code></pre>
+<br>
+<br>
+<p><span class='text_name'>2 Файл index.html</span> с элементам  id='tuesday' для отображения новеллы</p>
+<pre class='code_box'>
+<code>&lt;html&gt;
+	&lt;head&gt;
+	&lt;/head&gt;
+	<span class='comm'>&lt;&#33--После загрузки запускается функция load_story, с указанием файла или массив с историей--></span>
+	&lt;body onload="load_story('file','story.json')"&gt;
+		<span class='comm'>&lt;&#33--Область отображения--></span>
+		&lt;div id='tuesday' style='width:100%; height:90vh;'&gt;&lt;/div&gt;
+		<span class='comm'>&lt;&#33--путь к файлу движка, обязательно в конце страницы--></span>
+		&lt;script type="text/javaScript" src="https://kirilllive.github.io/Tuesday/tuesday.js"&gt;&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<br>
+<br>
+<p><span class='text_name'>3 Файл истории story.json</span></p>
+<pre class='code_box'>
+<code>{
+	"<a href="#parameters" class='code_link'>parameters</a>": {
+		"<a href="#text_panel" class='code_link'>text_panel</a>": {
+			"<a href="#size" class='code_link'>size</a>": ["95%","25%"],
+			"<a href="#color" class='code_link'>color</a>": "#9cf",
+			"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "32px",
+			"<a href="#size_text" class='code_link'>size_text</a>": "20px",
+			"<a href="#dialog_speed" class='code_link'>dialog_speed</a>": 20
+		},
+		"<a href="#name_panel" class='code_link'>name_panel</a>": {
+			"<a href="#size" class='code_link'>size</a>": ["0","48px"],
+			"<a href="#position" class='code_link'>position</a>": ["0","0","0px","0"],
+			"<a href="#size_text" class='code_link'>size_text</a>": "18px"
+		},
+		"<a href="#launch_story" class='code_link'>launch_story</a>": "main_menu",
+		"<a href="#languares" class='code_link'>languares</a>": ["en"],
+		"<a href="#buttons" class='code_link'>buttons</a>": [
+			{
+				"<a href="#name" class='code_link'>name</a>": "tue_back",
+				"<a href="#position" class='code_link'>position</a>": ["0","55%","0","8px"],
+				"<a href="#size" class='code_link'>size</a>": ["52px","52px"],
+				"<a href="#color" class='code_link'>color</a>": "#888",
+				"<a href="#size_text" class='code_link'>size_text</a>": "48px",
+				"<a href="#text" class='code_link'>text</a>":"<"
+			},{
+				"<a href="#name" class='code_link'>name</a>": "tue_next",
+				"<a href="#position" class='code_link'>position</a>": ["55%","0","0","8px"],
+				"<a href="#size" class='code_link'>size</a>": ["52px","52px"],
+				"<a href="#color" class='code_link'>color</a>": "#888",
+				"<a href="#size_text" class='code_link'>size_text</a>": "48px",
+				"<a href="#text" class='code_link'>text</a>":">"
+			}
+		]
+	},"<a href="#block" class='code_link'>main_menu</a>":[
+		{
+			"<a href="#dialogs" class='code_link'>dialogs</a>":[
+				{
+					"<a href="#choice" class='code_link'>choice</a>":[
+						{
+							"<a href="#go_to" class='code_link'>go_to</a>": "story",
+							"<a href="#position" class='code_link'>position</a>": ["50%","0","0","50%"],
+							"<a href="#size" class='code_link'>size</a>": ["128px","48px"],
+							"<a href="#color" class='code_link'>color</a>": "#888",
+							"<a href="#color_text" class='code_link'>color_text</a>": "#fff",
+							"<a href="#text" class='code_link'>text</a>": "Start"
+						}
+					]
+				}
+			]
+		}
+	],"<a href="#block" class='code_link'>story</a>": [
+		{
+			"<a href="#dialogs" class='code_link'>dialogs</a>":[
+				{
+					"<a href="#back_to" class='code_link'>back_to</a>": "main_menu",
+					"<a href="#text" class='code_link'>text</a>":"1234567890",
+					"<a href="#e_name" class='code_link'>name</a>":"numbers"
+				},{
+					"<a href="#go_to" class='code_link'>go_to</a>": "main_menu",
+					"<a href="#text" class='code_link'>text</a>":"ABCDEFZHIKLMNOPQRSTVX",
+					"<a href="#e_name" class='code_link'>name</a>":"letters"
+				}
+			]
+		}
+	]
+}
+</code></pre>
+<br>
+<a download="tuesday_base_example.zip" href="data:@file/zip;base64,UEsDBBQAAAAIAGN9G1HrsEui1gAAAEwBAAAKAAAAaW5kZXguaHRtbE1QwWrDMAy9F/oPxjC8wRZnxyV2YP+w+3Brp1anxsFWs/rvm9ShRAehJyS996Q8XbDb79gcyjtj1/qBCQhd93N1yZqsZIHrrNwMq0OwmYUBg7GaL/k3UYj5VfSATryLB6rOKQzijW8ZLEwMrBZUOARLlNFp0YeBPnpzAczNdwSDLfsHS775rOuXlnkHJ0/NVz35VnRKzme2V9MxwkiM8ug0J3cjeTaTKV3OUjxq7onG1Ej5BxEQESZXnYD89VBBkKtjWVQtwvlMUvaf/hfPM1By/eB+dwdQSwMEFAAAAAgAh30bUWIjIlrJAQAAXwcAAAoAAABzdG9yeS5qc29uzZVdT8IwFIavNfE/mBLvuBgDdBBj4mc0fosxRkKWMrqxuLXL1iUo4b97WhljLaM3XrgE6Hae7vQ972mZ7+3uw4USnOKYcJJmqL+/fCgDnMy4m2BKompABrPwm8DjIep1D1AT2fA9aiqMxyKWAoQaPc9HajSkE0K5O2acs1hQbTuZAaXnccVKBGFbG4hJiCMWuFlCyAQg2yrjizUWUVBplmOBmI6TzHQ1CctCHjK6wuQHSDEabV13S7ywZlkRzqk3dTPO0i/BxjikbkxojqoUDXKckkxmJ7SSEI1zqCGVscoyFJllHUQinhN3jL3PIs92sV1hsxypxdFr2JVGwo9K6o3hOI6SXy+f9GMj9QugY1SNLZom3RQmGnUXmv+t7hNVd3k7gmHZaetd1R+W1HzjVsoqjMLqmqYs9IicsiMvBdQmBMzlTMiTLa/qMzhirTsCd1qd691p2VDOut1ttspMr3xr+L5vnFLAA45TjurhhRIqDTaQQCiRQjQqDps/bgVxmoC32ikm22IpGGxod7qHR07PUkqk7lRE83gs/pV0CjZ48daAGTOenp1fXF59XN/c3t0/PD49vwxe395NySPCuZbcXOblExj9AFBLAQI/ABQAAAAIAGN9G1HrsEui1gAAAEwBAAAKACQAAAAAAAAAIAAAAAAAAABpbmRleC5odG1sCgAgAAAAAAABABgAlHk6m2981gGUeTqbb3zWAYql8AQlddYBUEsBAj8AFAAAAAgAh30bUWIjIlrJAQAAXwcAAAoAJAAAAAAAAAAgAAAA/gAAAHN0b3J5Lmpzb24KACAAAAAAAAEAGACQgn7Eb3zWAZCCfsRvfNYBiqXwBCV11gFQSwUGAAAAAAIAAgC4AAAA7wIAAAAA"><b><p>Download base example </p></b></a>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<br>
+<a id="cross_domain_error"></a>
+<p><span class='text_name'>Возможные проблемы запуска и их решения</span></p>
+<br>
+<p>Если сценарий не отобразился, то возможна есть проблема c ограничением cross domain web security. это можно решить несколькими способами</p>
+<br>
+<p><b>1. Решение</b> - Перенести содержимое из json файла в index.html как массив javaScript</p>
+<pre class='code_box'>
+<code>&lt;html&gt;
+	&lt;head&gt;
+	&lt;/head&gt;
+	<span class='comm'>&lt;&#33--Изменить значение load_story c ('file','story.json') на ('data',story) --></span>
+	&lt;body onload="load_story('data',story)"&gt;
+	&lt;div id='tuesday' style='width:100%; height:90vh;'&gt;&lt;/div&gt;
+		<span class='comm'>&lt;&#33--Добавить тег script перед tuesday.js --></span> ;
+		&lt;script&gt;
+			<span class='comm'>&lt;&#33-- создать массив let --></span> ;
+			let story = <span class='comm'>&lt;&#33--вставить содержимое из story.json --></span> ;
+		&lt;/script&gt;
+		&lt;script type="text/javaScript" src="https://kirilllive.github.io/Tuesday/tuesday.js"&gt;&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<br>
+<a download="tuesday_base_example_array.zip" href="data:@file/zip;base64,UEsDBBQAAAAIAIlNH1FinD5HgwIAACIHAAAKAAAAaW5kZXguaHRtbMVVa2/TMBT9XCT+Q+RpKkilSbsV+kgrjZdAvNmEEKiK3MRpvDl2lNyUhmn/Hdup55DRTXxapdb2Paf3Hp/rxH4CKVs8fODIj58QHO3meg0UGFmclaSIcOW7emm4boPsr0RUOYIzgaM5Ur9BASKvHnUjDLjbc/TqMWrmjujGodG8C3X2ruRUjMy7seDwJMYpZdX0JKeYzZxfNIJkOvC8w5mTELpOYDrxNsmsu/BdmUZm7XT8IsxpBg5UGZkjIFtwz/EG11GkKR1GoFbizJ1LHemgDOc4JUDyAk1NsKP/H2SYE2aiOlzQ30QGfqLJ6BD10FD+LnvXaCiYyCWMDiZhjGyc8ohwCFYCQKQKPxpmW43brIGqqLCh9xcWSQPEOigyQiIJD70dcmUoiEv5t0n1pNDjcbZtKs1EQYEKbgj1V3LUbLlH2UAluVGe4ZKHSd1uxUox5UFKeIkaFL4ucU4KXY5wWwGtSgDBNWCK6i3YramcUJJghcMLnXLfFkaqJXpmN9uyYqR9V4MhtBs3Ho9Nkfb+tYlNsI4j33giTdmjnUvmPu1G971oX1jtu8lSjba/jXZOTYcuW4ezsJAFtbRE0JBY1OKGsRYBCKWvPj5W4E2XvIZLemVMaBs1GMq9ts78HWZZ7NqwgziOWwQDnQLOARnIemfss0EbsgGjCJkn5r9tVU+Csq39sLWESiOOjkdPn40nnkEbBxPxMl2pl55B7Om1nbmzxMnzFy9fvf7x5u279x8+fvr85evp2bfv/6rGCICpttceu7yaqcF367d349a4/S3vFHk4RwlAVkxd94LmlDFGN6S/ppCUqz4V7u4uc6Ee++cFWrTq+K66zeTCd/Xd+AdQSwECPwAUAAAACACJTR9RYpw+R4MCAAAiBwAACgAkAAAAAAAAACAAAAAAAAAAaW5kZXguaHRtbAoAIAAAAAAAAQAYAD4wzSVif9YBPjDNJWJ/1gGKpfAEJXXWAVBLBQYAAAAAAQABAFwAAACrAgAAAAA="><b><p>Download base example array</p></b></a>
+<br>
+<br>
+<p><b>2. Решение</b> - В некоторых браузерах можно отключить защиту cross domain (не рекомендуется)</p>
+<br>
+<p><span class='text_name'>FireFox</span> - в адресной строке введите about:config в появившехся настройках найдите пункт security.fileuri.strict_origin_policy и установить ему значение false для отключения или true для включения</p>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<p style='font-size:30px;' align='center'>Параметры проекта</p>
+<br>
+<a id="parameters"></a>
+<p>Базовые параметры и настройки всего проекта задаются в разделе "parameters". От них зависит внешний вид проекта по умолчанию и некоторый функционал. </p>
+<pre class='code_box'><code>{
+    "parameters": {
+		"<a href="#autosave" class='code_link'>autosave</a>": <span class='comm'>настройка автосохранения прогресса true / false</span>,
+		"<a href="#buttons" class='code_link'>buttons</a>": [<span class='comm'>Кнопки интерфейса и их параметры</span>],
+		"<a href="#characters" class='code_link'>characters</a>" : [<span class='comm'>Глобальные настройки отображения персонажей</span>],
+		"<a href="#languares" class='code_link'>languares</a>": [<span class='comm'>коды языков на которые переведен проект</span>],
+		"<a href="#launch_story" class='code_link'>launch_story</a>": "<span class='comm'>id блока с которого начинается сценарий</span>",
+		<span class='comm'>Параметры панели для отображения аватара и имени персонажа</span>
+		"<a href="#name_panel" class='code_link'>name_panel</a>": {
+			"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку</span>",
+			"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>Размер панели</span>,
+			"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+			"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Цвет текста</span>",
+			"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет панели</span>",
+			"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "<span class='comm'>отступ текстовой панели от нижнего края</span>",
+			"<a href="#position" class='code_link'>position</a>": [<span class='comm'>лево</span>, <span class='comm'>право</span>, <span class='comm'>верх</span>, <span class='comm'>низ</span>] <span class='comm'>расположение элемента относительно text panel</span>, 
+			"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+			"<a href="#size_text" class='code_link'>size_text</a>": "<span class='comm'>Размер текста</span>",
+			"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>"
+		},
+		<span class='comm'>Параметры панели для отображения текстов</span>
+		"<a href="#text_panel" class='code_link'>text_panel</a>": {
+			"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+			"<a href="#color" class='code_link'>color": "<span class='comm'>цвет в панели</span>",
+			"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Цвет текста</span>"
+			"<a href="#dialog_speed" class='code_link'>dialog_speed</a>": <span class='comm'>Скорость появления символов диалога</span>,
+			"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "<span class='comm'>отступ текстовой панели от нижнего края</span>",
+			"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+			"<a href="#size_text" class='code_link'>size_text</a>": "<span class='comm'>Размер текста</span>",
+			"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>",
+		},
+		"<a href="#title" class='code_link'>title</a>": "<span class='comm'>Название проекта</span>",
+		"<a href="#key" class='code_link'>key</a>": [<span class='comm'>Указание кнопок управления для клавиатуры</span>],
+		"<a href="#variables" class='code_link'>variables</a>": [<span class='comm'>набор глобальных переменных</span>],
+}
+</code></pre>
+<br>
+<br>
+
+<div class='element' align='center'>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="500" viewBox="16 0 800 500">
+    <path class="cls-1" d="M67,406a18.9,18.9,0,1,1-18.9,18.9A18.9,18.9,0,0,1,67.95,406.45Z"/>
+    <path class="cls-1" d="M733.05,406.45a18.9,18.9,0,1,1-18.9,18.9A18.9,18.9,0,0,1,733.05,406.45Z"/>
+    <path class="cls-1" d="M67.95,26.35a18.9,18.9,0,1,1-18.9,18.9A18.9,18.9,0,0,1,67.95,26.35Z"/>
+    <path class="cls-1" d="M76,53H59m0-16H76M59,45H76"/>
+    <path class="cls-1" d="M69.806,436.05L59.56,425.8l10.246-10.246"/>
+    <path class="cls-1" d="M730.294,436.05L740.54,425.8l-10.246-10.246"/>
+
+    <path class="cls-1" d="M407,142.911a56.164,56.164,0,1,1-56.164,56.164A56.163,56.163,0,0,1,407,142.911ZM300.534,353.5c0-41.355,47.668-74.88,106.47-74.88s106.47,33.525,106.47,74.88"/>
+    <path class="cls-1" d="M95,373H199V476H95V373Z"/>
+    <path class="cls-1" d="M199,373H704V476H199V373Z"/>
+    <path class="cls-1" d="M315,124v14H300"/>
+    <path class="cls-1" d="M261.717,84.667l49.5,49.5"/>
+    <path class="cls-1" d="M580.1,141.306h36.2a15.5,15.5,0,0,1,15.5,15.5v6.2a15.5,15.5,0,0,1-15.5,15.5H580.1a15.5,15.5,0,0,1-15.5-15.5v-6.2A15.5,15.5,0,0,1,580.1,141.306Z"/>
+    <path class="cls-1" d="M511.7,200.106h48.2a15.5,15.5,0,0,1,15.5,15.5v6.2a15.5,15.5,0,0,1-15.5,15.5H511.7a15.5,15.5,0,0,1-15.5-15.5v-6.2A15.5,15.5,0,0,1,511.7,200.106Z"/>
+    <path class="cls-1" d="M634.1,234.906h48.2a15.5,15.5,0,0,1,15.5,15.5v6.2a15.5,15.5,0,0,1-15.5,15.5H634.1a15.5,15.5,0,0,1-15.5-15.5v-6.2A15.5,15.5,0,0,1,634.1,234.906Z"/>
+    <path class="cls-1" d="M595.8,351.706v-173.2h8.4v173.2"/>
+    <path class="cls-1" d="M592.2,273.306H543a12,12,0,0,1-12-12v-20.4"/>
+    <path class="cls-1" d="M592.2,264.906H549c-6.627,0-8.4-1.772-8.4-8.4v-18"/>
+    <path class="cls-1" d="M604.2,308.106h49.2a12,12,0,0,0,12-12v-20.4"/>
+    <path class="cls-1" d="M604.2,299.706h43.2c6.627,0,8.4-1.772,8.4-8.4v-18"/>
+    <path class="cls-1" d="M200.1,142.306h36.2a15.5,15.5,0,0,1,15.5,15.5v6.2a15.5,15.5,0,0,1-15.5,15.5H200.1a15.5,15.5,0,0,1-15.5-15.5v-6.2A15.5,15.5,0,0,1,200.1,142.306Z"/>
+    <path class="cls-1" d="M131.7,255.106h48.2a15.5,15.5,0,0,1,15.5,15.5v6.2a15.5,15.5,0,0,1-15.5,15.5H131.7a15.5,15.5,0,0,1-15.5-15.5v-6.2A15.5,15.5,0,0,1,131.7,255.106Z"/>
+    <path class="cls-1" d="M254.1,195.906h48.2a15.5,15.5,0,0,1,15.5,15.5v6.2a15.5,15.5,0,0,1-15.5,15.5H254.1a15.5,15.5,0,0,1-15.5-15.5v-6.2A15.5,15.5,0,0,1,254.1,195.906Z"/>
+    <path class="cls-1" d="M215.8,352.706v-173.2h8.4v173.2"/>
+    <path class="cls-1" d="M212.2,328.306H163a12,12,0,0,1-12-12v-20.4"/>
+    <path class="cls-1" d="M212.2,319.906H169c-6.627,0-8.4-1.772-8.4-8.4v-18"/>
+    <path class="cls-1" d="M224.2,269.106h49.2a12,12,0,0,0,12-12v-20.4"/>
+    <path class="cls-1" d="M224.2,260.706h43.2c6.627,0,8.4-1.772,8.4-8.4v-18"/>
+    <path class="cls-1" d="M592,110L602,120l10-10"/>
+    <path class="cls-1" d="M603,75v40"/>
+    <path class="cls-1" d="M57,375L67,385l10-10"/>
+    <path class="cls-1" d="M68,260v120"/>
+    <path class="cls-1" d="M57,90L67,80,78,90"/>
+    <path class="cls-1" d="M68,205v-120"/>
+    <text onclick="window.location.href='#background_image'" class="svg_text" x="602" y="54"><tspan x="602">Background image</tspan></text>
+    <text onclick="window.location.href='#text_panel'" class="svg_text" x="289" y="432"><tspan x="289">Text panel</tspan></text>
+    <text onclick="window.location.href='#name_panel'" class="svg_text" x="146" y="416"><tspan x="146">Name</tspan><tspan x="146" dy="28">panel</tspan></text>
+    <text onclick="window.location.href='#buttons'" class="svg_text" x="70" y="241"><tspan x="70">Buttons</tspan></text>
+    <text onclick="window.location.href='#e_art'" class="svg_text" x="234" y="76"><tspan x="234">Art</tspan></text>
+</svg>
+</div>
+<br>
+<br>
+<div class='element'>
+<a id="autosave"></a>
+<p class='title_name'>AutoSave</p>
+<br>
+<p>Параметр отвечает за автоматическое сохранение прогресса сценария и значений из массива <b><a href="#variables" >variables</a></b> на каждом диалоге. Это позволит продолжить историю с момента завершения последней сессии.</p>
+<pre class='code_box'><code>	"autosave": <span class='comm'>настройка автосохранения прогресса true / false</span>,</code></pre>
+<br>
+<p>За загрузку автосохранения отвечает атрибут "<b><a href="#tue_load_autosave" >tue_load_autosave</a></b>" указанный  в "<b><a href="#buttons_name" >name</a>"</b> или "<b><a href="#go_to" >go_to</a>"</b></p>
+<br>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="buttons"></a>
+<p class='title_name'>Buttons</p>
+<br>
+<p>Набор кнопок и параметров для основного интерфейса (управление диалогами, сохранения и загруска). Они не будут отображаться в блоке указанном в <b><a href="#launch_story" >launch_story</a></b>.</p>
+<pre class='code_box'><code>	"buttons": [{
+		"<a href="#buttons_name" class='code_link'>name</a>": "<span class='comm'>Название функционала или id идентификатор кнопки</span>",
+		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку кнопки</span>",
+		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на кнопке</span>,
+		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>лево</span>, <span class='comm'>право</span>, <span class='comm'>верх</span>, <span class='comm'>низ</span>] <span class='comm'>положение относительно краев сцены</span>, 
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет фона</span>",
+		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>цвет текста</span>",
+		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+		"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>",
+		"<a href="#indent_text" class='code_link'>indent_text</a>": "<span class='comm'>отступы для текста</span>",
+		"<a href="#size_text" class='code_link'>size_text</a>": "<span class='comm'>Размер текста</span>"
+	}]</code></pre>
+	
+	<br>
+	<a id="buttons_name"></a>
+	<p><b>"name"</b> - идентификатор кнопки (аналог <a href="https://www.w3schools.com/html/html_id.asp" target="_blank">атрибута id</a> в html), он определяет функционал кнопки, названия и описание всех доступных кнопок в разделе <a href="#system_Buttons">System Buttons</a></p>
+	<pre class='code_box'><code>		"name": "<span class='comm'>Название функционала или id кнопки</span>",</code></pre>
+	<br>
+	<p>Добавить сторонний функционал кнопкам по средствам javaScript,</p>
+	<pre class='code_box'><code>document.getElementById('<span class='comm'>/** name кноки */</span>').onclick = function(){ '<span class='comm'>/** функционал кнопки */</span> }</code></pre>
+	<br>
+	<p>В разделе "buttons" нужно добавьте все кнопки для интерфейса, добавив их можно в массив в фигурных скобках со всеми необходимыми элементами через запятую.</p>
+<pre class='code_box'><code>"buttons": [{		
+		<span class='comm'>"параметры первой кнопки"</span>
+	},{		
+		<span class='comm'>"параметры второй кнопки"</span>
+	}]
+</code></pre>
+<br>
+<p><b>Working example "buttons"</b></p>
+<pre class='code_box'><code>"buttons": [
+			{
+				"<a href="#buttons_name" class='code_link'>name</a>": "tue_back",
+				"<a href="#position" class='code_link'>position</a>": ["0","55%","0","8px"],
+				"<a href="#size" class='code_link'>size</a>": ["52px","52px"],
+				"<a href="#color" class='code_link'>color</a>": "#888",
+				"<a href="#size_text" class='code_link'>size_text</a>": "48px",
+				"<a href="#text" class='code_link'>text</a>":"<"
+			},{
+				"<a href="#buttons_name" class='code_link'>name</a>": "tue_next",
+				"<a href="#position" class='code_link'>position</a>": ["55%","0","0","8px"],
+				"<a href="#size" class='code_link'>size</a>": ["52px","52px"],
+				"<a href="#color" class='code_link'>color</a>": "#888",
+				"<a href="#size_text" class='code_link'>size_text</a>": "48px",
+				"<a href="#text" class='code_link'>text</a>":">"
+			},{
+				"<a href="#buttons_name" class='code_link'>name</a>": "tue_home",
+				"<a href="#position" class='code_link'>position</a>": ["50%","0","0","8px"],
+				"<a href="#size" class='code_link'>size</a>": ["52px","52px"],
+				"<a href="#color" class='code_link'>color</a>": "#888",
+				"<a href="#size_text" class='code_link'>size_text</a>": "48px",
+				"<a href="#style" class='code_link'>style</a>": "transform: translateX(-50%);",
+				"<a href="#text" class='code_link'>text</a>":"M"
+			}
+		]
+    },
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="characters"></a>
+<p class='title_name'>Characters</p>
+<br>
+<p>Глобальные параметры для отображения персонажей в <b>"<a href="#name_panel">name_panel</a>"</b>. Указав id идентификатор персонажа, и нужные для него параметры, включая локализацию. В дальнейшем если указать этот id в параметре диалога <b>"<a href="#e_name">name</a>"</b> то все значения по этому персонажу будут браться из этого массива. За исключением если в <b>"<a href="#name_panel">name_panel</a>"</b> самого диалога уже заданы свои параметры.</p>
+<pre class='code_box'><code>	"characters": {
+		"<span class='comm'>id персонажа</span>": {
+			"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет фона панели с именем персонажа name panel</span>",
+			"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Цвет текста имени name panel</span>",
+			"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css для name panel</span>",
+			"ru": "<span class='comm'>локализация имени</span>",
+			"en": "<span class='comm'>локализация имени</span>",
+			"ja": "<span class='comm'>локализация имени</span>"
+		}</code></pre>
+<br>
+<p><b>Working example "characters"</b></p>
+<pre class='code_box'><code>	"characters": {
+		"boss": {
+			"className": "negativ",
+			"ru": "Босс",
+			"en": "Boss",
+			"ja": "ボス"
+		},"doctor": {
+			"className": "girl",
+			"ru": "Врачь",
+			"en": "Doctor",
+			"ja": "医師"
+		},"assis": {
+			"className": "assistent",
+			"ru": "Assistant 5000",
+			"en": "Assistant 5000",
+			"ja": "Assistant 5000"
+		}
+	},
+</code></pre>
+<br>
+<p>В случае изменений персонажа не приодеться вносить изменять во всем сценарии, достаточно будет только внести изменения в этот массив.</p>
+<br>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="languares"></a>
+<p class='title_name'>Languares</p>
+<br>
+<p>Массив поддерживаемых языков проекта, по умолчанию установлен английский "en". Движок на старте автоматически определяет язык браузера и при наличии подходящей локализации автоматически переключается на нее. В ином случае язык по умолчанию будет английский если он доступен, если нет то на первый язык в этом списке. Значения язоковых диалектов (как en_GB и en_US) не поддерживаються.</p>
+<pre class='code_box'><code>	"languares": [<span class='comm'>коды языков доступных в проекте</span>],</code></pre>
+<br>
+<p>Все коды языков можно узнать на: <a href="https://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">"HTML Language Code Reference"</a></p>
+<br>
+<p><b>Working example "languares"</b></p>
+<pre class='code_box'><code>	"languares": ["en","ja","ru"],</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="launch_story"></a>
+<p class='title_name'>Launch story</p>
+<br>
+<p>Id имя блока с которого начинается сценарий (к примеру блок с главным меню). Если данный параметр не указан, то сценарий начнется с первого по списку блока.</p>
+<pre class='code_box'><code>	"launch_story": "<span class='comm'>id блока с которой начинается сценария</span>",</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="name_panel"></a>
+<p class='title_name'>Name panel</p>
+<br>
+<p>Панель для отображения имени и изображения персонажа. его расположение отнасительно от параметров текстовой панели <b><a href="#text_panel" >text_panel</a></b></p>
+<pre class='code_box'><code>	"name_panel": {
+		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на аватар персонажа или фотоновый рисунок</span>",
+		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>Размер изображения</span>,
+		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Цвет текста</span>",
+		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет в элемента</span>",
+		"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "<span class='comm'>отступ текстовой панели от нижнего края</span>",
+		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>лево</span>, <span class='comm'>право</span>, <span class='comm'>верх</span>, <span class='comm'>низ</span>] <span class='comm'>позиция отнасительна краев text_panel</span>, 
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+		"<a href="#size_text" class='code_link'>size_text</a>": "<span class='comm'>Размер текста</span>",
+		"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>"
+	},</code></pre>
+<br>
+<p><b>Working example "name_panel"</b></p>
+<pre class='code_box'><code>	"name_panel": {
+		"<a href="#size" class='code_link'>size</a>": ["0","48px"],
+		"<a href="#position" class='code_link'>position</a>": ["0","0","0px","0"],
+		"<a href="#size_text" class='code_link'>size_text</a>": "18px"
+	},
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="text_panel"></a>
+<p class='title_name'>Text panel</p>
+<br>
+<p>Основные настройки панели для отображения текстов в сцене</p>
+<pre class='code_box'><code>	"text_panel": {
+		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет элемента</span>",
+		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>цвет текста</span>"
+		"<a href="#dialog_speed" class='code_link'>dialog_speed</a>": <span class='comm'>скорость появления символов диалога</span>,
+		"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "<span class='comm'>отступ текстовой панели от нижнего края</span>",
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+		"<a href="#size_text" class='code_link'>size_text</a>": "<span class='comm'>размер текста</span>",
+		"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>",
+	},</code></pre>
+<br>
+<a id="dialog_speed"></a>
+<p><b>"dialog_speed"</b>Скорость появления текста в текстовой панели, задаеться в миллисекундах, где 0 - текст пояляеться сразу, 1000 - один символ в секунду.</p>
+<pre class='code_box'><code>	"dialog_speed": <span class='comm'>Скорость появления символов диалога</span>,</code></pre>
+<br>
+<a id="indent_bottom"></a>
+<p><b>"indent_bottom"</b>отступ текстовой панели от нижнего края сцены по умолчанию он равен 0.</p>
+<pre class='code_box'><code>	"indent_bottom": "<span class='comm'>отступ текстовой панели от нижнего края</span>",</code></pre>
+<br>
+<p><b>Working example "text_panel"</b></p>
+<pre class='code_box'><code>	"text_panel": {
+		"<a href="#size" class='code_link'>size</a>": ["95%","25%"],
+		"<a href="#color" class='code_link'>color</a>": "#9cf",
+		"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "32px",
+		"<a href="#size_text" class='code_link'>size_text</a>": "20px",
+		"<a href="#dialog_speed" class='code_link'>dialog_speed</a>": 20
+	},
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="sounds"></a>
+<p class='title_name'>sounds</p>
+<br>
+<p>Массив звуковых файлов, используемых в проекте. Из-за специфики поддержки браузером аудиоформатов (mpeg или ogg) нужно указывать файл без расширения, движок сам определит поддерживаемый формат .ogg или .mp3. В проекте можно использовать только mp3, его можно воспроизводить практически во всех браузерах. Но в случае, если это не так, рекомендуется продублировать аудиоданные в формате .ogg с тем же именем и в той же папке.</p>
+<pre class='code_box'><code>	"sounds": {
+			"id_sound_1":"<span class='comm'>Путь к файлу без расширение</span>",
+			"id_sound_2":"<span class='comm'>Путь к файлу без расширение</span>",
+		}
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="title"></a>
+<p class='title_name'>Title</p>
+<br>
+<p>Название проекта для отображения во вкладке страницы и других заголовках.</p>
+<pre class='code_box'><code>	"title": "<span class='comm'>Название проекта</span>",</code></pre>
+<br>
+<p>Поддерживается локализация для указанных языков в параметре <b><a href="#languares" >languares</a></b>.</p>
+<pre class='code_box'><code>	"title": {
+			"en":"<span class='comm'>Название на английского языка</span>",
+			"ja":"<span class='comm'>Название на японского языка</span>",
+			"ru":"<span class='comm'>Название на русского языка</span>"
+		}
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="key"></a>
+<p class='title_name'>Key</p>
+<br>
+<p>Присвоение функционала клавишам клавиатуры через идентификатора клавиш <a href="https://www.w3schools.com/tags/ref_language_codes.asp" target="_blank">event.code</a>.</p>
+<pre class='code_box'><code>	"key": "<span class='comm'>настройки управления с клавиатуры</span>",</code></pre>
+<br>
+<p><b>load_autosave</b> - Продолжить с последнего автосохранения</p>
+<p><b>launch_story</b> - Перейти в блок указанный в parameters/launch_story</p>
+<p><b>next</b> - следующая реплика</p>
+<p><b>back</b> - предыдущая реплика</p>
+<p><b>save</b> - Сохранить стадию сценария</p>
+<p><b>load</b> - Загрузить последнюю стадию сценария (не автосохранение)</p>
+<br>
+<p><b>Working example "key"</b></p>
+<pre class='code_box'><code>	"key": {
+		"load_autosave": "KeyC",
+		"launch_story": "Escape",
+		"next": "ArrowRight",
+		"back": "ArrowLeft",
+		"save": "KeyS",
+		"load": "KeyL"
+	},
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="variables"></a>
+<p class='title_name'>Variables</p>
+<br>
+<p>Массив переменных для хранения данных. При сохранение прогресса сценария эти данные также сохраняются. </p>
+<p>Эти значения используются в элементах сценарии, таких как <b>"<a href="#variables" >variables</a>"</b> для изменения значения и в ходе сценарии и <b>"<a href="#legacy_choice" >legacy_choice</a>"</b> для автоматического определения следующего блока сценария. </p>
+<pre class='code_box'><code>	"variables": [<span class='comm'>набор глобальных переменных использованных в проекте</span>],</code></pre>
+<br>
+<p><b>Working example "variables"</b></p>
+<pre class='code_box'><code>	"variables": [
+		"experience_points": 80,
+		"magic_points": 100,
+		"health_points": 100
+	],
+</code></pre>
+<br>
+<p>Значения переменных можно выводить в <b><a href="#text_panel" >text_panel</a></b> укажите ее имя в угловых скобках</p>
+<pre class='code_box'><code>{
+	"parameters": {
+		<span class='comm'>другие значения</span>
+		"<a href="#variables" class='code_link'>variables</a>": [
+			"health_points": 100
+		],
+	}
+	"example_block_1": [{
+		"<a href="#dialogs" class='code_link'>dialogs</a>": [{
+			"text": "You have &lt;<span class='comm'>health_points</span>&gt; health points left"
+		}]
+	}]
+}</code></pre>
+<p>В этом случае появится фраза "You have 100 health points left"</p>
+<br>
+</div>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<p style='font-size:30px;' align='center'>Сценарий истории</p>
+<br>
+<a id="block"></a>
+<p>Структура сценария разделена на несколько элементов. Основным элементом является "блок" это часть повествования или сюжетная линия, и их последовательность будет определяться выборами пользователя (выбор идти налево или направо может означать, что игрок продолжено продолжить текущий блок сюжета или перейдет к другому блоку с альтернативным развития сюжетом). Блоки состоят из сцен с набором графических и звуковых элементов. И уже внутри сцены указывается последовательность диалогов и других элементов как выбор "<b><a href="#text_panel" >choice</a></b>" и "<b><a href="#go_to" >go_to</a></b>", которые могут привести к другому блоку.</p>
+<br>
+<pre class='code_box'><code>"<span class='comm'>Блок 1</span>": [
+	{
+		<span class='comm'>Сцена 1</span>:[
+			{<span class='comm'>Диалог 1</span>},
+			{<span class='comm'>Диалог 2</span>},
+			{<span class='comm'>Диалог 3</span>}
+		]
+	},{
+		<span class='comm'>Сцена 2</span>:[
+			{<span class='comm'>Диалог 1</span>},
+			{<span class='comm'>Диалог 2</span>},
+			{<span class='comm'>Диалог 3</span>}
+		]
+	}
+],
+<span class='comm'>Блок 2</span>": [
+	{	
+		<span class='comm'>Сцена 1</span>:[
+			{<span class='comm'>Диалог 1</span>},
+			{<span class='comm'>Диалог 2</span>},
+			{<span class='comm'>Диалог 3</span>}
+		]
+	},{
+		<span class='comm'>Сцена 2</span>:[
+			{<span class='comm'>Диалог 1</span>},
+			{<span class='comm'>Диалог 2</span>},
+			{<span class='comm'>Диалог 3</span>}
+		]
+	}
+]
+</code></pre>
+<br>
+<p>Полная структура сюжетного блока со всеми элементами</p>
+<pre class='code_box'><code>"<span class='comm'>Id блока</span>": [
+	{
+		"<a href="#background_music" class='code_link'>background_music</a>": "<span class='comm'>путь к аудио файлу без расширения только его имя</span>"
+		"<a href="#background_image" class='code_link'>background_image</a>": "<span class='comm'>путь к файлу с изображением</span>"
+		"<a href="#dialogs" class='code_link'>dialogs</a>":[
+			{
+				"<a href="#back_to" class='code_link'>back_to</a>": "<span class='comm'>id предыдущего блока</span>",
+				"<a href="#event" class='code_link'>event</a>": "<span class='comm'>название события для javaScript</span>"
+				"<a href="#variables" class='code_link'>variables</a>": [
+					["<span class='comm'>название переменной</span>", "<span class='comm'>операция с переменной</span>", <span class='comm'>значение</span>]
+				],
+				"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет фона панели с именем (name_panel)</span>",
+				"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Цвет текста имени (name_panel)</span>",
+				"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+				"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>",
+				"<a href="#sound" class='code_link'>sound</a>": "<span class='comm'>Id звука</span>"
+				"<a href="#sound_stop" class='code_link'>sound_stop</a>": "<span class='comm'>Id звука для остановки</span>"
+				"<a href="#e_text" class='code_link'>text</a>": {
+					"en":"<span class='comm'>Перевод текста на английский</span>",
+					"ja":"<span class='comm'>Перевод текста на японский</span>",
+					"ru":"<span class='comm'>Перевод текста на русский</span>"
+				},
+				"<a href="#text_add" class='code_link'>text_add</a>": {
+					"en":"<span class='comm'>Перевод текста на английский</span>",
+					"ja":"<span class='comm'>Перевод текста на японский</span>",
+					"ru":"<span class='comm'>Перевод текста на русский</span>"
+				},
+				"<a href="#e_name" class='code_link'>name</a>": "<span class='comm'>id персонажа из parameters/characters</span>"
+				"<a href="#e_art" class='code_link'>art</a>": [{
+					"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+					"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>",
+					"<a href="#url" class='code_link'>url</a>":"<span class='comm'>путь к файлу с изображением</span>",
+					"<a href="#position" class='code_link'>position</a>": [<span class='comm'>позиция X, позиция Y</span>],
+					"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+				}],
+				"<a href="#choice" class='code_link'>choice</a>": [{
+					<a href="#go_to" class='code_link'>"go_to"</a>: "<span class='comm'>id блока для перехода</span>",
+					<a href="#position" class='code_link'>"position"</a>: [<span class='comm'>позиция X, позиция Y</span>],
+					<a href="#size" class='code_link'>"size"</a>: ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+					<a href="#className" class='code_link'>"className"</a>: "<span class='comm'>набор классов стилей css</span>",
+					<a href="#sound" class='code_link'>"sound"</a>: "<span class='comm'>Sound id</span>"
+					<a href="#sound_stop" class='code_link'>"sound_stop"</a>: "<span class='comm'>Sound id to stop</span>"
+					<a href="#style" class='code_link'>"style"</a>: "<span class='comm'>параметры css style и их значения</span>",
+					<a href="#color" class='code_link'>"color"</a>: "<span class='comm'>цвет фона</span>",
+					<a href="#color_text" class='code_link'>"color_text"</a>: "<span class='comm'>Цвет текста</span>",
+					<a href="#variables" class='code_link'>"variables"</a>: [
+						["<span class='comm'>название переменной</span>", "<span class='comm'>операция с переменной</span>", <span class='comm'>значение</span>]
+					],
+					"<a href="#text" style='text-decoration: none;'>text</a>": {
+						"en":"<span class='comm'>Перевод текста на англиский</span>",
+						"ja":"<span class='comm'>Перевод текста на японский</span>",
+						"ru":"<span class='comm'>Перевод текста на русский</span>"
+						}
+					}
+				]
+		},{"<a href="#legacy_choice" style='text-decoration: none;'>legacy_choice</a>": [
+				["<span class='comm'>название переменной</span>", "<span class='comm'>оператор сравнения</span>", <span class='comm'>значение для сравнения</span>, "<span class='comm'>id блока для перехода</span>"]
+			]
+		}]
+	}
+]
+</code></pre>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<p style='font-size:30px;' align='center'>Элементы сцены</p>
+<br>
+<div class='element'>
+<a id="background_music"></a>
+<p class='title_name'>Background music</p>
+<br>
+<p>Запускает зацикленную фоновую музыку в сцене.</p>
+<pre class='code_box'><code>	"background_music": "<span class='comm'>путь к аудио файлу без расширения только его имя</span>"</code></pre>
+<br>
+<p>Поддерживается локализация</p>
+<pre class='code_box'><code>	"background_music": {
+			"en":"<span class='comm'>путь к аудио файлу для английского языка</span>",
+			"ja":"<span class='comm'>путь к аудио файлу для японского языка</span>",
+			"ru":"<span class='comm'>путь к аудио файлу для русского языка</span>"
+		}
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="background_image"></a>
+<p class='title_name'>Background image</p>
+<br>
+<p>Аналог параметра <a href="https://www.w3schools.com/cssref/pr_background-image.asp" target="_blank">css background_image</a>. Предназначен для отображения заднего фона в сцене.</p>
+<pre class='code_box'><code>	"background_image": "<span class='comm'>путь к файлу с изображением</span>"</code></pre>
+<br>
+<p>По умолчанию выравнивается по центру сцены и пропорционально заполняет весь фон, независимо от размера сцены или самого файла.</p>
+<br>
+<p>Поддерживает локализацию если есть фон для конкретного перевода.</p>
+<pre class='code_box'><code>	"background_image": {
+			"en":"<span class='comm'>путь к файлу с изображением для английского языка</span>",
+			"ja":"<span class='comm'>путь к файлу с изображением для японского языка</span>",
+			"ru":"<span class='comm'>путь к файлу с изображением для русского языка</span>"
+		}
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="dialogs"></a>
+<p class='title_name'>Dialogs</p>
+<br>
+<p>Массив последовательности диалогов в сцене и ее атрибутов, таких как <b><a href="#art" >art</a></b> и кнопки выбора <b><a href="#choice" >Choice</a></b>.</p>
+<pre class='code_box'><code>	"dialogs":[
+			{<span class='comm'>Параметры и элементы реплики 1й диалога</span>},
+			{<span class='comm'>Параметры и элементы реплики 2й диалога</span>},
+			{<span class='comm'>Параметры и элементы реплики 3й диалога</span>}
+	]
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<p style='font-size:30px;' align='center'>Элементы диалога</p>
+<br>
+<div class='element'>
+<a id="e_art"></a>
+<p class='title_name'>Art</p>
+<br>
+<p>Онже "sprite" или "image". Аналог html <a href="https://www.w3schools.com/tags/tag_img.asp" target="_blank">тега &lt;img&gt;</a>. Предназначен для отображения графических элементов в сцене, такие как персонажи или предметы.</p>
+<pre class='code_box'><code>"art": [{		
+		"<a href="#className" class='code_link'>url</a>":"<span class='comm'>путь к файлу с изображением</span>",
+		"<a href="#className" class='code_link'>position</a>": [<span class='comm'>позиция X, позиция Y</span>],
+		"<a href="#className" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+		"<a href="#className" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>",
+		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>"
+	}]
+</code></pre>
+<br>
+<p>Поддерживает локализацию если есть изображения созданные для конкретного перевода указанного в разделе <b>"parameters" / "<a href="#languares" >languares</a>"</b>.</p>
+<pre class='code_box'><code>		"url": {
+				"en":"<span class='comm'>путь к файлу с изображением для английского языка</span>",
+				"ja":"<span class='comm'>путь к файлу с изображением для японского языка</span>",
+				"ru":"<span class='comm'>путь к файлу с изображением для русского языка</span>"
+			}
+</code></pre>
+<br>
+<p>Можно добавить в сцену несколько изображений, создав в массиве дополнительные элементы в фигурных скобках со всеми необходимыми параметрами.</p>
+<pre class='code_box'><code>"art": [{		
+		"<a href="#url" class='code_link'>url</a>":"<span class='comm'>Изображени 1</span>",
+		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>позиция X, позиция Y</span>],
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина", "высота</span>"]
+	},{		
+		"<a href="#url" class='code_link'>url</a>":"<span class='comm'>Изображени 2</span>",
+		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>позиция X, позиция Y</span>],
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина", "высота"</span>]
+	}]
+</code></pre>
+<br>
+<p><b>Working example "art"</b></p>
+<pre class='code_box'><code>"art": [{		
+		"<a href="#e_text" class='code_link'>position</a>": ["75%", "50%"],
+		"<a href="#e_text" class='code_link'>size</a>": ["auto", "90%"],
+		"<a href="#e_text" class='code_link'>style</a>": "transform: translateX(-50%) translateY(-50%);",
+		"<a href="#e_text" class='code_link'>className</a>": "example",
+		"<a href="#e_text" class='code_link'>url</a>": {
+				"en":"img/example_en.png",
+				"ja":"img/example_ja.png",
+				"ru":"img/example_ru.png"
+		}
+	},{		
+		"<a href="#e_text" class='code_link'>position</a>": ["25%", "50%"],
+		"<a href="#e_text" class='code_link'>size</a>": ["auto", "90%"],
+		"<a href="#e_text" class='code_link'>style</a>": "transform: translateX(-50%) translateY(-50%);",
+		"<a href="#e_text" class='code_link'>url</a>":"img/character.png"
+	}]
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="e_text"></a>
+<p class='title_name'>Text</p>
+<br>
+<p>Диалог персонажа или иные тексты в конкретной сцене. А также элементы для изменения <b><a href="#text_panel" >text_panel</a></b>" на данном тексте.</p>
+<pre class='code_box'><code>	"text": {
+		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку панели</span>",
+		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на кнопке</span>,
+		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>цвет текста</span>",
+		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет в форматах</span>",
+		"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "<span class='comm'>отступ текстовой панели от нижнего края</span>",
+		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>лево</span>, <span class='comm'>право</span>, <span class='comm'>верх</span>, <span class='comm'>низ</span>] <span class='comm'>позиция отнасительна краев сцены</span>, 
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+		"<a href="#size_text" class='code_link'>size_text</a>": "<span class='comm'>Размер текста</span>",
+		"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>"
+		"en":"<span class='comm'>Boss</span>"
+	}
+</code></pre>
+<br>
+<p>Можно просто указать реплику, в этом случае все недостающие параметры будут взяты по умолчанию из раздела <b>"parameters" / "<a href="#text_panel" >text_panel</a>"</b></p>
+<pre class='code_box'><code>	"text": "<span class='comm'>Hello how are you</span>"</code></pre>
+<br>
+<p>Возможно добавить локализованный вариант диалога для указанных языков в разделе <b>"parameters" / "<a href="#languares" >languares</a>"</b></p>
+<pre class='code_box'><code>	"text": {
+		"en":"<span class='comm'>Hello how are you</span>",
+		"ja":"<span class='comm'>こんにちは、元気ですか</span>",
+		"ru":"<span class='comm'>Привет как дела</span>"
+		}
+</code></pre>
+<br>
+<p>В диалоговом окне могут отображаться значения переменной из раздела <b>"parameters" / "<a href="#variables" >variables</a>"</b>. Если вы укажете имя переменной в угловых скобках <variabl>, то вместо этого в тексте появится значение из одноименной переменной. </p>
+<pre class='code_box'><code>{
+	"parameters": {
+		<span class='comm'>другие значения</span>
+		"<a href="#variables" class='code_link'>variables</a>": [
+			"health_points": 100
+		],
+	}
+	"example_block_1": [{
+		"<a href="#dialogs" class='code_link'>dialogs</a>": [{
+			"text": "You have &lt;<span class='comm'>health_points</span>&gt; health points left"
+		}]
+	}]
+}</code></pre>
+<br>
+<p>В этом случае появится фраза "You have 100 health points left"</p>
+<br>
+<p>В одной локации может быть больше или меньше реплик чем в другой. В этом случае можно указать значение 'skip', тогда эта реплика будет автоматически пропущена.</p>
+<pre class='code_box'><code>{
+	"text": {
+		"en":"Hello!",
+		"ja":"こんにちは、元気ですか",
+		"ru":"Привет!"
+	}
+},{
+	"text": {
+		"en":"How are you",
+		"ja":"<span class='comm'>skip</span>",
+		"ru":"Kак дела"
+	}
+}
+</code></pre>
+<br>
+<p>В этом случае в японской локализации будет пропущена 2-я реплика</p>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="text_add"></a>
+<p class='title_name'>Text add</p>
+<br>
+<p>Аналог обычного элемента <b>"<a href="#text" >text</a>"</b> за исключением того что текст из данного элемента добавляеться к уже существующиму тексту в <b><a href="#text_panel" >text_panel</a></b>". Основной элемен для кинетических новеллы</p>
+<pre class='code_box'><code>	"text_add": {
+		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку панели</span>",
+		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на панеле</span>,
+		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>цвет текста</span>",
+		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет в форматах</span>",
+		"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "<span class='comm'>отступ текстовой панели от нижнего края</span>",
+		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>лево</span>, <span class='comm'>право</span>, <span class='comm'>верх</span>, <span class='comm'>низ</span>] <span class='comm'>позиция относительно краев сцены</span>, 
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+		"<a href="#size_text" class='code_link'>size_text</a>": "<span class='comm'>Размер текста</span>",
+		"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>"
+		"en":"<span class='comm'>Boss</span>"
+	}
+</code></pre>
+<br>
+<p><b>Working example "variables"</b></p>
+<pre class='code_box'><code>{
+	"text": "Hello! "
+},{
+	"text_add": "will you go for a walk?"
+}
+</code></pre>
+В текстовой панеле сначала появиться "Hello!" затем вся фраза целиком "Hello! will you go for a walk?"
+<br>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="e_name"></a>
+<p class='title_name'>Name</p>
+<br>
+<p>Параметр для отображения имени и аватара персонажа в текстовой панели. Эти данные можно указать несколькими способами.</p>
+<br>
+<p>Самый простой вариант просто указать его имя. Если это имя не совпадает с id идентификатором в разделе <b>"parameters" / "<a href="#characters" >characters</a>"</b>, тогда имя отобразится так как указанно в этом параметре. </p>
+<pre class='code_box'><code>	"name": "<span class='comm'>Boss</span>"</code></pre>
+<br>
+<p>Возможно задать локализованный вариант имени  для указанных языков в разделе <b>"parameters" / "<a href="#languares" >languares</a>"</b></p>
+<pre class='code_box'><code>	"name": {
+		"en":"<span class='comm'>Boss</span>",
+		"ja":"<span class='comm'>ボス</span>",
+		"ru":"<span class='comm'>Босс</span>"
+		}
+</code></pre>
+<br>
+<p>Если вы часто используете одно и то же имя, вы можете указать его в разделе <b>"parameters" / "<a href="#characters" >characters</a>"</b>. Это сильно упрощает процесс смены именами.</p>
+<pre class='code_box'><code>{
+	"parameters": {
+		<span class='comm'>другие значения</span>
+		"<a href="#characters" class='code_link'>characters</a>": {
+			"boss": {
+				"en":"<span class='comm'>Boss</span>",
+				"ja":"<span class='comm'>ボス</span>",
+				"ru":"<span class='comm'>Босс</span>"
+			}
+		}
+	}
+	"example_block_1": [{
+		"<a href="#characters" class='code_link'>dialogs</a>": [{
+			"name": "boss"
+		}]
+	}]
+}
+</code></pre>
+<br>
+<p>Параметры для изменения "<b><a href="#name_panel" >name_panel</a></b>" можно указать как в "<b><a href="#dialogs" >dialogs</a></b>" для текущей реплики, так и в массиве "<b><a href="#characters" >characters</a></b>" для конкретного имени.</p>
+<pre class='code_box'><code>	"text": {
+		"<a href="#art" class='code_link'>art</a>":"<span class='comm'>путь на фоновую картинку кнопки</span>",
+		"<a href="#art_size" class='code_link'>art_size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>изображения на панеле</span>,
+		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Цвет текста</span>",
+		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет элемента</span>",
+		"<a href="#indent_bottom" class='code_link'>indent_bottom</a>": "<span class='comm'>отступ текстовой панели от нижнего края</span>",
+		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>лево</span>, <span class='comm'>право</span>, <span class='comm'>верх</span>, <span class='comm'>низ</span>] <span class='comm'>позиция отнасительна краев сцены</span>, 
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+		"<a href="#size_text" class='code_link'>size_text</a>": "<span class='comm'>Размер текста</span>",
+		"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>",
+		"en":"<span class='comm'>Boss</span>"
+	}
+</code></pre>
+<br>
+<p>Если какой-то элемент будет не указан, то будет взято значение по умолчанию из <b>"parameters" / "<a href="#name_panel" >name_panel</a>"</b>. Если имени или его id идентификатора будут отсутствовать, то эта панель не появиться в сцене. </p>
+<br>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="choice"></a>
+<p class='title_name'>Choice</p>
+<br>
+<p>Кнопки для выбора дальнейшего сюжетного блока и изменения значений в массиве переменных <b>"parameters" / "<a href="#variables" >variables</a>"</b>. Аналогичен параметру <b>"<a href="#buttons" >buttons</a>"</b> за исключением того что кнопки выбора появляются в определенной реплике. </p>
+<pre class='code_box'><code>	"choice": [{
+		"<a href="#go_to" class='code_link'>go_to</a>": "<span class='comm'>id блока для перехода</span>",
+		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>позиция X, позиция Y</span>],
+		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],
+		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>набор классов стилей css</span>",
+		"<a href="#style" class='code_link'>style</a>": "<span class='comm'>параметры css style и их значения</span>",
+		<a href="#sound" class='code_link'>"sound"</a>: "<span class='comm'>Id звука</span>"
+		<a href="#sound_stop" class='code_link'>"sound_stop"</a>: "<span class='comm'>Id звука для остановки</span>"
+		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>цвет фона</span>",
+		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Цвет текста</span>",
+		"<a href="#variables" class='code_link'>variables</a>": [
+			["<span class='comm'>название переменной</span>", "<span class='comm'>операция с переменной</span>", <span class='comm'>значение</span>]
+		],
+		"<a href="#text" class='code_link'>text</a>": {
+			"en":"<span class='comm'>Перевод текста на английский</span>",
+			"ja":"<span class='comm'>Перевод текста на японский</span>",
+			"ru":"<span class='comm'>Перевод текста на русский</span>"
+			}
+		}
+	]
+</code></pre>
+<br>
+<p>Парметр <b>"<a href="#go_to" >go_to</a>"</b> переносит дальнейшее повествование на указанный блок. Если парметр <b>"<a href="#go_to" >go_to</a>"</b> отсутствует, то будет продолжен текущий блок. </p>
+<br>
+<p>Параметры <b>"<a href="#variables" >variables</a>"</b> вносят изменения в переменные в момент нажатия на кнопку выбора.</p>
+<br>
+<p><b>Working example "choice"</b></p>
+<pre class='code_box'><code>{ "<a href="#e_name" class='code_link'>name</a>": "inga",
+	"<a href="#text" class='code_link'>text</a>": "which road to take?"
+	"<a href="#choice" class='code_link'>choice</a>": [{
+		"<a href="#go_to" class='code_link'>go_to</a>": "block_left",
+		"<a href="#position" class='code_link'>position</a>": ["25%", "0", "0", "50%"],
+		"<a href="#size" class='code_link'>size</a>": ["256px", "0"],
+		"<a href="#className" class='code_link'>className</a>": "buttons hot_center",
+		"<a href="#text" class='code_link'>text</a>": "<== to the left"
+	},{
+		"<a href="#go_to" class='code_link'>go_to</a>": "block_right",
+		"<a href="#position" class='code_link'>position</a>": ["75%", "0", "0", "50%"],
+		"<a href="#size" class='code_link'>size</a>": ["256px", "0"],
+		"<a href="#className" class='code_link'>className</a>": "buttons hot_center",
+		"<a href="#text" class='code_link'>text</a>": "on the right ==>"
+	}]
+}</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="e_variable"></a>
+<p class='title_name'>Variables</p>
+<br>
+<p>Параметр для изменения значений из раздела <b>"parameters" / "<a href="#variables" >variables</a>"</b> в конкретном <b>"<a href="#dialogs" >dialogs</a>"</b> или при выборе <b>"<a href="#choice" >choice</a>"</b></p>
+<pre class='code_box'><code>	"variables": [
+		["<span class='comm'>название переменной</span>", "<span class='comm'>операция с переменной</span>", <span class='comm'>значение</span>]
+	],
+</code></pre>
+<br>
+<p>Операция с переменной</p>
+<p><b>"set"</b> - установить значение в переменной ( аналог оператора "=" в javaScript)</p>
+<p><b>"add"</b> - прибавить значение к уже заданному значению в переменной (аналог оператора "+=" в javaScript)</p>
+<br>
+<p><b>Working example "variables"</b></p>
+<pre class='code_box'><code>{
+    "parameters": {
+		<span class='comm'>другие значения</span>
+		"variables": [
+			"experience_points": 80,
+			"magic_points": 100,
+			"health_points": 100
+		],
+	},
+	"example_block_1": [{
+		"<a href="#dialogs" class='code_link'>dialogs</a>": [{
+			"variables": [
+				["experience_points", "add", 10],
+				["magic_points", "add", -15],
+				["health_points", "set", 200]
+			]
+		}]
+	}]
+}
+</code></pre>
+<br>
+<p>При запуске блока "example_block_1"<br>10 очков опыта будут добавлены к значению "Experience_points",<br>15 очков будет вычтено из "magic_points",<br>а "health_points" будет установлено на 200 очков.</p>
+<br>
+</div>
+
+
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="event"></a>
+<p class='title_name'>Events</p>
+<br>
+<p>Элемент предназначенный для внешнего использования в javaScript. Он сигнализирует о начале момента в сюжете где указан данный элемент. </p>
+<br>
+tusday - создание событие
+<pre class='code_box'><code>	"event": "<span class='comm'>id_event</span>",</code></pre>
+<br>
+javaScript - реагирование на событие 
+<pre class='code_box'><code>tuesday.addEventListener(<span class='comm'>id_event</span>', function(event) { <span class='comm'>alert("event starting")</span> } );</code></pre>
+<br>
+</div>
+
+
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="legacy_choice"></a>
+<p class='title_name'>Legacy choice</p>
+<br>
+<p>Автоматический переход к другому блоку истории при соблюдении указанных условий в переменных значениях ( <b>parameters / <a href="#variables" >variables</a></b> )</p>
+<pre class='code_box'><code>{
+	"legacy_choice": [
+		["<span class='comm'>название переменной</span>", "<span class='comm'>оператор сравнения</span>", <span class='comm'>значение для сравнения</span>, "<span class='comm'>id блока для перехода</span>"]
+	]
+}
+</code></pre>
+<br>
+<p>Важный! Этот элемент не является частью массива <b>"dialogs"</b>. И запускать как часть блока рядом с элементами <b>"<a href="#dialogs" >dialogs</a>"</b>. </p>
+<pre class='code_box'><code>"example_block_1": [{
+		"<a href="#dialogs" class='code_link'>dialogs</a>": [{"text": "hello"}]
+	},{
+		"legacy_choice": [
+			["<span class='comm'>название переменной</span>", "<span class='comm'>оператор сравнения</span>", <span class='comm'>значение для сравнения</span>, "<span class='comm'>id блока для перехода</span>"]
+		]
+	}
+]
+</code></pre>
+<br>
+<p>Если условия не совпадают со значениями в переменных то можно указать параметр <b>"<a href="#go_to" >go_to</a>"</b>, то в этом случае история перейдет в указанный блок.</p>
+<pre class='code_box'><code>{
+	"legacy_choice": [
+		["<span class='comm'>название переменной</span>", "<span class='comm'>оператор сравнения</span>", <span class='comm'>значение для сравнения</span>, "<span class='comm'>id блока для перехода</span>"],
+		{"<a href="#go_to" class='code_link'>go_to</a>": "example_block_4"}
+	]
+}
+</code></pre>
+<br>
+<p><b>Working example "legacy_choice"</b></p>
+<pre class='code_box'><code>{
+    "parameters": {
+		<span class='comm'>другие значения</span>
+		"<a href="#variables" class='code_link'>variables</a>": [
+			"experience_points": 80,
+			"magic_points": 100,
+			"health_points": 100
+		],
+	},
+	"example_block_1": [{
+		"legacy_choice": [
+			["experience_points", "=", 80, "example_block_2"],
+			["experience_points", "<", 80, "example_block_3"],
+			{"<a href="#go_to" class='code_link'>go_to</a>": "example_block_4"}
+		]
+	}],
+	"example_block_2": [{
+		"<a href="#dialogs" class='code_link'>dialogs</a>": [{
+			"<a href="#text" class='code_link'>text</a>": "Awesome!!!"
+		}]
+	}],
+	"example_block_3": [{
+		"<a href="#dialogs" class='code_link'>dialogs</a>": [{
+			"<a href="#text" class='code_link'>text</a>": "you cool"
+		}]
+	}],
+	"example_block_4": [{
+		"<a href="#dialogs" class='code_link'>dialogs</a>": [{
+			"<a href="#text" class='code_link'>text</a>": "hello"
+		}]
+	}]
+}
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<a id="Item_parameters"></a>
+<p style='font-size:30px;' align='center'>Параметры элементов</p>
+<br>
+<br>
+<a id="art"></a>
+<p><b>"art"</b> - Аналог css стиля <a href="https://www.w3schools.com/cssref/pr_background-image.asp" target="_blank">background_image</a>. указывает фоновый рисунок.</p></p>
+<pre class='code_box'><code>		"art":"<span class='comm'>путь на файл с изображением</span>",</code></pre>
+<br>
+Поддерживается вариант с локализацией
+<pre class='code_box'><code>	"art": {
+		"en":"<span class='comm'>путь на файл с изображением на английский</span>",
+		"ja":"<span class='comm'>путь на файл с изображением на японский</span>",
+		"ru":"<span class='comm'>путь на файл с изображением на русский</span>"
+		}
+	}
+</code></pre>
+<br>
+<br>
+<a id="art_size"></a>
+<p><b>"art_size"</b> - Устанавливает размер изображения внутри элемента, иначе оно отображаться в исходном размере,  Задав размер высоты и ширены 100%, размер изображения будет полностью соответствовать размеру кнопки (параметр <a href="#size" >size</a>). заменив одно из значений на «авто», тогда размер изображения будет пропорционален размеру указанной высоты или ширины</p></p>
+<pre class='code_box'><code>		"art_size": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"] <span class='comm'>размер изображения внутри элемента</span>,</code></pre>
+<br>
+<br>
+<a id="size_text"></a>
+<p><b>"size_text"</b> - Размер текста внутри элемента</p>
+<pre class='code_box'><code>		"size_text": "<span class='comm'>Размер текста</span>",</code></pre>
+<br>
+<br>
+<a id="back_to"></a>
+<p><b>"back_to"</b> - Переход по нажатию кнопки назад (tue_back) к указанному id имени блоку (предыдущий блок по сюжетной линии)</p>
+<pre class='code_box'><code>		"back_to": <span class='comm'>Предыдущий id блока</span>",</code></pre>
+<br>
+<br>
+<a id="className"></a>
+<p><b>"className"</b> - Аналог <a href="https://www.w3schools.com/JSREF/prop_html_classname.asp" target="_blank">атрибута className</a> Позволяет применять стандартные классы css, указанные в разделе html документа "<a href="https://www.w3schools.com/html/html_css.asp" target="_blank">style</a>".</p>
+<pre class='code_box'><code>		"className": "<span class='comm'>набор классов стилей css</span>",</code></pre>
+<br>
+<br>
+<a id="go_to"></a>
+<p><b>"go_to"</b> - Переход в блок с указанным id именем, или можно указать функцианал одной из системных кнопок <a href="#system_Buttons"><b>System Buttons</b></a></p>
+<pre class='code_box'><code>		"go_to": "<span class='comm'>Следующий id блока</span>",</code></pre>
+<br>
+<br>
+<a id="style"></a>
+<p><b>"style"</b> - необязательный параметр (аналог <a href="https://www.w3schools.com/html/html_styles.asp" target="_blank">атрибута style</a> в html) персональный css стиль для этого изображения</p>
+<pre class='code_box'><code>		"style": "<span class='comm'>параметры и их значения css</span>",</code></pre>
+<br>
+<br>
+<a id="sound"></a>
+<p><b>"sound"</b> - Запускает указанный звук, Указать адрес файла нельзя только id имя из раздела  <b>"parameters" / "<a href="#sounds" >sounds</a>"</b></p>
+<pre class='code_box'><code>		"sound": "<span class='comm'>Id звука</span>",</code></pre>
+<br>
+Поддерживается вариант с локализацией
+<pre class='code_box'><code>	"sound": {
+		"en":"<span class='comm'>Id звука для английского</span>",
+		"ja":"<span class='comm'>Id звука для японского</span>",
+		"ru":"<span class='comm'>Id звука для русского</span>"
+		}
+	}
+</code></pre>
+<br>
+<br>
+<a id="sound_stop"></a>
+<p><b>"sound_stop"</b> - Останавливает указанный звук</p>
+<pre class='code_box'><code>		"sound_stop": "<span class='comm'>Id звука для остановки</span>",</code></pre>
+<br>
+<br>
+<a id="position"></a>
+<p><b>"position"</b> - Расположение элемета относительно краев сцены,  Например значения [0, 10px, 10px, 0] означают, что элемета появится в правом верхнем углу с отступом в 10 пикселей.</p>
+<pre class='code_box'><code>		"position": [<span class='comm'>лево</span>, <span class='comm'>право</span>, <span class='comm'>верх</span>, <span class='comm'>низ</span>] <span class='comm'>позиция относительно края сцены</span>,  </code></pre>
+<br>
+<br>
+<a id="url"></a>
+<p><b>"url"</b> - Указывает путь к файлу или иному ресурсу (аналог <a href="https://www.w3schools.com/tags/att_src.asp" target="_blank">атрибута src</a> в html).  </p>
+<pre class='code_box'><code>		"url": "<span class='comm'>путь к файлу</span>",</code></pre>
+<br>
+<br>
+<a id="size"></a>
+<p><b>"size"</b> - Размер элемента. Возможно использовать пропорциональные значения относительно размера сцены. </p>
+<pre class='code_box'><code>		"size": ["<span class='comm'>ширина</span>", "<span class='comm'>высота</span>"],</code></pre>
+<br>
+<br>
+<a id="size_text"></a>
+<p><b>"size_text"</b> - Размер текста внутри элемента</p>
+<pre class='code_box'><code>		"size_text": "<span class='comm'>Размер текста</span>"</code></pre>
+<br>	
+<br>
+<a id="color"></a>
+<p><b>"color"</b> - Цвет фона элемета в шестнадцатеричном формате hex (#fff #ffffff) или в форматах rgb (255,255,255) и rgba (255,255,255,1). По умолчанию элемета прозрачная</p>
+<pre class='code_box'><code>		"color": "<span class='comm'>цвет фона</span>",</code></pre>
+<br>
+<br>
+<a id="color_text"></a>
+<p><b>"color_text"</b> - Цвет текста, необязательный параметр, если не указан то цвет будет по умолчанию, цвет можно установлен в шестнадцатеричном формате hex (#fff #ffffff) или в форматах rgb (255,255,255) и rgba (255,255,255,1).</p>
+<pre class='code_box'><code>		"color_text": "<span class='comm'>Цвет текста</span>",</code></pre>
+<br>
+<br>
+<a id="indent_text"></a>
+<p><b>"indent_text"</b> - Аналог css <a href="https://www.w3schools.com/css/css_padding.asp" target="_blank">параметра padding</a> Определяет величину отступа от краев элемента,  Можно использовать несколько значений в соответствии с правилами заполнения css. Для разных отступов по вертикали и горизонтали "10px, 5px". Если нужны отступы для каждой стороны или только одной "16px, 5px, 5px, 5px"</p>
+<pre class='code_box'><code>		"indent_text": "<span class='comm'>отступы для текста</span>",</code></pre>
+<br>
+<br>
+<a id="text"></a>
+<p><b>"text"</b> - текст для отображение внутри элемента</p>
+<pre class='code_box'><code>		"text": "<span class='comm'>текст</span>",</code></pre>
+<br>
+Поддерживается вариант с локализацией
+<pre class='code_box'><code>	"text": {
+		"en":"<span class='comm'>Перевод текста на английский</span>",
+		"ja":"<span class='comm'>Перевод текста на японский</span>",
+		"ru":"<span class='comm'>Перевод текста на русский</span>"
+		}
+	}
+</code></pre>
+
+<br>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<a id="system_Buttons"></a>
+<p style='font-size:30px;' align='center'>Системные кнопки</p>
+<br>
+<br>
+<a id="tue_load"></a>
+<p><b>"tue_load"</b> - Загрузка стадии истории</p>
+<br>
+<a id="tue_save"></a>
+<p><b>"tue_save"</b> - Сохранение стадии истории</p>
+<br>
+<a id="tue_home"></a>
+<p><b>"tue_home"</b> - Переход на главный экран указанный в parameters launch_story</p>
+<br>
+<a id="tue_next"></a>
+<p><b>"tue_next"</b> - Следующий диалог истории</p>
+<br>
+<a id="tue_back"></a>
+<p><b>"tue_back"</b> - Предыдущий диалог истории</p>
+<br>
+<a id="tue_load_autosave"></a>
+<p><b>"tue_load_autosave"</b> - Загрузка стадии из автосохранения</p>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<a id="function"></a>
+<p style='font-size:30px;' align='center'>Функции tuesday.js</p>
+<br>
+<br>
+<a id="load_story"></a>
+<p><b>load_story(tip, url)</b> - запуск сценария истории, tip отвечает за тип сценария: </p>
+<p><span class='three_2'></span>tip <b>"file"</b> если сценария в json файл и в значение "url" нужно указать путь к файлу</span></p>
+<p><span class='three_2'></span>tip <b>"data"</b> если сценария в let массиве и в значение "url" нужно указать название массива </span></p>
+<br>
+<a id="go_story"></a>
+<p><b>go_story()</b> - двигает историю вперед по сюжету. Автоматически переходит к следующему блоку, сцене и диалогу строго по их последовательности. переход на следующий блок по параметру <a href="#go_to" ><b>go_to</b></p>
+<br>
+<a id="back_story"></a>
+<p><b>back_story()</b> - Откатывает историю назад. Автоматически переходит к предыдущему блоку, сцене и диалогу строго по их последовательности. переход на рондыдущий блок по параметру <a href="#back_to" ><b>back_to</b></a></p>
+<br>
+<a id="save_stag"></a>
+<p><b>save_stag(tip)</b> - Сохранение массива текущего состояния истории, такие занижения как текущая сцена диалог блок и все значения из раздела <a href="#variables" ><b>variables</b></a> в localStorage параметр "tip" будет означать название сохранения. Если указать "slot" то в localStorage он отобразится как tue_slot_data. Занятые названия bookmark для ручного сохранения и auto для автоматического сохранения.</p>
+<br>
+<a id="load_stag"></a>
+<p><b>load_stag(tip)</b> - Загрузка массива стадии истории. Параметр "tip" название сохранения, bookmark для ручного сохранения и auto для автоматического сохранения. Или возможно использовать любое другое название которое применялось при использовании функции save_stag(tip)</p>
+<br>
+<a id="go_to"></a>
+<p><b>go_to(go)</b> - Переход в определенный блок истории указав в параметре go его название</p>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<a id="events"></a>
+<p style='font-size:30px;' align='center'>События</p>
+<br>
+<a id="event_save"></a>
+<p><b>save</b> - Ручного сохранения (не работает на autosave)</p>
+<pre class='code_box'><code>tuesday.addEventListener('save', function(event) { <span class='comm'>alert("save")</span> } );</code></pre>
+<br>
+<a id="event_load"></a>
+<p><b>load</b> - Загрузка ранее сохраненной стадии прогресса</p>
+<pre class='code_box'><code>tuesday.addEventListener('load', function(event) { <span class='comm'>alert("load")</span> } );</code></pre>
+<br>
+<a id="event_script_loaded"></a>
+<p><b>script_loaded</b> - Сценарий истории загружен успешно</p>
+<pre class='code_box'><code>tuesday.addEventListener('script_loaded ', function(event) { <span class='comm'>alert("script_loaded ")</span> } );</code></pre>
+<br>
+<a id="event_add"></a>
+<p><b>_add</b> - Добавление или вычитание из определенной переменной, имя переменной с добавленным "_add"</p>
+<pre class='code_box'><code>tuesday.addEventListener('<span class='comm'>variabl</span>_add ', function(event) { <span class='comm'>alert("change")</span> } );</code></pre>
+<br>
+<a id="event_set"></a>
+<p><b>_set</b> - Изменение определенной переменной, имя переменной с добавленным "_set"</p>
+<pre class='code_box'><code>tuesday.addEventListener('<span class='comm'>variabl</span>_set ', function(event) { <span class='comm'>alert("set")</span> } );</code></pre>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<a id="plugins"></a>
+<p style='font-size:30px;' align='center'>Плагины</p>
+<br>
+<div class='element'>
+<a id="touch_swipe"></a>
+<br>
+<p class='title_name'>Touch Swipe</p>
+<br>
+<p>Позволяет переключать диалоги с помощью свайпа по сенсорному экрану. Мышь не поддерживается</p>
+<pre class='code_box'><code> &lt;script type="text/javaScript" src="touch_swipe.js"&gt;&lt;/script&gt; </code></pre>
+</div>
+<br><br><br>
+<div class='element'>
+<a id="toast"></a>
+<p class='title_name'>Toast</p>
+<br>
+<p>Не большое сообщение всплывающие на некоторое время</p>
+<pre class='code_box'><code> &lt;script type="text/javaScript" src="toast.js"&gt;&lt;/script&gt; </code></pre>
+<br>
+<p>Кастомизация css по id toast</p>
+<pre class='code_box'><code>#toast {
+	background-color: rgba(74,64,69,0.7);
+	border-radius: 24px;
+	border: 0.1em solid rgba(207,173,156,0.7);
+	height: 48px;
+	width: 256px;
+}</code></pre>
+<br>
+<p><b>toast(message)</b> - показывает сообщение, параметр message задает текст сообщения.</p>
+<br>
+<p>Пример использования в javaScript ( вывод текста на событие загрузки прогресса)</p>
+<pre class='code_box'><code>tuesday.addEventListener('load', function(event) {toast("load")});</code></pre>
+<br>
+<p>Пример использования в tusday. используется в параметрах dialogs, choice и legacy_choice</p>
+<pre class='code_box'><code>"toast": " <span class='comm'>текст сообщения</span>",</code></pre>
+</div>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<script>
+var textbook = document.getElementById("textbook");
+var acc = document.getElementsByClassName("accordion");
+for (var i = 0; i < acc.length; i++) {
+	acc[i].addEventListener("click", function() {
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {panel.style.display = "none";}
+	else {panel.style.display = "block";}
+  });
+}
+function go_to(name) {window.location.hash = name; scroll_to(name);}
+function start_hash() {if(window.location.hash){scroll_to(window.location.hash.replace('#',''))}}
+function scroll_to(name) {var e = document.getElementById('5ready'); textbook.scrollTop = e.offsetTop;}
+function search_bookmarks() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("search_bookmarks");
+    filter = input.value.toUpperCase();
+	bookmarks = document.getElementById("bookmarks");
+	li = bookmarks.getElementsByClassName("block");
+	if (filter.length == 0) {
+		var panel =  document.getElementsByClassName("panel");
+		for (var i = 0; i < panel.length; i++) {
+            panel[i].style.display = "none";
+            panel[i].className = "panel border_t";
+        }
+	} else {
+		var panel =  document.getElementsByClassName("panel");
+		for (var i = 0; i < panel.length; i++) {
+            panel[i].style.display = "block";
+            panel[i].className = "panel";
+        }
+	}
+    for (i = 0; i < li.length; i++) {
+        a = li[i];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "block";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+</body>
+</html>
