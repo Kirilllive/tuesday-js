@@ -146,6 +146,7 @@ hr {border: solid 1px #cec8e3;}
 		<a href="#size_text" style='text-decoration: none;'><div class='block'><span class='three_2'>size_text</div></a>
         <a href="#style" style='text-decoration: none;'><div class='block'><span class='three_2'>style</div></a>
     </div>
+	<a href="#sounds" style='text-decoration: none;'><div class='block'><span class='three_1'>sounds</div></a>
     <div class="accordion "><a href="#text_panel" style='text-decoration: none;'><div class='block block_open'><span class='three_1'>text_panel</div></a></div>
     <div class="panel border_b border_t">
 		<a href="#color" style='text-decoration: none;'><div class='block'><span class='three_2'>color</div></a>
@@ -164,13 +165,15 @@ hr {border: solid 1px #cec8e3;}
 </div>
 <div class="accordion"><a href="#block" style='text-decoration: none;'><div class='block block_open'>Story block</div></a></div>
 <div class="panel border_b border_t">
-    <div class='block'><span class='three_1'>background_music</div>
+    <a href="#background_music" style='text-decoration: none;'><div class='block'><span class='three_1'>background_music</div></a>
     <a href="#background_image" style='text-decoration: none;'><div class='block'><span class='three_1'>background_image</div></a>
     <div class="accordion"><a href="#dialogs" style='text-decoration: none;'><div class='block block_open'><span class='three_1'>dialogs</div></a></div>
     <div class="panel border_b border_t">
         <a href="#back_to" style='text-decoration: none;'><div class='block'><span class='three_2'>back_to</div>
         <a href="#color" style='text-decoration: none;'><div class='block'><span class='three_2'>color</div>
         <a href="#color_text" style='text-decoration: none;'><div class='block'><span class='three_2'>color_text</div>
+		<a href="#sound" style='text-decoration: none;'><div class='block'><span class='three_2'>sound</div>
+		<a href="#sound_stop" style='text-decoration: none;'><div class='block'><span class='three_2'>sound_stop</div>
         <a href="#e_text" style='text-decoration: none;'><div class='block'><span class='three_2'>text</div>
 		<a href="#text_add" style='text-decoration: none;'><div class='block'><span class='three_2'>text_add</div>
         <a href="#e_name" style='text-decoration: none;'><div class='block'><span class='three_2'>name</div>
@@ -193,6 +196,8 @@ hr {border: solid 1px #cec8e3;}
             <a href="#size" style='text-decoration: none;'><div class='block'><span class='three_3'></span>size</div></a>
             <a href="#className" style='text-decoration: none;'><div class='block'><span class='three_3'></span>className</div></a>
 			<a href="#e_variable" style='text-decoration: none;'><div class='block'><span class='three_3'></span>variables</div></a>
+			<a href="#sound" style='text-decoration: none;'><div class='block'><span class='three_2'>sound</div>
+			<a href="#sound_stop" style='text-decoration: none;'><div class='block'><span class='three_2'>sound_stop</div>
             <a href="#text" style='text-decoration: none;'><div class='block'><span class='three_3'></span>text</div></a>
             <a href="#color" style='text-decoration: none;'><div class='block'><span class='three_3'></span>color</div></a>
             <a href="#art_size" style='text-decoration: none;'><div class='block'><span class='three_3'></span>art_size</div></a>
@@ -810,6 +815,20 @@ The display of the script on the html page occurs through the div element with <
 <br>
 <br>
 <div class='element'>
+<a id="sounds"></a>
+<p class='title_name'>sounds</p>
+<br>
+<p>An array of sound files used in the project. Due to the specifics of the browser support for audio formats (mpeg or ogg), you need to specify a file without an extension, the engine itself will determine the supported format .ogg or .mp3. The project can use the only mp3, it can be played in almost all browsers. But in case this is not the case, it is recommended to duplicate the audio data in .ogg format with the same name and in the same folder.</p>
+<pre class='code_box'><code>	"sounds": {
+			"id_sound_1":"<span class='comm'>Путь к файлу без расширение</span>",
+			"id_sound_2":"<span class='comm'>Путь к файлу без расширение</span>",
+		}
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
 <a id="title"></a>
 <p class='title_name'>Title</p>
 <br>
@@ -932,8 +951,9 @@ The display of the script on the html page occurs through the div element with <
 </code></pre>
 <br>
 <p>Complete plot block structure with all elements</p>
-<pre class='code_box'><code>"<span class='comm'>Id блока</span>": [
+<pre class='code_box'><code>"<span class='comm'>Id block</span>": [
 	{
+		"<a href="#background_music" class='code_link'>background_music</a>": "<span class='comm'>path to audio file without extension only its name</span>"
 		"<a href="#background_image" class='code_link'>background_image</a>": "<span class='comm'>path to the image file</span>"
 		"<a href="#dialogs" class='code_link'>dialogs</a>":[
 			{
@@ -946,6 +966,8 @@ The display of the script on the html page occurs through the div element with <
 				"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Name text color (name_panel)</span>",
 				"<a href="#className" class='code_link'>className</a>": "<span class='comm'>a set of css style classes</span>",
 				"<a href="#style" class='code_link'>style</a>": "<span class='comm'>css style parameters and their values</span>",
+				"<a href="#sound" class='code_link'>sound</a>": "<span class='comm'>Sound id</span>"
+				"<a href="#sound_stop" class='code_link'>sound_stop</a>": "<span class='comm'>Sound id to stop</span>"
 				"<a href="#e_text" class='code_link'>text</a>": {
 					"en":"<span class='comm'>Translation of the text into English</span>",
 					"ja":"<span class='comm'>テキストの日本語への翻訳</span>",
@@ -970,6 +992,8 @@ The display of the script on the html page occurs through the div element with <
 					<a href="#size" class='code_link'>"size"</a>: ["<span class='comm'>width</span>", "<span class='comm'>height</span>"],
 					<a href="#className" class='code_link'>"className"</a>: "<span class='comm'>a set of css style classes</span>",
 					<a href="#style" class='code_link'>"style"</a>: "<span class='comm'>css style parameters and their values</span>",
+					<a href="#sound" class='code_link'>"sound"</a>: "<span class='comm'>Sound id</span>"
+					<a href="#sound_stop" class='code_link'>"sound_stop"</a>: "<span class='comm'>Sound id to stop</span>"
 					<a href="#color" class='code_link'>"color"</a>: "<span class='comm'>background color</span>",
 					<a href="#color_text" class='code_link'>"color_text"</a>: "<span class='comm'>Text color</span>",
 					<a href="#variables" class='code_link'>"variables"</a>: [
@@ -998,6 +1022,24 @@ The display of the script on the html page occurs through the div element with <
 <p style='font-size:30px;' align='center'>Scene elements</p>
 <br>
 <div class='element'>
+<a id="background_music"></a>
+<p class='title_name'>Background music</p>
+<br>
+<p>Launches looped background music in the scene.</p>
+<pre class='code_box'><code>	"background_music": "<span class='comm'>path to audio file without extension only its name</span>"</code></pre>
+<br>
+<p>localization supported</p>
+<pre class='code_box'><code>	"background_music": {
+			"en":"<span class='comm'>path to audio file for English</span>",
+			"ja":"<span class='comm'>path to audio file for Japanese</span>",
+			"ru":"<span class='comm'>path to audio file for Russian</span>"
+		}
+</code></pre>
+</div>
+<br>
+<br>
+<br>
+<div class='element'>
 <a id="background_image"></a>
 <p class='title_name'>Background image</p>
 <br>
@@ -1008,9 +1050,9 @@ The display of the script on the html page occurs through the div element with <
 <br>
 <p>Supports localization if there is a background image for the specific translation.</p>
 <pre class='code_box'><code>	"background_image": {
-			"en":"<span class='comm'>path to the file with the image for English</span>",
-			"ja":"<span class='comm'>path to the image file for Japanese</span>",
-			"ru":"<span class='comm'>path to the file with the image for the Russian language</span>"
+			"en":"<span class='comm'>path to image file for English</span>",
+			"ja":"<span class='comm'>path to image file for Japanese</span>",
+			"ru":"<span class='comm'>path to image file for Russian</span>"
 		}
 </code></pre>
 </div>
@@ -1264,6 +1306,8 @@ The text bar will first show "Hello!" then the whole phrase "Hello! will you go 
 		"<a href="#position" class='code_link'>position</a>": [<span class='comm'>X position, Y position</span>],
 		"<a href="#size" class='code_link'>size</a>": ["<span class='comm'>width</span>", "<span class='comm'>height</span>"],
 		"<a href="#className" class='code_link'>className</a>": "<span class='comm'>a set of css style classes</span>",
+		"<a href="#sound" class='code_link'>sound</a>": "<span class='comm'>Sound id</span>"
+		"<a href="#sound_stop" class='code_link'>sound_stop</a>": "<span class='comm'>Sound id to stop</span>"
 		"<a href="#style" class='code_link'>style</a>": "<span class='comm'>css style parameters and their values</span>",
 		"<a href="#color" class='code_link'>color</a>": "<span class='comm'>background color</span>",
 		"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'>Text color</span>",
@@ -1485,6 +1529,25 @@ Localization option supported
 <a id="style"></a>
 <p><b>"style"</b> - optional parameter (analogous <a href="https://www.w3schools.com/html/html_styles.asp" target="_blank">attribute  style</a> in htmll) personal css style for this image</p>
 <pre class='code_box'><code>		"style": "<span class='comm'>parameters and their css values</span>",</code></pre>
+<br>
+<br>
+<a id="sound"></a>
+<p><b>"sound"</b> - Runs the specified sound, you cannot specify the file address, only the id name from <b>"parameters" / "<a href="#sounds" >sounds</a>"</b> </p>
+<pre class='code_box'><code>		"sound": "<span class='comm'>Sound id</span>",</code></pre>
+<br>
+Localization option supported
+<pre class='code_box'><code>	"sound": {
+		"en":"<span class='comm'>Sound id for English</span>",
+		"ja":"<span class='comm'>Sound id for Japanese</span>",
+		"ru":"<span class='comm'>Sound id for Russian</span>"
+		}
+	}
+</code></pre>
+<br>
+<br>
+<a id="sound_stop"></a>
+<p><b>"sound_stop"</b> - Stops the specified sound </p>
+<pre class='code_box'><code>		"sound_stop": "<span class='comm'>Sound id to stop</span>",</code></pre>
 <br>
 <br>
 <a id="position"></a>

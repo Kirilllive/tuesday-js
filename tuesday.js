@@ -33,12 +33,15 @@ function get_lang() {
     if (tip == 'data'){
         story_json = url;
         base_creation();
+		creation_sound ();
+		tuesday.dispatchEvent(new Event('script_loaded'));
     } else if (tip == 'file') {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && (this.status == 200 || this.status == 0)) {
                 story_json = JSON.parse(this.responseText);
                 base_creation();
+				creation_sound ();
                 tuesday.dispatchEvent(new Event('script_loaded'));
             }
         };
@@ -110,6 +113,7 @@ function get_lang() {
 } function creation_buttons() {
     for (i = 0; i < story_json.parameters.buttons.length; i++){
         var button = document.createElement("div");
+		if(story_json.parameters.buttons[i].sound){button.setAttribute ( "onclick", (story_json.parameters.buttons[i].sound)?get_sound(story_json.parameters.buttons[i].sound):"" + (story_json.parameters.buttons[i].sound_stop)?get_stop_sound(story_json.parameters.buttons[i].sound_stop):"")}
         if(story_json.parameters.buttons[i].className){button.className = story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style = story_json.parameters.buttons[i].style;}
 		if(story_json.parameters.buttons[i].text){
@@ -180,15 +184,7 @@ function get_lang() {
         else {buttons[i].style.visibility = "visible";}
     }
     creation_dialog ();
-    if(story_json[tue_story][scene].background_music){
-        if (tue_bg_music.canPlayType("audio/mpeg")) {
-            tue_bg_music.setAttribute("src", story_json[tue_story][scene].background_music+".m4a");
-            } else {
-            tue_bg_music.setAttribute("src", story_json[tue_story][scene].background_music+".ogg");
-        }
-        tue_bg_music.loop = true;
-        tue_bg_music.play();
-    }
+    if(story_json[tue_story][scene].background_music){search_music()}
 } function creation_dialog () {
 		tue_next.style.visibility = 'visible';
         if (story_json[tue_story][scene].dialogs[dialog].color) {tue_text_block.style.backgroundColor = story_json[tue_story][scene].dialogs[dialog].color;}
@@ -302,13 +298,19 @@ function get_lang() {
 				}
                 if (story_json[tue_story][scene].dialogs[dialog].choice[i].go_to) {
 					var g = story_json[tue_story][scene].dialogs[dialog].choice[i].go_to;
-					if (g == "tue_load_autosave") {choice.setAttribute("onclick","load_stag('auto')");}
-					else if (g == "load") {choice.setAttribute("onclick","load_stag('bookmark')");}
+					if (g == "tue_load_autosave") {choice.setAttribute("onclick","load_stag('auto')" + add_sound ());}
+					else if (g == "load") {choice.setAttribute("onclick","load_stag('bookmark')" + add_sound ());}
 					else {
-						choice.setAttribute("onclick", v + "go_to('" + g + "');");
+						choice.setAttribute("onclick", v + "go_to('" + g + "');" + add_sound ())
 					}
 					tuesday.appendChild(choice);
-				} else {choice.setAttribute("onclick", v + "go_story(true); del_element('tue_choice');"); tuesday.appendChild(choice);}
+				} else {choice.setAttribute("onclick", v + "go_story(true); del_element('tue_choice');" + add_sound ()); tuesday.appendChild(choice);}
+				function add_sound () {
+					var s = '';
+					if (story_json[tue_story][scene].dialogs[dialog].choice[i].sound){s = get_sound(story_json[tue_story][scene].dialogs[dialog].choice[i].sound)};
+					if (story_json[tue_story][scene].dialogs[dialog].choice[i].sound_stop){s += get_stop_sound(story_json[tue_story][scene].dialogs[dialog].choice[i].sound_stop)};
+					return s;
+				}
             }
         }
 		if (story_json[tue_story][scene].dialogs[dialog].variables) {
@@ -324,6 +326,14 @@ function get_lang() {
         if (story_json[tue_story][scene].dialogs[dialog].event) {
             tuesday.dispatchEvent(new Event( story_json[tue_story][scene].dialogs[dialog].event ));
         }
+		if (story_json[tue_story][scene].dialogs[dialog].sound_stop) {
+			var s = story_json[tue_story][scene].dialogs[dialog].sound_stop;
+			sound_stop((s[languare])? s[languare]: s);
+		}
+		if (story_json[tue_story][scene].dialogs[dialog].sound) {
+			var s = story_json[tue_story][scene].dialogs[dialog].sound;
+			sound_play( (s[languare])? s[languare]: s )
+		}
 } function values_in_text(add) {
 	var str = ""
 	if (!add) {
@@ -433,11 +443,34 @@ function get_lang() {
 	 for (var i = scene; i >= 0; i--) {
 		if(story_json[tue_story][i].background_music){
 			if (tue_bg_music.canPlayType("audio/mpeg")) {
-				tue_bg_music.setAttribute("src", story_json[tue_story][i].background_music+".m4a");
-            } else {tue_bg_music.setAttribute("src", story_json[tue_story][i].background_music+".ogg");}
+				tue_bg_music.src = story_json[tue_story][i].background_music + ".mp3";
+            } else {tue_bg_music.src = story_json[tue_story][i].background_music + ".ogg";}
 			tue_bg_music.loop = true;
 			tue_bg_music.play();
 			break;
 		}
 	}
+} function creation_sound () {
+	var i = 0;
+	while (Object.keys( story_json.parameters.sounds)[i]) {
+		var audio = document.createElement("audio");
+		audio.preload = "auto"
+		audio.id = Object.keys( story_json.parameters.sounds)[i];
+		if (audio.canPlayType("audio/mpeg")) {
+			audio.src = story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]] + ".mp3";
+		} else {audio.src = story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]] + ".ogg";}
+		tuesday.appendChild(audio);
+		i++;
+	}
+} function get_sound (src) {
+	return (src[languare])? "sound_play('" + src[languare] + "');": "sound_play('" + src + "');" ;	
+} function get_stop_sound (src) {
+	return (src[languare])? "sound_stop('" + src[languare] + "');": "sound_stop('" + src + "');" ;	
+} function sound_play(id) {
+	document.getElementById(id).currentTime = 0;
+	document.getElementById(id).volume = 1;
+	document.getElementById(id).play();
+} function sound_stop(id) {
+	document.getElementById(id).currentTime = 0;
+	document.getElementById(id).pause();
 }
