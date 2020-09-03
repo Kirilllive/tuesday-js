@@ -243,6 +243,7 @@ function load_story_edit(url) {
 			new_navel ()
 			story_script = JSON.parse(this.responseText);
 			parse_story()
+			
 			lines()
 		}
 	};
@@ -257,7 +258,7 @@ function parse_story() {
 		story_lines.removeChild(story_lines.firstChild);
 	}
 	var i = 0;
-	while (Object.getOwnPropertyNames(story_script)[i]) {
+	while (Object.keys(story_script)[i]) {
         creation_block(i);
 		i++;
 	}
@@ -266,7 +267,7 @@ function parse_story() {
 function creation_block(b) {
     var chapter = document.createElement("div");
 	var element = "";
-    chapter.id = Object.getOwnPropertyNames(story_script)[b];
+    chapter.id = Object.keys(story_script)[b];
 	var go = "";
 	// добавление элементов 
 	if ( chapter.id != "parameters") {
@@ -277,14 +278,14 @@ function creation_block(b) {
 				for (var l=0; l < story_script[chapter.id][i].legacy_choice.length; l++){
 					if (story_script[chapter.id][i].legacy_choice[l][0]) {
 						go =  story_script[chapter.id][i].legacy_choice[l][3];
-						element += "<div id='l"+l+go+"' class='choice to_go'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"	
-						line_controll.push( [go, chapter.id, "l"+l+go] );
-						creaton_line ("l"+l+go)
+						element += "<div id='l"+l+go+chapter.id+"' class='choice to_go'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"	
+						line_controll.push( [go, chapter.id, "l"+l+go+chapter.id] );
+						creaton_line ("l"+l+go+chapter.id)
 					} else if (story_script[chapter.id][i].legacy_choice[l].go_to) {
 						go =  story_script[chapter.id][i].legacy_choice[l].go_to;
-						element += "<div id='l"+l+go+"' class='choice to_go'>" + go + "</div>"
-						line_controll.push( [go, chapter.id, "l"+l+go] );
-						creaton_line ("l"+l+go)
+						element += "<div id='l"+l+go+chapter.id+"' class='choice to_go'>"+go+"</div>"
+						line_controll.push( [go, chapter.id, "l"+l+go+chapter.id] );
+						creaton_line ("l"+l+go+chapter.id)
 					}
 				}
 				element += "</div>"
@@ -296,9 +297,9 @@ function creation_block(b) {
 					if (story_script[chapter.id][i].dialogs[d].text) {element += "<div class='dialog'>" + ((n)? "<p><b>" + n + "</p></b><br>" : "" ) + "<p>" + languare_data (story_script[chapter.id][i].dialogs[d].text) + "</p></div>"}
 					if (story_script[chapter.id][i].dialogs[d].go_to) {
 						go = story_script[chapter.id][i].dialogs[d].go_to;
-						element += "<div id='g" + go + chapter.id + "' class='choice to_go'>" + go + "</div>";
-						line_controll.push( [go, chapter.id, "g" + go + chapter.id] );
-						creaton_line ("g" + go + chapter.id)
+						element += "<div id='g"+go+chapter.id+"' class='choice to_go'>"+go+"</div>";
+						line_controll.push( [go, chapter.id, "g"+go + chapter.id] );
+						creaton_line ("g"+go+chapter.id)
 					}
 					if (story_script[chapter.id][i].dialogs[d].choice) {
 						element += "<div id='' class='choice'>"
@@ -306,9 +307,9 @@ function creation_block(b) {
 							go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
 							if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
 								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
-								element += "<div id='c" + go + "' class='choice_b to_go'>" + ((t == "")? go : t ) + "</div>"
-								line_controll.push( [go, chapter.id, "c"+go] );
-								creaton_line ("c" + go)
+								element += "<div id='c"+go+chapter.id+ "' class='choice_b to_go'>" + ((t == "")? go : t ) + "</div>"
+								line_controll.push( [go, chapter.id, "c"+go+chapter.id] );
+								creaton_line ("c"+go+chapter.id)
 							} else {
 								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
 								element += "<div class='choice_b'>" + ((t == "")? go : t ) + "</div>"
@@ -322,8 +323,8 @@ function creation_block(b) {
 		}
 		chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' class='button_block icon_edit'></td><td align='center'>"+chapter.id+"</td><td align='center' onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
 		chapter.className = "story_block panel";
-		chapter.style.left = "50%";
-		chapter.style.top = "50%";
+		chapter.style.left = "256px";
+		chapter.style.top = "256px";
 		story_blocks.appendChild(chapter);
 	}
 }
@@ -356,7 +357,6 @@ function save_file() {
 function lines() {
 	var to_go = document.getElementsByClassName("to_go");
 	for (var x = 0 ; x < to_go.length; x++){
-		//alert (to_go[x].id)
 		var title_block;
 		if (document.getElementById( line_controll[x][1] + "_content" ).style.display == 'none'){
 			title_block = document.getElementById(line_controll[x][0])
@@ -488,7 +488,6 @@ html.onmousedown = function(e) {
 		scroll_x = html.scrollTop;
 		scroll_y = html.scrollLeft;
 		html.onmousemove = function(e) {
-			//info.innerHTML =  (move_x - startmove_x) + "/" + (move_y - startmove_y);
 			html.scrollTop = scroll_x - (e.clientY - startmove_y);
 			html.scrollLeft = scroll_y - (e.clientX - startmove_x);
 		};
