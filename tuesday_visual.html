@@ -348,8 +348,8 @@ function save_file() {
 	var ds = String(d.getSeconds());
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(story_script));
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
-	if (story_script.parameters.title.en){n = story_script.parameters.title.en;}
-	else if (story_script.parameters.title){n = story_script.parameters.title;}
+	if (story_script.parameters.title){n = (story_script.parameters.title.en)? story_script.parameters.title.en: story_script.parameters.title;}
+	else {n = "new_novel";}
     dlAnchorElem.setAttribute("href", dataStr );
     dlAnchorElem.setAttribute("download", n + '_' + d.getFullYear() + '_' + (dm.length <2 ? '0'+ dm : dm) + '_' + (dd.length <2 ? '0'+ dd : dd) +'_'+ (dh.length <2 ? '0'+ dh : dh) + (dm.length <2 ? '0'+ dm : dm) + (ds.length <2 ? '0'+ ds : ds) +'.json');
     dlAnchorElem.click();
@@ -514,8 +514,9 @@ function modal_window(action, content) {
     }
 }
 function play_navel() {
-    var preview = window.open("", "preview", "location=no,scrollbars=no,width=640,height=480");
-    preview.document.write("<iframe scrolling='no' frameborder='0' style='width:100%; height:100%; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; ' srcdoc=\"<div id='tuesday' style='width:100%; height:100vh;'></div><script type='text/javascript' src='tuesday.js'><\/script><script> load_story('file','example_tour_guide/story.json')<\/script>\" src=\"demo_iframe_srcdoc.htm\"><\/iframe>");
+	var content = JSON.stringify(story_script).replace(/"/g, '\'');
+	var preview = window.open("", "preview", "location=no,scrollbars=no,width=640,height=480");
+    preview.document.write("<iframe scrolling='no' frameborder='0' style='width:100%; height:100%; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; ' srcdoc=\"<div id='tuesday' style='width:100%; height:100vh;'>8888</div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = "+content+"; load_story('data',story_preview)<\/script>\" src=\"play_navel.htm\"><\/iframe>");
 }
 </script>
 </body>
