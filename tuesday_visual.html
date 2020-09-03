@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Tuesday js Visual</title>
+	<link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
     <meta charset="UTF-8">
     <style>
 	*{
@@ -57,7 +58,7 @@
 		border-radius: 0 0 16px 0;
 		position: fixed; 
 		height: 40px;
-		width: 192px;
+		width: 256px;
 	}
 	.button_block {
 		height: 28px;
@@ -95,6 +96,9 @@
 	.icon_show {
 		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsNDBIMTAiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsMTMwSDEwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjQ2LDIyMEgxMCIvPg0KPC9zdmc+")
 	}
+	.icon_setup {
+		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZD0iTTI4LjQ2OSw2LjgxM2ExNC4wNDcsMTQuMDQ3LDAsMSwxLTE0LDE0LjA0N0ExNC4wMjQsMTQuMDI0LDAsMCwxLDI4LjQ2OSw2LjgxM1ptNzQuMjY1LDQzLjIxOUExNC4wMzEsMTQuMDMxLDAsMSwxLDg4Ljc1LDY0LjA2MywxNC4wMDgsMTQuMDA4LDAsMCwxLDEwMi43MzQsNTAuMDMxWk02My45NjksOTMuMjE5YTE0LjAzMSwxNC4wMzEsMCwxLDEtMTQsMTQuMDMxQTE0LjAxNiwxNC4wMTYsMCwwLDEsNjMuOTY5LDkzLjIxOVpNNDkuOTg1LDEwNy4yNjVIMi42MjRtMC04Ni40aDExLjg0bS0xMS44NCw0My4ySDg3LjY1OW0zNy42NzQsNDMuMkg3Ny45NzFNNDIuNDUsMjAuODY1aDgyLjg4M20tOC42MTEsNDMuMmg4LjYxMSIvPg0KPC9zdmc+DQo=")
+	}
 	.scene {
 		background-color: #efefff;
 		border-radius: 12px;
@@ -123,6 +127,7 @@
 		margin-top: 8px;
 		border-radius: 8px;
 		background-color: #cec8e3;
+		font-size: 14px;
 	}
 	.choice_b {
 		background-color: #efefff;
@@ -130,6 +135,8 @@
 		margin-top: 8px;
 		text-align: center;
 		padding: 4px;
+		border-radius: 6px;
+		font-size: 14px;
 	}
 	#window_zone {
 		height: 100vh; 
@@ -171,6 +178,7 @@
 					<td align='center' onclick='new_navel()' class='icon button_menu icon_new'></td>
                     <td align='center' onclick='json_file.click()' class='icon button_menu icon_load'></td>
 					<td align='center' onclick='save_file()' class='icon button_menu icon_save'></td>
+					<td align='center' onclick='setup()' class='icon button_menu icon_setup'></td>
 					<td align='center' onclick='play_navel()' class='icon button_menu icon_play' style='border-radius: 0 0 16px 0;'></td>
 				</tr>
 			</tbody>
@@ -190,6 +198,7 @@ let story_script = {"parameters":{"title":"new","launch_story":"main_menu"}};
 let line_controll = [];
 var img_file = document.getElementById('json_file');
 var t;
+var languare = "ru";
 img_file.addEventListener('change', loadFiles);
 function loadFiles(e) {
 	t = e
@@ -258,28 +267,51 @@ function creation_block(b) {
     var chapter = document.createElement("div");
 	var element = "";
     chapter.id = Object.getOwnPropertyNames(story_script)[b];
+	var go = "";
 	// добавление элементов 
 	if ( chapter.id != "parameters") {
 		for (var i=0; i < story_script[chapter.id].length; i++){
 			element += "<div class='scene'>" 
-			if (story_script[chapter.id][i].background_image){element += "<div class='scene_bg' style=' background-image: url(" + open_file (story_script[chapter.id][i].background_image.ja) + ")' width='100%'></div>"}
+			if (story_script[chapter.id][i].legacy_choice){
+				element += "<div width='100%'>"
+				for (var l=0; l < story_script[chapter.id][i].legacy_choice.length; l++){
+					if (story_script[chapter.id][i].legacy_choice[l][0]) {
+						go =  story_script[chapter.id][i].legacy_choice[l][3];
+						element += "<div id='l"+l+go+"' class='choice to_go'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"	
+						line_controll.push( [go, chapter.id, "l"+l+go] );
+						creaton_line ("l"+l+go)
+					} else if (story_script[chapter.id][i].legacy_choice[l].go_to) {
+						go =  story_script[chapter.id][i].legacy_choice[l].go_to;
+						element += "<div id='l"+l+go+"' class='choice to_go'>" + go + "</div>"
+						line_controll.push( [go, chapter.id, "l"+l+go] );
+						creaton_line ("l"+l+go)
+					}
+				}
+				element += "</div>"
+			}
+			if (story_script[chapter.id][i].background_image){element += "<div class='scene_bg' style=' background-image: url(" + open_file (story_script[chapter.id][i].background_image[languare]) + ")' width='100%'></div>"}
 			if (story_script[chapter.id][i].dialogs) {
 				for (var d=0; d < story_script[chapter.id][i].dialogs.length; d++){
-					if (story_script[chapter.id][i].dialogs[d].text) {element += "<div class='dialog'>" + story_script[chapter.id][i].dialogs[d].text.ja + "</div>"}
+					var n = languare_data (story_script[chapter.id][i].dialogs[d].name);
+					if (story_script[chapter.id][i].dialogs[d].text) {element += "<div class='dialog'>" + ((n)? "<p><b>" + n + "</p></b><br>" : "" ) + "<p>" + languare_data (story_script[chapter.id][i].dialogs[d].text) + "</p></div>"}
 					if (story_script[chapter.id][i].dialogs[d].go_to) {
-						var id = story_script[chapter.id][i].dialogs[d].go_to
-						element += "<div id='go_" + id + "_" + chapter.id + "' class='choice to_go'>" + id + "</div>";
-						line_controll.push( [id, chapter.id, "go_" + id + "_"+chapter.id] );
-						creaton_line ("go_" + id + "_" + chapter.id)
+						go = story_script[chapter.id][i].dialogs[d].go_to;
+						element += "<div id='g" + go + chapter.id + "' class='choice to_go'>" + go + "</div>";
+						line_controll.push( [go, chapter.id, "g" + go + chapter.id] );
+						creaton_line ("g" + go + chapter.id)
 					}
 					if (story_script[chapter.id][i].dialogs[d].choice) {
 						element += "<div id='' class='choice'>"
 						for (var c=0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++){
-							var id = story_script[chapter.id][i].dialogs[d].choice[c].go_to
-							if (id && id != "load" && id != "load_autosave" && id != "" && id != "undefined") {
-								element += "<div id='c_" + id + "' class='choice_b to_go'>" + id + "</div>"
-								line_controll.push( [id, chapter.id, "c_"+id] );
-								creaton_line ("c_" + id)
+							go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
+							if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
+								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
+								element += "<div id='c" + go + "' class='choice_b to_go'>" + ((t == "")? go : t ) + "</div>"
+								line_controll.push( [go, chapter.id, "c"+go] );
+								creaton_line ("c" + go)
+							} else {
+								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
+								element += "<div class='choice_b'>" + ((t == "")? go : t ) + "</div>"
 							}
 						}
 						element += "</div>"
@@ -288,16 +320,21 @@ function creation_block(b) {
 			}
 			element += "</div>"
 		}
+		chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' class='button_block icon_edit'></td><td align='center'>"+chapter.id+"</td><td align='center' onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
+		chapter.className = "story_block panel";
+		chapter.style.left = "50%";
+		chapter.style.top = "50%";
+		story_blocks.appendChild(chapter);
 	}
-    chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' class='button_block icon_edit'></td><td align='center'>"+chapter.id+"</td><td align='center' onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
-    chapter.className = "story_block panel";
-    chapter.style.left = "50%";
-    chapter.style.top = "50%";
-    story_blocks.appendChild(chapter);
+}
+function languare_data (data) {
+	if (data) {
+		return  ((data[languare]) ? data[languare] : data) ;
+	} else {return ""}
 }
 function creaton_line (id) {
     var newLine = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-    newLine.id = id + "_line"
+    newLine.id = id + "l"
     story_lines.appendChild(newLine);
 }
 function save_file() {
@@ -358,7 +395,7 @@ function lines() {
 }
 var moveSlider = function(slider, direction, id) {
 	var value = slider;
-	var element = document.getElementById(id + "_line");
+	var element = document.getElementById(id + "l");
 	var coord = direction;
 	element.setAttributeNS(null, coord, value);
 }
