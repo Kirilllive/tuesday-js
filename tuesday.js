@@ -40,7 +40,7 @@ function get_lang() {
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && (this.status == 200 || this.status == 0)) {
 				try {story_json = JSON.parse(this.responseText);} 
-				catch (e) {alert('Json structure error')}
+				catch (e) { if (this.status > 0){alert('Json structure error')}}
                 base_creation();
 				creation_sound ();
                 tuesday.dispatchEvent(new Event('script_loaded'));
@@ -50,7 +50,7 @@ function get_lang() {
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
 		xmlhttp.onerror = function() {
-			if (this.status == 0) {alert( 'Error=' + this.status + ' Cross-Origin' );}
+			if (this.status == 0) {alert( 'Error load json file Cross-Origin Resource Sharing (CORS)' );}
 		}
     }
 } function base_creation() {
