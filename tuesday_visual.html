@@ -279,16 +279,24 @@ function creation_block(b) {
 				for (var l=0; l < story_script[chapter.id][i].legacy_choice.length; l++){
 					if (story_script[chapter.id][i].legacy_choice[l][0]) {
 						go =  story_script[chapter.id][i].legacy_choice[l][3];
-						element += "<div id='"+all+"l"+l+go+i+"' class='choice to_go'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"
-						line_controll.push( [go, chapter.id, all+"l"+l+go+i] );
-						creaton_line (all+"l"+l+go+i)
-                        all++
+						if (story_script[go]) {
+							element += "<div id='"+all+"l"+l+go+i+"' class='choice to_go'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"
+							line_controll.push( [go, chapter.id, all+"l"+l+go+i] );
+							creaton_line (all+"l"+l+go+i)
+							all++
+						} else {
+							element += "<div id='"+all+"l"+l+go+i+"' class='choice'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"
+						}
 					} else if (story_script[chapter.id][i].legacy_choice[l].go_to) {
 						go =  story_script[chapter.id][i].legacy_choice[l].go_to;
-						element += "<div id='"+all+"l"+l+go+i+"' class='choice to_go'>"+go+"</div>"
-						line_controll.push( [go, chapter.id, all+"l"+l+go+i] );
-						creaton_line (all+"l"+l+go+i)
-                        all++
+						if (story_script[go]) {
+							element += "<div id='"+all+"l"+l+go+i+"' class='choice to_go'>"+go+"</div>"
+							line_controll.push( [go, chapter.id, all+"l"+l+go+i] );
+							creaton_line (all+"l"+l+go+i)
+							all++
+						} else {
+							element += "<div id='"+all+"l"+l+go+i+"' class='choice'>"+go+"</div>"
+						}
 					}
 				}
 				element += "</div>"
@@ -300,10 +308,14 @@ function creation_block(b) {
 					if (story_script[chapter.id][i].dialogs[d].text) {element += "<div class='dialog'>" + ((n)? "<p><b>" + n + "</p></b><br>" : "" ) + "<p>" + languare_data (story_script[chapter.id][i].dialogs[d].text) + "</p></div>"}
 					if (story_script[chapter.id][i].dialogs[d].go_to) {
 						go = story_script[chapter.id][i].dialogs[d].go_to;
-						element += "<div id='"+all+"g"+go+i+"' class='choice to_go'>"+go+"</div>";
-						line_controll.push( [go, chapter.id, all+"g"+go + i] );
-						creaton_line (all+"g"+go+i)
-                        all++
+						if (story_script[go]) {
+							element += "<div id='"+all+"g"+d+go+i+"' class='choice to_go'>"+go+"</div>";
+							line_controll.push( [go, chapter.id, all+"g"+d+go+i] );
+							creaton_line (all+"g"+d+go+i)
+							all++
+						} else {
+							element += "<div id='"+all+"g"+d+go+i+"' class='choice'>"+go+"</div>";
+						}
 					}
 					if (story_script[chapter.id][i].dialogs[d].choice) {
 						element += "<div id='' class='choice'>"
@@ -311,10 +323,14 @@ function creation_block(b) {
 							go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
 							if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
 								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
-								element += "<div id='"+all+"c"+go+i+ "' class='choice_b to_go'>" + ((t == "")? go : t ) + "</div>"
-								line_controll.push( [go, chapter.id, all+"c"+go+i] );
-								creaton_line (all+"c"+go+i)
-                                all++
+								if (story_script[go]) {
+									element += "<div id='"+all+"c"+d+go+i+"' class='choice_b to_go'>" + ((t == "")? go : t ) + "</div>"
+									line_controll.push( [go, chapter.id, all+"c"+d+go+i] );
+									creaton_line (all+"c"+d+go+i)
+									all++
+								} else {
+									element += "<div id='"+all+"c"+d+go+i+"' class='choice_b'>" + ((t == "")? go : t ) + "</div>"
+								}
 							} else {
 								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
 								element += "<div class='choice_b'>" + ((t == "")? go : t ) + "</div>"
