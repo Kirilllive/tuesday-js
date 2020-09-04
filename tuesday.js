@@ -479,8 +479,7 @@ function get_lang() {
 } function sound_stop(id) {
 	document.getElementById(id).currentTime = 0;
 	document.getElementById(id).pause();
-}
-function add_style(file) {
+} function add_style(file) {
     var newlink = document.createElement("link");
     newlink.setAttribute("rel", "stylesheet");
     newlink.setAttribute("type", "text/css");

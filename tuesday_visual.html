@@ -197,36 +197,35 @@ var story_lines = document.getElementById("story_lines");
 let story_script = {"parameters":{"title":"new","launch_story":"main_menu"}};
 let line_controll = [];
 var img_file = document.getElementById('json_file');
-var t;
-var languare = "ru";
+var languare = "en";
+let project_files = [];
 img_file.addEventListener('change', loadFiles);
 function loadFiles(e) {
-	t = e
-	var files = [];
-	for (var i=0; i < t.target.files.length; i++) {
-		if (t.target.files[i].type == "application/json"){
-			files.push([i,t.target.files[i].name])
+	var wf = e.target.files[0].webkitRelativePath.split("/")[0] + "/";
+	var jsons = [];
+	for (var i=0; i < e.target.files.length; i++) {
+		project_files.push( [e.target.files[i].webkitRelativePath.replace(wf,''), URL.createObjectURL(e.target.files[i])] );
+		if (e.target.files[i].type == "application/json"){
+			jsons.push([i,e.target.files[i].name])
 		}
-	}
-	if (files.length == 1) {
-		load_story_edit(URL.createObjectURL(t.target.files[files[0][0]]))
-	} else if (files.length > 1) {
+	}	
+	if (jsons.length == 1) {
+		load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))
+	} else if (jsons.length > 1) {
 		var html = "<div class='window' style='padding: 0px 8px;'>"
-		for (var f=0; f < files.length; f++) {
-			html += "<table class='button' style='margin: 8px 0px;' onclick='load_story_edit(open_file(\"" + files[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td align='center' width='48px' height='48px' class='icon icon_new'> </td><td align='center' style=''>" + files[f][1] + "</td><td align='center' width='48px'></td></tr></tbody></table>"
+		for (var f=0; f < jsons.length; f++) {
+			html += "<table class='button' style='margin: 8px 0px;' onclick='load_story_edit(open_file(\"" + jsons[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td align='center' width='48px' height='48px' class='icon icon_new'> </td><td align='center' style=''>" + jsons[f][1] + "</td><td align='center' width='48px'></td></tr></tbody></table>"
 		} 
 		html += "</div>"
 		modal_window("open", html)
 	}
 }
 function open_file (name) {
-	if (name) {
-	name = name.split("/")[name.split("/").length-1];
-	for (var i=0; i < t.target.files.length; i++) {
-		if (t.target.files[i].name == name){
-			return (URL.createObjectURL(t.target.files[i]))
+	for (var f=0; f < project_files.length; f++) {
+		if (project_files[f][0] == name){
+			return (project_files[f][1])
 		}
-	}}
+	}
 }
 function new_navel () {
 	story_blocks.innerHTML = ""
@@ -270,7 +269,6 @@ function creation_block(b) {
     var all = 0;
     chapter.id = Object.keys(story_script)[b];
 	var go = "";
-	// добавление элементов 
 	if ( chapter.id != "parameters") {
 		for (var i=0; i < story_script[chapter.id].length; i++){
 			element += "<div class='scene'>" 
@@ -301,7 +299,7 @@ function creation_block(b) {
 				}
 				element += "</div>"
 			}
-			if (story_script[chapter.id][i].background_image){element += "<div class='scene_bg' style=' background-image: url(" + open_file (story_script[chapter.id][i].background_image[languare]) + ")' width='100%'></div>"}
+			if (story_script[chapter.id][i].background_image){element += "<div class='scene_bg' style=' background-image: url(" + open_file (languare_data (story_script[chapter.id][i].background_image)) + ")' width='100%'></div>"}
 			if (story_script[chapter.id][i].dialogs) {
 				for (var d=0; d < story_script[chapter.id][i].dialogs.length; d++){
 					var n = languare_data (story_script[chapter.id][i].dialogs[d].name);
@@ -378,10 +376,8 @@ function save_file() {
 function lines(elem) {
 	var to_go = document.getElementsByClassName("to_go");
 	for (var x = 0 ; x < to_go.length; x++){
-	
 		if (elem == line_controll[x][1] || elem == line_controll[x][0]) {document.getElementById( line_controll[x][2]+"l" ).style.visibility = 'visible'} 
 		else {document.getElementById( line_controll[x][2]+"l" ).style.visibility = 'hidden'}
-
 		var title_block;
 		if (document.getElementById( line_controll[x][1] + "_content" ).style.display == 'none'){
 			title_block = document.getElementById(line_controll[x][0]).getBoundingClientRect();
@@ -432,40 +428,40 @@ function control_dlock () {
 }
 var scroll_block = false;
 function movie_dlock(id){
-		var focus_dlock = document.getElementById(id);
-		focus_dlock.onmousedown = function(e) {
-			var coords = getCoords(focus_dlock);
-			var shiftX = e.pageX - coords.left;
-			var shiftY = e.pageY - coords.top;
-			scroll_block = true;
-			focus_dlock.style.position = 'absolute';
-			story_blocks.appendChild(focus_dlock);
-			moveAt(e);
-			function moveAt(e) {
-				focus_dlock.style.left = e.pageX - shiftX + 'px';
-				focus_dlock.style.top = e.pageY - shiftY + 'px';
-				lines(id)
-			}
-		  document.onmousemove = function(e) {
-			moveAt(e);
-		  };
-		  focus_dlock.onmouseup = function() {
-			document.onmousemove = null;
-			focus_dlock.onmouseup = null;
-			scroll_block = false;
-			world_size()
-		  };
+	var focus_dlock = document.getElementById(id);
+	focus_dlock.onmousedown = function(e) {
+		var coords = getCoords(focus_dlock);
+		var shiftX = e.pageX - coords.left;
+		var shiftY = e.pageY - coords.top;
+		scroll_block = true;
+		focus_dlock.style.position = 'absolute';
+		story_blocks.appendChild(focus_dlock);
+		moveAt(e);
+		function moveAt(e) {
+			focus_dlock.style.left = e.pageX - shiftX + 'px';
+			focus_dlock.style.top = e.pageY - shiftY + 'px';
+			lines(id)
 		}
-		focus_dlock.ondragstart = function() {
-			return false;
+	  document.onmousemove = function(e) {
+		moveAt(e);
+	  };
+	  focus_dlock.onmouseup = function() {
+		document.onmousemove = null;
+		focus_dlock.onmouseup = null;
+		scroll_block = false;
+		world_size()
+	  };
+	}
+	focus_dlock.ondragstart = function() {
+		return false;
+	};
+	function getCoords(elem) {
+		var box = elem.getBoundingClientRect();
+		return {
+			top: box.top + pageYOffset,
+			left: box.left + pageXOffset
 		};
-		function getCoords(elem) {
-			var box = elem.getBoundingClientRect();
-			return {
-				top: box.top + pageYOffset,
-				left: box.left + pageXOffset
-			};
-		}
+	}
 }
 function world_size() {
 	var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
@@ -539,8 +535,15 @@ function modal_window(action, content) {
     }
 }
 function play_navel() {
+	var story_preview = JSON.stringify(story_script)
+	alert (JSON.stringify(story_script).split('img/sky_tree_1.jpg').length)
+	for (var f=0; f < project_files.length; f++) {
+		for (var r=JSON.stringify(story_script).split('img/sky_tree_1.jpg').length; r > 0; r--) {
+			story_preview = story_preview.replace(project_files[f][0],project_files[f][1])
+		}
+	}
 	var preview = window.open("", "preview", "location=no,scrollbars=no,width=640,height=480");
-    preview.document.write("<html><head><style> body { background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = "+JSON.stringify(story_script)+"; load_story('data',story_preview)<\/script><\/body><\/html>");
+    preview.document.write("<html><head><style> body { background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = "+story_preview+";  load_story('data',story_preview);  <\/script><\/body><\/html>");
 }
 </script>
 </body>
