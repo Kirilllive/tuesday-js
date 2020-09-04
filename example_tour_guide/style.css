@@ -1,0 +1,8 @@
+.borders {
+	border: 3px solid;
+	border-color: #fff;
+}
+.button_border:hover {
+	border: 3px solid;
+	border-color: #8af;
+}
