@@ -402,8 +402,8 @@ function lines(elem) {
 		} else {
 			title_block = document.getElementById(line_controll[x][0]).getBoundingClientRect();
 			var rect = document.getElementById(line_controll[x][2]).getBoundingClientRect();
-			var l1 = rect.left;
-			var l2 = title_block.left
+			var l1 = html.scrollLeft + rect.left;
+			var l2 = html.scrollLeft + title_block.left
 			if (l1 > l2){
 				moveSlider(rect.left + html.scrollLeft - 12, 'x2', line_controll[x][2]);
 				moveSlider(rect.top + html.scrollTop + 12, 'y2', line_controll[x][2]);
