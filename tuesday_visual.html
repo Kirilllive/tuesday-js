@@ -519,9 +519,8 @@ function modal_window(action, content) {
     }
 }
 function play_navel() {
-    var content = JSON.stringify(story_script).replace(/'/g, '&apos;').replace(/"/g, '&quot;');
 	var preview = window.open("", "preview", "location=no,scrollbars=no,width=640,height=480");
-    preview.document.write("<iframe scrolling='no' frameborder='0' style='width:100%; height:100%; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; ' srcdoc=\"<div id='tuesday' style='width:100%; height:100vh;'> </div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = "+content+"; load_story('data',story_preview)<\/script>\" src=\"play_navel.htm\"><\/iframe>");
+    preview.document.write("<html><head><style> body { background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = "+JSON.stringify(story_script)+"; load_story('data',story_preview)<\/script><\/body><\/html>");
 }
 </script>
 </body>
