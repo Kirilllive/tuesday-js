@@ -243,13 +243,13 @@ function load_story_edit(url) {
 			new_navel ()
 			story_script = JSON.parse(this.responseText);
 			parse_story()
-			
 			lines()
 		}
 	};
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 }
+var all_blocks = 0;
 function parse_story() {
 	story_blocks = document.getElementById("story_blocks");
 	story_blocks.innerHTML = ""
@@ -257,10 +257,10 @@ function parse_story() {
 	while (story_lines.hasChildNodes()) {
 		story_lines.removeChild(story_lines.firstChild);
 	}
-	var i = 0;
-	while (Object.keys(story_script)[i]) {
-        creation_block(i);
-		i++;
+	all_blocks = 0;
+	while (Object.keys(story_script)[all_blocks]) {
+        creation_block(all_blocks);
+		all_blocks++;
 	}
     control_dlock()
 }
@@ -280,22 +280,22 @@ function creation_block(b) {
 					if (story_script[chapter.id][i].legacy_choice[l][0]) {
 						go =  story_script[chapter.id][i].legacy_choice[l][3];
 						if (story_script[go]) {
-							element += "<div id='"+all+"l"+l+go+i+"' class='choice to_go'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"
-							line_controll.push( [go, chapter.id, all+"l"+l+go+i] );
-							creaton_line (all+"l"+l+go+i)
+							element += "<div id='"+all+"l"+l+go+all_blocks+"' class='choice to_go'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"
+							line_controll.push( [go, chapter.id, all+"l"+l+go+all_blocks] );
+							creaton_line (all+"l"+l+go+all_blocks)
 							all++
 						} else {
-							element += "<div id='"+all+"l"+l+go+i+"' class='choice'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"
+							element += "<div id='"+all+"l"+l+go+all_blocks+"' class='choice'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"
 						}
 					} else if (story_script[chapter.id][i].legacy_choice[l].go_to) {
 						go =  story_script[chapter.id][i].legacy_choice[l].go_to;
 						if (story_script[go]) {
-							element += "<div id='"+all+"l"+l+go+i+"' class='choice to_go'>"+go+"</div>"
-							line_controll.push( [go, chapter.id, all+"l"+l+go+i] );
-							creaton_line (all+"l"+l+go+i)
+							element += "<div id='"+all+"l"+l+go+all_blocks+"' class='choice to_go'>"+go+"</div>"
+							line_controll.push( [go, chapter.id, all+"l"+l+go+all_blocks] );
+							creaton_line (all+"l"+l+go+all_blocks)
 							all++
 						} else {
-							element += "<div id='"+all+"l"+l+go+i+"' class='choice'>"+go+"</div>"
+							element += "<div id='"+all+"l"+l+go+all_blocks+"' class='choice'>"+go+"</div>"
 						}
 					}
 				}
@@ -309,12 +309,12 @@ function creation_block(b) {
 					if (story_script[chapter.id][i].dialogs[d].go_to) {
 						go = story_script[chapter.id][i].dialogs[d].go_to;
 						if (story_script[go]) {
-							element += "<div id='"+all+"g"+d+go+i+"' class='choice to_go'>"+go+"</div>";
-							line_controll.push( [go, chapter.id, all+"g"+d+go+i] );
-							creaton_line (all+"g"+d+go+i)
+							element += "<div id='"+all+"g"+d+go+all_blocks+"' class='choice to_go'>"+go+"</div>";
+							line_controll.push( [go, chapter.id, all+"g"+d+go+all_blocks] );
+							creaton_line (all+"g"+d+go+all_blocks)
 							all++
 						} else {
-							element += "<div id='"+all+"g"+d+go+i+"' class='choice'>"+go+"</div>";
+							element += "<div id='"+all+"g"+d+go+all_blocks+"' class='choice'>"+go+"</div>";
 						}
 					}
 					if (story_script[chapter.id][i].dialogs[d].choice) {
@@ -324,12 +324,12 @@ function creation_block(b) {
 							if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
 								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
 								if (story_script[go]) {
-									element += "<div id='"+all+"c"+d+go+i+"' class='choice_b to_go'>" + ((t == "")? go : t ) + "</div>"
-									line_controll.push( [go, chapter.id, all+"c"+d+go+i] );
-									creaton_line (all+"c"+d+go+i)
+									element += "<div id='"+all+"c"+d+go+all_blocks+"' class='choice_b to_go'>" + ((t == "")? go : t ) + "</div>"
+									line_controll.push( [go, chapter.id, all+"c"+d+go+all_blocks] );
+									creaton_line (all+"c"+d+go+all_blocks)
 									all++
 								} else {
-									element += "<div id='"+all+"c"+d+go+i+"' class='choice_b'>" + ((t == "")? go : t ) + "</div>"
+									element += "<div id='"+all+"c"+d+go+all_blocks+"' class='choice_b'>" + ((t == "")? go : t ) + "</div>"
 								}
 							} else {
 								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
@@ -344,8 +344,8 @@ function creation_block(b) {
 		}
 		chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' class='button_block icon_edit'></td><td align='center'>"+chapter.id+"</td><td align='center' onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
 		chapter.className = "story_block panel";
-		chapter.style.left = "256px";
-		chapter.style.top = "256px";
+		chapter.style.left = 64 + (320 * (all_blocks-1)) + "px";
+		chapter.style.top = 64 + (128 * (all_blocks-1)) + "px";
 		story_blocks.appendChild(chapter);
 	}
 }
@@ -375,41 +375,45 @@ function save_file() {
     dlAnchorElem.setAttribute("download", n + '_' + d.getFullYear() + '_' + (dm.length <2 ? '0'+ dm : dm) + '_' + (dd.length <2 ? '0'+ dd : dd) +'_'+ (dh.length <2 ? '0'+ dh : dh) + (dm.length <2 ? '0'+ dm : dm) + (ds.length <2 ? '0'+ ds : ds) +'.json');
     dlAnchorElem.click();
 }
-function lines() {
+function lines(elem) {
 	var to_go = document.getElementsByClassName("to_go");
 	for (var x = 0 ; x < to_go.length; x++){
+	
+		if (elem == line_controll[x][1] || elem == line_controll[x][0]) {document.getElementById( line_controll[x][2]+"l" ).style.visibility = 'visible'} 
+		else {document.getElementById( line_controll[x][2]+"l" ).style.visibility = 'hidden'}
+
 		var title_block;
 		if (document.getElementById( line_controll[x][1] + "_content" ).style.display == 'none'){
-			title_block = document.getElementById(line_controll[x][0])
+			title_block = document.getElementById(line_controll[x][0]).getBoundingClientRect();
 			var rect = document.getElementById(line_controll[x][1]).getBoundingClientRect();
-			var l1 = rect.left;
-			var l2 = parseInt(title_block.style.left)
+			var l1 = html.scrollLeft + rect.left;
+			var l2 = html.scrollLeft + title_block.left
 			if (l1 > l2){
 				moveSlider(rect.left + html.scrollLeft, 'x2', line_controll[x][2]);
 				moveSlider(rect.top + html.scrollTop + 22, 'y2', line_controll[x][2]);
 				moveSlider(l2 + 256, 'x1', line_controll[x][2]);
-				moveSlider(parseInt(title_block.style.top)+22, 'y1', line_controll[x][2]);
+				moveSlider(title_block.top + html.scrollTop + 22, 'y1', line_controll[x][2]);
 			} else {
 				moveSlider(rect.left + html.scrollLeft + 256, 'x2', line_controll[x][2]);
 				moveSlider(rect.top + html.scrollTop + 22, 'y2', line_controll[x][2]);
 				moveSlider(l2, 'x1', line_controll[x][2]);
-				moveSlider(parseInt(title_block.style.top)+22, 'y1', line_controll[x][2]);
+				moveSlider(title_block.top + html.scrollTop + 22, 'y1', line_controll[x][2]);
 			}
 		} else {
-			title_block = document.getElementById(line_controll[x][0])
+			title_block = document.getElementById(line_controll[x][0]).getBoundingClientRect();
 			var rect = document.getElementById(line_controll[x][2]).getBoundingClientRect();
 			var l1 = rect.left;
-			var l2 = parseInt(title_block.style.left)
+			var l2 = title_block.left
 			if (l1 > l2){
 				moveSlider(rect.left + html.scrollLeft - 12, 'x2', line_controll[x][2]);
 				moveSlider(rect.top + html.scrollTop + 12, 'y2', line_controll[x][2]);
 				moveSlider(l2 + 256, 'x1', line_controll[x][2]);
-				moveSlider(parseInt(title_block.style.top)+22, 'y1', line_controll[x][2]);
+				moveSlider(title_block.top + html.scrollTop + 22, 'y1', line_controll[x][2]);
 			} else {
 				moveSlider(rect.left + html.scrollLeft + 244, 'x2', line_controll[x][2]);
 				moveSlider(rect.top + html.scrollTop + 12, 'y2', line_controll[x][2]);
 				moveSlider(l2, 'x1', line_controll[x][2]);
-				moveSlider(parseInt(title_block.style.top)+22, 'y1', line_controll[x][2]);
+				moveSlider(title_block.top + html.scrollTop + 22, 'y1', line_controll[x][2]);
 			}
 		}
 	}
@@ -440,7 +444,7 @@ function movie_dlock(id){
 			function moveAt(e) {
 				focus_dlock.style.left = e.pageX - shiftX + 'px';
 				focus_dlock.style.top = e.pageY - shiftY + 'px';
-				lines()
+				lines(id)
 			}
 		  document.onmousemove = function(e) {
 			moveAt(e);
