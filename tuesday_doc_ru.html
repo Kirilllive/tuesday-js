@@ -855,13 +855,15 @@ hr {border: solid 1px #cec8e3;}
 <p><b>launch_story</b> - Перейти в блок указанный в parameters/launch_story</p>
 <p><b>next</b> - следующая реплика</p>
 <p><b>back</b> - предыдущая реплика</p>
-<p><b>save</b> - Сохранить стадию сценария</p>
-<p><b>load</b> - Загрузить последнюю стадию сценария (не автосохранение)</p>
+<p><b>save</b> - сохранить стадию сценария</p>
+<p><b>load</b> - загрузить последнюю стадию сценария (не автосохранение)</p>
+<p><b>full_screen</b> - переводит элемент Tuesday в полноэкранный режим</p>
 <br>
 <p><b>Working example "key"</b></p>
 <pre class='code_box'><code>	"key": {
 		"load_autosave": "KeyC",
 		"launch_story": "Escape",
+		"full_screen": "KeyF",
 		"next": "ArrowRight",
 		"back": "ArrowLeft",
 		"save": "KeyS",
@@ -1625,6 +1627,9 @@ javaScript - реагирование на событие
 <a id="tue_load_autosave"></a>
 <p><b>"tue_load_autosave"</b> - Загрузка стадии из автосохранения</p>
 <br>
+<a id="tue_fullScreen"></a>
+<p><b>"tue_fullScreen"</b> - переводит элемент Tuesday в полноэкранный режим</p>
+<br>
 <br>
 <br>
 <hr>
@@ -1653,6 +1658,10 @@ javaScript - реагирование на событие
 <br>
 <a id="go_to"></a>
 <p><b>go_to(go)</b> - Переход в определенный блок истории указав в параметре go его название</p>
+<br>
+<a id="full_screen"></a>
+<p><b>full_screen()</b> - puts the Tuesday element in full screen mode</p>
+<br>
 <br>
 <br>
 <br>

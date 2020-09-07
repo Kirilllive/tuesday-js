@@ -12,6 +12,7 @@ var dialog_letter = 0;
 var dialog_timeout;
 var tue_story;
 var tue_bg_music;
+var tue_fullScreen = false;
 document.addEventListener('keydown', function(event) {
     var k = event.code;
     if (k == story_json.parameters.key.next) {go_story ();}
@@ -20,6 +21,7 @@ document.addEventListener('keydown', function(event) {
     else if (k == story_json.parameters.key.save) {save_stag('bookmark');}
     else if (k == story_json.parameters.key.load) {load_stag('bookmark');}
     else if (k == story_json.parameters.key.autosave) {load_stag('auto');}
+    else if (k == story_json.parameters.key.full_screen) {full_screen();}
 });
 function get_lang() {
     if (navigator.languages != undefined) {languare = navigator.languages[0].substring(0,2);}
@@ -154,6 +156,7 @@ function get_lang() {
     }
     if(document.getElementById('tue_save')){document.getElementById('tue_save').addEventListener('click',function(){save_stag('bookmark')});}
     if(document.getElementById('tue_load')){document.getElementById('tue_load').addEventListener('click',function(){load_stag('bookmark')});}
+    if(document.getElementById('tue_fullScreen')){document.getElementById('tue_fullScreen').addEventListener('click',function(){full_screen()});}
 } function creation_scene() {
     if (story_json[tue_story][scene].legacy_choice){
         for (var i = 0; i < story_json[tue_story][scene].legacy_choice.length; i++) {
@@ -493,4 +496,18 @@ function get_lang() {
     newlink.setAttribute("type", "text/css");
     newlink.setAttribute("href", file);
     document.getElementsByTagName("head").item(0).appendChild(newlink);
+} function full_screen() {
+	if (!tue_fullScreen){
+		tue_fullScreen = true;
+		if (tuesday.requestFullscreen) {tuesday.requestFullscreen();} 
+		else if (tuesday.mozRequestFullScreen) {tuesday.mozRequestFullScreen();} 
+		else if (tuesday.webkitRequestFullscreen) {tuesday.webkitRequestFullscreen();} 
+		else if (tuesday.msRequestFullscreen) {tuesday.msRequestFullscreen();}
+	}else {
+		tue_fullScreen = false;
+		if (document.exitFullscreen) {document.exitFullscreen();} 
+		else if (document.mozCancelFullScreen) {document.mozCancelFullScreen();} 
+		else if (document.webkitExitFullscreen) {document.webkitExitFullscreen();} 
+		else if (document.msExitFullscreen) {document.msExitFullscreen();}
+	}
 }

@@ -858,13 +858,15 @@ The display of the script on the html page occurs through the div element with <
 <p><b>launch_story</b> - Go to the block specified in parameters / launch_story (main menu)</p>
 <p><b>next</b> - next line</p>
 <p><b>back</b> - previous replica</p>
-<p><b>save</b> - Save script stage</p>
-<p><b>load</b> - Load the last stage of the script (not autosave)</p>
+<p><b>save</b> - save script stage</p>
+<p><b>load</b> - load the last stage of the script (not autosave)</p>
+<p><b>full_screen</b> - puts the Tuesday element in full screen mode</p>
 <br>
 <p><b>Working example "key"</b></p>
 <pre class='code_box'><code>	"key": {
 		"load_autosave": "KeyC",
 		"launch_story": "Escape",
+		"full_screen": "KeyF",
 		"next": "ArrowRight",
 		"back": "ArrowLeft",
 		"save": "KeyS",
@@ -1628,6 +1630,9 @@ Localization option supported
 <a id="tue_load_autosave"></a>
 <p><b>"tue_load_autosave"</b> - Loading a stage from autosave</p>
 <br>
+<a id="tue_fullScreen"></a>
+<p><b>"tue_fullScreen"</b> - puts the Tuesday element in fullscreen mode</p>
+<br>
 <br>
 <br>
 <hr>
@@ -1656,6 +1661,9 @@ Localization option supported
 <br>
 <a id="go_to"></a>
 <p><b>go_to(go)</b> -Перейти к конкретному блоку истории, указав его имя в параметре go</p>
+<br>
+<a id="full_screen"></a>
+<p><b>full_screen()</b> - переводит элемент Tuesday в полноэкранный режим</p>
 <br>
 <br>
 <br>

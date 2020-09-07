@@ -27,7 +27,8 @@
             "next": "ArrowRight",
             "back": "ArrowLeft",
             "save": "KeyS",
-            "load": "KeyL"
+            "load": "KeyL",
+            "full_screen": "KeyF"
         },
         "launch_story": "main_menu",
         "languares": ["en", "ru", "ja", "ko"],
