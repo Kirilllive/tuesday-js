@@ -204,7 +204,7 @@ function loadFiles(e) {
 	var wf = e.target.files[0].webkitRelativePath.split("/")[0] + "/";
 	var jsons = [];
 	for (var i=0; i < e.target.files.length; i++) {
-		project_files.push( [e.target.files[i].webkitRelativePath.replace(wf,''), URL.createObjectURL(e.target.files[i])] );
+		project_files.push( [e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','') , URL.createObjectURL(e.target.files[i])] );		
 		if (e.target.files[i].type == "application/json"){
 			jsons.push([i,e.target.files[i].name])
 		}
