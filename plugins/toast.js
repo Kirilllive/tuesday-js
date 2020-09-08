@@ -11,9 +11,12 @@ function creation_tost() {
 	document.body.appendChild(tue_toast);
 }
 function toast(message) {
-    //tue_toast = document.getElementById("toast");
     tue_toast.classList.remove("toast_anim");
     document.getElementById('toast_message').innerHTML = message
     void tue_toast.offsetParent;
     tue_toast.classList.add("toast_anim");
 }
+tuesday.addEventListener('creation_dialog', function(event) {
+	if (story_json[tue_story][scene].dialogs[dialog].toast){alert(story_json[tue_story][scene].dialogs[dialog].toast)}
+	}
+);

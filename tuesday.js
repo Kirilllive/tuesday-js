@@ -343,6 +343,7 @@ function get_lang() {
 			var s = story_json[tue_story][scene].dialogs[dialog].sound;
 			sound_play( (s[languare])? s[languare]: s )
 		}
+		tuesday.dispatchEvent(new Event('creation_dialog'));
 } function values_in_text(add) {
 	var str = ""
 	if (!add) {
