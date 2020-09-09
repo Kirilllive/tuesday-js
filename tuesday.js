@@ -207,6 +207,7 @@ function get_lang() {
             clearTimeout(dialog_timeout);
             anim_text();
             if(story_json[tue_story][scene].dialogs[dialog].text.className){ tue_text_block.className = story_json[tue_story][scene].dialogs[dialog].text.className}
+			if(story_json[tue_story][scene].dialogs[dialog].text.style) {tue_text_block.style = story_json[tue_story][scene].dialogs[dialog].text.style}
         } else if (story_json[tue_story][scene].dialogs[dialog].text_add) {
 			tue_text_block.style.visibility = 'visible';
 			tue_text_view.innerHTML = "";
