@@ -2,6 +2,7 @@ let story_json = new Array();
 var tuesday = document.getElementById("tuesday");
 var tue_text_view;
 var tue_text_block;
+var tue_text_element;
 var tue_name_block = document.createElement("div");
 var languare;
 var scene = 0;
@@ -68,8 +69,9 @@ function get_lang() {
     tuesday.style.backgroundPosition = "center";
     tuesday.style.position = "relative"
     tuesday.style.overflow = "hidden";
-    tuesday.innerHTML = "<table id='tue_text_block' align='center'><tbody><tr><td id='tue_text_view'></td></tr></tbody></table>";
+    tuesday.innerHTML = "<table id='tue_text_block' align='center'><tbody><tr><td id='tue_text_element'><div id='tue_text_view'></div></td></tr></tbody></table>";
     tue_text_block = document.getElementById("tue_text_block");
+	tue_text_element = document.getElementById("tue_text_element");
     if(story_json.parameters.text_panel.className){tue_text_block.className = story_json.parameters.text_panel.className;}
     if(story_json.parameters.text_panel.style){tue_text_block.style = story_json.parameters.text_panel.style;}
     tue_text_block.style.position = "absolute";
@@ -79,6 +81,7 @@ function get_lang() {
     tue_text_block.style.left= "0";
     tue_text_block.style.right= "0";
     tue_text_block.style.zIndex = "1000";
+    tue_text_block.style.borderSpacing = "0";
     tue_text_view = document.getElementById("tue_text_view");
     tue_text_view.style.padding = story_json.parameters.text_panel.indent_text;
     tue_text_view.style.fontSize = story_json.parameters.text_panel.size_text;
@@ -100,7 +103,7 @@ function get_lang() {
         if (story_json.parameters.name_panel.position[2] != 0){tue_name_block.style.top = story_json.parameters.name_panel.position[2];}
         if (story_json.parameters.name_panel.position[3] != 0){tue_name_block.style.bottom = story_json.parameters.name_panel.position[3];}
         tue_name_block.style.zIndex = 1001;
-        tue_text_block.appendChild(tue_name_block);
+        tue_text_element.appendChild(tue_name_block);
     }
     tue_bg_music = document.createElement("AUDIO");
     tue_bg_music.id = "tue_bg_music";
@@ -196,8 +199,8 @@ function get_lang() {
     if(story_json[tue_story][scene].background_music){search_music()}
 } function creation_dialog () {
 		tue_next.style.visibility = 'visible';
-        if (story_json[tue_story][scene].dialogs[dialog].color) {tue_text_block.style.backgroundColor = story_json[tue_story][scene].dialogs[dialog].color;}
-        else if (story_json.parameters.text_panel.color) {tue_text_block.style.backgroundColor = story_json.parameters.text_panel.color;}
+        if (story_json[tue_story][scene].dialogs[dialog].color) {tue_text_element.style.backgroundColor = story_json[tue_story][scene].dialogs[dialog].color;}
+        else if (story_json.parameters.text_panel.color) {tue_text_element.style.backgroundColor = story_json.parameters.text_panel.color;}
         if (story_json[tue_story][scene].dialogs[dialog].color_text) {tue_text_view.style.color = story_json[tue_story][scene].dialogs[dialog].color_text;}
 		else if (story_json.parameters.text_panel.color_text) {tue_text_view.style.color = story_json.parameters.text_panel.color_text;}
         if (story_json[tue_story][scene].dialogs[dialog].text){
@@ -206,8 +209,8 @@ function get_lang() {
             values_in_text(false);
             clearTimeout(dialog_timeout);
             anim_text();
-            if(story_json[tue_story][scene].dialogs[dialog].text.className){ tue_text_block.className = story_json[tue_story][scene].dialogs[dialog].text.className}
-			if(story_json[tue_story][scene].dialogs[dialog].text.style) {tue_text_block.style = story_json[tue_story][scene].dialogs[dialog].text.style}
+            if(story_json[tue_story][scene].dialogs[dialog].text.className){ tue_text_element.className = story_json[tue_story][scene].dialogs[dialog].text.className}
+			if(story_json[tue_story][scene].dialogs[dialog].text.style) {tue_text_element.style = story_json[tue_story][scene].dialogs[dialog].text.style}
         } else if (story_json[tue_story][scene].dialogs[dialog].text_add) {
 			tue_text_block.style.visibility = 'visible';
 			tue_text_view.innerHTML = "";
@@ -274,12 +277,14 @@ function get_lang() {
                 choice.style.backgroundRepeat = "no-repeat";
                 choice.style.backgroundPosition = "center";
                 choice.style.backgroundImage = "url('" + story_json[tue_story][scene].dialogs[dialog].choice[i].art + "')";
-                if (choice.style.width = story_json[tue_story][scene].dialogs[dialog].choice[i].size[0] != 0) {
-                    choice.style.width = story_json[tue_story][scene].dialogs[dialog].choice[i].size[0];}
-                if (choice.style.height = story_json[tue_story][scene].dialogs[dialog].choice[i].size[1] != 0) {
-                    choice.style.height = story_json[tue_story][scene].dialogs[dialog].choice[i].size[1];
-                    choice.style.lineHeight = story_json[tue_story][scene].dialogs[dialog].choice[i].size[1];
-                }
+				if (story_json[tue_story][scene].dialogs[dialog].choice[i].size){
+					if (story_json[tue_story][scene].dialogs[dialog].choice[i].size[0] != 0) {
+						choice.style.width = story_json[tue_story][scene].dialogs[dialog].choice[i].size[0];}
+					if (story_json[tue_story][scene].dialogs[dialog].choice[i].size[1] != 0) {
+						choice.style.height = story_json[tue_story][scene].dialogs[dialog].choice[i].size[1];
+						choice.style.lineHeight = story_json[tue_story][scene].dialogs[dialog].choice[i].size[1];
+					}
+				}
                 if (story_json[tue_story][scene].dialogs[dialog].choice[i].art_size){
                     choice.style.backgroundSize = story_json[tue_story][scene].dialogs[dialog].choice[i].art_size[0] + " " + story_json[tue_story][scene].dialogs[dialog].choice[i].art_size[1];
                 }

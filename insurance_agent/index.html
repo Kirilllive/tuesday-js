@@ -21,6 +21,7 @@
             background-color: rgba(74,64,69,0.7);
             transition-duration: 0.8s;
             border-radius: 2em;
+			cursor:pointer;
         }
 		.tue_choice {padding:0.25em 1em; border-radius: 1em;}
         .buttons:hover {
@@ -36,11 +37,13 @@
 			transform: translateX(-50%) translateY(-50%);
 		}
         #tue_text_view {vertical-align: top; padding: 2.5em 0.5em 2.5em 0.5em;}
-        #tue_text_block {
-            border: 0.1em solid;
+		#tue_text_element {
+			position: relative; 
+			overflow: hidden;
+			border: 0.1em solid;
             border-color: #cfad9c;
             border-radius: 1.1em;
-        }
+		}
 		.default {background-image: linear-gradient(rgba(74,64,69,0.7), rgba(207,173,156,0.7));}
         .negativ {background-color: #b34646;}
 		.negativ_text {background-image: linear-gradient(rgba(74,64,69,0.7), rgba(179,70,70,0.7));}
@@ -53,23 +56,42 @@
         .assistent {background-color: #636363;}
         .assistent_text {background-image: linear-gradient(rgba(74,64,69,0.7), rgba(150,150,150,0.7));}
         #tue_name_block{
-            border: 0.1em solid;
-            border-color: #cfad9c;
-            border-radius: 1.1em 0 1.1em 0;
+            border-radius: 0 0 1.1em 0;
         }
         .episodes{
+			transition-duration: 0.6s;
             transform: translateX(-50%) translateY(24px);
             max-height: 128px;
             max-width: 128px;
+			height: 20vw;
+            width: 20vw;
             border: 0.1em solid;
             border-color: #cfad9c;
             border-radius: 1em;
             padding:0;
+			cursor:pointer;
+			overflow: hidden;
         }
         .episodes:hover {
             border-color: #fff;
             transition-duration: 0.3s;
         }
+		
+		.episodes:hover > .prolog_name {
+            color:#fff;
+            transition-duration: 0.3s;
+        }
+		.prolog_name {
+			transition-duration: 0.6s;
+			display: table-cell;
+			text-align: center;
+			vertical-align:middle;
+            max-width: 128px;
+            width: 20vw;
+			color:#cfad9c;
+			height: 2.5em;
+			background-color: rgba(74,64,69,0.7);
+		}
 		#toast {
 			background-color: rgba(74,64,69,0.7);
             border-radius: 24px;
@@ -308,65 +330,53 @@ let data = {
         }],
         "choice": [{
             "go_to": "robo_city_1",
-            "size": ["20vw", "20vw"],
             "position": ["20%", "0", "66%", "0"],
             "art": "img/bg/27.png",
             "art_size": ["100%", "100%"],
             "className": "episodes",
-            "color_text": "#000",
             "text": {
-                "ru": "Развалины города"
+                "ru": "<div class='prolog_name'>Развалины города</div>"
             }
         },{ "go_to": "community_offended",
-            "size": ["20vw", "20vw"],
             "position": ["50%", "0", "66%", "0"],
             "color": "#fff",
             "art_size": ["100%", "100%"],
             "className": "episodes",
-            "color_text": "#000",
 			"text": {
-                "ru": "Сообщество оскорбленных "
+                "ru": "<div class='prolog_name'>Сообщество оскорбленных</div>"
             }
         },{ "go_to": "fire_tower_0",
-            "size": ["20vw", "20vw"],
             "position": ["80%", "0", "66%", "0"],
             "art": "img/bg/20191203_162647.jpg",
             "color": "#fff",
             "art_size": ["100%", "100%"],
             "className": "episodes",
-            "color_text": "#000",
             "text": {
-                "ru": "Огненная башня"
+                "ru": "<div class='prolog_name'>Огненная башня</div>"
             }
         },{ "go_to": "prolog",
-            "size": ["20vw", "20vw"],
             "position": ["20%", "0", "33%", "0"],
             "art": "img/bg/20191203_162647.jpg",
             "art_size": ["100%", "100%"],
             "className": "episodes",
-            "color_text": "#000",
             "text": {
-                "ru": "Пролог"
+                "ru": "<div class='prolog_name'>Пролог</div>"
             }
         },{ "go_to": "shelter_town",
-            "size": ["20vw", "20vw"],
             "position": ["50%", "0", "33%", "0"],
             "art": "img/bg/11.png",
             "art_size": ["100%", "100%"],
             "className": "episodes",
-            "color_text": "#000",
             "text": {
-                "ru": "Город убежище"
+                "ru": "<div class='prolog_name'>Город убежище</div>"
             }
         },{ "go_to": "moonworm_1",
-            "size": ["20vw", "20vw"],
             "position": ["80%", "0", "33%", "0"],
             "art": "img/bg/27.png",
             "art_size": ["100%", "100%"],
             "className": "episodes",
-            "color_text": "#000",
             "text": {
-                "ru": "Лунный червь"
+                "ru": "<div class='prolog_name'>Лунный червь</div>"
             }
         }]
     }]
@@ -8371,10 +8381,16 @@ let data = {
     "background_image": "img/bg/8.png",
     "dialogs": [{
 		"name": "ajama",
-		"go_to": "fire_tower_0",
         "text": {
             "className": "negativ_text",
             "ru": "Ах ты корпаротивная сволочь, ты оскорбляеш нас своим присутствие, пошел вон!",
+            "en": "",
+            "ja": ""
+        }
+    },{	"go_to": "fire_tower_0",
+        "text": {
+            "className": "default",
+            "ru": "Эй постойте !!!",
             "en": "",
             "ja": ""
         }
@@ -8384,7 +8400,7 @@ let data = {
     "dialogs": [{
         "text": {
             "className": "default",
-            "ru": "А что за там махина вдалеке движется?",
+            "ru": "А что там за махина вдалеке движется?",
             "en": "",
             "ja": ""
         }
@@ -8448,14 +8464,14 @@ let data = {
 		"name": "ajama",
         "text": {
             "className": "negativ_text",
-            "ru": "В нашем обществе нет главных мы все тут ровны брат.",
+            "ru": "У нас тут нет главных брат, мы все тут ровны.",
             "en": "",
             "ja": ""
         }
     },{	"name": "ajama",
         "text": {
             "className": "negativ_text",
-            "ru": "Мы все решаем голосованием чтобы каждый смог высказать свое мнение ",
+            "ru": "Мы все решаем голосованием чтобы каждый смог высказать свое мнение и не кому небыло обидно.",
             "en": "",
             "ja": ""
         }
@@ -8485,7 +8501,7 @@ let data = {
     },{	"name": "ajama",
         "text": {
             "className": "negativ_text",
-            "ru": "Что ж, зайдите во 2-й ангар",
+            "ru": "Что ж, заезжай во второй ангар",
             "en": "",
             "ja": ""
         }
@@ -8516,7 +8532,7 @@ let data = {
     },{ "name": "ajama",
         "text": {
             "className": "negativ_text",
-            "ru": "Расскажи нам с чем ты не смог смириться что ты ушел в пустошь?",
+            "ru": "Расскажи нам с чем ты не смог смириться и из-за чего ушел в пустошь?",
             "en": "",
             "ja": ""
         }
@@ -8567,7 +8583,7 @@ let data = {
     },{ "name": "ajama",
         "text": {
             "className": "negativ_text",
-            "ru": "А Луна находит оскорбительным название жевательная резинка",
+            "ru": "А Луна находит оскорбительным название \"жевательная резинка\"",
             "en": "",
             "ja": ""
         }
@@ -8598,7 +8614,7 @@ let data = {
             "size": ["306px", "0"],
             "className": "buttons hot_center",
             "text": {
-                "ru": "Есть ли у вас проблемы в жизни на пустоши?"
+                "ru": "У вас есть проблемы в жизни на пустоши?"
             }
         },{
 			"go_to": "community_offended_fale_2",
@@ -8606,13 +8622,13 @@ let data = {
             "size": ["306px", "0"],
             "className": "buttons hot_center",
             "text": {
-                "ru": "Меня оскарбляют не застрахованые люди веть страховка это важно"
+                "ru": "Меня оскарбляет отсутствие страъовки у людей, cтраховка это важно!"
             }
         }]
     },{ "name": "luna",
         "text": {
             "className": "pozitiv_text",
-            "ru": "После нападения опустошителя сломалась тормозная система, я кое-как починила, но запчасти все равно нужны.",
+            "ru": "После нападения опустошителей, сломалась тормозная система, я кое-как починила, но запчасти все равно нужны.",
             "en": "",
             "ja": ""
         }
@@ -8631,7 +8647,7 @@ let data = {
         },
         "text": {
             "className": "nitral_text",
-            "ru": "Белых гетросексуалов хлебом не корми дай темнокожих поугнитать",
+            "ru": "Этим белым гетеросексуалам ничего не нужно кроме как чернокожих поугнеть.",
             "en": "",
             "ja": ""
         }
@@ -8667,7 +8683,7 @@ let data = {
             "size": ["306px", "0"],
             "className": "buttons hot_center",
             "text": {
-                "ru": "Покажете поломку может я с роботом сможем ее починить?"
+                "ru": "Покажите поломку, может я с роботом сможем ее починить?"
             }
         }]
     }]
@@ -8684,7 +8700,7 @@ let data = {
 		"name": "luna",
         "text": {
             "className": "pozitiv_text",
-            "ru": "Короче вон та штука должна двигать вон ту и от этого мы должны тормазить",
+            "ru": "Короче вон та штука должна двигать вон ту и от этого мы должны тормазить.",
             "en": "",
             "ja": ""
         }
@@ -8721,7 +8737,7 @@ let data = {
     },{	"name": "assis",
         "text": {
             "className": "assistent_text",
-            "ru": "Если менять смазку то этого можно было бы избежать.",
+            "ru": "Если переодический менять смазочный материал, то этого можно было бы избежать.",
             "en": "",
             "ja": ""
         }
@@ -8750,6 +8766,20 @@ let data = {
     },{"text": {
             "className": "default",
             "ru": "Вы не задумывались о страховании, чтобы сделать ремонт по страховке?",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Нет, потому что всеми крупными компаниями управляют белые гетеросексуальные мужчины.",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "Иногда на это можно закрыть глаза ради получения столь не обходимой помощи.",
             "en": "",
             "ja": ""
         }
@@ -8786,6 +8816,7 @@ let data = {
             }
         }]
     },{
+		"go_to": "community_offended_2",
 		"name": "luna",
         "text": {
             "className": "pozitiv_text",
@@ -8800,13 +8831,13 @@ let data = {
 		"name": "luna",
         "text": {
             "className": "pozitiv_text",
-            "ru": "Эй народ! вот он дела говорит, может нам застраховаться чтобы делать ремонт нашего дома?",
+            "ru": "Эй народ! вот он дело говорит, может нам застраховаться чтобы отремонт наш дом?",
             "en": "",
             "ja": ""
         }
     },{"text": {
             "className": "default",
-            "ru": "А я как раз работаю страховым агентом.",
+            "ru": "А я как раз работаю в страховом агенстве.",
             "en": "",
             "ja": ""
         }
@@ -8819,7 +8850,7 @@ let data = {
     },{ "name": "ajama",
         "text": {
             "className": "negativ_text",
-            "ru": "Для начала мы должны выяснить на сколько ваше агентство прогрессивное.",
+            "ru": "Для начала мы должны выяснить на сколько твое агентство прогрессивно.",
             "en": "",
             "ja": ""
         }
@@ -8907,7 +8938,7 @@ let data = {
     },{ "name": "ajama",
         "text": {
             "className": "negativ_text",
-            "ru": "Как агентство относится к темнокожим и другим нац меньшинствам?",
+            "ru": "Как агентство относится к темнокожим и другим нац. меньшинствам?",
             "en": "",
             "ja": ""
         }
@@ -9014,7 +9045,7 @@ let data = {
         },
         "text": {
             "className": "girl_text",
-            "ru": "Он наверно еще фантазировал как я выгляжу без одежды.",
+            "ru": "Он наверно еще фантазировал как мы выглядем без одежды.",
             "en": "",
             "ja": ""
         }
@@ -9088,7 +9119,7 @@ let data = {
         },
         "text": {
             "className": "girl_text",
-            "ru": "Вообще То я знаю как чинить двигатель.",
+            "ru": "Вообще то я знаю как чинить двигатель.",
             "en": "",
             "ja": ""
         }
@@ -9167,14 +9198,15 @@ let data = {
             "en": "",
             "ja": ""
         }
-    },{"text": {
+    },{"go_to":"community_offended_3",
+		"text": {
             "className": "default",
             "ru": "Отлично с этим пакетом услуг вы можете расчитывать на ремонт за счет сраховки в любой мастерской метрополя. ",
             "en": "",
             "ja": ""
         }
     }]
-}],"community_offended_2": [{
+}],"community_offended_3": [{
     "background_image": "img/bg/8.png",
     "dialogs": [{"text": {
             "className": "default",
@@ -9183,8 +9215,8 @@ let data = {
             "ja": ""
         }
     },{	"name": "assis",
+		"go_to": "fire_tower_0",
         "text": {
-			"go_to": "fire_tower_0",
             "className": "assistent_text",
             "ru": "Их действия не поддаются логическому анализу.",
             "en": "",
@@ -10059,6 +10091,7 @@ let data = {
             "position": ["50%", "0", "0", "65%"],
             "size": ["306px", "0"],
             "className": "buttons hot_center",
+			"variables": [["end_robot", "set", 1]],
             "text": {
                 "ru": "Пажалуй я займу твое место."
             }
@@ -10066,6 +10099,7 @@ let data = {
             "position": ["50%", "0", "0", "45%"],
             "size": ["306px", "0"],
             "className": "buttons hot_center",
+			"variables": [["end_robot", "set", 0]],
             "text": {
                 "ru": "Какнибуть справимся."
             }
@@ -10986,6 +11020,13 @@ let data = {
             "ja": ""
         }
     }]
+},{"legacy_choice": [
+        ["end_robot", "=", 1, "end_5"],
+		["end_robot", "=", 0, "end_3"],
+        {
+            "go_to": "end_3"
+        }
+    ]
 }],"end_shantal": [{
     "background_image": "img/bg/8.png",
     "dialogs": [
@@ -10993,7 +11034,7 @@ let data = {
             "position": ["50%", "0", "0", "65%"],
             "size": ["306px", "0"],
             "className": "buttons hot_center",
-            "go_to": "end_4",
+            "go_to": "end_000",
             "text": {
                 "ru": "До города убежища"
             }
@@ -11007,6 +11048,13 @@ let data = {
             }
         }]
     }]
+}],"end_000": [{"legacy_choice": [
+        ["end_robot", "=", 1, "end_5"],
+		["end_robot", "=", 0, "end_3"],
+        {
+            "go_to": "end_3"
+        }
+    ]
 }],"story_end_robot": [{
     "background_image": "img/bg/14_a.png",
     "dialogs": [
