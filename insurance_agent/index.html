@@ -210,6 +210,16 @@ let data = {
             "ru": "Девушка",
             "en": "Girl",
             "ja": "女の子"
+        },"ajama": {
+            "className": "negativ",
+            "ru": "Аджама",
+            "en": "Ajama",
+            "ja": "アジャマ"
+        },"luna": {
+            "className": "pozitiv",
+            "ru": "Луна",
+            "en": "Luna",
+            "ja": "ルナ"
         }
     },
     "buttons": [{
@@ -307,13 +317,16 @@ let data = {
             "text": {
                 "ru": "Развалины города"
             }
-        },{ "go_to": "",
+        },{ "go_to": "community_offended",
             "size": ["20vw", "20vw"],
             "position": ["50%", "0", "66%", "0"],
             "color": "#fff",
             "art_size": ["100%", "100%"],
             "className": "episodes",
-            "color_text": "#000"
+            "color_text": "#000",
+			"text": {
+                "ru": "Сообщество оскорбленных "
+            }
         },{ "go_to": "fire_tower_0",
             "size": ["20vw", "20vw"],
             "position": ["80%", "0", "66%", "0"],
@@ -7068,7 +7081,7 @@ let data = {
             "en": "",
             "ja": ""
         }
-    },{ "go_to": "main_menu",
+    },{ "go_to": "community_offended",
         "text": {
             "className": "default",
             "ru": "Валим от сюда.",
@@ -8336,7 +8349,849 @@ let data = {
             "ja": ""
         }
     }]
-}],"fire_tower_0": [{
+}],"community_offended_fale_1": [{
+    "background_image": "img/bg/8.png",
+    "dialogs": [{
+		"name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Спасибо, брат, но у нас все в порядке.",
+            "en": "",
+            "ja": ""
+        }
+    },{	"go_to": "fire_tower_0",
+        "text": {
+            "className": "default",
+            "ru": "Эй постойте !!!",
+            "en": "",
+            "ja": ""
+        }
+    }]
+}],"community_offended_fale_2": [{
+    "background_image": "img/bg/8.png",
+    "dialogs": [{
+		"name": "ajama",
+		"go_to": "fire_tower_0",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Ах ты корпаротивная сволочь, ты оскорбляеш нас своим присутствие, пошел вон!",
+            "en": "",
+            "ja": ""
+        }
+    }]
+}],"community_offended": [{
+    "background_image": "img/bg/8.png",
+    "dialogs": [{
+        "text": {
+            "className": "default",
+            "ru": "А что за там махина вдалеке движется?",
+            "en": "",
+            "ja": ""
+        }
+    },{	"name": "assis",
+        "text": {
+            "className": "assistent_text",
+            "ru": "Самоходная коммуна, обычное явление для пустоши.",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "position": ["50%", "0", "0", "65%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Даай посмотрим по ближе"
+            }
+        },{
+            "go_to": "fire_tower_0",
+            "position": ["50%", "0", "0", "45%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Погнали к опустошителям"
+            }
+        }]
+    },{	"name": "assis",
+        "text": {
+            "className": "assistent_text",
+            "ru": "Постой это может быть опасно.",
+            "en": "",
+            "ja": ""
+        }
+    }]
+},{ "background_image": "img/bg/8.png",
+    "dialogs": [{
+		"name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Хей! Брат тебе нужна помощь?",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "go_to": "community_offended_fale_1",
+            "position": ["50%", "0", "0", "65%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Я страховой агент"
+            }
+        },{
+            "position": ["50%", "0", "0", "45%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Я хочу поговорить с главным"
+            }
+        }]
+	},{
+		"name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "В нашем обществе нет главных мы все тут ровны брат.",
+            "en": "",
+            "ja": ""
+        }
+    },{	"name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Мы все решаем голосованием чтобы каждый смог высказать свое мнение ",
+            "en": "",
+            "ja": ""
+        }
+    },{	"name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Так что тебе нужно?",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "position": ["50%", "0", "0", "65%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Я хочу поговорить о безопасности"
+            }
+        },{
+            "go_to": "community_offended_fale_1",
+            "position": ["50%", "0", "0", "45%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Я хочу предложить вам страховку"
+            }
+        }]
+    },{	"name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Что ж, зайдите во 2-й ангар",
+            "en": "",
+            "ja": ""
+        }
+    },{	"name": "assis",
+        "text": {
+            "className": "assistent_text",
+            "ru": "В моей базе есть упоминание об этом человеке. Она является одним из активистов социальной справедливости.",
+            "en": "",
+            "ja": ""
+        }
+    },{	"name": "assis",
+        "text": {
+            "className": "assistent_text",
+            "ru": "Данные о ее деятельности очень разные, и их сложно анализировать.",
+            "en": "",
+            "ja": ""
+        }
+    }]
+},{ "background_image": "img/bg/8.png",
+    "dialogs": [{
+		"name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Привет и добро пожаловать в сообщество оскорбленных ",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Расскажи нам с чем ты не смог смириться что ты ушел в пустошь?",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "go_to": "community_offended_fale_2",
+            "position": ["50%", "0", "0", "65%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "На пустоши очень опасно, я хотел предложить вам страховку"
+            }
+        },{
+            "position": ["50%", "0", "0", "45%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": " Я просто путешествую по пустошам. "
+            }
+        }]
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Не скромничай, брат, мы все уехали из Метрополиса из-за его не толерантного образа жизни.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Ко мне постоянно странное отношения потому что я темнокожая.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Астрид не смогла смириться с сексуализации женщин в искусстве.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Свену запретили показывать свою любовь к своему партнеру в публичных местах.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "А Луна находит оскорбительным название жевательная резинка",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "ДА! и ее можно не тока жевать, и почему этот предмет уазывает что мне делать!",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Но если проявление нетерпимости к нетолерантности противоречит нашим идеалом мы решили покинут метрополь.",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "go_to": "community_offended_fale_2",
+            "position": ["50%", "0", "0", "25%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Я занимаюсь страхованием и ищу новых клиентов на пустоши."
+            }
+        },{
+            "position": ["50%", "0", "0", "50%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Есть ли у вас проблемы в жизни на пустоши?"
+            }
+        },{
+			"go_to": "community_offended_fale_2",
+            "position": ["50%", "0", "0", "75%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Меня оскарбляют не застрахованые люди веть страховка это важно"
+            }
+        }]
+    },{ "name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "После нападения опустошителя сломалась тормозная система, я кое-как починила, но запчасти все равно нужны.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Вот же не терпимые, наверное заметили Аджаму и решили напасть даже не спрасив разрешения. ",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": {
+            "className": "nitral",
+            "ru": "Свен",
+            "en": "Sven",
+            "ja": "スヴェン"
+        },
+        "text": {
+            "className": "nitral_text",
+            "ru": "Белых гетросексуалов хлебом не корми дай темнокожих поугнитать",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": {
+            "className": "girl",
+            "ru": "Астрид",
+            "en": "Astrid",
+            "ja": "アストリッド"
+        },
+        "text": {
+            "className": "girl_text",
+            "ru": "Да! наверно увидели в ней объект для своих сексуальных фантазий.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Ты надеюсь не такой, брат?",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "go_to": "community_offended_fale_2",
+            "position": ["50%", "0", "0", "65%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Рас бывают такие ситуации вы не думали застраховаться?"
+            }
+        },{
+            "position": ["50%", "0", "0", "45%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Покажете поломку может я с роботом сможем ее починить?"
+            }
+        }]
+    }]
+},{ "background_image": "img/bg/8.png",
+    "dialogs": [{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Аккуратно тут песок с грязью скапливается",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Короче вон та штука должна двигать вон ту и от этого мы должны тормазить",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Я прикрепила ее обратно чем было и кое как, но она может сорваться в любой момент",
+            "en": "",
+            "ja": ""
+        }
+    },{	"name": "assis",
+        "text": {
+            "className": "assistent_text",
+            "ru": "Тут сломан тормозной привод, вы его смазываете?",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "А зачем, он и так работал.",
+            "en": "",
+            "ja": ""
+        }
+    },{	"name": "assis",
+        "text": {
+            "className": "assistent_text",
+            "ru": "Ржавчина испортила метал и из-за давления на привод метал треснул.",
+            "en": "",
+            "ja": ""
+        }
+    },{	"name": "assis",
+        "text": {
+            "className": "assistent_text",
+            "ru": "Если менять смазку то этого можно было бы избежать.",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Короче можно починить?",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "Без нужного инструмента это невозможно.",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Что ж, как я уже сказал, нужны новые детали.",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "Вы не задумывались о страховании, чтобы сделать ремонт по страховке?",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "А ты вроде ничего такой, не хочешь со мной уединица?",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "А тот из мужиков тут тока один и то не традиционый.",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "position": ["50%", "0", "0", "65%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Согласиться"
+            }
+        },{
+            "go_to": "community_offended_2",
+            "position": ["50%", "0", "0", "45%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Мой уровень облучения не позволит"
+            }
+        }]
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "ФАН СЕРВИС!!!.",
+            "en": "",
+            "ja": ""
+        }
+    }]
+}],"community_offended_2": [{
+    "background_image": "img/bg/8.png",
+    "dialogs": [{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Эй народ! вот он дела говорит, может нам застраховаться чтобы делать ремонт нашего дома?",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "А я как раз работаю страховым агентом.",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "И у меня есть на такой случай несколько предложений. ",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Для начала мы должны выяснить на сколько ваше агентство прогрессивное.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Мы не станем общаться с не толерантной компанией.",
+            "en": "",
+            "ja": ""
+        }
+    },{  "name": {
+            "className": "girl",
+            "ru": "Астрид",
+            "en": "Astrid",
+            "ja": "アストリッド"
+        },
+        "text": {
+            "className": "girl_text",
+            "ru": "А в вашем агентстве работают женщины?",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "да, и не одна, агентство возглавляет женщина.",
+            "en": "",
+            "ja": ""
+        }
+    },{  "name": {
+            "className": "girl",
+            "ru": "Астрид",
+            "en": "Astrid",
+            "ja": "アストリッド"
+        },
+        "text": {
+            "className": "girl_text",
+            "ru": "Их зарплата такая же как у мужчин?",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "position": ["50%", "0", "0", "65%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Да, такая же."
+            }
+        },{
+			"go_to": "community_offended_fale_2",
+            "position": ["50%", "0", "0", "45%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Я не знаю"
+            }
+        }]
+    },{ "name": {
+            "className": "nitral",
+            "ru": "Свен",
+            "en": "Sven",
+            "ja": "スヴェン"
+        },
+        "text": {
+            "className": "nitral_text",
+            "ru": "Агентство поддерживает людей с нетрадиционной ориентацией?",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "position": ["50%", "0", "0", "65%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Да, поддерживает."
+            }
+        },{
+			"go_to": "community_offended_fale_2",
+            "position": ["50%", "0", "0", "45%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Все клиенты равны не зависимо от ориентации."
+            }
+        }]
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Как агентство относится к темнокожим и другим нац меньшинствам?",
+            "en": "",
+            "ja": ""
+        }
+    },{"choice": [{
+            "position": ["50%", "0", "0", "65%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Положительно."
+            }
+        },{
+			"go_to": "community_offended_fale_2",
+            "position": ["50%", "0", "0", "45%"],
+            "size": ["306px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Это не как не влияет на условия выплат по страховке."
+            }
+        }]
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "И что ты можешь нам предложить, брат?",
+            "en": "",
+            "ja": ""
+        }
+    },{ "choice": [{ 
+			"position": ["50%", "0", "0", "65%"],
+            "size": ["356px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Серебряный — Страховка производства. "
+            }
+        },{ "position": ["50%", "0", "0", "50%"],
+            "size": ["356px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Золотой — Страховка производства и барьера."
+            }
+        },{ "position": ["50%", "0", "0", "35%"],
+            "size": ["356px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Платиновый — Страховка всего города."
+            }
+        }]
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "А почему такая цена? Это потому что я черная?",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "Даже в мыслях не было.",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "Условия и цена зависят от состояния страхуемого обьекта.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "То есть ты хочешь сказать что мы плохо следим за ним?",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Да у нас тут гомосексуалист они помешаны на чистоте",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": {
+            "className": "nitral",
+            "ru": "Свен",
+            "en": "Sven",
+            "ja": "スヴェン"
+        },
+        "text": {
+            "className": "nitral_text",
+            "ru": "Я делаю уборку два раза в день, если ты не заметил.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Вот видишь ты задел его чувства.",
+            "en": "",
+            "ja": ""
+        }
+    },{  "name": {
+            "className": "girl",
+            "ru": "Астрид",
+            "en": "Astrid",
+            "ja": "アストリッド"
+        },
+        "text": {
+            "className": "girl_text",
+            "ru": "Он наверно еще фантазировал как я выгляжу без одежды.",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Остыньте все, мы ведем себя не терпимо.",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Он наверняка не знал что Свен очень чувствительный.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Как они сами говорят незнание не освобождает от ответственности.",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Он имел ввиду что мы не следили за механизмами",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Кто нибудь из нас шарит как чинить двигатель?",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "А он нам предлагает делать ремонт по страховке.",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Мне кажется это хорошая мылось.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Извини брат я не подумала об этом.",
+            "en": "",
+            "ja": ""
+        }
+    },{  "name": {
+            "className": "girl",
+            "ru": "Астрид",
+            "en": "Astrid",
+            "ja": "アストリッド"
+        },
+        "text": {
+            "className": "girl_text",
+            "ru": "Вообще То я знаю как чинить двигатель.",
+            "en": "",
+            "ja": ""
+        }
+    },{  "name": {
+            "className": "girl",
+            "ru": "Астрид",
+            "en": "Astrid",
+            "ja": "アストリッド"
+        },
+        "text": {
+            "className": "girl_text",
+            "ru": "У меня есть степень по тяжёлому машиностроению.",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Почему ты раньше не сказала?",
+            "en": "",
+            "ja": ""
+        }
+    },{  "name": {
+            "className": "girl",
+            "ru": "Астрид",
+            "en": "Astrid",
+            "ja": "アストリッド"
+        },
+        "text": {
+            "className": "girl_text",
+            "ru": "Боялось что вы сочтете меня не женственной.",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Ты представляешь сколько раз нам бы это пригодилось!",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Ты же боролась против сексизма, а тут выдаешь такое, ты что считаешь нас не достаточно толерантными?",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Думаешь по скольку я черная то не смогу тебя принять такой какая ты есть?",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "Извините что прерываю вашу беседу но вы будете брать страховку?",
+            "en": "",
+            "ja": ""
+        }
+    },{
+		"name": "luna",
+        "text": {
+            "className": "pozitiv_text",
+            "ru": "Кто за то чтобы застраховаться поднимите руку.",
+            "en": "",
+            "ja": ""
+        }
+    },{ "name": "ajama",
+        "text": {
+            "className": "negativ_text",
+            "ru": "Единогласно.",
+            "en": "",
+            "ja": ""
+        }
+    },{"text": {
+            "className": "default",
+            "ru": "Отлично с этим пакетом услуг вы можете расчитывать на ремонт за счет сраховки в любой мастерской метрополя. ",
+            "en": "",
+            "ja": ""
+        }
+    }]
+}],"community_offended_2": [{
+    "background_image": "img/bg/8.png",
+    "dialogs": [{"text": {
+            "className": "default",
+            "ru": "Это были очень странные люди.",
+            "en": "",
+            "ja": ""
+        }
+    },{	"name": "assis",
+        "text": {
+			"go_to": "fire_tower_0",
+            "className": "assistent_text",
+            "ru": "Их действия не поддаются логическому анализу.",
+            "en": "",
+            "ja": ""
+        }
+    }]
+}], "fire_tower_0": [{
     "background_image": "img/bg/8.png",
     "dialogs": [{
         "text": {
