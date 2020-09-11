@@ -388,6 +388,7 @@ function get_lang() {
         if (story_json.parameters.autosave){save_stag('auto')};
 	} 
 } function back_story() {
+	del_element("tue_choice")
     if (story_json[tue_story][scene].dialogs[dialog].back_to) {
         var go = story_json[tue_story][scene].dialogs[dialog].back_to;
         go_to(go)
