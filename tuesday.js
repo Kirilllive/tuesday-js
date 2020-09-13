@@ -36,8 +36,8 @@ function get_lang() {
     if (tip == 'data'){
         story_json = url;
         base_creation();
+        tuesday.dispatchEvent(new Event('script_loaded'));
 		creation_sound ();
-		tuesday.dispatchEvent(new Event('script_loaded'));
     } else if (tip == 'file') {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -45,9 +45,8 @@ function get_lang() {
 				try {story_json = JSON.parse(this.responseText);} 
 				catch (e) { if (this.status > 0){alert('Json structure error')}}
                 base_creation();
-				creation_sound ();
                 tuesday.dispatchEvent(new Event('script_loaded'));
-				tuesday.dispatchEvent(new Event('script_loaded'));
+				creation_sound ();
             }
         };
         xmlhttp.open("GET", url, true);

@@ -174,7 +174,8 @@
 	}
     #search_block {
       height: 40px;
-      border: 1px solid #cec8e3;
+      border-left: 1px solid #cec8e3;
+      border-right: 1px solid #cec8e3;
       font-size: 14px;
       width:128px;
       padding-left: 8px;
@@ -192,13 +193,13 @@
 		<table  width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center' onclick="alert('Sorry Ability to create and edit content in development.\nIt is possible to open an existing project'); new_navel();" class='icon button_menu icon_new'></td>
-                    <td align='center' onclick='json_file.click()' class='icon button_menu icon_load'></td>
-					<td align='center' onclick='save_file()' class='icon button_menu icon_save'></td>
-					<td align='center' onclick='setup()' class='icon button_menu icon_setup'></td>
-                    <td align='center' onclick='setup()' class='icon button_menu icon_about'></td>
+					<td align='center' style='cursor:pointer;' onclick="alert('Sorry Ability to create and edit content in development.\nIt is possible to open an existing project'); new_navel();" class='icon button_menu icon_new'></td>
+                    <td align='center' style='cursor:pointer;' onclick='json_file.click()' class='icon button_menu icon_load'></td>
+					<td align='center' style='cursor:pointer;' onclick='save_file()' class='icon button_menu icon_save'></td>
+					<td align='center' style='cursor:pointer;' onclick='setup()' class='icon button_menu icon_setup'></td>
+                    <td align='center' style='cursor:pointer;' onclick='about()' class='icon button_menu icon_about'></td>
                     <td align='center' style='width:128px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
-					<td align='center' onclick='play_navel()' class='icon button_menu icon_play' style='border-radius: 0 0 16px 0;'></td>
+					<td align='center' style='cursor:pointer;' onclick='play_navel()' class='icon button_menu icon_play' style='border-radius: 0 0 16px 0;'></td>
 				</tr>
 			</tbody>
 		</table>
@@ -360,7 +361,7 @@ function creation_block(b) {
 			}
 			element += "</div>"
 		}
-		chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' class='button_block icon_edit'></td><td align='center'>"+chapter.id+"</td><td align='center' onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
+		chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td><td align='center'>"+chapter.id+"</td><td align='center' style='cursor:pointer;' onclick=\"play_navel('"+chapter.id+"')\" class='button_block icon_play'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
 		chapter.className = "story_block panel";
 		chapter.style.left = 64 + (320 * (all_blocks-1)) + "px";
 		chapter.style.top = 64 + (128 * (all_blocks-1)) + "px";
@@ -553,7 +554,7 @@ function modal_window(action, content) {
 		window_zone.innerHTML = content;
     }
 }
-function play_navel() {
+function play_navel(bl) {
 	var story_preview = JSON.stringify(story_script)
 	for (var f=0; f < project_files.length; f++) {
 		for (var r=JSON.stringify(story_script).split('img/sky_tree_1.jpg').length+2; r > 0; r--) {
@@ -561,7 +562,7 @@ function play_navel() {
 		}
 	}
 	var preview = window.open("https://kirilllive.github.io/Tuesday/tuesday_visual.html", "preview", "location=no,scrollbars=no,width=640,height=480");
-    preview.document.write("<html><head><style> body { background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = " + story_preview + ";  load_story('data',story_preview);  <\/script><\/body><\/html>");
+    preview.document.write("<html><head><style> body { background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = " + story_preview + "; " + ((bl)?"tuesday.addEventListener('script_loaded', function(event) {go_to('"+bl+"')});":"") + "  load_story('data',story_preview); <\/script><\/body><\/html>");
 }
 function search_block() {
     var input, filter, li, i, txtValue;
