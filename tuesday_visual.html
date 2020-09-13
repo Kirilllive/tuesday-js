@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <style>
 	*{
-		font-family: Calibri;
+		font-family: Arial;
 		border-collapse: collapse;
 		border: none;
 		margin: 0;
@@ -19,6 +19,7 @@
 		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
+        outline: none;
 	}
 	.panel {
 		background-color: #fff;
@@ -58,7 +59,7 @@
 		border-radius: 0 0 16px 0;
 		position: fixed; 
 		height: 40px;
-		width: 256px;
+		width: 448px;
 	}
 	.button_block {
 		height: 28px;
@@ -99,6 +100,9 @@
 	.icon_setup {
 		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZD0iTTI4LjQ2OSw2LjgxM2ExNC4wNDcsMTQuMDQ3LDAsMSwxLTE0LDE0LjA0N0ExNC4wMjQsMTQuMDI0LDAsMCwxLDI4LjQ2OSw2LjgxM1ptNzQuMjY1LDQzLjIxOUExNC4wMzEsMTQuMDMxLDAsMSwxLDg4Ljc1LDY0LjA2MywxNC4wMDgsMTQuMDA4LDAsMCwxLDEwMi43MzQsNTAuMDMxWk02My45NjksOTMuMjE5YTE0LjAzMSwxNC4wMzEsMCwxLDEtMTQsMTQuMDMxQTE0LjAxNiwxNC4wMTYsMCwwLDEsNjMuOTY5LDkzLjIxOVpNNDkuOTg1LDEwNy4yNjVIMi42MjRtMC04Ni40aDExLjg0bS0xMS44NCw0My4ySDg3LjY1OW0zNy42NzQsNDMuMkg3Ny45NzFNNDIuNDUsMjAuODY1aDgyLjg4M20tOC42MTEsNDMuMmg4LjYxMSIvPg0KPC9zdmc+DQo=")
 	}
+    .icon_about {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwNiwxMDRoMjJ2ODYiLz4KICA8Y2lyY2xlIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjeD0iMTI4IiBjeT0iNjQiIHI9IjYiLz4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwNiwxOTJoNDIiLz4KICA8Y2lyY2xlIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjeD0iMTI4IiBjeT0iMTI4IiByPSIxMjAiLz4KPC9zdmc+Cg==")
+    }
 	.scene {
 		background-color: #efefff;
 		border-radius: 12px;
@@ -168,6 +172,19 @@
 	.button:hover {
 		background-color:#cec8e3;
 	}
+    #search_block {
+      height: 40px;
+      border: 1px solid #cec8e3;
+      font-size: 14px;
+      width:128px;
+      padding-left: 8px;
+      -webkit-touch-callout: auto;
+      -webkit-user-select: auto;
+      -khtml-user-select: auto;
+      -moz-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
+    }
     </style>
 </head>
 <body onload="world_size(); lines(); control_dlock();" style='background-color: #efefff;'>
@@ -179,6 +196,8 @@
                     <td align='center' onclick='json_file.click()' class='icon button_menu icon_load'></td>
 					<td align='center' onclick='save_file()' class='icon button_menu icon_save'></td>
 					<td align='center' onclick='setup()' class='icon button_menu icon_setup'></td>
+                    <td align='center' onclick='setup()' class='icon button_menu icon_about'></td>
+                    <td align='center' style='width:128px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
 					<td align='center' onclick='play_navel()' class='icon button_menu icon_play' style='border-radius: 0 0 16px 0;'></td>
 				</tr>
 			</tbody>
@@ -231,6 +250,7 @@ function new_navel () {
 	story_blocks.innerHTML = ""
 	story_script = {};
 	line_controll = [];
+    document.getElementById("search_block").value = ""
 	while (story_lines.hasChildNodes()) {
 		story_lines.removeChild(story_lines.firstChild);
 	}
@@ -501,7 +521,6 @@ html.ontouchstart = function(e) {
 		};
 	}
 }
-// map_controll mouse
 html.onmousedown = function(e) {
 	if (!scroll_block) {
 		startmove_x = e.clientX;
@@ -543,6 +562,29 @@ function play_navel() {
 	}
 	var preview = window.open("https://kirilllive.github.io/Tuesday/tuesday_visual.html", "preview", "location=no,scrollbars=no,width=640,height=480");
     preview.document.write("<html><head><style> body { background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = " + story_preview + ";  load_story('data',story_preview);  <\/script><\/body><\/html>");
+}
+function search_block() {
+    var input, filter, li, i, txtValue;
+    input = document.getElementById("search_block");
+    filter = input.value.toUpperCase();
+    li = document.getElementsByClassName("story_block");
+    var ferst = false
+    for (i = 0; i < li.length; i++) {
+        txtValue = li[i].id.toUpperCase();
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.opacity = 1;
+            if (filter.length > 0 && !ferst){scroll_to_block(li[i]); ferst = true;}
+            else if (filter == txtValue) {scroll_to_block(li[i]); ferst = true;}
+        } else {
+            li[i].style.opacity = 0.25;
+        }
+    }
+}
+function scroll_to_block(bl) {
+    var rect = bl.getBoundingClientRect();
+    html.scrollTop = (html.scrollTop + (rect.top - (html.clientHeight / 2) + 22));
+    html.scrollLeft = (html.scrollLeft + (rect.left - (html.clientWidth / 2) + (rect.width/2)));
+    //story_blocks.appendChild(bl);
 }
 </script>
 </body>
