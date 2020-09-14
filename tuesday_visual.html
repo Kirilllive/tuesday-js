@@ -103,6 +103,9 @@
     .icon_about {
         background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwNiwxMDRoMjJ2ODYiLz4KICA8Y2lyY2xlIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjeD0iMTI4IiBjeT0iNjQiIHI9IjYiLz4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwNiwxOTJoNDIiLz4KICA8Y2lyY2xlIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjeD0iMTI4IiBjeT0iMTI4IiByPSIxMjAiLz4KPC9zdmc+Cg==")
     }
+    .icon_close {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNzEuMDc4LDE4NC40MjJMMTg0LjkyMiw3MC41NzgiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xODQuOTIyLDE4NC40MjJMNzEuMDc4LDcwLjU3OCIvPg0KPC9zdmc+")
+    }
 	.scene {
 		background-color: #efefff;
 		border-radius: 12px;
@@ -193,7 +196,7 @@
 		<table  width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center' style='cursor:pointer;' onclick="alert('Sorry Ability to create and edit content in development.\nIt is possible to open an existing project'); new_navel();" class='icon button_menu icon_new'></td>
+					<td align='center' style='cursor:pointer;' onclick='new_navel();' class='icon button_menu icon_new'></td>
                     <td align='center' style='cursor:pointer;' onclick='json_file.click()' class='icon button_menu icon_load'></td>
 					<td align='center' style='cursor:pointer;' onclick='save_file()' class='icon button_menu icon_save'></td>
 					<td align='center' style='cursor:pointer;' onclick='setup()' class='icon button_menu icon_setup'></td>
@@ -209,6 +212,7 @@
 	<svg id="story_lines" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"></svg>
 	<div id="story_blocks"></div>
 	<div id='window_zone' align='center'></div>
+	
 <script>
 var body = document.body,
 html = document.documentElement;
@@ -586,6 +590,10 @@ function scroll_to_block(bl) {
     html.scrollTop = (html.scrollTop + (rect.top - (html.clientHeight / 2) + 22));
     html.scrollLeft = (html.scrollLeft + (rect.left - (html.clientWidth / 2) + (rect.width/2)));
     //story_blocks.appendChild(bl);
+}
+function about() {
+	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size: 22px;'>Tuesday js visual editor</p><hr style='border-top: 1px solid #cec8e3; margin:4px;'><p style='font-size: 14px;'>Version: 0.01 (alpha)</p><br><p style='font-size: 14px;'>Sorry Ability to create and edit content in development.<br>It is possible to open an existing project</p><br><table style='font-size: 14px; border-spacing:10px; border-collapse: separate;'><tr><td align='right'>Home: </td><td align='left'><a href='https://kirilllive.github.io/Tuesday' target='_blank'>https://kirilllive.github.io/Tuesday</a></td></tr><tr><td align='right'>itch.io: </td><td align='left'><a href='https://kirill-live.itch.io/tuesday' target='_blank'>https://kirill-live.itch.io/tuesday</a></td></tr><tr><td align='right'>GitHub: </td><td align='left'><a href='https://github.com/Kirilllive/Tuesday' target='_blank'>https://github.com/Kirilllive/Tuesday</a></td></tr></table><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1000v200H0z' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p></div></div>"
+	modal_window("open", html)
 }
 </script>
 </body>
