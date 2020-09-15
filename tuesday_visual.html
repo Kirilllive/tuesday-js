@@ -196,13 +196,13 @@
 		<table  width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center' style='cursor:pointer;' onclick='new_navel();' class='icon button_menu icon_new'></td>
-                    <td align='center' style='cursor:pointer;' onclick='json_file.click()' class='icon button_menu icon_load'></td>
-					<td align='center' style='cursor:pointer;' onclick='save_file()' class='icon button_menu icon_save'></td>
-					<td align='center' style='cursor:pointer;' onclick='setup()' class='icon button_menu icon_setup'></td>
-                    <td align='center' style='cursor:pointer;' onclick='about()' class='icon button_menu icon_about'></td>
+					<td align='center' style='cursor:pointer;' title='New project' onclick='new_navel();' class='icon button_menu icon_new'></td>
+                    <td align='center' style='cursor:pointer;' title='Load project folder ' onclick='json_file.click()' class='icon button_menu icon_load'></td>
+					<td align='center' style='cursor:pointer;' title='Save JSON script project' onclick='save_file()' class='icon button_menu icon_save'></td>
+					<td align='center' style='cursor:pointer;' title='Settings project' onclick='setup()' class='icon button_menu icon_setup'></td>
+                    <td align='center' style='cursor:pointer;' title='About visual editor' onclick='about()' class='icon button_menu icon_about'></td>
                     <td align='center' style='width:128px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
-					<td align='center' onclick='play_navel()' class='icon button_menu icon_play' style='border-radius: 0 0 16px 0; cursor:pointer;'></td>
+					<td align='center' title='Run preview Project'  onclick='play_navel()' class='icon button_menu icon_play' style='border-radius: 0 0 16px 0; cursor:pointer;'></td>
 				</tr>
 			</tbody>
 		</table>
