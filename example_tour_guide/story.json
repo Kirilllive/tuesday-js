@@ -1,7 +1,8 @@
 {
     "parameters": {
         "text_panel": {
-            "size": ["95%", "25%"],
+			"size": ["95%", "7em"],
+			"position": ["2.5%", "2.5%"],
             "style": "border-radius:25px;",
             "color": "rgba(155,155,155,0.75)",
             "color_text": "#fff",
