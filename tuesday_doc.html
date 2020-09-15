@@ -233,6 +233,7 @@ hr {border: solid 1px #cec8e3;}
 </div>
 <div class="accordion "><a href="#events" style='text-decoration: none;'><div class='block block_open'>Events</div></a></div>
 <div class="panel border_b border_t">
+	<a href="#dialog_end" style='text-decoration: none;'><div class='block'><span class='three_1'>dialog_end</div></a>
     <a href="#event_save" style='text-decoration: none;'><div class='block'><span class='three_1'>save</div></a>
 	<a href="#event_load" style='text-decoration: none;'><div class='block'><span class='three_1'>load</div></a>
 	<a href="#event_script_loaded" style='text-decoration: none;'><div class='block'><span class='three_1'>script_loaded </div></a>
@@ -1691,6 +1692,10 @@ Localization option supported
 <br>
 <a id="events"></a>
 <p style='font-size:30px;' align='center'>Events</p>
+<br>
+<a id="event_save"></a>
+<p><b>dialog_end</b> - Completing the appearance of text in text_panel (Can be used to determine the end of a character's conversation animation.)</p>
+<pre class='code_box'><code>tuesday.addEventListener('dialog_end', function(event) { <span class='comm'>alert("dialog_end")</span> } );</code></pre>
 <br>
 <a id="event_save"></a>
 <p><b>save</b> - Save manually (does not work with autosave)</p>
