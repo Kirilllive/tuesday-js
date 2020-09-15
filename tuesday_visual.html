@@ -195,6 +195,7 @@
         transition-duration: 0.5s;
 		border-radius: 0;
 		padding: 0;
+        font-size: 14px;
 		cursor: text;
 		height:28px; 
 		width:100%;
@@ -564,12 +565,14 @@ function modal_window(action, content) {
         window_zone.style.visibility = "hidden"
         window_zone.style.backgroundColor = 'rgba(110,95,165,0)';
         document.body.style.overflow = 'scroll';
+        scroll_block = false;
         window_zone.innerHTML = "";
     } else if (action == 'open' && window_zone.style.visibility != "visible") {
         window_zone.style.visibility = "visible";
         window_zone.style.backgroundColor = 'rgba(110,95,165,0.5)';
         document.body.style.overflow = 'hidden';
 		window_zone.innerHTML = content;
+        scroll_block = true;
     }
 }
 function play_navel(bl) {
@@ -617,7 +620,7 @@ function setup() {
     }
 	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><hr>"
 	+"<br><div style='overflow-y: auto; overflow-x: hidden;  max-height: 75vh;'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
-	+"<tr><td align='right'>story launch block: </td><td align='left'>  <select class='input_text' id='launch_story'>"+((block_list)?block_list:'')+"</select></td></tr>"
+	+"<tr><td align='right'>story launch block: </td><td align='left' style='width:65%;'>  <select class='input_text' id='launch_story'>"+((block_list)?block_list:'')+"</select></td></tr>"
 	+"<tr><td align='right'>css styles file: </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file)?story_script.parameters.style_file:'') + "' type='text'></td></tr>"	
 	+"</table><br>"
 	+"</div></div>"
