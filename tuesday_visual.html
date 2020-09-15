@@ -263,7 +263,7 @@ function loadFiles(e) {
 		} 
 		html += "</div>"
 		modal_window("open", html)
-	}
+    } else if (jsons.length == 0) {alert('json file no found')}
 }
 function open_file (name) {
 	for (var f=0; f < project_files.length; f++) {
