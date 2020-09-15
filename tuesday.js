@@ -68,9 +68,10 @@ function get_lang() {
     tuesday.style.backgroundPosition = "center";
     tuesday.style.position = "relative"
     tuesday.style.overflow = "hidden";
-    tuesday.innerHTML = "<table id='tue_text_block' align='center'><tbody><tr><td id='tue_text_element'><div id='tue_text_view' style='height: 100%;'></div></td></tr></tbody></table>";
+    tuesday.innerHTML = "<table id='tue_text_block' align='center'><tbody><tr><td id='tue_text_element'><div id='tue_text_view'></div></td></tr></tbody></table>";
     tue_text_block = document.getElementById("tue_text_block");
 	tue_text_element = document.getElementById("tue_text_element");
+	tue_text_element.style.position = "relative"; 
     if(story_json.parameters.text_panel.className){tue_text_block.className = story_json.parameters.text_panel.className;}
     if(story_json.parameters.text_panel.style){tue_text_block.style = story_json.parameters.text_panel.style;}
     tue_text_block.style.position = "absolute";
@@ -93,6 +94,7 @@ function get_lang() {
     tue_text_view = document.getElementById("tue_text_view");
     tue_text_view.style.padding = story_json.parameters.text_panel.indent_text;
     tue_text_view.style.fontSize = story_json.parameters.text_panel.size_text;
+	tue_text_view.style.height = "100%"; 
     if (story_json.parameters.name_panel) {
         if(story_json.parameters.name_panel.className){tue_name_block.className = story_json.parameters.name_panel.className;}
         if(story_json.parameters.name_panel.style){tue_name_block.style = story_json.parameters.name_panel.style;}
