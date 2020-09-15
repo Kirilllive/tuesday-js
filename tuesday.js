@@ -78,10 +78,15 @@ function get_lang() {
 		tue_text_block.style.width = story_json.parameters.text_panel.size[0];
 		tue_text_block.style.height = story_json.parameters.text_panel.size[1];
 	}
-    tue_text_block.style.left = (story_json.parameters.text_panel.position[0] != 0)?story_json.parameters.text_panel.position[0]:"0";
-    tue_text_block.style.right = (story_json.parameters.text_panel.position[1] != 0)?story_json.parameters.text_panel.position[1]:"0";
-    if (story_json.parameters.text_panel.position[2] != 0) {tue_text_block.style.top = story_json.parameters.text_panel.position[2];}
-    if (story_json.parameters.text_panel.position[3] != 0) {tue_text_block.style.bottom = story_json.parameters.text_panel.position[3];}
+	if (story_json.parameters.text_panel.position) {
+		tue_text_block.style.left = (story_json.parameters.text_panel.position[0] != 0)?story_json.parameters.text_panel.position[0]:"0";
+		tue_text_block.style.right = (story_json.parameters.text_panel.position[1] != 0)?story_json.parameters.text_panel.position[1]:"0";
+		if (story_json.parameters.text_panel.position[2] != 0) {tue_text_block.style.top = story_json.parameters.text_panel.position[2];}
+		if (story_json.parameters.text_panel.position[3] != 0) {tue_text_block.style.bottom = story_json.parameters.text_panel.position[3];}
+	} else {
+		tue_text_block.style.left = "0";
+		tue_text_block.style.right = "0";
+	}
 	if (story_json.parameters.text_panel.indent_bottom){tue_text_block.style.bottom = story_json.parameters.text_panel.indent_bottom;}
     tue_text_block.style.zIndex = "1000";
     tue_text_block.style.borderSpacing = "0";
