@@ -13,6 +13,7 @@
             border: 0;
             border-spacing: 0px;
             font-family: Arial;
+            font-size: 14;
             color: #fff;
         }
         .buttons {
@@ -112,10 +113,10 @@
 let data = {
 "parameters": {
     "text_panel": {
-        "size": ["95%", "7.9em"],
-        "style": "margin: 2.5% 0 0 2.5%;",
-        "indent_bottom": "1em",
-        "size_text": "16px",
+        "size": ["95%", "7em"],
+		"position": ["2.5%", "2.5%"],
+        "indent_bottom": "0.9em",
+        "size_text": "14",
         "dialog_speed": 10
     },
     "name_panel": {
@@ -123,7 +124,7 @@ let data = {
         "position": ["0px", "0", "0px", "0"],
         "indent_text": "0 1em ",
         "className": "textPanel",
-        "size_text": "16px"
+        "size_text": "14px"
     },
     "key": {
         "load_autosave": "c",
@@ -252,7 +253,7 @@ let data = {
         "size": ["2em", "2em"],
         "className": "buttons",
         "indent_text": "0 24px ",
-        "size_text": "18px"
+        "size_text": "14px"
     },{ "name": "tue_next",
         "art": "img/icon/next.svg",
         "art_size": ["1em", "1em"],
@@ -260,7 +261,7 @@ let data = {
         "size": ["2em", "2em"],
         "className": "buttons",
         "indent_text": "0 24px ",
-        "size_text": "18px"
+        "size_text": "14px"
     },{ "name": "tue_home",
         "art": "img/icon/menu.svg",
         "art_size": ["1em", "1em"],
@@ -268,7 +269,7 @@ let data = {
         "size": ["2em", "2em"],
         "className": "buttons",
         "indent_text": "0 24px ",
-        "size_text": "18px"
+        "size_text": "14px"
     }]
 },"main_menu": [{
     "background_image": "img/cover.jpg",
@@ -316,6 +317,7 @@ let data = {
 }],"episodes": [{
     "background_image": "img/cover.jpg",
     "dialogs": [{
+		"controll": "hidden",
         "color": "rgba(0,0,0,0.5)",
         "color_text": "#fff",
         "art": [{
@@ -377,6 +379,13 @@ let data = {
             "className": "episodes",
             "text": {
                 "ru": "<div class='prolog_name'>Лунный червь</div>"
+            }
+        },{ "go_to": "main_menu",
+            "position": ["50%", "0", "0", "5%"],
+            "size": ["188px", "0"],
+            "className": "buttons hot_center",
+            "text": {
+                "ru": "Назад"
             }
         }]
     }]

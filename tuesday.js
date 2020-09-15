@@ -206,7 +206,14 @@ function get_lang() {
     creation_dialog ();
     if(story_json[tue_story][scene].background_music){search_music()}
 } function creation_dialog () {
-		tue_next.style.visibility = 'visible';
+		tue_next.style.visibility = tue_home.style.visibility;
+		if (story_json[tue_story][scene].dialogs[dialog].controll == 'hidden'){
+			var buttons = document.getElementById("tuesday").getElementsByClassName("tue_controll");
+			for (var i = 0; i < buttons.length; i++) {buttons[i].style.visibility = "hidden";}
+		} else if (story_json[tue_story][scene].dialogs[dialog].controll == 'visible') {
+			var buttons = document.getElementById("tuesday").getElementsByClassName("tue_controll");
+			for (var i = 0; i < buttons.length; i++) {buttons[i].style.visibility = "visible";}
+		}
         if (story_json[tue_story][scene].dialogs[dialog].color) {tue_text_element.style.backgroundColor = story_json[tue_story][scene].dialogs[dialog].color;}
         else if (story_json.parameters.text_panel.color) {tue_text_element.style.backgroundColor = story_json.parameters.text_panel.color;}
         if (story_json[tue_story][scene].dialogs[dialog].color_text) {tue_text_view.style.color = story_json[tue_story][scene].dialogs[dialog].color_text;}

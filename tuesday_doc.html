@@ -182,6 +182,7 @@ hr {border: solid 1px #cec8e3;}
         <a href="#go_to" style='text-decoration: none;'><div class='block'><span class='three_2'>go_to</div>
         <a href="#back_to" style='text-decoration: none;'><div class='block'><span class='three_2'>back_to</div>
         <a href="#e_variable" style='text-decoration: none;'><div class='block'><span class='three_2'>variables</div>
+		<a href="#controll" style='text-decoration: none;'><div class='block'><span class='three_2'>controll</div>
         <a href="#event" style='text-decoration: none;'><div class='block'><span class='three_2'>event</div>
         <div class="accordion"><a href="#e_art" style='text-decoration: none;'><div class='block block_open'><span class='three_2'>art</span></div></a></div>
         <div class="panel border_b border_t">
@@ -964,7 +965,8 @@ The display of the script on the html page occurs through the div element with <
 		"<a href="#dialogs" class='code_link'>dialogs</a>":[
 			{
 				"<a href="#back_to" class='code_link'>back_to</a>": "<span class='comm'>id of the previous block</span>",
-				"<a href="#event" class='code_link'>event</a>": "<span class='comm'>event name for javaScript</span>"
+				"<a href="#event" class='code_link'>event</a>": "<span class='comm'>event name for javaScript</span>",
+				"<a href="#controll" class='code_link'>controll</a>": "<span class='comm'>'hidden' / 'visible' displaying interface buttons in a dialog</span>",
 				"<a href="#variables" class='code_link'>variables</a>": [
 					["<span class='comm'>variable name</span>", "<span class='comm'>variable operation</span>", <span class='comm'>value</span>]
 				],
@@ -1409,6 +1411,20 @@ tusday - creation event
 <br>
 javaScript - event response
 <pre class='code_box'><code>tuesday.addEventListener(<span class='comm'>id_event</span>', function(event) { <span class='comm'>alert("event starting")</span> } );</code></pre>
+<br>
+</div>
+
+
+<br>
+<br>
+<br>
+<div class='element'>
+<a id="controll"></a>
+<p class='title_name'>Controll</p>
+<br>
+<p>Hides the interface buttons in dialogs specified in the ( <b>parameters / <a href="#buttons" >buttons</a></b> ) section. After a dialog with the "controll": "hidden" parameter, buttons will be hidden in all subsequent dialogs until the end of the block. To display buttons you need to specify "controll": "visible".</p>
+<br>
+<pre class='code_box'><code>	"controll": "<span class='comm'>'hidden' / 'visible' displaying interface buttons in a dialog</span>",</code></pre>
 <br>
 </div>
 
