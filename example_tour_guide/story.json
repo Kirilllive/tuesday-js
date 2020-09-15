@@ -325,279 +325,107 @@
             }
         }]
     }],
-    "tokyo_tower": [
-            {
-                "background_music": "audio/bg_music",
-                "background_image": {
-                    "ru":"img/tokyo_town_1.jpg",
-                    "en":"img/tokyo_town_1.jpg",
-                    "ja":"img/tokyo_town_1.jpg",
-                    "ko":"img/tokyo_town_1.jpg"
-                },
-                "dialogs":[
-                    {
-                        "back_to": "main_menu",
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"теле- и радиокоммуникационная башня, расположенная в г. Минато, Токио.",
-                            "en":"is a communications and observation tower in the Shiba-koen district of Minato, Tokyo,",
-                            "ja":"は、 東京都 港区 芝公園にある総合電波塔の愛称である。正式名称は日本電波塔 （にっぽんでんぱとう）",
-                            "ko":"는 일본 도쿄도 미나토구 에 있는 높이 333m의 종합 전파탑 이다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Телевизионная башня Токио",
-                            "en":"Tokyo Tower",
-                            "ja":"東京タワー",
-                            "ko":"도쿄 타워"
-                        }
-                    },{
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"Высота башни — 332,6 метра. На момент постройки - самое высокое в мире сооружение из стали.",
-                            "en":"At 332.9 metres (1,092 ft), it is the second-tallest structure in Japan. ",
-                            "ja":"高さは333メートル[1]と広報されており（ 海抜 351メートル）、塔脚の間隔は88.0メートル[注釈 2] 。",
-                            "ko":"도쿄의 상징이자 관광 명소로서 널리 알려져 있다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Телевизионная башня Токио",
-                            "en":"Tokyo Tower",
-                            "ja":"東京タワー",
-                            "ko":"도쿄 타워"
-                        }
-                    },{
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"Построенная в 1958 году, изначально башня предназначалась для телевещания на Токио и регион Канто, но тремя годами позже на неё были установлены ещё и радиоантенны для передачи радиосигналов.",
-                            "en":"Built in 1958,  The structure is an Eiffel Tower-inspired lattice tower that is painted white and international orange to comply with air safety regulations. ",
-                            "ja":"1958年 12月23日 竣工 。東京のシンボル・観光名所として知られる。地上125メートル（海抜約150メートル）と223.55メートル（海抜約250メートル）に展望台を有したトラス構造の電波塔である[3] 。",
-                            "ko":"한동안은 일본 도쿄도에서 가장 높은 건축물이었으나, 2012년 근처에 634m의 도쿄 스카이 트리 가 건설되면서 두 번째로 높은 건축물이 되었다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Телевизионная башня Токио",
-                            "en":"Tokyo Tower",
-                            "ja":"東京タワー",
-                            "ko":"도쿄 타워"
-                        }
-                    }
-                ]
-            },{
-                "background_image": {
-                    "ru":"img/tokyo_town_2.jpg",
-                    "en":"img/tokyo_town_2.jpg",
-                    "ja":"img/tokyo_town_2.jpg",
-                    "ko":"img/tokyo_town_2.jpg"
-                },
-                "dialogs":[
-                    {
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"Вместе с инженерной компанией Nikken Sekkei он разработал конструкцию, способную выдерживать землетрясения, вдвое превышающие силу Великого землетрясения Канто, и тайфуны со скоростью ветра более 220 километров в час ",
-                            "en":"With the help of engineering company Nikken Sekkei Ltd., Naitō claimed his design could withstand earthquakes with twice the intensity of the 1923 Great Kantō earthquake or typhoons with wind speeds of up to 220 kilometres per hour (140 mph).",
-                            "ja":"ただし、自立式鉄塔としては東京スカイツリーに抜かれるまでの約51年半は日本一の高さであった。",
-                            "ko":"도쿄 타워에서 발신되는 전파는 간토 지방 반경 100 km 권을 포괄한다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Токийское небесное дерево",
-                            "en":"Tokyo Skytree",
-                            "ja":"東京スカイツリ",
-                            "ko":"도쿄 스카이트리"
-                        }
-                    },{
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"Несмотря на то, что Токийская телебашня выше Эйфелевой, весит она, благодаря усовершенствованной конструкции, всего 4000 тонн, то есть на 3300 тонн меньше.",
-                            "en":"Despite being taller than the Eiffel Tower, Tokyo Tower only weighs about 4,000 tons, 3,300 tons less than the Eiffel Tower.",
-                            "ja":"なお、重量については約4,000トンとされる。",
-                            "ko":"이것은 4,000톤의 강철과 토목공들의 수작업으로 이루어진 건축물임을 감안하면 단기간의 시간이 걸린 셈이다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Токийское небесное дерево",
-                            "en":"Tokyo Skytree",
-                            "ja":"東京スカイツリ",
-                            "ko":"도쿄 스카이트리"
-                        }
-                    }
-                ]
-            },{
-                "background_image": {
-                    "ru":"img/tokyo_town_3.jpg",
-                    "en":"img/tokyo_town_3.jpg",
-                    "ja":"img/tokyo_town_3.jpg",
-                    "ko":"img/tokyo_town_3.jpg"
-                },
-                "dialogs":[
-                    {
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"Перед 30-летием башни в 1987 году единственным освещением на башне были лампочки, расположенные на угловых контурах, которые простирались от основания до антенны. ",
-                            "en":"Before the tower's 30th anniversary in 1987, the only lighting on the tower were light bulbs located on the corner contours that extended from the base to the antenna.",
-                            "ja":"イルミネーションは1958年12月21日に実験的に灯され、開業から20日間毎晩点灯された。その後は日曜、祝日の前夜に点灯し1964年の東京オリンピック中は連夜点灯。",
-                            "ko":"철탑 전체에 조명 을 비추어 색을 띄우게 한 것은 1989년 ( 헤이세이 원년)의 일로, 그때까지는 철탑의 사방에 일정 간격을 두고 전구 를 설치하여, 실루엣만 띄워올리는 방식이었다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Токийское небесное дерево",
-                            "en":"Tokyo Skytree",
-                            "ja":"東京スカイツリ",
-                            "ko":"도쿄 스카이트리"
-                        }
-                    },{
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"Весной 1987 года Нихон Денпато пригласил дизайнера по свету Мотоко Исии посетить башню.",
-                            "en":"In the spring of 1987, Nihon Denpatō invited lighting designer Motoko Ishii to visit the tower.",
-                            "ja":"電球は鉄塔の四隅に5m間隔で250灯配置していたが随時増えてゆき、1976年には696灯（塔体384灯、アンテナ88灯、特別展望台96灯、大展望台128灯）となった。",
-                            "ko":"쓰여진 있는 조명은 모두 176기로, 일일 전기세는 24,000엔~25,000엔 정도이다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Токийское небесное дерево",
-                            "en":"Tokyo Skytree",
-                            "ja":"東京スカイツリ",
-                            "ko":"도쿄 스카이트리"
-                        }
-                    },{
-                        "go_to": "main_menu",
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"Новая система освещения была представлена общественности в 1989 го. Все старые лампы на рёбрах башни были демонтированы, а вместо них были установлены 176 прожекторов, смонтированных внутри и снаружи металлического каркаса.",
-                            "en":"Since its opening 30 years earlier, the tower's annual ticket sales had dropped significantly, and in a bid to revitalize the tower and again establish it as an important tourist attraction and symbol of Tokyo, Ishii was hired to redesign Tokyo Tower's lighting arrangement.",
-                            "ja":"電球が切れた場合はその都度交換しに行くのは手間がかかるため、ある程度切れたら交換していたが所々光が途切れている部分は目立ち、ある芸能人から「地方から東京に帰ってきてタワーを見ると、電球が切れていて気になる」と指摘を受けている 。",
-                            "ko":"해돋이 부터 한밤 0시까지 색을 띄우게 하는데, 계절에 맞춰 색도 변화시켜 봄·가을·겨울에는 따뜻한 노랑 색의 램프로, 여름에는 시원한 하양 색의 메탈 하이라이트 램프로 비춘다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Токийское небесное дерево",
-                            "en":"Tokyo Skytree",
-                            "ja":"東京スカイツリ",
-                            "ko":"도쿄 스카이트리"
-                        }
-                    }
-                ]
-            }
-        ],
-        "sky_tree": [
-            {
-                "background_music": "audio/bg_music",
-                "background_image": {
-                    "ru":"img/sky_tree_1.jpg",
-                    "en":"img/sky_tree_1.jpg",
-                    "ja":"img/sky_tree_1.jpg",
-                    "ko":"img/sky_tree_1.jpg"
-                },
-                "dialogs":[
-                    {
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"телевизионная башня в районе Сумида, Токио, Япония, самая высокая среди телебашен мира. Второе по высоте сооружение в мире после «Бурдж-Халифа». ",
-                            "en":"is a broadcasting and observation tower in Sumida , Tokyo . It became the tallest structure in Japan in 2010 and reached its full height of 634.0 metres (2,080 ft) in March 2011, making it the tallest tower in the world, displacing the Canton Tower , and the second tallest structure in the world after the Burj Khalifa (829.8 m/2,722 ft).",
-                            "ja":"は、 東京都 墨田区 押上一丁目にある電波塔 （ 送信所 ）である。人工の建造物としてはブルジュ・ハリーファの828mに次ぐ世界第2位となる。",
-                            "ko":"전체 높이 634 m, 탑 본체 높이 497 m는 자립식 철탑으로서는 키예프 TV 타워 의 385m를 넘어 세계 1위, 현존하는 전파탑으로서는 KVLY-TV탑 의 628.8m를 넘어 세계 1위이다.또, 건축물 중에서는 아랍에미리트 두바이 의 부르즈 할리파 (828 m) 를 잇는 세계 2위의 높이를 가지고 있다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Токийское небесное дерево",
-                            "en":"Tokyo Skytree",
-                            "ja":"東京スカイツリ",
-                            "ko":"도쿄 스카이트리"
-                        }
-                    },{
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "en":"The tower is the primary television and radio broadcast site for the Kantō region",
-                            "ru":"Башня приняла большинство функций Телевизионной башни Токио, кроме того со временем объем вещания будет увеличен вдвое, а за счёт того, что вещание осуществляется с высоты, превышающей 600 метров",
-                            "ja":"送信アンテナはゲイン塔の頂上部に1局分80基の地上デジタルテレビ放送用アンテナが8局分（NHKおよび在京広域民放5社（以下在京テレビ6社）用、うち1局分は予備アンテナ）が設置され、その下にTOKYO MX用の放送アンテナが設置されている。",
-                            "ko":"가칭이었던 신 도쿄 타워 또한 도쿄 스카이 트리가 도쿄 타워를 관리하는 일본전파탑사와는 무관하기 때문에 쓰이지 않았다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Токийское небесное дерево",
-                            "en":"Tokyo Skytree",
-                            "ja":"東京スカイツリ",
-                            "ko":"도쿄 스카이트리"
-                        }
-                    }
-                ]
-            },{
-                "background_image": {
-                    "ru":"img/sky_tree_2.jpg",
-                    "en":"img/sky_tree_2.jpg",
-                    "ja":"img/sky_tree_2.jpg",
-                    "ko":"img/sky_tree_2.jpg"
-                },
-                "dialogs":[
-                    {
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"С октября по ноябрь 2007 года были собраны предложения от широкой общественности о названии башни. Официальное название было решено в ходе всенародного голосования и было объявлено 10 июня 2008 года как Токио Скайтри.",
-                            "en":"From October to November 2007, suggestions were collected from the general public for the name to be given to the tower. The official name was decided in a nationwide vote, and was announced on 10 June 2008 as Tokyo Skytree",
-                            "ja":"正式名称決定までの仮称は「新東京タワー」。正式名称は一般公募によって寄せられた1万8,606件の命名案の中から、まずは有識者10人で構成される「新タワー名称検討委員会」によって6つに候補が絞り込まれた。言葉の美しさや親しみやすさなどを基準に「 東京スカイツリー 」「 東京EDOタワー 」「 ライジングタワー 」「 みらいタワー 」「 ゆめみやぐら 」「 ライジングイーストタワー 」の6つが名称候補として選ばれ、2008年春にインターネットを通じて一般投票を行った。",
-                            "ko":"임시로 지어진 명칭은 신 도쿄 타워 였다. 정식 명칭은 공모를 통해 정했는데, 가장 많은 공모를 받은 오에도 타워 는 타워 건설 예정지 부근의 한 가게가 상표를 미리 따냈고, 최다 공모 3위  사쿠라 타워 도 다른 호텔에서 사용하고 있는 상표였기 때문에 사용하지 않았다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Токийское небесное дерево",
-                            "en":"Tokyo Skytree",
-                            "ja":"東京スカイツリ",
-                            "ko":"도쿄 스카이트리"
-                        }
-                    }
-                ]
-            },{
-                "background_image": {
-                    "ru":"img/sky_tree_3.jpg",
-                    "en":"img/sky_tree_3.jpg",
-                    "ja":"img/sky_tree_3.jpg",
-                    "ko":"img/sky_tree_3.jpg"
-                },
-                "dialogs":[
-                    {
-                        "go_to": "main_menu",
-                        "color": "rgba(155,155,155,0.75)",
-                        "color_text": "#fff",
-                        "text": {
-                            "ru":"Имеются два образца подсветки — небесно-голубой Ики (оригинальный, стильный) и пурпурный Мияби (элегантный, утончённый), которые сменяют друг друга через день. Подсветка башни осуществляется при помощи светодиодов. Дизайн подсветки был представлен 16 октября 2009 года.",
-                            "en":"The illumination design was published on 16 October 2009. Two illumination patterns Iki (chic, stylish) sky blue and Miyabi (elegance, refinement) purple will be used, alternating daily.",
-                            "ja":"2009年（平成21年）10月16日にライティングデザインが公表された。江戸で育まれてきた心意気の「 粋 」と、美意識の「雅」という2つの異なるライティングを1日毎に交互に替えるライティングである。このライティング機材や調光コントロール全般は東京スカイツリーのオフィシャルパートナーのパナソニック （当時・パナソニック電工 ）が請負い、ライトアップの全てをLED照明とした[24] 。",
-                            "ko":"조명 디자인은 2009년 10월 16일에 만들어졌다.2개 조명 패턴이 있는데 하나는 이키( 粋 ) - (하늘색), 다른 하나는 미야비( 雅 ) - (보라색)이다."
-                        },
-                        "name": {
-                            "color_text": "#fff",
-                            "color": "#888",
-                            "ru":"Токийское небесное дерево",
-                            "en":"Tokyo Skytree",
-                            "ja":"東京スカイツリ",
-                            "ko":"도쿄 스카이트리"
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+	"sky_tree": [
+		{
+			"background_music": "audio/bg_music",
+			"background_image": {
+				"ru":"img/sky_tree_1.jpg",
+				"en":"img/sky_tree_1.jpg",
+				"ja":"img/sky_tree_1.jpg",
+				"ko":"img/sky_tree_1.jpg"
+			},
+			"dialogs":[
+				{
+					"color": "rgba(155,155,155,0.75)",
+					"color_text": "#fff",
+					"text": {
+						"ru":"телевизионная башня в районе Сумида, Токио, Япония, самая высокая среди телебашен мира. Второе по высоте сооружение в мире после «Бурдж-Халифа». ",
+						"en":"is a broadcasting and observation tower in Sumida , Tokyo . It became the tallest structure in Japan in 2010 and reached its full height of 634.0 metres (2,080 ft) in March 2011, making it the tallest tower in the world, displacing the Canton Tower , and the second tallest structure in the world after the Burj Khalifa (829.8 m/2,722 ft).",
+						"ja":"は、 東京都 墨田区 押上一丁目にある電波塔 （ 送信所 ）である。人工の建造物としてはブルジュ・ハリーファの828mに次ぐ世界第2位となる。",
+						"ko":"전체 높이 634 m, 탑 본체 높이 497 m는 자립식 철탑으로서는 키예프 TV 타워 의 385m를 넘어 세계 1위, 현존하는 전파탑으로서는 KVLY-TV탑 의 628.8m를 넘어 세계 1위이다.또, 건축물 중에서는 아랍에미리트 두바이 의 부르즈 할리파 (828 m) 를 잇는 세계 2위의 높이를 가지고 있다."
+					},
+					"name": {
+						"color_text": "#fff",
+						"color": "#888",
+						"ru":"Токийское небесное дерево",
+						"en":"Tokyo Skytree",
+						"ja":"東京スカイツリ",
+						"ko":"도쿄 스카이트리"
+					}
+				},{
+					"color": "rgba(155,155,155,0.75)",
+					"color_text": "#fff",
+					"text": {
+						"en":"The tower is the primary television and radio broadcast site for the Kantō region",
+						"ru":"Башня приняла большинство функций Телевизионной башни Токио, кроме того со временем объем вещания будет увеличен вдвое, а за счёт того, что вещание осуществляется с высоты, превышающей 600 метров",
+						"ja":"送信アンテナはゲイン塔の頂上部に1局分80基の地上デジタルテレビ放送用アンテナが8局分（NHKおよび在京広域民放5社（以下在京テレビ6社）用、うち1局分は予備アンテナ）が設置され、その下にTOKYO MX用の放送アンテナが設置されている。",
+						"ko":"가칭이었던 신 도쿄 타워 또한 도쿄 스카이 트리가 도쿄 타워를 관리하는 일본전파탑사와는 무관하기 때문에 쓰이지 않았다."
+					},
+					"name": {
+						"color_text": "#fff",
+						"color": "#888",
+						"ru":"Токийское небесное дерево",
+						"en":"Tokyo Skytree",
+						"ja":"東京スカイツリ",
+						"ko":"도쿄 스카이트리"
+					}
+				}
+			]
+		},{
+			"background_image": {
+				"ru":"img/sky_tree_2.jpg",
+				"en":"img/sky_tree_2.jpg",
+				"ja":"img/sky_tree_2.jpg",
+				"ko":"img/sky_tree_2.jpg"
+			},
+			"dialogs":[
+				{
+					"color": "rgba(155,155,155,0.75)",
+					"color_text": "#fff",
+					"text": {
+						"ru":"С октября по ноябрь 2007 года были собраны предложения от широкой общественности о названии башни. Официальное название было решено в ходе всенародного голосования и было объявлено 10 июня 2008 года как Токио Скайтри.",
+						"en":"From October to November 2007, suggestions were collected from the general public for the name to be given to the tower. The official name was decided in a nationwide vote, and was announced on 10 June 2008 as Tokyo Skytree",
+						"ja":"正式名称決定までの仮称は「新東京タワー」。正式名称は一般公募によって寄せられた1万8,606件の命名案の中から、まずは有識者10人で構成される「新タワー名称検討委員会」によって6つに候補が絞り込まれた。言葉の美しさや親しみやすさなどを基準に「 東京スカイツリー 」「 東京EDOタワー 」「 ライジングタワー 」「 みらいタワー 」「 ゆめみやぐら 」「 ライジングイーストタワー 」の6つが名称候補として選ばれ、2008年春にインターネットを通じて一般投票を行った。",
+						"ko":"임시로 지어진 명칭은 신 도쿄 타워 였다. 정식 명칭은 공모를 통해 정했는데, 가장 많은 공모를 받은 오에도 타워 는 타워 건설 예정지 부근의 한 가게가 상표를 미리 따냈고, 최다 공모 3위  사쿠라 타워 도 다른 호텔에서 사용하고 있는 상표였기 때문에 사용하지 않았다."
+					},
+					"name": {
+						"color_text": "#fff",
+						"color": "#888",
+						"ru":"Токийское небесное дерево",
+						"en":"Tokyo Skytree",
+						"ja":"東京スカイツリ",
+						"ko":"도쿄 스카이트리"
+					}
+				}
+			]
+		},{
+			"background_image": {
+				"ru":"img/sky_tree_3.jpg",
+				"en":"img/sky_tree_3.jpg",
+				"ja":"img/sky_tree_3.jpg",
+				"ko":"img/sky_tree_3.jpg"
+			},
+			"dialogs":[
+				{
+					"go_to": "main_menu",
+					"color": "rgba(155,155,155,0.75)",
+					"color_text": "#fff",
+					"text": {
+						"ru":"Имеются два образца подсветки — небесно-голубой Ики (оригинальный, стильный) и пурпурный Мияби (элегантный, утончённый), которые сменяют друг друга через день. Подсветка башни осуществляется при помощи светодиодов. Дизайн подсветки был представлен 16 октября 2009 года.",
+						"en":"The illumination design was published on 16 October 2009. Two illumination patterns Iki (chic, stylish) sky blue and Miyabi (elegance, refinement) purple will be used, alternating daily.",
+						"ja":"2009年（平成21年）10月16日にライティングデザインが公表された。江戸で育まれてきた心意気の「 粋 」と、美意識の「雅」という2つの異なるライティングを1日毎に交互に替えるライティングである。このライティング機材や調光コントロール全般は東京スカイツリーのオフィシャルパートナーのパナソニック （当時・パナソニック電工 ）が請負い、ライトアップの全てをLED照明とした[24] 。",
+						"ko":"조명 디자인은 2009년 10월 16일에 만들어졌다.2개 조명 패턴이 있는데 하나는 이키( 粋 ) - (하늘색), 다른 하나는 미야비( 雅 ) - (보라색)이다."
+					},
+					"name": {
+						"color_text": "#fff",
+						"color": "#888",
+						"ru":"Токийское небесное дерево",
+						"en":"Tokyo Skytree",
+						"ja":"東京スカイツリ",
+						"ko":"도쿄 스카이트리"
+					}
+				}
+			]
+		}
+	]
+}

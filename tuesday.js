@@ -214,8 +214,8 @@ function get_lang() {
 			var buttons = document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for (var i = 0; i < buttons.length; i++) {buttons[i].style.visibility = "visible";}
 		}
-        if (story_json[tue_story][scene].dialogs[dialog].color) {tue_text_element.style.backgroundColor = story_json[tue_story][scene].dialogs[dialog].color;}
-        else if (story_json.parameters.text_panel.color) {tue_text_element.style.backgroundColor = story_json.parameters.text_panel.color;}
+        if (story_json[tue_story][scene].dialogs[dialog].color) {tue_text_block.style.backgroundColor = story_json[tue_story][scene].dialogs[dialog].color;}
+        else if (story_json.parameters.text_panel.color) {tue_text_block.style.backgroundColor = story_json.parameters.text_panel.color;}
         if (story_json[tue_story][scene].dialogs[dialog].color_text) {tue_text_view.style.color = story_json[tue_story][scene].dialogs[dialog].color_text;}
 		else if (story_json.parameters.text_panel.color_text) {tue_text_view.style.color = story_json.parameters.text_panel.color_text;}
         if (story_json[tue_story][scene].dialogs[dialog].text){
@@ -224,8 +224,8 @@ function get_lang() {
             values_in_text(false);
             clearTimeout(dialog_timeout);
             anim_text();
-            if(story_json[tue_story][scene].dialogs[dialog].text.className){ tue_text_element.className = story_json[tue_story][scene].dialogs[dialog].text.className}
-			if(story_json[tue_story][scene].dialogs[dialog].text.style) {tue_text_element.style = story_json[tue_story][scene].dialogs[dialog].text.style}
+            if(story_json[tue_story][scene].dialogs[dialog].text.className){ tue_text_block.className = story_json[tue_story][scene].dialogs[dialog].text.className}
+			if(story_json[tue_story][scene].dialogs[dialog].text.style) {tue_text_block.style = story_json[tue_story][scene].dialogs[dialog].text.style}
         } else if (story_json[tue_story][scene].dialogs[dialog].text_add) {
 			tue_text_block.style.visibility = 'visible';
 			tue_text_view.innerHTML = "";
