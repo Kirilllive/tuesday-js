@@ -68,7 +68,7 @@ function get_lang() {
     tuesday.style.backgroundPosition = "center";
     tuesday.style.position = "relative"
     tuesday.style.overflow = "hidden";
-    tuesday.innerHTML = "<table id='tue_text_block' align='center'><tbody><tr><td id='tue_text_element'><div id='tue_text_view'></div></td></tr></tbody></table>";
+    tuesday.innerHTML = "<table id='tue_text_block' align='center'><tbody><tr><td id='tue_text_element'><div id='tue_text_view' style='height: 100%;'></div></td></tr></tbody></table>";
     tue_text_block = document.getElementById("tue_text_block");
 	tue_text_element = document.getElementById("tue_text_element");
     if(story_json.parameters.text_panel.className){tue_text_block.className = story_json.parameters.text_panel.className;}
