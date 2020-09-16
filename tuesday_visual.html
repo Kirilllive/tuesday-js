@@ -26,6 +26,10 @@
 		box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
 		border-radius: 16px;
 	}
+	@keyframes flash {
+		from {box-shadow: 0px 2px 48px rgba(110,95,165,1);}
+		to {box-shadow: 0px 2px 24px rgba(110,95,165,0.25);}
+	}
 	.story_block {
 		 min-height: 28px;
 		 width:256px;
@@ -62,8 +66,8 @@
 		width: 448px;
 	}
 	.button_block {
-		height: 28px;
-		width: 28px;
+		height: 26px;
+		width: 26px;
 		background-size: 70% 70%;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -130,7 +134,7 @@
 		height:128px;
 	}
 	.choice {
-		padding: 4px 4px;
+		padding: 4px;
 		margin-top: 8px;
 		border-radius: 8px;
 		background-color: #cec8e3;
@@ -326,17 +330,17 @@ function creation_block(b) {
 					if (story_script[chapter.id][i].legacy_choice[l][0]) {
 						go =  story_script[chapter.id][i].legacy_choice[l][3];
 						if (story_script[go]) {
-							element += "<div id='"+all+"l"+l+go+all_blocks+"' class='choice to_go'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"
+							element += "<table id='"+all+"l"+l+go+all_blocks+"' class='choice to_go' width='100%'><tbody><tr><td style=padding:4px;>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 							line_controll.push( [go, chapter.id, all+"l"+l+go+all_blocks] );
 							creaton_line (all+"l"+l+go+all_blocks)
 							all++
 						} else {
-							element += "<div id='"+all+"l"+l+go+all_blocks+"' class='choice'><table width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='right'>" + go + "</td></tr></tbody></table></div>"
+							element += "<table id='"+all+"l"+l+go+all_blocks+"' class='choice' width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 						}
 					} else if (story_script[chapter.id][i].legacy_choice[l].go_to) {
 						go =  story_script[chapter.id][i].legacy_choice[l].go_to;
-						if (story_script[go]) {
-							element += "<div id='"+all+"l"+l+go+all_blocks+"' class='choice to_go'>"+go+"</div>"
+						if (story_script[go]) {						
+							element += "<table id='"+all+"l"+l+go+all_blocks+"' class='choice to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+go+"</td><td class='button_block icon icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 							line_controll.push( [go, chapter.id, all+"l"+l+go+all_blocks] );
 							creaton_line (all+"l"+l+go+all_blocks)
 							all++
@@ -353,7 +357,7 @@ function creation_block(b) {
 					if (story_script[chapter.id][i].dialogs[d].go_to) {
 						go = story_script[chapter.id][i].dialogs[d].go_to;
 						if (story_script[go]) {
-							element += "<div id='"+all+"g"+d+go+all_blocks+"' class='choice to_go'>"+go+"</div>";
+							element += "<table id='"+all+"g"+d+go+all_blocks+"' class='choice to_go' style='width:100%;'><tbody><tr><td style='padding: 4px;'>"+go+"</td><td class='button_block icon icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 							line_controll.push( [go, chapter.id, all+"g"+d+go+all_blocks] );
 							creaton_line (all+"g"+d+go+all_blocks)
 							all++
@@ -366,7 +370,7 @@ function creation_block(b) {
 							if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
 								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
 								if (story_script[go]) {
-									element += "<div id='"+all+"c"+d+go+all_blocks+"' class='choice_b to_go'>" + ((t == "")? go : t ) + "</div>"
+									element += "<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td class='button_block'></td><td>" + ((t == "")? go : t ) + "</td><td class='button_block icon icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 									line_controll.push( [go, chapter.id, all+"c"+d+go+all_blocks] );
 									creaton_line (all+"c"+d+go+all_blocks)
 									all++
@@ -382,7 +386,7 @@ function creation_block(b) {
 			}
 			element += "</div>"
 		}
-		chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td><td align='center'>"+chapter.id+"</td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('"+chapter.id+"')\" class='button_block icon_play'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
+		chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td><td align='center'>"+chapter.id+"</td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('"+chapter.id+"')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display: none;'>" + element + "</div>";
 		chapter.className = "story_block panel";
 		chapter.style.left = 64 + (320 * (all_blocks-1)) + "px";
 		chapter.style.top = 64 + (128 * (all_blocks-1)) + "px";
@@ -476,6 +480,8 @@ function movie_dlock(id){
 		var shiftY = e.pageY - coords.top;
 		scroll_block = true;
 		focus_dlock.style.position = 'absolute';
+		focus_dlock.style.animation = false;
+		focus_dlock.style.WebkitAnimation = false;
 		story_blocks.appendChild(focus_dlock);
 		moveAt(e);
 		function moveAt(e) {
@@ -579,7 +585,7 @@ function modal_window(action, content) {
 function play_novel(bl) {
 	var story_preview = JSON.stringify(story_script)
 	for (var f=0; f < project_files.length; f++) {
-		for (var r=JSON.stringify(story_script).split('img/sky_tree_1.jpg').length+2; r > 0; r--) {
+		for (var r=JSON.stringify(story_script).split(project_files[f][0]).length+2; r > 0; r--) {
 			story_preview = story_preview.replace(project_files[f][0],project_files[f][1])
 		}
 	}
@@ -603,23 +609,27 @@ function search_block() {
         }
     }
 }
+function go_to_block(bl) {
+	bl = document.getElementById(bl);
+	scroll_to_block(bl)
+}
 function scroll_to_block(bl) {
     var rect = bl.getBoundingClientRect();
     html.scrollTop = (html.scrollTop + (rect.top - (html.clientHeight / 2) + 22));
     html.scrollLeft = (html.scrollLeft + (rect.left - (html.clientWidth / 2) + (rect.width/2)));
-    //story_blocks.appendChild(bl);
+	bl.style.animation = "flash 1s 1";
+	bl.style.WebkitAnimation = "flash 1s 1";
+    story_blocks.appendChild(bl);
 }
-
 function about() {
 	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size: 22px;'>Tuesday js visual editor</p><hr><p style='font-size: 14px;'>Version: 0.01 (alpha)</p><br><p style='font-size: 14px;'>Sorry Ability to create and edit content in development.<br>It is possible to open an existing project</p><br><table style='font-size: 14px; border-spacing:10px; border-collapse: separate;'><tr><td align='right'>Home: </td><td align='left'><a href='https://kirilllive.github.io/Tuesday' target='_blank'>https://kirilllive.github.io/Tuesday</a></td></tr><tr><td align='right'>itch.io: </td><td align='left'><a href='https://kirill-live.itch.io/tuesday' target='_blank'>https://kirill-live.itch.io/tuesday</a></td></tr><tr><td align='right'>GitHub: </td><td align='left'><a href='https://github.com/Kirilllive/Tuesday' target='_blank'>https://github.com/Kirilllive/Tuesday</a></td></tr></table><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1000v200H0z' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p></div></div>"
 	modal_window("open", html)
 }
-
 function build() {
 	var story_preview = JSON.stringify(story_script)
 	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent("<html><head><style> body { background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_novel = " + story_preview + "; load_story('data',story_novel); <\/script><\/body><\/html>");
 	var dlAnchorElem = document.getElementById('downloadAnchorElem');
-    dlAnchorElem.setAttribute("href", dataStr );
+	dlAnchorElem.setAttribute("href", dataStr );
     dlAnchorElem.setAttribute('download', 'index.html');
     dlAnchorElem.click();
 }
