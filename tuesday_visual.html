@@ -110,6 +110,9 @@
     .icon_close {
         background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNzEuMDc4LDE4NC40MjJMMTg0LjkyMiw3MC41NzgiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xODQuOTIyLDE4NC40MjJMNzEuMDc4LDcwLjU3OCIvPg0KPC9zdmc+")
     }
+    .icon_ok {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTk0LDgybC04Niw4Nkw2MSwxMjQiLz4NCjwvc3ZnPg==")
+    }
 	.scene {
 		background-color: #efefff;
 		border-radius: 12px;
@@ -177,6 +180,14 @@
 	.button:hover {
 		background-color:#cec8e3;
 	}
+	.big_button {
+		border-radius: 20px;
+		height: 40px;
+		background-color:#efefff;
+	}
+	.big_button:hover {
+		background-color:#cec8e3;
+	}
     #search_block {
       height: 40px;
       border-left: 1px solid #cec8e3;
@@ -215,6 +226,28 @@
         transition-duration: 0.3s;
 	}
 	hr {border-top: 1px solid #cec8e3; margin:4px;}
+	.checkbox_a {
+		content:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTEyIi8+DQo8L3N2Zz4=");
+		background: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		height: 16px;
+		width: 16px;
+	 }
+	.checkbox_a:checked  {
+		content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTEyIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTk0LDgybC04Niw4Nkw2MSwxMjQiLz4NCjwvc3ZnPg==");
+		background: none;
+	 }
+	 .set_button {
+		font-size: 14px;
+		height: 40px;
+		border-right:1px solid #cec8e3;
+		padding:0px 8px;
+	 }
+	 .set_select {
+		background-color: #cec8e3;
+	 }
     </style>
 </head>
 <body onload="world_size(); lines(); control_dlock();" style='background-color: #efefff;'>
@@ -639,13 +672,39 @@ function setup() {
 	for (var i = 0; i < li.length; i++) {
 		block_list += "<option value='"+li[i].id+"' "+((li[i].id == story_script.parameters.launch_story)?"selected":"")+">"+li[i].id+"</option>"     
     }
-	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><hr>"
-	+"<br><div style='overflow-y: auto; overflow-x: hidden;  max-height: 75vh;'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
-	+"<tr><td align='right'>story launch block: </td><td align='left' style='width:65%;'>  <select class='input_text' id='launch_story'>"+((block_list)?block_list:'')+"</select></td></tr>"
+	var html = "<div class='window' style='padding:24px 16px; width: 512px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
+	
+	+"<table width='100%' style='border-top:1px solid #cec8e3;'><tbody>"
+	+"<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='5'>"
+
+
+	+"<div style='overflow-y: auto; overflow-x: hidden;  max-height: 75vh;'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
+	+"<tr><td align='right'>autosave: </td><td align='left' style='padding-top:4px; width:65%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave)?'checked':'') + "></td></tr>"
+	+"<tr><td align='right'>story launch block: </td><td align='left''>  <select class='input_text' id='launch_story'>"+((block_list)?block_list:'')+"</select></td></tr>"
 	+"<tr><td align='right'>css styles file: </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file)?story_script.parameters.style_file:'') + "' type='text'></td></tr>"	
-	+"</table><br>"
-	+"</div></div>"
+	+"</table></div>"
+
+
+	+"</td></tr>"
+	+"<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Sounds</td></tr>"
+	+"<tr><td id='set_4' onclick='set_menu(2)' align='right' class='set_button'>Variables</td></tr>"
+	+"<tr><td id='set_3' onclick='set_menu(3)' align='right' class='set_button'>Keyboard</td></tr>"
+	+"<tr><td id='set_5' onclick='set_menu(4)' align='right' class='set_button'>Characters</td></tr>"
+	+"<tr><td></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='apply_setup()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open", html)
+}
+function set_menu(name) {
+	var li = document.getElementsByClassName("set_button");
+	for (var i = 0; i < li.length; i++) {
+		if (i == name) {li[i].className = 'set_button set_select'}
+		else {li[i].className = 'set_button'}
+	}
+}
+function apply_setup(){
+	story_script.parameters.launch_story = document.getElementById('launch_story').value
+	story_script.parameters.style_file = document.getElementById('style_file').value
+	story_script.parameters.autosave = document.getElementById('autosave').checked
+	modal_window('close')
 }
 </script>
 </body>
