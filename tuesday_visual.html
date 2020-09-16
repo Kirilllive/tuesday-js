@@ -113,6 +113,13 @@
     .icon_ok {
         background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTk0LDgybC04Niw4Nkw2MSwxMjQiLz4NCjwvc3ZnPg==")
     }
+    .icon_build {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTcyLDExbDgwLDgwLTM0LDM0TDEwNC41NSwxMUgxNzJaIi8+CiAgICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTE1OCw2NWwyNSwyNUwyOSwyNDQsNCwyMTlaIi8+CiAgICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyMSwxMDJMOTYsMTI3LDUsMzYsMzAsMTFaIi8+CiAgICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTE0NiwxMjdsNjEsNjEtMjUsMjUtNjEtNjEiLz4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjA3LDE4OGwyOSw1MS0zLDMtNTEtMjkiLz4KPC9zdmc+Cg==")
+    }
+    .icon_go {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik04Mi4wMzEsMzYuMDYxbDkxLjkyNCw5MS45MjNMODIuMDMxLDIxOS45MDgiLz4KPC9zdmc+Cg==")
+        }
+    }
 	.scene {
 		background-color: #efefff;
 		border-radius: 12px;
@@ -261,7 +268,7 @@
 					<td align='center' style='cursor:pointer;' title='Settings project' onclick='setup()' class='icon button_menu icon_setup'></td>
                     <td align='center' style='cursor:pointer;' title='About visual editor' onclick='about()' class='icon button_menu icon_about'></td>
                     <td align='center' style='width:128px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
-					<td align='center' style='cursor:pointer;' title='Build project' onclick='build()' class='icon button_menu icon_new'></td>
+					<td align='center' style='cursor:pointer;' title='Build project' onclick='build()' class='icon button_menu icon_build'></td>
 					<td align='center' style='border-radius: 0 0 16px 0; cursor:pointer;' title='Run preview Project' onclick='play_novel()' class='icon button_menu icon_play'></td>
 				</tr>
 			</tbody>
@@ -278,7 +285,7 @@ var body = document.body,
 html = document.documentElement;
 var all_blocks = document.getElementsByClassName("story_block");
 var story_lines = document.getElementById("story_lines");
-let story_script = {"parameters":{"title":"new","launch_story":"main_menu"}};
+let story_script = {"parameters":{"title":"","launch_story":"","key":{}}};
 let line_controll = [];
 var img_file = document.getElementById('json_file');
 var languare = "en";
@@ -363,17 +370,17 @@ function creation_block(b) {
 					if (story_script[chapter.id][i].legacy_choice[l][0]) {
 						go =  story_script[chapter.id][i].legacy_choice[l][3];
 						if (story_script[go]) {
-							element += "<table id='"+all+"l"+l+go+all_blocks+"' class='choice to_go' width='100%'><tbody><tr><td style=padding:4px;>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+							element += "<table id='"+all+"l"+l+go+all_blocks+"' class='choice to_go' width='100%'><tbody><tr><td style=padding:4px;>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 							line_controll.push( [go, chapter.id, all+"l"+l+go+all_blocks] );
 							creaton_line (all+"l"+l+go+all_blocks)
 							all++
 						} else {
-							element += "<table id='"+all+"l"+l+go+all_blocks+"' class='choice' width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+							element += "<table id='"+all+"l"+l+go+all_blocks+"' class='choice' width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 						}
 					} else if (story_script[chapter.id][i].legacy_choice[l].go_to) {
 						go =  story_script[chapter.id][i].legacy_choice[l].go_to;
 						if (story_script[go]) {						
-							element += "<table id='"+all+"l"+l+go+all_blocks+"' class='choice to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+go+"</td><td class='button_block icon icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+							element += "<table id='"+all+"l"+l+go+all_blocks+"' class='choice to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+go+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 							line_controll.push( [go, chapter.id, all+"l"+l+go+all_blocks] );
 							creaton_line (all+"l"+l+go+all_blocks)
 							all++
@@ -390,7 +397,7 @@ function creation_block(b) {
 					if (story_script[chapter.id][i].dialogs[d].go_to) {
 						go = story_script[chapter.id][i].dialogs[d].go_to;
 						if (story_script[go]) {
-							element += "<table id='"+all+"g"+d+go+all_blocks+"' class='choice to_go' style='width:100%;'><tbody><tr><td style='padding: 4px;'>"+go+"</td><td class='button_block icon icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+							element += "<table id='"+all+"g"+d+go+all_blocks+"' class='choice to_go' style='width:100%;'><tbody><tr><td style='padding: 4px;'>"+go+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 							line_controll.push( [go, chapter.id, all+"g"+d+go+all_blocks] );
 							creaton_line (all+"g"+d+go+all_blocks)
 							all++
@@ -403,7 +410,7 @@ function creation_block(b) {
 							if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
 								var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
 								if (story_script[go]) {
-									element += "<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td class='button_block'></td><td>" + ((t == "")? go : t ) + "</td><td class='button_block icon icon_play' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+									element += "<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td class='button_block'></td><td>" + ((t == "")? go : t ) + "</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
 									line_controll.push( [go, chapter.id, all+"c"+d+go+all_blocks] );
 									creaton_line (all+"c"+d+go+all_blocks)
 									all++
@@ -675,28 +682,28 @@ function setup() {
 	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
 	+"<table width='100%' style='height: 60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"
 	+"<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='5' style='position: relative;'>"
-
+    //
 	+"<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
-	+"<tr><td align='right'>autosave: </td><td align='left' style='padding-top:4px; width:60%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave)?'checked':'') + "></td></tr>"
-	+"<tr><td align='right'>story launch block: </td><td align='left''>  <select class='input_text' id='launch_story'>"+((block_list)?block_list:'')+"</select></td></tr>"
-	+"<tr><td align='right'>css styles file: </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file)?story_script.parameters.style_file:'') + "' type='text'></td></tr>"	
+	+"<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px; width:60%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave)?'checked':'') + "></td></tr>"
+	+"<tr><td align='right'>story launch block </td><td align='left''>  <select class='input_text' id='launch_story'>"+((block_list)?block_list:'')+"</select></td></tr>"
+	+"<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file)?story_script.parameters.style_file:'') + "' type='text'></td></tr>"
 	+"</table></div>"
-	
+	//
 	+"<div id='blank_3' style='visibility:hidden;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
-	+"<tr><td align='right'>load_autosave</td><td align='left' style='width:60%;'>  <select class='input_text' id='launch_story'>"+"</select></td></tr>"
-	+"<tr><td align='right'>launch_story</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
-	+"<tr><td align='right'>full_screen</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
-	+"<tr><td align='right'>next</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
-	+"<tr><td align='right'>back</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
-	+"<tr><td align='right'>save</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
-	+"<tr><td align='right'>load</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
+    +"<tr><td align='right'>next </td><td align='left'><input id='key_next' class='input_text' value='" + ((story_script.parameters.key.next)?story_script.parameters.key.next:'') + "' type='text'></td></tr>"
+	+"<tr><td align='right'>back </td><td align='left'><input id='key_back' class='input_text' value='" + ((story_script.parameters.key.back)?story_script.parameters.key.back:'') + "' type='text'></td></tr>"
+	+"<tr><td align='right'>save </td><td align='left'><input id='key_save' class='input_text' value='" + ((story_script.parameters.key.save)?story_script.parameters.key.save:'') + "' type='text'></td></tr>"
+	+"<tr><td align='right'>load </td><td align='left'><input id='key_load' class='input_text' value='" + ((story_script.parameters.key.load)?story_script.parameters.key.load:'') + "' type='text'></td></tr>"
+    +"<tr><td align='right'>main </td><td align='left'><input id='key_main' class='input_text' value='" + ((story_script.parameters.key.main)?story_script.parameters.key.main:'') + "' type='text'></td></tr>"
+    +"<tr><td align='right'>full_screen </td><td align='left'><input id='key_full_screen' class='input_text' value='" + ((story_script.parameters.key.full_screen)?story_script.parameters.key.full_screen:'') + "' type='text'></td></tr>"
+    +"<tr><td align='right'>launch_story </td><td align='left'><input id='key_launch_story' class='input_text' value='" + ((story_script.parameters.key.launch_story)?story_script.parameters.key.launch_story:'') + "' type='text'></td></tr>"
+    +"<tr><td align='right'>load_autosave </td><td align='left' style='width:60%;'><input id='key_load_autosave' class='input_text' value='" + ((story_script.parameters.key.load_autosave)?story_script.parameters.key.load_autosave:'') + "' type='text'></td></tr>"
 	+"</table></div>"
-	
-	+"<div id='blank_2' style='visibility:hidden;' class='set_blank'>Sounds</div>"
-	+"<div id='blank_1' style='visibility:hidden;' class='set_blank'>3</div>"
+	//
+	+"<div id='blank_2' style='visibility:hidden;' class='set_blank'>Variables</div>"
+	+"<div id='blank_1' style='visibility:hidden;' class='set_blank'>Sounds</div>"
 	+"<div id='blank_4' style='visibility:hidden;' class='set_blank'>Variables</div>"
-	
-
+    //
 	+"</td></tr>"
 	+"<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Sounds</td></tr>"
 	+"<tr><td id='set_4' onclick='set_menu(2)' align='right' class='set_button'>Variables</td></tr>"
@@ -723,6 +730,16 @@ function apply_setup(){
 	story_script.parameters.launch_story = document.getElementById('launch_story').value
 	story_script.parameters.style_file = document.getElementById('style_file').value
 	story_script.parameters.autosave = document.getElementById('autosave').checked
+    
+    story_script.parameters.key.next = document.getElementById('key_next').value
+    story_script.parameters.key.back = document.getElementById('key_back').value
+    story_script.parameters.key.save = document.getElementById('key_save').value
+    story_script.parameters.key.load = document.getElementById('key_load').value
+    story_script.parameters.key.main = document.getElementById('key_main').value
+    story_script.parameters.key.full_screen = document.getElementById('key_full_screen').value
+    story_script.parameters.key.launch_story = document.getElementById('key_launch_story').value
+    story_script.parameters.key.load_autosave = document.getElementById('key_load_autosave').value
+    
 	modal_window('close')
 }
 </script>

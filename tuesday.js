@@ -330,8 +330,8 @@ function get_lang() {
 				}
                 if (story_json[tue_story][scene].dialogs[dialog].choice[i].go_to) {
 					var g = story_json[tue_story][scene].dialogs[dialog].choice[i].go_to;
-					if (g == "tue_load_autosave") {choice.setAttribute("onclick","load_stag('auto')" + add_sound ());}
-					else if (g == "load") {choice.setAttribute("onclick","load_stag('bookmark')" + add_sound ());}
+					if (g == "tue_load_autosave") {choice.setAttribute("onclick","load_stag('auto');" + add_sound ());}
+					else if (g == "load") {choice.setAttribute("onclick","load_stag('bookmark');" + add_sound ());}
 					else {
 						choice.setAttribute("onclick", v + "go_to('" + g + "');" + add_sound ())
 					}
