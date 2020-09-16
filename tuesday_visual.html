@@ -244,6 +244,7 @@
 		height: 40px;
 		border-right:1px solid #cec8e3;
 		padding:0px 8px;
+		background-color: #efefff;
 	 }
 	 .set_select {
 		background-color: #cec8e3;
@@ -674,9 +675,8 @@ function setup() {
     }
 	var html = "<div class='window' style='padding:24px 16px; width: 512px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
 	
-	+"<table width='100%' style='border-top:1px solid #cec8e3;'><tbody>"
+	+"<table width='100%' style='border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"
 	+"<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='5'>"
-
 
 	+"<div style='overflow-y: auto; overflow-x: hidden;  max-height: 75vh;'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
 	+"<tr><td align='right'>autosave: </td><td align='left' style='padding-top:4px; width:65%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave)?'checked':'') + "></td></tr>"
@@ -684,13 +684,12 @@ function setup() {
 	+"<tr><td align='right'>css styles file: </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file)?story_script.parameters.style_file:'') + "' type='text'></td></tr>"	
 	+"</table></div>"
 
-
 	+"</td></tr>"
 	+"<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Sounds</td></tr>"
 	+"<tr><td id='set_4' onclick='set_menu(2)' align='right' class='set_button'>Variables</td></tr>"
 	+"<tr><td id='set_3' onclick='set_menu(3)' align='right' class='set_button'>Keyboard</td></tr>"
-	+"<tr><td id='set_5' onclick='set_menu(4)' align='right' class='set_button'>Characters</td></tr>"
-	+"<tr><td></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='apply_setup()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+	+"<tr><td id='set_5' onclick='set_menu(4)' align='right' class='set_button' style='border-radius:0 0 0 16px;'>Characters</td></tr>"
+	+"<tr><td style='border-right:1px solid #cec8e3;'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='apply_setup()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open", html)
 }
 function set_menu(name) {
