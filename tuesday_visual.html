@@ -204,10 +204,9 @@
     }
 	.input_text {
 		border: 0;
-		border-bottom: 1px solid #cec8e3;
 		font-family: inherit;
 		-webkit-appearance: none;
-        transition-duration: 0.5s;
+		border-bottom: 1px solid #cec8e3;
 		border-radius: 0;
 		padding: 0;
         font-size: 14px;
@@ -223,7 +222,6 @@
 	}
 	.input_text:focus {
 		border-bottom: 1px solid #000;
-        transition-duration: 0.3s;
 	}
 	hr {border-top: 1px solid #cec8e3; margin:4px;}
 	.checkbox_a {
@@ -249,6 +247,7 @@
 	 .set_select {
 		background-color: #cec8e3;
 	 }
+	 .set_blank {overflow-x: hidden; position: absolute; overflow-y: auto; overflow-x: hidden; width:100%;}
     </style>
 </head>
 <body onload="world_size(); lines(); control_dlock();" style='background-color: #efefff;'>
@@ -673,16 +672,30 @@ function setup() {
 	for (var i = 0; i < li.length; i++) {
 		block_list += "<option value='"+li[i].id+"' "+((li[i].id == story_script.parameters.launch_story)?"selected":"")+">"+li[i].id+"</option>"     
     }
-	var html = "<div class='window' style='padding:24px 16px; width: 512px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
-	
-	+"<table width='100%' style='border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"
-	+"<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='5'>"
+	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
+	+"<table width='100%' style='height: 60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"
+	+"<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='5' style='position: relative;'>"
 
-	+"<div style='overflow-y: auto; overflow-x: hidden;  max-height: 75vh;'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
-	+"<tr><td align='right'>autosave: </td><td align='left' style='padding-top:4px; width:65%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave)?'checked':'') + "></td></tr>"
+	+"<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
+	+"<tr><td align='right'>autosave: </td><td align='left' style='padding-top:4px; width:60%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave)?'checked':'') + "></td></tr>"
 	+"<tr><td align='right'>story launch block: </td><td align='left''>  <select class='input_text' id='launch_story'>"+((block_list)?block_list:'')+"</select></td></tr>"
 	+"<tr><td align='right'>css styles file: </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file)?story_script.parameters.style_file:'') + "' type='text'></td></tr>"	
 	+"</table></div>"
+	
+	+"<div id='blank_3' style='visibility:hidden;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
+	+"<tr><td align='right'>load_autosave</td><td align='left' style='width:60%;'>  <select class='input_text' id='launch_story'>"+"</select></td></tr>"
+	+"<tr><td align='right'>launch_story</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
+	+"<tr><td align='right'>full_screen</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
+	+"<tr><td align='right'>next</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
+	+"<tr><td align='right'>back</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
+	+"<tr><td align='right'>save</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
+	+"<tr><td align='right'>load</td><td align='left'><input id='style_file' class='input_text' value='" + "' type='text'></td></tr>"
+	+"</table></div>"
+	
+	+"<div id='blank_2' style='visibility:hidden;' class='set_blank'>Sounds</div>"
+	+"<div id='blank_1' style='visibility:hidden;' class='set_blank'>3</div>"
+	+"<div id='blank_4' style='visibility:hidden;' class='set_blank'>Variables</div>"
+	
 
 	+"</td></tr>"
 	+"<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Sounds</td></tr>"
@@ -695,8 +708,15 @@ function setup() {
 function set_menu(name) {
 	var li = document.getElementsByClassName("set_button");
 	for (var i = 0; i < li.length; i++) {
-		if (i == name) {li[i].className = 'set_button set_select'}
-		else {li[i].className = 'set_button'}
+		if (i == name) {
+			li[i].className = 'set_button set_select'
+			document.getElementById('blank_'+i).style.visibility= 'visible';
+		}
+		else {
+			li[i].className = 'set_button'
+			document.getElementById('blank_'+i).style.visibility= 'hidden';
+			
+		}
 	}
 }
 function apply_setup(){
