@@ -27,8 +27,9 @@
 		border-radius: 16px;
 	}
 	@keyframes flash {
-		from {box-shadow: 0px 2px 48px rgba(110,95,165,1);}
-		to {box-shadow: 0px 2px 24px rgba(110,95,165,0.25);}
+		0% {box-shadow: 0px 2px 32px rgba(90,75,145,1); background-color: #cec8e3;}
+        25% {box-shadow: 0px 2px 32px rgba(90,75,145,1); background-color: #cec8e3;}
+		100% {box-shadow: 0px 2px 24px rgba(110,95,165,0.25); background-color: #fff;}
 	}
 	.story_block {
 		 min-height: 28px;
@@ -118,7 +119,6 @@
     }
     .icon_go {
         background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik04Mi4wMzEsMzYuMDYxbDkxLjkyNCw5MS45MjNMODIuMDMxLDIxOS45MDgiLz4KPC9zdmc+Cg==")
-        }
     }
 	.scene {
 		background-color: #efefff;
@@ -657,8 +657,8 @@ function scroll_to_block(bl) {
     var rect = bl.getBoundingClientRect();
     html.scrollTop = (html.scrollTop + (rect.top - (html.clientHeight / 2) + 22));
     html.scrollLeft = (html.scrollLeft + (rect.left - (html.clientWidth / 2) + (rect.width/2)));
-	bl.style.animation = "flash 1s 1";
-	bl.style.WebkitAnimation = "flash 1s 1";
+	bl.style.animation = "flash 3s 1";
+	bl.style.WebkitAnimation = "flash 3s 1";
     story_blocks.appendChild(bl);
 }
 function about() {
