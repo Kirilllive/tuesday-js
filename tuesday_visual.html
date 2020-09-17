@@ -610,13 +610,13 @@ function modal_window(action, content) {
     var window_zone = document.getElementById("window_zone");
     if (action == 'close') {
         window_zone.style.visibility = "hidden"
-        //window_zone.style.backgroundColor = 'rgba(110,95,165,0)';
+        window_zone.style.backgroundColor = 'rgba(110,95,165,0)';
         document.body.style.overflow = 'scroll';
         scroll_block = false;
         window_zone.innerHTML = "";
     } else if (action == 'open' && window_zone.style.visibility != "visible") {
         window_zone.style.visibility = "visible";
-        //window_zone.style.backgroundColor = 'rgba(110,95,165,0.5)';
+        window_zone.style.backgroundColor = 'rgba(110,95,165,0.5)';
         document.body.style.overflow = 'hidden';
 		window_zone.innerHTML = content;
         scroll_block = true;
@@ -734,7 +734,6 @@ function apply_setup(){
     story_script.parameters.key.back = document.getElementById('key_back').value
     story_script.parameters.key.save = document.getElementById('key_save').value
     story_script.parameters.key.load = document.getElementById('key_load').value
-    story_script.parameters.key.main = document.getElementById('key_main').value
     story_script.parameters.key.full_screen = document.getElementById('key_full_screen').value
     story_script.parameters.key.launch_story = document.getElementById('key_launch_story').value
     story_script.parameters.key.load_autosave = document.getElementById('key_load_autosave').value
