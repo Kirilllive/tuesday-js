@@ -120,6 +120,12 @@
     .icon_go {
         background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik04Mi4wMzEsMzYuMDYxbDkxLjkyNCw5MS45MjNMODIuMDMxLDIxOS45MDgiLz4KPC9zdmc+Cg==")
     }
+    .icon_add {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNDcsMTI4aDE2MSIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyOCwyMDhWNDciLz4NCjwvc3ZnPg==")
+    }
+    .icon_del {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xOTQuNDMxLDYyLjY3NVYyMzAuNTA4SDYzLjU2OVY2Mi42NzUiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik00Ny4zNDYsNDUuNDkySDIxMC42NTQiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xMDgsMjNoMzlWNDVIMTA4VjIzWiIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyOC41NTUsNjIuMzgyVjIxMy40MzEiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik05Mi41LDYyLjM4MlYyMTMuNDMxIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTY0LjYwNSw2Mi4zODJWMjEzLjQzMSIvPg0KPC9zdmc+")
+    }	
 	.scene {
 		background-color: #efefff;
 		border-radius: 12px;
@@ -289,6 +295,7 @@ let story_script = {"parameters":{"title":"","launch_story":"","key":{}}};
 let line_controll = [];
 var img_file = document.getElementById('json_file');
 var languare = "en";
+let languares = {"English":"en","Japanese":"ja","Korean":"ko","Russian":"ru","French":"fr","Dutch":"nl","Abkhazian":"ab","Afar":"aa","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa, Chewa, Nyanja":"ny","Chinese":"zh","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi, Dhivehi, Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula, Fulah, Pulaar, Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","German":"de","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut, Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda, Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic, Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto, Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Portuguese":"pt","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Spanish":"es","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang, Chuang":"za","Zulu":"zu"}
 let project_files = [];
 img_file.addEventListener('change', loadFiles);
 function loadFiles(e) {
@@ -657,8 +664,8 @@ function scroll_to_block(bl) {
     var rect = bl.getBoundingClientRect();
     html.scrollTop = (html.scrollTop + (rect.top - (html.clientHeight / 2) + 22));
     html.scrollLeft = (html.scrollLeft + (rect.left - (html.clientWidth / 2) + (rect.width/2)));
-	bl.style.animation = "flash 3s 1";
-	bl.style.WebkitAnimation = "flash 3s 1";
+	bl.style.animation = "flash 2s 1";
+	bl.style.WebkitAnimation = "flash 2s 1";
     story_blocks.appendChild(bl);
 }
 function about() {
@@ -684,11 +691,11 @@ function setup() {
 	if (story_script.parameters.variables){
 		var_list = "<table width='100%' id='var_tablet'><tbody>";
 		for (i = 0; i < Object.keys(story_script.parameters.variables).length; i++) {
-			var_list += "<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:50%; padding-top: 10px;'><input class='var_name input_text' placeholder='Name' value='" 
+			var_list += "<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;'><input class='var_name input_text' placeholder='Name' value='" 
 				+ Object.keys(story_script.parameters.variables)[i] 
 				+ "' type='text'></td><td><input class='var_vol input_text' placeholder='Value' style='padding-top: 10px;' value='" 
 				+ story_script.parameters.variables[Object.keys(story_script.parameters.variables)[i]] 
-				+ "' type='text'></td></tr>";
+				+ "' type='text'></td><td onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.variables)[i] +"' class='icon icon_del'></td></tr>";
 		}
 		var_list += "</tbody></table>"
 	}
@@ -696,13 +703,28 @@ function setup() {
 	if (story_script.parameters.sounds){
 		sound_list = "<table width='100%' id='var_tablet'><tbody>";
 		for (i = 0; i < Object.keys(story_script.parameters.sounds).length; i++) {
-			sound_list += "<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:50%; padding-top: 10px;'><input class='sound_name input_text' placeholder='Name' value='" 
+			sound_list += "<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;'><input class='sound_name input_text' placeholder='Name' value='" 
 				+ Object.keys(story_script.parameters.sounds)[i] 
 				+ "' type='text'></td><td><input class='sound_path input_text' placeholder='path to audio file' style='padding-top: 10px;' value='" 
 				+ story_script.parameters.sounds[Object.keys(story_script.parameters.sounds)[i]] 
-				+ "' type='text'></td></tr>";
+				+ "' type='text'></td><td onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.sounds)[i]+"' class='icon icon_del'></td></tr>";
 		}
 		sound_list += "</tbody></table>"
+	}
+	var title_list = '';
+	if (story_script.parameters.title){
+		title_list = "<table width='100%' id='var_tablet'><tbody>";
+		for (i = 0; i < Object.keys(story_script.parameters.title).length; i++) {
+			title_list += "<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;'><select class='input_text title_lang'>"
+			var lang = '';
+			for (l = 0; l < Object.keys(languares).length; l++) {
+				lang += "<option value='"+languares[Object.keys(languares)[l]]+"' "+((languares[Object.keys(languares)[l]] == Object.keys(story_script.parameters.title)[i] )?"selected":"")+">"+ Object.keys(languares)[l]+"</option>"
+			}
+			title_list += lang + "</select></td><td><input class='title_name input_text' placeholder='path to audio file' style='padding-top: 10px;' value='" 
+				+ story_script.parameters.title[Object.keys(story_script.parameters.title)[i]] 
+				+ "' type='text'></td><td onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";
+		}
+		title_list += "</tbody></table>"
 	}
 	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
 	+"<table width='100%' style='height: 60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"
@@ -712,7 +734,7 @@ function setup() {
 	+"<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px; width:60%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave)?'checked':'') + "></td></tr>"
 	+"<tr><td align='right'>story launch block </td><td align='left''>  <select class='input_text' id='launch_story'>"+((block_list)?block_list:'')+"</select></td></tr>"
 	+"<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file)?story_script.parameters.style_file:'') + "' type='text'></td></tr>"
-	+"</table></div>"
+	+"</table><br><p align='left' style='font-size: 14px; margin-left:8px;'>name project</p><hr>" + title_list + "</div>"
 	//
 	+"<div id='blank_3' style='visibility:hidden;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
     +"<tr><td align='right'>next </td><td align='left'><input id='key_next' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.next)?story_script.parameters.key.next:'') + "' type='text'></td></tr>"
@@ -751,6 +773,7 @@ function set_menu(name) {
 	}
 }
 function apply_setup(){
+	var i, li_n, li_v;
 	story_script.parameters.launch_story = document.getElementById('launch_story').value
 	story_script.parameters.style_file = document.getElementById('style_file').value
 	story_script.parameters.autosave = document.getElementById('autosave').checked
@@ -761,16 +784,26 @@ function apply_setup(){
     story_script.parameters.key.full_screen = document.getElementById('key_full_screen').value
     story_script.parameters.key.launch_story = document.getElementById('key_launch_story').value
     story_script.parameters.key.load_autosave = document.getElementById('key_load_autosave').value
-    var i;
-	var li_n = document.getElementsByClassName("var_name");
-	var li_v = document.getElementsByClassName("var_vol");
+    i;
+	li_n = document.getElementsByClassName("var_name");
+	li_v = document.getElementsByClassName("var_vol");
+	story_script.parameters.variables = {};
 	for (i = 0; i < li_n.length; i++) {
-		story_script.parameters.variables[li_n[i].value] = li_v[i].value
+		if(li_n[i].value != ""){story_script.parameters.variables[li_n[i].value] = li_v[i].value}
 	}
 	li_n = document.getElementsByClassName("sound_name");
 	li_v = document.getElementsByClassName("sound_path");
+	story_script.parameters.sounds = {};
 	for (i = 0; i < li_n.length; i++) {
-		story_script.parameters.sounds[li_n[i].value] = li_v[i].value
+		if(li_n[i].value != ""){story_script.parameters.sounds[li_n[i].value] = li_v[i].value}
+	}
+	li_n = document.getElementsByClassName("title_lang");
+	li_v = document.getElementsByClassName("title_name");
+	story_script.parameters.title = {};
+	story_script.parameters.languares = [];
+	for (i = 0; i < li_n.length; i++) {
+		story_script.parameters.title[li_n[i].value] = li_v[i].value
+		story_script.parameters.languares.push(li_n[i].value); 
 	}
 	modal_window('close')
 }
