@@ -260,7 +260,7 @@
 	 .set_select {
 		background-color: #cec8e3;
 	 }
-	 .set_blank {overflow-x: hidden; position: absolute; overflow-y: auto; overflow-x: hidden; width:100%;}
+	 .set_blank {overflow-x: hidden; position: absolute; overflow-y: auto; width:100%; height:60vh;}
     </style>
 </head>
 <body onload="world_size(); lines(); control_dlock();" style='background-color: #efefff;'>
@@ -687,9 +687,8 @@ function setup() {
 	for (i = 0; i < li.length; i++) {
 		block_list += "<option value='"+li[i].id+"' "+((li[i].id == story_script.parameters.launch_story)?"selected":"")+">"+li[i].id+"</option>"     
     }
-	var var_list = '';
+	var var_list = "<table width='100%' id='var_tablet'><tbody>";
 	if (story_script.parameters.variables){
-		var_list = "<table width='100%' id='var_tablet'><tbody>";
 		for (i = 0; i < Object.keys(story_script.parameters.variables).length; i++) {
 			var_list += "<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;'><input class='var_name input_text' placeholder='Name' value='" 
 				+ Object.keys(story_script.parameters.variables)[i] 
@@ -697,11 +696,10 @@ function setup() {
 				+ story_script.parameters.variables[Object.keys(story_script.parameters.variables)[i]] 
 				+ "' type='text'></td><td onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.variables)[i] +"' class='icon icon_del'></td></tr>";
 		}
-		var_list += "</tbody></table>"
 	}
-	var sound_list = '';
+	var_list += "</tbody></table><div onclick=\"add_tr('var_tablet')\" class='icon icon_add' style='margin:16px 0 0 45%;height: 26px; width: 26px; cursor:pointer;'></div>"
+	var sound_list = "<table width='100%' id='var_sounds'><tbody>";
 	if (story_script.parameters.sounds){
-		sound_list = "<table width='100%' id='var_tablet'><tbody>";
 		for (i = 0; i < Object.keys(story_script.parameters.sounds).length; i++) {
 			sound_list += "<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;'><input class='sound_name input_text' placeholder='Name' value='" 
 				+ Object.keys(story_script.parameters.sounds)[i] 
@@ -709,23 +707,22 @@ function setup() {
 				+ story_script.parameters.sounds[Object.keys(story_script.parameters.sounds)[i]] 
 				+ "' type='text'></td><td onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.sounds)[i]+"' class='icon icon_del'></td></tr>";
 		}
-		sound_list += "</tbody></table>"
 	}
-	var title_list = '';
+	sound_list += "</tbody></table><div onclick=\"add_tr('var_sounds')\" class='icon icon_add' style='margin:16px 0 0 45%;height: 26px; width: 26px; cursor:pointer;'></div>"
+	var title_list = "<table width='100%' id='var_title'><tbody>";
 	if (story_script.parameters.title){
-		title_list = "<table width='100%' id='var_tablet'><tbody>";
 		for (i = 0; i < Object.keys(story_script.parameters.title).length; i++) {
 			title_list += "<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;'><select class='input_text title_lang'>"
 			var lang = '';
 			for (l = 0; l < Object.keys(languares).length; l++) {
 				lang += "<option value='"+languares[Object.keys(languares)[l]]+"' "+((languares[Object.keys(languares)[l]] == Object.keys(story_script.parameters.title)[i] )?"selected":"")+">"+ Object.keys(languares)[l]+"</option>"
 			}
-			title_list += lang + "</select></td><td><input class='title_name input_text' placeholder='path to audio file' style='padding-top: 10px;' value='" 
+			title_list += lang + "</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top: 10px;' value='" 
 				+ story_script.parameters.title[Object.keys(story_script.parameters.title)[i]] 
 				+ "' type='text'></td><td onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";
 		}
-		title_list += "</tbody></table>"
 	}
+	title_list += "</tbody></table><div onclick=\"add_tr('var_title')\" class='icon icon_add' style='margin:16px 0 0 45%;height: 26px; width: 26px; cursor:pointer;'></div>"
 	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
 	+"<table width='100%' style='height: 60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"
 	+"<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='5' style='position: relative;'>"
@@ -748,7 +745,7 @@ function setup() {
 	//
 	+"<div id='blank_2' style='visibility:hidden;' class='set_blank'>" + var_list + "</div>"
 	+"<div id='blank_1' style='visibility:hidden;' class='set_blank'>" + sound_list + "</div>"
-	+"<div id='blank_4' style='visibility:hidden;' class='set_blank'>Variables</div>"
+	+"<div id='blank_4' style='visibility:hidden;' class='set_blank'>Characters</div>"
     //
 	+"</td></tr>"
 	+"<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Sounds</td></tr>"
@@ -771,6 +768,37 @@ function set_menu(name) {
 			
 		}
 	}
+}
+function add_tr(id){
+	
+	var tbody = document.getElementById(id).getElementsByTagName('tbody')[0];
+	var row = document.createElement("tr");
+	var td1 = document.createElement("td");
+    var td2 = document.createElement("td");
+	var td3 = document.createElement("td");
+	if (id == 'var_title') {
+		var lang = '';
+		for (l = 0; l < Object.keys(languares).length; l++) {lang += "<option value='"+languares[Object.keys(languares)[l]]+"' >"+ Object.keys(languares)[l]+"</option>"}
+		td1.innerHTML = "<select class='input_text title_lang'>" + lang + "</select>";
+		td1.style = "padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;";
+		td2.innerHTML = "<input class='title_name input_text' style='padding-top: 10px;' type='text' placeholder='translated title'>";
+	} else if (id == 'var_tablet') {
+		td1.innerHTML = "<input class='var_name input_text' placeholder='name' style='padding-top: 10px;' type='text'>";
+		td1.style = "padding-right:8px; border-right:1px solid #cec8e3; width:40%;";
+		td2.innerHTML = "<input class='var_vol input_text' style='padding-top: 10px;' type='text' placeholder='value'>";
+	} else if (id == 'var_sounds') {
+		td1.innerHTML = "<input class='sound_name input_text' placeholder='name' style='padding-top: 10px;' type='text'>";
+		td1.style = "padding-right:8px; border-right:1px solid #cec8e3; width:40%;";
+		td2.innerHTML = "<input class='sound_path input_text' style='padding-top: 10px;' type='text' placeholder='path to audio file'>";
+	}
+    td3.style = "width:40px; cursor:pointer;";
+    td3.title = "delet";
+    td3.className = "icon icon_del";
+    td3.setAttribute("onclick","var a = this.closest('tr'); a.parentElement.removeChild(a);");
+	row.appendChild(td1);
+    row.appendChild(td2);
+    row.appendChild(td3);
+	tbody.appendChild(row);
 }
 function apply_setup(){
 	var i, li_n, li_v;
