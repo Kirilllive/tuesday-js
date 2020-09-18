@@ -295,7 +295,7 @@ let story_script = {"parameters":{"title":"","launch_story":"","key":{}}};
 let line_controll = [];
 var img_file = document.getElementById('json_file');
 var languare = "en";
-let languares = {"English":"en","Japanese":"ja","Korean":"ko","Russian":"ru","French":"fr","Dutch":"nl","Abkhazian":"ab","Afar":"aa","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa, Chewa, Nyanja":"ny","Chinese":"zh","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi, Dhivehi, Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula, Fulah, Pulaar, Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","German":"de","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut, Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda, Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic, Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto, Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Portuguese":"pt","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Spanish":"es","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang, Chuang":"za","Zulu":"zu"}
+let languares = {"English":"en","Japanese":"ja","Korean":"ko","Spanish":"es","Russian":"ru","French":"fr","Dutch":"nl","Abkhazian":"ab","Afar":"aa","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa, Chewa, Nyanja":"ny","Chinese":"zh","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi, Dhivehi, Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula, Fulah, Pulaar, Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","German":"de","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut, Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda, Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic, Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto, Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Portuguese":"pt","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang, Chuang":"za","Zulu":"zu"}
 let project_files = [];
 img_file.addEventListener('change', loadFiles);
 function loadFiles(e) {
@@ -637,7 +637,7 @@ function play_novel(bl) {
 		}
 	}
 	var preview = window.open("https://kirilllive.github.io/Tuesday/tuesday_visual.html", "preview", "location=no,scrollbars=no,width=640,height=480");
-    preview.document.write("<html><head><style> body { background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = " + story_preview + "; " + ((bl)?"tuesday.addEventListener('script_loaded', function(event) {go_to('"+bl+"')});":"") + " load_story('data',story_preview); <\/script><\/body><\/html>");
+    preview.document.write("<html><head><style> body { font-family: " + story_script.parameters.font + "; font-size: " + story_script.parameters.font_size + "; background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview = " + story_preview + "; " + ((bl)?"tuesday.addEventListener('script_loaded', function(event) {go_to('"+bl+"')});":"") + " load_story('data',story_preview); <\/script><\/body><\/html>");
 }
 function search_block() {
     var input, filter, li, i, txtValue;
@@ -673,8 +673,12 @@ function about() {
 	modal_window("open", html)
 }
 function build() {
+	var font_family = story_script.parameters.font
+	var font_size = story_script.parameters.font_size
+	delete story_script.parameters['font'];
+	delete story_script.parameters['font_size'];
 	var story_preview = JSON.stringify(story_script)
-	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent("<html><head><style> body { background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_novel = " + story_preview + "; load_story('data',story_novel); <\/script><\/body><\/html>");
+	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent("<html><head><style> body {font-family: "+font_family+"; font-size: "+font_size+"; background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_novel = " + story_preview + "; load_story('data',story_novel); <\/script><\/body><\/html>");
 	var dlAnchorElem = document.getElementById('downloadAnchorElem');
 	dlAnchorElem.setAttribute("href", dataStr );
     dlAnchorElem.setAttribute('download', 'index.html');
@@ -725,15 +729,17 @@ function setup() {
 	title_list += "</tbody></table><div onclick=\"add_tr('var_title')\" class='icon icon_add' style='margin:16px 0 0 45%;height: 26px; width: 26px; cursor:pointer;'></div>"
 	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
 	+"<table width='100%' style='height: 60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"
-	+"<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='5' style='position: relative;'>"
+	+"<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='6' style='position: relative;'>"
     //
 	+"<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
 	+"<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px; width:60%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave)?'checked':'') + "></td></tr>"
 	+"<tr><td align='right'>story launch block </td><td align='left''>  <select class='input_text' id='launch_story'>"+((block_list)?block_list:'')+"</select></td></tr>"
 	+"<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file)?story_script.parameters.style_file:'') + "' type='text'></td></tr>"
+	+"<tr><td align='right'>font family </td><td align='left'><input id='font' class='input_text' value='" + ((story_script.parameters.font)?story_script.parameters.font:'') + "' type='text'></td></tr>"
+	+"<tr><td align='right'>font size </td><td align='left'><input id='font_size' class='input_text' value='" + ((story_script.parameters.font_size)?story_script.parameters.font_size:'') + "' type='text'></td></tr>"
 	+"</table><br><p align='left' style='font-size: 14px; margin-left:8px;'>name project</p><hr>" + title_list + "</div>"
 	//
-	+"<div id='blank_3' style='visibility:hidden;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
+	+"<div id='blank_4' style='visibility:hidden;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
     +"<tr><td align='right'>next </td><td align='left'><input id='key_next' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.next)?story_script.parameters.key.next:'') + "' type='text'></td></tr>"
 	+"<tr><td align='right'>back </td><td align='left'><input id='key_back' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.back)?story_script.parameters.key.back:'') + "' type='text'></td></tr>"
 	+"<tr><td align='right'>save stage</td><td align='left'><input id='key_save' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.save)?story_script.parameters.key.save:'') + "' type='text'></td></tr>"
@@ -743,15 +749,17 @@ function setup() {
     +"<tr><td align='right'>load autosave </td><td align='left' style='width:60%;'><input id='key_load_autosave' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.load_autosave)?story_script.parameters.key.load_autosave:'') + "' type='text'></td></tr>"
 	+"</table></div>"
 	//
-	+"<div id='blank_2' style='visibility:hidden;' class='set_blank'>" + var_list + "</div>"
-	+"<div id='blank_1' style='visibility:hidden;' class='set_blank'>" + sound_list + "</div>"
-	+"<div id='blank_4' style='visibility:hidden;' class='set_blank'>Characters</div>"
+	+"<div id='blank_3' style='visibility:hidden;' class='set_blank'>" + var_list + "</div>"
+	+"<div id='blank_2' style='visibility:hidden;' class='set_blank'>" + sound_list + "</div>"
+	+"<div id='blank_5' style='visibility:hidden;' class='set_blank'>Characters</div>"
+	+"<div id='blank_1' style='visibility:hidden;' class='set_blank'>Add-on</div>"
     //
 	+"</td></tr>"
-	+"<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Sounds</td></tr>"
-	+"<tr><td id='set_4' onclick='set_menu(2)' align='right' class='set_button'>Variables</td></tr>"
-	+"<tr><td id='set_3' onclick='set_menu(3)' align='right' class='set_button'>Keyboard</td></tr>"
-	+"<tr><td id='set_5' onclick='set_menu(4)' align='right' class='set_button' style='border-radius:0 0 0 16px;'>Characters</td></tr>"
+	+"<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Add-on</td></tr>"
+	+"<tr><td id='set_3' onclick='set_menu(2)' align='right' class='set_button'>Sounds</td></tr>"
+	+"<tr><td id='set_4' onclick='set_menu(3)' align='right' class='set_button'>Variables</td></tr>"
+	+"<tr><td id='set_5' onclick='set_menu(4)' align='right' class='set_button'>Keyboard</td></tr>"
+	+"<tr><td id='set_6' onclick='set_menu(5)' align='right' class='set_button' style='border-radius:0 0 0 16px;'>Characters</td></tr>"
 	+"<tr><td style='border-right:1px solid #cec8e3;'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='apply_setup()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open", html)
 }
@@ -812,6 +820,9 @@ function apply_setup(){
     story_script.parameters.key.full_screen = document.getElementById('key_full_screen').value
     story_script.parameters.key.launch_story = document.getElementById('key_launch_story').value
     story_script.parameters.key.load_autosave = document.getElementById('key_load_autosave').value
+	story_script.parameters.font = document.getElementById('font').value
+	story_script.parameters.font_size = document.getElementById('font_size').value
+	//
     i;
 	li_n = document.getElementsByClassName("var_name");
 	li_v = document.getElementsByClassName("var_vol");
