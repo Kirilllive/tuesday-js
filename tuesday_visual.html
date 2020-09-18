@@ -285,15 +285,25 @@
 	<svg id="story_lines" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"></svg>
 	<div id="story_blocks"></div>
 	<div id='window_zone' align='center'></div>
-	
 <script>
 var body = document.body,
 html = document.documentElement;
 var all_blocks = document.getElementsByClassName("story_block");
 var story_lines = document.getElementById("story_lines");
-let story_script = {"parameters":{"title":"","launch_story":"","key":{}}};
+let story_script = {"parameters":{"plugins":[],"title":"","launch_story":"","key":{}}};
 let line_controll = [];
 var img_file = document.getElementById('json_file');
+let plugins_list = {
+	"toast": {
+		"name":"toast",
+		"text":"small message appears for a while",
+		"file":"plugins/toast.js"
+	},"touch_swipe": {
+		"name":"touch swipe",
+		"text":"switches dialogue by swiping your finger across the touchscreen",
+		"file":"plugins/touch_swipe.js"
+	}
+}
 var languare = "en";
 let languares = {"English":"en","Japanese":"ja","Korean":"ko","Spanish":"es","Russian":"ru","French":"fr","Dutch":"nl","Abkhazian":"ab","Afar":"aa","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa, Chewa, Nyanja":"ny","Chinese":"zh","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi, Dhivehi, Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula, Fulah, Pulaar, Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","German":"de","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut, Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda, Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic, Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto, Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Portuguese":"pt","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang, Chuang":"za","Zulu":"zu"}
 let project_files = [];
@@ -675,10 +685,15 @@ function about() {
 function build() {
 	var font_family = story_script.parameters.font
 	var font_size = story_script.parameters.font_size
+	var plugins_code = "";
+	for(var i=0;i < story_script.parameters.plugins.length; i++) {
+		plugins_code += "<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>"
+	}
+	delete story_script.parameters['plugins'];
 	delete story_script.parameters['font'];
 	delete story_script.parameters['font_size'];
 	var story_preview = JSON.stringify(story_script)
-	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent("<html><head><style> body {font-family: "+font_family+"; font-size: "+font_size+"; background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_novel = " + story_preview + "; load_story('data',story_novel); <\/script><\/body><\/html>");
+	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent("<html><head><style> body {font-family: "+font_family+"; font-size: "+font_size+"; background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script>"+plugins_code+"<script>let story_novel = " + story_preview + "; load_story('data',story_novel); <\/script><\/body><\/html>");
 	var dlAnchorElem = document.getElementById('downloadAnchorElem');
 	dlAnchorElem.setAttribute("href", dataStr );
     dlAnchorElem.setAttribute('download', 'index.html');
@@ -688,6 +703,7 @@ function setup() {
 	var block_list;
 	var i
 	var li = document.getElementsByClassName("story_block");
+	if (!story_script.parameters.plugins){story_script.parameters.plugins = []}
 	for (i = 0; i < li.length; i++) {
 		block_list += "<option value='"+li[i].id+"' "+((li[i].id == story_script.parameters.launch_story)?"selected":"")+">"+li[i].id+"</option>"     
     }
@@ -726,6 +742,14 @@ function setup() {
 				+ "' type='text'></td><td onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";
 		}
 	}
+	var plugins_show = "<table id='plugin' style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
+		var plugins_name
+		for (i = 0; i < Object.keys(plugins_list).length; i++) {
+			plugins_name = Object.keys(plugins_list)[i]
+			plugins_show +=	"<tr><td align='right' style='padding-top:4px; height: 40px;'><input id='" + plugins_name + "' type='checkbox' class='chec_plugin checkbox_a' " + ((story_script.parameters.plugins.indexOf(plugins_name) > -1)?'checked':'') + "></td><td align='left' style='width:100%;'>" + plugins_list[plugins_name].name + " - " + plugins_list[plugins_name].text + "</td></tr>"
+		}
+	plugins_show +=	"</table>"
+	
 	title_list += "</tbody></table><div onclick=\"add_tr('var_title')\" class='icon icon_add' style='margin:16px 0 0 45%;height: 26px; width: 26px; cursor:pointer;'></div>"
 	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div style='position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;' class='icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
 	+"<table width='100%' style='height: 60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"
@@ -752,7 +776,7 @@ function setup() {
 	+"<div id='blank_3' style='visibility:hidden;' class='set_blank'>" + var_list + "</div>"
 	+"<div id='blank_2' style='visibility:hidden;' class='set_blank'>" + sound_list + "</div>"
 	+"<div id='blank_5' style='visibility:hidden;' class='set_blank'>Characters</div>"
-	+"<div id='blank_1' style='visibility:hidden;' class='set_blank'>Add-on</div>"
+	+"<div id='blank_1' style='visibility:hidden;' class='set_blank'>" + plugins_show + "</div>"
     //
 	+"</td></tr>"
 	+"<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Add-on</td></tr>"
@@ -778,7 +802,6 @@ function set_menu(name) {
 	}
 }
 function add_tr(id){
-	
 	var tbody = document.getElementById(id).getElementsByTagName('tbody')[0];
 	var row = document.createElement("tr");
 	var td1 = document.createElement("td");
@@ -843,6 +866,11 @@ function apply_setup(){
 	for (i = 0; i < li_n.length; i++) {
 		story_script.parameters.title[li_n[i].value] = li_v[i].value
 		story_script.parameters.languares.push(li_n[i].value); 
+	}
+	li_v = document.getElementsByClassName("chec_plugin");
+	story_script.parameters.plugins = [];
+	for (i = 0; i < li_v.length; i++) {
+		if (li_v[i].checked) {story_script.parameters.plugins.push(li_v[i].id);}
 	}
 	modal_window('close')
 }
