@@ -30,7 +30,8 @@ Index.html file with id = 'tuesday' elements to display the novel
 
 step 3
 Create a story file story.json
-``` {
+```
+{
     "parameters": {
         "text_panel": {
             "size": ["95%","25%"],
