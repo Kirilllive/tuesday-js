@@ -42,7 +42,7 @@ Create a story file story.json
         },
         "name_panel": {
             "size": ["0","48px"],
-            "position": ["0","0","0px","0"],
+            "position": ["0","0","-48px","0"],
             "size_text": "18px"
         },
         "launch_story": "main_menu",
@@ -64,12 +64,13 @@ Create a story file story.json
                 "text":">"
             }
         ]
-    },"main_menu":[
+    },
+    "main_menu":[
         {
             "dialogs":[
                 {
                     "choice":[
-                        {
+						{
                             "go_to": "story",
                             "position": ["50%","0","0","50%"],
                             "size": ["128px","48px"],
@@ -81,16 +82,17 @@ Create a story file story.json
                 }
             ]
         }
-    ],"story": [
+    ],
+    "story": [
         {
             "dialogs":[
                 {
                     "back_to": "main_menu",
-                    "text":"1234567890",
+					"text":"1234567890",
                     "name":"numbers"
                 },{
-                    "go_to": "main_menu",
-                    "text":"ABCDEFZHIKLMNOPQRSTVX",
+					"go_to": "main_menu",
+					"text":"ABCDEFZHIKLMNOPQRSTVX",
                     "name":"letters"
                 }
             ]
