@@ -64,7 +64,7 @@
 		border-radius: 0 0 16px 0;
 		position: fixed; 
 		height: 40px;
-		width: 448px;
+		width: 480px;
 	}
 	.button_block {
 		height: 26px;
@@ -173,6 +173,7 @@
 		top: 0;
 		visibility:hidden;
 		transition-duration: 0.5s;
+        z-index: 10000;
 	}
 	.window {
 		position: absolute;
@@ -182,7 +183,6 @@
 		background-color:#fff;
 		border-radius: 16px;
 		box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
-		z-index: 10000;
 	}
 	.button{
 		border-radius: 8px;
@@ -273,6 +273,7 @@
                     <td align='center' style='cursor:pointer;' title='Load project folder ' onclick='json_file.click()' class='icon button_menu icon_load'></td>
 					<td align='center' style='cursor:pointer;' title='Save JSON script project' onclick='save_file()' class='icon button_menu icon_save'></td>
 					<td align='center' style='cursor:pointer;' title='Settings project' onclick='setup()' class='icon button_menu icon_setup'></td>
+                    <td align='center' style='cursor:pointer;' title='Edit json text' onclick='jsonedit()' class='icon button_menu icon_edit'></td>
                     <td align='center' style='cursor:pointer;' title='About visual editor' onclick='about()' class='icon button_menu icon_about'></td>
                     <td align='center' style='width:128px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
 					<td align='center' style='cursor:pointer;' title='Build project' onclick='build()' class='icon button_menu icon_build'></td>
@@ -707,6 +708,18 @@ function build() {
     dlAnchorElem.setAttribute('download', 'index.html');
     dlAnchorElem.click();
 }
+function jsonedit() {
+    var story_preview = JSON.stringify(story_script, null, '\t')
+    var html = "<div class='window' style='padding:24px 16px; width: 75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>JSON Edit</p><br><p><textarea id='editJson' class='input_text' wrap='off' style='resize: none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid #cec8e3;'>" + story_preview + "</textarea></p><br><table class='big_button' width='256px' onclick='apply_json( document.getElementById(\"editJson\").value)'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    modal_window("open", html)
+}
+function apply_json(data) {
+    new_novel ()
+    story_script = JSON.parse(data);
+    parse_story()
+    lines()
+    modal_window('close')
+}
 function setup() {
 	var block_list;
 	var i
@@ -759,7 +772,7 @@ function setup() {
 	plugins_show +=	"</table>"
 	
 	title_list += "</tbody></table><div onclick=\"add_tr('var_title')\" class='icon icon_add' style='margin:16px 0 0 45%;height: 26px; width: 26px; cursor:pointer;'></div>"
-	var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
+	var html = "<div class='window' style='padding:24px 16px; width: 480px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"
 	+"<table width='100%' style='height: 60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"
 	+"<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='6' style='position: relative;'>"
     //
@@ -805,7 +818,6 @@ function set_menu(name) {
 		else {
 			li[i].className = 'set_button'
 			document.getElementById('blank_'+i).style.visibility= 'hidden';
-			
 		}
 	}
 }
