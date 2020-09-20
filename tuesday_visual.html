@@ -335,8 +335,8 @@ let story_script = {};
 let line_controll = [];
 var img_file = document.getElementById('json_file');
 let plugins_list = {
-    "toast": {
-        "name": "toast",
+    "show_toast": {
+        "name": "show toast",
         "text": "small message appears for a while",
         "file": "plugins/toast.js"
     },
@@ -786,8 +786,10 @@ function build() {
     var font_family = story_script.parameters.font
     var font_size = story_script.parameters.font_size
     var plugins_code = "";
-    for (var i = 0; i < story_script.parameters.plugins.length; i++) {
-        plugins_code += "<script type='text/javascript' src='" + plugins_list[story_script.parameters.plugins[i]].file + "'><\/script>"
+    if (story_script.parameters.plugins){
+        for (var i = 0; i < story_script.parameters.plugins.length; i++) {
+            plugins_code += "<script type='text/javascript' src='" + plugins_list[story_script.parameters.plugins[i]].file + "'><\/script>"
+        }
     }
     delete story_script.parameters['plugins'];
     delete story_script.parameters['font'];
