@@ -91,7 +91,7 @@
 		border-radius: 0 0 16px 0;
 		position: fixed; 
 		height: 40px;
-		max-width: 480px;
+		max-width: 600px;
         width: 100%;
 	}
 	.button_block {
@@ -234,7 +234,7 @@
       border-left: 1px solid #cec8e3;
       border-right: 1px solid #cec8e3;
       font-size: 14px;
-      width:128px;
+      width:88px;
       padding-left: 8px;
       -webkit-touch-callout: auto;
       -webkit-user-select: auto;
@@ -301,9 +301,11 @@
                     <td align='center' style='cursor:pointer;' title='Load project folder ' onclick='json_file.click()' class='icon button_menu icon_load'></td>
 					<td align='center' style='cursor:pointer;' title='Save JSON script project' onclick='save_file()' class='icon button_menu icon_save'></td>
 					<td align='center' style='cursor:pointer;' title='Settings project' onclick='setup()' class='icon button_menu icon_setup'></td>
+					<td align='center' style='cursor:pointer;' title='new story block' onclick='new_block()' class='icon button_menu icon_add'></td>
                     <td align='center' style='cursor:pointer;' title='Edit json text' onclick='jsonedit()' class='icon button_menu icon_edit'></td>
                     <td align='center' style='cursor:pointer;' title='About visual editor' onclick='about()' class='icon button_menu icon_about'></td>
-                    <td align='center' style='width:128px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
+                    <td align='center' style='width:88px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
+                    <td align='center' style='width:40px;'><select class='input_text' id='language_view' style='height: 40px; border-right: 1px solid #cec8e3; border-bottom: 0'><option value='en'>EN</option></select></td>
 					<td align='center' style='cursor:pointer;' title='Build project' onclick='build()' class='icon button_menu icon_build'></td>
 					<td align='center' style='border-radius: 0 0 16px 0; cursor:pointer;' title='Run preview Project' onclick='play_novel()' class='icon button_menu icon_play'></td>
 				</tr>
@@ -432,7 +434,30 @@ function parse_story() {
         creation_block(all_blocks);
         all_blocks++;
     }
+	lang_select()
     control_dlock()
+}
+function lang_select(){
+	var lang_list = document.getElementById('language_view');
+	lang_list.innerHTML = "";
+	var item
+    for (var i = 0; i < story_script.parameters.languares.length; i++) {	
+		item = document.createElement("option");
+		item.text = story_script.parameters.languares[i].toUpperCase()
+		item.value = story_script.parameters.languares[i]
+		item.setAttribute("onclick", "languare = '"+story_script.parameters.languares[i]+"'; lang_choise();");
+		lang_list.add(item)
+    }
+}
+function lang_choise() {
+    story_blocks.innerHTML = ""
+    line_controll = [];
+    document.getElementById("search_block").value = ""
+    while (story_lines.hasChildNodes()) {
+        story_lines.removeChild(story_lines.firstChild);
+    }
+    parse_story()
+    lines()
 }
 function creation_block(b) {
     var chapter = document.createElement("div");
@@ -853,7 +878,7 @@ function setup() {
             title_list += "<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;'><select class='input_text title_lang'>"
             var lang = '';
             for (l = 0; l < Object.keys(languares).length; l++) {
-                lang += "<option value='" + languares[Object.keys(languares)[l]] + "' " + ((languares[Object.keys(languares)[l]] == Object.keys(story_script.parameters.title)[i]) ? "selected" : "") + ">" + Object.keys(languares)[l] + "</option>"
+                lang += "<option value='" + languares[Object.keys(languares)[l]] + "' " + ((languares[Object.keys(languares)[l]] == Object.keys(story_script.parameters.title)[i]) ? "selected" : "") + ">" + languares[Object.keys(languares)[l]].toUpperCase() + " - " + Object.keys(languares)[l] + "</option>"
             }
             title_list += lang + "</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top: 10px;' value='" +
                 story_script.parameters.title[Object.keys(story_script.parameters.title)[i]] +
@@ -875,7 +900,7 @@ function setup() {
         +
         "<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>" +
         "<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px; width:60%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave) ? 'checked' : '') + "></td></tr>" +
-        "<tr><td align='right'>story launch block </td><td align='left''>  <select class='input_text' id='launch_story'>" + ((block_list) ? block_list : '') + "</select></td></tr>" +
+        "<tr><td align='right'>story launch block </td><td align='left''><select class='input_text' id='launch_story'>" + ((block_list) ? block_list : '') + "</select></td></tr>" +
         "<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file) ? story_script.parameters.style_file : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>font family </td><td align='left'><input id='font' class='input_text' value='" + ((story_script.parameters.font) ? story_script.parameters.font : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>font size </td><td align='left'><input id='font_size' class='input_text' value='" + ((story_script.parameters.font_size) ? story_script.parameters.font_size : '') + "' type='text'></td></tr>" +
@@ -929,7 +954,7 @@ function add_tr(id) {
     if (id == 'var_title') {
         var lang = '';
         for (l = 0; l < Object.keys(languares).length; l++) {
-            lang += "<option value='" + languares[Object.keys(languares)[l]] + "' >" + Object.keys(languares)[l] + "</option>"
+            lang += "<option value='" + languares[Object.keys(languares)[l]] + "' >" + languares[Object.keys(languares)[l]].toUpperCase() + " - " + Object.keys(languares)[l] + "</option>"
         }
         td1.innerHTML = "<select class='input_text title_lang'>" + lang + "</select>";
         td1.style = "padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;";
@@ -999,6 +1024,7 @@ function apply_setup() {
             story_script.parameters.plugins.push(li_v[i].id);
         }
     }
+	lang_select()
     modal_window('close')
     toast("parameters updated");
 }
