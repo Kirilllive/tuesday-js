@@ -391,7 +391,7 @@ function loadFiles(e) {
     } else if (jsons.length > 1) {
         var html = "<div class='window'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><br><p>Select JSON project file</p><br><hr><div style='margin: 0 16px 8px 16px; max-height: 75vh; overflow-x: hidden;'>"
         for (var f = 0; f < jsons.length; f++) {
-            html += "<table class='button' style='margin: 8px 0px;' onclick='load_story_edit(open_file(\"" + jsons[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td align='center' width='48px' height='48px' class='icon icon_new'> </td><td align='left' style=''>" + jsons[f][1] + "</td><td align='center' width='48px'></td></tr></tbody></table>"
+            html += "<table class='button' style='width:412px; margin: 8px 0px;' onclick='load_story_edit(open_file(\"" + jsons[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'>" + jsons[f][1] + "</div></td></tr></tbody></table>"
         }
         html += "</div></div>"
         modal_window("open", html)
