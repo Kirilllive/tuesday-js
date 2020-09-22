@@ -457,7 +457,7 @@ function parse_story() {
         creation_block(all_blocks);
         all_blocks++;
     }
-	lang_select()
+	if (story_script.parameters.languares) {lang_select()}
     control_dlock()
 }
 function lang_select(){
@@ -563,7 +563,7 @@ function creation_block(b) {
             }
             element += "</div>"
         }
-        chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + chapter.id + "</td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display: none;'>" + element + "</div>";
+        chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + chapter.id + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_edit'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display: none;'>" + element + "</div>";
         chapter.className = "story_block panel";
         chapter.style.left = 64 + (320 * (all_blocks - 1)) + "px";
         chapter.style.top = 64 + (128 * (all_blocks - 1)) + "px";
@@ -821,13 +821,8 @@ function toast (message) {
     void x.offsetParent;
     x.classList.add("toast_anim");
 }
-tuesday.addEventListener('creation_dialog', function(event) {
-    if (story_json[tue_story][scene].dialogs[dialog].toast) {
-        alert(story_json[tue_story][scene].dialogs[dialog].toast)
-    }
-});
 function about() {
-    var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size: 22px;'>Tuesday js visual editor</p><hr><p style='font-size: 14px;'>Version: 0.01 (alpha)</p><br><table style='font-size: 14px; border-spacing:10px; border-collapse: separate;'><tr><td align='right'>Home: </td><td align='left'><a href='https://kirilllive.github.io/Tuesday' target='_blank'>https://kirilllive.github.io/Tuesday</a></td></tr><tr><td align='right'>itch.io: </td><td align='left'><a href='https://kirill-live.itch.io/tuesday' target='_blank'>https://kirill-live.itch.io/tuesday</a></td></tr><tr><td align='right'>GitHub: </td><td align='left'><a href='https://github.com/Kirilllive/Tuesday' target='_blank'>https://github.com/Kirilllive/Tuesday</a></td></tr></table><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1000v200H0z' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p></div></div>"
+    var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size: 22px;'>Tuesday js visual editor</p><hr><p style='font-size: 14px;'>Version: 0.01 (alpha)</p><br><table style='font-size: 14px; border-spacing:10px; border-collapse: separate;'><tr><td align='right'>Home: </td><td align='left'><a href='https://kirilllive.github.io/Tuesday' target='_blank'>https://kirilllive.github.io/Tuesday</a></td></tr><tr><td align='right'>itch.io: </td><td align='left'><a href='https://kirill-live.itch.io/tuesday' target='_blank'>https://kirill-live.itch.io/tuesday</a></td></tr><tr><td align='right'>GitHub: </td><td align='left'><a href='https://github.com/Kirilllive/Tuesday' target='_blank'>https://github.com/Kirilllive/Tuesday</a></td></tr></table><br><p>Thanks for the help from users<hr><a href='https://itch.io/profile/laurentk' target='_blank'>LaurentK</a></p><br><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1000v200H0z' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p></div></div>"
     modal_window("open", html)
 }
 function build() {
@@ -864,7 +859,7 @@ function apply_json(data) {
     toast("script updated");
 }
 function new_block() {
-	var html = "<div class='window' style='padding:24px 8px; width: 480px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><br><br><table style='width:80%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td align='right'>block id </td><td align='left'><input id='block_id' class='input_text' type='text'></td></tr></tbody></table><br><br><table class='big_button' width='256px' onclick='create_block()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create</td><td width='42px'></td></tr></tbody></table> </div>"
+	var html = "<div class='window' style='padding:24px 8px; width: 360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><p style='font-size: 14px;'>It is recommended to enter id in Latin letters.</p><br><br><table style='width:80%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text'></td></tr></tbody></table><br><br><table class='big_button' width='256px' onclick='create_block()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create block</td><td width='42px'></td></tr></tbody></table> </div>"
     modal_window("open", html)
 }
 function create_block() {
@@ -887,6 +882,32 @@ function create_block() {
 		toast("block id not entered");
 		modal_window('close');
 	}
+}
+function edit_block(id) {
+	var html = "<div class='window' style='padding:24px 8px; width: 360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><p style='font-size: 14px;'>It is recommended to enter id in Latin letters.</p><br><br><table style='width:90%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td align='right' style='width:48px;'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text' value='" + id + "'></td></tr></tbody></table><br><br><table class='big_button' width='256px' onclick='delet_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_del'></td><td align='center'>Delet block</td><td width='42px'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='updata_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Update block</td><td width='42px'></td></tr></tbody></table> </div>"
+    modal_window("open", html)
+}
+function delet_block(id) {
+	delete story_script[id];
+	document.getElementById(id).remove();
+	toast("block removed");
+	modal_window ('close');
+}
+function updata_block(old_id){
+	var new_id = document.getElementById('block_id').value
+	if (old_id != new_id) {
+		story_script[new_id] = story_script[old_id];
+		delete story_script[old_id];
+		for (var i = 0 ; i < Object.keys(story_script).length; i++ ) {
+			if (Object.keys(story_script)[i] == new_id){creation_block(i);break;}
+		}
+		document.getElementById(new_id).style.left = document.getElementById(old_id).style.left
+		document.getElementById(new_id).style.top = document.getElementById(old_id).style.top
+		document.getElementById(old_id).remove();
+		control_dlock()
+		toast("block updated");
+	}
+	modal_window ('close');
 }
 function setup() {
     var block_list;
