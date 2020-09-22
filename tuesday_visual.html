@@ -336,7 +336,7 @@
 		</table>
 	</div>
 	<div id="new_story_block">
-		<table class='big_button2' onclick='new_block()'><tbody><tr><td width='42px' class='icon icon_add'></td><td align='center'>New story block</td><td width='16px'></td></tr></tbody></table>
+		<table class='big_button2' onclick='new_block()'><tbody><tr><td width='42px' class='icon icon_add'></td><td align='center'>Add story block</td><td width='16px'></td></tr></tbody></table>
 	</div>
 	<input type="file" id="json_file" style="display: none; position: fixed;" multiple webkitdirectory/>
 	<a id="downloadAnchorElem" style="display:none; position: fixed;"></a>
@@ -876,8 +876,8 @@ function new_block() {
     modal_window("open", html)
 }
 function create_block() {
-	var new_id = document.getElementById('block_id').value
-	if (new_id != '') {
+	var new_id = document.getElementById('block_id').value.replace(new RegExp(' ',"g"), '_');
+	if (new_id != '' && !story_script[new_id]) {
 		story_script[new_id] = [];
 		for (var i = 0 ; i < Object.keys(story_script).length; i++ ) {
 			if (Object.keys(story_script)[i] == new_id){creation_block(i);break;}
@@ -891,10 +891,13 @@ function create_block() {
 		control_dlock()
 		toast("new block created");
 		modal_window('close');
-	} else {
-		toast("block id not entered");
-		modal_window('close');
-	}
+    } else if (story_script[new_id]) {
+        toast("this name is used by other blocks");
+        modal_window('close');
+    } else {
+        toast("block id not entered");
+        modal_window('close');
+    }
 }
 function edit_block(id) {
 	var html = "<div class='window' style='padding:24px 8px; width: 360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><p style='font-size: 14px;'>It is recommended to enter id in Latin letters.</p><br><br><table style='width:90%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td align='right' style='width:48px;'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text' value='" + id + "'></td></tr></tbody></table><br><br><table class='big_button' width='256px' onclick='delet_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_del'></td><td align='center'>Delet block</td><td width='42px'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='updata_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Update block</td><td width='42px'></td></tr></tbody></table> </div>"
@@ -911,15 +914,15 @@ function delet_block(id) {
 	modal_window ('close');
 }
 function updata_block(old_id){
-	var new_id = document.getElementById('block_id').value
-	if (old_id != new_id) {
+	var new_id = document.getElementById('block_id').value.replace(new RegExp(' ',"g"), '_');
+	if (old_id != new_id && !story_script[new_id]) {
 		var story_rename = JSON.stringify(story_script)
 		new_novel();
 		story_script = JSON.parse(story_rename.replace(new RegExp('"' + old_id + '"' ,"g"), '"' + new_id + '"'));
 		parse_story();
 		lines();
 		toast("block updated");
-	}
+    } else if(story_script[new_id]){toast("this name is used by other blocks");}
 	modal_window ('close');
 }
 function setup() {
