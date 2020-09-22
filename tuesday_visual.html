@@ -453,6 +453,7 @@ function parse_story() {
         story_lines.removeChild(story_lines.firstChild);
     }
     all_blocks = 0;
+	if (!story_script.blocks){story_script.blocks = {}}
     while (Object.keys(story_script)[all_blocks]) {
         creation_block(all_blocks);
         all_blocks++;
@@ -488,7 +489,7 @@ function creation_block(b) {
     var all = 0;
     chapter.id = Object.keys(story_script)[b];
     var go = "";
-    if (chapter.id != "parameters") {
+    if (chapter.id != "parameters" && chapter.id != "blocks") {
         for (var i = 0; i < story_script[chapter.id].length; i++) {
             element += "<div class='scene'>"
             if (story_script[chapter.id][i].legacy_choice) {
@@ -563,10 +564,16 @@ function creation_block(b) {
             }
             element += "</div>"
         }
-        chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + chapter.id + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_edit'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display: none;'>" + element + "</div>";
+        chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + chapter.id + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_edit'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display:" + ((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>" + element + "</div>";
         chapter.className = "story_block panel";
-        chapter.style.left = 64 + (320 * (all_blocks - 1)) + "px";
-        chapter.style.top = 64 + (128 * (all_blocks - 1)) + "px";
+		if (!story_script.blocks[chapter.id]) {
+			chapter.style.left = 64 + (320 * (all_blocks - 1)) + "px";
+			chapter.style.top = 64 + (128 * (all_blocks - 1)) + "px";
+			story_script.blocks[chapter.id] = [chapter.style.left, chapter.style.top, 'none']
+		} else {
+			chapter.style.left = story_script.blocks[chapter.id][0];
+			chapter.style.top = story_script.blocks[chapter.id][1];
+		}
         story_blocks.appendChild(chapter);
     }
 }
@@ -680,6 +687,7 @@ function movie_dlock(id) {
             moveAt(e);
         };
         focus_dlock.onmouseup = function() {
+			story_script.blocks[focus_dlock.id] = [focus_dlock.style.left, focus_dlock.style.top, document.getElementById(focus_dlock.id + "_content").style.display ]
             document.onmousemove = null;
             focus_dlock.onmouseup = null;
             scroll_block = false;
@@ -837,6 +845,7 @@ function build() {
     delete story_script.parameters['plugins'];
     delete story_script.parameters['font'];
     delete story_script.parameters['font_size'];
+    delete story_script.blocks;
     var story_preview = JSON.stringify(story_script)
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent("<html><head><style> body {font-family: " + font_family + "; font-size: " + font_size + "; background-color: #fff; border-collapse: collapse; border: none; margin: 0; padding: 0; border: 0; border-spacing: 0px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script>" + plugins_code + "<script>let story_novel = " + story_preview + "; load_story('data',story_novel); <\/script><\/body><\/html>");
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
@@ -889,9 +898,9 @@ function edit_block(id) {
 }
 function delet_block(id) {
 	delete story_script[id];
-	var story_rename = JSON.stringify(story_script)
+	let story_rename = story_script;
 	new_novel();
-	story_script = JSON.parse(story_rename);
+	story_script = story_rename;
 	parse_story();
 	lines();
 	toast("block removed");
@@ -902,7 +911,6 @@ function updata_block(old_id){
 	if (old_id != new_id) {
 		var story_rename = JSON.stringify(story_script)
 		new_novel();
-		alert('"' + old_id + '"')
 		story_script = JSON.parse(story_rename.replace(new RegExp('"' + old_id + '"' ,"g"), '"' + new_id + '"'));
 		parse_story();
 		lines();
