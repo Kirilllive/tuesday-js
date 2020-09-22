@@ -313,7 +313,7 @@
 	 .window_close {position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;}
     </style>
 </head>
-<body onload="world_size(); lines(); control_dlock();" style='background-color: #efefff;'>
+<body onload="world_size();" style='background-color: #efefff;'>
 	<div id="menu_panel">
 		<table  width="100%" height="100%">
 			<tbody>
@@ -889,22 +889,23 @@ function edit_block(id) {
 }
 function delet_block(id) {
 	delete story_script[id];
-	document.getElementById(id).remove();
+	var story_rename = JSON.stringify(story_script)
+	new_novel();
+	story_script = JSON.parse(story_rename);
+	parse_story();
+	lines();
 	toast("block removed");
 	modal_window ('close');
 }
 function updata_block(old_id){
 	var new_id = document.getElementById('block_id').value
 	if (old_id != new_id) {
-		story_script[new_id] = story_script[old_id];
-		delete story_script[old_id];
-		for (var i = 0 ; i < Object.keys(story_script).length; i++ ) {
-			if (Object.keys(story_script)[i] == new_id){creation_block(i);break;}
-		}
-		document.getElementById(new_id).style.left = document.getElementById(old_id).style.left
-		document.getElementById(new_id).style.top = document.getElementById(old_id).style.top
-		document.getElementById(old_id).remove();
-		control_dlock()
+		var story_rename = JSON.stringify(story_script)
+		new_novel();
+		alert('"' + old_id + '"')
+		story_script = JSON.parse(story_rename.replace(new RegExp('"' + old_id + '"' ,"g"), '"' + new_id + '"'));
+		parse_story();
+		lines();
 		toast("block updated");
 	}
 	modal_window ('close');
