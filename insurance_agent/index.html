@@ -104,7 +104,66 @@
         </style>
     </head>
 <body onload="load_story('data', data)">
-<div id='tuesday' style='width:100vw; height:100vh; position: fixed;'>
+
+
+<div style='position: absolute; right:32px; top:32px; z-index:2000;'>
+<input type="file" id="json_file" style="display: none; position: fixed;"/>
+<a id="downloadAnchorElem" style="display:none; position: fixed;"></a>
+<button type="button" onclick='json_file.click()' >Open</button> 
+<button type="button" onclick='window_open()' >Edit</button> 
+<button type="button" onclick='save_file()' >Export</button> 
+<script>
+var img_file = document.getElementById('json_file');
+img_file.addEventListener('change', loadFiles);
+function loadFiles(e) {
+	hash_list(URL.createObjectURL(e.target.files[0]))
+}
+function window_open() {
+	document.getElementById('edit_window').style.visibility = "visible";
+	document.getElementById('edit_ru').value = story_json[tue_story][scene].dialogs[dialog].text.ru;
+	document.getElementById('edit_en').value = story_json[tue_story][scene].dialogs[dialog].text.en;
+	document.getElementById('edit_jp').value = story_json[tue_story][scene].dialogs[dialog].text.jp;
+}
+function apply_edit() {
+	document.getElementById('edit_window').style.visibility = "hidden";
+	story_json[tue_story][scene].dialogs[dialog].text.ru = document.getElementById('edit_ru').value;
+	story_json[tue_story][scene].dialogs[dialog].text.en = document.getElementById('edit_en').value;
+	story_json[tue_story][scene].dialogs[dialog].text.jp = document.getElementById('edit_jp').value;
+	creation_dialog ()
+	toast("Изменения приняты")
+}
+function hash_list(url) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			story_json = JSON.parse(this.responseText);
+			toast("массив обновлен")
+		}
+	};
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
+function save_file() {
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(story_json, null, '\t')); 
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", 'insurance_agent.json');
+    dlAnchorElem.click();
+}
+</script>
+</div>
+<div id='edit_window' style='visibility:hidden; width:90vw; top:50vh; left:50vw; position: fixed; background-color:#fff; z-index:3000; transform: translateX(-50%) translateY(-50%);'>
+	<p style='color:#000; margin-left:8px;'>ru</p>
+	<textarea id='edit_ru' style='resize: none; width:calc(100% - 16px); height:128px; margin:8px;'></textarea>
+	<p style='color:#000; margin-left:8px;'>en</p>
+	<textarea id='edit_en' style='resize: none; width:calc(100% - 16px); height:128px; margin:8px;'></textarea>
+	<p style='color:#000; margin-left:8px;'>jp</p>
+	<textarea id='edit_jp' style='resize: none; width:calc(100% - 16px); height:128px; margin:8px;'></textarea>
+	<button type="button" onclick='apply_edit()' style='margin:8px;'>OK </button> 
+	<button type="button"  onclick='document.getElementById("edit_window").style.visibility = "hidden";' style='margin:8px;'>Сancel</button> 
+</div>
+
+<div id='tuesday' style='width:100vw; height:100vh; position: fixed; bottom:0px; z-index:1000;'>
 </div>
 <!--<script type="text/javascript" src="cordova.js"></script>-->
 <script type="text/javascript" src="../tuesday.js"></script>
@@ -11448,5 +11507,8 @@ tuesday.addEventListener('save', function(event) {toast("save")});
 tuesday.addEventListener('ointment_add', function(event) {toast("Добавлена мазь от облучения")});
 tuesday.addEventListener('ointment_set', function(event) {toast("Получена мазь от облучения")});
 </script>
+
+
+
 </body>
 </html>
