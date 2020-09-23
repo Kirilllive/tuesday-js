@@ -1,320 +1,259 @@
 <!doctype html>
 <html>
 <head>
-	<title>Tuesday js visual editor</title>
-	<link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
-    <meta charset="UTF-8">
-    <style>
-	*{
-		font-family: Arial;
-		border-collapse: collapse;
-		border: none;
-		margin: 0;
-		padding: 0;
-		border: 0;
-		border-spacing: 0px;
-		-webkit-touch-callout: none;
-		-webkit-user-select: none;
-		-khtml-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-        outline: none;
-	}
-	.panel {
-		background-color: #fff;
-		box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
-		border-radius: 16px;
-	}
-	@keyframes flash {
-		0% {box-shadow: 0px 2px 32px rgba(90,75,145,1); background-color: #cec8e3;}
-        25% {box-shadow: 0px 2px 32px rgba(90,75,145,1); background-color: #cec8e3;}
-		100% {box-shadow: 0px 2px 24px rgba(110,95,165,0.25); background-color: #fff;}
-	}
-	.story_block {
-		 min-height: 28px;
-		 width:256px;
-		 position: absolute;
-		 cursor: all-scroll;
-	}
-	#world {
-		 position: absolute;
-	}
-	line {
-		stroke:#6e5fa5;
-		stroke-dasharray: 20;
-		stroke-width:2;
-		animation: dash 4s linear infinite;
-	}
-	@keyframes dash {
-	  from {
-		stroke-dashoffset: 0
-	  }
-	  to {
-		stroke-dashoffset: 200;
-	  }
-	}
-    #toast{
-        position: fixed;
-        font-size: 14px;
-        opacity: 0;
-        bottom: -10%;
-		transform: translateX(-50%);
-		padding: 0px 32px;
-        height: 40px;
-        min-width: 128px;
-        box-shadow: 0px 2px 24px rgba(0,0,0,0.25);
-		z-index: 1008;
-    }
-    .toast_anim{
-        left: 50%;
-        background-color:#fff;
-        border-radius: 32px;
-        animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;
-    }
-    @keyframes viwe {
-      from {opacity: 0; bottom: 64px}
-      to {opacity: 1; bottom: 64px}
-    }
-    @keyframes stop {
-      from {opacity: 1; bottom: 64px}
-      to {opacity: 1; bottom: 64px}
-    }
-    @keyframes close {
-      from {opacity: 1; bottom: 64px}
-      to {opacity: 0; bottom: -32px}
-    }
-	#new_story_block {
-		position: fixed; 
-		height: 40px;
-		z-index: 1000;
-		bottom:32px; 
-		right:32px;
-	}
-	#menu_panel {
-		z-index: 1000;
-		top:0; 
-		left:0; 
-		background-color: #fff;
-		box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
-		border-radius: 0 0 16px 0;
-		position: fixed; 
-		height: 40px;
-		max-width: 500px;
-        width: 100%;
-	}
-	.button_block {
-		height: 26px;
-		width: 26px;
-		background-size: 70% 70%;
-		background-repeat: no-repeat;
-		background-position: center;
-	}
-	.icon {
-		background-size: 22px 22px;
-		background-repeat: no-repeat;
-		background-position: center;
-	}
-	.button_menu {
-		background-position: center;
-		cursor:pointer;
-	}
-	.button_menu:hover {
-		background-color: #cec8e3;
-	}
-	.icon_new {
-		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yMjMsNTIuNjZWMjQ5SDM1VjZIMTc2LjM0WiIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTIyMyw1M0gxNzZWNiIvPg0KPC9zdmc+DQo=")
-	}
-	.icon_load {
-		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik00OC4xMTYsODUuMzc0SDI1MS45OTFMMjA4Ljg3NSwyMjZINVoiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik00OC4xMTYsODUuMzc0TDUsMjI2VjUxLjMyNUwxOC43LDM0SDY1LjQ0NWwxMy43LDE3LjMyNUgyMDguODc1Vjg1LjM3NEg0OC4xMTZaIi8+DQo8L3N2Zz4NCg==")
-	}
-	.icon_save {
-		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yMzgsNTEuOTE5VjIyOGExMCwxMCwwLDAsMS0xMCwxMEgyN2ExMCwxMCwwLDAsMS0xMC0xMFYyN0ExMCwxMCwwLDAsMSwyNywxN0gyMDMuMTE4WiIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTM5LDIzOFYxMjdhMTAsMTAsMCwwLDEsMTAtMTBIMjA1YTEwLDEwLDAsMCwxLDEwLDEwVjIzOEgzOVpNMTc0LjIsOTUuNjVINzkuOGExMCwxMCwwLDAsMS0xMC0xMFYxN0gxODQuMlY4NS42NUExMCwxMCwwLDAsMSwxNzQuMiw5NS42NVpNMTY4LDQyYTEwLDEwLDAsMCwwLTEwLTEwSDE0NGExMCwxMCwwLDAsMC0xMCwxMFY3MWExMCwxMCwwLDAsMCwxMCwxMGgxNGExMCwxMCwwLDAsMCwxMC0xMFY0MloiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik02MywxNjJIMTkybTAsNDlINjMiLz4NCjwvc3ZnPg0K")
-	}
-	.icon_play {
-		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik03LDI0TDI0OCwxMjYuODg2VjEyOEw3LDIzMC44ODZWMjRaIi8+DQo8L3N2Zz4NCg==")
-	}
-	.icon_edit {
-		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik0xNjQuNzMzLDM3LjIzNGw1My4wMzMsNTMuMDMzLTEzMS43LDEzMS43TDMzLDE2OVoiLz4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik0yMjUuNzIxLDE2LjlMMjM4LjEsMjkuMjc5YTI4Ljc1MSwyOC43NTEsMCwwLDEsMCw0MC42NTlsLTIwLjMzLDIwLjMyOUwxNjQuNzMzLDM3LjIzNCwxODUuMDYzLDE2LjlBMjguNzQ5LDI4Ljc0OSwwLDAsMSwyMjUuNzIxLDE2LjlaIi8+CjxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBkPSJNNTkuNTUxLDE5NS40NDlMMTkwLjM2Niw2NC42MzQiLz4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik05LjE3LDI0NS44M2gwbDczLjM2Mi0yMi4xTDMyLjE1MSwxNzMuMzUyWiIvPgo8L3N2Zz4K")
-    }
-	.icon_show {
-		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsNDBIMTAiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsMTMwSDEwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjQ2LDIyMEgxMCIvPg0KPC9zdmc+")
-	}
-	.icon_setup {
-		background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZD0iTTI4LjQ2OSw2LjgxM2ExNC4wNDcsMTQuMDQ3LDAsMSwxLTE0LDE0LjA0N0ExNC4wMjQsMTQuMDI0LDAsMCwxLDI4LjQ2OSw2LjgxM1ptNzQuMjY1LDQzLjIxOUExNC4wMzEsMTQuMDMxLDAsMSwxLDg4Ljc1LDY0LjA2MywxNC4wMDgsMTQuMDA4LDAsMCwxLDEwMi43MzQsNTAuMDMxWk02My45NjksOTMuMjE5YTE0LjAzMSwxNC4wMzEsMCwxLDEtMTQsMTQuMDMxQTE0LjAxNiwxNC4wMTYsMCwwLDEsNjMuOTY5LDkzLjIxOVpNNDkuOTg1LDEwNy4yNjVIMi42MjRtMC04Ni40aDExLjg0bS0xMS44NCw0My4ySDg3LjY1OW0zNy42NzQsNDMuMkg3Ny45NzFNNDIuNDUsMjAuODY1aDgyLjg4M20tOC42MTEsNDMuMmg4LjYxMSIvPg0KPC9zdmc+DQo=")
-	}
-    .icon_about {
-        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwNiwxMDRoMjJ2ODYiLz4KICA8Y2lyY2xlIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjeD0iMTI4IiBjeT0iNjQiIHI9IjYiLz4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwNiwxOTJoNDIiLz4KICA8Y2lyY2xlIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjeD0iMTI4IiBjeT0iMTI4IiByPSIxMjAiLz4KPC9zdmc+Cg==")
-    }
-    .icon_close {
-        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNzEuMDc4LDE4NC40MjJMMTg0LjkyMiw3MC41NzgiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xODQuOTIyLDE4NC40MjJMNzEuMDc4LDcwLjU3OCIvPg0KPC9zdmc+")
-    }
-    .icon_ok {
-        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTk0LDgybC04Niw4Nkw2MSwxMjQiLz4NCjwvc3ZnPg==")
-    }
-    .icon_build {
-        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTcyLDExbDgwLDgwLTM0LDM0TDEwNC41NSwxMUgxNzJaIi8+CiAgICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTE1OCw2NWwyNSwyNUwyOSwyNDQsNCwyMTlaIi8+CiAgICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyMSwxMDJMOTYsMTI3LDUsMzYsMzAsMTFaIi8+CiAgICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTE0NiwxMjdsNjEsNjEtMjUsMjUtNjEtNjEiLz4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjA3LDE4OGwyOSw1MS0zLDMtNTEtMjkiLz4KPC9zdmc+Cg==")
-    }
-    .icon_go {
-        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik04Mi4wMzEsMzYuMDYxbDkxLjkyNCw5MS45MjNMODIuMDMxLDIxOS45MDgiLz4KPC9zdmc+Cg==")
-    }
-    .icon_add {
-        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNDcsMTI4aDE2MSIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyOCwyMDhWNDciLz4NCjwvc3ZnPg==")
-    }
-    .icon_del {
-        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xOTQuNDMxLDYyLjY3NVYyMzAuNTA4SDYzLjU2OVY2Mi42NzUiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik00Ny4zNDYsNDUuNDkySDIxMC42NTQiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xMDgsMjNoMzlWNDVIMTA4VjIzWiIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyOC41NTUsNjIuMzgyVjIxMy40MzEiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik05Mi41LDYyLjM4MlYyMTMuNDMxIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTY0LjYwNSw2Mi4zODJWMjEzLjQzMSIvPg0KPC9zdmc+")
-    }
-    .icon_json {
-        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik0xNzcsNGgyNGM3LjQ1NywwLDEzLjgsMS42ODUsMTgsNnM2LDEwLjM4OSw2LDE4djgybDI3LjQ2LDE3Ljk0MUwyMjUsMTQ2djgyYzAsNy41MzQtMS43NjIsMTIuNjQ1LTYsMTdzLTEwLjYyMyw3LTE4LDdIMTc3Ii8+CiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik04NCw3SDYwYy03LjQ1NiwwLTEzLjgsMS42ODUtMTgsNnMtNiwxMC4zODktNiwxOHY3OUw4LjU0LDEyNy45NDEsMzYsMTQ2djc5YzAsNy41MzQsMS43NjIsMTIuNjQ1LDYsMTdzMTAuNjIzLDcsMTgsN0g4NCIvPgogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBkPSJNMTEzLDIxMmM5LjQzNiwwLDE3LjkzNy0zLjc1MSwyMi0xMCwzLjE4Ny00LjgxMyw0LTEyLjc1MSw0LTI1VjcyIi8+CiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgY3g9IjEzOS4zNzUiIGN5PSI0My41OTQiIHI9IjIuNSIvPgo8L3N2Zz4K")
-        }
-	.scene {
-		background-color: #efefff;
-		border-radius: 12px;
-		padding: 4px;
-		margin: 4px;
-	}
-	.dialog {
-		padding: 4px 8px;
-		margin-top: 8px;
-		border-radius: 8px;
-		background-color: #fff;
-		font-size: 12px;
-	}
-	.scene_bg {
-		padding: 4px 8px;
-		border-radius: 8px;
-		background-color: #fff;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center;
-		width: calc(100% - 16px); 
-		height:128px;
-	}
-	.choice {
-		padding: 4px;
-		margin-top: 8px;
-		border-radius: 8px;
-		background-color: #cec8e3;
-		font-size: 14px;
-	}
-	.choice_b {
-		background-color: #efefff;
-		margin-bottom: 8px;
-		margin-top: 8px;
-		text-align: center;
-		padding: 4px;
-		border-radius: 6px;
-		font-size: 14px;
-	}
-	#window_zone {
-		height: 100vh; 
-		width:100%;
-		position: fixed;
-		left: 0;
-		top: 0;
-		visibility:hidden;
-		transition-duration: 0.5s;
-        z-index: 10000;
-	}
-	.window {
-		position: absolute;
-		top: 50%;
-		transform: translateX(-50%) translateY(-50%);
-		left: 50%;
-		background-color:#fff;
-		border-radius: 16px;
-		box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
-	}
-	.button{
-		border-radius: 8px;
-		width: 100%;
-		height: 90%;
-		background-color:#efefff;
-	}
-	.button:hover {
-		background-color:#cec8e3;
-	}
-	.big_button {
-		border-radius: 20px;
-		height: 40px;
-		background-color:#efefff;
-		cursor:pointer;
-	}
-	.big_button:hover {
-		background-color:#cec8e3;
-	}
-	.big_button2 {
-		border-radius: 20px;
-		height: 40px;
-		background-color:#fff;
-		box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
-		cursor:pointer;
-	}
-	.big_button2:hover {
-		background-color:#cec8e3;
-	}
-    #search_block {
-      height: 40px;
-      border-left: 1px solid #cec8e3;
-      border-right: 1px solid #cec8e3;
-      font-size: 14px;
-      width:88px;
-      padding-left: 8px;
-      -webkit-touch-callout: auto;
-      -webkit-user-select: auto;
-      -khtml-user-select: auto;
-      -moz-user-select: auto;
-      -ms-user-select: auto;
-      user-select: auto;
-    }
-	.input_text {
-		border:0;
-		font-family:inherit;
-		-webkit-appearance: none;
-		border-bottom:1px solid #cec8e3;
-		border-radius:0;
-		padding-left:8px;
-        font-size:14px;
-		cursor: text;
-		height:28px; 
-		width:100%;
-		-webkit-touch-callout: auto;
-		-webkit-user-select: auto;
-		-khtml-user-select: auto;
-		-moz-user-select: auto;
-		-ms-user-select: auto;
-		user-select: auto;
-	}
-	.input_text:focus {
-		border-bottom: 1px solid #000;
-	}
-	hr {border-top: 1px solid #cec8e3; margin:4px;}
-	.checkbox_a {
-		content:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTEyIi8+DQo8L3N2Zz4=");
-		background: none;
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		height: 16px;
-		width: 16px;
-	 }
-	.checkbox_a:checked  {
-		content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTEyIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTk0LDgybC04Niw4Nkw2MSwxMjQiLz4NCjwvc3ZnPg==");
-		background: none;
-	 }
-	 .set_button {
-		font-size: 14px;
-		height: 40px;
-		border-right:1px solid #cec8e3;
-		padding:0px 8px;
-		background-color: #efefff;
-	 }
-	 .set_select {
-		background-color: #cec8e3;
-	 }
-	 .set_blank {overflow-x: hidden; position: absolute; overflow-y: auto; width:100%; height:60vh;}
-	 .window_close {position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;}
-    </style>
+<title>Tuesday js visual editor</title>
+<link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
+<meta charset="UTF-8">
+<style>
+*{
+	font-family: Arial;
+	border-collapse: collapse;
+	border: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-spacing: 0px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	outline: none;
+}
+.panel {
+	background-color: #fff;
+	box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
+	border-radius: 16px;
+}
+@keyframes flash {
+	0% {box-shadow: 0px 2px 32px rgba(90,75,145,1); background-color: #cec8e3;}
+	25% {box-shadow: 0px 2px 32px rgba(90,75,145,1); background-color: #cec8e3;}
+	100% {box-shadow: 0px 2px 24px rgba(110,95,165,0.25); background-color: #fff;}
+}
+.story_block {
+	 min-height: 28px;
+	 width:256px;
+	 position: absolute;
+	 cursor: all-scroll;
+}
+#world {position: absolute;}
+line {
+	stroke:#6e5fa5;
+	stroke-dasharray: 20;
+	stroke-width:2;
+	animation: dash 4s linear infinite;
+}
+@keyframes dash {
+	from {stroke-dashoffset: 0}
+	to {stroke-dashoffset: 200;}
+}
+#toast{
+	position: fixed;
+	font-size: 14px;
+	opacity: 0;
+	bottom: -10%;
+	transform: translateX(-50%);
+	padding: 0px 32px;
+	height: 40px;
+	min-width: 128px;
+	box-shadow: 0px 2px 24px rgba(0,0,0,0.25);
+	z-index: 1008;
+}
+.toast_anim{
+	left: 50%;
+	background-color:#fff;
+	border-radius: 32px;
+	animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;
+}
+@keyframes viwe {
+  from {opacity: 0; bottom: 64px}
+  to {opacity: 1; bottom: 64px}
+}
+@keyframes stop {
+  from {opacity: 1; bottom: 64px}
+  to {opacity: 1; bottom: 64px}
+}
+@keyframes close {
+  from {opacity: 1; bottom: 64px}
+  to {opacity: 0; bottom: -32px}
+}
+#new_story_block {
+	position: fixed; 
+	height: 40px;
+	z-index: 1000;
+	bottom:32px; 
+	right:32px;
+}
+#menu_panel {
+	z-index: 1000;
+	top:0; 
+	left:0; 
+	background-color: #fff;
+	box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
+	border-radius: 0 0 16px 0;
+	position: fixed; 
+	height: 40px;
+	max-width: 500px;
+	width: 100%;
+}
+.button_block {
+	height: 26px;
+	width: 26px;
+	background-size: 70% 70%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.icon {
+	background-size: 22px 22px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.button_menu {background-position: center; cursor:pointer;}
+.button_menu:hover {background-color: #cec8e3;}
+.icon_new {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yMjMsNTIuNjZWMjQ5SDM1VjZIMTc2LjM0WiIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTIyMyw1M0gxNzZWNiIvPg0KPC9zdmc+DQo=")}
+.icon_load {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik00OC4xMTYsODUuMzc0SDI1MS45OTFMMjA4Ljg3NSwyMjZINVoiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik00OC4xMTYsODUuMzc0TDUsMjI2VjUxLjMyNUwxOC43LDM0SDY1LjQ0NWwxMy43LDE3LjMyNUgyMDguODc1Vjg1LjM3NEg0OC4xMTZaIi8+DQo8L3N2Zz4NCg==")}
+.icon_save {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yMzgsNTEuOTE5VjIyOGExMCwxMCwwLDAsMS0xMCwxMEgyN2ExMCwxMCwwLDAsMS0xMC0xMFYyN0ExMCwxMCwwLDAsMSwyNywxN0gyMDMuMTE4WiIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTM5LDIzOFYxMjdhMTAsMTAsMCwwLDEsMTAtMTBIMjA1YTEwLDEwLDAsMCwxLDEwLDEwVjIzOEgzOVpNMTc0LjIsOTUuNjVINzkuOGExMCwxMCwwLDAsMS0xMC0xMFYxN0gxODQuMlY4NS42NUExMCwxMCwwLDAsMSwxNzQuMiw5NS42NVpNMTY4LDQyYTEwLDEwLDAsMCwwLTEwLTEwSDE0NGExMCwxMCwwLDAsMC0xMCwxMFY3MWExMCwxMCwwLDAsMCwxMCwxMGgxNGExMCwxMCwwLDAsMCwxMC0xMFY0MloiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik02MywxNjJIMTkybTAsNDlINjMiLz4NCjwvc3ZnPg0K")}
+.icon_play {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik03LDI0TDI0OCwxMjYuODg2VjEyOEw3LDIzMC44ODZWMjRaIi8+DQo8L3N2Zz4NCg==")}
+.icon_edit {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik0xNjQuNzMzLDM3LjIzNGw1My4wMzMsNTMuMDMzLTEzMS43LDEzMS43TDMzLDE2OVoiLz4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik0yMjUuNzIxLDE2LjlMMjM4LjEsMjkuMjc5YTI4Ljc1MSwyOC43NTEsMCwwLDEsMCw0MC42NTlsLTIwLjMzLDIwLjMyOUwxNjQuNzMzLDM3LjIzNCwxODUuMDYzLDE2LjlBMjguNzQ5LDI4Ljc0OSwwLDAsMSwyMjUuNzIxLDE2LjlaIi8+CjxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBkPSJNNTkuNTUxLDE5NS40NDlMMTkwLjM2Niw2NC42MzQiLz4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik05LjE3LDI0NS44M2gwbDczLjM2Mi0yMi4xTDMyLjE1MSwxNzMuMzUyWiIvPgo8L3N2Zz4K")}
+.icon_show {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsNDBIMTAiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsMTMwSDEwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjQ2LDIyMEgxMCIvPg0KPC9zdmc+")}
+.icon_setup {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZD0iTTI4LjQ2OSw2LjgxM2ExNC4wNDcsMTQuMDQ3LDAsMSwxLTE0LDE0LjA0N0ExNC4wMjQsMTQuMDI0LDAsMCwxLDI4LjQ2OSw2LjgxM1ptNzQuMjY1LDQzLjIxOUExNC4wMzEsMTQuMDMxLDAsMSwxLDg4Ljc1LDY0LjA2MywxNC4wMDgsMTQuMDA4LDAsMCwxLDEwMi43MzQsNTAuMDMxWk02My45NjksOTMuMjE5YTE0LjAzMSwxNC4wMzEsMCwxLDEtMTQsMTQuMDMxQTE0LjAxNiwxNC4wMTYsMCwwLDEsNjMuOTY5LDkzLjIxOVpNNDkuOTg1LDEwNy4yNjVIMi42MjRtMC04Ni40aDExLjg0bS0xMS44NCw0My4ySDg3LjY1OW0zNy42NzQsNDMuMkg3Ny45NzFNNDIuNDUsMjAuODY1aDgyLjg4M20tOC42MTEsNDMuMmg4LjYxMSIvPg0KPC9zdmc+DQo=")}
+.icon_about {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwNiwxMDRoMjJ2ODYiLz4KICA8Y2lyY2xlIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjeD0iMTI4IiBjeT0iNjQiIHI9IjYiLz4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwNiwxOTJoNDIiLz4KICA8Y2lyY2xlIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjeD0iMTI4IiBjeT0iMTI4IiByPSIxMjAiLz4KPC9zdmc+Cg==")}
+.icon_close {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNzEuMDc4LDE4NC40MjJMMTg0LjkyMiw3MC41NzgiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xODQuOTIyLDE4NC40MjJMNzEuMDc4LDcwLjU3OCIvPg0KPC9zdmc+")}
+.icon_ok {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTk0LDgybC04Niw4Nkw2MSwxMjQiLz4NCjwvc3ZnPg==")}
+.icon_build {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTcyLDExbDgwLDgwLTM0LDM0TDEwNC41NSwxMUgxNzJaIi8+CiAgICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTE1OCw2NWwyNSwyNUwyOSwyNDQsNCwyMTlaIi8+CiAgICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyMSwxMDJMOTYsMTI3LDUsMzYsMzAsMTFaIi8+CiAgICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTE0NiwxMjdsNjEsNjEtMjUsMjUtNjEtNjEiLz4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjA3LDE4OGwyOSw1MS0zLDMtNTEtMjkiLz4KPC9zdmc+Cg==")}
+.icon_go {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik04Mi4wMzEsMzYuMDYxbDkxLjkyNCw5MS45MjNMODIuMDMxLDIxOS45MDgiLz4KPC9zdmc+Cg==")}
+.icon_add {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTIwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNDcsMTI4aDE2MSIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyOCwyMDhWNDciLz4NCjwvc3ZnPg==")}
+.icon_del {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xOTQuNDMxLDYyLjY3NVYyMzAuNTA4SDYzLjU2OVY2Mi42NzUiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik00Ny4zNDYsNDUuNDkySDIxMC42NTQiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xMDgsMjNoMzlWNDVIMTA4VjIzWiIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyOC41NTUsNjIuMzgyVjIxMy40MzEiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik05Mi41LDYyLjM4MlYyMTMuNDMxIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTY0LjYwNSw2Mi4zODJWMjEzLjQzMSIvPg0KPC9zdmc+")}
+.icon_json {background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik0xNzcsNGgyNGM3LjQ1NywwLDEzLjgsMS42ODUsMTgsNnM2LDEwLjM4OSw2LDE4djgybDI3LjQ2LDE3Ljk0MUwyMjUsMTQ2djgyYzAsNy41MzQtMS43NjIsMTIuNjQ1LTYsMTdzLTEwLjYyMyw3LTE4LDdIMTc3Ii8+CiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik04NCw3SDYwYy03LjQ1NiwwLTEzLjgsMS42ODUtMTgsNnMtNiwxMC4zODktNiwxOHY3OUw4LjU0LDEyNy45NDEsMzYsMTQ2djc5YzAsNy41MzQsMS43NjIsMTIuNjQ1LDYsMTdzMTAuNjIzLDcsMTgsN0g4NCIvPgogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBkPSJNMTEzLDIxMmM5LjQzNiwwLDE3LjkzNy0zLjc1MSwyMi0xMCwzLjE4Ny00LjgxMyw0LTEyLjc1MSw0LTI1VjcyIi8+CiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgY3g9IjEzOS4zNzUiIGN5PSI0My41OTQiIHI9IjIuNSIvPgo8L3N2Zz4K")}
+.scene {
+	background-color: #efefff;
+	border-radius: 12px;
+	padding: 4px;
+	margin: 4px;
+}
+.dialog {
+	padding: 4px 8px;
+	margin-top: 8px;
+	border-radius: 8px;
+	background-color: #fff;
+	font-size: 12px;
+}
+.scene_bg {
+	padding: 4px 8px;
+	border-radius: 8px;
+	background-color: #fff;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: calc(100% - 16px); 
+	height:128px;
+}
+.choice {
+	padding: 4px;
+	margin-top: 8px;
+	border-radius: 8px;
+	background-color: #cec8e3;
+	font-size: 14px;
+}
+.choice_b {
+	background-color: #efefff;
+	margin-bottom: 8px;
+	margin-top: 8px;
+	text-align: center;
+	padding: 4px;
+	border-radius: 6px;
+	font-size: 14px;
+}
+#window_zone {
+	height: 100vh; 
+	width:100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	visibility:hidden;
+	transition-duration: 0.5s;
+	z-index: 10000;
+}
+.window {
+	position: absolute;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	left: 50%;
+	background-color:#fff;
+	border-radius: 16px;
+	box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
+}
+.button{
+	border-radius: 8px;
+	width: 100%;
+	height: 90%;
+	background-color:#efefff;
+}
+.button:hover {
+	background-color:#cec8e3;
+}
+.big_button {
+	border-radius: 20px;
+	height: 40px;
+	background-color:#efefff;
+	cursor:pointer;
+}
+.big_button:hover {
+	background-color:#cec8e3;
+}
+.big_button2 {
+	border-radius: 20px;
+	height: 40px;
+	background-color:#fff;
+	box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
+	cursor:pointer;
+}
+.big_button2:hover {background-color:#cec8e3;}
+#search_block {
+	height: 40px;
+	border-left: 1px solid #cec8e3;
+	border-right: 1px solid #cec8e3;
+	font-size: 14px;
+	width:88px;
+	padding-left: 8px;
+	-webkit-touch-callout: auto;
+	-webkit-user-select: auto;
+	-khtml-user-select: auto;
+	-moz-user-select: auto;
+	-ms-user-select: auto;
+	user-select: auto;
+}
+.input_text {
+	border:0;
+	font-family:inherit;
+	-webkit-appearance: none;
+	border-bottom:1px solid #cec8e3;
+	border-radius:0;
+	padding-left:8px;
+	font-size:14px;
+	cursor: text;
+	height:28px; 
+	width:100%;
+	-webkit-touch-callout: auto;
+	-webkit-user-select: auto;
+	-khtml-user-select: auto;
+	-moz-user-select: auto;
+	-ms-user-select: auto;
+	user-select: auto;
+}
+.input_text:focus {border-bottom: 1px solid #000;}
+hr {border-top: 1px solid #cec8e3; margin:4px;}
+.checkbox_a {content:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTEyIi8+DQo8L3N2Zz4=");background: none;-webkit-appearance: none;-moz-appearance: none;appearance: none;height: 16px;width: 16px;}
+.checkbox_a:checked  {content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTEyIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTk0LDgybC04Niw4Nkw2MSwxMjQiLz4NCjwvc3ZnPg==");}
+.checkbox_b {height:22px; width:24px; content:none; background: none; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
+.checkbox_b:checked  {content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgLTggMjU2IDI1NiI+CiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTgiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xODgsODQgMTE0LDE2NiA2NywxMjIiLz4KPC9zdmc+");}
+.color_select { border-radius:16px; text-align: center;}
+.set_button { font-size: 14px; height: 40px; border-right:1px solid #cec8e3; padding:0px 8px; background-color: #efefff; }
+.set_select { background-color: #cec8e3; }
+.set_blank {overflow-x: hidden; position: absolute; overflow-y: auto; width:100%; height:60vh;}
+.window_close {position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;}
+</style>
 </head>
 <body onload="world_size();" style='background-color: #efefff;'>
 	<div id="menu_panel">
@@ -376,6 +315,7 @@ let plugins_list = {
 }
 var languare = "en";
 let languares =  {"English":"en","Japanese":"ja","Korean":"ko","Spanish":"es","Russian":"ru","French":"fr","Dutch":"nl","Abkhazian":"ab","Afar":"aa","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa, Chewa, Nyanja":"ny","Chinese":"zh","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi, Dhivehi, Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula, Fulah, Pulaar, Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","German":"de","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut, Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda, Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic, Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto, Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Portuguese":"pt","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang, Chuang":"za","Zulu":"zu"}
+let color_bg = ['#ffd4d4','#ebd4d4','#ffedd2','#edffca','#cfffd8','#deffff','#FFF','#d3f2ff','#d8e7ff','#d3d1ff','#f0e0ff','#fbddff','#e9e9e9']
 let project_files = [];
 img_file.addEventListener('change', loadFiles);
 new_novel()
@@ -384,29 +324,18 @@ function loadFiles(e) {
     var jsons = [];
     for (var i = 0; i < e.target.files.length; i++) {
         project_files.push([e.target.files[i].webkitRelativePath.replace(wf, '').replace('.mp3', ''), URL.createObjectURL(e.target.files[i])]);
-        if (e.target.files[i].type == "application/json") {
-            jsons.push([i, e.target.files[i].name])
-        }
+        if (e.target.files[i].type == "application/json") {jsons.push([i, e.target.files[i].name])}
     }
-    if (jsons.length == 1) {
-        load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))
-    } else if (jsons.length > 1) {
+    if (jsons.length == 1) {load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))} 
+	else if (jsons.length > 1) {
         var html = "<div class='window'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><br><p>Select JSON project file</p><br><hr><div style='margin: 0 16px 8px 16px; max-height: 75vh; overflow-x: hidden;'>"
-        for (var f = 0; f < jsons.length; f++) {
-            html += "<table class='button' style='width:412px; margin: 8px 0px;' onclick='load_story_edit(open_file(\"" + jsons[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'>" + jsons[f][1] + "</div></td></tr></tbody></table>"
-        }
+        for (var f = 0; f < jsons.length; f++) {html += "<table class='button' style='width:412px; margin: 8px 0px;' onclick='load_story_edit(open_file(\"" + jsons[f][1] + "\")); modal_window(\"close\"); '><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'>" + jsons[f][1] + "</div></td></tr></tbody></table>"}
         html += "</div></div>"
         modal_window("open", html)
-    } else if (jsons.length == 0) {
-        alert('json file no found')
-    }
+    } else if (jsons.length == 0) {alert('json file no found')}
 }
 function open_file(name) {
-    for (var f = 0; f < project_files.length; f++) {
-        if (project_files[f][0] == name) {
-            return (project_files[f][1])
-        }
-    }
+    for (var f = 0; f < project_files.length; f++) {if (project_files[f][0] == name) {return (project_files[f][1])}}
 }
 function new_novel() {
     story_blocks.innerHTML = ""
@@ -421,9 +350,7 @@ function new_novel() {
     };
     line_controll = [];
     document.getElementById("search_block").value = ""
-    while (story_lines.hasChildNodes()) {
-        story_lines.removeChild(story_lines.firstChild);
-    }
+    while (story_lines.hasChildNodes()) {story_lines.removeChild(story_lines.firstChild);}
 }
 function load_story_edit(url) {
     var xmlhttp = new XMLHttpRequest();
@@ -431,9 +358,8 @@ function load_story_edit(url) {
         if (this.readyState == 4 && this.status == 200) {
             new_novel()
             story_script = JSON.parse(this.responseText);
-            if (!story_script.parameters) {
-                alert("error in json file")
-            } else {
+            if (!story_script.parameters) {alert("error in json file")} 
+			else {
                 toast("json file loading completed");
                 parse_story()
                 lines()
@@ -443,9 +369,7 @@ function load_story_edit(url) {
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onerror = function() {
-        if (this.status == 0) {
-            alert('json file not loaded');
-        }
+        if (this.status == 0) {alert('json file not loaded');}
     }
 }
 var all_blocks = 0;
@@ -453,9 +377,7 @@ function parse_story() {
     story_blocks = document.getElementById("story_blocks");
     story_blocks.innerHTML = ""
     story_lines = document.getElementById("story_lines");
-    while (story_lines.hasChildNodes()) {
-        story_lines.removeChild(story_lines.firstChild);
-    }
+    while (story_lines.hasChildNodes()) {story_lines.removeChild(story_lines.firstChild);}
     all_blocks = 0;
 	if (!story_script.blocks){story_script.blocks = {}}
     while (Object.keys(story_script)[all_blocks]) {
@@ -481,9 +403,7 @@ function lang_choise() {
     story_blocks.innerHTML = ""
     line_controll = [];
     document.getElementById("search_block").value = ""
-    while (story_lines.hasChildNodes()) {
-        story_lines.removeChild(story_lines.firstChild);
-    }
+    while (story_lines.hasChildNodes()) {story_lines.removeChild(story_lines.firstChild);}
     parse_story()
     lines()
 }
@@ -516,22 +436,16 @@ function creation_block(b) {
                             line_controll.push([go, chapter.id, all + "l" + l + go + all_blocks]);
                             creaton_line(all + "l" + l + go + all_blocks)
                             all++
-                        } else {
-                            element += "<div id='" + all + "l" + l + go + all_blocks + "' class='choice'>" + go + "</div>"
-                        }
+                        } else {element += "<div id='" + all + "l" + l + go + all_blocks + "' class='choice'>" + go + "</div>"}
                     }
                 }
                 element += "</div>"
             }
-            if (story_script[chapter.id][i].background_image) {
-                element += "<div class='scene_bg' style=' background-image: url(" + open_file(languare_data(story_script[chapter.id][i].background_image)) + ")' width='100%'></div>"
-            }
+            if (story_script[chapter.id][i].background_image) {element += "<div class='scene_bg' style=' background-image: url(" + open_file(languare_data(story_script[chapter.id][i].background_image)) + ")' width='100%'></div>"}
             if (story_script[chapter.id][i].dialogs) {
                 for (var d = 0; d < story_script[chapter.id][i].dialogs.length; d++) {
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
-                    if (story_script[chapter.id][i].dialogs[d].text) {
-                        element += "<div class='dialog'>" + ((n) ? "<p><b>" + n + "</p></b><br>" : "") + "<p>" + languare_data(story_script[chapter.id][i].dialogs[d].text) + "</p></div>"
-                    }
+                    if (story_script[chapter.id][i].dialogs[d].text) {element += "<div class='dialog'>" + ((n) ? "<p><b>" + n + "</p></b><br>" : "") + "<p>" + languare_data(story_script[chapter.id][i].dialogs[d].text) + "</p></div>"}
                     if (story_script[chapter.id][i].dialogs[d].go_to) {
                         go = story_script[chapter.id][i].dialogs[d].go_to;
                         if (story_script[go]) {
@@ -539,9 +453,7 @@ function creation_block(b) {
                             line_controll.push([go, chapter.id, all + "g" + d + go + all_blocks]);
                             creaton_line(all + "g" + d + go + all_blocks)
                             all++
-                        } else {
-                            element += "<div id='" + all + "g" + d + go + all_blocks + "' class='choice'>" + go + "</div>";
-                        }
+                        } else {element += "<div id='" + all + "g" + d + go + all_blocks + "' class='choice'>" + go + "</div>";}
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice) {
                         element += "<div id='' class='choice'>"
@@ -554,9 +466,7 @@ function creation_block(b) {
                                     line_controll.push([go, chapter.id, all + "c" + d + go + all_blocks]);
                                     creaton_line(all + "c" + d + go + all_blocks)
                                     all++
-                                } else {
-                                    element += "<div id='" + all + "c" + d + go + all_blocks + "' class='choice_b'>" + ((t == "") ? go : t) + "</div>"
-                                }
+                                } else {element += "<div id='" + all + "c" + d + go + all_blocks + "' class='choice_b'>" + ((t == "") ? go : t) + "</div>"}
                             } else {
                                 var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
                                 element += "<div class='choice_b'>" + ((t == "") ? go : t) + "</div>"
@@ -573,20 +483,18 @@ function creation_block(b) {
 		if (!story_script.blocks[chapter.id]) {
 			chapter.style.left = 64 + (320 * (all_blocks - 1)) + "px";
 			chapter.style.top = 64 + (128 * (all_blocks - 1)) + "px";
-			story_script.blocks[chapter.id] = [chapter.style.left, chapter.style.top, 'none']
+			story_script.blocks[chapter.id] = [chapter.style.left, chapter.style.top, 'none', '#fff']
 		} else {
 			chapter.style.left = story_script.blocks[chapter.id][0];
 			chapter.style.top = story_script.blocks[chapter.id][1];
+			chapter.style.backgroundColor = story_script.blocks[chapter.id][3];			
 		}
         story_blocks.appendChild(chapter);
     }
 }
 function languare_data(data) {
-    if (data) {
-        return ((data[languare]) ? data[languare] : data);
-    } else {
-        return ""
-    }
+    if (data) {return ((data[languare]) ? data[languare] : data);} 
+	else {return ""}
 }
 function creaton_line(id) {
     var newLine = document.createElementNS("http://www.w3.org/2000/svg", 'line');
@@ -603,11 +511,8 @@ function save_file() {
     var ds = String(d.getSeconds());
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(story_script));
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
-    if (story_script.parameters.title) {
-        n = (story_script.parameters.title.en) ? story_script.parameters.title.en : story_script.parameters.title;
-    } else {
-        n = "new_novel";
-    }
+    if (story_script.parameters.title) {n = (story_script.parameters.title.en) ? story_script.parameters.title.en : story_script.parameters.title;} 
+	else {n = "new_novel";}
     dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", n + '_' + d.getFullYear() + '_' + (dm.length < 2 ? '0' + dm : dm) + '_' + (dd.length < 2 ? '0' + dd : dd) + '_' + (dh.length < 2 ? '0' + dh : dh) + (dm.length < 2 ? '0' + dm : dm) + (ds.length < 2 ? '0' + ds : ds) + '.json');
     dlAnchorElem.click();
@@ -615,11 +520,8 @@ function save_file() {
 function lines(elem) {
     var to_go = document.getElementsByClassName("to_go");
     for (var x = 0; x < to_go.length; x++) {
-        if (elem == line_controll[x][1] || elem == line_controll[x][0]) {
-            document.getElementById(line_controll[x][2] + "l").style.visibility = 'visible'
-        } else {
-            document.getElementById(line_controll[x][2] + "l").style.visibility = 'hidden'
-        }
+        if (elem == line_controll[x][1] || elem == line_controll[x][0]) {document.getElementById(line_controll[x][2] + "l").style.visibility = 'visible'} 
+		else {document.getElementById(line_controll[x][2] + "l").style.visibility = 'hidden'}
         var title_block;
         if (document.getElementById(line_controll[x][1] + "_content").style.display == 'none') {
             title_block = document.getElementById(line_controll[x][0]).getBoundingClientRect();
@@ -664,9 +566,7 @@ var moveSlider = function(slider, direction, id) {
 }
 function control_dlock() {
     all_blocks = document.getElementsByClassName("story_block");
-    for (var i = 0; i < all_blocks.length; i++) {
-        movie_dlock(all_blocks[i].id)
-    }
+    for (var i = 0; i < all_blocks.length; i++) {movie_dlock(all_blocks[i].id)}
 }
 var scroll_block = false;
 function movie_dlock(id) {
@@ -681,27 +581,21 @@ function movie_dlock(id) {
         focus_dlock.style.WebkitAnimation = false;
         story_blocks.appendChild(focus_dlock);
         moveAt(e);
-
         function moveAt(e) {
             focus_dlock.style.left = e.pageX - shiftX + 'px';
             focus_dlock.style.top = e.pageY - shiftY + 'px';
             lines(id)
         }
-        document.onmousemove = function(e) {
-            moveAt(e);
-        };
+        document.onmousemove = function(e) {moveAt(e);};
         focus_dlock.onmouseup = function() {
-			story_script.blocks[focus_dlock.id] = [focus_dlock.style.left, focus_dlock.style.top, document.getElementById(focus_dlock.id + "_content").style.display ]
+			story_script.blocks[focus_dlock.id] = [focus_dlock.style.left, focus_dlock.style.top, document.getElementById(focus_dlock.id + "_content").style.display, focus_dlock.style.backgroundColor]
             document.onmousemove = null;
             focus_dlock.onmouseup = null;
             scroll_block = false;
             world_size()
         };
     }
-    focus_dlock.ondragstart = function() {
-        return false;
-    };
-
+    focus_dlock.ondragstart = function() {return false;};
     function getCoords(elem) {
         var box = elem.getBoundingClientRect();
         return {
@@ -719,11 +613,8 @@ function world_size() {
 }
 function block_open(id) {
     var e = document.getElementById(id);
-    if (e.style.display === "block") {
-        e.style.display = "none";
-    } else {
-        e.style.display = "block";
-    }
+    if (e.style.display === "block") {e.style.display = "none";} 
+	else {e.style.display = "block";}
     lines()
 }
 var startmove_x = null;
@@ -809,9 +700,7 @@ function search_block() {
                 scroll_to_block(li[i]);
                 ferst = true;
             }
-        } else {
-            li[i].style.opacity = 0.25;
-        }
+        } else {li[i].style.opacity = 0.25;}
     }
 }
 function go_to_block(bl) {
@@ -835,17 +724,13 @@ function toast (message) {
 }
 function about() {
     var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size: 22px;'>Tuesday js visual editor</p><hr><p style='font-size: 14px;'>Version: 0.01 (alpha)</p><br><table style='font-size: 14px; border-spacing:10px; border-collapse: separate;'><tr><td align='right'>Home: </td><td align='left'><a href='https://kirilllive.github.io/Tuesday' target='_blank'>https://kirilllive.github.io/Tuesday</a></td></tr><tr><td align='right'>itch.io: </td><td align='left'><a href='https://kirill-live.itch.io/tuesday' target='_blank'>https://kirill-live.itch.io/tuesday</a></td></tr><tr><td align='right'>GitHub: </td><td align='left'><a href='https://github.com/Kirilllive/Tuesday' target='_blank'>https://github.com/Kirilllive/Tuesday</a></td></tr></table><br><p>Thanks for the help from users<hr><a href='https://itch.io/profile/laurentk' target='_blank'>LaurentK</a></p><br><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1000v200H0z' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p></div></div>"
-    modal_window("open", html)
+    modal_window("open", html);
 }
 function build() {
     var font_family = story_script.parameters.font
     var font_size = story_script.parameters.font_size
     var plugins_code = "";
-    if (story_script.parameters.plugins){
-        for (var i = 0; i < story_script.parameters.plugins.length; i++) {
-            plugins_code += "<script type='text/javascript' src='" + plugins_list[story_script.parameters.plugins[i]].file + "'><\/script>"
-        }
-    }
+    if (story_script.parameters.plugins){for (var i = 0; i < story_script.parameters.plugins.length; i++) {plugins_code += "<script type='text/javascript' src='" + plugins_list[story_script.parameters.plugins[i]].file + "'><\/script>"}}
     delete story_script.parameters['plugins'];
     delete story_script.parameters['font'];
     delete story_script.parameters['font_size'];
@@ -861,7 +746,7 @@ function build() {
 function jsonedit() {
     var story_preview = JSON.stringify(story_script, null, '\t')
     var html = "<div class='window' style='padding:24px 8px; width: 75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>JSON Edit</p><br><p><textarea id='editJson' class='input_text' wrap='off' style='resize: none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid #cec8e3;'>" + story_preview + "</textarea></p><br><table class='big_button' width='256px' onclick='apply_json( document.getElementById(\"editJson\").value)'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
-    modal_window("open", html)
+    modal_window("open", html);
 }
 function apply_json(data) {
     new_novel();
@@ -872,18 +757,38 @@ function apply_json(data) {
     toast("script updated");
 }
 function new_block() {
-	var html = "<div class='window' style='padding:24px 8px; width: 360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><p style='font-size: 14px;'>It is recommended to enter id in Latin letters.</p><br><br><table style='width:80%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text'></td></tr></tbody></table><br><br><table class='big_button' width='256px' onclick='create_block()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create block</td><td width='42px'></td></tr></tbody></table> </div>"
-    modal_window("open", html)
+	var html = "<div class='window' style='padding:24px 8px; width: 360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><br>"
+		+"<form id='color_chec'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text'></td></tr></tbody></table><br><p style='font-size: 14px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse: separate;'><tbody><tr>"
+		+"<td class='color_select' style='background-color:"+color_bg[0]+";'><input class='checkbox_b' type='radio' name='color' value='0'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[1]+";'><input class='checkbox_b' type='radio' name='color' value='1'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[2]+";'><input class='checkbox_b' type='radio' name='color' value='2'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[3]+";'><input class='checkbox_b' type='radio' name='color' value='3'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[4]+";'><input class='checkbox_b' type='radio' name='color' value='4'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[5]+";'><input class='checkbox_b' type='radio' name='color' value='5'></td>"
+		+"<td class='color_select' style='background-color:#fbfbfb;'><input class='checkbox_b' type='radio' name='color' value='6'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[7]+";'><input class='checkbox_b' type='radio' name='color' value='7'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[8]+";'><input class='checkbox_b' type='radio' name='color' value='8'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[9]+";'><input class='checkbox_b' type='radio' name='color' value='9'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[10]+";'><input class='checkbox_b' type='radio' name='color' value='10'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[11]+";'><input class='checkbox_b' type='radio' name='color' value='11'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[12]+";'><input class='checkbox_b' type='radio' name='color' value='12'></td>"
+		+ "</tr></tbody></table></form><br><br><table class='big_button' width='256px' onclick='create_block()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create block</td><td width='42px'></td></tr></tbody></table> </div>"
+    modal_window("open", html);
 }
 function create_block() {
+	var color_chec =  document.forms.color_chec;
+	for (i = 0; i < color_chec.length; i++) {
+		if (color_chec[i].checked) {
+		color_chec = color_bg[color_chec[i].value]
+		break;}
+	}
 	var new_id = document.getElementById('block_id').value.replace(new RegExp(' ',"g"), '_');
 	if (new_id != '' && !story_script[new_id]) {
 		story_script[new_id] = [];
-		for (var i = 0 ; i < Object.keys(story_script).length; i++ ) {
-			if (Object.keys(story_script)[i] == new_id){creation_block(i);break;}
-		}
+		for (var i = 0 ; i < Object.keys(story_script).length; i++ ) {if (Object.keys(story_script)[i] == new_id){creation_block(i);break;}}
 		new_id = document.getElementById(new_id)
 		var rect = new_id.getBoundingClientRect();
+		new_id.style.backgroundColor = color_chec;
 		new_id.style.left = html.scrollLeft + ((html.clientWidth / 2) - (rect.width / 2)) + "px";
         new_id.style.top = html.scrollTop + ((html.clientHeight / 2) - (rect.height / 2)) + "px";
 		new_id.style.animation = "flash 2s 1";
@@ -900,8 +805,23 @@ function create_block() {
     }
 }
 function edit_block(id) {
-	var html = "<div class='window' style='padding:24px 8px; width: 360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><p style='font-size: 14px;'>It is recommended to enter id in Latin letters.</p><br><br><table style='width:90%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td align='right' style='width:48px;'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text' value='" + id + "'></td></tr></tbody></table><br><br><table class='big_button' width='256px' onclick='delet_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_del'></td><td align='center'>Delet block</td><td width='42px'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='updata_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Update block</td><td width='42px'></td></tr></tbody></table> </div>"
-    modal_window("open", html)
+	var html = "<div class='window' style='padding:24px 8px; width: 360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr>"
+		+"<form id='color_chec'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text' value=" + id + "></td></tr></tbody></table><br><p style='font-size: 14px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse: separate;'><tbody><tr>"
+		+"<td class='color_select' style='background-color:"+color_bg[0]+";'><input class='checkbox_b' type='radio' name='color' value='0'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[1]+";'><input class='checkbox_b' type='radio' name='color' value='1'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[2]+";'><input class='checkbox_b' type='radio' name='color' value='2'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[3]+";'><input class='checkbox_b' type='radio' name='color' value='3'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[4]+";'><input class='checkbox_b' type='radio' name='color' value='4'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[5]+";'><input class='checkbox_b' type='radio' name='color' value='5'></td>"
+		+"<td class='color_select' style='background-color:#fbfbfb;'><input class='checkbox_b' type='radio' name='color' value='6'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[7]+";'><input class='checkbox_b' type='radio' name='color' value='7'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[8]+";'><input class='checkbox_b' type='radio' name='color' value='8'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[9]+";'><input class='checkbox_b' type='radio' name='color' value='9'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[10]+";'><input class='checkbox_b' type='radio' name='color' value='10'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[11]+";'><input class='checkbox_b' type='radio' name='color' value='11'></td>"
+		+"<td class='color_select' style='background-color:"+color_bg[12]+";'><input class='checkbox_b' type='radio' name='color' value='12'></td>"
+		+ "</tr></tbody></table></form><br><br><table class='big_button' width='256px' onclick='delet_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_del'></td><td align='center'>Delet block</td><td width='42px'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='updata_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Update block</td><td width='42px'></td></tr></tbody></table> </div>"
+    modal_window("open", html);
 }
 function delet_block(id) {
 	delete story_script[id];
@@ -914,6 +834,13 @@ function delet_block(id) {
 	modal_window ('close');
 }
 function updata_block(old_id){
+	var color_chec =  document.forms.color_chec;
+	for (i = 0; i < color_chec.length; i++) {
+		if (color_chec[i].checked) {
+		story_script.blocks[old_id][3] = color_bg[color_chec[i].value]
+		document.getElementById(old_id).style.backgroundColor = color_bg[color_chec[i].value]
+		break;}
+	}
 	var new_id = document.getElementById('block_id').value.replace(new RegExp(' ',"g"), '_');
 	if (old_id != new_id && !story_script[new_id]) {
 		var story_rename = JSON.stringify(story_script)
@@ -929,12 +856,8 @@ function setup() {
     var block_list;
     var i
     var li = document.getElementsByClassName("story_block");
-    if (!story_script.parameters.plugins) {
-        story_script.parameters.plugins = []
-    }
-    for (i = 0; i < li.length; i++) {
-        block_list += "<option value='" + li[i].id + "' " + ((li[i].id == story_script.parameters.launch_story) ? "selected" : "") + ">" + li[i].id + "</option>"
-    }
+    if (!story_script.parameters.plugins) {story_script.parameters.plugins = []}
+    for (i = 0; i < li.length; i++) {block_list += "<option value='" + li[i].id + "' " + ((li[i].id == story_script.parameters.launch_story) ? "selected" : "") + ">" + li[i].id + "</option>"}
     var var_list = "<table width='100%' id='var_tablet'><tbody>";
     if (story_script.parameters.variables) {
         for (i = 0; i < Object.keys(story_script.parameters.variables).length; i++) {
@@ -980,18 +903,16 @@ function setup() {
     title_list += "</tbody></table><div onclick=\"add_tr('var_title')\" class='icon icon_add' style='margin:16px 0 0 45%;height: 26px; width: 26px; cursor:pointer;'></div>"
     var html = "<div class='window' style='padding:24px 16px; width: 480px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>" +
         "<table width='100%' style='height: 60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>" +
-        "<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='6' style='position: relative;'>"
+        "<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='6' style='position: relative;'>"+
         //
-        +
         "<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>" +
         "<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px; width:60%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave) ? 'checked' : '') + "></td></tr>" +
         "<tr><td align='right'>story launch block </td><td align='left''><select class='input_text' id='launch_story'>" + ((block_list) ? block_list : '') + "</select></td></tr>" +
         "<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file) ? story_script.parameters.style_file : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>font family </td><td align='left'><input id='font' class='input_text' value='" + ((story_script.parameters.font) ? story_script.parameters.font : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>font size </td><td align='left'><input id='font_size' class='input_text' value='" + ((story_script.parameters.font_size) ? story_script.parameters.font_size : '') + "' type='text'></td></tr>" +
-        "</table><br><p align='left' style='font-size: 14px; margin-left:8px;'>name project</p><hr>" + title_list + "</div>"
+        "</table><br><p align='left' style='font-size: 14px; margin-left:8px;'>name project</p><hr>" + title_list + "</div>"+
         //
-        +
         "<div id='blank_4' style='visibility:hidden;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>" +
         "<tr><td align='right'>next </td><td align='left'><input id='key_next' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.next) ? story_script.parameters.key.next : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>back </td><td align='left'><input id='key_back' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.back) ? story_script.parameters.key.back : '') + "' type='text'></td></tr>" +
@@ -1000,15 +921,13 @@ function setup() {
         "<tr><td align='right'>full screen </td><td align='left'><input id='key_full_screen' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.full_screen) ? story_script.parameters.key.full_screen : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>launch screen </td><td align='left'><input id='key_launch_story' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.launch_story) ? story_script.parameters.key.launch_story : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>load autosave </td><td align='left' style='width:60%;'><input id='key_load_autosave' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.load_autosave) ? story_script.parameters.key.load_autosave : '') + "' type='text'></td></tr>" +
-        "</table></div>"
+        "</table></div>"+
         //
-        +
         "<div id='blank_3' style='visibility:hidden;' class='set_blank'>" + var_list + "</div>" +
         "<div id='blank_2' style='visibility:hidden;' class='set_blank'>" + sound_list + "</div>" +
         "<div id='blank_5' style='visibility:hidden;' class='set_blank'>Characters</div>" +
-        "<div id='blank_1' style='visibility:hidden;' class='set_blank'>" + plugins_show + "</div>"
+        "<div id='blank_1' style='visibility:hidden;' class='set_blank'>" + plugins_show + "</div>"+
         //
-        +
         "</td></tr>" +
         "<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Add-on</td></tr>" +
         "<tr><td id='set_3' onclick='set_menu(2)' align='right' class='set_button'>Sounds</td></tr>" +
@@ -1038,9 +957,7 @@ function add_tr(id) {
     var td3 = document.createElement("td");
     if (id == 'var_title') {
         var lang = '';
-        for (l = 0; l < Object.keys(languares).length; l++) {
-            lang += "<option value='" + languares[Object.keys(languares)[l]] + "' >" + languares[Object.keys(languares)[l]].toUpperCase() + " - " + Object.keys(languares)[l] + "</option>"
-        }
+        for (l = 0; l < Object.keys(languares).length; l++) {lang += "<option value='" + languares[Object.keys(languares)[l]] + "' >" + languares[Object.keys(languares)[l]].toUpperCase() + " - " + Object.keys(languares)[l] + "</option>"}
         td1.innerHTML = "<select class='input_text title_lang'>" + lang + "</select>";
         td1.style = "padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top: 10px;";
         td2.innerHTML = "<input class='title_name input_text' style='padding-top: 10px;' type='text' placeholder='translated title'>";
@@ -1082,17 +999,13 @@ function apply_setup() {
     li_v = document.getElementsByClassName("var_vol");
     story_script.parameters.variables = {};
     for (i = 0; i < li_n.length; i++) {
-        if (li_n[i].value != "") {
-            story_script.parameters.variables[li_n[i].value] = li_v[i].value
-        }
+        if (li_n[i].value != "") {story_script.parameters.variables[li_n[i].value] = li_v[i].value}
     }
     li_n = document.getElementsByClassName("sound_name");
     li_v = document.getElementsByClassName("sound_path");
     story_script.parameters.sounds = {};
     for (i = 0; i < li_n.length; i++) {
-        if (li_n[i].value != "") {
-            story_script.parameters.sounds[li_n[i].value] = li_v[i].value
-        }
+        if (li_n[i].value != "") { story_script.parameters.sounds[li_n[i].value] = li_v[i].value}
     }
     li_n = document.getElementsByClassName("title_lang");
     li_v = document.getElementsByClassName("title_name");
@@ -1105,9 +1018,7 @@ function apply_setup() {
     li_v = document.getElementsByClassName("chec_plugin");
     story_script.parameters.plugins = [];
     for (i = 0; i < li_v.length; i++) {
-        if (li_v[i].checked) {
-            story_script.parameters.plugins.push(li_v[i].id);
-        }
+        if (li_v[i].checked) {story_script.parameters.plugins.push(li_v[i].id);}
     }
 	lang_select()
     modal_window('close')
