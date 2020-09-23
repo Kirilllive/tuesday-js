@@ -110,6 +110,11 @@
 <input type="file" id="json_file" style="display: none; position: fixed;"/>
 <a id="downloadAnchorElem" style="display:none; position: fixed;"></a>
 <button type="button" onclick='json_file.click()' >Open</button> 
+<select name="cars" id="cars">
+  <option onclick='languare="ru";creation_dialog ();' >ru</option>
+  <option onclick='languare="en";creation_dialog ();' >en</option>
+  <option onclick='languare="jp";creation_dialog ();' >jp</option>
+</select>
 <button type="button" onclick='window_open()' >Edit</button> 
 <button type="button" onclick='save_file()' >Export</button> 
 <script>
