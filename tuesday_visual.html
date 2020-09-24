@@ -395,18 +395,19 @@ function lang_select(){
 		item = document.createElement("option");
 		item.text = story_script.parameters.languares[i].toUpperCase()
 		item.value = story_script.parameters.languares[i]
-		item.setAttribute("onclick", "languare = '"+story_script.parameters.languares[i]+"'; lang_choise();");
 		lang_list.add(item)
     }
 }
-function lang_choise() {
+document.getElementById("language_view").onchange = function(e) {
+	languare = document.getElementById("language_view").value;
     story_blocks.innerHTML = ""
     line_controll = [];
     document.getElementById("search_block").value = ""
     while (story_lines.hasChildNodes()) {story_lines.removeChild(story_lines.firstChild);}
     parse_story()
     lines()
-}
+};
+function lang_choise() {}
 function creation_block(b) {
     var chapter = document.createElement("div");
     var element = "";
