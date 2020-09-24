@@ -33,12 +33,8 @@
         },
         "launch_story": "main_menu",
         "languares": ["en", "ru", "ja", "ko"],
-        "title": {
-            "ru": "Страховой агент",
-            "en": "Insurance agent",
-            "ja": "荒れ地の保険",
-            "ko": "荒れ地の保険"
-        },
+        "title":"test",
+        "autosave": true,
 		"style_file":"style.css",
         "sounds": {
             "click": "audio/click"
@@ -145,7 +141,7 @@
                 "art_size": ["100%", "100%"],
                 "sound": "click"
             }, {
-                "go_to": "load",
+                "go_to": "tue_load_autosave",
                 "position": ["50%", "0", "0", "8px"],
                 "size": ["128px", "48px"],
                 "className": "borders button_border",
