@@ -103,17 +103,17 @@
 		}
         </style>
     </head>
-<body onload="load_story('data', data)">
+<body onload="data = JSON.parse(localStorage.getItem('newJSON')); load_story('data', data)">
 
 
 <div style='position: absolute; right:32px; top:32px; z-index:2000;'>
 <input type="file" id="json_file" style="display: none; position: fixed;"/>
 <a id="downloadAnchorElem" style="display:none; position: fixed;"></a>
 <button type="button" onclick='json_file.click()' >Open</button> 
-<select name="cars" id="cars">
-  <option onclick='languare="ru";creation_dialog ();' >ru</option>
-  <option onclick='languare="en";creation_dialog ();' >en</option>
-  <option onclick='languare="jp";creation_dialog ();' >jp</option>
+<select id="new_lang">
+  <option value='ru' >ru</option>
+  <option value='en' >en</option>
+  <option value='jp' >jp</option>
 </select>
 <button type="button" onclick='window_open()' >Edit</button> 
 <button type="button" onclick='save_file()' >Export</button> 
@@ -123,6 +123,10 @@ img_file.addEventListener('change', loadFiles);
 function loadFiles(e) {
 	hash_list(URL.createObjectURL(e.target.files[0]))
 }
+document.getElementById("new_lang").onchange = function(e) {
+	languare = document.getElementById("new_lang").value;
+	creation_dialog ();
+};
 function window_open() {
 	document.getElementById('edit_window').style.visibility = "visible";
 	document.getElementById('edit_ru').value = story_json[tue_story][scene].dialogs[dialog].text.ru;
@@ -134,6 +138,7 @@ function apply_edit() {
 	story_json[tue_story][scene].dialogs[dialog].text.ru = document.getElementById('edit_ru').value;
 	story_json[tue_story][scene].dialogs[dialog].text.en = document.getElementById('edit_en').value;
 	story_json[tue_story][scene].dialogs[dialog].text.jp = document.getElementById('edit_jp').value;
+	localStorage.setItem("newJSON", JSON.stringify(story_json));
 	creation_dialog ()
 	toast("Изменения приняты")
 }
@@ -155,6 +160,10 @@ function save_file() {
     dlAnchorElem.setAttribute("download", 'insurance_agent.json');
     dlAnchorElem.click();
 }
+
+
+
+
 </script>
 </div>
 <div id='edit_window' style='visibility:hidden; width:90vw; top:50vh; left:50vw; position: fixed; background-color:#fff; z-index:3000; transform: translateX(-50%) translateY(-50%);'>
