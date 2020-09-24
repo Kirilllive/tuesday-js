@@ -129,6 +129,7 @@ function get_lang() {
 			}
 		}
 	}
+	tuesday.dispatchEvent(new Event('script_executed'));
 	creation_buttons();
     creation_scene();
 } function creation_buttons() {

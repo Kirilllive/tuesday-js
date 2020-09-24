@@ -162,8 +162,6 @@ function save_file() {
 }
 
 
-
-
 </script>
 </div>
 <div id='edit_window' style='visibility:hidden; width:90vw; top:50vh; left:50vw; position: fixed; background-color:#fff; z-index:3000; transform: translateX(-50%) translateY(-50%);'>
@@ -11520,6 +11518,7 @@ tuesday.addEventListener('load', function(event) {toast("load")});
 tuesday.addEventListener('save', function(event) {toast("save")});
 tuesday.addEventListener('ointment_add', function(event) {toast("Добавлена мазь от облучения")});
 tuesday.addEventListener('ointment_set', function(event) {toast("Получена мазь от облучения")});
+tuesday.addEventListener('script_executed', function(event) {story_json = JSON.parse(localStorage.getItem('newJSON')); });
 </script>
 
 
