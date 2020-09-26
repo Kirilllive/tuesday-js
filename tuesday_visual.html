@@ -279,8 +279,10 @@ hr {border-top: 1px solid #cec8e3; margin:4px;}
 	</div>
 	<input type="file" id="json_file" style="display: none; position: fixed;" multiple webkitdirectory/>
 	<a id="downloadAnchorElem" style="display:none; position: fixed;"></a>
+    <div id='world' style='-ms-transform: scale(1); transform: scale(1);'>
 	<svg id="story_lines" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"></svg>
 	<div id="story_blocks"></div>
+    </div>
 	<div id='window_zone' align='center'></div>
     <div id="toast">
         <table border="0" height="100%" width="100%">
@@ -1026,6 +1028,19 @@ function apply_setup() {
     modal_window('close')
     toast("parameters updated");
 }
+document.addEventListener('keydown', function(event) {
+    var scale = Number(document.getElementById("world").style.transform.replace('scale(','').replace(')',''))
+    if (event.code == 'Equal') {
+        scale += 0.1;
+        document.getElementById("world").style.transform = 'scale(' + Math.min(2,scale) + ')';
+    }
+    else if (event.code == 'Minus') {
+        scale += -0.1;
+        document.getElementById("world").style.transform = 'scale(' + Math.max(0.25,scale) + ')';
+    }
+});
+Equal
+Minus
 </script>
 </body>
 </html>
