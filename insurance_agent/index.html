@@ -117,6 +117,7 @@
 </select>
 <button type="button" onclick='window_open()' >Edit</button> 
 <button type="button" onclick='save_file()' >Export</button> 
+<button type="button" onclick='save_tsv()' >Export TSV</button> 
 <script>
 var img_file = document.getElementById('json_file');
 img_file.addEventListener('change', loadFiles);
@@ -160,7 +161,35 @@ function save_file() {
     dlAnchorElem.setAttribute("download", 'insurance_agent.json');
     dlAnchorElem.click();
 }
-
+function save_tsv() {
+    var tsvText = "";
+    for (storyId in story_json) {
+        var story = story_json[storyId];
+        for (sceneIdx in story) {
+            var scene = story[sceneIdx];
+            var dialogs = scene["dialogs"];
+            if (dialogs) {
+                for (dlgIdx in dialogs) {
+                    var text = dialogs[dlgIdx]["text"];
+                    if (text) {
+                        var teller = dialogs[dlgIdx]["name"] || "";
+                        tsvText += storyId + "\t";
+                        tsvText += teller + "\t";
+                        tsvText += text["ru"] + "\t"; // TODO: do not hardcode lnguages here
+                        tsvText += text["en"] + "\t";
+                        tsvText += text["ja"] + "\n";
+                    }
+                }
+            }
+        }
+    }
+    
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(tsvText); 
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", 'insurance_agent.tsv');
+    dlAnchorElem.click();
+}
 
 </script>
 </div>
