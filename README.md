@@ -1,5 +1,5 @@
 ![Tuesday](https://img.itch.zone/aW1nLzQzMDYwNjAuanBn/original/wfrS1w.jpg)
-# Tuesday
+# Tuesday JS
 is a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. There is support for the Apache Cordova framework for building native mobile and desktop applications. The engine uses standard Html document elements like div and img, which makes it possible to use almost any media format supported by browsers, including vector graphics in svg format, gif animations and the use of extensive css styles.
 
 Home Page: https://kirilllive.github.io/Tuesday/
@@ -8,7 +8,12 @@ Documentation: https://kirilllive.github.io/Tuesday/tuesday_doc.html
 
 itch.io: https://kirill-live.itch.io/tuesday
 
+# Visual editor
+
+visual editor for web browser https://kirilllive.github.io/Tuesday/tuesday_visual.html
+
 ![Tuesday](https://img.itch.zone/aW1nLzQyODk0NzkucG5n/original/Y1hXdw.png)
+
 
 # Getting started
 
@@ -17,7 +22,8 @@ The engine file "tuesday.js" downloaded from https://kirilllive.github.io/Tuesda
 
 step 2
 Index.html file with id = 'tuesday' elements to display the novel
-```<html>
+```html
+<html>
     <head>
     </head>
     <!--After loading, the load_story function is launched, indicating a file or array with history-->
@@ -32,7 +38,7 @@ Index.html file with id = 'tuesday' elements to display the novel
 
 step 3
 Create a story file story.json
-```
+```javascript
 {
     "parameters": {
         "text_panel": {
@@ -106,7 +112,8 @@ Create a story file story.json
 Possible startup problems
 
 Index.html file with id = 'tuesday' elements to display the novel
-```<html>
+```html
+<html>
     <head>
     </head>
     <!--Change load_story value from ('file', 'story.json') to ('data', story) -->
