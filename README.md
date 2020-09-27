@@ -1,4 +1,4 @@
-![Tuesday](https://img.itch.zone/aW1nLzQxNTI0OTQuanBn/original/F9HH9o.jpg)
+![Tuesday](https://img.itch.zone/aW1nLzQzMDYwNjAuanBn/original/wfrS1w.jpg)
 # Tuesday
 is a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. There is support for the Apache Cordova framework for building native mobile and desktop applications. The engine uses standard Html document elements like div and img, which makes it possible to use almost any media format supported by browsers, including vector graphics in svg format, gif animations and the use of extensive css styles.
 
@@ -7,6 +7,8 @@ Home Page: https://kirilllive.github.io/Tuesday/
 Documentation: https://kirilllive.github.io/Tuesday/tuesday_doc.html
 
 itch.io: https://kirill-live.itch.io/tuesday
+
+![Tuesday](https://img.itch.zone/aW1nLzQyODk0NzkucG5n/original/Y1hXdw.png)
 
 # Getting started
 
