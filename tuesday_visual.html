@@ -444,7 +444,7 @@ function creation_block(b) {
     if (chapter.id != "parameters" && chapter.id != "blocks") {
         for (var i = 0; i < story_script[chapter.id].length; i++) {
             element += "<div class='scene'>"
-					+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
+					+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
             if (story_script[chapter.id][i].legacy_choice) {
                 element += "<div width='100%'>"
                 for (var l = 0; l < story_script[chapter.id][i].legacy_choice.length; l++) {
@@ -476,7 +476,7 @@ function creation_block(b) {
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
                     if (story_script[chapter.id][i].dialogs[d].text) {
 						element += "<div class='dialog'>" 
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>" 
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>" 
 								+ ((n) ? "<p><b>" + n + "</p></b><br>" : "") + "<p>" + languare_data(story_script[chapter.id][i].dialogs[d].text) + "</p></div>"
 					}
                     if (story_script[chapter.id][i].dialogs[d].go_to) {
@@ -490,7 +490,7 @@ function creation_block(b) {
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice) {
                         element += "<div id='' class='choice'>"
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
                         for (var c = 0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++) {
                             go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
@@ -509,7 +509,7 @@ function creation_block(b) {
                         element += "</div>"
                     }
                 }
-                element += "<table class='big_button3 big_button3a' style='margin:16px 0 4px 0; width:100%;' onclick='add_element_s()'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element</td><td width='16px'></td></tr></tbody></table>"
+                element += "<table class='big_button3 big_button3a' style='margin:16px 0 4px 0; width:100%;' onmousedown='add_element_s()'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element</td><td width='16px'></td></tr></tbody></table>"
             }
             element += "</div>"
         }
