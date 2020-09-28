@@ -476,7 +476,7 @@ function creation_block(b) {
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
                     if (story_script[chapter.id][i].dialogs[d].text) {
 						element += "<div class='dialog'>" 
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(\"up\")'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(\"down\")'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>" 
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>" 
 								+ ((n) ? "<p><b>" + n + "</p></b><br>" : "") + "<p>" + languare_data(story_script[chapter.id][i].dialogs[d].text) + "</p></div>"
 					}
                     if (story_script[chapter.id][i].dialogs[d].go_to) {
@@ -490,7 +490,7 @@ function creation_block(b) {
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice) {
                         element += "<div id='' class='choice'>"
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(\"up\")'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(\"down\")'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
                         for (var c = 0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++) {
                             go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
@@ -891,11 +891,7 @@ function add_element_s(){
 	alert('creation dialog')
 }
 function move_elenetn(arr, o, n) {
-	var new_index = o + n;
-    if (new_index >= arr.length) {
-        var k = new_index - arr.length + 1;
-        while (k--) {arr.push(undefined);}
-    }
+	var new_index = ((o+n)<0)?o:o+n;
     arr.splice(new_index, 0, arr.splice(o, 1)[0]);
     update_novel();
 };
