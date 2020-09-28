@@ -514,7 +514,7 @@ function creation_block(b) {
             element += "</div>"
         }
         element += "<table class='big_button3 big_button3b' style='margin:8px; width:calc(100% - 16px);' onclick='add_element_b()'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element</td><td width='16px'></td></tr></tbody></table>"
-        chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + chapter.id + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_setup'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display:" + ((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>" + element + "</div>";
+        chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + ((chapter.id.length > 17) ? chapter.id.slice(0, 15) + "...": chapter.id ) + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_setup'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display:" + ((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>" + element + "</div>";
         chapter.className = "story_block panel";
 		if (!story_script.blocks[chapter.id]) {
 			chapter.style.left = 64 + (320 * (all_blocks - 1)) + "px";
@@ -627,7 +627,7 @@ function movie_dlock(id) {
 			story_script.blocks[focus_dlock.id] = [focus_dlock.style.left, focus_dlock.style.top, document.getElementById(focus_dlock.id + "_content").style.display, focus_dlock.style.backgroundColor]
             document.onmousemove = null;
             focus_dlock.onmouseup = null;
-            scroll_block = false;
+            if (window_zone.style.visibility != "visible"){scroll_block = false};
             world_size()
         };
     }
@@ -856,7 +856,7 @@ function edit_block(id) {
 		+"<td class='color_select' style='background-color:"+color_bg[10]+";'><input class='checkbox_b' type='radio' name='color' value='10'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[11]+";'><input class='checkbox_b' type='radio' name='color' value='11'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[12]+";'><input class='checkbox_b' type='radio' name='color' value='12'></td>"
-		+ "</tr></tbody></table></form><br><br><table class='big_button' width='256px' onclick='delet_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_del'></td><td align='center'>Delet block</td><td width='42px'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='updata_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Update block</td><td width='42px'></td></tr></tbody></table> </div>"
+		+ "</tr></tbody></table></form><br><br><table class='big_button' width='256px' onclick='delet_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_del'></td><td align='center'>Delet block</td><td width='42px'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='updata_block(\"" + id + "\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Update block</td><td width='42px'></td></tr></tbody></table> </div>";
     modal_window("open", html);
 }
 function delet_block(id) {
@@ -978,7 +978,7 @@ function setup() {
         "<tr><td id='set_5' onclick='set_menu(4)' align='right' class='set_button'>Keyboard</td></tr>" +
         "<tr><td id='set_6' onclick='set_menu(5)' align='right' class='set_button' style='border-radius:0 0 0 16px;'>Characters</td></tr>" +
         "<tr><td style='border-right:1px solid #cec8e3;'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='apply_setup()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
-    modal_window("open", html)
+    modal_window("open", html);
 }
 function set_menu(name) {
     var li = document.getElementsByClassName("set_button");
