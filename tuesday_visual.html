@@ -359,7 +359,6 @@ function open_file(name) {
     for (var f = 0; f < project_files.length; f++) {if (project_files[f][0] == name) {return (project_files[f][1])}}
 }
 function new_novel() {
-    story_blocks.innerHTML = ""
     story_script = {
         "parameters": {
             "plugins": [],
@@ -370,9 +369,15 @@ function new_novel() {
         },
         "blocks": {}
     };
+	update_novel()
+}
+function update_novel() {
+    story_blocks.innerHTML = ""
     line_controll = [];
     document.getElementById("search_block").value = ""
     while (story_lines.hasChildNodes()) {story_lines.removeChild(story_lines.firstChild);}
+	parse_story();
+    lines();
 }
 function load_story_edit(url) {
     var xmlhttp = new XMLHttpRequest();
@@ -439,7 +444,7 @@ function creation_block(b) {
     if (chapter.id != "parameters" && chapter.id != "blocks") {
         for (var i = 0; i < story_script[chapter.id].length; i++) {
             element += "<div class='scene'>"
-            element += "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up'></td><td width='22px' class='icon_m icon_down'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
+					+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
             if (story_script[chapter.id][i].legacy_choice) {
                 element += "<div width='100%'>"
                 for (var l = 0; l < story_script[chapter.id][i].legacy_choice.length; l++) {
@@ -470,7 +475,9 @@ function creation_block(b) {
                 for (var d = 0; d < story_script[chapter.id][i].dialogs.length; d++) {
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
                     if (story_script[chapter.id][i].dialogs[d].text) {
-						element += "<div class='dialog'>" + "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up'></td><td width='22px' class='icon_m icon_down'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>" + ((n) ? "<p><b>" + n + "</p></b><br>" : "") + "<p>" + languare_data(story_script[chapter.id][i].dialogs[d].text) + "</p></div>"
+						element += "<div class='dialog'>" 
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(\"up\")'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(\"down\")'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>" 
+								+ ((n) ? "<p><b>" + n + "</p></b><br>" : "") + "<p>" + languare_data(story_script[chapter.id][i].dialogs[d].text) + "</p></div>"
 					}
                     if (story_script[chapter.id][i].dialogs[d].go_to) {
                         go = story_script[chapter.id][i].dialogs[d].go_to;
@@ -483,7 +490,7 @@ function creation_block(b) {
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice) {
                         element += "<div id='' class='choice'>"
-						element += "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up'></td><td width='22px' class='icon_m icon_down'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onclick='move_elenetn(\"up\")'></td><td width='22px' class='icon_m icon_down' onclick='move_elenetn(\"down\")'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
                         for (var c = 0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++) {
                             go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
@@ -502,11 +509,11 @@ function creation_block(b) {
                         element += "</div>"
                     }
                 }
-                element += "<table class='big_button3 big_button3a' style='margin:16px 0 4px 0; width:100%;' onclick='new_block()'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element</td><td width='16px'></td></tr></tbody></table>"
+                element += "<table class='big_button3 big_button3a' style='margin:16px 0 4px 0; width:100%;' onclick='add_element_s()'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element</td><td width='16px'></td></tr></tbody></table>"
             }
             element += "</div>"
         }
-        element += "<table class='big_button3 big_button3b' style='margin:8px; width:calc(100% - 16px);' onclick='new_block()'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element</td><td width='16px'></td></tr></tbody></table>"
+        element += "<table class='big_button3 big_button3b' style='margin:8px; width:calc(100% - 16px);' onclick='add_element_b()'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element</td><td width='16px'></td></tr></tbody></table>"
         chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + chapter.id + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_setup'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display:" + ((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>" + element + "</div>";
         chapter.className = "story_block panel";
 		if (!story_script.blocks[chapter.id]) {
@@ -854,11 +861,7 @@ function edit_block(id) {
 }
 function delet_block(id) {
 	delete story_script[id];
-	let story_rename = story_script;
-	new_novel();
-	story_script = story_rename;
-	parse_story();
-	lines();
+	update_novel();
 	toast("block removed");
 	modal_window ('close');
 }
@@ -881,14 +884,21 @@ function updata_block(old_id){
     } else if(story_script[new_id]){toast("this name is used by other blocks");}
 	modal_window ('close');
 }
-
 function add_element_b(){
-	alert('add_element_b')
+	alert('creation scene')
 }
 function add_element_s(){
-	alert('add_element_s')
+	alert('creation dialog')
 }
-
+function move_elenetn(arr, o, n) {
+	var new_index = o + n;
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {arr.push(undefined);}
+    }
+    arr.splice(new_index, 0, arr.splice(o, 1)[0]);
+    update_novel();
+};
 function setup() {
     var block_list;
     var i
