@@ -1093,19 +1093,20 @@ function csv_export() {
 					for (d = 0; d < story_script[k][i].dialogs.length; d++) {
 						if (story_script[k][i].dialogs[d].text) {
 							CSV += languare_data(story_script[k][i].dialogs[d].name) + ',';
-							for (l = 0; l < story_script.parameters.languares.length; l++) {CSV += story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ')  + ',';}
+							for (l = 0; l < story_script.parameters.languares.length; l++) {CSV += story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ').replace(new RegExp(';',"g"), '')  + ',';}
 							CSV += '\r';
 						}
 						else if (story_script[k][i].dialogs[d].choice) {
-							CSV += 'choice,';
 							for (r = 0; r < story_script[k][i].dialogs[d].choice.length; r++) {
 								if (story_script[k][i].dialogs[d].choice[r].text){
+									CSV += 'choice,';
 									for (l = 0; l < story_script.parameters.languares.length; l++) {
-										if (story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV += story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ')  + ',';}
+										if (story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV += story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ').replace(new RegExp(';',"g"), '')  + ',';}
 										else {CSV += ',';}
 									}
+									CSV += '\r';
 								}
-							} CSV += '\r';
+							}
 						}
 					} CSV += '\r';
 				}
