@@ -277,7 +277,7 @@ hr {border-top: 1px solid #cec8e3; margin:4px;}
 					<td align='center' title='Save JSON script project' onclick='save_file()' class='icon button_menu icon_save'></td>
 					<td align='center' title='Settings project' onclick='setup()' class='icon button_menu icon_setup'></td>
                     <td align='center' title='Edit json text' onclick='jsonedit()' class='icon button_menu icon_json'></td>
-                    <td align='center' title='Export all text to file' onclick='csv_export()' class='icon button_menu icon_csv'></td>
+                    <td align='center' title='Export all text to CSV file' onclick='csv_export()' class='icon button_menu icon_csv'></td>
                     <td align='center' title='About visual editor' onclick='about()' class='icon button_menu icon_about'></td>
                     <td align='center' style='width:88px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
                     <td align='center' style='width:40px;'><select class='input_text' id='language_view' style='height: 40px; border-right: 1px solid #cec8e3; border-bottom: 0'><option value='en'>EN</option></select></td>
@@ -423,7 +423,6 @@ document.getElementById("language_view").onchange = function(e) {
     parse_story()
     lines()
 };
-function lang_choise() {}
 function creation_block(b) {
     var chapter = document.createElement("div");
     var element = "";
@@ -1055,38 +1054,52 @@ document.addEventListener('keydown', function(event) {
     }
 });
 function csv_export() {
-    var n;
-    var arrData = [{
-        "name": "test",
-        "en": "test",
-        "ru": "test",
-        "ja": "test"
-    }, {
-        "name": "test",
-        "en": "test",
-        "ru": "test",
-        "ja": "test",
-    }, {
-        "name": "test",
-        "en": "test",
-        "ru": "test",
-        "ja": "test"
-    }]
-    var CSV = 'name,en,ru,ja \r';
-    for (var i = 0; i < arrData.length; i++) {
-        var row = "";
-        for (var index in arrData[i]) {row += '"' + arrData[i][index] + '",';}
-        row.slice(0, row.length - 1);
-        CSV += row + '\r\n';
+    var n,i,d,l,r;
+    var CSV = 'name;';
+	for (i = 0; i < story_script.parameters.languares.length; i++) {CSV += story_script.parameters.languares[i] + ',';}
+	CSV += '\r';
+	all_blocks = 0;
+    while (Object.keys(story_script)[all_blocks]) {
+		var k = Object.keys(story_script)[all_blocks]
+		if (k != "parameters" && k != "blocks" ){
+			CSV += k + '\r';
+			for (var i = 0; i < story_script[k].length; i++) {
+				if (story_script[k][i].dialogs) {
+					for (d = 0; d < story_script[k][i].dialogs.length; d++) {
+						if (story_script[k][i].dialogs[d].text) {
+							CSV += languare_data(story_script[k][i].dialogs[d].name) + ',';
+							for (l = 0; l < story_script.parameters.languares.length; l++) {
+								CSV += story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ')  + ',';
+							}
+							CSV += '\r';
+						}
+						else if (story_script[k][i].dialogs[d].choice) {
+							CSV += 'choice,';
+							for (r = 0; r < story_script[k][i].dialogs[d].choice.length; r++) {
+								if (story_script[k][i].dialogs[d].choice[r].text){
+									for (l = 0; l < story_script.parameters.languares.length; l++) {
+										if (story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){
+											CSV += story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ')  + ',';
+										} else {CSV += ',';}
+									}
+								}
+							}
+							CSV += '\r';
+						}
+					}
+					CSV += '\r';
+				}
+			}
+			CSV += '\r';
+		}
+		all_blocks++;
     }
     if (story_script.parameters.title) {n = "translate_kit_" + ((story_script.parameters.title.en) ? story_script.parameters.title.en : story_script.parameters.title)}
     else {n = "translate_kit";}
-    var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
-    //var uri = 'data:application/vnd.ms-excel,' + escape(CSV)
+    var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(CSV);
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href", uri);
     dlAnchorElem.download = n + ".csv";
-    //dlAnchorElem.download = n + ".xls";
     dlAnchorElem.click();
 }
 </script>
