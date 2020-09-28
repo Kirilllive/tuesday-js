@@ -359,6 +359,7 @@ function new_novel() {
             "plugins": [],
             "title": "",
             "launch_story": "",
+			"languares": [],
             "key": {}
         },
         "blocks": {}
@@ -1068,9 +1069,7 @@ function csv_export() {
 					for (d = 0; d < story_script[k][i].dialogs.length; d++) {
 						if (story_script[k][i].dialogs[d].text) {
 							CSV += languare_data(story_script[k][i].dialogs[d].name) + ',';
-							for (l = 0; l < story_script.parameters.languares.length; l++) {
-								CSV += story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ')  + ',';
-							}
+							for (l = 0; l < story_script.parameters.languares.length; l++) {CSV += story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ')  + ',';}
 							CSV += '\r';
 						}
 						else if (story_script[k][i].dialogs[d].choice) {
@@ -1078,21 +1077,16 @@ function csv_export() {
 							for (r = 0; r < story_script[k][i].dialogs[d].choice.length; r++) {
 								if (story_script[k][i].dialogs[d].choice[r].text){
 									for (l = 0; l < story_script.parameters.languares.length; l++) {
-										if (story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){
-											CSV += story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ')  + ',';
-										} else {CSV += ',';}
+										if (story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV += story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp(',',"g"), 'ˏ')  + ',';}
+										else {CSV += ',';}
 									}
 								}
-							}
-							CSV += '\r';
+							} CSV += '\r';
 						}
-					}
-					CSV += '\r';
+					} CSV += '\r';
 				}
-			}
-			CSV += '\r';
-		}
-		all_blocks++;
+			} CSV += '\r';
+		} all_blocks++;
     }
     if (story_script.parameters.title) {n = "translate_kit_" + ((story_script.parameters.title.en) ? story_script.parameters.title.en : story_script.parameters.title)}
     else {n = "translate_kit";}
