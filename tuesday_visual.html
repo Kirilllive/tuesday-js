@@ -428,12 +428,7 @@ function lang_select(){
 }
 document.getElementById("language_view").onchange = function(e) {
 	languare = document.getElementById("language_view").value;
-    story_blocks.innerHTML = ""
-    line_controll = [];
-    document.getElementById("search_block").value = ""
-    while (story_lines.hasChildNodes()) {story_lines.removeChild(story_lines.firstChild);}
-    parse_story()
-    lines()
+	update_novel()
 };
 function creation_block(b) {
     var chapter = document.createElement("div");
@@ -490,7 +485,7 @@ function creation_block(b) {
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice) {
                         element += "<div id='' class='choice'>"
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
                         for (var c = 0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++) {
                             go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
