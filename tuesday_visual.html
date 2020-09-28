@@ -232,6 +232,7 @@ line {
     height: 32px;
     background-color:#efefff;
     cursor:pointer;
+    font-size: 14px;
 }
 .big_button3:hover {background-color:#cec8e3;}
 .big_button3a {background-color:#fff;}
@@ -513,11 +514,11 @@ function creation_block(b) {
                         element += "</div>"
                     }
                 }
-                element += "<table class='big_button3 big_button3a' id='add_" + chapter.id +"_"+i+"' style='margin:16px 0 4px 0; width:100%;' onmouseup='add_element_s(this.id)'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element</td><td width='16px'></td></tr></tbody></table>"
+                element += "<table class='big_button3 big_button3a' id='add_" + chapter.id +"_"+i+"' style='margin:16px 0 4px 0; width:100%;' onmouseup='add_element_s(this.id)'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element to scene</td><td width='16px'></td></tr></tbody></table>"
             }
             element += "</div>"
         }
-        element += "<table class='big_button3 big_button3b' id='add_" + chapter.id +"' style='margin:8px; width:calc(100% - 16px);' onmouseup=\"add_element_b(this.id)\"><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element</td><td width='16px'></td></tr></tbody></table>"
+        element += "<table class='big_button3 big_button3b' id='add_" + chapter.id +"' style='margin:8px; width:calc(100% - 16px);' onmouseup=\"add_element_b(this.id)\"><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element to block</td><td width='16px'></td></tr></tbody></table>"
         chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + ((chapter.id.length > 17) ? chapter.id.slice(0, 15) + "...": chapter.id ) + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_setup'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display:" + ((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>" + element + "</div>";
         chapter.className = "story_block panel";
 		if (!story_script.blocks[chapter.id]) {
