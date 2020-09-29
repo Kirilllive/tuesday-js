@@ -178,6 +178,7 @@ line {
 	background-color: #efefff;
 	margin-bottom: 8px;
 	margin-top: 8px;
+	min-height:26px;
 	text-align: center;
 	padding: 4px;
 	border-radius: 6px;
@@ -457,28 +458,28 @@ function creation_block(b) {
     if (chapter.id != "parameters" && chapter.id != "blocks") {
         for (var i = 0; i < story_script[chapter.id].length; i++) {
             element += "<div class='scene' align='center'>"
-					+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='32px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td></td><td width='32px' class='icon_m icon_edit'></td></tr></tbody></table>"
+					+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='32px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='22px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td></td><td width='32px' class='icon_m icon_edit' title='Scene edit'></td></tr></tbody></table>"
             if (story_script[chapter.id][i].legacy_choice) {
                 element += "<div width='100%'>"
                 for (var l = 0; l < story_script[chapter.id][i].legacy_choice.length; l++) {
                     if (story_script[chapter.id][i].legacy_choice[l][0]) {
                         go = story_script[chapter.id][i].legacy_choice[l][3];
                         if (story_script[go]) {
-                            element += "<table id='" + all + "l" + l + go + all_blocks + "' class='choice to_go' width='100%'><tbody><tr><td style=padding:4px;>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
+                            element += "<table id='" + all + "l" + l + go + all_blocks + "' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
                             line_controll.push([go, chapter.id, all + "l" + l + go + all_blocks]);
                             creaton_line(all + "l" + l + go + all_blocks)
                             all++
                         } else {
-                            element += "<table id='" + all + "l" + l + go + all_blocks + "' class='choice' width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
+                            element += "<table id='" + all + "l" + l + go + all_blocks + "' class='choice_b' width='100%'><tbody><tr><td>" + story_script[chapter.id][i].legacy_choice[l][0] + " " + story_script[chapter.id][i].legacy_choice[l][1] + " " + story_script[chapter.id][i].legacy_choice[l][2] + "</td><td align='center'>" + go + "</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
                         }
                     } else if (story_script[chapter.id][i].legacy_choice[l].go_to) {
                         go = story_script[chapter.id][i].legacy_choice[l].go_to;
                         if (story_script[go]) {
-                            element += "<table id='" + all + "l" + l + go + all_blocks + "' class='choice to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>" + go + "</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
+                            element += "<table id='" + all + "l" + l + go + all_blocks + "' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>" + go + "</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
                             line_controll.push([go, chapter.id, all + "l" + l + go + all_blocks]);
                             creaton_line(all + "l" + l + go + all_blocks)
                             all++
-                        } else {element += "<div id='" + all + "l" + l + go + all_blocks + "' class='choice'>" + go + "</div>"}
+                        } else {element += "<div id='" + all + "l" + l + go + all_blocks + "' class='choice_b'>" + go + "</div>"}
                     }
                 }
                 element += "</div>"
@@ -486,18 +487,18 @@ function creation_block(b) {
             if (story_script[chapter.id][i].background_image) {element += "<div class='scene_bg' style=' background-image: url(" + open_file(languare_data(story_script[chapter.id][i].background_image)) + ")' width='100%'></div>"}
             if (story_script[chapter.id][i].dialogs) {
                 for (var d = 0; d < story_script[chapter.id][i].dialogs.length; d++) {
-					element += "<div class='dialog'>" + "<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td></tr></tbody></table>" 
+					element += "<div class='dialog'>" + "<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='22px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td></tr></tbody></table>" 
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
                     if (story_script[chapter.id][i].dialogs[d].text) {
 						element += "<div class='dialog_element' align='left'>" 
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>" + ((n) ? "<p><b>" + n + "</p></b>" : "") + "</td><td width='24px' class='icon_m icon_edit'></td></tr></tbody></table>"
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>" + ((n) ? "<p><b>" + n + "</p></b>" : "") + "</td><td width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table>"
 								+ "<p>" + languare_data(story_script[chapter.id][i].dialogs[d].text) + "</p></div>"
 					}
                     if (story_script[chapter.id][i].dialogs[d].go_to) {
                         go = story_script[chapter.id][i].dialogs[d].go_to;
                         if (story_script[go]) {
 						element += "<div class='dialog_element'>" 
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td width='24px' class='icon_m icon_edit'></td></tr></tbody></table>"
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
 								+ "<table id='" + all + "g" + d + go + all_blocks + "' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding: 4px;'>" + go + "</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
                             line_controll.push([go, chapter.id, all + "g" + d + go + all_blocks]);
                             creaton_line(all + "g" + d + go + all_blocks)
@@ -507,32 +508,32 @@ function creation_block(b) {
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice) {
                         element += "<div id='' class='dialog_element'>"
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td width='24px' class='icon_m icon_edit'></td></tr></tbody></table>"
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
                         for (var c = 0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++) {
                             go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
                                 var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
                                 if (story_script[go]) {
-                                    element += "<table id='" + all + "c" + d + go + all_blocks + "' style='width:100%;' class='choice_b to_go'><tbody><tr><td class='button_block'></td><td>" + ((t == "") ? go : t) + "</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
+                                    element += "<table id='" + all + "c" + d + go + all_blocks + "' style='width:100%;' class='choice_b to_go'><tbody><tr><td class='button_block'></td><td style='padding:4px;'>" + ((t == "") ? go : t) + "</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
                                     line_controll.push([go, chapter.id, all + "c" + d + go + all_blocks]);
                                     creaton_line(all + "c" + d + go + all_blocks)
                                     all++
-                                } else {element += "<div id='" + all + "c" + d + go + all_blocks + "' class='choice_b'>" + ((t == "") ? go : t) + "</div>"}
+                                } else {element += "<table id='" + all + "c" + d + go + all_blocks + "' style='width:100%;' class='choice_b'><tbody><tr><td class='button_block'></td><td style='padding:4px;'>" + ((t == "") ? go : t) + "</td><td class='button_block icon'></td></tr></tbody></table>"}
                             } else {
                                 var t = languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
-                                element += "<div class='choice_b'>" + ((t == "") ? go : t) + "</div>"
+								element += "<table style='width:100%;' class='choice_b'><tbody><tr><td class='button_block'></td><td style='padding:4px;'>" + ((t == "") ? go : t) + "</td><td class='button_block icon'></td></tr></tbody></table>"
                             }
                         }
                         element += "</div>"
                     }
-					element += "<div align='right'><div id='add_" + chapter.id +"_"+i+"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add'></div></div></div>"
+					element += "<div align='right'><div id='add_" + chapter.id +"_"+i+"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add' title='Add element to dialog'></div></div></div>"
                 }
-				element += "<div align='right' style='margin-right:4px;'><div id='add_" + chapter.id +"_"+i+"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add'></div></div>"
+				element += "<div align='right' style='margin-right:4px;'><div id='add_" + chapter.id +"_"+i+"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
             }
             element += "</div>"
         }
-        element += "<div align='right' style='margin-right:8px;'><div id='add_" + chapter.id +"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add'></div></div>"
-        chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + ((chapter.id.length > 17) ? chapter.id.slice(0, 15) + "...": chapter.id ) + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_setup'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display:" + ((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>" + element + "</div>";
+        element += "<div align='right' style='margin-right:8px;'><div id='add_" + chapter.id +"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add' title='Add element to block'></div></div>"
+        chapter.innerHTML = "<div style='margin:2px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + ((chapter.id.length > 17) ? chapter.id.slice(0, 15) + "...": chapter.id ) + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_setup'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display:" + ((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>" + element + "</div>";
         chapter.className = "story_block panel";
 		if (!story_script.blocks[chapter.id]) {
 			chapter.style.left = 64 + (320 * (all_blocks - 1)) + "px";
