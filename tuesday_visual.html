@@ -25,6 +25,7 @@
 	background-color: #fff;
 	box-shadow: 0px 2px 24px rgba(110,95,165,0.25);
 	border-radius: 16px;
+	padding: 4px;
 }
 @keyframes flash {
 	0% {box-shadow: 0px 2px 32px rgba(90,75,145,1); background-color: #cec8e3;}
@@ -50,7 +51,7 @@ line {
 }
 #toast{
 	position: fixed;
-	font-size: 14px;
+	font-size: 12px;
 	opacity: 0;
 	bottom: -10%;
 	transform: translateX(-50%);
@@ -138,17 +139,23 @@ line {
 .icon_scen{background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiICBkPSJNMTMwLjA1Myw1My4xNzRjMTEuNjExLDAsMjMuNDI4LTExLjAxOSwyMy40MjgtMjIuNjhTMTQyLjIzLDYuOTcsMTMwLjYxOSw2Ljk3cy0yMy4xNSwxMi4xNTMtMjMuMTUsMjMuODA3UzExOC40NDcsNTMuMTc0LDEzMC4wNTMsNTMuMTc0Wm01MS41MzgsNjcuNTE5Yy02LjEyNC0xOC40NDMtOC43MDYtMjYuMjM1LTExLjYwNi0zNC45NzgtMi45MDUtMTEuNjU2LTIuOTA1LTguNzQzLTUuODA2LTE3LjQ4NnMtOC43MDUtMTEuNjYxLTE0LjUxMS0xMS42NjFIMTExLjk0MWMtNS44MDYsMC0xNC41MTIsMi45MTgtMTcuNDE3LDExLjY2MXMtMi45LDguNzQzLTUuODA2LDE3LjQ4Ni04LjcwNiwyNi4yMzQtMTEuNjA2LDM0Ljk3OC04LjcxMSwyMC40LDAsMjMuMzE2LDE0LjUxMS0xNC41NzMsMTcuNDEyLTIzLjMxNiwyLjkwNi04Ljc0NCw1LjgwNi0xNy40ODdjMC42MTgtMS41OTMsMS43NzYtNi42NTgsNC4wMzMtNS44MSwxLjQyMiwwLjU3LDAsMi41NTEtMS4xMzMsNS44MS0yLjI0Niw4LjI1Mi0yMC4zMTcsNjQuMTI0LTIwLjMxNyw2NC4xMjRoMjMuMjIydjY5Ljk1MWMwLDUuODMsMiwxMS43NDksOS44ODUsMTEuNzQ5LDcuNzA3LDAsMTAuNDMyLTUuOTE5LDEwLjQzMi0xMS43NDlWMTc2LjA3M2MwLTUuODMuMTktOC42NTUsMS42MjgtOC42NTUsMS40NjIsMCwxLjI3MiwyLjgyNSwxLjI3Miw4LjY1NXY2MS4yMDhjMCwzLjYyMSwxLjgxMywxMS41NjcsMTAuMzM4LDExLjU2Nyw3LjcxMiwwLDkuOTc4LTcuNjgyLDkuOTc4LTExLjU2N1YxNjcuMzNoMjMuMjE3cy0xNS43NDItNTUuMzIzLTE3Ljk5My02NC4yNjRjLTAuODYxLTQuMS0xLjk4OC01LjYzMy0uNTY2LTYuNTE4LDEuOTYyLS41MzguOTUyLDAuMjQ4LDQuMDQ4LDkuNTcxLDIuOSw4Ljc0MywyLjksOC43NDMsNS44MDUsMTcuNDg2LDIsNi4wMzIsNS44MDYsMjAuNCwxMS42MDYsMjAuNEMxODQuNSwxNDQuMDA5LDE4Ny40LDEzOC4xNzksMTgxLjU5MSwxMjAuNjkzWiIvPgogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiAgZD0iTTcsNzMuNjMzVjdINzMuNjMzTTI0OSw3My42MzNWN0gxODIuMzY3TTcsMTgxLjM2N1YyNDhINzMuNjMzTTI0OSwxODEuMzY3VjI0OEgxODIuMzY3Ii8+Cjwvc3ZnPgo=")}
 .icon_if{background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIGQ9Ik0xMjgsNkwyNTEsMTI5LDEyOCwyNTEsNiwxMjlaIi8+CjxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBkPSJNMTM1LDE4NVY3MmgyNiIvPgo8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgZD0iTTk0LDEwMXY4NG0tNTUuNjguMiIvPgo8Y2lyY2xlIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBjeD0iOTQiIGN5PSI3NCIgcj0iMiIvPgo8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgZD0iTTE2NiwxMDFIMTE4Ii8+Cjwvc3ZnPgo=")}
 .scene {
-	background-color: #efefff;
+	background-color: #cec8e3;
 	border-radius: 12px;
 	padding: 4px;
-	margin: 4px;
+	margin-top:4px;
+}
+.dialog_element {
+	padding: 4px;
+	font-size: 12px;
+	border-radius: 6px;
+	background-color: #fff;
+	margin-bottom:4px;
 }
 .dialog {
-	padding: 4px 8px;
-	margin-top: 8px;
+	margin-top: 4px;
+	padding: 4px;
 	border-radius: 8px;
-	background-color: #fff;
-	font-size: 12px;
+	background-color: #efefff;
 }
 .scene_bg {
 	padding: 4px 8px;
@@ -160,12 +167,12 @@ line {
 	width: calc(100% - 16px); 
 	height:128px;
 }
-.choice {
+.element {
 	padding: 4px;
-	margin-top: 8px;
-	border-radius: 8px;
-	background-color: #cec8e3;
-	font-size: 14px;
+	border-radius: 6px;
+	font-size: 12px;
+	background-color: #fff;
+	margin-bottom:4px;
 }
 .choice_b {
 	background-color: #efefff;
@@ -174,7 +181,7 @@ line {
 	text-align: center;
 	padding: 4px;
 	border-radius: 6px;
-	font-size: 14px;
+	font-size: 12px;
 }
 #context_menu {
     position: absolute;
@@ -232,16 +239,15 @@ line {
     height: 32px;
     background-color:#efefff;
     cursor:pointer;
-    font-size: 14px;
+    font-size: 12px;
 }
 .big_button3:hover {background-color:#cec8e3;}
-.big_button3a {background-color:#fff;}
 .big_button3b {background-color:#efefff;}
 #search_block {
 	height: 40px;
 	border-left: 1px solid #cec8e3;
 	border-right: 1px solid #cec8e3;
-	font-size: 14px;
+	font-size: 12px;
 	width:88px;
 	padding-left: 8px;
 	-webkit-touch-callout: auto;
@@ -251,6 +257,7 @@ line {
 	-ms-user-select: auto;
 	user-select: auto;
 }
+.add_button {height:28px; width:28px;}
 .input_text {
 	border:0;
 	font-family:inherit;
@@ -276,7 +283,7 @@ hr {border-top: 1px solid #cec8e3; margin:4px;}
 .checkbox_b {height:22px; width:24px; content:none; background: none; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
 .checkbox_b:checked  {content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgLTggMjU2IDI1NiI+CiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTgiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xODgsODQgMTE0LDE2NiA2NywxMjIiLz4KPC9zdmc+");}
 .color_select { border-radius:16px; text-align: center;}
-.set_button { font-size: 14px; height: 40px; border-right:1px solid #cec8e3; padding:0px 8px; background-color: #efefff; }
+.set_button { font-size: 12px; height: 40px; border-right:1px solid #cec8e3; padding:0px 8px; background-color: #efefff; }
 .set_select { background-color: #cec8e3; }
 .set_blank {overflow-x: hidden; position: absolute; overflow-y: auto; width:100%; height:60vh;}
 .window_close {position:absolute; right: 0px; top: 0px; absolute; height: 40px; width: 40px; cursor:pointer;}
@@ -414,6 +421,7 @@ function parse_story() {
     story_blocks = document.getElementById("story_blocks");
     story_blocks.innerHTML = ""
     story_lines = document.getElementById("story_lines");
+	story_blocks.setAttribute("align", "center");
     while (story_lines.hasChildNodes()) {story_lines.removeChild(story_lines.firstChild);}
     all_blocks = 0;
 	if (!story_script.blocks){story_script.blocks = {}}
@@ -448,8 +456,8 @@ function creation_block(b) {
     var go = "";
     if (chapter.id != "parameters" && chapter.id != "blocks") {
         for (var i = 0; i < story_script[chapter.id].length; i++) {
-            element += "<div class='scene'>"
-					+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
+            element += "<div class='scene' align='center'>"
+					+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='32px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td></td><td width='32px' class='icon_m icon_edit'></td></tr></tbody></table>"
             if (story_script[chapter.id][i].legacy_choice) {
                 element += "<div width='100%'>"
                 for (var l = 0; l < story_script[chapter.id][i].legacy_choice.length; l++) {
@@ -478,24 +486,28 @@ function creation_block(b) {
             if (story_script[chapter.id][i].background_image) {element += "<div class='scene_bg' style=' background-image: url(" + open_file(languare_data(story_script[chapter.id][i].background_image)) + ")' width='100%'></div>"}
             if (story_script[chapter.id][i].dialogs) {
                 for (var d = 0; d < story_script[chapter.id][i].dialogs.length; d++) {
+					element += "<div class='dialog'>" + "<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td></tr></tbody></table>" 
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
                     if (story_script[chapter.id][i].dialogs[d].text) {
-						element += "<div class='dialog'>" 
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>" 
-								+ ((n) ? "<p><b>" + n + "</p></b><br>" : "") + "<p>" + languare_data(story_script[chapter.id][i].dialogs[d].text) + "</p></div>"
+						element += "<div class='dialog_element' align='left'>" 
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>" + ((n) ? "<p><b>" + n + "</p></b>" : "") + "</td><td width='24px' class='icon_m icon_edit'></td></tr></tbody></table>"
+								+ "<p>" + languare_data(story_script[chapter.id][i].dialogs[d].text) + "</p></div>"
 					}
                     if (story_script[chapter.id][i].dialogs[d].go_to) {
                         go = story_script[chapter.id][i].dialogs[d].go_to;
                         if (story_script[go]) {
-                            element += "<table id='" + all + "g" + d + go + all_blocks + "' class='choice to_go' style='width:100%;'><tbody><tr><td style='padding: 4px;'>" + go + "</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
+						element += "<div class='dialog_element'>" 
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td width='24px' class='icon_m icon_edit'></td></tr></tbody></table>"
+								+ "<table id='" + all + "g" + d + go + all_blocks + "' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding: 4px;'>" + go + "</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('" + go + "')\"> </td></tr></tbody></table>"
                             line_controll.push([go, chapter.id, all + "g" + d + go + all_blocks]);
                             creaton_line(all + "g" + d + go + all_blocks)
                             all++
-                        } else {element += "<div id='" + all + "g" + d + go + all_blocks + "' class='choice'>" + go + "</div>";}
+                        } else {element += "<div id='" + all + "g" + d + go + all_blocks + "' class='choice_b'>" + go + "</div>";}
+						element += "</div>"
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice) {
-                        element += "<div id='' class='choice'>"
-								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td width='22px' class='icon_m icon_up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='22px' class='icon_m icon_down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td></td><td width='22px' class='icon_m icon_edit'></td></tr></tbody></table>"
+                        element += "<div id='' class='dialog_element'>"
+								+ "<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td width='24px' class='icon_m icon_edit'></td></tr></tbody></table>"
                         for (var c = 0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++) {
                             go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined") {
@@ -513,12 +525,13 @@ function creation_block(b) {
                         }
                         element += "</div>"
                     }
+					element += "<div align='right'><div id='add_" + chapter.id +"_"+i+"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add'></div></div></div>"
                 }
-                element += "<table class='big_button3 big_button3a' id='add_" + chapter.id +"_"+i+"' style='margin:16px 0 4px 0; width:100%;' onmouseup='add_element_s(this.id)'><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element to scene</td><td width='16px'></td></tr></tbody></table>"
+				element += "<div align='right' style='margin-right:4px;'><div id='add_" + chapter.id +"_"+i+"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add'></div></div>"
             }
             element += "</div>"
         }
-        element += "<table class='big_button3 big_button3b' id='add_" + chapter.id +"' style='margin:8px; width:calc(100% - 16px);' onmouseup=\"add_element_b(this.id)\"><tbody><tr><td width='32px' class='icon icon_add'></td><td align='center'>Add element to block</td><td width='16px'></td></tr></tbody></table>"
+        element += "<div align='right' style='margin-right:8px;'><div id='add_" + chapter.id +"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add'></div></div>"
         chapter.innerHTML = "<div style='margin:8px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('" + chapter.id + "_content')\" class='button_block icon_show'></td><td align='center'>" + ((chapter.id.length > 17) ? chapter.id.slice(0, 15) + "...": chapter.id ) + "</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('" + chapter.id + "')\" class='icon button_block icon_setup'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('" + chapter.id + "')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='" + chapter.id + "_content' style='display:" + ((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>" + element + "</div>";
         chapter.className = "story_block panel";
 		if (!story_script.blocks[chapter.id]) {
@@ -764,7 +777,7 @@ function toast (message) {
     x.classList.add("toast_anim");
 }
 function about() {
-    var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size: 22px;'>Tuesday js visual editor</p><hr><p style='font-size: 14px;'>Version: 0.01 (alpha)</p><br><table style='font-size: 14px; border-spacing:10px; border-collapse: separate;'><tr><td align='right'>Home: </td><td align='left'><a href='https://kirilllive.github.io/Tuesday' target='_blank'>https://kirilllive.github.io/Tuesday</a></td></tr><tr><td align='right'>itch.io: </td><td align='left'><a href='https://kirill-live.itch.io/tuesday' target='_blank'>https://kirill-live.itch.io/tuesday</a></td></tr><tr><td align='right'>GitHub: </td><td align='left'><a href='https://github.com/Kirilllive/Tuesday' target='_blank'>https://github.com/Kirilllive/Tuesday</a></td></tr></table><br><p>Thanks for the help from users<hr><a href='https://itch.io/profile/laurentk' target='_blank'>LaurentK</a></p><br><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1000v200H0z' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p></div></div>"
+    var html = "<div class='window' style='padding:24px 16px; width: 412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size: 22px;'>Tuesday js visual editor</p><hr><p style='font-size: 14px;'>Version: 0.2 (alpha)</p><br><table style='font-size: 12px; border-spacing:10px; border-collapse: separate;'><tr><td align='right'>Home: </td><td align='left'><a href='https://kirilllive.github.io/Tuesday' target='_blank'>https://kirilllive.github.io/Tuesday</a></td></tr><tr><td align='right'>itch.io: </td><td align='left'><a href='https://kirill-live.itch.io/tuesday' target='_blank'>https://kirill-live.itch.io/tuesday</a></td></tr><tr><td align='right'>GitHub: </td><td align='left'><a href='https://github.com/Kirilllive/Tuesday' target='_blank'>https://github.com/Kirilllive/Tuesday</a></td></tr></table><br><p>Thanks for the help from users<hr><a href='https://itch.io/profile/laurentk' target='_blank'>LaurentK</a></p><br><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1000v200H0z' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p></div></div>"
     modal_window("open", html);
 }
 function build() {
@@ -799,7 +812,7 @@ function apply_json(data) {
 }
 function new_block() {
 	var html = "<div class='window' style='padding:24px 8px; width: 360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><br>"
-		+"<form id='color_chec'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text'></td></tr></tbody></table><br><p style='font-size: 14px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse: separate;'><tbody><tr>"
+		+"<form id='color_chec'><table style='width:100%; font-size: 12px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text'></td></tr></tbody></table><br><p style='font-size: 12px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse: separate;'><tbody><tr>"
 		+"<td class='color_select' style='background-color:"+color_bg[0]+";'><input class='checkbox_b' type='radio' name='color' value='0'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[1]+";'><input class='checkbox_b' type='radio' name='color' value='1'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[2]+";'><input class='checkbox_b' type='radio' name='color' value='2'></td>"
@@ -847,7 +860,7 @@ function create_block() {
 }
 function edit_block(id) {
 	var html = "<div class='window' style='padding:24px 8px; width: 360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr>"
-		+"<form id='color_chec'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text' value=" + id + "></td></tr></tbody></table><br><p style='font-size: 14px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse: separate;'><tbody><tr>"
+		+"<form id='color_chec'><table style='width:100%; font-size: 12px; border-spacing:10px; border-collapse: separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text' value=" + id + "></td></tr></tbody></table><br><p style='font-size: 12px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse: separate;'><tbody><tr>"
 		+"<td class='color_select' style='background-color:"+color_bg[0]+";'><input class='checkbox_b' type='radio' name='color' value='0'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[1]+";'><input class='checkbox_b' type='radio' name='color' value='1'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[2]+";'><input class='checkbox_b' type='radio' name='color' value='2'></td>"
@@ -979,7 +992,7 @@ function setup() {
                 "' type='text'></td><td onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";
         }
     }
-    var plugins_show = "<table id='plugin' style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>"
+    var plugins_show = "<table id='plugin' style='width:100%; font-size: 12px; border-spacing:10px; border-collapse: separate;'>"
     var plugins_name
     for (i = 0; i < Object.keys(plugins_list).length; i++) {
         plugins_name = Object.keys(plugins_list)[i]
@@ -991,15 +1004,15 @@ function setup() {
         "<table width='100%' style='height: 60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>" +
         "<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>General</td><td width='100%' valign='top' rowspan='6' style='position: relative;'>"+
         //
-        "<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>" +
+        "<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%; font-size: 12px; border-spacing:10px; border-collapse: separate;'>" +
         "<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px; width:60%;'><input id='autosave' type='checkbox' class='checkbox_a' " + ((story_script.parameters.autosave) ? 'checked' : '') + "></td></tr>" +
         "<tr><td align='right'>story launch block </td><td align='left''><select class='input_text' id='launch_story'>" + ((block_list) ? block_list : '') + "</select></td></tr>" +
         "<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='" + ((story_script.parameters.style_file) ? story_script.parameters.style_file : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>font family </td><td align='left'><input id='font' class='input_text' value='" + ((story_script.parameters.font) ? story_script.parameters.font : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>font size </td><td align='left'><input id='font_size' class='input_text' value='" + ((story_script.parameters.font_size) ? story_script.parameters.font_size : '') + "' type='text'></td></tr>" +
-        "</table><br><p align='left' style='font-size: 14px; margin-left:8px;'>name project</p><hr>" + title_list + "</div>"+
+        "</table><br><p align='left' style='font-size: 12px; margin-left:8px;'>name project</p><hr>" + title_list + "</div>"+
         //
-        "<div id='blank_4' style='visibility:hidden;' class='set_blank'><table style='width:100%; font-size: 14px; border-spacing:10px; border-collapse: separate;'>" +
+        "<div id='blank_4' style='visibility:hidden;' class='set_blank'><table style='width:100%; font-size: 12px; border-spacing:10px; border-collapse: separate;'>" +
         "<tr><td align='right'>next </td><td align='left'><input id='key_next' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.next) ? story_script.parameters.key.next : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>back </td><td align='left'><input id='key_back' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.back) ? story_script.parameters.key.back : '') + "' type='text'></td></tr>" +
         "<tr><td align='right'>save stage</td><td align='left'><input id='key_save' class='input_text' onkeyup='this.value = event.code;' value='" + ((story_script.parameters.key.save) ? story_script.parameters.key.save : '') + "' type='text'></td></tr>" +
