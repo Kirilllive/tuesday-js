@@ -938,17 +938,17 @@ function option_block(d){
 function legacy_choice_edit() {
 	var var_if = "<table width='100%' id='legacy_choice_edit'><tbody>";
 	for (var i = 0; i < arr_link_a.legacy_choice.length-1; i++){
-		var_if += "<tr><td style='padding-right:4px; white-space: nowrap;' align='right'>"+((i==0)?"if":"else if")+"</td>"
+		var_if += "<tr><td style='padding-right:4px; white-space: nowrap;' align='right'>"+((i==0)?"if {":"else if {")+"</td>"
 		+"<td style='width:128px;' valign='bottom'><select class='input_text legacy_var'>"+option_var(arr_link_a.legacy_choice[i][0])+"</select></td>"
 		+"<td style='width:24px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;' valign='bottom'><select class='input_text legacy_compare'><option value='&#61'>&#61</option><option value='&lt;'>&lt;</option><option value='&gt;'>&gt;</option></select></td>"
 		+"<td style='width:64px;' valign='bottom'><input class='input_text legacy_value' value='"+arr_link_a.legacy_choice[i][2]+"' type='text'> </td>"
-		+"<td style='width:92px;' align='right' valign='center'>go to block:</td>"
+		+"<td style='width:92px;font-size:12px;' align='center' valign='center'>} go to block:</td>"
 		+"<td style='width:128px;' valign='bottom'><select class='input_text legacy_var'>"+option_block(arr_link_a.legacy_choice[i][3])+"</select></td>"
 		+"<td style='width:40px; cursor:pointer;' onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" title='delet' class='icon icon_del'></td>"
 		+"</tr>";
 	}
 	var_if+= "</tbody><tbody><tr><td style='width:40px;'>else</td><td colspan='5'><select class='input_text legacy_var'>"+option_block()+"</select></td><td style='width:40px;'></td></tr></tbody></table><div aling='center' onclick=\"legacy_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div>"
-	var html = "<div class='window' style='padding:24px 8px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>legacy choice edit</p><br><hr>"+var_if+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+	var html = "<div class='window' style='padding:24px 8px; min-width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>legacy choice edit</p><br><hr>"+var_if+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open",html);
 }
 function legacy_choice_new(){
@@ -961,7 +961,7 @@ function legacy_choice_new(){
     var td5 = document.createElement("td");
     var td6 = document.createElement("td");
     var td7 = document.createElement("td");
-	td1.innerHTML = "else if";
+	td1.innerHTML = "else if {";
 	td1.style = "padding-right:4px; white-space: nowrap;";
 	td2.innerHTML = "<select class='input_text legacy_var'>"+option_var()+"</select>";
 	td2.setAttribute("valign","bottom");
@@ -970,9 +970,10 @@ function legacy_choice_new(){
 	td3.setAttribute("valign","bottom");
 	td4.innerHTML = "<input class='input_text legacy_value' value='' type='text'>";
 	td4.setAttribute("valign","bottom");
-	td5.innerHTML = "go to block";
+	td5.innerHTML = "} go to block:";
+    td5.style = "font-size:12px;";
 	td5.setAttribute("valign","center");
-	td5.setAttribute("right","center");
+	td5.setAttribute("align","center");
 	td6.innerHTML = "<select class='input_text legacy_var'>"+option_block()+"</select>";
 	td6.setAttribute("valign","bottom");
     td7.style = "cursor:pointer;";
