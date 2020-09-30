@@ -260,7 +260,7 @@ hr{border-top:1px solid #cec8e3;margin:4px;}
 .set_select{background-color:#cec8e3;}
 .set_blank{overflow-x:hidden;position:absolute;overflow-y:auto;width:100%;height:60vh;}
 .window_close{position:absolute;right:0px;top:0px;height:40px;width:40px;cursor:pointer;}
-.namber{padding-left:8px;font-size:12px;color:#888;}
+.namber{padding-left:8px;font-size:12px;color:#999;}
 </style>
 </head>
 <body onload="world_size();" style='background-color: #efefff; font-size: 14px;'>
@@ -439,7 +439,7 @@ function creation_block(b){
                     if (story_script[chapter.id][i].legacy_choice[l][0]){
                         go = story_script[chapter.id][i].legacy_choice[l][3];
                         if (story_script[go]){
-                            element+= "<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td align='center'>"+go+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+= "<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td></tr><tr><td colspan='3' align='center'>"+go+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
                             creaton_line(all+"l"+l+go+all_blocks)
                             all++
@@ -461,7 +461,7 @@ function creation_block(b){
             if (story_script[chapter.id][i].background_image){element+= "<div class='scene_bg' style=' background-image: url("+open_file(languare_data(story_script[chapter.id][i].background_image))+")' width='100%'></div>"}
             if (story_script[chapter.id][i].dialogs){
                 for (var d = 0; d < story_script[chapter.id][i].dialogs.length; d++){
-					element+= "<div class='dialog'>"+"<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='24px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td><p class='namber'>scene: "+(i+1)+" / dialog: "+(d+1)+"</p></td></tr></tbody></table>" 
+					element+= "<div class='dialog'>"+"<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='24px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td><p class='namber'>scene: "+(i+1)+" | dialog: "+(d+1)+"</p></td></tr></tbody></table>" 
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
                     if (story_script[chapter.id][i].dialogs[d].text){
 						element+= "<div class='dialog_element' align='left'>" 
@@ -684,8 +684,15 @@ html.onmousedown = function(e){
             html.onmousemove = null;
             html.onmouseup = null;
         };
+		html.onmouseleave = function() {
+			html.onmousemove = null;
+			html.onmouseup = null;
+			document.onmousemove = null;
+			focus_dlock.onmouseup = null;
+		};
     }
 }
+		
 function modal_window(action,content){
     var window_zone = document.getElementById("window_zone");
     if (action == 'close'){
