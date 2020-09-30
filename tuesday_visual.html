@@ -238,8 +238,6 @@ line{
 	font-size:12px;
 	-webkit-appearance:none;
 	border-bottom:1px solid #cec8e3;
-	border-radius:0;
-	padding-left:8px;
 	cursor:text;
 	height:28px;
 	width:100%;
@@ -250,6 +248,7 @@ line{
 	-ms-user-select:auto;
 	user-select:auto;
 }
+input[type="text"]{text-indent: 1em;}
 .input_text:focus{border-bottom:1px solid #000;}
 hr{border-top:1px solid #cec8e3;margin:4px;}
 .checkbox_a{content:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPGNpcmNsZSBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY3g9IjEyOCIgY3k9IjEyOCIgcj0iMTEyIi8+DQo8L3N2Zz4=");background:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;height:16px;width:16px;}
@@ -435,9 +434,8 @@ function creation_block(b){
     if (chapter.id != "parameters" && chapter.id != "blocks"){
         for (var i = 0; i < story_script[chapter.id].length; i++){
             element+= "<div id='s_"+chapter.id+"_"+i+"' class='scene' align='center'>"
-					+"<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene: "+(i+1)+"</p></td><td width='48px' class='icon_m icon_edit' title='Scene edit'></td></tr></tbody></table>"
             if (story_script[chapter.id][i].legacy_choice){
-                element+= "<div width='100%'>"
+				element+= "<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene: "+(i+1)+"</p></td><td width='48px' class='icon_m icon_edit' onmouseup='arr_link_a = story_script."+chapter.id+"["+i+"];legacy_choice_edit()' title='Scene edit'></td></tr></tbody></table><div width='100%'>"
                 for (var l = 0; l < story_script[chapter.id][i].legacy_choice.length; l++){
                     if (story_script[chapter.id][i].legacy_choice[l][0]){
                         go = story_script[chapter.id][i].legacy_choice[l][3];
@@ -460,7 +458,7 @@ function creation_block(b){
                     }
                 }
                 element+= "</div>"
-            }
+            } else {element+= "<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene: "+(i+1)+"</p></td><td width='48px' class='icon_m icon_edit' onmouseup='alert(\"boom\")' title='Scene edit'></td></tr></tbody></table>"}
             if (story_script[chapter.id][i].background_image){element+= "<div class='scene_bg' style=' background-image: url("+open_file(languare_data(story_script[chapter.id][i].background_image))+")' width='100%'></div>"}
             if (story_script[chapter.id][i].dialogs){
                 for (var d = 0; d < story_script[chapter.id][i].dialogs.length; d++){
@@ -695,7 +693,6 @@ html.onmousedown = function(e){
 		};
     }
 }
-		
 function modal_window(action,content){
     var window_zone = document.getElementById("window_zone");
     if (action == 'close'){
@@ -908,7 +905,8 @@ function add_element_d(id,arr){
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
- function menu_view(id,code){
+let arr_link_a;
+function menu_view(id,code){
 	var rect = document.getElementById(id).getBoundingClientRect();
 	menu_add = document.getElementById('add_element');
     menu_add.style.visibility = 'visible';
@@ -923,17 +921,75 @@ function scene_add(arr) {
 }
 function legacy_choice_add(arr) {
 	story_script[arr].push({"legacy_choice":[["", "=", 0, ""],{"go_to": "12"}]});
-	legacy_choice_edit(story_script[arr][story_script[arr].length - 1])
+	document.getElementById('add_element').style.visibility = 'hidden';
+	arr_link_a = story_script[arr][story_script[arr].length - 1]
+	legacy_choice_edit()
 }
-function legacy_choice_edit (arr) {
-	//var html = "<div class='window' style='padding:24px 8px; width: 360px;'>"+arr.legacy_choice[1].go_to
-	var html = "<div class='window' style='padding:24px 8px; width: 360px;'>"+arr.legacy_choice[1].go_to
-			+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply(\"\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create element</td><td width='42px'></td></tr></tbody></table>"
-			+"</div>"
-    modal_window("open",html);
+function option_var(d){
+	var var_list = '';
+	if (story_script.parameters.variables){for (l = 0; l < Object.keys(story_script.parameters.variables).length; l++){var_list+= "<option value='"+Object.keys(story_script.parameters.variables)[l]+"' "+((d == Object.keys(story_script.parameters.variables)[l]) ? "selected" : "")+">"+Object.keys(story_script.parameters.variables)[l]+"</option>"}}
+	return var_list
 }
-function legacy_choice_apply (arr) {
-	alert(arr.legacy_choice[1].go_to)
+function option_block(d){
+	var scene_list = '';
+	for (l = 0; l < Object.keys(story_script).length; l++){if (Object.keys(story_script)[l] != "parameters" && Object.keys(story_script)[l] != "blocks") {scene_list+= "<option value='"+Object.keys(story_script)[l]+"' "+((d == Object.keys(story_script)[l]) ? "selected" : "")+">"+Object.keys(story_script)[l]+"</option>"}}
+	return scene_list
+}
+function legacy_choice_edit() {
+	var var_if = "<table width='100%' id='legacy_choice_edit'><tbody>";
+	for (var i = 0; i < arr_link_a.legacy_choice.length-1; i++){
+		var_if += "<tr><td style='padding-right:4px; white-space: nowrap;' align='right'>"+((i==0)?"if":"else if")+"</td>"
+		+"<td style='width:128px;' valign='bottom'><select class='input_text legacy_var'>"+option_var(arr_link_a.legacy_choice[i][0])+"</select></td>"
+		+"<td style='width:24px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;' valign='bottom'><select class='input_text legacy_compare'><option value='&#61'>&#61</option><option value='&lt;'>&lt;</option><option value='&gt;'>&gt;</option></select></td>"
+		+"<td style='width:64px;' valign='bottom'><input class='input_text legacy_value' value='"+arr_link_a.legacy_choice[i][2]+"' type='text'> </td>"
+		+"<td style='width:92px;' align='right' valign='center'>go to block:</td>"
+		+"<td style='width:128px;' valign='bottom'><select class='input_text legacy_var'>"+option_block(arr_link_a.legacy_choice[i][3])+"</select></td>"
+		+"<td style='width:40px; cursor:pointer;' onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" title='delet' class='icon icon_del'></td>"
+		+"</tr>";
+	}
+	var_if+= "</tbody><tbody><tr><td style='width:40px;'>else</td><td colspan='5'><select class='input_text legacy_var'>"+option_block()+"</select></td><td style='width:40px;'></td></tr></tbody></table><div aling='center' onclick=\"legacy_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div>"
+	var html = "<div class='window' style='padding:24px 8px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>legacy choice edit</p><br><hr>"+var_if+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+	modal_window("open",html);
+}
+function legacy_choice_new(){
+	var tbody = document.getElementById('legacy_choice_edit').getElementsByTagName('tbody')[0];
+	var row = document.createElement("tr");
+    var td1 = document.createElement("td");
+    var td2 = document.createElement("td");
+    var td3 = document.createElement("td");
+    var td4 = document.createElement("td");
+    var td5 = document.createElement("td");
+    var td6 = document.createElement("td");
+    var td7 = document.createElement("td");
+	td1.innerHTML = "else if";
+	td1.style = "padding-right:4px; white-space: nowrap;";
+	td2.innerHTML = "<select class='input_text legacy_var'>"+option_var()+"</select>";
+	td2.setAttribute("valign","bottom");
+	td3.innerHTML = "<select class='input_text legacy_compare'><option value='&#61'>&#61</option><option value='&lt;'>&lt;</option><option value='&gt;'>&gt;</option></select>";
+	td3.style = "border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;";
+	td3.setAttribute("valign","bottom");
+	td4.innerHTML = "<input class='input_text legacy_value' value='' type='text'>";
+	td4.setAttribute("valign","bottom");
+	td5.innerHTML = "go to block";
+	td5.setAttribute("valign","center");
+	td5.setAttribute("right","center");
+	td6.innerHTML = "<select class='input_text legacy_var'>"+option_block()+"</select>";
+	td6.setAttribute("valign","bottom");
+    td7.style = "cursor:pointer;";
+    td7.title = "delet";
+    td7.className = "icon icon_del";
+    td7.setAttribute("onclick","var a = this.closest('tr'); a.parentElement.removeChild(a);");
+	row.appendChild(td1);
+    row.appendChild(td2);
+    row.appendChild(td3);
+	row.appendChild(td4);
+    row.appendChild(td5);
+    row.appendChild(td6);
+    row.appendChild(td7);
+    tbody.appendChild(row);
+}
+function legacy_choice_apply () {
+	modal_window('close')
 	update_novel();
 }
 
