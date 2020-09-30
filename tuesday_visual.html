@@ -234,7 +234,8 @@ line{
 .add_button{height:28px;width:28px;}
 .input_text{
 	border:0;
-	font-family:inherit;
+	font-family:Arial;
+	font-size:12px;
 	-webkit-appearance:none;
 	border-bottom:1px solid #cec8e3;
 	border-radius:0;
@@ -261,6 +262,8 @@ hr{border-top:1px solid #cec8e3;margin:4px;}
 .set_blank{overflow-x:hidden;position:absolute;overflow-y:auto;width:100%;height:60vh;}
 .window_close{position:absolute;right:0px;top:0px;height:40px;width:40px;cursor:pointer;}
 .namber{padding-left:8px;font-size:12px;color:#999;}
+.add_el{height:40px;background-color:#ffff;padding-left:16px;}
+.add_el:hover{background-color:#cec8e3;}
 </style>
 </head>
 <body onload="world_size();" style='background-color: #efefff; font-size: 14px;'>
@@ -431,7 +434,7 @@ function creation_block(b){
     var go = "";
     if (chapter.id != "parameters" && chapter.id != "blocks"){
         for (var i = 0; i < story_script[chapter.id].length; i++){
-            element+= "<div class='scene' align='center'>"
+            element+= "<div id='s_"+chapter.id+"_"+i+"' class='scene' align='center'>"
 					+"<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene: "+(i+1)+"</p></td><td width='48px' class='icon_m icon_edit' title='Scene edit'></td></tr></tbody></table>"
             if (story_script[chapter.id][i].legacy_choice){
                 element+= "<div width='100%'>"
@@ -461,7 +464,7 @@ function creation_block(b){
             if (story_script[chapter.id][i].background_image){element+= "<div class='scene_bg' style=' background-image: url("+open_file(languare_data(story_script[chapter.id][i].background_image))+")' width='100%'></div>"}
             if (story_script[chapter.id][i].dialogs){
                 for (var d = 0; d < story_script[chapter.id][i].dialogs.length; d++){
-					element+= "<div class='dialog'>"+"<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='24px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td><p class='namber'>scene: "+(i+1)+" | dialog: "+(d+1)+"</p></td></tr></tbody></table>" 
+					element+= "<div class='dialog' id='d_"+chapter.id+"_"+i+"_"+d+"'>"+"<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='24px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td><p class='namber'>scene: "+(i+1)+" | dialog: "+(d+1)+"</p></td></tr></tbody></table>" 
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
                     if (story_script[chapter.id][i].dialogs[d].text){
 						element+= "<div class='dialog_element' align='left'>" 
@@ -500,13 +503,13 @@ function creation_block(b){
                         }
                         element+= "</div>"
                     }
-					element+= "<div align='right'><div id='add_d_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"add_element_d(this.id)\" class='add_button icon_m icon_add' title='Add element to dialog'></div></div></div>"
+					element+= "<div align='right'><div id='add_d_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"add_element_d(this.id,'arr')\" class='add_button icon_m icon_add' title='Add element to dialog'></div></div></div>"
                 }
-				element+= "<div align='right' style='margin-right:4px;'><div id='add_s_"+chapter.id+"_"+i+"' onmouseup=\"add_element_s(this.id)\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
+				element+= "<div align='right' style='margin-right:4px;'><div id='add_s_"+chapter.id+"_"+i+"' onmouseup=\"add_element_s(this.id,'arr')\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
             }
             element+= "</div>"
         }
-        element+= "<div align='right' style='margin-right:8px;'><div id='add_b_"+chapter.id+"' onmouseup=\"add_element_b(this.id)\" class='add_button icon_m icon_add' title='Add element to block'></div></div>"
+        element+= "<div align='right' style='margin-right:8px;'><div id='add_b_"+chapter.id+"' onmouseup=\"add_element_b(this.id,\'"+chapter.id+"\')\" class='add_button icon_m icon_add' title='Add element to block'></div></div>"
         chapter.innerHTML = "<div style='margin:2px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td><td align='center'>"+((chapter.id.length > 17) ? chapter.id.slice(0,15)+"...": chapter.id )+"</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('"+chapter.id+"')\" class='icon button_block icon_setup'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('"+chapter.id+"')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display:"+((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>"+element+"</div>";
         chapter.className = "story_block panel";
 		if (!story_script.blocks[chapter.id]){
@@ -780,8 +783,7 @@ function build(){
     toast("index.html file is created"); 
 }
 function jsonedit(){
-    var story_preview = JSON.stringify(story_script,null,'\t')
-    var html = "<div class='window' style='padding:24px 8px; width: 75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>JSON Edit</p><br><p><textarea id='editJson' class='input_text' wrap='off' style='resize: none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid #cec8e3;'>"+story_preview+"</textarea></p><br><table class='big_button' width='256px' onclick='apply_json( document.getElementById(\"editJson\").value)'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    var html = "<div class='window' style='padding:24px 8px; width: 75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>JSON Edit</p><br><p><textarea id='editJson' class='input_text' wrap='off' style='resize: none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid #cec8e3;'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='apply_json( document.getElementById(\"editJson\").value)'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function apply_json(data){
@@ -808,7 +810,7 @@ function new_block(){
 		+"<td class='color_select' style='background-color:"+color_bg[10]+";'><input class='checkbox_b' type='radio' name='color' value='10'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[11]+";'><input class='checkbox_b' type='radio' name='color' value='11'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[12]+";'><input class='checkbox_b' type='radio' name='color' value='12'></td>"
-		+"</tr></tbody></table></form><br><br><table class='big_button' width='256px' onclick='create_block()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create block</td><td width='42px'></td></tr></tbody></table> </div>"
+		+"</tr></tbody></table></form><br><br><table class='big_button' width='256px' onclick='create_block()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create block</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function create_block(){
@@ -883,33 +885,27 @@ function updata_block(old_id){
 		toast("block updated");
     } else if(story_script[new_id]){toast("this name is used by other blocks");}
 	modal_window ('close');
-}
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-function add_element_b(id){
-    var code = '<div  class="window" style="padding:8px 8px; width: 220px;">'
-				+'<table class="big_button3 big_button3b" style="margin:4px 0 4px 0; width:100%; height:40px; border-radius: 20px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';"><tbody><tr><td width="40px" class="icon icon_add"></td><td align="left" style="padding-left:8px;">Legacy choice</td><td width="16px"></td></tr></tbody></table>'
-				+'<table class="big_button3 big_button3b" style="margin:4px 0 4px 0; width:100%; height:40px; border-radius: 20px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';"><tbody><tr><td width="40px" class="icon icon_add"></td><td align="left" style="padding-left:8px;">Scene</td><td width="16px"></td></tr></tbody></table>'
-				+'<table class="big_button3 big_button3b" style="margin:4px 0 4px 0; width:100%; height:40px; border-radius: 20px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';"><tbody><tr><td width="40px" class="icon icon_close"></td><td align="left" style="padding-left:8px;">Cancel</td><td width="16px"></td></tr></tbody></table>'
-				+'</div>'
+}                                                   
+function add_element_b(id,arr){
+    var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
+				+'<tr><td class="add_el" style="border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" onclick="legacy_choice_add(\''+arr+'\');">Legacy choice</td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scene_add(\''+arr+'\');">Scene</td></tr>'
+				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
+				+'</tbody></table></div>'
 	menu_view(id,code)
 }
-function add_element_s(id){
-    var code = '<div  class="window" style="padding:8px 8px; width: 220px;">'
-				+'<table class="big_button3 big_button3b" style="margin:4px 0 4px 0; width:100%; height:40px; border-radius: 20px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';"><tbody><tr><td width="40px" class="icon icon_close"></td><td align="left" style="padding-left:8px;">Cancel</td><td width="16px"></td></tr></tbody></table>'
-				+'</div>'
+function add_element_s(id,arr){
+    var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
+				+'<tr><td class="add_el" style="border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" onclick="">Cancel</td></tr>'
+				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
+				+'</tbody></table></div>'
 	menu_view(id,code)
 }
-function add_element_d(id){
-    var code = '<div  class="window" style="padding:8px 8px; width: 220px;">'
-				+'<table class="big_button3 big_button3b" style="margin:4px 0 4px 0; width:100%; height:40px; border-radius: 20px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';"><tbody><tr><td width="40px" class="icon icon_close"></td><td align="left" style="padding-left:8px;">Cancel</td><td width="16px"></td></tr></tbody></table>'
-				+'</div>'
+function add_element_d(id,arr){
+    var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
+				+'<tr><td class="add_el" style="border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" onclick="">Cancel</td></tr>'
+				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
+				+'</tbody></table></div>'
 	menu_view(id,code)
 }
  function menu_view(id,code){
@@ -919,14 +915,45 @@ function add_element_d(id){
 	menu_add.innerHTML = code
     menu_add.style.top = html.scrollTop+rect.top+"px";
     menu_add.style.left = html.scrollLeft+rect.right+"px";
+}
+function scene_add(arr) {
+	story_script[arr].push({"background_image":{},"background_music":"","dialogs":[]});
+	document.getElementById('add_element').style.visibility = 'hidden';
+	update_novel();
+}
+function legacy_choice_add(arr) {
+	story_script[arr].push({"legacy_choice":[["", "=", 0, ""],{"go_to": "12"}]});
+	legacy_choice_edit(story_script[arr][story_script[arr].length - 1])
+}
+function legacy_choice_edit (arr) {
+	//var html = "<div class='window' style='padding:24px 8px; width: 360px;'>"+arr.legacy_choice[1].go_to
+	var html = "<div class='window' style='padding:24px 8px; width: 360px;'>"+arr.legacy_choice[1].go_to
+			+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply(\"\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create element</td><td width='42px'></td></tr></tbody></table>"
+			+"</div>"
+    modal_window("open",html);
+}
+function legacy_choice_apply (arr) {
+	alert(arr.legacy_choice[1].go_to)
+	update_novel();
+}
 
- }                                                    
-                                                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                  
-                                                      
-                                                      
-                                                      
-                                                      
 function move_elenetn(arr,o,n){
 	var new_index = ((o+n)<0)?o:o+n;
     arr.splice(new_index,0,arr.splice(o,1)[0]);
