@@ -992,11 +992,11 @@ function legacy_choice_edit(n) {
 		+"<td style='width:24px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;' valign='bottom'><select class='input_text legacy_compare'><option value='&#61'>&#61</option><option value='&lt;'>&lt;</option><option value='&gt;'>&gt;</option></select></td>"
 		+"<td style='width:64px;' valign='bottom'><input class='input_text legacy_value' value='"+arr_link[arr_name].legacy_choice[i][2]+"' type='text'> </td>"
 		+"<td style='width:92px;font-size:12px;' align='center' valign='center'>} go to block:</td>"
-		+"<td style='width:128px;' valign='bottom'><select class='input_text legacy_var'>"+option_block(arr_link[arr_name].legacy_choice[i][3])+"</select></td>"
+		+"<td style='width:128px;' valign='bottom'><select class='input_text legacy_block'>"+option_block(arr_link[arr_name].legacy_choice[i][3])+"</select></td>"
 		+"<td style='width:40px; cursor:pointer;' onclick=\"var a = this.closest('tr'); a.parentElement.removeChild(a);\" title='delet' class='icon icon_del'></td>"
 		+"</tr>";
 	}
-	var_if+= "</tbody><tbody><tr><td style='width:40px;'>else</td><td colspan='5'><select class='input_text legacy_var'>"+option_block(arr_link[arr_name].legacy_choice[i].go_to)+"</select></td><td style='width:40px;'></td></tr></tbody></table><div aling='center' onclick=\"legacy_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div>"
+	var_if+= "</tbody><tbody><tr><td style='width:40px;'>else</td><td colspan='5'><select id='legacy_go_to' class='input_text'>"+option_block(arr_link[arr_name].legacy_choice[i].go_to)+"</select></td><td style='width:40px;'></td></tr></tbody></table><div aling='center' onclick=\"legacy_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div>"
 	var html = "<div class='window' style='padding:24px 8px; min-width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>legacy choice edit</p><br><hr>"+var_if+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open",html);
 }
@@ -1023,7 +1023,7 @@ function legacy_choice_new(){
     td5.style = "font-size:12px;";
 	td5.setAttribute("valign","center");
 	td5.setAttribute("align","center");
-	td6.innerHTML = "<select class='input_text legacy_var'>"+option_block()+"</select>";
+	td6.innerHTML = "<select class='input_text legacy_block'>"+option_block()+"</select>";
 	td6.setAttribute("valign","bottom");
     td7.style = "cursor:pointer;";
     td7.title = "delet";
@@ -1039,11 +1039,19 @@ function legacy_choice_new(){
     tbody.appendChild(row);
 }
 function legacy_choice_apply () {
+    arr_link[arr_name].legacy_choice = []; 
+    li_v = document.getElementsByClassName("legacy_var");
+    li_c = document.getElementsByClassName("legacy_compare");
+    li_z = document.getElementsByClassName("legacy_value");
+    li_b = document.getElementsByClassName("legacy_block");
+    for (var i = 0; i < li_v.length; i++){
+		arr_link[arr_name].legacy_choice.push([li_v[i].value,li_c[i].value,parseInt(li_z[i].value),li_b[i].value])
+    }
+	arr_link[arr_name].legacy_choice.push({"go_to":document.getElementById("legacy_go_to").value})
 	modal_window('close')
 	update_novel();
 }
 function element_del() {
-	alert(arr_link[arr_name].background_music)
 	arr_link.splice(arr_name,arr_name+1);
 	document.getElementById('add_element').style.visibility = 'hidden';
 	update_novel();
