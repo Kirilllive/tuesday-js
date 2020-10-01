@@ -353,18 +353,46 @@ function loadFiles(e){
 function open_file(name){
     for (var f = 0; f < project_files.length; f++){if (project_files[f][0] == name){return (project_files[f][1])}}
 }
-function new_novel(){
+function new_novel() {
     story_script = {
         "parameters": {
             "plugins": [],
-            "title": "",
-            "launch_story": "",
-			"languares": [],
-            "key": {}
+            "text_panel": {
+                "size": ["95%","25%"],
+                "color": "#9cf",
+                "indent_bottom": "32px",
+                "size_text": "20px",
+                "dialog_speed": 20
+            },
+            "name_panel": {
+                "size": ["0","48px"],
+                "position": ["0","0","-48px","0"],
+                "size_text": "18px"
+            },
+            "title": {"en": "new novel"},
+            "launch_story": "main_menu",
+            "key": {},
+            "languares": ["en"],
+            "buttons": [{
+                    "name": "tue_back",
+                    "position": ["0","55%","0","8px"],
+                    "size": ["52px","52px"],
+                    "color": "#888",
+                    "size_text": "48px",
+                    "text": "<"
+                },{
+                    "name": "tue_next",
+                    "position": ["55%","0","0","8px"],
+                    "size": ["52px","52px"],
+                    "color": "#888",
+                    "size_text": "48px",
+                    "text": ">"
+                }
+            ]
         },
         "blocks": {}
     };
-	update_novel()
+    update_novel()
 }
 function update_novel(){
     story_blocks.innerHTML = ""
