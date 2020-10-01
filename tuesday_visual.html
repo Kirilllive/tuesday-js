@@ -487,22 +487,22 @@ function creation_block(b){
                     }
                 }
                 element+= "</div>"
-            } else {element+= "<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene: "+(i+1)+"</p></td><td width='48px' class='icon_m icon_edit' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_link = story_script."+chapter.id+";arr_name = "+i+";scene_m(this.id);' title='Scene edit'></td></tr></tbody></table>"}
+            } else {element+= "<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene: "+(i+1)+"</p></td><td width='48px' class='icon_m icon_edit' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_link = story_script."+chapter.id+";arr_name = "+i+";scene_m(this.id,"+(i+1)+");' title='Scene edit'></td></tr></tbody></table>"}
             if (story_script[chapter.id][i].background_image){element+= "<div class='scene_bg' style=' background-image: url("+open_file(languare_data(story_script[chapter.id][i].background_image))+")' width='100%'></div>"}
             if (story_script[chapter.id][i].dialogs){
                 for (var d = 0; d < story_script[chapter.id][i].dialogs.length; d++){
-					element+= "<div class='dialog' id='d_"+chapter.id+"_"+i+"_"+d+"'>"+"<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='24px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td><p class='namber'>scene: "+(i+1)+" | dialog: "+(d+1)+"</p></td><td id='m_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"arr_link=story_script."+chapter.id+"["+i+"].dialogs;arr_name="+d+";add_element_d(this.id,'"+(d+1)+"')\" class='add_button icon_m icon_setup' title='Dialog'></td></tr></tbody></table>" 
+					element+= "<div class='dialog' id='d_"+chapter.id+"_"+i+"_"+d+"'>"+"<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='24px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td><p class='namber'>scene: "+(i+1)+" | dialog: "+(d+1)+"</p></td><td id='m_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"arr_link=story_script."+chapter.id+"["+i+"].dialogs;arr_name="+d+";dialog_m(this.id,'"+(d+1)+"')\" class='add_button icon_m icon_edit' title='Dialog'></td></tr></tbody></table>"
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
                     if (story_script[chapter.id][i].dialogs[d].text){
 						element+= "<div class='dialog_element' align='left'>" 
-								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n) ? "<p><b>"+n+"</p></b>" : "")+"</td><td width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table>"
+								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n) ? "<p><b>"+n+"</p></b>" : "")+"</td><td width='24px' class='icon_m icon_setup' title='Edit dialog'></td></tr></tbody></table>"
 								+"<p>"+languare_data(story_script[chapter.id][i].dialogs[d].text)+"</p></div>"
 					}
                     if (story_script[chapter.id][i].dialogs[d].go_to){
                         go = story_script[chapter.id][i].dialogs[d].go_to;
                         if (story_script[go]){
 						element+= "<div class='dialog_element'>" 
-								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
+								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td width='24px' class='icon_m icon_setup' title='Сhange next block'></td></tr></tbody></table>"
 								+"<table id='"+all+"g"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding: 4px;'>"+go+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"g"+d+go+all_blocks]);
                             creaton_line(all+"g"+d+go+all_blocks)
@@ -512,7 +512,7 @@ function creation_block(b){
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice){
                         element+= "<div id='' class='dialog_element'>"
-								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
+								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td width='24px' class='icon_m icon_setup' title='Edit choice'></td></tr></tbody></table>"
                         for (var c = 0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++){
                             go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined"){
@@ -530,9 +530,9 @@ function creation_block(b){
                         }
                         element+= "</div>"
                     }
-					element+= "</div>"
+					element+= "<div align='right'><div id='add_d_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"add_element_d(this.id,'"+(d+1)+"')\" class='add_button icon_m icon_add' title='Add element to dialog'></div></div></div>"
                 }
-				element+= "<div align='right' style='margin-right:4px;'><div id='add_s_"+chapter.id+"_"+i+"' onmouseup=\"add_element_s(this.id,'arr')\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
+				element+= "<div align='right' style='margin-right:4px;'><div id='add_s_"+chapter.id+"_"+i+"' onmouseup=\"add_element_s(this.id,'"+(i+1)+"')\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
             }
             element+= "</div>"
         }
@@ -915,16 +915,16 @@ function updata_block(old_id){
 }                                                   
 function add_element_b(id,arr){
     var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
-				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Add to block</td></tr>'
+				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Add to block \''+arr+'\'</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="legacy_choice_add(\''+arr+'\');">Legacy choice</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scene_add(\''+arr+'\');">Scene</td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
-function add_element_s(id,arr){
+function add_element_s(id,n){
     var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
-				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Add to scene</td></tr>'
+				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Add to scene '+n+'</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add()">Dialog</td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
 				+'</tbody></table></div>'
@@ -944,10 +944,17 @@ function add_element_d(id,n){
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">text_add</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">art</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">choice</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del()">Delete dialog</td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
+}
+function dialog_m(id,n){
+  var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
+              +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Dialog '+n+'</td></tr>'
+              +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del()">Delete dialog</td></tr>'
+              +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
+              +'</tbody></table></div>'
+  menu_view(id,code)
 }
 function legacy_choice_m(id){
     var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
@@ -958,9 +965,9 @@ function legacy_choice_m(id){
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
-function scene_m(id){
+function scene_m(id,n){
     var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
-				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Scene</td></tr>'
+				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Scene '+n+'</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="alert(\'boom\')">Edit</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del()">Delete</td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
