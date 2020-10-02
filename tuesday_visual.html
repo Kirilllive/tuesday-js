@@ -167,6 +167,7 @@ line{
 	text-align:center;
 	padding:4px;
 	border-radius:6px;
+    font-size:12px;
 }
 #add_element{position:absolute;left:0;top:0;visibility:hidden;width:190px;}
 #window_zone{
@@ -469,7 +470,7 @@ function creation_block(b){
                     if (story_script[chapter.id][i].legacy_choice[l][0]){
                         go = story_script[chapter.id][i].legacy_choice[l][3];
                         if (story_script[go]){
-                            element+= "<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td></tr><tr><td colspan='3' align='center'>"+go+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+= "<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td><td colspan='3' align='right'>"+go+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
                             creaton_line(all+"l"+l+go+all_blocks)
                             all++
