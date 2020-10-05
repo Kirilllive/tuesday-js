@@ -496,14 +496,14 @@ function creation_block(b){
                     var n = languare_data(story_script[chapter.id][i].dialogs[d].name);
                     if (story_script[chapter.id][i].dialogs[d].text){
 						element+= "<div class='dialog_element' align='left'>" 
-								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n) ? "<p><b>"+n+"</p></b>" : "")+"</td><td width='24px' class='icon_m icon_setup' title='Edit dialog'></td></tr></tbody></table>"
+								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n) ? "<p><b>"+n+"</p></b>" : "")+"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_link=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_name='text';dialog_el(this.id,'Text')\" width='24px' class='icon_m icon_setup' title='Edit dialog'></td></tr></tbody></table>"
 								+"<p>"+languare_data(story_script[chapter.id][i].dialogs[d].text)+"</p></div>"
 					}
                     if (story_script[chapter.id][i].dialogs[d].go_to){
                         go = story_script[chapter.id][i].dialogs[d].go_to;
                         if (story_script[go]){
 						element+= "<div class='dialog_element'>" 
-								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td width='24px' class='icon_m icon_setup' title='Сhange next block'></td></tr></tbody></table>"
+								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_link=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_name='go_to';dialog_el(this.id,'Go to')\"  width='24px' class='icon_m icon_setup' title='Сhange next block'></td></tr></tbody></table>"
 								+"<table id='"+all+"g"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding: 4px;'>"+go+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"g"+d+go+all_blocks]);
                             creaton_line(all+"g"+d+go+all_blocks)
@@ -513,7 +513,7 @@ function creation_block(b){
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice){
                         element+= "<div id='' class='dialog_element'>"
-								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td width='24px' class='icon_m icon_setup' title='Edit choice'></td></tr></tbody></table>"
+								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_link=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_name='choice';dialog_el(this.id,'Choice')\" width='24px' class='icon_m icon_setup' title='Edit choice'></td></tr></tbody></table>"
                         for (var c = 0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++){
                             go = story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined"){
@@ -533,7 +533,7 @@ function creation_block(b){
                     }
 					element+= "<div align='right'><div id='add_d_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"add_element_d(this.id,'"+(d+1)+"')\" class='add_button icon_m icon_add' title='Add element to dialog'></div></div></div>"
                 }
-				element+= "<div align='right' style='margin-right:4px;'><div id='add_s_"+chapter.id+"_"+i+"' onmouseup=\"add_element_s(this.id,'"+(i+1)+"')\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
+				element+= "<div align='right' style='margin-right:4px;'><div id='add_s_"+chapter.id+"_"+i+"' onmouseup=\"arr_link=story_script."+chapter.id+"["+i+"].dialogs;arr_name="+d+";add_element_s(this.id,'"+(i+1)+"')\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
             }
             element+= "</div>"
         }
@@ -934,17 +934,17 @@ function add_element_s(id,n){
 function add_element_d(id,n){
     var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Dialog '+n+'</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">back_to</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">go_to</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">event</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">controll</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">variables</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">sound</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">sound_stop</td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>back_to</s></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>go_to</s></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>event</s></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>controll</s></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>variables</s></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>sound</td></s></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>sound_stop</s></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">text</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">text_add</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">art</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="">choice</td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>text_add</s></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>art</s></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>choice</s></td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
@@ -975,6 +975,15 @@ function scene_m(id,n){
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
+function dialog_el(id,n){
+    var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
+				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">'+n+'</td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="alert(\'boom\')">Edit</td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_dialog_del()">Delete</td></tr>'
+				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
+				+'</tbody></table></div>'
+	menu_view(id,code)
+}
 let arr_link;
 let arr_name;
 function menu_view(id,code){
@@ -995,7 +1004,7 @@ function legacy_choice_add(arr) {
 	document.getElementById('add_element').style.visibility = 'hidden';
 	arr_name = story_script[arr].length - 1
 	arr_link = story_script[arr]
-	legacy_choice_edit(true)
+	legacy_choice_edit()
 }
 function option_var(d){
 	var var_list = '';
@@ -1007,7 +1016,7 @@ function option_block(d){
 	for (l = 0; l < Object.keys(story_script).length; l++){if (Object.keys(story_script)[l] != "parameters" && Object.keys(story_script)[l] != "blocks") {scene_list+= "<option value='"+Object.keys(story_script)[l]+"' "+((d == Object.keys(story_script)[l]) ? "selected" : "")+">"+Object.keys(story_script)[l]+"</option>"}}
 	return scene_list
 }
-function legacy_choice_edit(n) {
+function legacy_choice_edit() {
 	document.getElementById('add_element').style.visibility = 'hidden';
 	var var_if = "<table width='100%' id='legacy_choice_edit'><tbody>";
 	for (var i = 0; i < arr_link[arr_name].legacy_choice.length-1; i++){
@@ -1080,10 +1089,22 @@ function element_del() {
 	document.getElementById('add_element').style.visibility = 'hidden';
 	update_novel();
 }
-function dialog_add() {alert('')}
-
-
-
+function element_dialog_del() {
+	delete arr_link[arr_name];
+	document.getElementById('add_element').style.visibility = 'hidden';
+	update_novel();
+}
+function dialog_add() {
+	arr_link.push({});
+	document.getElementById('add_element').style.visibility = 'hidden';
+	arr_name = arr_link.length-1
+	update_novel();
+}
+function dialog_text() {
+	document.getElementById('add_element').style.visibility = 'hidden';
+	var html = "<div class='window' style='padding:24px 8px; min-width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Dialog edit</p><br><hr>"+arr_name+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+	modal_window("open",html);
+}
 
 
 
