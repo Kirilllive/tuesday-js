@@ -952,7 +952,7 @@ function add_element_d(id,n){
 function dialog_m(id,n){
   var code = '<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
               +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Dialog '+n+'</td></tr>'
-              +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del()">Delete dialog</td></tr>'
+              +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del()">Delete</td></tr>'
               +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility = \'hidden\';">Cancel</td></tr>'
               +'</tbody></table></div>'
   menu_view(id,code)
@@ -1076,7 +1076,7 @@ function legacy_choice_apply () {
 	update_novel();
 }
 function element_del() {
-	arr_link.splice(arr_name,arr_name+1);
+	arr_link.splice(arr_name,1);
 	document.getElementById('add_element').style.visibility = 'hidden';
 	update_novel();
 }
