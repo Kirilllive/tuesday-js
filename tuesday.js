@@ -201,15 +201,22 @@ function get_lang() {
         if (story_json[tue_story][scene].background_image[languare]) {tuesday.style.backgroundImage = "url('" + story_json[tue_story][scene].background_image[languare] + "')";}
         else {tuesday.style.backgroundImage = "url('" + story_json[tue_story][scene].background_image + "')";}
     }
-    var buttons = document.getElementById("tuesday").getElementsByClassName("tue_controll");
-    for (var i = 0; i < buttons.length; i++) {
-        if (tue_story == story_json.parameters.launch_story){buttons[i].style.visibility = "hidden";}
-        else {buttons[i].style.visibility = "visible";}
-    }
+	if (document.getElementById("tue_home")){
+		if (tue_story == story_json.parameters.launch_story){document.getElementById("tue_home").style.visibility = "hidden";}
+		else {document.getElementById("tue_home").style.visibility = "visible";}
+	}
+    //var buttons = document.getElementById("tuesday").getElementsByClassName("tue_controll");
+    //for (var i = 0; i < buttons.length; i++) {
+    //    if (tue_story == story_json.parameters.launch_story){buttons[i].style.visibility = "hidden";}
+    //    else {buttons[i].style.visibility = "visible";}
+    //}
     creation_dialog ();
     if(story_json[tue_story][scene].background_music){search_music()}
 } function creation_dialog () {
-		if (document.getElementById('tue_home')) {tue_next.style.visibility = tue_home.style.visibility;}
+		if (scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !story_json[tue_story][scene].dialogs[dialog].go_to){document.getElementById('tue_next').style.visibility = 'hidden';}
+		else {document.getElementById("tue_next").style.visibility = "visible";} 
+		if (scene == 0 && dialog == 0 && !story_json[tue_story][scene].dialogs[dialog].back_to){document.getElementById('tue_back').style.visibility = 'hidden'}
+		else {document.getElementById("tue_back").style.visibility = "visible";}
 		if (story_json[tue_story][scene].dialogs[dialog].controll == 'hidden'){
 			var buttons = document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for (var i = 0; i < buttons.length; i++) {buttons[i].style.visibility = "hidden";}

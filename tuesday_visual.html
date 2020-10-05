@@ -597,17 +597,17 @@ function creaton_line(id){
 function save_file(){
     var d=new Date();
     var n="new";
-    var dm=String(d.getMonth());
-    var dd=String(d.getDay());
+    var dm=String(d.getMonth()+1);
+    var dd=String(d.getDate());
     var dh=String(d.getHours());
-    var dm=String(d.getMinutes());
+    var di=String(d.getMinutes());
     var ds=String(d.getSeconds());
     var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(story_script));
     var dlAnchorElem=document.getElementById('downloadAnchorElem');
     if (story_script.parameters.title){n=(story_script.parameters.title.en) ? story_script.parameters.title.en : story_script.parameters.title;} 
 	else {n="new_novel";}
     dlAnchorElem.setAttribute("href",dataStr);
-    dlAnchorElem.setAttribute("download",n+'_'+d.getFullYear()+'_'+(dm.length < 2 ? '0'+dm : dm)+'_'+(dd.length < 2 ? '0'+dd : dd)+'_'+(dh.length < 2 ? '0'+dh : dh)+(dm.length < 2 ? '0'+dm : dm)+(ds.length < 2 ? '0'+ds : ds)+'.json');
+    dlAnchorElem.setAttribute("download",n+'_'+d.getFullYear()+'_'+(dm.length < 2 ? '0'+dm : dm)+'_'+(dd.length < 2 ? '0'+dd : dd)+'_'+(dh.length < 2 ? '0'+dh : dh)+"-"+(di.length < 2 ? '0'+di : di)+"-"+(ds.length < 2 ? '0'+ds : ds)+'.json');
     dlAnchorElem.click();
 }
 function lines(elem){
@@ -883,6 +883,7 @@ function create_block(){
 	}
 	var new_id=document.getElementById('block_id').value.replace(new RegExp(' ',"g"),'_');
 	if (new_id != '' && !story_script[new_id]){
+		if (Object.keys(story_script).length <= 2) {story_script.parameters.launch_story = new_id}
 		story_script[new_id]=[];
 		for (var i=0 ; i < Object.keys(story_script).length; i++){if (Object.keys(story_script)[i]==new_id){creation_block(i);break;}}
 		new_id=document.getElementById(new_id)
@@ -974,7 +975,7 @@ function add_element_d(id,n){
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>variables</s></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>sound</td></s></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>sound_stop</s></td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>text</s></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="text";element_to();dialog_text_edit()\'>text</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>text_add</s></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>art</s></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>choice</s></td></tr>'
@@ -1134,11 +1135,12 @@ function dialog_add() {
 	update_novel();
 }
 function element_to() {
-	arr_l[arr_n]=arr_n;
+	if (arr_n == 'go_to' || arr_n == 'back_to') {arr_l[arr_n]=story_script.parameters.launch_story;}
+	else if (arr_n == 'text') {arr_l[arr_n]='text'}
 	update_novel();
 	document.getElementById('add_element').style.visibility='hidden';
 }
-function dialog_text() {
+function dialog_text_edit() {
 	document.getElementById('add_element').style.visibility='hidden';
 	var html="<div class='window' style='padding:24px 8px; min-width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Dialog edit</p><br><hr>"+arr_n+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open",html);
