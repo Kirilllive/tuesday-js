@@ -352,7 +352,6 @@ let languares= {"English":"en","Japanese":"ja","Korean":"ko","Spanish":"es","Rus
 let color_bg=['#ffd4d4','#ebd4d4','#ffedd2','#edffca','#cfffd8','#deffff','#FFF','#d3f2ff','#d8e7ff','#d3d1ff','#f0e0ff','#fbddff','#e9e9e9']
 let project_files=[];
 img_file.addEventListener('change',loadFiles);
-new_novel()
 function loadFiles(e){
     var wf=e.target.files[0].webkitRelativePath.split("/")[0]+"/";
     var jsons=[];
@@ -372,44 +371,7 @@ function open_file(name){
     for (var f=0; f < project_files.length; f++){if (project_files[f][0]==name){return (project_files[f][1])}}
 }
 function new_novel(){
-    story_script={
-        "parameters":{
-            "plugins":[],
-            "text_panel":{
-                "size":["95%","25%"],
-                "color":"#9cf",
-                "indent_bottom":"32px",
-                "size_text":"20px",
-                "dialog_speed":20
-            },
-            "name_panel":{
-                "size":["0","48px"],
-                "position":["0","0","-48px","0"],
-                "size_text":"18px"
-            },
-            "title":{"en":"new novel"},
-            "launch_story":"main_menu",
-            "key":{},
-            "languares":["en"],
-            "buttons":[{
-                    "name":"tue_back",
-                    "position":["0","55%","0","8px"],
-                    "size":["52px","52px"],
-                    "color":"#888",
-                    "size_text":"48px",
-                    "text":"<"
-                },{
-                    "name":"tue_next",
-                    "position":["55%","0","0","8px"],
-                    "size":["52px","52px"],
-                    "color":"#888",
-                    "size_text":"48px",
-                    "text":">"
-                }
-            ]
-        },
-        "blocks":{}
-    };
+    story_script={"parameters":{"plugins":[],"text_panel":{"size":["95%","25%"],"color":"#9cf","indent_bottom":"32px","size_text":"20px","dialog_speed":20},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"main_menu","key":{},"languares":["en"],"buttons":[{"name":"tue_back","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":"<"},{"name":"tue_next","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":">"}]},"blocks":{}};
     update_novel()
 }
 function update_novel(){
@@ -594,6 +556,7 @@ function creaton_line(id){
     newLine.id=id+"l"
     story_lines.appendChild(newLine);
 }
+new_novel()
 function save_file(){
     var d=new Date();
     var n="new";
@@ -781,7 +744,7 @@ function play_novel(bl){
         }
     }
     var preview=window.open("https://kirilllive.github.io/Tuesday/tuesday_visual.html","preview","location=no,scrollbars=no,width=640,height=480");
-    preview.document.write("<html><head><style> body { font-family:"+story_script.parameters.font+"; font-size:"+story_script.parameters.font_size+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview="+story_preview+";  tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'}); "+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"')});" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
+    preview.document.write("<html><head><style>body{font-family:"+story_script.parameters.font+"; font-size:"+story_script.parameters.font_size+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript' src='tuesday.js'><\/script><script>let story_preview="+story_preview+";  tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'}); "+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"')});" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
 }
 function search_block(){
     var input,filter,li,i,txtValue;
@@ -1144,11 +1107,11 @@ let copy_arr = {};
 function dialog_text_edit(){
 	document.getElementById('add_element').style.visibility='hidden';
 	copy_arr = JSON.parse(JSON.stringify(arr_l.text));
-	var html="<div class='window' style='padding:24px 8px; width:640px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Dialog text</p><br><hr>"
+	var html="<div class='window' style='padding:24px 8px; width:800px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Dialog text</p><br><hr>"
 	+"<table width='100%'><tbody><tr><td width='80px' align='center'>languare:</td>"
 	+"<td width='40px'><select class='input_text' id='text_la' onchange='document.getElementById(\"dialogtext\").value = copy_arr[this.value];document.getElementById(\"text_сhars\").innerHTML=document.getElementById(\"dialogtext\").value.length' style='height:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:0'>"+project_languares(languare)+"</select></td>"
 	+"<td width='90px' align='center'>сharacters:</td><td id='text_сhars'>" + copy_arr[languare].length + "</td><td></td></tr></tbody></table>"
-	+"<p><textarea id='dialogtext' oninput='document.getElementById(\"text_сhars\").innerHTML=this.value.length;copy_arr[document.getElementById(\"text_la\").value]=this.value;' class='input_text' style='padding:4px;-moz-box-sizing:border-box; box-sizing:border-box;height:128px; width:100%; border:1px solid #cec8e3;'>" + copy_arr[languare] + "</textarea></p><br>"
+	+"<p><textarea id='dialogtext' oninput='document.getElementById(\"text_сhars\").innerHTML=this.value.length;copy_arr[document.getElementById(\"text_la\").value]=this.value;' class='input_text' style='resize:none;padding:4px;-moz-box-sizing:border-box; box-sizing:border-box;height:128px; width:100%; border:1px solid #cec8e3;'>" + copy_arr[languare] + "</textarea></p><br>"
 	+"<table width='100%'><tbody>"
 	+"<tr><td width='80px' align='right' style='padding-right:8px;'>Style</td><td><input id='text_style' class='input_text legacy_value' value='"+((copy_arr.style)?copy_arr.style:"")+"' type='text'></td></tr>"
 	+"<tr><td width='80px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='text_class' class='input_text legacy_value' value='"+((copy_arr.className)?copy_arr.className:"")+"' type='text'></td></tr>"
