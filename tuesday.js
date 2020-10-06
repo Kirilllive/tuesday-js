@@ -219,10 +219,6 @@ function get_lang(){
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="visible";}
 		}
-        if(story_json[tue_story][scene].dialogs[dialog].color){tue_text_block.style.backgroundColor=story_json[tue_story][scene].dialogs[dialog].color;}
-        else if(story_json.parameters.text_panel.color){tue_text_block.style.backgroundColor=story_json.parameters.text_panel.color;}
-        if(story_json[tue_story][scene].dialogs[dialog].color_text){tue_text_view.style.color=story_json[tue_story][scene].dialogs[dialog].color_text;}
-		else if(story_json.parameters.text_panel.color_text){tue_text_view.style.color=story_json.parameters.text_panel.color_text;}
         if(story_json[tue_story][scene].dialogs[dialog].text){
             tue_text_block.style.visibility='visible';
             tue_text_view.innerHTML="";
@@ -238,6 +234,10 @@ function get_lang(){
             clearTimeout(dialog_timeout);
             anim_text();
 		}else{tue_text_block.style.visibility='hidden';}
+		if(story_json[tue_story][scene].dialogs[dialog].color){tue_text_block.style.backgroundColor=story_json[tue_story][scene].dialogs[dialog].color;}
+        else if(story_json.parameters.text_panel.color){tue_text_block.style.backgroundColor=story_json.parameters.text_panel.color;}
+        if(story_json[tue_story][scene].dialogs[dialog].color_text){tue_text_view.style.color=story_json[tue_story][scene].dialogs[dialog].color_text;}
+		else if(story_json.parameters.text_panel.color_text){tue_text_view.style.color=story_json.parameters.text_panel.color_text;}
         if(story_json[tue_story][scene].dialogs[dialog].name){
             if(story_json[tue_story][scene].dialogs[dialog].name[languare]){
                 tue_name_block.innerHTML=story_json[tue_story][scene].dialogs[dialog].name[languare]
