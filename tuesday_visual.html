@@ -1012,7 +1012,7 @@ function scene_m(id,n){
 function dialog_el(id,n,e){
     var code='<div class="window" style="width: 220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">'+n+'</td></tr>'
-				+((e)?'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="alert(\'boom\')">Edit</td></tr>':'')
+				+((e)?'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_text_edit()">Edit</td></tr>':'')
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_dialog_del()">Delete</td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility=\'hidden\';">Cancel</td></tr>'
 				+'</tbody></table></div>'
@@ -1135,14 +1135,19 @@ function dialog_add() {
 	update_novel();
 }
 function element_to() {
-	if (arr_n == 'go_to' || arr_n == 'back_to') {arr_l[arr_n]=story_script.parameters.launch_story;}
-	else if (arr_n == 'text') {arr_l[arr_n]='text'}
+	if (arr_n=='go_to'||arr_n=='back_to'){arr_l[arr_n]=story_script.parameters.launch_story;}
+	else if (arr_n == 'text') {
+		arr_l.text = {};
+	    for (var i=0; i < story_script.parameters.languares.length; i++){arr_l.text[story_script.parameters.languares[i]]='text_'+story_script.parameters.languares[i];}
+	}
 	update_novel();
 	document.getElementById('add_element').style.visibility='hidden';
 }
 function dialog_text_edit() {
 	document.getElementById('add_element').style.visibility='hidden';
-	var html="<div class='window' style='padding:24px 8px; min-width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Dialog edit</p><br><hr>"+arr_n+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+	var html="<div class='window' style='padding:24px 8px; min-width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Text dialog</p><br><hr>"
+	+arr_l.text[languare]
+	+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open",html);
 }
 
