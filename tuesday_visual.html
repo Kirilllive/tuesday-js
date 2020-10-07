@@ -488,9 +488,10 @@ function creation_block(b){
 						element+="</div>"
                     }
                     if (story_script[chapter.id][i].dialogs[d].text){
+						var t = (languare_data(story_script[chapter.id][i].dialogs[d].text))
 						element+="<div class='dialog_element' align='left'>" 
-								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n)?"<p><b>"+n+"</p></b>" :"")+"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text';dialog_el(this.id,'Text',true)\" width='24px' class='icon_m icon_setup' title='Edit dialog'></td></tr></tbody></table>"
-								+"<p>"+languare_data(story_script[chapter.id][i].dialogs[d].text)+"</p></div>"
+								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n.length>0)?"<p><b>"+n+"</p></b>" :"&nbsp;")+"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text';dialog_el(this.id,'Text',true)\" width='24px' class='icon_m icon_setup' title='Edit dialog'></td></tr></tbody></table>"
+								+"<p>"+((t.length>0)?t:'&nbsp;')+"</p></div>"
 					}
                     if (story_script[chapter.id][i].dialogs[d].choice){
                         element+="<div id='' class='dialog_element'>"
@@ -923,8 +924,8 @@ function add_element_s(id,n){
 function add_element_d(id,n){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Add element to dialog '+n+'</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="back_to";element_to()\'>back_to</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="go_to";element_to()\'>go_to</td></tr>'
+				+((arr_l.back_to)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="back_to";element_to()\'>back_to</td></tr>')
+				+((arr_l.go_to)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="go_to";element_to()\'>go_to</td></tr>')
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>event</s></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>controll</s></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>variables</s></td></tr>'
@@ -968,7 +969,7 @@ function dialog_el(id,n,e){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">'+n+'</td></tr>'
 				+((e)?'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_text_edit()">Edit</td></tr>':'')
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_dialog_del()">Delete</td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="delete arr_l.name;element_dialog_del()">Delete</td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="document.getElementById(\'add_element\').style.visibility=\'hidden\';">Cancel</td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
@@ -1106,22 +1107,38 @@ function element_to(){
 let copy_arr = {};
 function dialog_text_edit(){
 	document.getElementById('add_element').style.visibility='hidden';
-	copy_arr = JSON.parse(JSON.stringify(arr_l.text));
+	copy_arr=JSON.parse(JSON.stringify(arr_l));
+	if(!copy_arr.name){copy_arr.name={}}
 	var html="<div class='window' style='padding:24px 8px; width:800px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Dialog text</p><br><hr>"
 	+"<table width='100%'><tbody><tr><td width='80px' align='center'>languare:</td>"
-	+"<td width='40px'><select class='input_text' id='text_la' onchange='document.getElementById(\"dialogtext\").value = copy_arr[this.value];document.getElementById(\"text_сhars\").innerHTML=document.getElementById(\"dialogtext\").value.length' style='height:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:0'>"+project_languares(languare)+"</select></td>"
-	+"<td width='90px' align='center'>сharacters:</td><td id='text_сhars'>" + copy_arr[languare].length + "</td><td></td></tr></tbody></table>"
-	+"<p><textarea id='dialogtext' oninput='document.getElementById(\"text_сhars\").innerHTML=this.value.length;copy_arr[document.getElementById(\"text_la\").value]=this.value;' class='input_text' style='resize:none;padding:4px;-moz-box-sizing:border-box; box-sizing:border-box;height:128px; width:100%; border:1px solid #cec8e3;'>" + copy_arr[languare] + "</textarea></p><br>"
-	+"<table width='100%'><tbody>"
-	+"<tr><td width='80px' align='right' style='padding-right:8px;'>Style</td><td><input id='text_style' class='input_text legacy_value' value='"+((copy_arr.style)?copy_arr.style:"")+"' type='text'></td></tr>"
-	+"<tr><td width='80px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='text_class' class='input_text legacy_value' value='"+((copy_arr.className)?copy_arr.className:"")+"' type='text'></td></tr>"
-	+"</tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+	+"<td width='40px'><select class='input_text' id='text_la' onchange='name_text.value=copy_arr.name[this.value];dialogtext.value=copy_arr.text[this.value];text_сhars.innerHTML=dialogtext.value.length' style='height:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:0'>"+project_languares(languare)+"</select></td>"
+	+"<td width='90px' align='center'>сharacters:</td><td id='text_сhars'>" + copy_arr.text[languare].length + "</td><td></td></tr></tbody></table><table width='100%'><tbody><tr>"
+	+"<td><textarea id='dialogtext' oninput='text_сhars.innerHTML=this.value.length;copy_arr.text[text_la.value]=this.value;' class='input_text' style='resize:none;padding:4px;-moz-box-sizing:border-box; box-sizing:border-box;height:256px; width:100%; border:1px solid #cec8e3;'>" + copy_arr.text[languare] + "</textarea></td>"
+	+"<td width='256px' valign='top'><table width='100%'><tbody>"
+	+"<tr><td width='80px' height='40px' align='left' style='padding-left:8px; border-bottom:1px solid #cec8e3;' colspan='2'>Settings text panel</td></tr>"
+	+"<tr><td align='right' style='padding-right:8px;'>Style</td><td><input id='text_style' class='input_text legacy_value' value='"+((copy_arr.text.style)?copy_arr.text.style:"")+"' type='text'></td></tr>"
+	+"<tr><td align='right' style='padding-right:8px;'>ClassName</td><td><input id='text_class' class='input_text legacy_value' value='"+((copy_arr.text.className)?copy_arr.text.className:"")+"' type='text'></td></tr>"
+	+"<tr><td height='28px' align='left' colspan='2'></td></tr>"
+	+"<tr><td height='40px' align='left' style='padding-left:8px; border-bottom:1px solid #cec8e3;' colspan='2'>Settings name panel</td></tr>"
+	+"<tr><td align='right' style='padding-right:8px;'>Name</td><td><input id='name_text' class='input_text legacy_value' oninput='copy_arr.name[text_la.value]=this.value;' value='"+((copy_arr.name[languare])?copy_arr.name[languare]:"")+"' type='text'></td></tr>"
+	+"<tr><td align='right' style='padding-right:8px;'>Style</td><td><input id='name_style' class='input_text legacy_value' value='"+((copy_arr.name.style)?copy_arr.name.style:"")+"' type='text'></td></tr>"
+	+"<tr><td align='right' style='padding-right:8px;'>ClassName</td><td><input id='name_class' class='input_text legacy_value' value='"+((copy_arr.name.className)?copy_arr.name.className:"")+"' type='text'></td></tr>"
+	+"</tbody></table></td>"
+	+"</tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);	
 }
 function dialog_text_apply(){
-	if (text_style.value != "") {copy_arr.style=text_style.value;} else {delete copy_arr.style}
-	if (text_class.value != "") {copy_arr.className=text_class.value;} else {delete copy_arr.className}
-	arr_l.text=JSON.parse(JSON.stringify(copy_arr)); 
+	if (text_style.value != "") {copy_arr.text.style=text_style.value;} else {delete copy_arr.text.style}
+	if (text_class.value != "") {copy_arr.text.className=text_class.value;} else {delete copy_arr.text.className}
+	var a = 0
+	for (var i=0;i<story_script.parameters.languares.length;i++){a+=copy_arr.name[story_script.parameters.languares[i]].length}
+	if (a > 0){
+		if (name_style.value != "") {copy_arr.name.style=name_style.value;} else {delete copy_arr.name.style}
+		if (name_class.value != "") {copy_arr.name.className=name_class.value;} else {delete copy_arr.name.className}
+		arr_l.name=JSON.parse(JSON.stringify(copy_arr.name));
+	} else {delete arr_l.name}
+
+	arr_l.text=JSON.parse(JSON.stringify(copy_arr.text));
 	modal_window("close"); 
 	update_novel();
 }
