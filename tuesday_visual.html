@@ -836,7 +836,7 @@ function create_block(){
 		color_chec=color_bg[color_chec[i].value]
 		break;}
 	}
-	var new_id=document.getElementById('block_id').value.replace(new RegExp(' ',"g"),'_');
+	var new_id=document.getElementById('block_id').value.replace(new RegExp(' ',"g"),'_').replace(new RegExp('-',"g"),'_');
 	if (new_id != '' && !story_script[new_id]){
 		if (Object.keys(story_script).length <= 2){story_script.parameters.launch_story = new_id}
 		story_script[new_id]=[];
@@ -892,7 +892,7 @@ function updata_block(old_id){
 		document.getElementById(old_id).style.backgroundColor=color_bg[color_chec[i].value]
 		break;}
 	}
-	var new_id=document.getElementById('block_id').value.replace(new RegExp(' ',"g"),'_');
+	var new_id=document.getElementById('block_id').value.replace(new RegExp(' ',"g"),'_').replace(new RegExp('-',"g"),'_');
 	if (old_id != new_id && !story_script[new_id]){
 		var story_rename=JSON.stringify(story_script)
 		new_novel();
@@ -930,7 +930,7 @@ function add_element_d(id,n){
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>variables</s></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>sound</td></s></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>sound_stop</s></td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="text";element_to();dialog_text_edit()\'>text</td></tr>'
+				+((arr_l.text)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="text";element_to();dialog_text_edit()\'>text</td></tr>')
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>text_add</s></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>art</s></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=""><s>choice</s></td></tr>'
