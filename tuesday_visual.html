@@ -301,8 +301,8 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
 		<table  width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center' title='New project' onclick='new_novel();' class='icon button_menu icon_new'></td>
-                    <td align='center' title='Load project folder ' onclick='json_file.click()' class='icon button_menu icon_load'></td>
+					<td align='center' title='New project' onclick='new_project();' class='icon button_menu icon_new'></td>
+                    <td align='center' title='Load project folder ' onclick='load_new=false;json_file.click()' class='icon button_menu icon_load'></td>
 					<td align='center' title='Save JSON script project' onclick='save_file()' class='icon button_menu icon_save'></td>
 					<td align='center' title='Settings project' onclick='setup()' class='icon button_menu icon_setup'></td>
                     <td align='center' title='Edit json text' onclick='jsonedit()' class='icon button_menu icon_json'></td>
@@ -364,27 +364,35 @@ let languares= {"English":"en","Japanese":"ja","Korean":"ko","Spanish":"es","Rus
 let color_bg=['#ffd4d4','#ebd4d4','#ffedd2','#edffca','#cfffd8','#deffff','#FFF','#d3f2ff','#d8e7ff','#d3d1ff','#f0e0ff','#fbddff','#e9e9e9']
 let project_files=[];
 img_file.addEventListener('change',loadFiles);
+var load_new = false
 function loadFiles(e){
     var wf=e.target.files[0].webkitRelativePath.split("/")[0]+"/";
-    var jsons=[];
-    for (var i=0; i < e.target.files.length; i++){
-        project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3',''),URL.createObjectURL(e.target.files[i])]);
-        if (e.target.files[i].type=="application/json"){jsons.push([i,e.target.files[i].name])}
+    if (load_new) {
+        project_foler.value = wf.replace("/","")
+        for (var i=0; i < e.target.files.length; i++){
+            project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3',''),URL.createObjectURL(e.target.files[i])]);
+        }
+    } else {
+        var jsons=[];
+        for (var i=0; i < e.target.files.length; i++){
+            project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3',''),URL.createObjectURL(e.target.files[i])]);
+            if (e.target.files[i].type=="application/json"){jsons.push([i,e.target.files[i].name])}
+        }
+        if (jsons.length==1){load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))}
+        else if (jsons.length > 1){
+            var html="<div class='window'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><br><p>Select JSON project file</p><br><hr><div style='margin:0 16px 8px 16px; max-height:75vh; overflow-x:hidden;'>"
+            for (var f=0; f < jsons.length; f++){html+="<table class='button' style='width:412px; margin:8px 0px;' onclick='load_story_edit(open_file(\""+jsons[f][1]+"\")); modal_window(\"close\"); '><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
+            html+="</div></div>"
+            modal_window("open",html)
+        } else if (jsons.length==0){alert('json file no found')}
     }
-    if (jsons.length==1){load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))} 
-	else if (jsons.length > 1){
-        var html="<div class='window'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><br><p>Select JSON project file</p><br><hr><div style='margin:0 16px 8px 16px; max-height:75vh; overflow-x:hidden;'>"
-        for (var f=0; f < jsons.length; f++){html+="<table class='button' style='width:412px; margin:8px 0px;' onclick='load_story_edit(open_file(\""+jsons[f][1]+"\")); modal_window(\"close\"); '><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
-        html+="</div></div>"
-        modal_window("open",html)
-    } else if (jsons.length==0){alert('json file no found')}
 }
 function open_file(name){
     for (var f=0; f < project_files.length; f++){if (project_files[f][0]==name){return (project_files[f][1])}}
 }
 function new_novel(){
     story_script={"parameters":{"plugins":[],"text_panel":{"size":["95%","25%"],"color":"#9cf","indent_bottom":"32px","size_text":"20px","dialog_speed":20},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"main_menu","key":{},"languares":["en"],"buttons":[{"name":"tue_back","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":"<"},{"name":"tue_next","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":">"}]},"blocks":{}};
-    update_novel()
+    update_novel();
 }
 function update_novel(){
     story_blocks.innerHTML=""
@@ -842,6 +850,48 @@ function jsonedit(arr){
 	}
     modal_window("open",html);
 }
+function big_languares(s){
+    var lang='';
+    for (l=0; l < Object.keys(languares).length; l++){
+        lang+="<option value='"+languares[Object.keys(languares)[l]]+"' "+((languares[Object.keys(languares)[l]]==s)?"selected":"")+">"+languares[Object.keys(languares)[l]].toUpperCase()+" - "+Object.keys(languares)[l]+"</option>"
+    }
+    return lang;
+}                                             
+function new_project(){
+    var html="<div class='window' style='padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New project</p><hr><br><div style='overflow-x:hidden; overflow-y:auto; width:100%; max-height:60vh;'>"
+        +"<p align='left' style=' margin-left:8px;'>Project folder</p>"
+        
+        +"<table style='width:100%;'><tbody><tr><td><input id='project_foler' onclick=\"load_new=true;json_file.click()\" class='input_text' style='padding-top:10px;' type='text'></td><td onclick=\"load_new=true;json_file.click()\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_load'></td></tr></tbody></table><br><br>"
+        
+        +"<p align='left' style=' margin-left:8px;'>Name project</p><table id='new_title'><tbody>"
+        +"<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><select class='input_text title_lang'>"+big_languares()+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' type='text' value='"+
+        story_script.parameters.title.en+"'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
+        +"</tbody></table><div onclick=\"add_tr('new_title')\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div>"
+        +"</div><br><br><table class='big_button' width='256px' onclick='create_project()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create project</td><td width='42px'></td></tr></tbody></table></div>"
+    modal_window("open",html);
+}
+function create_project(){
+    li_n=document.getElementsByClassName("title_lang");
+    li_v=document.getElementsByClassName("title_name");
+    story_script.parameters.title={};
+    story_script.parameters.languares=[];
+    for (var i=0; i < li_n.length; i++){
+        story_script.parameters.title[li_n[i].value]=li_v[i].value
+        story_script.parameters.languares.push(li_n[i].value);
+    }
+    modal_window("close");
+}
+                                                
+              
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
 function new_block(){
 	var html="<div class='window' style='padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><br>"
 		+"<form id='color_chec'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text'></td></tr></tbody></table><br><p style=':14px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse:separate;'><tbody><tr>"
@@ -1175,16 +1225,23 @@ function scene_edit() {
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
 	if (!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
 	var html="<div class='window' style='padding:24px 8px; width:640px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Scene</p><br><hr style='margin:0;'>"
-	+"<table width='100%' height='256px'><tbody><tr>"
-	+"<td width='256px' id='scene_bg_preview' rowspan='4' style='border-radius:10px; border-right:1px solid #cec8e3; background-image:url("+open_file(copy_arr[arr_n].background_image[languare])+"); background-size:cover; background-repeat:no-repeat; background-position:center;'></td>"
-	+"<td colspan='2' height='40px' style='padding-left:8px; border-bottom:1px solid #cec8e3;'>Settings scene</td>"
-	+"</tr><tr><td width='50px' height='40px' align='right' style='padding-right:8px;'>Image:</td>"
-	+"<td><select class='input_text' id='scene_la' onchange='scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[this.value])+\")\"; scene_bg_url.value=copy_arr[arr_n].background_image[this.value];' style='display: inline; height:40px; width:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3;'>"+project_languares(languare)+"</select><input id='scene_bg_url' class='input_text legacy_value' style='display: inline; height:40px; width:calc(100% - 40px);' oninput='copy_arr[arr_n].background_image[scene_la.value]=this.value;scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[scene_la.value])+\")\";' value='"+copy_arr[arr_n].background_image[languare]+"' type='text'></td>"
-	+"</tr><tr><td width='50px' height='40px' align='right' style='padding-right:8px;'>Music:</td>"
-	+"<td><input id='scene_music' class='input_text legacy_value' style='height:28px;' value='"+((copy_arr[arr_n].background_music)?copy_arr[arr_n].background_music:"")+"' type='text'></td>"
-	+"</tr><tr>"
-	+"<td colspan='2'></td>"
-	+"</tr></tbody></table><br>"
+    +"<table width='100%' height='256px'><tbody><tr>"
+    +"<td width='256px' id='scene_bg_preview' rowspan='4' style='border-radius:10px; border-right:1px solid #cec8e3; background-image:url("+open_file(copy_arr[arr_n].background_image[languare])+"); background-size:cover; background-repeat:no-repeat; background-position:center;'>&nbsp;</td>"
+    +"<td colspan='4' height='40px' style='padding-left:8px; border-bottom:1px solid #cec8e3;'>Settings scene</td></tr><tr>"
+    +"<td width='50px' height='40px' align='right' style='padding-right:8px;'>Image:</td>"
+    +"<td style='width:40px;'><select class='input_text' id='scene_la' onchange='scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[this.value])+\")\"; scene_bg_url.value=copy_arr[arr_n].background_image[this.value];' style='height:40px; width:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3;'>"+project_languares(languare)+"</select></td>"
+    +"<td><input id='scene_bg_url' class='input_text' style='height:40px; width:100%;' oninput='copy_arr[arr_n].background_image[scene_la.value]=this.value;scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[scene_la.value])+\")\";' value='"+copy_arr[arr_n].background_image[languare]+"' type='text'></td>"
+    +"<td class='icon icon_load' style='height:40px; width:40px;'></td>"
+    +"</tr>"
+    +"<tr>"
+    +"<td width='50px' height='40px' align='right' style='padding-right:8px;'>Music:</td>"
+    +"<td colspan='2'><input id='scene_music' class='input_text legacy_value' style='height:28px;' value='"+((copy_arr[arr_n].background_music)?copy_arr[arr_n].background_music:"")+"' type='text'></td>"
+    +"<td class='icon icon_load' style='height:40px; width:40px;'></td>"
+    +"</tr>"
+    +"<tr>"
+    +"<td>&nbsp;</td>"
+    +"<td colspan='3'>&nbsp;</td>"
+    +"</tr></tbody></table>"
 	+"<table class='big_button' width='256px' onclick='scene_edit_apply();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
@@ -1252,11 +1309,7 @@ function setup(){
     if (story_script.parameters.title){
         for (i=0; i < Object.keys(story_script.parameters.title).length; i++){
             title_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><select class='input_text title_lang'>"
-            var lang='';
-            for (l=0; l < Object.keys(languares).length; l++){
-                lang+="<option value='"+languares[Object.keys(languares)[l]]+"' "+((languares[Object.keys(languares)[l]]==Object.keys(story_script.parameters.title)[i])?"selected" :"")+">"+languares[Object.keys(languares)[l]].toUpperCase()+" - "+Object.keys(languares)[l]+"</option>"
-            }
-            title_list+=lang+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' value='"+
+            title_list+=big_languares(Object.keys(story_script.parameters.title)[i])+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' value='"+
                 story_script.parameters.title[Object.keys(story_script.parameters.title)[i]]+
                 "' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";
         }
@@ -1323,10 +1376,8 @@ function add_tr(id){
     var td1=document.createElement("td");
     var td2=document.createElement("td");
     var td3=document.createElement("td");
-    if (id=='var_title'){
-        var lang='';
-        for (l=0; l < Object.keys(languares).length; l++){lang+="<option value='"+languares[Object.keys(languares)[l]]+"' >"+languares[Object.keys(languares)[l]].toUpperCase()+" - "+Object.keys(languares)[l]+"</option>"}
-        td1.innerHTML="<select class='input_text title_lang'>"+lang+"</select>";
+    if (id=='var_title' || id=='new_title'){
+        td1.innerHTML="<select class='input_text title_lang'>"+big_languares()+"</select>";
         td1.style="padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;";
         td2.innerHTML="<input class='title_name input_text' style='padding-top:10px;' type='text' placeholder='translated title'>";
     } else if (id=='var_tablet'){
