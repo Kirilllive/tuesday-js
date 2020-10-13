@@ -1224,13 +1224,12 @@ function dialog_text_apply(){
 function scene_edit() {
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
 	if (!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
-	var html="<div class='window' style='padding:24px 8px; width:640px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Scene</p><br><hr style='margin:0;'>"
+	var html="<div class='window' style='padding:24px 8px; width:640px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Settings scene</p><br><hr style='margin:0;'><br>"
     +"<table width='100%' height='256px'><tbody><tr>"
-    +"<td width='256px' id='scene_bg_preview' rowspan='4' style='border-radius:10px; border-right:1px solid #cec8e3; background-image:url("+open_file(copy_arr[arr_n].background_image[languare])+"); background-size:cover; background-repeat:no-repeat; background-position:center;'>&nbsp;</td>"
-    +"<td colspan='4' height='40px' style='padding-left:8px; border-bottom:1px solid #cec8e3;'>Settings scene</td></tr><tr>"
-    +"<td width='50px' height='40px' align='right' style='padding-right:8px;'>Image:</td>"
-    +"<td style='width:40px;'><select class='input_text' id='scene_la' onchange='scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[this.value])+\")\"; scene_bg_url.value=copy_arr[arr_n].background_image[this.value];' style='height:40px; width:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3;'>"+project_languares(languare)+"</select></td>"
-    +"<td><input id='scene_bg_url' class='input_text' style='height:40px; width:100%;' oninput='copy_arr[arr_n].background_image[scene_la.value]=this.value;scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[scene_la.value])+\")\";' value='"+copy_arr[arr_n].background_image[languare]+"' type='text'></td>"
+    +"<td width='256px' id='scene_bg_preview' rowspan='4' style='border-radius:10px; background-image:url("+open_file(copy_arr[arr_n].background_image[languare])+"); background-size:cover; background-repeat:no-repeat; background-position:center;'>&nbsp;</td>"
+    +"<td width='50px' align='right' style='height:28px;padding-right:8px;'>Image:</td>"
+    +"<td style='width:40px;'><select class='input_text' id='scene_la' onchange='scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[this.value])+\")\"; scene_bg_url.value=copy_arr[arr_n].background_image[this.value];' style='height:28px; width:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3;'>"+project_languares(languare)+"</select></td>"
+    +"<td><input id='scene_bg_url' class='input_text' style='height:28px; width:100%;' oninput='copy_arr[arr_n].background_image[scene_la.value]=this.value;scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[scene_la.value])+\")\";' value='"+copy_arr[arr_n].background_image[languare]+"' type='text'></td>"
     +"<td class='icon icon_load' style='height:40px; width:40px;'></td>"
     +"</tr>"
     +"<tr>"
@@ -1241,7 +1240,7 @@ function scene_edit() {
     +"<tr>"
     +"<td>&nbsp;</td>"
     +"<td colspan='3'>&nbsp;</td>"
-    +"</tr></tbody></table>"
+    +"</tr></tbody></table><br>"
 	+"<table class='big_button' width='256px' onclick='scene_edit_apply();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
