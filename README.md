@@ -1,19 +1,48 @@
 ![Tuesday](https://img.itch.zone/aW1nLzQzMDYwNjAuanBn/original/wfrS1w.jpg)
 # Tuesday JS
-is a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. There is support for the Apache Cordova framework for building native mobile and desktop applications. The engine uses standard Html document elements like div and img, which makes it possible to use almost any media format supported by browsers, including vector graphics in svg format, gif animations and the use of extensive css styles.
+a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. There is support for the Apache Cordova framework for building native mobile and desktop applications. The engine uses standard Html document elements such as div and img, which allows for almost any media format supported by browsers, including vector graphics in svg format, gif animations and css styles.
 
 Home Page: https://kirilllive.github.io/Tuesday/
 
 Documentation: https://kirilllive.github.io/Tuesday/tuesday_doc.html
 
+Patreon: https://www.patreon.com/kirill_live
+
 itch.io: https://kirill-live.itch.io/tuesday
+
+Twitter: https://twitter.com/TuesdayJs
 
 # Visual editor
 
 visual editor for web browser https://kirilllive.github.io/Tuesday/tuesday_visual.html
 
-![Tuesday](https://img.itch.zone/aW1nLzQyODk0NzkucG5n/original/Y1hXdw.png)
+The visual editor allows you to create a graphic or kinetic novel without programming knowledge.
+If necessary, it is possible to expand the basic functionality using JavaScript and css.
 
+# Visualization
+The editor fully displays the structure of the script with all elements such as dialogue options and consequences of choices. This makes it easier to navigate the script and edit the script.
+
+![Tuesday script structure](screenshots/script_structure.png)
+
+# Localization
+Extensive possibilities for localizing history into other languages.
+You can set translation for almost any element of the story, both text and graphics.
+The preview function allows you to run the project in the selected language.
+All texts can be exported to a tabular csv file for editing and adding localization in another editor.
+
+![Tuesday localization](screenshots/localization.png)
+
+# JSON
+The story script with all elements is specified in the format structure JSON. This format can be read by almost any other programming language or engine.
+This makes it easier and faster to port the script to another engine or platform.
+The editor has a built-in tool for working with JSON directly, you can edit the entire script or only part of it from the selected element.
+
+![Tuesday json edit](screenshots/json_edit.png)
+
+# Preview
+Preview allows you to launch a project from a certain point in history and at a selected localization.
+
+![Tuesday preview](screenshots/preview.png)
 
 # Getting started
 
