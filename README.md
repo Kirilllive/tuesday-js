@@ -2,9 +2,9 @@
 # Tuesday JS
 a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. There is support for the Apache Cordova framework for building native mobile and desktop applications. The engine uses standard Html document elements such as div and img, which allows for almost any media format supported by browsers, including vector graphics in svg format, gif animations and css styles.
 
-Home Page: https://kirilllive.github.io/Tuesday/
+Home Page: https://kirilllive.github.io/tuesday-js/
 
-Documentation: https://kirilllive.github.io/Tuesday/tuesday_doc.html
+Documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
 
 Patreon: https://www.patreon.com/kirill_live
 
@@ -14,7 +14,7 @@ Twitter: https://twitter.com/TuesdayJs
 
 # Visual editor
 
-visual editor for web browser https://kirilllive.github.io/Tuesday/tuesday_visual.html
+visual editor for web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
 
 The visual editor allows you to create a graphic or kinetic novel without programming knowledge.
 If necessary, it is possible to expand the basic functionality using JavaScript and css.
