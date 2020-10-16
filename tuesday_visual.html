@@ -403,7 +403,7 @@ function open_file(name){
     for (var f=0; f < project_files.length; f++){if (project_files[f][0]==name){return (project_files[f][1])}}
 }
 function new_novel(){
-    story_script={"parameters":{"plugins":[],"text_panel":{"size":["95%","25%"],"color":"#9cf","indent_bottom":"32px","size_text":"20px","dialog_speed":20},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"main_menu","key":{},"languares":["en"],"buttons":[{"name":"tue_back","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":"<"},{"name":"tue_next","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":">"}]},"blocks":{}};
+    story_script={"parameters":{"plugins":[],"text_panel":{"size":["95%","25%"],"color":"rgba(255,255,255,0.75)","indent_text": "8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":20},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"main_menu","key":{},"languares":["en"],"buttons":[{"name":"tue_back","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":"<"},{"name":"tue_next","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":">"}]},"blocks":{}};
     update_novel();
 }
 function update_novel(){
@@ -1227,7 +1227,7 @@ function dialog_text_edit(){
 	+"<tr><td align='right' style='padding-right:8px;'>ClassName</td><td><input id='text_class' class='input_text legacy_value' value='"+((copy_arr.text.className)?copy_arr.text.className:"")+"' type='text'></td></tr>"
 	+"<tr><td height='28px' align='left' colspan='2'></td></tr>"
 	+"<tr><td height='40px' align='left' style='padding-left:8px; border-bottom:1px solid #cec8e3;' colspan='2'>Settings name panel</td></tr>"
-	+"<tr><td align='right' style='padding-right:8px;'>Name</td><td><input id='name_text' class='input_text legacy_value' oninput='copy_arr.name[text_la.value]=this.value;' value='"+((copy_arr.name[languare])?copy_arr.name[languare]:"")+"' type='text'></td></tr>"
+	+"<tr><td align='right' style='padding-right:8px;'>Character name</td><td><input id='name_text' class='input_text legacy_value' oninput='copy_arr.name[text_la.value]=this.value;' value='"+((copy_arr.name[languare])?copy_arr.name[languare]:"")+"' type='text'></td></tr>"
 	+"<tr><td align='right' style='padding-right:8px;'>Style</td><td><input id='name_style' class='input_text legacy_value' value='"+((copy_arr.name.style)?copy_arr.name.style:"")+"' type='text'></td></tr>"
 	+"<tr><td align='right' style='padding-right:8px;'>ClassName</td><td><input id='name_class' class='input_text legacy_value' value='"+((copy_arr.name.className)?copy_arr.name.className:"")+"' type='text'></td></tr>"
 	+"</tbody></table></td>"
