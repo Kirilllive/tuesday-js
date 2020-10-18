@@ -11554,7 +11554,7 @@ tuesday.addEventListener('load', function(event) {toast("load")});
 tuesday.addEventListener('save', function(event) {toast("save")});
 tuesday.addEventListener('ointment_add', function(event) {toast("Добавлена мазь от облучения")});
 tuesday.addEventListener('ointment_set', function(event) {toast("Получена мазь от облучения")});
-tuesday.addEventListener('script_executed', function(event) {story_json = JSON.parse(localStorage.getItem('newJSON')); });
+tuesday.addEventListener('script_executed', function(event) {story_json = JSON.parse(localStorage.getItem('newJSON')) || story_json; });
 </script>
 
 
