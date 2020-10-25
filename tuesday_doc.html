@@ -167,6 +167,7 @@ hr {border: solid 1px #cec8e3;}
 <div class="panel border_b border_t">
     <a href="#background_music" style='text-decoration: none;'><div class='block'><span class='three_1'>background_music</div></a>
     <a href="#background_image" style='text-decoration: none;'><div class='block'><span class='three_1'>background_image</div></a>
+    <a href="#html" style='text-decoration: none;'><div class='block'><span class='three_1'>html</div>
     <div class="accordion"><a href="#dialogs" style='text-decoration: none;'><div class='block block_open'><span class='three_1'>dialogs</div></a></div>
     <div class="panel border_b border_t">
         <a href="#back_to" style='text-decoration: none;'><div class='block'><span class='three_2'>back_to</div>
@@ -177,6 +178,7 @@ hr {border: solid 1px #cec8e3;}
         <a href="#e_text" style='text-decoration: none;'><div class='block'><span class='three_2'>text</div>
 		<a href="#text_add" style='text-decoration: none;'><div class='block'><span class='three_2'>text_add</div>
         <a href="#e_name" style='text-decoration: none;'><div class='block'><span class='three_2'>name</div>
+        <a href="#html" style='text-decoration: none;'><div class='block'><span class='three_2'>html</div>
         <a href="#go_to" style='text-decoration: none;'><div class='block'><span class='three_2'>go_to</div>
         <a href="#back_to" style='text-decoration: none;'><div class='block'><span class='three_2'>back_to</div>
         <a href="#e_variable" style='text-decoration: none;'><div class='block'><span class='three_2'>variables</div>
@@ -963,6 +965,7 @@ The display of the script on the html page occurs through the div element with <
 	{
 		"<a href="#background_music" class='code_link'>background_music</a>": "<span class='comm'>path to audio file without extension only its name</span>"
 		"<a href="#background_image" class='code_link'>background_image</a>": "<span class='comm'>path to the image file</span>"
+                "html": "<span class='comm'>html code</span>",
 		"<a href="#dialogs" class='code_link'>dialogs</a>":[
 			{
 				"<a href="#back_to" class='code_link'>back_to</a>": "<span class='comm'>id of the previous block</span>",
@@ -973,6 +976,7 @@ The display of the script on the html page occurs through the div element with <
 				],
 				"<a href="#sound" class='code_link'>sound</a>": "<span class='comm'>Sound id</span>"
 				"<a href="#sound_stop" class='code_link'>sound_stop</a>": "<span class='comm'>Sound id to stop</span>"
+                                "html": "<span class='comm'>html code</span>",
 				"<a href="#e_text" class='code_link'>text</a>": {
 					"<a href="#className" class='code_link'>className</a>": "<span class='comm'>a set of css style classes</span>",
 					"<a href="#style" class='code_link'>style</a>": "<span class='comm'>css style parameters and their values</span>",
@@ -1591,6 +1595,11 @@ Localization option supported
 <a id="color_text"></a>
 <p><b>"color_text"</b> - Text color, optional parameter, if not specified, the color will be the default, the color can be set in hexadecimal format hex (#fff #ffffff) or in rgb (255,255,255) and rgba (255,255,255,1) formats.</p>
 <pre class='code_box'><code>		"color_text": "<span class='comm'>Text color</span>",</code></pre>
+<br>
+<br>
+<a id="html"></a>
+<p><b>"html"</b> - Displaying html elements inside a tuesday element</p>
+<pre class='code_box'><code>        "html": "<span class='comm'>html code</span>",</code></pre>
 <br>
 <br>
 <a id="indent_text"></a>

@@ -102,7 +102,9 @@
     },
     "main_menu": [{
         "background_image": {},
+        "html":"qw",
         "dialogs": [{
+            "html":"<div><p>111</p></div>",
             "color": "rgba(0,0,0,0.5)",
             "color_text": "#fff",
             "art": [{
