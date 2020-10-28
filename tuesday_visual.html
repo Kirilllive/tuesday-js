@@ -919,7 +919,7 @@ function create_block(){
 		color_chec=color_bg[color_chec[i].value]
 		break;}
 	}
-	var new_id=block_id.value.replace(new RegExp(' ',"g"),'_').replace(new RegExp('-',"g"),'_');
+    var new_id=correct_name(block_id.value);
 	if (new_id != '' && !story_script[new_id]){
 		if (Object.keys(story_script).length <= 2){story_script.parameters.launch_story = new_id}
 		story_script[new_id]=[];
@@ -975,7 +975,7 @@ function updata_block(old_id){
 		document.getElementById(old_id).style.backgroundColor=color_bg[color_chec[i].value]
 		break;}
 	}
-	var new_id=block_id.value.replace(new RegExp(' ',"g"),'_').replace(new RegExp('-',"g"),'_');
+	var new_id=correct_name(block_id.value);
 	if (old_id != new_id && !story_script[new_id]){
 		var story_rename=JSON.stringify(story_script)
 		new_novel();
@@ -1306,7 +1306,9 @@ function edit_html(){
 
 
 
-                 
+function correct_name(name){
+        return name.replace(/[\s.,%-]/g, '_');
+};
 function move_elenetn(arr,o,n){
 	var new_index=((o+n)<0)?o:o+n;
     arr.splice(new_index,0,arr.splice(o,1)[0]);
