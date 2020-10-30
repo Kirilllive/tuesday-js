@@ -405,7 +405,7 @@ function open_file(name){
     for (var f=0; f < project_files.length; f++){if (project_files[f][0]==name){return (project_files[f][1])}}
 }
 function new_novel(){
-    story_script={"parameters":{"plugins":[],"text_panel":{"size":["95%","25%"],"color":"rgba(255,255,255,0.75)","indent_text": "8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":20},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"main_menu","key":{},"languares":["en"],"buttons":[{"name":"tue_back","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":"<"},{"name":"tue_next","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#888","size_text":"48px","text":">"}]},"blocks":{}};
+    story_script={"parameters":{"plugins":[],"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"200"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"nbvjhf","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":">"}],"style_file":"","autosave":false,"font":"","font_size":"","variables":{},"sounds":{}},"blocks":{"nbvjhf":["458px","167px","block",""]}};
     update_novel();
 }
 function update_novel(){
@@ -1029,8 +1029,22 @@ function add_element_b(id,arr){
 function add_element_s(id,n){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Add to scene '+n+'</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>Dialog</td></tr></tbody></table></td></tr>'
-				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+				//+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>Dialog block</td></tr></tbody></table></td></tr>'
+                
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="back_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_back"></td><td>back to</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="go_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_goto"></td><td>go to</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_event"></td><td><s>event</s></td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_controll"></td><td><s>controll</s></td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_var"></td><td><s>variables</s></td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_play"></td><td><s>sound play</s></td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td><s>sound stop</s></td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n]; arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td><s>text add</s></td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td><s>art</s></td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td><s>choice</s></td></tr></tbody></table></td></tr>'
+                
+                +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
@@ -1366,8 +1380,8 @@ function setup(){
         "<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'>"+
         "<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px; width:60%;'><input id='autosave' type='checkbox' class='checkbox_a' "+((story_script.parameters.autosave)?'checked' :'')+"></td></tr>"+
         "<tr><td align='right'>story launch block </td><td align='left''><select class='input_text' id='launch_story'>"+((block_list)?block_list :'')+"</select></td></tr>"+
-        "<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='"+((story_script.parameters.style_file)?story_script.parameters.style_file :'')+"' type='text'></td></tr>"+
-        "<tr><td align='right'>font family </td><td align='left'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr>"+
+        "<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='"+((story_script.parameters.style_file)?story_script.parameters.style_file :'')+"' type='text'></td></tr>"
+        +"<tr><td align='right'>dialog speed </td><td align='left'><input id='dialog_speed' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed :'')+"' type='text'></td></tr>"+"<tr><td align='right'>font family </td><td align='left'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>font size </td><td align='left'><input id='font_size' class='input_text' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size :'')+"' type='text'></td></tr>"+
         "</table><br><p align='left' style=' margin-left:8px;'>name project</p><hr>"+title_list+"</div>"+
         //
@@ -1449,6 +1463,7 @@ function apply_setup(){
     story_script.parameters.key.load_autosave=key_load_autosave.value
     story_script.parameters.font=font.value
     story_script.parameters.font_size=font_size.value
+    story_script.parameters.text_panel.dialog_speed=dialog_speed.value
     //
     i;
     li_n=document.getElementsByClassName("var_name");
