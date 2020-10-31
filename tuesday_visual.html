@@ -311,17 +311,17 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
 		<table  width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center' title='New project' onclick='new_project();' class='icon button_menu icon_new'></td>
-                    <td align='center' title='Load project folder ' onclick='load_new=false;json_file.click()' class='icon button_menu icon_load'></td>
-					<td align='center' title='Save JSON script project' onclick='save_file()' class='icon button_menu icon_save'></td>
-					<td align='center' title='Settings project' onclick='setup()' class='icon button_menu icon_setup'></td>
-                    <td align='center' title='Edit json text' onclick='jsonedit()' class='icon button_menu icon_json'></td>
-                    <td align='center' title='Export all text to CSV file' onclick='csv_export()' class='icon button_menu icon_csv'></td>
-                    <td align='center' title='About visual editor' onclick='about()' class='icon button_menu icon_about'></td>
+					<td align='center' title='New project' onclick='new_project();add_element.style.visibility="hidden";' class='icon button_menu icon_new'></td>
+                    <td align='center' title='Load project folder ' onclick='load_new=false;json_file.click();add_element.style.visibility="hidden";' class='icon button_menu icon_load'></td>
+					<td align='center' title='Save JSON script project' onclick='save_file();add_element.style.visibility="hidden";' class='icon button_menu icon_save'></td>
+					<td align='center' title='Settings project' onclick='setup();add_element.style.visibility="hidden";' class='icon button_menu icon_setup'></td>
+                    <td align='center' title='Edit json text' onclick='jsonedit();add_element.style.visibility="hidden";' class='icon button_menu icon_json'></td>
+                    <td align='center' title='Export all text to CSV file' onclick='csv_export();add_element.style.visibility="hidden";' class='icon button_menu icon_csv'></td>
+                    <td align='center' title='About visual editor' onclick='about();add_element.style.visibility="hidden";' class='icon button_menu icon_about'></td>
                     <td align='center' style='width:88px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
                     <td align='center' style='width:40px;'><select class='input_text' id='language_view' style='height:40px; border-right:1px solid #cec8e3; border-bottom:0'><option value='en'>EN</option></select></td>
-					<td align='center' title='Build project' onclick='build()' class='icon button_menu icon_build'></td>
-					<td align='center' style='border-radius:0 0 16px 0;' title='Run preview Project' onclick='play_novel()' class='icon button_menu icon_play'></td>
+					<td align='center' title='Build project' onclick='build();add_element.style.visibility="hidden";' class='icon button_menu icon_build'></td>
+					<td align='center' style='border-radius:0 0 16px 0;' title='Run preview Project' onclick='play_novel();add_element.style.visibility="hidden";' class='icon button_menu icon_play'></td>
 				</tr>
 			</tbody>
 		</table>
@@ -426,6 +426,7 @@ function new_novel(){
     update_novel();
 }
 function update_novel(){
+    add_element.style.visibility="hidden";
     story_blocks.innerHTML=""
     line_controll=[];
     search_block.value=""
@@ -645,15 +646,15 @@ function lines(elem){
         if (document.getElementById(line_controll[x][1]+"_content").style.display=='none'){
             title_block=document.getElementById(line_controll[x][0]).getBoundingClientRect();
             var rect=document.getElementById(line_controll[x][1]).getBoundingClientRect();
-            var l1=html.scrollLeft+rect.left;
-            var l2=html.scrollLeft+title_block.left
+            var l1=(html.scrollLeft+rect.left)/scale;
+            var l2=(html.scrollLeft+title_block.left)/scale
             if (l1 > l2){
-                moveSlider(rect.left+html.scrollLeft,'x2',line_controll[x][2]);
+                moveSlider(l1,'x2',line_controll[x][2]);
                 moveSlider(rect.top+html.scrollTop+22,'y2',line_controll[x][2]);
-                moveSlider(l2+256,'x1',line_controll[x][2]);
+                moveSlider((l2+256),'x1',line_controll[x][2]);
                 moveSlider(title_block.top+html.scrollTop+22,'y1',line_controll[x][2]);
             } else {
-                moveSlider(rect.left+html.scrollLeft+256,'x2',line_controll[x][2]);
+                moveSlider((l1+256),'x2',line_controll[x][2]);
                 moveSlider(rect.top+html.scrollTop+22,'y2',line_controll[x][2]);
                 moveSlider(l2,'x1',line_controll[x][2]);
                 moveSlider(title_block.top+html.scrollTop+22,'y1',line_controll[x][2]);
@@ -661,18 +662,18 @@ function lines(elem){
         } else {
             title_block=document.getElementById(line_controll[x][0]).getBoundingClientRect();
             var rect=document.getElementById(line_controll[x][2]).getBoundingClientRect();
-            var l1=html.scrollLeft+rect.left;
-            var l2=html.scrollLeft+title_block.left
+            var l1=(html.scrollLeft+rect.left)/scale;
+            var l2=(html.scrollLeft+title_block.left)/scale
             if (l1 > l2){
-                moveSlider(rect.left+html.scrollLeft - 12,'x2',line_controll[x][2]);
-                moveSlider(rect.top+html.scrollTop+12,'y2',line_controll[x][2]);
-                moveSlider(l2+256,'x1',line_controll[x][2]);
-                moveSlider(title_block.top+html.scrollTop+22,'y1',line_controll[x][2]);
+                moveSlider((l1-12),'x2',line_controll[x][2]);
+                moveSlider((rect.top+html.scrollTop+12)/scale,'y2',line_controll[x][2]);
+                moveSlider((l2+256),'x1',line_controll[x][2]);
+                moveSlider((title_block.top+html.scrollTop+22)/scale,'y1',line_controll[x][2]);
             } else {
-                moveSlider(rect.left+html.scrollLeft+244,'x2',line_controll[x][2]);
-                moveSlider(rect.top+html.scrollTop+12,'y2',line_controll[x][2]);
+                moveSlider((l1+244),'x2',line_controll[x][2]);
+                moveSlider((rect.top+html.scrollTop+12)/scale,'y2',line_controll[x][2]);
                 moveSlider(l2,'x1',line_controll[x][2]);
-                moveSlider(title_block.top+html.scrollTop+22,'y1',line_controll[x][2]);
+                moveSlider((title_block.top+html.scrollTop+22)/scale,'y1',line_controll[x][2]);
             }
         }
     }
@@ -689,33 +690,33 @@ function control_dlock(){
 }
 var scroll_block=false;
 function movie_dlock(id){
-    var focus_dlock=document.getElementById(id);
-    focus_dlock.onmousedown=function(e){
+    var focus_block=document.getElementById(id);
+    focus_block.onmousedown=function(e){
         add_element.style.visibility="hidden";
-        var coords=getCoords(focus_dlock);
+        var coords=getCoords(focus_block);
         var shiftX=(e.pageX - coords.left);
         var shiftY=(e.pageY - coords.top);
         scroll_block=true;
-        focus_dlock.style.position='absolute';
-        focus_dlock.style.animation=false;
-        focus_dlock.style.WebkitAnimation=false;
-        story_blocks.appendChild(focus_dlock);
+        focus_block.style.position='absolute';
+        focus_block.style.animation=false;
+        focus_block.style.WebkitAnimation=false;
+        story_blocks.appendChild(focus_block);
         moveAt(e);
         function moveAt(e){
-            focus_dlock.style.left=((e.pageX - shiftX) / scale)+'px';
-            focus_dlock.style.top=((e.pageY - shiftY) / scale)+'px';
+            focus_block.style.left=((e.pageX - shiftX) / scale)+'px';
+            focus_block.style.top=((e.pageY - shiftY) / scale)+'px';
             lines(id)
         }
         document.onmousemove=function(e){moveAt(e);};
-        focus_dlock.onmouseup=function(){
-			story_script.blocks[focus_dlock.id]=[focus_dlock.style.left,focus_dlock.style.top,document.getElementById(focus_dlock.id+"_content").style.display,focus_dlock.style.backgroundColor]
+        focus_block.onmouseup=function(){
+			story_script.blocks[focus_block.id]=[focus_block.style.left,focus_block.style.top,document.getElementById(focus_block.id+"_content").style.display,focus_block.style.backgroundColor]
             document.onmousemove=null;
-            focus_dlock.onmouseup=null;
+            focus_block.onmouseup=null;
             if (window_zone.style.visibility != "visible"){scroll_block=false};
             world_size()
         };
     }
-    focus_dlock.ondragstart=function(){return false;};
+    focus_block.ondragstart=function(){return false;};
     function getCoords(elem){
         var box=elem.getBoundingClientRect();
         return {
@@ -727,9 +728,9 @@ function movie_dlock(id){
 function world_size(){
     var height=Math.max(body.scrollHeight,body.offsetHeight,html.clientHeight,html.scrollHeight,html.offsetHeight);
     var width=Math.max(body.scrollWidth,body.offsetWidth,html.clientWidth,html.scrollWidth,html.offsetWidth);
-    story_lines.setAttribute("height",height);
-    story_lines.setAttribute("width",width);
-    story_lines.setAttribute("viewBox","0,0,"+width+","+height);
+    story_lines.setAttribute("height",height/scale);
+    story_lines.setAttribute("width",width/scale);
+    story_lines.setAttribute("viewBox","0,0,"+width/scale+","+height/scale);
 }
 function block_open(id){
     var e=document.getElementById(id);
@@ -779,7 +780,7 @@ html.onmousedown=function(e){
 			html.onmousemove=null;
 			html.onmouseup=null;
 			document.onmousemove=null;
-			focus_dlock.onmouseup=null;
+			focus_block.onmouseup=null;
 		};
     }
 }
@@ -1521,9 +1522,10 @@ document.addEventListener('keydown',function(event){
     }
 });
 function world_scale(s) {
-    if (s==1){scale=1;document.getElementById("world").style.transform='scale(1)';}
-    else if (s==2){scale=Math.min(2,scale+0.1);document.getElementById("world").style.transform='scale('+scale+')';}
-    else {scale=Math.max(0.25,scale-0.1);document.getElementById("world").style.transform='scale('+scale+')';}
+    add_element.style.visibility='hidden';
+    if (s==1){scale=1;world.style.transform='scale(1)';}
+    else if (s==2){scale=Math.min(2,scale+0.1);world.style.transform='scale('+scale+')';}
+    else {scale=Math.max(0.25,scale-0.1);world.style.transform='scale('+scale+')';}
 }
 function csv_export(){
     var n,i,d,l,r;
