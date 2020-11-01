@@ -650,14 +650,14 @@ function lines(elem){
             var l2=(html.scrollLeft+title_block.left)/scale
             if (l1 > l2){
                 moveSlider(l1,'x2',line_controll[x][2]);
-                moveSlider(rect.top+html.scrollTop+22,'y2',line_controll[x][2]);
-                moveSlider((l2+256),'x1',line_controll[x][2]);
-                moveSlider(title_block.top+html.scrollTop+22,'y1',line_controll[x][2]);
+                moveSlider((rect.top+html.scrollTop+(22*scale))/scale,'y2',line_controll[x][2]);
+                moveSlider((l2+(256)),'x1',line_controll[x][2]);
+                moveSlider((title_block.top+html.scrollTop+(22*scale))/scale,'y1',line_controll[x][2]);
             } else {
                 moveSlider((l1+256),'x2',line_controll[x][2]);
-                moveSlider(rect.top+html.scrollTop+22,'y2',line_controll[x][2]);
+                moveSlider((rect.top+html.scrollTop+(22*scale))/scale,'y2',line_controll[x][2]);
                 moveSlider(l2,'x1',line_controll[x][2]);
-                moveSlider(title_block.top+html.scrollTop+22,'y1',line_controll[x][2]);
+                moveSlider((title_block.top+html.scrollTop+(22*scale))/scale,'y1',line_controll[x][2]);
             }
         } else {
             title_block=document.getElementById(line_controll[x][0]).getBoundingClientRect();
@@ -666,14 +666,14 @@ function lines(elem){
             var l2=(html.scrollLeft+title_block.left)/scale
             if (l1 > l2){
                 moveSlider((l1-12),'x2',line_controll[x][2]);
-                moveSlider((rect.top+html.scrollTop+12)/scale,'y2',line_controll[x][2]);
+                moveSlider((rect.top+html.scrollTop+(12*scale))/scale,'y2',line_controll[x][2]);
                 moveSlider((l2+256),'x1',line_controll[x][2]);
-                moveSlider((title_block.top+html.scrollTop+22)/scale,'y1',line_controll[x][2]);
+                moveSlider((title_block.top+html.scrollTop+(22*scale))/scale,'y1',line_controll[x][2]);
             } else {
                 moveSlider((l1+244),'x2',line_controll[x][2]);
-                moveSlider((rect.top+html.scrollTop+12)/scale,'y2',line_controll[x][2]);
+                moveSlider((rect.top+html.scrollTop+(12*scale))/scale,'y2',line_controll[x][2]);
                 moveSlider(l2,'x1',line_controll[x][2]);
-                moveSlider((title_block.top+html.scrollTop+22)/scale,'y1',line_controll[x][2]);
+                moveSlider((title_block.top+html.scrollTop+(22*scale))/scale,'y1',line_controll[x][2]);
             }
         }
     }
