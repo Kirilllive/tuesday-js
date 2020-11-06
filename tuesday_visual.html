@@ -455,7 +455,7 @@ function open_file(name){
     for (var f=0; f < project_files.length; f++){if (project_files[f][0]==name){return (project_files[f][1])}}
 }
 function new_novel(){
-    story_script={"parameters":{"plugins":[],"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"200"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"nbvjhf","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":">"}],"style_file":"","autosave":false,"font":"","font_size":"","variables":{},"sounds":{}},"blocks":{"nbvjhf":["458px","167px","block",""]}};
+    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"200"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"nbvjhf","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":">"}],"style_file":"","autosave":false,"font":"","font_size":"","variables":{},"sounds":{}},"blocks":{"nbvjhf":["458px","167px","block",""]}};
     update_novel();
 }
 function update_novel(){
@@ -897,16 +897,15 @@ function about(){
     modal_window("open",html);
 }
 function build(){
-    var font_family=story_script.parameters.font
-    var font_size=story_script.parameters.font_size
+    let story_build = JSON.parse(JSON.stringify(story_script));
     var plugins_code="";
-    if (story_script.parameters.plugins){for (var i=0; i < story_script.parameters.plugins.length; i++){plugins_code+="<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>"}}
-    delete story_script.parameters['plugins'];
-    delete story_script.parameters['font'];
-    delete story_script.parameters['font_size'];
-    delete story_script.blocks;
-    var story_preview=JSON.stringify(story_script)
-    var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent("<html><head><style> body {font-family:"+font_family+"; font-size:"+font_size+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript'>"+runtime+"<\/script>"+plugins_code+"<script>let story_novel="+story_preview+"; load_story('data',story_novel); <\/script><\/body><\/html>");
+    if (story_script.parameters.plugins){for (var i=0; i < story_script.parameters.plugins.length; i++){plugins_code+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>":"")}}
+    delete story_build.parameters['plugins'];
+    delete story_build.parameters['font'];
+    delete story_build.parameters['font_size'];
+    delete story_build.blocks;
+    var story_preview=JSON.stringify(story_build)
+    var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent("<html><head><style> body {font-family:"+story_build.parameters.font+"; font-size:"+story_build.parameters.font_size+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript'>"+runtime+"<\/script>"+plugins_code+"<script>let story_novel="+story_preview+"; load_story('data',story_novel); <\/script><\/body><\/html>");
     var dlAnchorElem=document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href",dataStr);
     dlAnchorElem.setAttribute('download','index.html');
@@ -1575,7 +1574,7 @@ function apply_setup(){
     li_v=document.getElementsByClassName("chec_plugin");
     story_script.parameters.plugins=[];
     for (i=0; i < li_v.length; i++){
-        if (li_v[i].checked){story_script.parameters.plugins.push(li_v[i].id);}
+        if (li_v[i].checked && plugins_list[li_v[i].id] ){story_script.parameters.plugins.push(li_v[i].id);}
     }
 	lang_select()
     modal_window('close')
