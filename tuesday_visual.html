@@ -409,8 +409,9 @@ let texts={
     ]
 }
 let setup_editor = {
-        wheel:true,
-        fon:''
+        'wheel':true,
+        'fon':'',
+        'lines':false
     };
 
 if (localStorage.getItem("editor_setup")) {setup_editor=JSON.parse(localStorage.getItem("editor_setup"))}
@@ -674,8 +675,10 @@ function save_file(){
 function lines(elem){
     var to_go=document.getElementsByClassName("to_go");
     for (var x=0; x < to_go.length; x++){
-        if (elem==line_controll[x][1] || elem==line_controll[x][0]){document.getElementById(line_controll[x][2]+"l").style.visibility='visible'} 
-		else {document.getElementById(line_controll[x][2]+"l").style.visibility='hidden'}
+        if(!setup_editor.lines){
+            if (elem==line_controll[x][1] || elem==line_controll[x][0]){document.getElementById(line_controll[x][2]+"l").style.visibility='visible'}
+            else {document.getElementById(line_controll[x][2]+"l").style.visibility='hidden'}
+        }
         var title_block;
         if (document.getElementById(line_controll[x][1]+"_content").style.display=='none'){
             title_block=document.getElementById(line_controll[x][0]).getBoundingClientRect();
@@ -1461,7 +1464,9 @@ function setup(){
         "<div id='blank_1' style='visibility:hidden;' class='set_blank'><br><p align='left' style=' margin-left:8px;'>Devices control</p><hr><form id='devices'><table id='controll' style='width:100%;  border-spacing:10px; border-collapse:separate;'>"+
         "<tr><td align='right' style='padding-top:4px; height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==true)?'checked' :'')+"></td><td align='left' style='width:80px;'>Mouse </td><td> scrolling with the mouse cursor, zooming with the wheel</td></tr>"+
         "<tr><td align='right' style='padding-top:4px; height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==false)?'checked' :'')+"></td><td align='left' style='width:80px;'>TouchPad </td><td> swipe scrolling is recommended for Laptops and MacBooks</td></tr>"+
-        "</table></form><br><p align='left' style=' margin-left:8px;'>Background</p><hr><form id='bg_edit'><table style='width:100%;'><tbody><tr>"+
+        "</tbody></table></form><br><p align='left' style=' margin-left:8px;'>Display script</p><hr><table id='controll' style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody>"+
+        "<tr><td align='right' style='padding-top:4px; height:40px;'><input id='all_lines' type='checkbox' class='chec_plugin checkbox_a' "+((setup_editor.lines)?'checked' :'')+"></td><td align='left' style='width:80px;'>All Lines </td><td> Show all lines of a block or only a selected block</td></tr>"+
+        "</tbody></table><br><p align='left' style=' margin-left:8px;'>Background</p><hr><form id='bg_edit'><table style='width:100%;'><tbody><tr>"+
         "<td align='center' height='92px'><input type='radio' name='bg_edit' class='chec_bg' value='' "+((setup_editor.fon=='')?'checked' :'')+"></td>"+
         "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_1' value='bg_1' "+((setup_editor.fon=='bg_1')?'checked' :'')+"></td>"+
         "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_2' value='bg_2' "+((setup_editor.fon=='bg_2')?'checked' :'')+"></td>"+
@@ -1540,9 +1545,10 @@ function apply_setup(){
     story_script.parameters.font_size=font_size.value
     story_script.parameters.text_panel.dialog_speed=dialog_speed.value
     //
-    forms= document.forms.devices;
+    forms=document.forms.devices;
     setup_editor.wheel=(forms[0].checked)?true:false;
-    forms= document.forms.bg_edit;
+    setup_editor.lines=all_lines.checked;
+    forms=document.forms.bg_edit;
     for (i=0; i < forms.length; i++){
         if (forms[i].checked){
             setup_editor.fon=forms[i].value;
@@ -1576,8 +1582,9 @@ function apply_setup(){
     for (i=0; i < li_v.length; i++){
         if (li_v[i].checked && plugins_list[li_v[i].id] ){story_script.parameters.plugins.push(li_v[i].id);}
     }
-	lang_select()
-    modal_window('close')
+    lang_select();
+    update_novel();
+    modal_window('close');
     toast("parameters updated");
 }
 var scale = 1;
@@ -1589,7 +1596,7 @@ document.addEventListener('keydown',function(event){
     }
 });
 function world_scale(s) {
-        scroll_z();
+    scroll_z();
     add_element.style.visibility='hidden';
     if (s==1){scale=1;world.style.transform='scale(1)';}
     else if (s==2){scale=Math.min(2,scale+0.05);world.style.transform='scale('+scale+')';}
