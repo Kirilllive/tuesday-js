@@ -259,12 +259,7 @@ line{
 	border-right:1px solid #cec8e3;
 	width:88px;
 	padding-left:8px;
-	-webkit-touch-callout:auto;
-	-webkit-user-select:auto;
-	-khtml-user-select:auto;
-	-moz-user-select:auto;
-	-ms-user-select:auto;
-	user-select:auto;
+    -webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
 }
 .add_button{height:28px;width:28px;}
 .input_text_b{
@@ -276,12 +271,7 @@ line{
 	cursor:text;
 	height:20px;
 	width:100%;
-	-webkit-touch-callout:auto;
-	-webkit-user-select:auto;
-	-khtml-user-select:auto;
-	-moz-user-select:auto;
-	-ms-user-select:auto;
-	user-select:auto;
+	-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
 }
 .input_text{
 	border:0;
@@ -293,12 +283,7 @@ line{
 	cursor:text;
 	height:28px;
 	width:100%;
-	-webkit-touch-callout:auto;
-	-webkit-user-select:auto;
-	-khtml-user-select:auto;
-	-moz-user-select:auto;
-	-ms-user-select:auto;
-	user-select:auto;
+	-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
 }
 input[type="text"]{text-indent:4px;}
 select {text-align-last:center; }
@@ -316,8 +301,9 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
 .namber{padding-left:8px;font-size:12px;color:#999;}
 .add_el{height:40px;background-color:#fff;}
 .add_el:hover{background-color:#cec8e3;}
-.text_tutorials{font-size:12px;text-align:left;background-color:#efefff;padding:8px;color:#999;}
-
+.text_tutorials_a{font-size:12px;text-align:left;background-color:#efefff;padding:8px;color:#999;}
+.text_tutorials_b{font-size:12px;text-align:left;padding-top:4px;color:#999;}
+.select_tutorials{-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;}
 .chec_bg{border:2px solid #efefff; border-radius:8px;background-color:#cec8e3;height:68px;width:68px;content:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;}
 .chec_bg:checked{background-color:#efefff; border:2px solid #cec8e3;}
 </style>
@@ -405,6 +391,8 @@ let texts={
         "en":"Text and character name settings that will be displayed in the text area"
         },{
         "en":"Customize the look of the scene, its background image and music, for subsequent dialogues and actions."
+        },{
+        "en":"Select working media folder for project (images & sounds)."
         }
     ]
 }
@@ -935,7 +923,7 @@ function new_project(){
     var html="<div class='window' style='padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New project</p><hr><br><div style='overflow-x:hidden; overflow-y:auto; width:100%; max-height:60vh;'>"
         +"<p align='left' style=' margin-left:8px;'>Project folder</p>"
         
-        +"<table style='width:100%;'><tbody><tr><td><input id='project_foler' onclick=\"load_new=true;json_file.click()\" class='input_text' style='padding-top:10px;' type='text'></td><td onclick=\"load_new=true;json_file.click()\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_load'></td></tr></tbody></table><br><br>"
+        +"<table style='width:100%;'><tbody><tr><td><input id='project_foler' onclick=\"load_new=true;json_file.click()\" class='input_text' style='padding-top:10px;' type='text'></td><td onclick=\"load_new=true;json_file.click()\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_load'></td></tr></tbody></table><p class='text_tutorials_b select_tutorials'>"+texts.tutorials[3].en+"</p><br><br>"
         
         +"<p align='left' style=' margin-left:8px;'>Name project</p><table id='new_title'><tbody>"
         +"<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><select class='input_text title_lang'>"+big_languares()+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' type='text' value='"+
@@ -1049,14 +1037,14 @@ function updata_block(old_id){
 	modal_window ('close');
 }
 function file_catalog(id,files,area,preview) {
-    var code='<div class="window" style="width:300px;"><table style="width:100%;"><tbody><tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">File selection</td></tr><tr><td><div style="overflow-x:hidden;overflow-y:auto;max-height:80vh;"><table style="width:100%;"><tbody>'
+    var code='<div class="window" style="width:480px; position:fixed;"><table style="width:100%;"><tbody><tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">File selection</td></tr><tr><td><div style="overflow-x:hidden;overflow-y:auto;max-height:80vh;"><table style="width:100%;"><tbody>'
     var f,t;
     if (files == 'img'){
         files=['.jpg','.svg','.gif','.jpeg','.png','.webp','.apng','.bmp'];
         for (f=0; f < project_files.length; f++){
             for (t=0; t < files.length; t++){
                 if(project_files[f][0].indexOf(files[t]) > -1){
-                    code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="copy_arr[arr_n].background_image[scene_la.value]=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';'+preview+'.style.backgroundImage=\'url('+open_file(project_files[f][0])+')\';add_element.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="40px" height="40px" style=\'border-radius:8px;background-image:url(\"'+project_files[f][1]+'\");background-size:cover;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                    code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="copy_arr[arr_n].background_image[scene_la.value]=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';'+preview+'.style.backgroundImage=\'url('+open_file(project_files[f][0])+')\';add_element.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="64px" height="64px" style=\'border-radius:8px;background-image:url(\"'+project_files[f][1]+'\");background-size:cover;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                 }
             }
         }
@@ -1066,7 +1054,7 @@ function file_catalog(id,files,area,preview) {
         for (f=0; f < project_files.length; f++){
             for (t=0; t < files.length; t++){
                 if(project_files[f][2].indexOf(files[t]) > -1){
-                    code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="copy_arr[arr_n].background_music[scene_la.value]=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';add_element.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_audio_play"></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                    code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="copy_arr[arr_n].background_music=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';add_element.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_audio_play"></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                 }
             }
         }
@@ -1225,7 +1213,7 @@ function legacy_choice_edit(){
 		+"</tr>";
 	}
 	var_if+="</tbody><tbody><tr><td style='width:40px;'>else</td><td colspan='5'><select id='legacy_go_to' class='input_text'>"+option_block(arr_l[arr_n].legacy_choice[i].go_to)+"</select></td><td style='width:40px;'></td></tr></tbody></table><div aling='center' onclick=\"legacy_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div>"
-    var html="<div class='window' style='padding:24px 8px; min-width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>legacy choice edit</p><br><hr style='margin:0;'><p class='text_tutorials'>"+texts.tutorials[0].en+"</p><br>"+var_if+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    var html="<div class='window' style='padding:24px 8px; min-width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>legacy choice edit</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[0].en+"</p><br>"+var_if+"<br><table class='big_button' width='256px' onclick='legacy_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open",html);
 }
 function legacy_choice_new(){
@@ -1304,7 +1292,7 @@ let copy_arr = {};
 function dialog_text_edit(){
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
 	if(!copy_arr.name){copy_arr.name={}}
-	var html="<div class='window' style='padding:24px 8px; width:800px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Dialog text</p><br><hr style='margin:0;'><p class='text_tutorials'>"+texts.tutorials[1].en+"</p>"
+	var html="<div class='window' style='padding:24px 8px; width:800px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Dialog text</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[1].en+"</p>"
 	+"<table width='100%'><tbody><tr><td width='80px' align='center'>languare:</td>"
 	+"<td width='40px'><select class='input_text' id='text_la' onchange='name_text.value=copy_arr.name[this.value];dialogtext.value=copy_arr.text[this.value];text_сhars.innerHTML=dialogtext.value.length' style='height:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:0'>"+project_languares(languare)+"</select></td>"
 	+"<td width='90px' align='center'>сharacters:</td><td id='text_сhars'>" + copy_arr.text[languare].length + "</td><td></td></tr></tbody></table><table width='100%'><tbody><tr>"
@@ -1339,7 +1327,7 @@ function dialog_text_apply(){
 function scene_edit() {
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
 	if (!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
-	var html="<div class='window' style='padding:24px 8px; width:640px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Settings scene</p><br><hr style='margin:0;'><p class='text_tutorials'>"+texts.tutorials[2].en+"</p><br><br>"
+	var html="<div class='window' style='padding:24px 8px; width:640px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Settings scene</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[2].en+"</p><br><br>"
     +"<table width='100%' height='256px'><tbody><tr>"
     +"<td width='256px' id='scene_bg_preview' rowspan='4' style='border-radius:10px; background-color:#efefff; background-image:url("+open_file(copy_arr[arr_n].background_image[languare])+"); background-size:cover; background-repeat:no-repeat; background-position:center;'>&nbsp;</td>"
     +"<td width='50px' align='right' style='height:28px;padding-right:8px;'>Image:</td>"
