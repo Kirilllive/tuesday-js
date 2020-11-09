@@ -199,6 +199,12 @@ function get_lang(){
             }
         }
     }
+    if(story_json[tue_story][scene].background_class){
+        tuesday.className=story_json[tue_story][scene].background_class;
+    } else {tuesday.className=""}
+    if(story_json[tue_story][scene].background_color){
+        tuesday.style.backgroundColor=story_json[tue_story][scene].background_color;
+    }
     if(story_json[tue_story][scene].background_image){
         if(story_json[tue_story][scene].background_image[languare]){tuesday.style.backgroundImage="url('"+story_json[tue_story][scene].background_image[languare]+"')";}
         else {tuesday.style.backgroundImage="url('"+story_json[tue_story][scene].background_image+"')";}

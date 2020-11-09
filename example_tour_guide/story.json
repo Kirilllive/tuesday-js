@@ -102,6 +102,8 @@
     },
     "main_menu": [{
         "background_image": {},
+        "background_color": "#f0f",
+        "background_class": "sdcdcsd",
         "html":"qw",
         "dialogs": [{
             "html":"<div><p>111</p></div>",
