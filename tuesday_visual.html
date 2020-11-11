@@ -380,13 +380,13 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
 	<div id="story_blocks"></div>
     </div>
     <!--scene_maker-->
-    <div id='scene_maker'>
+    <div id='scene_maker' style="background-color:#efefff;">
         <table style="height:100vh;width:100%;">
             <tbody>
-                <tr><td style="background-color:#efefff;"></td>
+                <tr><td></td>
                     <td id='scrnr_title' height="40px" align='center' style="background-color:#fff;max-width:286px;width:25%;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
                 <tr>
-                    <td rowspan="2" align='center' style="background-color:#efefff;"><div id='scene_canvas'><div id='scene_layout'></div></div></td>
+                    <td rowspan="2" align='center'><div id='scene_canvas'><div id='scene_layout'></div></div></td>
                     <td style="background-color:#fff; border-bottom:1px solid #cec8e3; border-top:1px solid #cec8e3;"><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>
                         <br><div style='padding-left:8px; border-bottom:1px solid #cec8e3;' >Preview</div>
                             <table style="width:100%;"><tbody>
@@ -484,6 +484,7 @@ if (localStorage.getItem("editor_setup")) {setup_editor=JSON.parse(localStorage.
 editor_setup();
 function editor_setup(){
     world.className=setup_editor.fon;
+    scene_maker.className=setup_editor.fon;
     preview_size();
     if (setup_editor.wheel){
         html.style.overflow = 'hidden';
@@ -1476,9 +1477,8 @@ function scen_editor(block,i) {
         new_story_block.style.display="none";
         scene_maker.style.display="initial";
         scroll_block=true;
-        
+        html.style.overflow="hidden"
         scrnr_title.innerHTML = block + " (scene:"+i+" | dialog:"+9+")"
-        
         p_width.value=setup_editor.preview[0];
         ratio_screen.selectedIndex=setup_editor.preview[1];
         preview_size()
@@ -1495,14 +1495,13 @@ function preview_size(){
         }
 }
 function scen_editor_apply() {
-        
         setup_editor.preview=[parseInt(p_width.value), ratio_screen.selectedIndex];
         localStorage.setItem("editor_setup",JSON.stringify(setup_editor));
-        
         world.style.display="initial";
         new_story_block.style.display="initial";
         scene_maker.style.display="none";
         scroll_block=false;
+        html.style.overflow="auto"
 }
 
 
