@@ -1,6 +1,8 @@
 ![Tuesday](https://img.itch.zone/aW1nLzQzMDYwNjAuanBn/original/wfrS1w.jpg)
+
 # Tuesday JS
 a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. There is support for the Apache Cordova framework for building native mobile and desktop applications. The engine uses standard Html document elements such as div and img, which allows for almost any media format supported by browsers, including vector graphics in svg format, gif animations and css styles.
+
 は、ビジュアルノベルやインタラクティブフィクション、テキストベースの冒険ゲームを作るためのオープンエンジンです。JavaScriptで書かれており、サードベンダーのライブラリは使われていません。pc用のモバイルアプリやプログラムを作る際の、Apache Cordovaフレームワークによるサポートがあります。エンジンには、divやimgのようなHTMLドキュメントの標準要素DOMを使用しており、ブラウザによってサポートされている、svgグラフィックやgifやcssスタイルのアニメを含む、任意のメディアフォーマットを使うことができます。
 
 Home Page: https://kirilllive.github.io/tuesday-js/
