@@ -392,13 +392,13 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         <br><div style='padding-left:8px; border-bottom:1px solid #cec8e3;' >Preview</div>
                             <table style="width:100%;"><tbody>
                                 <tr><td height='40px' align='right' style='padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
-                                    <select id='ratio_screen' class='input_text legacy_var' oninput='preview_size()'>
+                                    <select id='ratio_screen' class='input_text' oninput='preview_size()'>
                                           <option value=true>Portrait</option>
                                           <option value=false>landscape</option>
                                     </select>
                                 </td>
                                 <tr><td height='40px' align='right' style='padding-right:8px;'>Screen</td><td style='padding-right:8px;'>
-                                    <select class='input_text legacy_var' oninput='p_width.value=this.value;preview_size()'>
+                                    <select class='input_text' oninput='p_width.value=this.value;preview_size()'>
                                         <option value="100">1:1</option>
                                         <option value="75">4:3</option>
                                         <option value="56">16:9</option>
@@ -480,7 +480,6 @@ let setup_editor = {
         'lines':false,
         'preview':[76,1]
     };
-
 if (localStorage.getItem("editor_setup")) {setup_editor=JSON.parse(localStorage.getItem("editor_setup"))}
 editor_setup();
 function editor_setup(){
@@ -609,21 +608,21 @@ function creation_block(b){
                     if (story_script[chapter.id][i].legacy_choice[l][0]){
                         go=story_script[chapter.id][i].legacy_choice[l][3];
                         if (story_script[go]){
-                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td><td colspan='3' align='right'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;update_novel();' class='input_text_b legacy_block'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td><td colspan='3' align='right'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
                             creaton_line(all+"l"+l+go+all_blocks)
                             all++
                         } else {
-                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td align='center'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;update_novel();' class='input_text_b legacy_block'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td align='center'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                         }
                     } else if (story_script[chapter.id][i].legacy_choice[l].go_to){
                         go=story_script[chapter.id][i].legacy_choice[l].go_to;
                         if (story_script[go]){
-                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;update_novel();' class='input_text_b legacy_block'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
                             creaton_line(all+"l"+l+go+all_blocks)
                             all++
-                        } else {element+="<div id='"+all+"l"+l+go+all_blocks+"' class='choice_b'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;update_novel();' class='input_text_b legacy_block'>"+option_block(go)+"</select>"+"</div>"}
+                        } else {element+="<div id='"+all+"l"+l+go+all_blocks+"' class='choice_b'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</div>"}
                     }
                 }
                 element+="</div>"
@@ -638,13 +637,13 @@ function creation_block(b){
                         if (story_script[go]){
 						element+="<div class='dialog_element'>" 
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
-								+"<table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();' class='input_text_b legacy_block'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+								+"<table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"b"+d+go+all_blocks]);
                             creaton_line(all+"b"+d+go+all_blocks)
                             all++
                         } else {element+="<div class='dialog_element'>"
 						+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
-						+"<div id='"+all+"b"+d+go+all_blocks+"' class='choice_b'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();' class='input_text_b legacy_block'>"+option_block(go)+"</select>"+"</div></div>";}
+						+"<div id='"+all+"b"+d+go+all_blocks+"' class='choice_b'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</div></div>";}
 						element+="</div>"
                     }
                     if (story_script[chapter.id][i].dialogs[d].text){
@@ -667,7 +666,16 @@ function creation_block(b){
                     if (story_script[chapter.id][i].dialogs[d].controll){
                         element+="<div class='dialog_element' align='left'>"
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Interface<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_controll' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='controll';dialog_el(this.id,'Interface',false)\" width='24px' class='icon_m icon_edit' title='Edit interface'></td></tr></tbody></table>"
-                                +"<div class='choice_b'><select class='input_text_b legacy_block' oninput='story_script."+chapter.id+"["+i+"].dialogs["+d+"].controll=this.value'><option value='hidden'>Hidden</option><option value='visible' "+((story_script[chapter.id][i].dialogs[d].controll=="visible")?"selected":"")+">Visible</option></select></div></div>"
+                                +"<div class='choice_b'><select class='input_text_b' oninput='story_script."+chapter.id+"["+i+"].dialogs["+d+"].controll=this.value'><option value='hidden'>Hidden</option><option value='visible' "+((story_script[chapter.id][i].dialogs[d].controll=="visible")?"selected":"")+">Visible</option></select></div></div>"
+                    }
+                    if (story_script[chapter.id][i].dialogs[d].variables){
+                        var t="";
+                        for(var c=0;c<story_script[chapter.id][i].dialogs[d].variables.length;c++){
+                            t+="<tr><td>"+story_script[chapter.id][i].dialogs[d].variables[c][0]+"</td><td>"+story_script[chapter.id][i].dialogs[d].variables[c][1]+"</td><td>"+story_script[chapter.id][i].dialogs[d].variables[c][2]+"</td></tr>"
+                        };
+                        element+="<div class='dialog_element' align='left'>"
+                                +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Variables<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_variables' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='variables';dialog_el(this.id,'Variables',true)\" width='24px' class='icon_m icon_edit' title='Edit variables'></td></tr></tbody></table>"
+                                +"<table width='100%'><tbody>"+t+"</tbody></table></div>"
                     }
                     if (story_script[chapter.id][i].dialogs[d].choice){
                         element+="<div id='' class='dialog_element'>"
@@ -694,13 +702,13 @@ function creation_block(b){
                         if (story_script[go]){
 						element+="<div class='dialog_element'>" 
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='go_to';dialog_el(this.id,'Go to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
-								+"<table id='"+all+"g"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();' class='input_text_b legacy_block'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+								+"<table id='"+all+"g"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"g"+d+go+all_blocks]);
                             creaton_line(all+"g"+d+go+all_blocks)
                             all++
                         } else {element+="<div class='dialog_element'>"
 							+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='go_to';dialog_el(this.id,'Go to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"+"<div id='"+all+"g"+d+go+all_blocks+"' class='choice_b'>"
-							+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();' class='input_text_b legacy_block'>"+option_block(go)+"</select>"+"</div></div>";}
+							+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</div></div>";}
 						element+="</div>"
                     }
                     if (story_script[chapter.id][i].dialogs[d].html){
@@ -1193,7 +1201,7 @@ function add_element_s(id,n){
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="go_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_goto"></td><td>go to</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="event";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_event"></td><td>event</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="controll";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_controll"></td><td>interface</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_var"></td><td><s>variables</s></td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="variables";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_var"></td><td>variables</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_play"></td><td><s>sound play</s></td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td><s>sound stop</s></td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>'
@@ -1212,7 +1220,7 @@ function add_element_d(id,n){
 				+((arr_l.go_to)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="go_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_goto"></td><td>go to</td></tr></tbody></table></td></tr>')
 				+((arr_l.event)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="event";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_event"></td><td>event</td></tr></tbody></table></td></tr>')
 				+((arr_l.controll)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="controll";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_controll"></td><td>interface</td></tr></tbody></table></td></tr>')
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_var"></td><td><s>variables</s></td></tr></tbody></table></td></tr>'
+				+((arr_l.variables)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="variables";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_var"></td><td>variables</td></tr></tbody></table></td></tr>')
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_play"></td><td><s>sound play</s></td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td><s>sound stop</s></td></tr></tbody></table></td></tr>'
 				+((arr_l.text||arr_l.text_add)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>')
@@ -1262,6 +1270,8 @@ function dialog_el(id,n,e){
                 code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             } else if (arr_n=='text'||arr_n=='text_add'){
                 code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_text_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+            } else if (arr_n=='variables'){
+                code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="alert();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             }
         }
         code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
@@ -1392,6 +1402,7 @@ function element_to(){
 	if (arr_n=='go_to'||arr_n=='back_to'){arr_l[arr_n]=story_script.parameters.launch_story;}
     else if (arr_n=='event'){arr_l[arr_n]="event"}
     else if (arr_n=='controll'){arr_l[arr_n]="visible"}
+    else if (arr_n=='variables'){arr_l[arr_n]=[[Object.keys(story_script.parameters.variables)[0], "add", 1]]}
 	else if (arr_n=='text'){
 		arr_l.text = {};
 	    for (var i=0; i < story_script.parameters.languares.length; i++){arr_l.text[story_script.parameters.languares[i]]='';}
@@ -1413,20 +1424,20 @@ function dialog_text_edit(){
 	+"<td><textarea id='dialogtext' oninput='text_сhars.innerHTML=this.value.length;copy_arr[arr_n][text_la.value]=this.value;' class='input_text' style='resize:none;padding:4px;-moz-box-sizing:border-box; box-sizing:border-box;height:calc(90vh - 256px);width:100%;border:1px solid #cec8e3;'>" + copy_arr[arr_n][languare] + "</textarea></td>"
 	+"<td width='286px' valign='top'><div style='width:100%;height:calc(90vh - 256px);overflow-x:hidden;overflow-y:auto;'><table width='100%'><tbody>"
 	+"<tr><td width='80px' height='40px' align='left' style='padding-left:8px; border-bottom:1px solid #cec8e3;' colspan='3'>Settings text panel</td></tr>"
-    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='text_color' class='input_text legacy_value' value='"+((copy_arr.color_text)?copy_arr.color_text:"")+"' type='text'></td>"
+    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='text_color' class='input_text' value='"+((copy_arr.color_text)?copy_arr.color_text:"")+"' type='text'></td>"
     +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"text_color\",\""+copy_arr.name.color+"\");'></td></tr>"
-    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Panel color</td><td><input id='p_color' class='input_text legacy_value' value='"+((copy_arr.color_text)?copy_arr.color:"")+"' type='text'></td>"
+    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Panel color</td><td><input id='p_color' class='input_text' value='"+((copy_arr.color_text)?copy_arr.color:"")+"' type='text'></td>"
     +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"p_color\",\""+copy_arr.color+"\");'></td></tr>"
-	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Style</td><td><input id='text_style' class='input_text legacy_value' value='"+((copy_arr[arr_n].style)?copy_arr[arr_n].style:"")+"' type='text'></td><td></td></tr>"
-	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='text_class' class='input_text legacy_value' value='"+((copy_arr[arr_n].className)?copy_arr[arr_n].className:"")+"' type='text'></td><td></td></tr>"
+	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Style</td><td><input id='text_style' class='input_text' value='"+((copy_arr[arr_n].style)?copy_arr[arr_n].style:"")+"' type='text'></td><td></td></tr>"
+	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='text_class' class='input_text' value='"+((copy_arr[arr_n].className)?copy_arr[arr_n].className:"")+"' type='text'></td><td></td></tr>"
 	+"<tr><td height='28px' align='left' colspan='3'></td></tr>"
 	+"<tr><td height='40px' align='left' style='padding-left:8px; border-bottom:1px solid #cec8e3;' colspan='3'>Settings name panel</td></tr>"
-	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Character name</td><td><input id='name_text' class='input_text legacy_value' oninput='copy_arr.name[text_la.value]=this.value;' value='"+((copy_arr.name[languare])?copy_arr.name[languare]:"")+"' type='text'></td><td class='icon icon_load'></td></tr>"
-	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Style</td><td><input id='name_style' class='input_text legacy_value' value='"+((copy_arr.name.style)?copy_arr.name.style:"")+"' type='text'></td><td></td></tr>"
-	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='name_class' class='input_text legacy_value' value='"+((copy_arr.name.className)?copy_arr.name.className:"")+"' type='text'></td><td></td></tr>"
-    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='name_color' class='input_text legacy_value' value='"+((copy_arr.name.color_text)?copy_arr.name.color_text:"")+"' type='text'></td>"
+	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Character name</td><td><input id='name_text' class='input_text' oninput='copy_arr.name[text_la.value]=this.value;' value='"+((copy_arr.name[languare])?copy_arr.name[languare]:"")+"' type='text'></td><td class='icon icon_load'></td></tr>"
+	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Style</td><td><input id='name_style' class='input_text' value='"+((copy_arr.name.style)?copy_arr.name.style:"")+"' type='text'></td><td></td></tr>"
+	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='name_class' class='input_text' value='"+((copy_arr.name.className)?copy_arr.name.className:"")+"' type='text'></td><td></td></tr>"
+    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='name_color' class='input_text' value='"+((copy_arr.name.color_text)?copy_arr.name.color_text:"")+"' type='text'></td>"
     +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"name_color\",\""+copy_arr.name.color_text+"\");'></td></tr>"
-    +"<tr><td align='right' style='padding-right:8px;'>Panel color</td><td><input id='n_color' class='input_text legacy_value' value='"+((copy_arr.name.color_text)?copy_arr.name.color:"")+"' type='text'></td>"
+    +"<tr><td align='right' style='padding-right:8px;'>Panel color</td><td><input id='n_color' class='input_text' value='"+((copy_arr.name.color_text)?copy_arr.name.color:"")+"' type='text'></td>"
     +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"n_color\",\""+copy_arr.name.color+"\");'></td></tr>"
     +"</tbody></table></div></td>"
 	+"</tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
@@ -1462,15 +1473,15 @@ function scene_edit() {
     +"<td id='files_img' class='icon icon_load' style='height:40px; width:40px;' onclick='file_catalog(this.id,\"img\",\"scene_bg_url\",\"scene_bg_preview\")'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding-right:8px;'>Music:</td>"
-    +"<td colspan='2'><input id='scene_music' class='input_text legacy_value' style='height:28px;' value='"+((copy_arr[arr_n].background_music)?copy_arr[arr_n].background_music:"")+"' type='text'></td>"
+    +"<td colspan='2'><input id='scene_music' class='input_text' style='height:28px;' value='"+((copy_arr[arr_n].background_music)?copy_arr[arr_n].background_music:"")+"' type='text'></td>"
     +"<td id='files_auio' class='icon icon_load' style='height:40px; width:40px;' onclick='file_catalog(this.id,\"audio\",\"scene_music\",0)'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding-right:8px;'>Color:</td>"
-    +"<td colspan='2'><input id='scene_color' class='input_text legacy_value' style='height:28px;' value='"+((copy_arr[arr_n].background_color)?copy_arr[arr_n].background_color:"")+"' type='text' onkeyup='scene_bg_preview.style.backgroundColor=this.value'></td>"
+    +"<td colspan='2'><input id='scene_color' class='input_text' style='height:28px;' value='"+((copy_arr[arr_n].background_color)?copy_arr[arr_n].background_color:"")+"' type='text' onkeyup='scene_bg_preview.style.backgroundColor=this.value'></td>"
     +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"scene_color\",\""+copy_arr[arr_n].background_color+"\")'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding-right:8px;'>Class:</td>"
-    +"<td colspan='2'><input id='scene_class' class='input_text legacy_value' style='height:28px;' value='"+((copy_arr[arr_n].background_class)?copy_arr[arr_n].background_class:"")+"' type='text'></td>"
+    +"<td colspan='2'><input id='scene_class' class='input_text' style='height:28px;' value='"+((copy_arr[arr_n].background_class)?copy_arr[arr_n].background_class:"")+"' type='text'></td>"
     +"<td style='height:40px; width:40px;'></td>"
     +"</tr><tr>"
     +"<td>&nbsp;</td>"

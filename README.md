@@ -1,7 +1,7 @@
 ![Tuesday](https://img.itch.zone/aW1nLzQzMDYwNjAuanBn/original/wfrS1w.jpg)
 
 # Tuesday JS
-a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. There is support for the Apache Cordova framework for building native mobile and desktop applications. The engine uses standard Html document elements such as div and img, which allows for almost any media format supported by browsers, including vector graphics in svg format, gif animations and css styles.
+is a free open source engine to creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. The projects can be exported to Apache Cordova to create mobile applications or PC programs. The engine uses standard HTML document elements DOM such as div and img, this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.
 
 は、ビジュアルノベルやインタラクティブフィクション、テキストベースの冒険ゲームを作るためのオープンエンジンです。JavaScriptで書かれており、サードベンダーのライブラリは使われていません。pc用のモバイルアプリやプログラムを作る際の、Apache Cordovaフレームワークによるサポートがあります。エンジンには、divやimgのようなHTMLドキュメントの標準要素DOMを使用しており、ブラウザによってサポートされている、svgグラフィックやgifやcssスタイルのアニメを含む、任意のメディアフォーマットを使うことができます。
 
@@ -19,13 +19,14 @@ Twitter: https://twitter.com/TuesdayJs
 
 visual editor for web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
 
-The visual editor allows you to create a graphic or kinetic novel without programming knowledge.
-If necessary, it is possible to expand the basic functionality using JavaScript and css.
+The visual editor allows you to create graphics or kinetic novels without any programming knowledge.
+If is necessary, it is possible to expand the basic functionality using JavaScript and css.
 
-ビジュアルエディターはグラフィックもしくはキネティックノベルを、プログラミングの知識なしで作ることができます。必要であれば、JavaScriptやcssを使って、基本機能を拡大することができます。
+ビジュアルエディターはグラフィックもしくはキネティックノベルを、プログラミングの知識なしで作ることができます。
+必要であれば、JavaScriptやcssを使って、基本機能を拡大することができます。
 
 # Visualization
-The editor fully displays the structure of the script with all elements such as dialogue options and consequences of choices. This makes it easier to navigate the script and edit the script.
+The editor fully displays the structure of the script with all elements such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
 
 エディターは、会話オプションや選択肢のような全ての要素を伴うスクリプトの構造を完全に映し出します。これにより、ナビやスクリプトを編集しやすくします。
 
@@ -33,19 +34,21 @@ The editor fully displays the structure of the script with all elements such as 
 ![Tuesday script structure](screenshots/script_structure.png)
 
 # Localization
-Extensive possibilities for localizing history into other languages.
-You can set translation for almost any element of the story, both text and graphics.
+Ample opportunities to localize stories into other languages.
+You can set the translation for almost any element of your project, such as text and graphics.
 The preview function allows you to run the project in the selected language.
-All texts can be exported to a tabular csv file for editing and adding localization in another editor.
+All texts can be exported to a table csv file for editing and adding localizations in another editor.
 
-他言語にストーリーをローカリゼーションできる広い可能性。テキストやグラフィックのような、プロジェクトの任意の要素を翻訳できます。プレビュー機能により、選択した言語でプロジェクトを運営することができます。すべてのテキストは、編集や他の版にローカリゼーションしたものを加えることができるよう、table csv fileに書き出されます。
+他言語にストーリーをローカリゼーションできる広い可能性。
+テキストやグラフィックのような、プロジェクトの任意の要素を翻訳できます。
+プレビュー機能により、選択した言語でプロジェクトを運営することができます。
+すべてのテキストは、編集や他の版にローカリゼーションしたものを加えることができるよう、table csv fileに書き出されます。
 
 ![Tuesday localization](screenshots/localization.png)
 
 # JSON
-The story script with all elements is specified in the format structure JSON. This format can be read by almost any other programming language or engine.
-This makes it easier and faster to port the script to another engine or platform.
-The editor has a built-in tool for working with JSON directly, you can edit the entire script or only part of it from the selected element.
+A story script with all the elements stored in a JSON structure. Almost any programming language can work with this format. This allows you to port your script to another engine or platform.
+The editor has a built-in tool to work with JSON, with its help you can edit the entire contents of the script or just the selected element.
 
 すべての要素を含むスクリプトはJSON形式で保存されます。この形式で、ほとんどのプログラミングげんごが使えます。これにより、あなたのスクリプトを、他のエンジンやプラットフォームに移すことができます。
 エディターにはJSONで作業するための埋め込みツールがあり、スクリプトのすべてのコンテンツや選択した要素を編集することができます。
@@ -54,7 +57,7 @@ The editor has a built-in tool for working with JSON directly, you can edit the 
 ![Tuesday json edit](screenshots/json_edit.png)
 
 # Preview
-Preview allows you to launch a project from a certain point in history and at a selected localization.
+Preview allows you to start a project from a certain point in the script and with the selected localization.
 
 プレビューにより、スクリプトの特定の部分や選択したローカライゼーションでプロジェクトを始めることができます。
 
