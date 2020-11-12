@@ -30,6 +30,10 @@
             "load": "KeyL",
             "full_screen": "KeyF"
         },
+        "variables": {
+            "ointment": "",
+            "zzzzzzzz": ""
+        },
         "launch_story": "main_menu",
         "languares": ["en", "ru", "ja", "ko"],
         "title": "test",
@@ -172,6 +176,7 @@
             "back_to": "main_menu",
             "color": "rgba(155,155,155,0.75)",
             "color_text": "#fff",
+            "controll": "visible",
             "text": {
                 "ru": "теле- и радиокоммуникационная башня, расположенная в г. Минато, Токио.",
                 "en": "is a communications and observation tower in the Shiba-koen district of Minato, Tokyo,",
@@ -185,7 +190,10 @@
                 "en": "Tokyo Tower",
                 "ja": "東京タワー",
                 "ko": "도쿄 타워"
-            }
+            },"variables": [
+                ["ointment", "add", 10],
+                ["zzzzzzzz", "add", 10]
+            ]
         }, {
             "color": "rgba(155,155,155,0.75)",
             "color_text": "#fff",
