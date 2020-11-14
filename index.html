@@ -45,7 +45,6 @@ body {background-image:url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4
     height:110vh;
     min-height:640px;
 }
-
 .box {
 	background-color: rgba(110,95,165,0.75);
     padding: 18px;
@@ -70,6 +69,37 @@ body {background-image:url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4
 .buttons_panel:hover {
     transform: rotateY(30deg) scaleX(1.1);
     transition-duration: 0.3s;
+}
+.radio_element {
+    display: block;
+    position: relative;
+    cursor:pointer;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+}
+.radio_element input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+.checkmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background-color: none;
+    transition-duration: 0.8s;
+    font-size: 0.8em;
+}
+.radio_element input:checked ~ .checkmark {
+    background-color: #9587c8;
+    transition-duration: 0.8s;
 }
 .logo { 
 	border-radius: 16px; 
@@ -177,9 +207,23 @@ body {background-image:url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4
         </div>
     </div>
     </tr></td><tr><td style='background:#cec8e3;' align="center">
-        <table style='position: static; border-spacing:8px; border-collapse:separate;max-width:800px;width:100%;color:#fff;margin-top:-190px;'>
-              <tr><td align='left' class='box' style='width: 65%;'>
-                  <p><b>TuesDay js </b><span id='description'>is a free open source engine to creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. The projects can be exported to Apache Cordova to create mobile applications or PC programs. The engine uses standard HTML document elements DOM such as div and img, this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.</span></p>
+        <table style='position: static; border-spacing:8px; border-collapse:separate;max-width:800px;width:100%;color:#fff;margin-top:-242px;'>
+                <tr><td align='right'>
+                <form id='lang'>
+                <table style="border-radius: 16px; background-color: rgba(110,95,165,0.75);" border="0" height="32" cellspacing="0" cellpadding="0" align="right">
+                    <tbody>
+                        <tr>
+                            <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='en'><span class="checkmark">EN</span></label></td>
+                            <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='ja'><span class="checkmark">JA</span></label></td>
+                            <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='ru'><span class="checkmark">RU</span></label></td>
+                            <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='es'><span class="checkmark">ES</span></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </form>
+                </td></tr>
+                <tr><td align='left' class='box'>
+                  <p><b>TuesDay js </b><br><span id='description'>is a free open source engine to creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. The projects can be exported to Apache Cordova to create mobile applications or PC programs. The engine uses standard HTML document elements DOM such as div and img, this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.</span></p>
                   <br><div align='center'><table style='border-spacing:8px; border-collapse:separate; width:100%; max-width:640px;'>
                       <tr><td class='icon icon_itchio' style='width: 10%;'></td><td align='left' style='width: 40%;'><b><a href='https://kirill-live.itch.io/tuesday-js' target='_blank'>itch.io</b> / tuesday-js</a></td>
                       <td class='icon icon_github' style='width: 10%;'></td><td align='left' style='width: 40%;'><b><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'>GitHub</b>  / tuesday-js</a></td></tr>
@@ -237,7 +281,7 @@ body {background-image:url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4
                           <td align='right' style='width:25%;'>Spanish translator:&nbsp;</td>
                           <td align='left' style='width:25%;'><b><a href="https://twitter.com/matiasdesu" target="_blank">@matiasdesu</a></b></td>
                           <td align='right' style='width:25%;'>Japanese translator:&nbsp;</td>
-                          <td align='left' style='width:25%;'><b>柴田 紗英</b></td>
+                          <td align='left' style='width:25%;'><b>Remained unknown</b></td>
                       </tr>
                       </tbody>
                   </table>
@@ -264,7 +308,7 @@ let translation = {
     ["screen_2","Широкие возможности для локализации истории на другие языки.Вы можете задать перевод практически для любого элемента проекта, как текст и графика.Функция предварительного просмотра позволяет запускать проект на выбранном языке.Все тексты можно экспортировать в табличный файл csv для редактирования и добавления локализации в другом редакторе."],
     ["screen_5","Визуальный редактор позволяет создавать графический или кинетический роман без знания программирования.<br>При необходимости возможно расширение базового функционала с помощью JavaScript и css."]
 ],"ja":[
-    ["description","は、ビジュアルノベルやインタラクティブフィクション、テキストベースの冒険ゲームを作るためのオープンエンジンです。JavaScriptで書かれており、サードベンダーのライブラリは使われていません。pc用のモバイルアプリやプログラムを作る際の、Apache Cordovaフレームワークによるサポートがあります。エンジンには、divやimgのようなHTMLドキュメントの標準要素DOMを使用しており、ブラウザによってサポートされている、svgグラフィックやgifやcssスタイルのアニメを含む、任意のメディアフォーマットを使うことができます。"],
+    ["description","は、ビジュアルノベルやインタラクティブフィクション、テキストベースの冒険ゲームを作るためのオープンエンジンです。JavaScriptで書かれており、サードベンダーのライブラリは使われていません。プロジェクトは、モバイルアプリやPC プログラムを作るために、Apache Cordovaに書き出される可能性があります。エンジンには、divやimgのようなHTMLドキュメントの標準要素DOMを使用しており、ブラウザによってサポートされている、svgグラフィックやgifやcssスタイルのアニメを含む、任意のメディアフォーマットを使うことができます。"],
     ["thanks","ユーザーの助けに感謝します。"],
     ["donut","プロジェクトのあらゆる助けに感謝します。"],
     ["title_1","可視化"],
@@ -300,6 +344,15 @@ function getLang() {
     if (languare!='ru'&&languare!='en'&&languare!='ja'&&languare!='es'){languare='en'}
     else {for(var i=0;i<translation[languare].length;i++){window.location.hash=languare;document.getElementById(translation[languare][i][0]).innerHTML=translation[languare][i][1];}}
 }
+var lang_choise=document.forms.lang
+lang_choise.onchange=function(e){
+    for (i=0; i < lang_choise.length; i++){
+        if (lang_choise[i].checked){
+            if (lang_choise[i].value=='en'){window.location.hash='en';location.reload();}
+            else {languare=lang_choise[i].value; window.location.hash=languare; getLang();}
+        break;}
+    }
+};
 getLang();
 </script>
 </body>

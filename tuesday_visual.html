@@ -1,4 +1,4 @@
-<!doctype html>
+x<!doctype html>
 <html>
 <head>
 <title>Tuesday js visual editor</title>
@@ -471,6 +471,8 @@ let texts={
         "en":"Customize the look of the scene, its background image and music, for subsequent dialogues and actions."
         },{
         "en":"Select working media folder for project (images & sounds)."
+        },{
+        "en":"Changes in the values ​​of variables, their values ​​can be displayed in the text as <values ​​name> or in \"Legacy Choice\" to go to another block of script."
         }
     ]
 }
@@ -608,17 +610,17 @@ function creation_block(b){
                     if (story_script[chapter.id][i].legacy_choice[l][0]){
                         go=story_script[chapter.id][i].legacy_choice[l][3];
                         if (story_script[go]){
-                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td><td colspan='3' align='right'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td><td colspan='3' align='right'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
                             creaton_line(all+"l"+l+go+all_blocks)
                             all++
                         } else {
-                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td align='center'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td align='center'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                         }
                     } else if (story_script[chapter.id][i].legacy_choice[l].go_to){
                         go=story_script[chapter.id][i].legacy_choice[l].go_to;
                         if (story_script[go]){
-                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
                             creaton_line(all+"l"+l+go+all_blocks)
                             all++
@@ -637,13 +639,13 @@ function creation_block(b){
                         if (story_script[go]){
 						element+="<div class='dialog_element'>" 
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
-								+"<table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+								+"<table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;' class='input_text_b'>"+option_block(go)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"b"+d+go+all_blocks]);
                             creaton_line(all+"b"+d+go+all_blocks)
                             all++
                         } else {element+="<div class='dialog_element'>"
 						+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
-						+"<div id='"+all+"b"+d+go+all_blocks+"' class='choice_b'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</div></div>";}
+						+"<div id='"+all+"b"+d+go+all_blocks+"' class='choice_b'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;' class='input_text_b'>"+option_block(go)+"</select>"+"</div></div>";}
 						element+="</div>"
                     }
                     if (story_script[chapter.id][i].dialogs[d].text){
@@ -668,15 +670,18 @@ function creation_block(b){
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Interface<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_controll' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='controll';dialog_el(this.id,'Interface',false)\" width='24px' class='icon_m icon_edit' title='Edit interface'></td></tr></tbody></table>"
                                 +"<div class='choice_b'><select class='input_text_b' oninput='story_script."+chapter.id+"["+i+"].dialogs["+d+"].controll=this.value'><option value='hidden'>Hidden</option><option value='visible' "+((story_script[chapter.id][i].dialogs[d].controll=="visible")?"selected":"")+">Visible</option></select></div></div>"
                     }
+                    
+                    
+                    
+                    
                     if (story_script[chapter.id][i].dialogs[d].variables){
                         var t="";
-                        for(var c=0;c<story_script[chapter.id][i].dialogs[d].variables.length;c++){
-                            t+="<tr><td>"+story_script[chapter.id][i].dialogs[d].variables[c][0]+"</td><td>"+story_script[chapter.id][i].dialogs[d].variables[c][1]+"</td><td>"+story_script[chapter.id][i].dialogs[d].variables[c][2]+"</td></tr>"
-                        };
-                        element+="<div class='dialog_element' align='left'>"
-                                +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Variables<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_variables' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='variables';dialog_el(this.id,'Variables',true)\" width='24px' class='icon_m icon_edit' title='Edit variables'></td></tr></tbody></table>"
-                                +"<table width='100%'><tbody>"+t+"</tbody></table></div>"
+                        for(var c=0;c<story_script[chapter.id][i].dialogs[d].variables.length;c++){t+="<table width='100%' height='28px' class='choice_b'><tbody><tr><td><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].variables["+c+"][0]=this.value;' class='input_text_b'>"+option_var(story_script[chapter.id][i].dialogs[d].variables[c][0])+"</select></td><td width='15%'><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].variables["+c+"][1]=this.value;' class='input_text_b'><option value='add'>add</option><option value='set' "+((story_script[chapter.id][i].dialogs[d].variables[c][1]=="set")?"selected":"")+">set</option></select></td><td width='34%'> <input class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].variables["+c+"][2]=this.value' value='"+story_script[chapter.id][i].dialogs[d].variables[c][2]+"' type='text'> </td><td width='5%'></td></tr></tbody></table>"};
+                        element+="<div class='dialog_element' align='left'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Variables<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_variables' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='variables';dialog_el(this.id,'Variables',true)\" width='24px' class='icon_m icon_edit' title='Edit variables'></td></tr></tbody></table>"+t+"</div>"
                     }
+                    
+                    
+                    
                     if (story_script[chapter.id][i].dialogs[d].choice){
                         element+="<div id='' class='dialog_element'>"
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
@@ -1271,7 +1276,7 @@ function dialog_el(id,n,e){
             } else if (arr_n=='text'||arr_n=='text_add'){
                 code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_text_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             } else if (arr_n=='variables'){
-                code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="alert();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+                code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="variables_set_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             }
         }
         code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
@@ -1402,7 +1407,7 @@ function element_to(){
 	if (arr_n=='go_to'||arr_n=='back_to'){arr_l[arr_n]=story_script.parameters.launch_story;}
     else if (arr_n=='event'){arr_l[arr_n]="event"}
     else if (arr_n=='controll'){arr_l[arr_n]="visible"}
-    else if (arr_n=='variables'){arr_l[arr_n]=[[Object.keys(story_script.parameters.variables)[0], "add", 1]]}
+    else if (arr_n=='variables'){arr_l[arr_n]=[[Object.keys(story_script.parameters.variables)[0], "add", 1]];variables_set_edit()}
 	else if (arr_n=='text'){
 		arr_l.text = {};
 	    for (var i=0; i < story_script.parameters.languares.length; i++){arr_l.text[story_script.parameters.languares[i]]='';}
@@ -1534,8 +1539,47 @@ function scen_editor_apply() {
         scroll_block=false;
         html.style.overflow="auto"
 }
-
-
+function variables_set_edit(){
+        copy_arr=JSON.parse(JSON.stringify(arr_l));
+        var t=""
+        for(var c=0;c<copy_arr.variables.length;c++){t+="<tr><td style='width:128px;' valign='bottom'><select class='input_text var_name'>"+option_var(arr_l.variables[c][0])+"</select></td><td style='width:48px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;'><select class='input_text var_operation'><option value='add'>add</option><option value='set' "+((arr_l.variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' value='"+ arr_l.variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\"); a.parentElement.removeChild(a);' style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"};
+        var html="<div class='window' style='padding:24px 8px; width:480px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Changes to values</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[4].en+"</p><br><br>"
+        +"<table id='var_table' width='100%'><tbody>"+t+"</tbody></table>"
+        +"<div onclick=\"variables_set_add()\" class='icon icon_add' style='margin-top:16px;height:26px; width:100%; cursor:pointer;'></div>"
+        +"<br><br><table class='big_button' width='256px' onclick='variables_set_apply();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+        modal_window("open",html);
+}
+function variables_set_add(){
+        var tbody=document.getElementById('var_table').getElementsByTagName('tbody')[0];
+        var row=document.createElement("tr");
+        var td1=document.createElement("td");
+        var td2=document.createElement("td");
+        var td3=document.createElement("td");
+        var td4=document.createElement("td");
+        td1.innerHTML="<select class='input_text var_name'>"+option_var()+"</select>";
+        td2.innerHTML="<select class='input_text var_operation'><option value='add'>add</option><option value='set'>set</option></select>";
+        td2.style='width:48px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;'
+        td3.innerHTML="<input class='input_text var_value' value='0' type='text'>";
+        td4.style="width:40px;cursor:pointer;";
+        td4.title="delet";
+        td4.className="icon icon_del";
+        td4.setAttribute("onclick","var a=this.closest('tr'); a.parentElement.removeChild(a);");
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+        row.appendChild(td4);
+        tbody.appendChild(row);
+}
+function variables_set_apply(){
+        li_v=document.getElementsByClassName("var_name");
+        li_c=document.getElementsByClassName("var_operation");
+        li_z=document.getElementsByClassName("var_value");
+        copy_arr.variables=[];
+        for (var i=0; i < li_v.length; i++){ copy_arr.variables.push( [li_v[i].value,li_c[i].value,parseInt(li_z[i].value)] ) };
+        arr_l.variables=JSON.parse(JSON.stringify(copy_arr.variables));
+        modal_window("close");
+        update_novel();
+}
 
 
                                                 
