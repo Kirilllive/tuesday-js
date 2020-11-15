@@ -320,7 +320,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
     display:none;
 }
 #scene_canvas{
-    height:calc(98vh - 40px);
+    height:calc(100vh - 40px);
     width:calc(98vh - 40px);
     position:relative;
 }
@@ -366,28 +366,27 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
 	<div id="new_story_block">
         <table height="100%">
         <tbody>
-        <tr>
-        <td class='button_menu' style='border-radius:20px 0 0 20px; border-right:1px solid #cec8e3;'><table onclick='new_block()' height="100%"><tbody><tr><td width='42px' class='icon icon_add'></td><td align='center'>Add story block</td><td width='16px'></td></tr></tbody></table></td>
-        <td width="42px" class='icon button_menu icon_equal' onclick='world_scale(2)' ></td>
-        <td width="42px" class='icon button_menu icon_scale' onclick='world_scale(1)' ></td>
-        <td width="42px" class='icon button_menu icon_minus' onclick='world_scale(false)' style='border-radius:0 20px 20px 0;'></td>
-        </tr>
+            <tr>
+                <td class='button_menu' style='border-radius:20px 0 0 20px; border-right:1px solid #cec8e3;'><table onclick='new_block()' height="100%"><tbody><tr><td width='42px' class='icon icon_add'></td><td align='center'>Add story block</td><td width='16px'></td></tr></tbody></table></td>
+                <td width="42px" class='icon button_menu icon_equal' onclick='world_scale(2)' ></td>
+                <td width="42px" class='icon button_menu icon_scale' onclick='world_scale(1)' ></td>
+                <td width="42px" class='icon button_menu icon_minus' onclick='world_scale(false)' style='border-radius:0 20px 20px 0;'></td>
+            </tr>
         </tbody>
         </table>
 	</div>
-	<a id="downloadAnchorElem" style="display:none; position:fixed;"></a>
+	<a id="downloadAnchorElem" style="display:none;position:fixed;"></a>
     <div id='world'>
 	<svg id="story_lines" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"></svg>
 	<div id="story_blocks"></div>
     </div>
     <!--scene_maker-->
-    <div id='scene_maker' style="background-color:#efefff;">
+    <div id='scene_maker'>
         <table style="height:100vh;width:100%;">
             <tbody>
-                <tr><td></td>
+                <tr><td rowspan="3"><div id='scene_view' style='width:100%;height:100vh;overflow:scroll;' align='center'><div id='screen_preview' align='center' style='-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;width:100%;height:calc(100vh - 40px);padding-top:40px;'><div id='scene_canvas'><div id='scene_layout'></div></div><div><div></td>
                     <td id='scrnr_title' height="40px" align='center' style="background-color:#fff;max-width:286px;width:25%;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
                 <tr>
-                    <td rowspan="2" align='center'><div id='scene_canvas'><div id='scene_layout'></div></div></td>
                     <td style="background-color:#fff; border-bottom:1px solid #cec8e3; border-top:1px solid #cec8e3;"><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>
                         <br><div style='padding-left:8px; border-bottom:1px solid #cec8e3;' >Preview</div>
                             <table style="width:100%;"><tbody>
@@ -486,7 +485,7 @@ if (localStorage.getItem("editor_setup")) {setup_editor=JSON.parse(localStorage.
 editor_setup();
 function editor_setup(){
     world.className=setup_editor.fon;
-    scene_maker.className=setup_editor.fon;
+    screen_preview.className=setup_editor.fon;
     preview_size();
     if (setup_editor.wheel){
         html.style.overflow = 'hidden';
@@ -507,7 +506,7 @@ color_chois.addEventListener("input", function() {
     if(color_chois.name=='scene_color'){scene_bg_preview.style.backgroundColor=color_chois.value}
 }, false);
 
-document.addEventListener("wheel",function(e){if(setup_editor.wheel&&!scroll_block){if (e.deltaY > 0) world_scale(false);else world_scale(2);}});
+document.addEventListener("wheel",function(e){if(setup_editor.wheel&&(!scroll_block||scene_screen)){if (e.deltaY > 0) world_scale(false);else world_scale(2);}});
 let project_files=[];
 img_file.addEventListener('change',loadFiles);
 var load_new = false;
@@ -891,16 +890,39 @@ var scroll_x=null;
 var scroll_y=null;
 var scroll_xz=null;
 var scroll_yz=null;
+
+var scroll_xs=null;
+var scroll_ys=null;
+
 html.ontouchstart=function(e){
-    if (!scroll_block){
+    if (!scroll_block||scene_screen){
         startmove_x=e.touches[0].clientX;
         startmove_y=e.touches[0].clientY;
-		scroll_x=html.scrollTop;
+        scroll_x=html.scrollTop;
         scroll_y=html.scrollLeft;
         html.ontouchmove=function(e){
             html.scrollTop=scroll_x - (e.touches[0].clientY - startmove_y);
             html.scrollLeft=scroll_y - (e.touches[0].clientX - startmove_x);
+        }
+        html.ontouchend=function(e){
+            startmove_x=null;
+            startmove_y=null;
+            html.ontouchmove=null;
+            html.ontouchend=null;
+            scroll_z();
         };
+    }
+}
+scene_view.ontouchstart=function(e){
+    if (scene_screen){
+        startmove_x=e.touches[0].clientX;
+        startmove_y=e.touches[0].clientY;
+        scroll_x=scene_view.scrollTop;
+        scroll_y=scene_view.scrollLeft;
+        html.ontouchmove=function(e){
+            scene_view.scrollTop=scroll_x - (e.touches[0].clientY - startmove_y);
+            scene_view.scrollLeft=scroll_y - (e.touches[0].clientX - startmove_x);
+        }
         html.ontouchend=function(e){
             startmove_x=null;
             startmove_y=null;
@@ -911,15 +933,15 @@ html.ontouchstart=function(e){
     }
 }
 html.onmousedown=function(e){
-    if (!scroll_block){
+    if (!scroll_block&&!scene_screen){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
-		scroll_x=html.scrollTop;
+        scroll_x=html.scrollTop;
         scroll_y=html.scrollLeft;
         html.onmousemove=function(e){
             html.scrollTop=scroll_x - (e.clientY - startmove_y);
             html.scrollLeft=scroll_y - (e.clientX - startmove_x);
-        };
+        }
         html.onmouseup=function(e){
             startmove_x=null;
             startmove_y=null;
@@ -935,9 +957,38 @@ html.onmousedown=function(e){
 		};
     }
 }
+scene_view.onmousedown=function(e){
+    if (scene_screen){
+        startmove_x=e.clientX;
+        startmove_y=e.clientY;
+        scroll_x=scene_view.scrollTop;
+        scroll_y=scene_view.scrollLeft;
+        html.onmousemove=function(e){
+            scene_view.scrollTop=scroll_x - (e.clientY - startmove_y);
+            scene_view.scrollLeft=scroll_y - (e.clientX - startmove_x);
+        }
+        html.onmouseup=function(e){
+            startmove_x=null;
+            startmove_y=null;
+            html.onmousemove=null;
+            html.onmouseup=null;
+            scene_z();
+        };
+        html.onmouseleave=function(){
+            html.onmousemove=null;
+            html.onmouseup=null;
+            document.onmousemove=null;
+            focus_block.onmouseup=null;
+        };
+    }
+}
 function scroll_z(){
     scroll_xz=((html.scrollTop+(html.clientHeight/2))/scale)-(html.clientHeight/2);
     scroll_yz=((html.scrollLeft+(html.clientWidth/2))/scale)-(html.clientWidth/2);
+}
+function scene_z(){
+    scroll_xs=((scene_view.scrollTop+(scene_view.clientHeight/2))/scale_scene)-(scene_view.clientHeight/2);
+    scroll_ys=((scene_view.scrollLeft+(scene_view.clientWidth/2))/scale_scene)-(scene_view.clientWidth/2);
 }
 function modal_window(action,content){
     var window_zone=document.getElementById("window_zone");
@@ -1513,6 +1564,7 @@ function scen_editor(block,i) {
         new_story_block.style.display="none";
         scene_maker.style.display="initial";
         scroll_block=true;
+        scene_screen=true;
         html.style.overflow="hidden"
         scrnr_title.innerHTML = block + " (scene:"+i+" | dialog:"+9+")"
         p_width.value=setup_editor.preview[0];
@@ -1537,6 +1589,7 @@ function scen_editor_apply() {
         new_story_block.style.display="initial";
         scene_maker.style.display="none";
         scroll_block=false;
+        scene_screen=false;
         html.style.overflow="auto"
 }
 function variables_set_edit(){
@@ -1822,21 +1875,35 @@ function apply_setup(){
     toast("parameters updated");
 }
 var scale = 1;
+var scale_scene = 1;
 document.addEventListener('keydown',function(event){
-    if (!scroll_block){
+    if (!scroll_block||scene_screen){
         if (event.code=='Equal'){world_scale(2)}
         else if (event.code=='Minus'){world_scale(false)}
         else if (event.code=='Digit0'){world_scale(1)}
     }
 });
+var scene_screen=false
 function world_scale(s) {
-    scroll_z();
-    add_element.style.visibility='hidden';
-    if (s==1){scale=1;world.style.transform='scale(1)';}
-    else if (s==2){scale=Math.min(2,scale+0.05);world.style.transform='scale('+scale+')';}
-    else {scale=Math.max(0.25,scale-0.05);world.style.transform='scale('+scale+')';}
-    html.scrollTop = ((scroll_xz+(html.clientHeight/2))*scale)-(html.clientHeight/2);
-    html.scrollLeft = ((scroll_yz+(html.clientWidth/2))*scale)-(html.clientWidth/2);
+    if (scene_screen){
+        scene_z();
+        if (s==1){scale_scene=1;screen_preview.style.transform='scale(1)';}
+        else if (s==2){scale_scene=Math.min(2,scale_scene+0.05);screen_preview.style.transform='scale('+scale_scene+')';}
+        else {scale_scene=Math.max(1,scale_scene-0.05);screen_preview.style.transform='scale('+scale_scene+')';}
+        
+
+        scene_view.scrollTop = ((scroll_xs+(scene_view.clientHeight/2))*scale_scene)-(scene_view.clientHeight/2);
+        scene_view.scrollLeft = ((scroll_ys+(scene_view.clientWidth/2))*scale_scene)-(scene_view.clientWidth/2);
+
+    } else {
+        scroll_z();
+        add_element.style.visibility='hidden';
+        if (s==1){scale=1;world.style.transform='scale(1)';}
+        else if (s==2){scale=Math.min(2,scale+0.05);world.style.transform='scale('+scale+')';}
+        else {scale=Math.max(0.25,scale-0.05);world.style.transform='scale('+scale+')';}
+        html.scrollTop = ((scroll_xz+(html.clientHeight/2))*scale)-(html.clientHeight/2);
+        html.scrollLeft = ((scroll_yz+(html.clientWidth/2))*scale)-(html.clientWidth/2);
+    }
 }
 function csv_export(){
     var n,i,d,l,r;
