@@ -72,7 +72,7 @@ line{
 @keyframes viwe{from{opacity:0;bottom:64px} to{opacity:1;bottom:64px}}
 @keyframes stop{from{opacity:1;bottom:64px} to{opacity:1;bottom:64px}}
 @keyframes close{from{opacity:1;bottom:64px} to{opacity:0;bottom:-32px}}
-#new_story_block{
+#new_story_block, #scene_controll{
 	position:fixed;
 	height:40px;
 	z-index:1000;
@@ -384,7 +384,37 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
     <div id='scene_maker'>
         <table style="height:100vh;width:100%;">
             <tbody>
-                <tr><td rowspan="3"><div id='scene_view' style='width:100%;height:100vh;overflow:scroll;' align='center'><div id='screen_preview' align='center' style='-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;width:100%;height:calc(100vh - 40px);padding-top:40px;'><div id='scene_canvas'><div id='scene_layout'></div></div><div><div></td>
+                <tr><td rowspan="3">
+                    <div id='scene_view' style='width:100%;height:100vh;overflow:scroll;' align='center'>
+                        <div id="scene_controll" style="right:calc(25% + 32px);">
+                            <table height="100%">
+                            <tbody>
+                                <tr>
+                                    <td width="42px" class='icon button_menu icon_right' onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]-1)' style='border-radius:20px 0 0 20px;'></td>
+                                    <td width="42px" class='icon button_menu icon_go'    onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)' style='border-right:1px solid #cec8e3;'></td>
+                                    <td width="42px" class='icon button_menu icon_equal' onclick='world_scale(2)' ></td>
+                                    <td width="42px" class='icon button_menu icon_scale' onclick='world_scale(1)' ></td>
+                                    <td width="42px" class='icon button_menu icon_minus' onclick='world_scale(false)' style='border-radius:0 20px 20px 0;'></td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                        <div id='screen_preview' align='center' style='-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;width:100%;height:calc(100vh - 40px);padding-top:40px;'><div id='scene_canvas'><div id='scene_layout'>
+                            
+                            <table id="tue_text_block" style="margin:auto;position: absolute; width: 85%; height: 25%; left: 0px; right: 0px; bottom: 32px; background-color: rgb(153, 204, 255);" align="center">
+                                <tbody>
+                                   <tr>
+                                        <td id="tue_text_element" style="position: relative;">
+                                            <div id="tue_text_view">1234567890</div>
+                                            <div id="tue_name_block" style="position: absolute; top:0px; left:0; text-align: center; height: 20px; line-height: 20px; z-index: 1001; visibility: visible;">numbers</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div></div></div>
+                    </div>
+                </td>
                     <td id='scrnr_title' height="40px" align='center' style="background-color:#fff;max-width:286px;width:25%;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
                 <tr>
                     <td style="background-color:#fff; border-bottom:1px solid #cec8e3; border-top:1px solid #cec8e3;"><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>
@@ -592,7 +622,8 @@ function lang_select(){
 }
 language_view.onchange=function(e){
 	languare=language_view.value;
-	update_novel()
+    if (scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2]);}
+    update_novel()
 };
 function creation_block(b){
     var chapter=document.createElement("div");
@@ -669,18 +700,11 @@ function creation_block(b){
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Interface<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_controll' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='controll';dialog_el(this.id,'Interface',false)\" width='24px' class='icon_m icon_edit' title='Edit interface'></td></tr></tbody></table>"
                                 +"<div class='choice_b'><select class='input_text_b' oninput='story_script."+chapter.id+"["+i+"].dialogs["+d+"].controll=this.value'><option value='hidden'>Hidden</option><option value='visible' "+((story_script[chapter.id][i].dialogs[d].controll=="visible")?"selected":"")+">Visible</option></select></div></div>"
                     }
-                    
-                    
-                    
-                    
                     if (story_script[chapter.id][i].dialogs[d].variables){
                         var t="";
                         for(var c=0;c<story_script[chapter.id][i].dialogs[d].variables.length;c++){t+="<table width='100%' height='28px' class='choice_b'><tbody><tr><td><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].variables["+c+"][0]=this.value;' class='input_text_b'>"+option_var(story_script[chapter.id][i].dialogs[d].variables[c][0])+"</select></td><td width='15%'><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].variables["+c+"][1]=this.value;' class='input_text_b'><option value='add'>add</option><option value='set' "+((story_script[chapter.id][i].dialogs[d].variables[c][1]=="set")?"selected":"")+">set</option></select></td><td width='34%'> <input class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].variables["+c+"][2]=this.value' value='"+story_script[chapter.id][i].dialogs[d].variables[c][2]+"' type='text'> </td><td width='5%'></td></tr></tbody></table>"};
                         element+="<div class='dialog_element' align='left'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Variables<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_variables' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='variables';dialog_el(this.id,'Variables',true)\" width='24px' class='icon_m icon_edit' title='Edit variables'></td></tr></tbody></table>"+t+"</div>"
                     }
-                    
-                    
-                    
                     if (story_script[chapter.id][i].dialogs[d].choice){
                         element+="<div id='' class='dialog_element'>"
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
@@ -1291,7 +1315,7 @@ function add_element_d(id,n){
 function dialog_m(id,n,block,i){
 	var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
               +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Dialog '+n+'</td></tr>'
-              +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_editor(\''+block+'\','+i+');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
+              +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_editor(\''+block+'\','+i+','+n+');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
 			  +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
               +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
               +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
@@ -1559,19 +1583,29 @@ function edit_html(){
     var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>HTML code edit</p><br><p><textarea id='editHtml' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid #cec8e3;'>"+((arr_l[arr_n])?arr_l[arr_n]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=editHtml.value;update_novel();modal_window(\"close\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
-function scen_editor(block,i) {
+let scen_data=[];
+function scen_editor(block,i,n) {
+        
+        if(scen_data[2]<n){
+            if (i>=story_script[block].length-1){i=story_script[block].length;}
+            if (!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
+        } else { if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;} }
+
+        scen_data=[block,i,n];
         world.style.display="none";
         new_story_block.style.display="none";
         scene_maker.style.display="initial";
         scroll_block=true;
         scene_screen=true;
         html.style.overflow="hidden"
-        scrnr_title.innerHTML = block + " (scene:"+i+" | dialog:"+9+")"
+        scrnr_title.innerHTML = block + " (scene:"+(i+1)+" | dialog:"+n+")"
         p_width.value=setup_editor.preview[0];
         ratio_screen.selectedIndex=setup_editor.preview[1];
         preview_size()
         scene_layout.style.backgroundImage = "url("+open_file(languare_data(story_script[block][i].background_image))+")"
         scene_layout.style.backgroundColor = story_script[block][i].background_color
+        tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text)
+        tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name)
 }
 function preview_size(){
         if (ratio_screen.selectedIndex==0){
@@ -1582,6 +1616,7 @@ function preview_size(){
             scene_layout.style.height=p_width.value+"%";
         }
 }
+
 function scen_editor_apply() {
         setup_editor.preview=[parseInt(p_width.value), ratio_screen.selectedIndex];
         localStorage.setItem("editor_setup",JSON.stringify(setup_editor));
@@ -1881,6 +1916,9 @@ document.addEventListener('keydown',function(event){
         if (event.code=='Equal'){world_scale(2)}
         else if (event.code=='Minus'){world_scale(false)}
         else if (event.code=='Digit0'){world_scale(1)}
+        
+        else if (scene_screen && event.code=='ArrowLeft'){scen_editor(scen_data[0],scen_data[1],scen_data[2]-1)}
+        else if (scene_screen && event.code=='ArrowRight'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
     }
 });
 var scene_screen=false
