@@ -287,7 +287,7 @@ line{
 	width:100%;
 	-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
 }
-.input_slider {-webkit-appearance: none;height: 1px;background: #cec8e3;outline: none;opacity: 1;}
+.input_slider {-webkit-appearance: none;height: 16px;background: #efefff;outline: none;border-radius: 8px;border:1px solid #cec8e3;}
 .input_slider::-webkit-slider-thumb {-webkit-appearance: none;appearance: none;width: 16px;height: 16px;border-radius: 50%;background: #cec8e3;cursor: pointer;}
 .input_slider::-moz-range-thumb {width: 16px;height: 16px;border-radius: 50%;background: #cec8e3;cursor: pointer;}
 input[type="text"]{text-indent:4px;}
@@ -338,6 +338,21 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
     background-repeat:no-repeat;
     background-position:center;
     box-shadow:0px 2px 24px rgba(110,95,165,0.25);
+}
+.set_panel{}
+.set_title{background-color:#cec8e3;cursor:pointer;}
+.input_color{
+    cursor:pointer;
+    border: none;
+    height:100%;
+    width:100%;
+    opacity: 0;
+}
+.show_color{
+    background-color:#cec8e3;
+    border-radius:50%;
+    width:26px;
+    height:26px;
 }
 </style>
 </head>
@@ -390,10 +405,10 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                             <table height="100%">
                             <tbody>
                                 <tr>
-                                    <td width="42px" class='icon button_menu icon_right' onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]-1)' style='border-radius:20px 0 0 20px;'></td>
-                                    <td width="42px" class='icon button_menu icon_go'    onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)' style='border-right:1px solid #cec8e3;'></td>
-                                    <td width="42px" class='icon button_menu icon_equal' onclick='world_scale(2)' ></td>
-                                    <td width="42px" class='icon button_menu icon_scale' onclick='world_scale(1)' ></td>
+                                    <td width="42px" class='icon button_menu icon_right' onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]-1);scen_edit_data();' style='border-radius:20px 0 0 20px;'></td>
+                                    <td width="42px" class='icon button_menu icon_go'    onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]+1);scen_edit_data();' style='border-right:1px solid #cec8e3;'></td>
+                                    <td width="42px" class='icon button_menu icon_equal' onclick='world_scale(2)'></td>
+                                    <td width="42px" class='icon button_menu icon_scale' onclick='world_scale(1)'></td>
                                     <td width="42px" class='icon button_menu icon_minus' onclick='world_scale(false)' style='border-radius:0 20px 20px 0;'></td>
                                 </tr>
                             </tbody>
@@ -405,8 +420,8 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                 <tbody>
                                    <tr>
                                         <td id="tue_text_element" style="position: relative;">
-                                            <div id="tue_text_view">1234567890</div>
-                                            <div id="tue_name_block" style="position: absolute; top:0px; left:0; text-align: center; height: 20px; line-height: 20px; z-index: 1001; visibility: visible;">numbers</div>
+                                            <div id="tue_text_view"></div>
+                                            <div id="tue_name_block" style="position:absolute;top:0px;left:0;text-align:center;height:20px;line-height:20px;z-index:1001;visibility:visible;"></div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -418,31 +433,166 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                     <td id='scrnr_title' height="40px" align='center' style="background-color:#fff;max-width:286px;width:25%;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
                 <tr>
                     <td style="background-color:#fff; border-bottom:1px solid #cec8e3; border-top:1px solid #cec8e3;"><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>
-                        <br><div style='padding-left:8px; border-bottom:1px solid #cec8e3;' >Preview</div>
+                        
+
+                        <table onclick="block_open('set_preview');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Preview</td></tr></tbody></table>
+                        <div class="set_panel" id="set_preview" style="width:100%; display:block;">
+                        <table style="width:100%;"><tbody>
+                            <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
+                                <select id='ratio_screen' class='input_text' oninput='preview_size()' style='width:100%;'>
+                                      <option value=true>Portrait</option>
+                                      <option value=false>landscape</option>
+                                </select>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Screen</td><td style='padding-right:8px;'>
+                               <select class='input_text' oninput='p_width.value=this.value;preview_size()' style='width:100%;'>
+                                    <option value="100">1:1</option>
+                                    <option value="75">4:3</option>
+                                    <option value="56">16:9</option>
+                                </select>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Ratio</td><td style='padding-right:8px;'>
+                                <input id='p_width' class='input_slider' oninput='preview_size()' type="range" value='100' min="50" max="100" style='width:100%;'>
+                            </td></tr>
+                        </tbody></table></div>
+                   
+                        <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Text panel (global)</td></tr></tbody></table>
+                        <div class="set_panel" id="text_panel_g" style="width:100%; display:none;">
+                        <table style="width:100%;"><tbody>
+                            <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='size_w' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Size height</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='size_h' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='style' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='color_t_s'></div></td><td style='padding-right:8px;'>
+                                <input id='color_t' class='input_text' oninput='color_t_b.value=this.value;color_t_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
+                            </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
+                                <input id='color_t_b' type="color" name="paletr" class='input_color' oninput='color_t.value=this.value;color_t_s.style.backgroundColor=this.value;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Color text</td><td style='width:40px;' align='center'><div class='show_color' id='color_text_s'></div></td><td style='padding-right:8px;'>
+                                <input id='color_text' class='input_text' oninput='color_text_b.value=this.value;color_text_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
+                            </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
+                                <input id='color_text_b' type="color" name="paletr" class='input_color' oninput='color_text.value=this.value;color_text_s.style.backgroundColor=this.value;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Size text</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='size_text' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='className' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Dialog speed</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='dialog_speed' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Position top</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='position_t' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Position left</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='position_l' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Position bottom</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='position_b' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Position right</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='position_r' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Indent bottom</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='indent_bottom' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='indent_text' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                        </tbody></table>
+                        </div>
+                        
+                        <table onclick="block_open('text_panel_l');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Text panel (local)</td></tr></tbody></table>
+                        <div class="set_panel" id="text_panel_l" style="width:100%; display:none;"></div>
+                        
+                        <table onclick="block_open('name_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Name panel (global)</td></tr></tbody></table>
+                        <div class="set_panel" id="name_panel_g" style="width:100%; display:none;">
+                        <table style="width:100%;"><tbody>
+                            <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_size_w' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Size height</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_size_h' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_style' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_s'></div></td><td style='padding-right:8px;'>
+                                <input id='n_color' class='input_text' oninput='n_color_b.value=this.value;n_color_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
+                            </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
+                                <input id='n_color_b' type="color" name="paletr" class='input_color' oninput='n_color.value=this.value;n_color_s.style.backgroundColor=this.value;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Color text</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_text_s'></div></td><td style='padding-right:8px;'>
+                                <input id='n_color_text' class='input_text' oninput='n_color_text_b.value=this.value;n_color_text_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
+                            </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
+                                <input id='n_color_text_b' type="color" name="paletr" class='input_color' oninput='n_color_text.value=this.value;n_color_text_s.style.backgroundColor=this.value;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Size text</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_size_text' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_className' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Position top</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_position_t' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Position left</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_position_l' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Position bottom</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_position_b' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Position right</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_position_r' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_indent_text' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                            </td></tr>
+                        </tbody></table>
+                        </div>
+                        
+                        <table onclick="block_open('name_panel_l');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Name panel (local)</td></tr></tbody></table>
+                        <div class="set_panel" id="name_panel_l" style="width:100%; display:none;"></div>
+                        
+                        <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Scene</td></tr></tbody></table>
+                        <div class="set_panel" id="set_scene" style="width:100%; display:none;">
                             <table style="width:100%;"><tbody>
-                                <tr><td height='40px' align='right' style='padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
-                                    <select id='ratio_screen' class='input_text' oninput='preview_size()'>
-                                          <option value=true>Portrait</option>
-                                          <option value=false>landscape</option>
-                                    </select>
-                                </td>
-                                <tr><td height='40px' align='right' style='padding-right:8px;'>Screen</td><td style='padding-right:8px;'>
-                                    <select class='input_text' oninput='p_width.value=this.value;preview_size()'>
-                                        <option value="100">1:1</option>
-                                        <option value="75">4:3</option>
-                                        <option value="56">16:9</option>
-                                    </select>
-                                </td>
-                                <tr><td height='40px' align='right' style='padding-right:8px;'>Ratio</td><td style='padding-right:8px;'><input id='p_width' class='input_slider' oninput='preview_size()' type="range" value='100' min="50" max="100"  style='width:100%;'></td>
+                                <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Image</td><td id='la_scene'></td><td style='padding-right:8px;'>
+                                    <input id='image_scene' class='input_text' oninput='n_color_b.value=this.value' type="text" style='width:100%;'>
+                                </td><td height='40px' align='right' style='width:40px;' class='icon icon_load'>
+                                </td></tr>
+                                <tr><td height='40px' align='right' style='padding-right:8px;'>Music</td><td colspan='2' style='padding-right:8px;'>
+                                    <input id='music_scene' class='input_text' oninput='n_color_b.value=this.value' type="text" style='width:100%;'>
+                                </td><td height='40px' align='right' style='width:40px;' class='icon icon_load'>
+                                </td></tr>
+                                <tr><td height='40px' align='right' style='padding-right:8px;'>Color</td><td style='width:40px;' align='center'><div class='show_color' id='color_scene_s'></div></td><td style='padding-right:8px;'>
+                                    <input id='color_scene' class='input_text' oninput='color_scene_b.value=this.value;color_scene_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
+                                </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
+                                    <input id='color_scene_b' type="color" name="paletr" class='input_color' oninput='color_scene.value=this.value;color_scene_s.style.backgroundColor=this.value;'>
+                                </td></tr>
+                                <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td colspan='3' style='padding-right:8px;'>
+                                    <input id='class_scene' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                </td></tr>
                             </tbody></table>
-                        <br><div style='padding-left:8px; border-bottom:1px solid #cec8e3;' >Interfaces</div>
-                        <div></div>
-                        <br><div style='padding-left:8px; border-bottom:1px solid #cec8e3;' >Arts</div>
-                        <div id='scen_items'></div>
-                        <div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
-                        <br><div style='padding-left:8px; border-bottom:1px solid #cec8e3;' >Buttons</div>
-                        <div id='scen_items'></div>
-                        <div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
+                        </div>
+                        
+                        <table onclick="block_open('arts_e');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Arts</td></tr></tbody></table>
+                        <div class="set_panel" id="arts_e" style="width:100%; display:block;">
+                            <div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
+                        </div>
+                        
+                        <table onclick="block_open('buttons_e');" class="set_title"  height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Buttons</td></tr></tbody></table>
+                        <div class="set_panel" id="buttons_e" style="width:100%; display:block;">
+                            <div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
+                        </div>
+                        
+       
                     </div></td>
                 </tr>
                 <tr>
@@ -658,7 +808,7 @@ function creation_block(b){
                     }
                 }
                 element+="</div>"
-            } else {element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";scene_m(this.id,"+(i+1)+");' title='Scene edit'></td></tr></tbody></table>"}
+            } else {element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";scene_m(this.id,"+(i+1)+",\""+chapter.id+"\");' title='Scene edit'></td></tr></tbody></table>"}
             if (story_script[chapter.id][i].background_image){element+="<div class='scene_bg' style=' background-image:url("+open_file(languare_data(story_script[chapter.id][i].background_image))+");background-color:"+story_script[chapter.id][i].background_color+";' width='100%'></div>"}
             if (story_script[chapter.id][i].dialogs){
                 for (var d=0; d < story_script[chapter.id][i].dialogs.length; d++){
@@ -1315,7 +1465,7 @@ function add_element_d(id,n){
 function dialog_m(id,n,block,i){
 	var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
               +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Dialog '+n+'</td></tr>'
-              +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_editor(\''+block+'\','+i+','+n+');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
+              +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_editor(\''+block+'\','+i+','+n+');scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
 			  +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
               +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
               +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
@@ -1332,12 +1482,12 @@ function legacy_choice_m(id){
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
-function scene_m(id,n){
+function scene_m(id,n,block){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Scene '+n+'</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scene_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_editor(\''+block+'\','+n+',0);scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scene_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
-                //+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
@@ -1584,14 +1734,66 @@ function edit_html(){
     modal_window("open",html);
 }
 let scen_data=[];
+function scen_edit_data(){
+        size_w.value=((story_script.parameters.text_panel.size[0])?story_script.parameters.text_panel.size[0]:"")
+        size_h.value=((story_script.parameters.text_panel.size[1])?story_script.parameters.text_panel.size[1]:"")
+        className.value=((story_script.parameters.text_panel.className)?story_script.parameters.text_panel.className:"")
+        style.value=((story_script.parameters.text_panel.style)?story_script.parameters.text_panel.style:"")
+        position_t.value=((story_script.parameters.text_panel.position[0])?story_script.parameters.text_panel.position[0]:"")
+        position_l.value=((story_script.parameters.text_panel.position[1])?story_script.parameters.text_panel.position[1]:"")
+        position_b.value=((story_script.parameters.text_panel.position[2])?story_script.parameters.text_panel.position[2]:"")
+        position_r.value=((story_script.parameters.text_panel.position[3])?story_script.parameters.text_panel.position[3]:"")
+        if(story_script.parameters.text_panel.color){
+            color_t.value=story_script.parameters.text_panel.color
+            color_t_b.value=story_script.parameters.text_panel.color
+            color_t_s.style.backgroundColor=story_script.parameters.text_panel.color
+        } else {story_script.value.value=""}
+        if(story_script.parameters.text_panel.color_text){
+            color_text.value=story_script.parameters.text_panel.color_text
+            color_text_b.value=story_script.parameters.text_panel.color_text
+            color_text_s.style.backgroundColor=story_script.parameters.text_panel.color_text
+        } else {color_text.value=""}
+        indent_bottom.value=((story_script.parameters.text_panel.indent_bottom)?story_script.parameters.text_panel.indent_bottom:"")
+        indent_text.value=((story_script.parameters.text_panel.indent_text)?story_script.parameters.text_panel.indent_text:"")
+        size_text.value=((story_script.parameters.text_panel.size_text)?story_script.parameters.text_panel.size_text:"")
+        dialog_speed.value=((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:"")
+        n_size_w.value=((story_script.parameters.name_panel.size[0])?story_script.parameters.name_panel.size[0]:0)
+        n_size_h.value=((story_script.parameters.name_panel.size[1])?story_script.parameters.name_panel.size[1]:0)
+        n_position_t.value=((story_script.parameters.name_panel.position[0])?story_script.parameters.name_panel.position[0]:"")
+        n_position_l.value=((story_script.parameters.name_panel.position[1])?story_script.parameters.name_panel.position[1]:"")
+        n_position_b.value=((story_script.parameters.name_panel.position[2])?story_script.parameters.name_panel.position[2]:"")
+        n_position_r.value=((story_script.parameters.name_panel.position[3])?story_script.parameters.name_panel.position[3]:"")
+        n_className.value=((story_script.parameters.name_panel.className)?story_script.parameters.name_panel.className:"")
+        n_style.value=((story_script.parameters.name_panel.style)?story_script.parameters.name_panel.style:"")
+        n_indent_text.value=((story_script.parameters.name_panel.indent_text)?story_script.parameters.name_panel.indent_text:"")
+        n_size_text.value=((story_script.parameters.name_panel.size_text)?story_script.parameters.name_panel.size_text:"")
+        if(story_script.parameters.name_panel.color){
+            n_color.value=story_script.parameters.name_panel.color
+            n_color_b.value=story_script.parameters.name_panel.color
+            n_color_s.style.backgroundColor=story_script.parameters.name_panel.color
+        } else {n_color.value=""}
+        if(story_script.parameters.name_panel.color_text){
+            n_color_text.value=story_script.parameters.name_panel.color_text
+            n_color_text_b.value=story_script.parameters.name_panel.color_text
+            n_color_text_s.style.backgroundColor=story_script.parameters.name_panel.color_text
+        } else {n_color_text.value=""}
+        if(story_script[scen_data[0]][scen_data[1]].background_color){
+            color_scene_b.value=story_script[scen_data[0]][scen_data[1]].background_color
+            color_scene.value=story_script[scen_data[0]][scen_data[1]].background_color
+            color_scene_s.style.backgroundColor=story_script[scen_data[0]][scen_data[1]].background_color
+        } else {color_scene.value=""}
+        music_scene.value=story_script[scen_data[0]][scen_data[1]].background_music
+        image_scene.value=languare_data(story_script[scen_data[0]][scen_data[1]].background_image)
+        class_scene.value=story_script[scen_data[0]][scen_data[1]].background_class
+        la_scene.innerHTML="<select class='input_text' id='scene_la' style='height:28px; width:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3;'>"+project_languares(languare)+"</select>"
+}
 function scen_editor(block,i,n) {
-        
         if(scen_data[2]<n){
             if (i>=story_script[block].length-1){i=story_script[block].length;}
             if (!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
         } else { if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;} }
-
         scen_data=[block,i,n];
+        scen_editor_apply();
         world.style.display="none";
         new_story_block.style.display="none";
         scene_maker.style.display="initial";
@@ -1604,6 +1806,53 @@ function scen_editor(block,i,n) {
         preview_size()
         scene_layout.style.backgroundImage = "url("+open_file(languare_data(story_script[block][i].background_image))+")"
         scene_layout.style.backgroundColor = story_script[block][i].background_color
+        tue_text_element.style.position="relative";
+        if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;}
+        if(story_script.parameters.text_panel.style){tue_text_block.style=story_script.parameters.text_panel.style;}
+        tue_text_block.style.position="absolute";
+        tue_text_block.style.margin="auto";
+        if(story_script.parameters.text_panel.size){
+            tue_text_block.style.width=story_script.parameters.text_panel.size[0];
+            tue_text_block.style.height=story_script.parameters.text_panel.size[1];
+        }
+        if(story_script.parameters.text_panel.position){
+            tue_text_block.style.left=(story_script.parameters.text_panel.position[0] != 0)?story_script.parameters.text_panel.position[0]:"0";
+            tue_text_block.style.right=(story_script.parameters.text_panel.position[1] != 0)?story_script.parameters.text_panel.position[1]:"0";
+            if(story_script.parameters.text_panel.position[2] != 0){tue_text_block.style.top=story_script.parameters.text_panel.position[2];}
+            if(story_script.parameters.text_panel.position[3] != 0){tue_text_block.style.bottom=story_script.parameters.text_panel.position[3];}
+        }else{
+            tue_text_block.style.left="0";
+            tue_text_block.style.right="0";
+        }
+        if(story_script.parameters.text_panel.indent_bottom){tue_text_block.style.bottom=story_script.parameters.text_panel.indent_bottom;}
+        tue_text_block.style.zIndex="1000";
+        tue_text_block.style.borderSpacing="0";
+        tue_text_view=document.getElementById("tue_text_view");
+        tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
+        tue_text_view.style.fontSize=story_script.parameters.text_panel.size_text;
+        tue_text_view.style.height="100%";
+        if(story_script.parameters.name_panel){
+            if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;}
+            if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;}
+            if(story_script.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_script.parameters.name_panel.color;}
+            if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text;}
+            tue_name_block.style.position="absolute";
+            tue_name_block.id="tue_name_block";
+            tue_name_block.style.padding=story_script.parameters.name_panel.indent_text;
+            tue_name_block.style.fontSize=story_script.parameters.name_panel.size_text;
+            tue_name_block.style.textAlign="center";
+            if(tue_name_block.style.width=story_script.parameters.name_panel.size[0] != 0){tue_name_block.style.width=story_script.parameters.name_panel.size[0];}
+            tue_name_block.style.height=story_script.parameters.name_panel.size[1];
+            tue_name_block.style.lineHeight=story_script.parameters.name_panel.size[1];
+            if(story_script.parameters.name_panel.position[0] != 0){tue_name_block.style.left=story_script.parameters.name_panel.position[0];}
+            if(story_script.parameters.name_panel.position[1] != 0){tue_name_block.style.right=story_script.parameters.name_panel.position[1];}
+            if(story_script.parameters.name_panel.position[2] != 0){tue_name_block.style.top=story_script.parameters.name_panel.position[2];}
+            if(story_script.parameters.name_panel.position[3] != 0){tue_name_block.style.bottom=story_script.parameters.name_panel.position[3];}
+            tue_name_block.style.zIndex=1001;
+            tue_text_element.appendChild(tue_name_block);
+        }
+        tue_text_block.style.backgroundColor = story_script.parameters.text_panel.color;
+        tue_text_block.style.color = story_script.parameters.text_panel.color_text;
         tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text)
         tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name)
 }
@@ -1616,7 +1865,6 @@ function preview_size(){
             scene_layout.style.height=p_width.value+"%";
         }
 }
-
 function scen_editor_apply() {
         setup_editor.preview=[parseInt(p_width.value), ratio_screen.selectedIndex];
         localStorage.setItem("editor_setup",JSON.stringify(setup_editor));
@@ -1646,7 +1894,7 @@ function variables_set_add(){
         var td4=document.createElement("td");
         td1.innerHTML="<select class='input_text var_name'>"+option_var()+"</select>";
         td2.innerHTML="<select class='input_text var_operation'><option value='add'>add</option><option value='set'>set</option></select>";
-        td2.style='width:48px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;'
+        td2.style='width:48px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;';
         td3.innerHTML="<input class='input_text var_value' value='0' type='text'>";
         td4.style="width:40px;cursor:pointer;";
         td4.title="delet";
