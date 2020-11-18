@@ -460,13 +460,13 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         <div class="set_panel" id="text_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='size_w' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='size_w' class='input_text' oninput='' type="text" value='95%' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size height</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='size_h' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='size_h' class='input_text' oninput='' type="text" value='25%' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='style' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='style' class='input_text' onchange='scen_edit_updare(true)' type="text" value='' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='color_t_s'></div></td><td style='padding-right:8px;'>
                                 <input id='color_t' class='input_text' oninput='color_t_b.value=this.value;color_t_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
@@ -479,31 +479,31 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                 <input id='color_text_b' type="color" name="paletr" class='input_color' oninput='color_text.value=this.value;color_text_s.style.backgroundColor=this.value;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='size_text' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='size_text' class='input_text' oninput='' type="text" value='20px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='className' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Dialog speed</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='dialog_speed' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='dialog_speed' class='input_text' oninput='' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position top</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_t' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='position_t' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position left</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_l' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='position_l' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position bottom</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_b' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='position_b' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position right</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_r' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='position_r' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Indent bottom</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='indent_bottom' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='indent_bottom' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='indent_text' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='indent_text' class='input_text' oninput='' type="text" style='width:100%;'>
                             </td></tr>
                         </tbody></table>
                         </div>
@@ -515,13 +515,13 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         <div class="set_panel" id="name_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_size_w' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_size_w' class='input_text' oninput='' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size height</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_size_h' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_size_h' class='input_text' oninput='' type="text" value='48px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_style' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_style' class='input_text' oninput='' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_s'></div></td><td style='padding-right:8px;'>
                                 <input id='n_color' class='input_text' oninput='n_color_b.value=this.value;n_color_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
@@ -534,25 +534,25 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                 <input id='n_color_text_b' type="color" name="paletr" class='input_color' oninput='n_color_text.value=this.value;n_color_text_s.style.backgroundColor=this.value;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_size_text' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_size_text' class='input_text' oninput='' type="text" value='18px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_className' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_className' class='input_text' oninput='' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position top</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_t' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_position_t' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position left</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_l' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_position_l' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position bottom</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_b' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_position_b' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position right</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_r' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_position_r' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_indent_text' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='n_indent_text' class='input_text' oninput='' type="text" style='width:100%;'>
                             </td></tr>
                         </tbody></table>
                         </div>
@@ -596,7 +596,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                     </div></td>
                 </tr>
                 <tr>
-                    <td height="40px" align='center' style="background-color:#fff;" class='button_menu'><table class='button_menu' width='100%' height="100%" onclick='scen_editor_apply();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Close</td><td width='42px'></td></tr></tbody></table></td>
+                    <td height="40px" align='center' style="background-color:#fff;" class='button_menu'><table class='button_menu' width='100%' height="100%" onclick='scen_edit_updare(false);'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Close</td><td width='42px'></td></tr></tbody></table></td>
                 </tr>
             </tbody>
         </table>
@@ -1739,10 +1739,12 @@ function scen_edit_data(){
         size_h.value=((story_script.parameters.text_panel.size[1])?story_script.parameters.text_panel.size[1]:"")
         className.value=((story_script.parameters.text_panel.className)?story_script.parameters.text_panel.className:"")
         style.value=((story_script.parameters.text_panel.style)?story_script.parameters.text_panel.style:"")
-        position_t.value=((story_script.parameters.text_panel.position[0])?story_script.parameters.text_panel.position[0]:"")
-        position_l.value=((story_script.parameters.text_panel.position[1])?story_script.parameters.text_panel.position[1]:"")
-        position_b.value=((story_script.parameters.text_panel.position[2])?story_script.parameters.text_panel.position[2]:"")
-        position_r.value=((story_script.parameters.text_panel.position[3])?story_script.parameters.text_panel.position[3]:"")
+        if(story_script.parameters.text_panel.position){
+            position_t.value=((story_script.parameters.text_panel.position[0])?story_script.parameters.text_panel.position[0]:0)
+            position_l.value=((story_script.parameters.text_panel.position[1])?story_script.parameters.text_panel.position[1]:0)
+            position_b.value=((story_script.parameters.text_panel.position[2])?story_script.parameters.text_panel.position[2]:0)
+            position_r.value=((story_script.parameters.text_panel.position[3])?story_script.parameters.text_panel.position[3]:0)
+        }
         if(story_script.parameters.text_panel.color){
             color_t.value=story_script.parameters.text_panel.color
             color_t_b.value=story_script.parameters.text_panel.color
@@ -1759,10 +1761,12 @@ function scen_edit_data(){
         dialog_speed.value=((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:"")
         n_size_w.value=((story_script.parameters.name_panel.size[0])?story_script.parameters.name_panel.size[0]:0)
         n_size_h.value=((story_script.parameters.name_panel.size[1])?story_script.parameters.name_panel.size[1]:0)
-        n_position_t.value=((story_script.parameters.name_panel.position[0])?story_script.parameters.name_panel.position[0]:"")
-        n_position_l.value=((story_script.parameters.name_panel.position[1])?story_script.parameters.name_panel.position[1]:"")
-        n_position_b.value=((story_script.parameters.name_panel.position[2])?story_script.parameters.name_panel.position[2]:"")
-        n_position_r.value=((story_script.parameters.name_panel.position[3])?story_script.parameters.name_panel.position[3]:"")
+        if (story_script.parameters.name_panel.position){
+            n_position_t.value=((story_script.parameters.name_panel.position[0])?story_script.parameters.name_panel.position[0]:0)
+            n_position_l.value=((story_script.parameters.name_panel.position[1])?story_script.parameters.name_panel.position[1]:0)
+            n_position_b.value=((story_script.parameters.name_panel.position[2])?story_script.parameters.name_panel.position[2]:0)
+            n_position_r.value=((story_script.parameters.name_panel.position[3])?story_script.parameters.name_panel.position[3]:0)
+        }
         n_className.value=((story_script.parameters.name_panel.className)?story_script.parameters.name_panel.className:"")
         n_style.value=((story_script.parameters.name_panel.style)?story_script.parameters.name_panel.style:"")
         n_indent_text.value=((story_script.parameters.name_panel.indent_text)?story_script.parameters.name_panel.indent_text:"")
@@ -1786,6 +1790,12 @@ function scen_edit_data(){
         image_scene.value=languare_data(story_script[scen_data[0]][scen_data[1]].background_image)
         class_scene.value=story_script[scen_data[0]][scen_data[1]].background_class
         la_scene.innerHTML="<select class='input_text' id='scene_la' style='height:28px; width:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3;'>"+project_languares(languare)+"</select>"
+}
+function scen_edit_updare(show) {
+        if(!style.value==""){story_script.parameters.text_panel.style=style.value} else {delete story_script.parameters.text_panel.style}
+        
+        if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
+        else {scen_editor_apply()}
 }
 function scen_editor(block,i,n) {
         if(scen_data[2]<n){
