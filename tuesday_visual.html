@@ -460,29 +460,29 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         <div class="set_panel" id="text_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='size_w' class='input_text' oninput='' type="text" value='95%' style='width:100%;'>
+                                <input id='size_w' class='input_text' onchange='scen_edit_updare(true)' type="text" value='95%' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size height</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='size_h' class='input_text' oninput='' type="text" value='25%' style='width:100%;'>
+                                <input id='size_h' class='input_text' onchange='scen_edit_updare(true)' type="text" value='25%' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='style' class='input_text' onchange='scen_edit_updare(true)' type="text" value='' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='color_t_s'></div></td><td style='padding-right:8px;'>
-                                <input id='color_t' class='input_text' oninput='color_t_b.value=this.value;color_t_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
+                                <input id='color_t' class='input_text' onchange='color_t_b.value=this.value;color_t_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
-                                <input id='color_t_b' type="color" name="paletr" class='input_color' oninput='color_t.value=this.value;color_t_s.style.backgroundColor=this.value;'>
+                                <input id='color_t_b' type="color" name="paletr" class='input_color' oninput='color_t.value=this.value;color_t_s.style.backgroundColor=this.value;scen_edit_updare(true);'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color text</td><td style='width:40px;' align='center'><div class='show_color' id='color_text_s'></div></td><td style='padding-right:8px;'>
-                                <input id='color_text' class='input_text' oninput='color_text_b.value=this.value;color_text_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
+                                <input id='color_text' class='input_text' onchange='color_text_b.value=this.value;color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
-                                <input id='color_text_b' type="color" name="paletr" class='input_color' oninput='color_text.value=this.value;color_text_s.style.backgroundColor=this.value;'>
+                                <input id='color_text_b' type="color" name="paletr" class='input_color' oninput='color_text.value=this.value;color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size text</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='size_text' class='input_text' oninput='' type="text" value='20px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='className' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <input id='className' class='input_text' onchange='scen_edit_updare(true)' type="text" value='100' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Dialog speed</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='dialog_speed' class='input_text' oninput='' type="text" style='width:100%;'>
@@ -524,14 +524,14 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                 <input id='n_style' class='input_text' oninput='' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_s'></div></td><td style='padding-right:8px;'>
-                                <input id='n_color' class='input_text' oninput='n_color_b.value=this.value;n_color_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
+                                <input id='n_color' class='input_text' onchange='n_color_b.value=this.value;n_color_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
-                                <input id='n_color_b' type="color" name="paletr" class='input_color' oninput='n_color.value=this.value;n_color_s.style.backgroundColor=this.value;'>
+                                <input id='n_color_b' type="color" name="paletr" class='input_color' oninput='n_color.value=this.value;n_color_s.style.backgroundColor=this.value;scen_edit_updare(true);'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color text</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_text_s'></div></td><td style='padding-right:8px;'>
-                                <input id='n_color_text' class='input_text' oninput='n_color_text_b.value=this.value;n_color_text_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
+                                <input id='n_color_text' class='input_text' onchange='n_color_text_b.value=this.value;n_color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
-                                <input id='n_color_text_b' type="color" name="paletr" class='input_color' oninput='n_color_text.value=this.value;n_color_text_s.style.backgroundColor=this.value;'>
+                                <input id='n_color_text_b' type="color" name="paletr" class='input_color' oninput='n_color_text.value=this.value;n_color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size text</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_size_text' class='input_text' oninput='' type="text" value='18px' style='width:100%;'>
@@ -1064,10 +1064,8 @@ var scroll_x=null;
 var scroll_y=null;
 var scroll_xz=null;
 var scroll_yz=null;
-
 var scroll_xs=null;
 var scroll_ys=null;
-
 html.ontouchstart=function(e){
     if (!scroll_block||scene_screen){
         startmove_x=e.touches[0].clientX;
@@ -1270,9 +1268,7 @@ function new_project(){
     new_novel();
     var html="<div class='window' style='padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New project</p><hr><br><div style='overflow-x:hidden; overflow-y:auto; width:100%; max-height:60vh;'>"
         +"<p align='left' style=' margin-left:8px;'>Project folder / location</p>"
-        
         +"<table style='width:100%;'><tbody><tr><td><input id='project_foler' onclick=\"load_new=true;json_file.click()\" class='input_text' style='padding-top:10px;' type='text'></td><td onclick=\"load_new=true;json_file.click()\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_load'></td></tr></tbody></table><p class='text_tutorials_b select_tutorials'>"+texts.tutorials[3].en+"</p><br><br>"
-        
         +"<p align='left' style=' margin-left:8px;'>Name project</p><table id='new_title'><tbody>"
         +"<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><select class='input_text title_lang'>"+big_languares()+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' type='text' value='"+
         story_script.parameters.title.en+"'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
@@ -1482,10 +1478,10 @@ function legacy_choice_m(id){
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
-function scene_m(id,n,block){
+function scene_m(id,i,block){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
-				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Scene '+n+'</td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_editor(\''+block+'\','+n+',0);scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
+				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Scene '+i+'</td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_data[1]='+(i-1)+';scen_editor(\''+block+'\',scen_data[1],1);scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scene_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
@@ -1792,7 +1788,15 @@ function scen_edit_data(){
         la_scene.innerHTML="<select class='input_text' id='scene_la' style='height:28px; width:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3;'>"+project_languares(languare)+"</select>"
 }
 function scen_edit_updare(show) {
-        if(!style.value==""){story_script.parameters.text_panel.style=style.value} else {delete story_script.parameters.text_panel.style}
+        if(!style.value==""){story_script.parameters.text_panel.style=style.value} else {delete story_script.parameters.text_panel.style};
+        if(!size_w.value==""){story_script.parameters.text_panel.size[0]=correct_value(size_w.value)};
+        if(!size_h.value==""){story_script.parameters.text_panel.size[1]=correct_value(size_h.value)};
+        if(!className.value==""){story_script.parameters.text_panel.className=className.value} else {delete story_script.parameters.text_panel.className};
+        story_script.parameters.text_panel.dialog_speed=dialog_speed.value;
+        story_script.parameters.text_panel.position=[((position_t.value)?correct_value(position_t.value):0),((position_l.value)?correct_value(position_l.value):0),((position_b.value)?correct_value(position_b.value):0),((position_r.value)?correct_value(position_r.value):0)];
+        
+        if(!color_text.value==""){story_script.parameters.text_panel.color_text=color_text.value}else{delete story_script.parameters.text_panel.color_text};
+        if(!color_t.value==""){story_script.parameters.text_panel.color=color_t.value};
         
         if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
         else {scen_editor_apply()}
@@ -1801,9 +1805,8 @@ function scen_editor(block,i,n) {
         if(scen_data[2]<n){
             if (i>=story_script[block].length-1){i=story_script[block].length;}
             if (!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
-        } else { if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;} }
+        } else if(scen_data[2]>n) { if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;} }
         scen_data=[block,i,n];
-        scen_editor_apply();
         world.style.display="none";
         new_story_block.style.display="none";
         scene_maker.style.display="initial";
@@ -1957,14 +1960,14 @@ function variables_set_apply(){
                                                 
                                                 
 
-
-
-
-
-
 function correct_name(name){
-        return name.replace(/[\s.,%-]/g, '_');
+    return name.replace(/[\s.,%-]/g, '_');
 };
+function correct_value(name){
+    if(name==parseInt(name)&&name!=0){
+        return name+"px"
+    } else {return name}
+}
 function move_elenetn(arr,o,n){
 	var new_index=((o+n)<0)?o:o+n;
     arr.splice(new_index,0,arr.splice(o,1)[0]);
