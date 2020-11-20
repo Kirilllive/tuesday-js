@@ -11,7 +11,6 @@
 	border:none;
 	margin:0;
 	padding:0;
-	border:0;
 	border-spacing:0px;
 	-webkit-touch-callout:none;
 	-webkit-user-select:none;
@@ -419,9 +418,9 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                             <table id="tue_text_block" align="center">
                                 <tbody>
                                    <tr>
-                                        <td id="tue_text_element" style="position: relative;">
+                                        <td id="tue_text_element" style="position:relative;">
                                             <div id="tue_text_view"></div>
-                                            <div id="tue_name_block" style="position:absolute;top:0px;left:0;text-align:center;height:20px;line-height:20px;z-index:1001;visibility:visible;"></div>
+                                            <div id="tue_name_block"></div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1786,6 +1785,7 @@ function scen_editor(block,i,n) {
         if(scen_data[2]<n){
             if (i>=story_script[block].length-1){i=story_script[block].length-1;}
             if (!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
+            if (!story_script[block][i]){i-=1;n=story_script[block][i].dialogs.length;}
         } else if(scen_data[2]>n){
             if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;}
         }
@@ -1807,9 +1807,10 @@ function scen_editor(block,i,n) {
             tue_text_block.style.visibility='visible';
             tue_text_element.style.position="relative";
             if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;};
-            if(story_script.parameters.text_panel.style){tue_text_view.style=story_script.parameters.text_panel.style;};
+            if(story_script.parameters.text_panel.style){tue_text_block.style=story_script.parameters.text_panel.style;};
             tue_text_block.style.position="absolute";
             tue_text_block.style.margin="auto";
+            tue_text_block.style.borderCollapse="separate";
             if(story_script.parameters.text_panel.size){
                 tue_text_block.style.width=story_script.parameters.text_panel.size[0];
                 tue_text_block.style.height=story_script.parameters.text_panel.size[1];
@@ -1830,13 +1831,12 @@ function scen_editor(block,i,n) {
             tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
             tue_text_view.style.fontSize=story_script.parameters.text_panel.size_text;
             tue_text_view.style.height="100%";
-            if(story_script.parameters.name_panel){
+            if(story_script[block][i].dialogs[n-1].name && story_script.parameters.name_panel){
                 if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;}
                 if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;}
                 if(story_script.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_script.parameters.name_panel.color;}
                 if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text;}
                 tue_name_block.style.position="absolute";
-                tue_name_block.id="tue_name_block";
                 tue_name_block.style.padding=story_script.parameters.name_panel.indent_text;
                 tue_name_block.style.fontSize=story_script.parameters.name_panel.size_text;
                 tue_name_block.style.textAlign="center";
@@ -1848,9 +1848,9 @@ function scen_editor(block,i,n) {
                 if(story_script.parameters.name_panel.position[2] != 0){tue_name_block.style.top=story_script.parameters.name_panel.position[2];}
                 if(story_script.parameters.name_panel.position[3] != 0){tue_name_block.style.bottom=story_script.parameters.name_panel.position[3];}
                 tue_name_block.style.zIndex=1001;
-                tue_text_element.appendChild(tue_name_block);
-            }
-            tue_text_view.style.backgroundColor = story_script.parameters.text_panel.color;
+                tue_name_block.style.visibility='visible';
+            } else {tue_name_block.style.visibility='hidden';}
+            tue_text_block.style.backgroundColor = story_script.parameters.text_panel.color;
             tue_text_block.style.color = story_script.parameters.text_panel.color_text;
             tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text);
             tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
