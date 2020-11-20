@@ -1790,6 +1790,7 @@ function scen_editor(block,i,n) {
             if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;}
         }
         scen_data=[block,i,n];
+        scen_editor_apply();
         world.style.display="none";
         new_story_block.style.display="none";
         scene_maker.style.display="initial";
