@@ -416,7 +416,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         </div>
                         <div id='screen_preview' align='center' style='-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;width:100%;height:calc(100vh - 40px);padding-top:40px;'><div id='scene_canvas'><div id='scene_layout'>
                             
-                            <table id="tue_text_block" style="margin:auto;position: absolute; width: 85%; height: 25%; left: 0px; right: 0px; bottom: 32px; background-color: rgb(153, 204, 255);" align="center">
+                            <table id="tue_text_block" align="center">
                                 <tbody>
                                    <tr>
                                         <td id="tue_text_element" style="position: relative;">
@@ -433,8 +433,6 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                     <td id='scrnr_title' height="40px" align='center' style="background-color:#fff;max-width:286px;width:25%;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
                 <tr>
                     <td style="background-color:#fff; border-bottom:1px solid #cec8e3; border-top:1px solid #cec8e3;"><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>
-                        
-
                         <table onclick="block_open('set_preview');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Preview</td></tr></tbody></table>
                         <div class="set_panel" id="set_preview" style="width:100%; display:block;">
                         <table style="width:100%;"><tbody>
@@ -455,7 +453,6 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                 <input id='p_width' class='input_slider' oninput='preview_size()' type="range" value='100' min="50" max="100" style='width:100%;'>
                             </td></tr>
                         </tbody></table></div>
-                   
                         <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Text panel (global)</td></tr></tbody></table>
                         <div class="set_panel" id="text_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
@@ -478,50 +475,46 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
                                 <input id='color_text_b' type="color" name="paletr" class='input_color' oninput='color_text.value=this.value;color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);'>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Size text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='size_text' class='input_text' oninput='' type="text" value='20px' style='width:100%;'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Font size</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='size_text' class='input_text' onchange='scen_edit_updare(true)' type="text" value='20px' style='width:100%;'>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Font family</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='font_family' class='input_text' onchange='scen_edit_updare(true)' type="text" value='20px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='className' class='input_text' onchange='scen_edit_updare(true)' type="text" value='100' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Dialog speed</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='dialog_speed' class='input_text' oninput='' type="text" style='width:100%;'>
+                                <input id='dialog_speed' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position top</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_t' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
+                                <input id='position_t' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position left</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_l' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
+                                <input id='position_l' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position bottom</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_b' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
+                                <input id='indent_bottom' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position right</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_r' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
-                            </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Indent bottom</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='indent_bottom' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
+                                <input id='position_r' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='indent_text' class='input_text' oninput='' type="text" style='width:100%;'>
+                                <input id='indent_text' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                         </tbody></table>
                         </div>
-                        
-                        <table onclick="block_open('text_panel_l');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Text panel (local)</td></tr></tbody></table>
-                        <div class="set_panel" id="text_panel_l" style="width:100%; display:none;"></div>
-                        
                         <table onclick="block_open('name_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Name panel (global)</td></tr></tbody></table>
                         <div class="set_panel" id="name_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_size_w' class='input_text' oninput='' type="text" style='width:100%;'>
+                                <input id='n_size_w' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size height</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_size_h' class='input_text' oninput='' type="text" value='48px' style='width:100%;'>
+                                <input id='n_size_h' class='input_text' onchange='scen_edit_updare(true)' type="text" value='48px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_style' class='input_text' oninput='' type="text" style='width:100%;'>
+                                <input id='n_style' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_s'></div></td><td style='padding-right:8px;'>
                                 <input id='n_color' class='input_text' onchange='n_color_b.value=this.value;n_color_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
@@ -533,66 +526,48 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
                                 <input id='n_color_text_b' type="color" name="paletr" class='input_color' oninput='n_color_text.value=this.value;n_color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);'>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Size text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_size_text' class='input_text' oninput='' type="text" value='18px' style='width:100%;'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Font size</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_size_text' class='input_text' onchange='scen_edit_updare(true)' type="text" value='18px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_className' class='input_text' oninput='' type="text" style='width:100%;'>
+                                <input id='n_className' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position top</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_t' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
+                                <input id='n_position_t' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position left</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_l' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
+                                <input id='n_position_l' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position bottom</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_b' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
+                                <input id='n_position_b' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Position right</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_r' class='input_text' oninput='' type="text" value='0' style='width:100%;'>
+                                <input id='n_position_r' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_indent_text' class='input_text' oninput='' type="text" style='width:100%;'>
+                                <input id='n_indent_text' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                         </tbody></table>
                         </div>
-                        
-                        <table onclick="block_open('name_panel_l');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Name panel (local)</td></tr></tbody></table>
-                        <div class="set_panel" id="name_panel_l" style="width:100%; display:none;"></div>
-                        
-                        <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Scene</td></tr></tbody></table>
+                        <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Scene content</td></tr></tbody></table>
                         <div class="set_panel" id="set_scene" style="width:100%; display:none;">
                             <table style="width:100%;"><tbody>
-                                <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Image</td><td id='la_scene'></td><td style='padding-right:8px;'>
-                                    <input id='image_scene' class='input_text' oninput='n_color_b.value=this.value' type="text" style='width:100%;'>
-                                </td><td height='40px' align='right' style='width:40px;' class='icon icon_load'>
+                                <tr><td height='60px' align='center' valign='center'>
+                                    <table class='big_button' width='90%' id='s_scene_edit' onclick='alert()'><tbody><tr><td width='42px' class='icon icon_setup'></td><td align='center'>Scene edit</td><td width='42px'></td></tr></tbody></table>
                                 </td></tr>
-                                <tr><td height='40px' align='right' style='padding-right:8px;'>Music</td><td colspan='2' style='padding-right:8px;'>
-                                    <input id='music_scene' class='input_text' oninput='n_color_b.value=this.value' type="text" style='width:100%;'>
-                                </td><td height='40px' align='right' style='width:40px;' class='icon icon_load'>
-                                </td></tr>
-                                <tr><td height='40px' align='right' style='padding-right:8px;'>Color</td><td style='width:40px;' align='center'><div class='show_color' id='color_scene_s'></div></td><td style='padding-right:8px;'>
-                                    <input id='color_scene' class='input_text' oninput='color_scene_b.value=this.value;color_scene_s.style.backgroundColor=this.value;' type="text" style='width:100%;'>
-                                </td><td height='40px' align='right' style='width:40px;' class='icon icon_color'>
-                                    <input id='color_scene_b' type="color" name="paletr" class='input_color' oninput='color_scene.value=this.value;color_scene_s.style.backgroundColor=this.value;'>
-                                </td></tr>
-                                <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td colspan='3' style='padding-right:8px;'>
-                                    <input id='class_scene' class='input_text' oninput='' type="text" value='100' style='width:100%;'>
+                                <tr><td height='60px' align='center' valign='center'>
+                                    <table class='big_button' width='90%' id='s_scene_text' onclick='alert()'><tbody><tr><td width='42px' class='icon icon_edit2'></td><td align='center'>Text edit</td><td width='42px'></td></tr></tbody></table>
                                 </td></tr>
                             </tbody></table>
                         </div>
-                        
                         <table onclick="block_open('arts_e');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Arts</td></tr></tbody></table>
                         <div class="set_panel" id="arts_e" style="width:100%; display:block;">
                             <div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
                         </div>
-                        
                         <table onclick="block_open('buttons_e');" class="set_title"  height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Buttons</td></tr></tbody></table>
                         <div class="set_panel" id="buttons_e" style="width:100%; display:block;">
                             <div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
                         </div>
-                        
-       
                     </div></td>
                 </tr>
                 <tr>
@@ -1684,8 +1659,10 @@ function dialog_text_apply(){
 		arr_l.name=JSON.parse(JSON.stringify(copy_arr.name));
 	} else {delete arr_l.name}
 	arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));
-	modal_window("close"); 
-	update_novel();
+	modal_window("close");
+    if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
+    else {update_novel();}
+	//update_novel();
 }
 function scene_edit() {
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
@@ -1723,7 +1700,8 @@ function scene_edit_apply(){
     if(scene_color.value != ""){arr_l[arr_n].background_color=scene_color.value;} else {delete arr_l[arr_n].background_color};
     if(scene_class.value != ""){arr_l[arr_n].background_class=scene_class.value;} else {delete arr_l[arr_n].background_class};
 	modal_window("close");
-	update_novel();
+    if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
+    else {update_novel();}
 }
 function edit_html(){
     var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>HTML code edit</p><br><p><textarea id='editHtml' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid #cec8e3;'>"+((arr_l[arr_n])?arr_l[arr_n]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=editHtml.value;update_novel();modal_window(\"close\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
@@ -1731,21 +1709,22 @@ function edit_html(){
 }
 let scen_data=[];
 function scen_edit_data(){
+        s_scene_edit.setAttribute("onclick","arr_l=story_script['"+scen_data[0]+"'];arr_n="+scen_data[1]+";scene_edit();");
+        s_scene_text.setAttribute("onclick","arr_l=story_script['"+scen_data[0]+"']["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];arr_n='text';dialog_text_edit();");
         size_w.value=((story_script.parameters.text_panel.size[0])?story_script.parameters.text_panel.size[0]:"")
         size_h.value=((story_script.parameters.text_panel.size[1])?story_script.parameters.text_panel.size[1]:"")
         className.value=((story_script.parameters.text_panel.className)?story_script.parameters.text_panel.className:"")
         style.value=((story_script.parameters.text_panel.style)?story_script.parameters.text_panel.style:"")
         if(story_script.parameters.text_panel.position){
-            position_t.value=((story_script.parameters.text_panel.position[0])?story_script.parameters.text_panel.position[0]:0)
-            position_l.value=((story_script.parameters.text_panel.position[1])?story_script.parameters.text_panel.position[1]:0)
-            position_b.value=((story_script.parameters.text_panel.position[2])?story_script.parameters.text_panel.position[2]:0)
-            position_r.value=((story_script.parameters.text_panel.position[3])?story_script.parameters.text_panel.position[3]:0)
+            position_l.value=((story_script.parameters.text_panel.position[0])?story_script.parameters.text_panel.position[0]:0)
+            position_r.value=((story_script.parameters.text_panel.position[1])?story_script.parameters.text_panel.position[1]:0)
+            position_t.value=((story_script.parameters.text_panel.position[3])?story_script.parameters.text_panel.position[3]:0)
         }
         if(story_script.parameters.text_panel.color){
             color_t.value=story_script.parameters.text_panel.color
             color_t_b.value=story_script.parameters.text_panel.color
             color_t_s.style.backgroundColor=story_script.parameters.text_panel.color
-        } else {story_script.value.value=""}
+        } else {color_t.value=""}
         if(story_script.parameters.text_panel.color_text){
             color_text.value=story_script.parameters.text_panel.color_text
             color_text_b.value=story_script.parameters.text_panel.color_text
@@ -1754,14 +1733,15 @@ function scen_edit_data(){
         indent_bottom.value=((story_script.parameters.text_panel.indent_bottom)?story_script.parameters.text_panel.indent_bottom:"")
         indent_text.value=((story_script.parameters.text_panel.indent_text)?story_script.parameters.text_panel.indent_text:"")
         size_text.value=((story_script.parameters.text_panel.size_text)?story_script.parameters.text_panel.size_text:"")
+        font_family.value=((story_script.parameters.font)?story_script.parameters.font:"")
         dialog_speed.value=((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:"")
         n_size_w.value=((story_script.parameters.name_panel.size[0])?story_script.parameters.name_panel.size[0]:0)
         n_size_h.value=((story_script.parameters.name_panel.size[1])?story_script.parameters.name_panel.size[1]:0)
         if (story_script.parameters.name_panel.position){
-            n_position_t.value=((story_script.parameters.name_panel.position[0])?story_script.parameters.name_panel.position[0]:0)
-            n_position_l.value=((story_script.parameters.name_panel.position[1])?story_script.parameters.name_panel.position[1]:0)
-            n_position_b.value=((story_script.parameters.name_panel.position[2])?story_script.parameters.name_panel.position[2]:0)
-            n_position_r.value=((story_script.parameters.name_panel.position[3])?story_script.parameters.name_panel.position[3]:0)
+            n_position_l.value=((story_script.parameters.name_panel.position[0])?story_script.parameters.name_panel.position[0]:0)
+            n_position_r.value=((story_script.parameters.name_panel.position[1])?story_script.parameters.name_panel.position[1]:0)
+            n_position_t.value=((story_script.parameters.name_panel.position[2])?story_script.parameters.name_panel.position[2]:0)
+            n_position_b.value=((story_script.parameters.name_panel.position[3])?story_script.parameters.name_panel.position[3]:0)
         }
         n_className.value=((story_script.parameters.name_panel.className)?story_script.parameters.name_panel.className:"")
         n_style.value=((story_script.parameters.name_panel.style)?story_script.parameters.name_panel.style:"")
@@ -1777,15 +1757,6 @@ function scen_edit_data(){
             n_color_text_b.value=story_script.parameters.name_panel.color_text
             n_color_text_s.style.backgroundColor=story_script.parameters.name_panel.color_text
         } else {n_color_text.value=""}
-        if(story_script[scen_data[0]][scen_data[1]].background_color){
-            color_scene_b.value=story_script[scen_data[0]][scen_data[1]].background_color
-            color_scene.value=story_script[scen_data[0]][scen_data[1]].background_color
-            color_scene_s.style.backgroundColor=story_script[scen_data[0]][scen_data[1]].background_color
-        } else {color_scene.value=""}
-        music_scene.value=story_script[scen_data[0]][scen_data[1]].background_music
-        image_scene.value=languare_data(story_script[scen_data[0]][scen_data[1]].background_image)
-        class_scene.value=story_script[scen_data[0]][scen_data[1]].background_class
-        la_scene.innerHTML="<select class='input_text' id='scene_la' style='height:28px; width:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3;'>"+project_languares(languare)+"</select>"
 }
 function scen_edit_updare(show) {
         if(!style.value==""){story_script.parameters.text_panel.style=style.value} else {delete story_script.parameters.text_panel.style};
@@ -1793,19 +1764,31 @@ function scen_edit_updare(show) {
         if(!size_h.value==""){story_script.parameters.text_panel.size[1]=correct_value(size_h.value)};
         if(!className.value==""){story_script.parameters.text_panel.className=className.value} else {delete story_script.parameters.text_panel.className};
         story_script.parameters.text_panel.dialog_speed=dialog_speed.value;
-        story_script.parameters.text_panel.position=[((position_t.value)?correct_value(position_t.value):0),((position_l.value)?correct_value(position_l.value):0),((position_b.value)?correct_value(position_b.value):0),((position_r.value)?correct_value(position_r.value):0)];
-        
+        story_script.parameters.text_panel.position=[((position_l.value)?correct_value(position_l.value):0),((position_r.value)?correct_value(position_r.value):0),((position_t.value)?correct_value(position_t.value):0),0];
         if(!color_text.value==""){story_script.parameters.text_panel.color_text=color_text.value}else{delete story_script.parameters.text_panel.color_text};
         if(!color_t.value==""){story_script.parameters.text_panel.color=color_t.value};
-        
+        if(!size_text.value==""){story_script.parameters.text_panel.size_text=correct_value(size_text.value)};
+        if(!font_family.value==""){story_script.parameters.font=font_family.value}else{delete story_script.parameters.font};
+        story_script.parameters.text_panel.indent_text=((indent_text.value)?correct_value(indent_text.value):0);
+        story_script.parameters.text_panel.indent_bottom=((indent_bottom.value)?correct_value(indent_bottom.value):0);
+        story_script.parameters.name_panel.position=[((n_position_l.value)?correct_value(n_position_l.value):0),((n_position_r.value)?correct_value(n_position_r.value):0),((n_position_t.value)?correct_value(n_position_t.value):0),((n_position_b.value)?correct_value(n_position_b.value):0)];
+        story_script.parameters.name_panel.indent_text=((n_indent_text.value)?correct_value(n_indent_text.value):0);
+        if(!n_className.value==""){story_script.parameters.name_panel.className=className.value} else {delete story_script.parameters.name_panel.className};
+        if(!n_style.value==""){story_script.parameters.name_panel.style=n_style.value} else {delete story_script.parameters.name_panel.style};
+        if(!n_size_w.value==""){story_script.parameters.name_panel.size[0]=correct_value(n_size_w.value)};
+        if(!n_size_h.value==""){story_script.parameters.name_panel.size[1]=correct_value(n_size_h.value)};
+        if(!n_color_text.value==""){story_script.parameters.name_panel.color_text=n_color_text.value}else{delete story_script.parameters.name_panel.color_text};
+        if(!n_color.value==""){story_script.parameters.name_panel.color=n_color.value};
         if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
         else {scen_editor_apply()}
 }
 function scen_editor(block,i,n) {
         if(scen_data[2]<n){
-            if (i>=story_script[block].length-1){i=story_script[block].length;}
+            if (i>=story_script[block].length-1){i=story_script[block].length-1;}
             if (!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
-        } else if(scen_data[2]>n) { if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;} }
+        } else if(scen_data[2]>n){
+            if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;}
+        }
         scen_data=[block,i,n];
         world.style.display="none";
         new_story_block.style.display="none";
@@ -1816,58 +1799,61 @@ function scen_editor(block,i,n) {
         scrnr_title.innerHTML = block + " (scene:"+(i+1)+" | dialog:"+n+")"
         p_width.value=setup_editor.preview[0];
         ratio_screen.selectedIndex=setup_editor.preview[1];
-        preview_size()
-        scene_layout.style.backgroundImage = "url("+open_file(languare_data(story_script[block][i].background_image))+")"
-        scene_layout.style.backgroundColor = story_script[block][i].background_color
-        tue_text_element.style.position="relative";
-        if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;}
-        if(story_script.parameters.text_panel.style){tue_text_block.style=story_script.parameters.text_panel.style;}
-        tue_text_block.style.position="absolute";
-        tue_text_block.style.margin="auto";
-        if(story_script.parameters.text_panel.size){
-            tue_text_block.style.width=story_script.parameters.text_panel.size[0];
-            tue_text_block.style.height=story_script.parameters.text_panel.size[1];
-        }
-        if(story_script.parameters.text_panel.position){
-            tue_text_block.style.left=(story_script.parameters.text_panel.position[0] != 0)?story_script.parameters.text_panel.position[0]:"0";
-            tue_text_block.style.right=(story_script.parameters.text_panel.position[1] != 0)?story_script.parameters.text_panel.position[1]:"0";
-            if(story_script.parameters.text_panel.position[2] != 0){tue_text_block.style.top=story_script.parameters.text_panel.position[2];}
-            if(story_script.parameters.text_panel.position[3] != 0){tue_text_block.style.bottom=story_script.parameters.text_panel.position[3];}
-        }else{
-            tue_text_block.style.left="0";
-            tue_text_block.style.right="0";
-        }
-        if(story_script.parameters.text_panel.indent_bottom){tue_text_block.style.bottom=story_script.parameters.text_panel.indent_bottom;}
-        tue_text_block.style.zIndex="1000";
-        tue_text_block.style.borderSpacing="0";
-        tue_text_view=document.getElementById("tue_text_view");
-        tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
-        tue_text_view.style.fontSize=story_script.parameters.text_panel.size_text;
-        tue_text_view.style.height="100%";
-        if(story_script.parameters.name_panel){
-            if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;}
-            if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;}
-            if(story_script.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_script.parameters.name_panel.color;}
-            if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text;}
-            tue_name_block.style.position="absolute";
-            tue_name_block.id="tue_name_block";
-            tue_name_block.style.padding=story_script.parameters.name_panel.indent_text;
-            tue_name_block.style.fontSize=story_script.parameters.name_panel.size_text;
-            tue_name_block.style.textAlign="center";
-            if(tue_name_block.style.width=story_script.parameters.name_panel.size[0] != 0){tue_name_block.style.width=story_script.parameters.name_panel.size[0];}
-            tue_name_block.style.height=story_script.parameters.name_panel.size[1];
-            tue_name_block.style.lineHeight=story_script.parameters.name_panel.size[1];
-            if(story_script.parameters.name_panel.position[0] != 0){tue_name_block.style.left=story_script.parameters.name_panel.position[0];}
-            if(story_script.parameters.name_panel.position[1] != 0){tue_name_block.style.right=story_script.parameters.name_panel.position[1];}
-            if(story_script.parameters.name_panel.position[2] != 0){tue_name_block.style.top=story_script.parameters.name_panel.position[2];}
-            if(story_script.parameters.name_panel.position[3] != 0){tue_name_block.style.bottom=story_script.parameters.name_panel.position[3];}
-            tue_name_block.style.zIndex=1001;
-            tue_text_element.appendChild(tue_name_block);
-        }
-        tue_text_block.style.backgroundColor = story_script.parameters.text_panel.color;
-        tue_text_block.style.color = story_script.parameters.text_panel.color_text;
-        tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text)
-        tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name)
+        preview_size();
+        scene_layout.style.backgroundImage = "url("+open_file(languare_data(story_script[block][i].background_image))+")";
+        scene_layout.style.backgroundColor = story_script[block][i].background_color;
+        if(story_script[block][i].dialogs[n-1].text){
+            tue_text_block.style.visibility='visible';
+            tue_text_element.style.position="relative";
+            if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;};
+            if(story_script.parameters.text_panel.style){tue_text_view.style=story_script.parameters.text_panel.style;};
+            tue_text_block.style.position="absolute";
+            tue_text_block.style.margin="auto";
+            if(story_script.parameters.text_panel.size){
+                tue_text_block.style.width=story_script.parameters.text_panel.size[0];
+                tue_text_block.style.height=story_script.parameters.text_panel.size[1];
+            }
+            if(story_script.parameters.text_panel.position){
+                tue_text_block.style.left=(story_script.parameters.text_panel.position[0] != 0)?story_script.parameters.text_panel.position[0]:"0";
+                tue_text_block.style.right=(story_script.parameters.text_panel.position[1] != 0)?story_script.parameters.text_panel.position[1]:"0";
+                if(story_script.parameters.text_panel.position[2] != 0){tue_text_block.style.top=story_script.parameters.text_panel.position[2];}
+                if(story_script.parameters.text_panel.position[3] != 0){tue_text_block.style.bottom=story_script.parameters.text_panel.position[3];}
+            }else{
+                tue_text_block.style.left="0";
+                tue_text_block.style.right="0";
+            }
+            if(story_script.parameters.text_panel.indent_bottom){tue_text_block.style.bottom=story_script.parameters.text_panel.indent_bottom;}
+            tue_text_block.style.zIndex="1000";
+            tue_text_block.style.borderSpacing="0";
+            tue_text_view=document.getElementById("tue_text_view");
+            tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
+            tue_text_view.style.fontSize=story_script.parameters.text_panel.size_text;
+            tue_text_view.style.height="100%";
+            if(story_script.parameters.name_panel){
+                if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;}
+                if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;}
+                if(story_script.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_script.parameters.name_panel.color;}
+                if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text;}
+                tue_name_block.style.position="absolute";
+                tue_name_block.id="tue_name_block";
+                tue_name_block.style.padding=story_script.parameters.name_panel.indent_text;
+                tue_name_block.style.fontSize=story_script.parameters.name_panel.size_text;
+                tue_name_block.style.textAlign="center";
+                if(tue_name_block.style.width=story_script.parameters.name_panel.size[0] != 0){tue_name_block.style.width=story_script.parameters.name_panel.size[0];}
+                tue_name_block.style.height=story_script.parameters.name_panel.size[1];
+                tue_name_block.style.lineHeight=story_script.parameters.name_panel.size[1];
+                if(story_script.parameters.name_panel.position[0] != 0){tue_name_block.style.left=story_script.parameters.name_panel.position[0];}
+                if(story_script.parameters.name_panel.position[1] != 0){tue_name_block.style.right=story_script.parameters.name_panel.position[1];}
+                if(story_script.parameters.name_panel.position[2] != 0){tue_name_block.style.top=story_script.parameters.name_panel.position[2];}
+                if(story_script.parameters.name_panel.position[3] != 0){tue_name_block.style.bottom=story_script.parameters.name_panel.position[3];}
+                tue_name_block.style.zIndex=1001;
+                tue_text_element.appendChild(tue_name_block);
+            }
+            tue_text_view.style.backgroundColor = story_script.parameters.text_panel.color;
+            tue_text_block.style.color = story_script.parameters.text_panel.color_text;
+            tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text);
+            tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
+        }else{tue_text_block.style.visibility='hidden';}
 }
 function preview_size(){
         if (ratio_screen.selectedIndex==0){
@@ -1887,6 +1873,7 @@ function scen_editor_apply() {
         scroll_block=false;
         scene_screen=false;
         html.style.overflow="auto"
+        update_novel();
 }
 function variables_set_edit(){
         copy_arr=JSON.parse(JSON.stringify(arr_l));
@@ -2177,9 +2164,8 @@ document.addEventListener('keydown',function(event){
         if (event.code=='Equal'){world_scale(2)}
         else if (event.code=='Minus'){world_scale(false)}
         else if (event.code=='Digit0'){world_scale(1)}
-        
-        else if (scene_screen && event.code=='ArrowLeft'){scen_editor(scen_data[0],scen_data[1],scen_data[2]-1)}
-        else if (scene_screen && event.code=='ArrowRight'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
+        else if (scene_screen && event.code=='Comma'){scen_editor(scen_data[0],scen_data[1],scen_data[2]-1)}
+        else if (scene_screen && event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
     }
 });
 var scene_screen=false
@@ -2189,11 +2175,8 @@ function world_scale(s) {
         if (s==1){scale_scene=1;screen_preview.style.transform='scale(1)';}
         else if (s==2){scale_scene=Math.min(2,scale_scene+0.05);screen_preview.style.transform='scale('+scale_scene+')';}
         else {scale_scene=Math.max(1,scale_scene-0.05);screen_preview.style.transform='scale('+scale_scene+')';}
-        
-
         scene_view.scrollTop = ((scroll_xs+(scene_view.clientHeight/2))*scale_scene)-(scene_view.clientHeight/2);
         scene_view.scrollLeft = ((scroll_ys+(scene_view.clientWidth/2))*scale_scene)-(scene_view.clientWidth/2);
-
     } else {
         scroll_z();
         add_element.style.visibility='hidden';

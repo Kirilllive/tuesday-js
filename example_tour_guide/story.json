@@ -3,7 +3,7 @@
         "text_panel": {
             "size": ["95%", "7em"],
             "position": ["2.5%", "2.5%"],
-            "style": "border-radius:25px;",
+            "style": "border-radius:25px; border:3px solid #fff;",
             "color": "rgba(155,155,155,0.75)",
             "color_text": "#fff",
             "indent_bottom": "32px",
@@ -15,10 +15,10 @@
         },
         "name_panel": {
             "size": ["0", "48px"],
-            "style": "border-radius:25px;",
+            "style": "border-radius:25px; border:3px solid #fff;",
             "position": ["48px", "0", "-26px", "0"],
             "indent_text": "0 24px ",
-            "className": "borders",
+            "color": "#8f8f8f",
             "size_text": "18px"
         },
         "key": {
@@ -38,6 +38,7 @@
         "languares": ["en", "ru", "ja", "ko"],
         "title": "test",
         "autosave": true,
+        "font":"Arial",
         "style_file": "style.css",
         "sounds": {
             "click": "audio/click"

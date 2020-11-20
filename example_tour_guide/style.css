@@ -1,6 +1,5 @@
 .borders {
-	border: 3px solid;
-	border-color: #fff;
+	border: 3px solid #fff;
 }
 .button_border:hover {
 	border: 3px solid;
