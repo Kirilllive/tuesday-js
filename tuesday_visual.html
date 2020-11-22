@@ -399,22 +399,9 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
         <table style="height:100vh;width:100%;">
             <tbody>
                 <tr><td rowspan="3">
-                    <div id='scene_view' style='width:100%;height:100vh;overflow:scroll;' align='center'>
-                        <div id="scene_controll" style="right:calc(25% + 32px);">
-                            <table height="100%">
-                            <tbody>
-                                <tr>
-                                    <td width="42px" class='icon button_menu icon_right' onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]-1);scen_edit_data();' style='border-radius:20px 0 0 20px;'></td>
-                                    <td width="42px" class='icon button_menu icon_go'    onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]+1);scen_edit_data();' style='border-right:1px solid #cec8e3;'></td>
-                                    <td width="42px" class='icon button_menu icon_equal' onclick='world_scale(2)'></td>
-                                    <td width="42px" class='icon button_menu icon_scale' onclick='world_scale(1)'></td>
-                                    <td width="42px" class='icon button_menu icon_minus' onclick='world_scale(false)' style='border-radius:0 20px 20px 0;'></td>
-                                </tr>
-                            </tbody>
-                            </table>
-                        </div>
-                        <div id='screen_preview' align='center' style='-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;width:100%;height:calc(100vh - 40px);padding-top:40px;'><div id='scene_canvas'><div id='scene_layout'>
-                            
+                    <div id='scene_view' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing: border-box;' align='center'>
+                        <div id='screen_preview' style='transform-origin:0 0;min-width:100%;min-height:100%;padding-top:40px;display:flex;justify-content:center;align-items:center;'>
+                            <div id='scene_canvas'><div id='scene_layout'>
                             <table id="tue_text_block" align="center">
                                 <tbody>
                                    <tr>
@@ -425,11 +412,24 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                     </tr>
                                 </tbody>
                             </table>
-                            
-                        </div></div></div>
+                            </div></div>
+                        </div>
+                    </div>
+                    <div id="scene_controll" style="right:320px;">
+                        <table height="100%">
+                        <tbody>
+                            <tr>
+                                <td width="42px" class='icon button_menu icon_right' onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]-1);scen_edit_data();' style='border-radius:20px 0 0 20px;'></td>
+                                <td width="42px" class='icon button_menu icon_go'    onclick='scen_editor(scen_data[0],scen_data[1],scen_data[2]+1);scen_edit_data();' style='border-right:1px solid #cec8e3;'></td>
+                                <td width="42px" class='icon button_menu icon_equal' onclick='world_scale(2)'></td>
+                                <td width="42px" class='icon button_menu icon_scale' onclick='world_scale(1)'></td>
+                                <td width="42px" class='icon button_menu icon_minus' onclick='world_scale(false)' style='border-radius:0 20px 20px 0;'></td>
+                            </tr>
+                        </tbody>
+                        </table>
                     </div>
                 </td>
-                    <td id='scrnr_title' height="40px" align='center' style="background-color:#fff;max-width:286px;width:25%;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
+                    <td id='scrnr_title' height="40px" align='center' style="background-color:#fff;width:286px;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
                 <tr>
                     <td style="background-color:#fff; border-bottom:1px solid #cec8e3; border-top:1px solid #cec8e3;"><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>
                         <table onclick="block_open('set_preview');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Preview</td></tr></tbody></table>
@@ -439,6 +439,15 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                 <select id='ratio_screen' class='input_text' oninput='preview_size()' style='width:100%;'>
                                       <option value=true>Portrait</option>
                                       <option value=false>landscape</option>
+                                </select>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;'>
+                               <select id='screen_size' class='input_text' oninput='preview_size();' style='width:100%;'>
+                                    <option value="0">My screen</option>
+                                    <option value="1080">1080</option>
+                                    <option value="720">720</option>
+                                    <option value="480">480</option>
+                                    <option value="360">360</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Screen</td><td style='padding-right:8px;'>
@@ -548,6 +557,10 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                             </td></tr>
                         </tbody></table>
                         </div>
+                        <table onclick="block_open('interface_buttons');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Interface buttons (global)</td></tr></tbody></table>
+                        <div class="interface_buttons" id="interface_buttons" style="width:100%; display:none;">
+                            interface_buttons
+                        </div>
                         <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Scene content</td></tr></tbody></table>
                         <div class="set_panel" id="set_scene" style="width:100%; display:none;">
                             <table style="width:100%;"><tbody>
@@ -626,6 +639,12 @@ let texts={
         "en":"Select working media folder for project (images & sounds)."
         },{
         "en":"Changes in the values ​​of variables, their values ​​can be displayed in the text as <values ​​name> or in \"Legacy Choice\" to go to another block of script."
+        },{
+        "en":"Select an input device for ease of use. You can change the device in the settings in the 'editor' section."
+        },{
+        "en":"Mouse<br>control with the zoom wheel"
+        },{
+        "en":"TouchPad<br>recommended for laptops and MacBooks"
         }
     ]
 }
@@ -633,9 +652,18 @@ let setup_editor = {
         'wheel':true,
         'fon':'',
         'lines':false,
-        'preview':[76,1]
+        'preview':[76,1],
+        'ferst':true
     };
 if (localStorage.getItem("editor_setup")) {setup_editor=JSON.parse(localStorage.getItem("editor_setup"))}
+//if (setup_editor.ferst){
+//    var html="<div class='window' style='padding:24px 8px;'><p>Select primary input device</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[5].en+"</p>"
+//    +"<table style=' border-spacing:10px; border-collapse:separate;'><tbody><tr>"
+//    +"<td><div style='width:256px; height:256px; border-radius:8px;' class='button_menu icon_new' onclick='setup_editor.ferst=false;setup_editor.wheel=true;modal_window(\"close\");editor_setup();'></div><br><p style='font-size:12px;text-align:center;width:256px;' class='select_tutorials'>"+texts.tutorials[6].en+"</p></td>"
+//    +"<td><div style='width:256px; height:256px; border-radius:8px;' class='button_menu icon_new' onclick='setup_editor.ferst=false;setup_editor.wheel=false;modal_window(\"close\");editor_setup();'></div><br><p style='font-size:12px;text-align:center;width:256px;' class='select_tutorials'>"+texts.tutorials[7].en+"</p></td>"
+//    +"</tr></tbody></table></div>"
+//    modal_window("open",html);
+//} else {editor_setup();}
 editor_setup();
 function editor_setup(){
     world.className=setup_editor.fon;
@@ -1038,8 +1066,6 @@ var scroll_x=null;
 var scroll_y=null;
 var scroll_xz=null;
 var scroll_yz=null;
-var scroll_xs=null;
-var scroll_ys=null;
 html.ontouchstart=function(e){
     if (!scroll_block||scene_screen){
         startmove_x=e.touches[0].clientX;
@@ -1118,7 +1144,6 @@ scene_view.onmousedown=function(e){
             startmove_y=null;
             html.onmousemove=null;
             html.onmouseup=null;
-            scene_z();
         };
         html.onmouseleave=function(){
             html.onmousemove=null;
@@ -1131,10 +1156,6 @@ scene_view.onmousedown=function(e){
 function scroll_z(){
     scroll_xz=((html.scrollTop+(html.clientHeight/2))/scale)-(html.clientHeight/2);
     scroll_yz=((html.scrollLeft+(html.clientWidth/2))/scale)-(html.clientWidth/2);
-}
-function scene_z(){
-    scroll_xs=((scene_view.scrollTop+(scene_view.clientHeight/2))/scale_scene)-(scene_view.clientHeight/2);
-    scroll_ys=((scene_view.scrollLeft+(scene_view.clientWidth/2))/scale_scene)-(scene_view.clientWidth/2);
 }
 function modal_window(action,content){
     var window_zone=document.getElementById("window_zone");
@@ -1708,155 +1729,161 @@ function edit_html(){
 }
 let scen_data=[];
 function scen_edit_data(){
-        s_scene_edit.setAttribute("onclick","arr_l=story_script['"+scen_data[0]+"'];arr_n="+scen_data[1]+";scene_edit();");
-        s_scene_text.setAttribute("onclick","arr_l=story_script['"+scen_data[0]+"']["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];arr_n='text';dialog_text_edit();");
-        size_w.value=((story_script.parameters.text_panel.size[0])?story_script.parameters.text_panel.size[0]:"")
-        size_h.value=((story_script.parameters.text_panel.size[1])?story_script.parameters.text_panel.size[1]:"")
-        className.value=((story_script.parameters.text_panel.className)?story_script.parameters.text_panel.className:"")
-        style.value=((story_script.parameters.text_panel.style)?story_script.parameters.text_panel.style:"")
-        if(story_script.parameters.text_panel.position){
-            position_l.value=((story_script.parameters.text_panel.position[0])?story_script.parameters.text_panel.position[0]:0)
-            position_r.value=((story_script.parameters.text_panel.position[1])?story_script.parameters.text_panel.position[1]:0)
-            position_t.value=((story_script.parameters.text_panel.position[3])?story_script.parameters.text_panel.position[3]:0)
-        }
-        if(story_script.parameters.text_panel.color){
-            color_t.value=story_script.parameters.text_panel.color
-            color_t_b.value=story_script.parameters.text_panel.color
-            color_t_s.style.backgroundColor=story_script.parameters.text_panel.color
-        } else {color_t.value=""}
-        if(story_script.parameters.text_panel.color_text){
-            color_text.value=story_script.parameters.text_panel.color_text
-            color_text_b.value=story_script.parameters.text_panel.color_text
-            color_text_s.style.backgroundColor=story_script.parameters.text_panel.color_text
-        } else {color_text.value=""}
-        indent_bottom.value=((story_script.parameters.text_panel.indent_bottom)?story_script.parameters.text_panel.indent_bottom:"")
-        indent_text.value=((story_script.parameters.text_panel.indent_text)?story_script.parameters.text_panel.indent_text:"")
-        size_text.value=((story_script.parameters.text_panel.size_text)?story_script.parameters.text_panel.size_text:"")
-        font_family.value=((story_script.parameters.font)?story_script.parameters.font:"")
-        dialog_speed.value=((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:"")
-        n_size_w.value=((story_script.parameters.name_panel.size[0])?story_script.parameters.name_panel.size[0]:0)
-        n_size_h.value=((story_script.parameters.name_panel.size[1])?story_script.parameters.name_panel.size[1]:0)
-        if (story_script.parameters.name_panel.position){
-            n_position_l.value=((story_script.parameters.name_panel.position[0])?story_script.parameters.name_panel.position[0]:0)
-            n_position_r.value=((story_script.parameters.name_panel.position[1])?story_script.parameters.name_panel.position[1]:0)
-            n_position_t.value=((story_script.parameters.name_panel.position[2])?story_script.parameters.name_panel.position[2]:0)
-            n_position_b.value=((story_script.parameters.name_panel.position[3])?story_script.parameters.name_panel.position[3]:0)
-        }
-        n_className.value=((story_script.parameters.name_panel.className)?story_script.parameters.name_panel.className:"")
-        n_style.value=((story_script.parameters.name_panel.style)?story_script.parameters.name_panel.style:"")
-        n_indent_text.value=((story_script.parameters.name_panel.indent_text)?story_script.parameters.name_panel.indent_text:"")
-        n_size_text.value=((story_script.parameters.name_panel.size_text)?story_script.parameters.name_panel.size_text:"")
-        if(story_script.parameters.name_panel.color){
-            n_color.value=story_script.parameters.name_panel.color
-            n_color_b.value=story_script.parameters.name_panel.color
-            n_color_s.style.backgroundColor=story_script.parameters.name_panel.color
-        } else {n_color.value=""}
-        if(story_script.parameters.name_panel.color_text){
-            n_color_text.value=story_script.parameters.name_panel.color_text
-            n_color_text_b.value=story_script.parameters.name_panel.color_text
-            n_color_text_s.style.backgroundColor=story_script.parameters.name_panel.color_text
-        } else {n_color_text.value=""}
+    s_scene_edit.setAttribute("onclick","arr_l=story_script['"+scen_data[0]+"'];arr_n="+scen_data[1]+";scene_edit();");
+    s_scene_text.setAttribute("onclick","arr_l=story_script['"+scen_data[0]+"']["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];arr_n='text';dialog_text_edit();");
+    size_w.value=((story_script.parameters.text_panel.size[0])?story_script.parameters.text_panel.size[0]:"")
+    size_h.value=((story_script.parameters.text_panel.size[1])?story_script.parameters.text_panel.size[1]:"")
+    className.value=((story_script.parameters.text_panel.className)?story_script.parameters.text_panel.className:"")
+    style.value=((story_script.parameters.text_panel.style)?story_script.parameters.text_panel.style:"")
+    if(story_script.parameters.text_panel.position){
+        position_l.value=((story_script.parameters.text_panel.position[0])?story_script.parameters.text_panel.position[0]:0)
+        position_r.value=((story_script.parameters.text_panel.position[1])?story_script.parameters.text_panel.position[1]:0)
+        position_t.value=((story_script.parameters.text_panel.position[3])?story_script.parameters.text_panel.position[3]:0)
+    }
+    if(story_script.parameters.text_panel.color){
+        color_t.value=story_script.parameters.text_panel.color
+        color_t_b.value=story_script.parameters.text_panel.color
+        color_t_s.style.backgroundColor=story_script.parameters.text_panel.color
+    } else {color_t.value=""}
+    if(story_script.parameters.text_panel.color_text){
+        color_text.value=story_script.parameters.text_panel.color_text
+        color_text_b.value=story_script.parameters.text_panel.color_text
+        color_text_s.style.backgroundColor=story_script.parameters.text_panel.color_text
+    } else {color_text.value=""}
+    indent_bottom.value=((story_script.parameters.text_panel.indent_bottom)?story_script.parameters.text_panel.indent_bottom:"")
+    indent_text.value=((story_script.parameters.text_panel.indent_text)?story_script.parameters.text_panel.indent_text:"")
+    size_text.value=((story_script.parameters.text_panel.size_text)?story_script.parameters.text_panel.size_text:"")
+    font_family.value=((story_script.parameters.font)?story_script.parameters.font:"")
+    dialog_speed.value=((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:"")
+    n_size_w.value=((story_script.parameters.name_panel.size[0])?story_script.parameters.name_panel.size[0]:0)
+    n_size_h.value=((story_script.parameters.name_panel.size[1])?story_script.parameters.name_panel.size[1]:0)
+    if (story_script.parameters.name_panel.position){
+        n_position_l.value=((story_script.parameters.name_panel.position[0])?story_script.parameters.name_panel.position[0]:0)
+        n_position_r.value=((story_script.parameters.name_panel.position[1])?story_script.parameters.name_panel.position[1]:0)
+        n_position_t.value=((story_script.parameters.name_panel.position[2])?story_script.parameters.name_panel.position[2]:0)
+        n_position_b.value=((story_script.parameters.name_panel.position[3])?story_script.parameters.name_panel.position[3]:0)
+    }
+    n_className.value=((story_script.parameters.name_panel.className)?story_script.parameters.name_panel.className:"")
+    n_style.value=((story_script.parameters.name_panel.style)?story_script.parameters.name_panel.style:"")
+    n_indent_text.value=((story_script.parameters.name_panel.indent_text)?story_script.parameters.name_panel.indent_text:"")
+    n_size_text.value=((story_script.parameters.name_panel.size_text)?story_script.parameters.name_panel.size_text:"")
+    if(story_script.parameters.name_panel.color){
+        n_color.value=story_script.parameters.name_panel.color
+        n_color_b.value=story_script.parameters.name_panel.color
+        n_color_s.style.backgroundColor=story_script.parameters.name_panel.color
+    } else {n_color.value=""}
+    if(story_script.parameters.name_panel.color_text){
+        n_color_text.value=story_script.parameters.name_panel.color_text
+        n_color_text_b.value=story_script.parameters.name_panel.color_text
+        n_color_text_s.style.backgroundColor=story_script.parameters.name_panel.color_text
+    } else {n_color_text.value=""}
 }
 function scen_edit_updare(show) {
-        if(!style.value==""){story_script.parameters.text_panel.style=style.value} else {delete story_script.parameters.text_panel.style};
-        if(!size_w.value==""){story_script.parameters.text_panel.size[0]=correct_value(size_w.value)};
-        if(!size_h.value==""){story_script.parameters.text_panel.size[1]=correct_value(size_h.value)};
-        if(!className.value==""){story_script.parameters.text_panel.className=className.value} else {delete story_script.parameters.text_panel.className};
-        story_script.parameters.text_panel.dialog_speed=dialog_speed.value;
-        story_script.parameters.text_panel.position=[((position_l.value)?correct_value(position_l.value):0),((position_r.value)?correct_value(position_r.value):0),((position_t.value)?correct_value(position_t.value):0),0];
-        if(!color_text.value==""){story_script.parameters.text_panel.color_text=color_text.value}else{delete story_script.parameters.text_panel.color_text};
-        if(!color_t.value==""){story_script.parameters.text_panel.color=color_t.value};
-        if(!size_text.value==""){story_script.parameters.text_panel.size_text=correct_value(size_text.value)};
-        if(!font_family.value==""){story_script.parameters.font=font_family.value}else{delete story_script.parameters.font};
-        story_script.parameters.text_panel.indent_text=((indent_text.value)?correct_value(indent_text.value):0);
-        story_script.parameters.text_panel.indent_bottom=((indent_bottom.value)?correct_value(indent_bottom.value):0);
-        story_script.parameters.name_panel.position=[((n_position_l.value)?correct_value(n_position_l.value):0),((n_position_r.value)?correct_value(n_position_r.value):0),((n_position_t.value)?correct_value(n_position_t.value):0),((n_position_b.value)?correct_value(n_position_b.value):0)];
-        story_script.parameters.name_panel.indent_text=((n_indent_text.value)?correct_value(n_indent_text.value):0);
-        if(!n_className.value==""){story_script.parameters.name_panel.className=className.value} else {delete story_script.parameters.name_panel.className};
-        if(!n_style.value==""){story_script.parameters.name_panel.style=n_style.value} else {delete story_script.parameters.name_panel.style};
-        if(!n_size_w.value==""){story_script.parameters.name_panel.size[0]=correct_value(n_size_w.value)};
-        if(!n_size_h.value==""){story_script.parameters.name_panel.size[1]=correct_value(n_size_h.value)};
-        if(!n_color_text.value==""){story_script.parameters.name_panel.color_text=n_color_text.value}else{delete story_script.parameters.name_panel.color_text};
-        if(!n_color.value==""){story_script.parameters.name_panel.color=n_color.value};
-        if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
-        else {scen_editor_apply()}
+    if(!style.value==""){story_script.parameters.text_panel.style=style.value} else {delete story_script.parameters.text_panel.style};
+    if(!size_w.value==""){story_script.parameters.text_panel.size[0]=correct_value(size_w.value)};
+    if(!size_h.value==""){story_script.parameters.text_panel.size[1]=correct_value(size_h.value)};
+    if(!className.value==""){story_script.parameters.text_panel.className=className.value} else {delete story_script.parameters.text_panel.className};
+    story_script.parameters.text_panel.dialog_speed=dialog_speed.value;
+    story_script.parameters.text_panel.position=[((position_l.value)?correct_value(position_l.value):0),((position_r.value)?correct_value(position_r.value):0),((position_t.value)?correct_value(position_t.value):0),0];
+    if(!color_text.value==""){story_script.parameters.text_panel.color_text=color_text.value}else{delete story_script.parameters.text_panel.color_text};
+    if(!color_t.value==""){story_script.parameters.text_panel.color=color_t.value};
+    if(!size_text.value==""){story_script.parameters.text_panel.size_text=correct_value(size_text.value)};
+    if(!font_family.value==""){story_script.parameters.font=font_family.value}else{delete story_script.parameters.font};
+    story_script.parameters.text_panel.indent_text=((indent_text.value)?correct_value(indent_text.value):0);
+    story_script.parameters.text_panel.indent_bottom=((indent_bottom.value)?correct_value(indent_bottom.value):0);
+    story_script.parameters.name_panel.position=[((n_position_l.value)?correct_value(n_position_l.value):0),((n_position_r.value)?correct_value(n_position_r.value):0),((n_position_t.value)?correct_value(n_position_t.value):0),((n_position_b.value)?correct_value(n_position_b.value):0)];
+    story_script.parameters.name_panel.indent_text=((n_indent_text.value)?correct_value(n_indent_text.value):0);
+    if(!n_className.value==""){story_script.parameters.name_panel.className=className.value} else {delete story_script.parameters.name_panel.className};
+    if(!n_style.value==""){story_script.parameters.name_panel.style=n_style.value} else {delete story_script.parameters.name_panel.style};
+    if(!n_size_w.value==""){story_script.parameters.name_panel.size[0]=correct_value(n_size_w.value)};
+    if(!n_size_h.value==""){story_script.parameters.name_panel.size[1]=correct_value(n_size_h.value)};
+    if(!n_color_text.value==""){story_script.parameters.name_panel.color_text=n_color_text.value}else{delete story_script.parameters.name_panel.color_text};
+    if(!n_color.value==""){story_script.parameters.name_panel.color=n_color.value};
+    if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
+    else {scen_editor_apply()}
 }
 function scen_editor(block,i,n) {
-        if(scen_data[2]<n){
-            if (i>=story_script[block].length-1){i=story_script[block].length-1;}
-            if (!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
-            if (!story_script[block][i]){i-=1;n=story_script[block][i].dialogs.length;}
-        } else if(scen_data[2]>n){
-            if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;}
+    if(scen_data[2]<n){
+        if (i>=story_script[block].length-1){i=story_script[block].length-1;}
+        if (!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
+        if (!story_script[block][i]){i-=1;n=story_script[block][i].dialogs.length;}
+    } else if(scen_data[2]>n){
+        if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;}
+    }
+    scen_data=[block,i,n];
+    p_width.value=setup_editor.preview[0];
+    ratio_screen.selectedIndex=setup_editor.preview[1];
+    scen_editor_apply();
+    world.style.display="none";
+    new_story_block.style.display="none";
+    scene_maker.style.display="initial";
+    scroll_block=true;
+    scene_screen=true;
+    html.style.overflow="hidden"
+    scrnr_title.innerHTML = block + " (scene:"+(i+1)+" | dialog:"+n+")"
+
+    preview_size();
+    scene_layout.style.backgroundImage = "url("+open_file(languare_data(story_script[block][i].background_image))+")";
+    scene_layout.style.backgroundColor = story_script[block][i].background_color;
+    if(story_script[block][i].dialogs[n-1].text){
+        tue_text_block.style.visibility='visible';
+        tue_text_element.style.position="relative";
+        if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;};
+        if(story_script.parameters.text_panel.style){tue_text_block.style=story_script.parameters.text_panel.style;};
+        tue_text_block.style.position="absolute";
+        tue_text_block.style.margin="auto";
+        tue_text_block.style.borderCollapse="separate";
+        if(story_script.parameters.text_panel.size){
+            tue_text_block.style.width=story_script.parameters.text_panel.size[0];
+            tue_text_block.style.height=story_script.parameters.text_panel.size[1];
         }
-        scen_data=[block,i,n];
-        scen_editor_apply();
-        world.style.display="none";
-        new_story_block.style.display="none";
-        scene_maker.style.display="initial";
-        scroll_block=true;
-        scene_screen=true;
-        html.style.overflow="hidden"
-        scrnr_title.innerHTML = block + " (scene:"+(i+1)+" | dialog:"+n+")"
-        p_width.value=setup_editor.preview[0];
-        ratio_screen.selectedIndex=setup_editor.preview[1];
-        preview_size();
-        scene_layout.style.backgroundImage = "url("+open_file(languare_data(story_script[block][i].background_image))+")";
-        scene_layout.style.backgroundColor = story_script[block][i].background_color;
-        if(story_script[block][i].dialogs[n-1].text){
-            tue_text_block.style.visibility='visible';
-            tue_text_element.style.position="relative";
-            if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;};
-            if(story_script.parameters.text_panel.style){tue_text_block.style=story_script.parameters.text_panel.style;};
-            tue_text_block.style.position="absolute";
-            tue_text_block.style.margin="auto";
-            tue_text_block.style.borderCollapse="separate";
-            if(story_script.parameters.text_panel.size){
-                tue_text_block.style.width=story_script.parameters.text_panel.size[0];
-                tue_text_block.style.height=story_script.parameters.text_panel.size[1];
-            }
-            if(story_script.parameters.text_panel.position){
-                tue_text_block.style.left=(story_script.parameters.text_panel.position[0] != 0)?story_script.parameters.text_panel.position[0]:"0";
-                tue_text_block.style.right=(story_script.parameters.text_panel.position[1] != 0)?story_script.parameters.text_panel.position[1]:"0";
-                if(story_script.parameters.text_panel.position[2] != 0){tue_text_block.style.top=story_script.parameters.text_panel.position[2];}
-                if(story_script.parameters.text_panel.position[3] != 0){tue_text_block.style.bottom=story_script.parameters.text_panel.position[3];}
-            }else{
-                tue_text_block.style.left="0";
-                tue_text_block.style.right="0";
-            }
-            if(story_script.parameters.text_panel.indent_bottom){tue_text_block.style.bottom=story_script.parameters.text_panel.indent_bottom;}
-            tue_text_block.style.zIndex="1000";
-            tue_text_block.style.borderSpacing="0";
-            tue_text_view=document.getElementById("tue_text_view");
-            tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
-            tue_text_view.style.fontSize=story_script.parameters.text_panel.size_text;
-            tue_text_view.style.height="100%";
-            if(story_script[block][i].dialogs[n-1].name && story_script.parameters.name_panel){
-                if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;}
-                if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;}
-                if(story_script.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_script.parameters.name_panel.color;}
-                if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text;}
-                tue_name_block.style.position="absolute";
-                tue_name_block.style.padding=story_script.parameters.name_panel.indent_text;
-                tue_name_block.style.fontSize=story_script.parameters.name_panel.size_text;
-                tue_name_block.style.textAlign="center";
-                if(tue_name_block.style.width=story_script.parameters.name_panel.size[0] != 0){tue_name_block.style.width=story_script.parameters.name_panel.size[0];}
-                tue_name_block.style.height=story_script.parameters.name_panel.size[1];
-                tue_name_block.style.lineHeight=story_script.parameters.name_panel.size[1];
-                if(story_script.parameters.name_panel.position[0] != 0){tue_name_block.style.left=story_script.parameters.name_panel.position[0];}
-                if(story_script.parameters.name_panel.position[1] != 0){tue_name_block.style.right=story_script.parameters.name_panel.position[1];}
-                if(story_script.parameters.name_panel.position[2] != 0){tue_name_block.style.top=story_script.parameters.name_panel.position[2];}
-                if(story_script.parameters.name_panel.position[3] != 0){tue_name_block.style.bottom=story_script.parameters.name_panel.position[3];}
-                tue_name_block.style.zIndex=1001;
-                tue_name_block.style.visibility='visible';
-            } else {tue_name_block.style.visibility='hidden';}
-            tue_text_block.style.backgroundColor = story_script.parameters.text_panel.color;
-            tue_text_block.style.color = story_script.parameters.text_panel.color_text;
-            tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text);
-            tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
-        }else{tue_text_block.style.visibility='hidden';}
+        if(story_script.parameters.text_panel.position){
+            tue_text_block.style.left=(story_script.parameters.text_panel.position[0] != 0)?story_script.parameters.text_panel.position[0]:"0";
+            tue_text_block.style.right=(story_script.parameters.text_panel.position[1] != 0)?story_script.parameters.text_panel.position[1]:"0";
+            if(story_script.parameters.text_panel.position[2] != 0){tue_text_block.style.top=story_script.parameters.text_panel.position[2];}
+            if(story_script.parameters.text_panel.position[3] != 0){tue_text_block.style.bottom=story_script.parameters.text_panel.position[3];}
+        }else{
+            tue_text_block.style.left="0";
+            tue_text_block.style.right="0";
+        }
+        if(story_script.parameters.text_panel.indent_bottom){tue_text_block.style.bottom=story_script.parameters.text_panel.indent_bottom;}
+        tue_text_block.style.zIndex="1000";
+        tue_text_block.style.borderSpacing="0";
+        tue_text_view=document.getElementById("tue_text_view");
+        tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
+        tue_text_view.style.fontSize=story_script.parameters.text_panel.size_text;
+        tue_text_view.style.height="100%";
+        if(story_script[block][i].dialogs[n-1].name && story_script.parameters.name_panel){
+            if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;}
+            if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;}
+            if(story_script.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_script.parameters.name_panel.color;}
+            if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text;}
+            tue_name_block.style.position="absolute";
+            tue_name_block.style.padding=story_script.parameters.name_panel.indent_text;
+            tue_name_block.style.fontSize=story_script.parameters.name_panel.size_text;
+            tue_name_block.style.textAlign="center";
+            if(tue_name_block.style.width=story_script.parameters.name_panel.size[0] != 0){tue_name_block.style.width=story_script.parameters.name_panel.size[0];}
+            tue_name_block.style.height=story_script.parameters.name_panel.size[1];
+            tue_name_block.style.lineHeight=story_script.parameters.name_panel.size[1];
+            if(story_script.parameters.name_panel.position[0] != 0){tue_name_block.style.left=story_script.parameters.name_panel.position[0];}
+            if(story_script.parameters.name_panel.position[1] != 0){tue_name_block.style.right=story_script.parameters.name_panel.position[1];}
+            if(story_script.parameters.name_panel.position[2] != 0){tue_name_block.style.top=story_script.parameters.name_panel.position[2];}
+            if(story_script.parameters.name_panel.position[3] != 0){tue_name_block.style.bottom=story_script.parameters.name_panel.position[3];}
+            tue_name_block.style.zIndex=1001;
+            tue_name_block.style.visibility='visible';
+        } else {tue_name_block.style.visibility='hidden';}
+        tue_text_block.style.backgroundColor = story_script.parameters.text_panel.color;
+        tue_text_block.style.color = story_script.parameters.text_panel.color_text;
+        tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text);
+        tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
+    }else{tue_text_block.style.visibility='hidden';}
 }
 function preview_size(){
+    if (screen_size.value==0){
+        scale_scene=1;screen_preview.style.transform='scale(1)';scene_canvas.style.transform='scale(1)';
+        screen_preview.style.backgroundSize="64px"
+        screen_preview.style.width="100%";
+        screen_preview.style.height="calc(100vh - 40px)";
         if (ratio_screen.selectedIndex==0){
             scene_layout.style.height="100%";
             scene_layout.style.width=p_width.value+"%";
@@ -1864,58 +1891,71 @@ function preview_size(){
             scene_layout.style.width="100%";
             scene_layout.style.height=p_width.value+"%";
         }
+    } else {
+        screen_preview.style.width=(screen_size.value*2.5)+"px";
+        screen_preview.style.height=screen_preview.style.width;
+        if (ratio_screen.selectedIndex==0){
+            scene_layout.style.height=screen_size.value+"px";
+            scene_layout.style.width=((100/p_width.value)*screen_size.value)+"px";
+        }else{
+            scene_layout.style.width=screen_size.value+"px";
+            scene_layout.style.height=((100/p_width.value)*screen_size.value)+"px";
+        }
+    }
+    scene_view.scrollTop = (screen_preview.clientHeight/2)-(scene_view.clientHeight/2);
+    scene_view.scrollLeft = (screen_preview.clientWidth/2)-(scene_view.clientWidth/2);
 }
 function scen_editor_apply() {
-        setup_editor.preview=[parseInt(p_width.value), ratio_screen.selectedIndex];
-        localStorage.setItem("editor_setup",JSON.stringify(setup_editor));
-        world.style.display="initial";
-        new_story_block.style.display="initial";
-        scene_maker.style.display="none";
-        scroll_block=false;
-        scene_screen=false;
-        html.style.overflow="auto"
-        update_novel();
+    setup_editor.preview=[parseInt(p_width.value), ratio_screen.selectedIndex];
+    localStorage.setItem("editor_setup",JSON.stringify(setup_editor));
+    world.style.display="initial";
+    new_story_block.style.display="initial";
+    scene_maker.style.display="none";
+    scroll_block=false;
+    scene_screen=false;
+    html.style.overflow="auto"
+    update_novel();
 }
 function variables_set_edit(){
-        copy_arr=JSON.parse(JSON.stringify(arr_l));
-        var t=""
-        for(var c=0;c<copy_arr.variables.length;c++){t+="<tr><td style='width:128px;' valign='bottom'><select class='input_text var_name'>"+option_var(arr_l.variables[c][0])+"</select></td><td style='width:48px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;'><select class='input_text var_operation'><option value='add'>add</option><option value='set' "+((arr_l.variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' value='"+ arr_l.variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\"); a.parentElement.removeChild(a);' style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"};
-        var html="<div class='window' style='padding:24px 8px; width:480px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Changes to values</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[4].en+"</p><br><br>"
-        +"<table id='var_table' width='100%'><tbody>"+t+"</tbody></table>"
-        +"<div onclick=\"variables_set_add()\" class='icon icon_add' style='margin-top:16px;height:26px; width:100%; cursor:pointer;'></div>"
-        +"<br><br><table class='big_button' width='256px' onclick='variables_set_apply();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
-        modal_window("open",html);
+    copy_arr=JSON.parse(JSON.stringify(arr_l));
+    var t=""
+    for(var c=0;c<copy_arr.variables.length;c++){t+="<tr><td style='width:128px;' valign='bottom'><select class='input_text var_name'>"+option_var(arr_l.variables[c][0])+"</select></td><td style='width:48px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;'><select class='input_text var_operation'><option value='add'>add</option><option value='set' "+((arr_l.variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' value='"+ arr_l.variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\"); a.parentElement.removeChild(a);' style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"};
+    var html="<div class='window' style='padding:24px 8px; width:480px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Changes to values</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[4].en+"</p><br><br>"
+    +"<table id='var_table' width='100%'><tbody>"+t+"</tbody></table>"
+    +"<div onclick=\"variables_set_add()\" class='icon icon_add' style='margin-top:16px;height:26px; width:100%; cursor:pointer;'></div>"
+    +"<br><br><table class='big_button' width='256px' onclick='variables_set_apply();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    modal_window("open",html);
 }
 function variables_set_add(){
-        var tbody=document.getElementById('var_table').getElementsByTagName('tbody')[0];
-        var row=document.createElement("tr");
-        var td1=document.createElement("td");
-        var td2=document.createElement("td");
-        var td3=document.createElement("td");
-        var td4=document.createElement("td");
-        td1.innerHTML="<select class='input_text var_name'>"+option_var()+"</select>";
-        td2.innerHTML="<select class='input_text var_operation'><option value='add'>add</option><option value='set'>set</option></select>";
-        td2.style='width:48px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;';
-        td3.innerHTML="<input class='input_text var_value' value='0' type='text'>";
-        td4.style="width:40px;cursor:pointer;";
-        td4.title="delet";
-        td4.className="icon icon_del";
-        td4.setAttribute("onclick","var a=this.closest('tr'); a.parentElement.removeChild(a);");
-        row.appendChild(td1);
-        row.appendChild(td2);
-        row.appendChild(td3);
-        row.appendChild(td4);
-        tbody.appendChild(row);
+    var tbody=document.getElementById('var_table').getElementsByTagName('tbody')[0];
+    var row=document.createElement("tr");
+    var td1=document.createElement("td");
+    var td2=document.createElement("td");
+    var td3=document.createElement("td");
+    var td4=document.createElement("td");
+    td1.innerHTML="<select class='input_text var_name'>"+option_var()+"</select>";
+    td2.innerHTML="<select class='input_text var_operation'><option value='add'>add</option><option value='set'>set</option></select>";
+    td2.style='width:48px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;';
+    td3.innerHTML="<input class='input_text var_value' value='0' type='text'>";
+    td4.style="width:40px;cursor:pointer;";
+    td4.title="delet";
+    td4.className="icon icon_del";
+    td4.setAttribute("onclick","var a=this.closest('tr'); a.parentElement.removeChild(a);");
+    row.appendChild(td1);
+    row.appendChild(td2);
+    row.appendChild(td3);
+    row.appendChild(td4);
+    tbody.appendChild(row);
 }
 function variables_set_apply(){
-        li_v=document.getElementsByClassName("var_name");
-        li_c=document.getElementsByClassName("var_operation");
-        li_z=document.getElementsByClassName("var_value");
-        copy_arr.variables=[];
-        for (var i=0; i < li_v.length; i++){ copy_arr.variables.push( [li_v[i].value,li_c[i].value,parseInt(li_z[i].value)] ) };
-        arr_l.variables=JSON.parse(JSON.stringify(copy_arr.variables));
-        modal_window("close");
-        update_novel();
+    li_v=document.getElementsByClassName("var_name");
+    li_c=document.getElementsByClassName("var_operation");
+    li_z=document.getElementsByClassName("var_value");
+    copy_arr.variables=[];
+    for (var i=0; i < li_v.length; i++){ copy_arr.variables.push( [li_v[i].value,li_c[i].value,parseInt(li_z[i].value)] ) };
+    arr_l.variables=JSON.parse(JSON.stringify(copy_arr.variables));
+    modal_window("close");
+    update_novel();
 }
 
 
@@ -2170,14 +2210,31 @@ document.addEventListener('keydown',function(event){
     }
 });
 var scene_screen=false
+var scroll_xs=null;
+var scroll_ys=null;
+function scene_z(){
+    scroll_xs=((scene_view.scrollTop+(scene_view.clientHeight/2))/scale_scene)-(scene_view.clientHeight/2);
+    scroll_ys=((scene_view.scrollLeft+(scene_view.clientWidth/2))/scale_scene)-(scene_view.clientWidth/2);
+}
 function world_scale(s) {
     if (scene_screen){
         scene_z();
-        if (s==1){scale_scene=1;screen_preview.style.transform='scale(1)';}
-        else if (s==2){scale_scene=Math.min(2,scale_scene+0.05);screen_preview.style.transform='scale('+scale_scene+')';}
-        else {scale_scene=Math.max(1,scale_scene-0.05);screen_preview.style.transform='scale('+scale_scene+')';}
-        scene_view.scrollTop = ((scroll_xs+(scene_view.clientHeight/2))*scale_scene)-(scene_view.clientHeight/2);
-        scene_view.scrollLeft = ((scroll_ys+(scene_view.clientWidth/2))*scale_scene)-(scene_view.clientWidth/2);
+        if (screen_size.value!=0) {
+            if (s==1){scale_scene=1;scene_canvas.style.transform='scale(1)';}
+            else if (s==2){scale_scene=Math.min(2,scale_scene+0.05);scene_canvas.style.transform='scale('+scale_scene+')';}
+            else {scale_scene=Math.max(0.25,scale_scene-0.05);scene_canvas.style.transform='scale('+scale_scene+')';}
+            scene_view.scrollTop = ((scroll_xs+(scene_view.clientHeight/2))*scale_scene)-(scene_view.clientHeight/2);
+            scene_view.scrollLeft = ((scroll_ys+(scene_view.clientWidth/2))*scale_scene)-(scene_view.clientWidth/2);
+            screen_preview.style.width=(screen_size.value*2.5)*scale_scene+"px";
+            screen_preview.style.height=(screen_size.value*2.5)*scale_scene+"px";
+            screen_preview.style.backgroundSize=64*scale_scene+"px"
+        } else {
+            if (s==1){scale_scene=1;screen_preview.style.transform='scale(1)';}
+            else if (s==2){scale_scene=Math.min(2,scale_scene+0.05);screen_preview.style.transform='scale('+scale_scene+')';}
+            else {scale_scene=Math.max(1,scale_scene-0.05);screen_preview.style.transform='scale('+scale_scene+')';}
+            scene_view.scrollTop = ((scroll_xs+(scene_view.clientHeight/2))*scale_scene)-(scene_view.clientHeight/2);
+            scene_view.scrollLeft = ((scroll_ys+(scene_view.clientWidth/2))*scale_scene)-(scene_view.clientWidth/2);
+        }
     } else {
         scroll_z();
         add_element.style.visibility='hidden';
