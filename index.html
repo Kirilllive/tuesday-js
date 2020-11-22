@@ -216,6 +216,7 @@ body {background-image:url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4
                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='ja'><span class="checkmark">ja</span></label></td>
                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='ru'><span class="checkmark">ru</span></label></td>
                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='es'><span class="checkmark">es</span></label></td>
+                            <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='fr'><span class="checkmark">fr</span></label></td>
                         </tr>
                     </tbody>
                 </table>
@@ -274,13 +275,19 @@ body {background-image:url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4
                   </a><br><br><br>
                   <p id='thanks'>Thanks for your help!<hr style='margin:8px 0px; border-top:1px solid #fff;'><a href='https://itch.io/profile/laurentk' target='_blank'><b>LaurentK</b></a></p><br>
                   <br>
-                  <table style='width:100%;'>
+                  <table style='border-spacing:10px;border-collapse:separate;width:100%;'>
                       <tbody>
                       <tr>
                           <td align='right' style='width:25%;'>Spanish translator:&nbsp;</td>
                           <td align='left' style='width:25%;'><b><a href="https://twitter.com/matiasdesu" target="_blank">@matiasdesu</a></b></td>
                           <td align='right' style='width:25%;'>Japanese translator:&nbsp;</td>
                           <td align='left' style='width:25%;'><b>Remained unknown</b></td>
+                      </tr>
+                      <tr>
+                          <td align='right' style='width:25%;'>French translation:&nbsp;</td>
+                          <td align='left' style='width:25%;'><b><a href="https://itch.io/profile/laurentk" target="_blank">LaurentK</a></b></td>
+                          <td align='right' style='width:25%;'></td>
+                          <td align='left' style='width:25%;'></td>
                       </tr>
                       </tbody>
                   </table>
@@ -332,15 +339,29 @@ let translation = {
     ["title_2","Localización"],
     ["screen_2","Amplias oportunidades para localizar historias a otros lenguajes. Puedes seleccionar traducciones para prácticamente todos los elementos de tu proyecto, ya sean textos o gráficos. La función de vista previa te permite probar tu proyecto en el lenguaje seleccionado. Todos los textos pueden ser exportados a un archivo csv para editarlo y añadir las localizaciones en otro editor."],
     ["screen_5","El editor te permite crear gráficos o novelas cinéticas sin tener ningún conocimiento de programación.<br>También es posible expandir las funcionalidades básicas usando JavaScript y css."]
+],"fr":[
+    ["description","est un moteur open source gratuit pour créer des romans visuels, des histoires interactives et des jeux d'aventure basés sur du texte. Écrit en JavaScript, il n’utilise aucune bibliothèque tierce. Les projets peuvent être exportés vers Apache Cordova pour créer des applications mobiles ou des programmes PC. Le moteur utilise des éléments de document HTML standard DOM tels que div et img, ce qui permet d'utiliser tout format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css."],
+    ["thanks","Merci pour votre aide!"],
+    ["donut","Je veux soutenir le projet sur patreon"],
+    ["title_1","Visualisation"],
+    ["screen_1","L'éditeur affiche entièrement la structure du scénario avec tous les éléments tels que les options de dialogue et les conséquences des réponses choisies. La navigation et la modification du scénario en est ainsi facilité."],
+    ["title_3","JSON"],
+    ["screen_3","Tous les éléments du scénario sont stockés dans une structure JSON, un format universel lisible par la quasi totalité des langages de programmation. Vous pouvez ainsi porter votre scénario sur un autre moteur ou une autre plateforme. L'éditeur dispose d'un outil intégré pour travailler la structure JSON qui vous permet de modifier l'intégralité du scénario ou uniquement un élément spécifique."],
+    ["title_4","Aperçu"],
+    ["screen_4","L'aperçu vous permet de démarrer un projet à partir de n'importe quel point du scénario et avec la localisation sélectionnée."],
+    ["title_2","Localisation"],
+    ["screen_2","De nombreuses options permettent d'adapter les histoires dans d'autres langues. Vous pouvez définir la traduction de presque tous les éléments de votre projet, tels que le texte et les graphiques. La fonction d'aperçu vous permet d'exécuter le projet dans la langue sélectionnée. Tous les textes peuvent être exportés vers un fichier csv pour édition et ajout de localisations dans un autre éditeur, tel qu'un tableur."],
+    ["screen_5","L'éditeur visuel vous permet de créer des graphiques ou des romans dynamiques sans aucune connaissance en programmation.<br>Vous avez ensuite toute latitude, si nécessaire, d'étendre les fonctionnalités de base en utilisant JavaScript et css."]
 ]}
 function getLang() {
     if (window.location.hash=='#ru'){languare='ru'}
     else if (window.location.hash=='#ja'){languare='ja'}
     else if (window.location.hash=='#es'){languare='es'}
     else if (window.location.hash=='#en'){languare='en'}
+    else if (window.location.hash=='#fr'){languare='fr'}
     else if (navigator.languages){languare=navigator.languages[0].substring(0,2);}
     else {languare=navigator.languagesubstring(0,2);}
-    if (languare!='ru'&&languare!='en'&&languare!='ja'&&languare!='es'){languare='en'}
+    if (languare!='ru'&&languare!='en'&&languare!='ja'&&languare!='es'&&languare!='fr'){languare='en'}
     else {for(var i=0;i<translation[languare].length;i++){window.location.hash=languare;document.getElementById(translation[languare][i][0]).innerHTML=translation[languare][i][1];}}
 }
 var lang_choise=document.forms.lang
