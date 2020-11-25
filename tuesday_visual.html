@@ -439,7 +439,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         <div class="set_panel" id="set_preview" style="width:100%; display:block;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
-                                <select id='ratio_screen' class='input_text' oninput='preview_size()' style='width:100%;'>
+                                <select id='ratio_screen' class='input_text' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size()' style='width:100%;'>
                                       <option value=true>Portrait</option>
                                       <option value=false>landscape</option>
                                 </select>
@@ -454,14 +454,14 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Screen</td><td style='padding-right:8px;'>
-                               <select class='input_text' oninput='p_width.value=this.value;preview_size()' style='width:100%;'>
+                               <select class='input_text' oninput='p_width.value=this.value;setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size();' style='width:100%;'>
                                     <option value="100">1:1</option>
                                     <option value="75">4:3</option>
                                     <option value="56">16:9</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Ratio</td><td style='padding-right:8px;'>
-                                <input id='p_width' class='input_slider' oninput='preview_size()' type="range" value='100' min="50" max="100" style='width:100%;'>
+                                <input id='p_width' class='input_slider' onchange='setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='preview_size()' type="range" value='100' min="50" max="100" style='width:100%;'>
                             </td></tr>
                         </tbody></table></div>
                         <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Text panel (global)</td></tr></tbody></table>
@@ -1684,7 +1684,6 @@ function dialog_text_apply(){
 	modal_window("close");
     if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
     else {update_novel();}
-	//update_novel();
 }
 function scene_edit() {
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
@@ -1788,7 +1787,7 @@ function scen_edit_updare(show) {
     story_script.parameters.text_panel.dialog_speed=dialog_speed.value;
     story_script.parameters.text_panel.position=[((position_l.value)?correct_value(position_l.value):0),((position_r.value)?correct_value(position_r.value):0),((position_t.value)?correct_value(position_t.value):0),0];
     if(!color_text.value==""){story_script.parameters.text_panel.color_text=color_text.value}else{delete story_script.parameters.text_panel.color_text};
-    if(!color_t.value==""){story_script.parameters.text_panel.color=color_t.value};
+    if(!color_t.value==""){story_script.parameters.text_panel.color=color_t.value}else{delete story_script.parameters.text_panel.color};
     if(!size_text.value==""){story_script.parameters.text_panel.size_text=correct_value(size_text.value)};
     if(!font_family.value==""){story_script.parameters.font=font_family.value}else{delete story_script.parameters.font};
     story_script.parameters.text_panel.indent_text=((indent_text.value)?correct_value(indent_text.value):0);
@@ -1800,7 +1799,7 @@ function scen_edit_updare(show) {
     if(!n_size_w.value==""){story_script.parameters.name_panel.size[0]=correct_value(n_size_w.value)};
     if(!n_size_h.value==""){story_script.parameters.name_panel.size[1]=correct_value(n_size_h.value)};
     if(!n_color_text.value==""){story_script.parameters.name_panel.color_text=n_color_text.value}else{delete story_script.parameters.name_panel.color_text};
-    if(!n_color.value==""){story_script.parameters.name_panel.color=n_color.value};
+    if(!n_color.value==""){story_script.parameters.name_panel.color=n_color.value}else{delete story_script.parameters.name_panel.color};
     if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
     else {scen_editor_apply()}
 }
@@ -1815,7 +1814,7 @@ function scen_editor(block,i,n) {
     scen_data=[block,i,n];
     p_width.value=setup_editor.preview[0];
     ratio_screen.selectedIndex=setup_editor.preview[1];
-    scen_editor_apply();
+    //scen_editor_apply();
     world.style.display="none";
     new_story_block.style.display="none";
     scene_maker.style.display="initial";
@@ -1830,8 +1829,8 @@ function scen_editor(block,i,n) {
     if(story_script[block][i].dialogs[n-1].text){
         tue_text_block.style.visibility='visible';
         tue_text_element.style.position="relative";
-        if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;};
-        if(story_script.parameters.text_panel.style){tue_text_block.style=story_script.parameters.text_panel.style;};
+        if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;} else {tue_text_block.className=""};
+        if(story_script.parameters.text_panel.style){tue_text_block.style=story_script.parameters.text_panel.style;} else {tue_text_block.style=null};
         tue_text_block.style.position="absolute";
         tue_text_block.style.margin="auto";
         tue_text_block.style.borderCollapse="separate";
@@ -1856,10 +1855,10 @@ function scen_editor(block,i,n) {
         tue_text_view.style.fontSize=story_script.parameters.text_panel.size_text;
         tue_text_view.style.height="100%";
         if(story_script[block][i].dialogs[n-1].name && story_script.parameters.name_panel){
-            if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;}
-            if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;}
-            if(story_script.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_script.parameters.name_panel.color;}
-            if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text;}
+            if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;} else {tue_name_block.className=""};
+            if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;} else {tue_name_block.style=null};
+            if(story_script.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_script.parameters.name_panel.color};
+            if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text} else {tue_name_block.style.color=null};
             tue_name_block.style.position="absolute";
             tue_name_block.style.padding=story_script.parameters.name_panel.indent_text;
             tue_name_block.style.fontSize=story_script.parameters.name_panel.size_text;
@@ -1908,8 +1907,6 @@ function preview_size(){
     scene_view.scrollLeft = (screen_preview.clientWidth/2)-(scene_view.clientWidth/2);
 }
 function scen_editor_apply() {
-    setup_editor.preview=[parseInt(p_width.value), ratio_screen.selectedIndex];
-    localStorage.setItem("editor_setup",JSON.stringify(setup_editor));
     world.style.display="initial";
     new_story_block.style.display="initial";
     scene_maker.style.display="none";
