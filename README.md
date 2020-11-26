@@ -25,13 +25,24 @@ If is necessary, it is possible to expand the basic functionality using JavaScri
 ビジュアルエディターはグラフィックもしくはキネティックノベルを、プログラミングの知識なしで作ることができます。
 必要であれば、JavaScriptやcssを使って、基本機能を拡大することができます。
 
+
 # Visualization
 The editor fully displays the structure of the script with all elements such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
 
 エディターは、会話オプションや選択肢のような全ての要素を伴うスクリプトの構造を完全に映し出します。これにより、ナビやスクリプトを編集しやすくします。
 
+![Tuesday JS script structure](screenshots/script_structure.png)
 
-![Tuesday script structure](screenshots/script_structure.png)
+
+# Scene editor
+The scene editor can not only arrange all the elements in their places, it also shows how the scene will change on different screens. 
+In your scene layout, you can use standard HTML units in percentage pixels or centimeters to better adapt the scene to different screens.
+
+は、すべての要素をその場所に配置できるだけでなく、さまざまな画面でシーンがどのように変化するかを示します。 
+シーンレイアウトでは、パーセンテージピクセルまたはセンチメートル単位の標準HTML単位を使用して、シーンをさまざまな画面により適切に適合させることができます。
+
+![Tuesday JS scene editor](screenshots/scene_editor.png)
+
 
 # Localization
 Ample opportunities to localize stories into other languages.
@@ -44,7 +55,8 @@ All texts can be exported to a table csv file for editing and adding localizatio
 プレビュー機能により、選択した言語でプロジェクトを運営することができます。
 すべてのテキストは、編集や他の版にローカリゼーションしたものを加えることができるよう、table csv fileに書き出されます。
 
-![Tuesday localization](screenshots/localization.png)
+![Tuesday JS localization](screenshots/localization.png)
+
 
 # JSON
 A story script with all the elements stored in a JSON structure. Almost any programming language can work with this format. This allows you to port your script to another engine or platform.
@@ -53,16 +65,16 @@ The editor has a built-in tool to work with JSON, with its help you can edit the
 すべての要素を含むスクリプトはJSON形式で保存されます。この形式で、ほとんどのプログラミングげんごが使えます。これにより、あなたのスクリプトを、他のエンジンやプラットフォームに移すことができます。
 エディターにはJSONで作業するための埋め込みツールがあり、スクリプトのすべてのコンテンツや選択した要素を編集することができます。
 
+![Tuesday JS json edit](screenshots/json_edit.png)
 
-![Tuesday json edit](screenshots/json_edit.png)
 
 # Preview
 Preview allows you to start a project from a certain point in the script and with the selected localization.
 
 プレビューにより、スクリプトの特定の部分や選択したローカライゼーションでプロジェクトを始めることができます。
 
+![Tuesday JS preview](screenshots/preview.png)
 
-![Tuesday preview](screenshots/preview.png)
 
 # Getting started
 
