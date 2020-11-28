@@ -289,9 +289,9 @@ line{
 	width:100%;
 	-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
 }
-.input_slider {-webkit-appearance: none;height: 16px;background: #efefff;outline: none;border-radius: 8px;border:1px solid #cec8e3;}
-.input_slider::-webkit-slider-thumb {-webkit-appearance: none;appearance: none;width: 16px;height: 16px;border-radius: 50%;background: #cec8e3;cursor: pointer;}
-.input_slider::-moz-range-thumb {width: 16px;height: 16px;border-radius: 50%;background: #cec8e3;cursor: pointer;}
+.input_slider {-webkit-appearance:none;height:8px;background: #efefff;outline:none;border-radius:8px;}
+.input_slider::-webkit-slider-thumb {-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:#cec8e3;cursor:pointer;border:3px solid #fff;}
+.input_slider::-moz-range-thumb {-moz-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:#cec8e3;cursor:pointer;border:3px solid #fff;}
 input[type="text"]{text-indent:4px;}
 select {text-align-last:center; }
 .input_text:focus{border-bottom:1px solid #000;}
@@ -438,10 +438,10 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         <table onclick="block_open('set_preview');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Preview</td></tr></tbody></table>
                         <div class="set_panel" id="set_preview" style="width:100%; display:block;">
                         <table style="width:100%;"><tbody>
-                            <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
+                            <tr><td height='40px' align='right' style='width:40%; padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
                                 <select id='ratio_screen' class='input_text' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size()' style='width:100%;'>
-                                      <option value=true>Portrait</option>
-                                      <option value=false>landscape</option>
+                                      <option value=true>landscape</option>
+                                      <option value=false>Portrait</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;'>
@@ -467,7 +467,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Text panel (global)</td></tr></tbody></table>
                         <div class="set_panel" id="text_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
-                            <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
+                            <tr><td height='40px' align='right' style='width:40%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='size_w' class='input_text' onchange='scen_edit_updare(true)' type="text" value='95%' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size height</td><td style='padding-right:8px;' colspan='3'>
@@ -518,7 +518,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         <table onclick="block_open('name_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Name panel (global)</td></tr></tbody></table>
                         <div class="set_panel" id="name_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
-                            <tr><td height='40px' align='right' style='width:32%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
+                            <tr><td height='40px' align='right' style='width:40%; padding-right:8px;'>Size width</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_size_w' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size height</td><td style='padding-right:8px;' colspan='3'>
@@ -562,7 +562,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         </div>
                         <table onclick="block_open('interface_buttons');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Interface buttons (global)</td></tr></tbody></table>
                         <div class="interface_buttons" id="interface_buttons" style="width:100%; display:none;">
-                            interface_buttons
+                            
                         </div>
                         <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Scene content</td></tr></tbody></table>
                         <div class="set_panel" id="set_scene" style="width:100%; display:none;">
@@ -579,7 +579,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         <div class="set_panel" id="arts_e" style="width:100%; display:block;">
                             <div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
                         </div>
-                        <table onclick="block_open('buttons_e');" class="set_title"  height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Buttons</td></tr></tbody></table>
+                        <table onclick="block_open('buttons_e');" class="set_title"  height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Buttons & Сhoice</td></tr></tbody></table>
                         <div class="set_panel" id="buttons_e" style="width:100%; display:block;">
                             <div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
                         </div>
@@ -658,8 +658,8 @@ let setup_editor = {
         'preview':[76,1],
         'ferst':true
     };
-if (localStorage.getItem("editor_setup")) {setup_editor=JSON.parse(localStorage.getItem("editor_setup"))}
-if (setup_editor.ferst){
+if(localStorage.getItem("editor_setup")) {setup_editor=JSON.parse(localStorage.getItem("editor_setup"))}
+if(setup_editor.ferst){
     var sel="<div class='window' style='padding:24px 8px;'><p>Select input device</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[5].en+"</p>"
     +"<table style=' border-spacing:10px; border-collapse:separate;'><tbody><tr>"
     +"<td><div style='width:256px; height:256px; border-radius:8px;' class='button_menu img_mouse' onclick='setup_editor.ferst=false;setup_editor.wheel=true;modal_window(\"close\");editor_setup();localStorage.setItem(\"editor_setup\",JSON.stringify(setup_editor));'></div><br><p style='font-size:12px;text-align:center;width:256px;' class='select_tutorials'>"+texts.tutorials[6].en+"</p></td>"
@@ -671,7 +671,7 @@ function editor_setup(){
     world.className=setup_editor.fon;
     screen_preview.className=setup_editor.fon;
     preview_size();
-    if (setup_editor.wheel){
+    if(setup_editor.wheel){
         html.style.overflow = 'hidden';
     } else {
         html.style.overflow = 'auto';
@@ -690,35 +690,35 @@ color_chois.addEventListener("input", function() {
     if(color_chois.name=='scene_color'){scene_bg_preview.style.backgroundColor=color_chois.value}
 }, false);
 
-document.addEventListener("wheel",function(e){if(setup_editor.wheel&&(!scroll_block||scene_screen)){if (e.deltaY > 0) world_scale(false);else world_scale(2);}});
+document.addEventListener("wheel",function(e){if(setup_editor.wheel&&(!scroll_block||scene_screen)){if(e.deltaY > 0) world_scale(false);else world_scale(2);}});
 let project_files=[];
 img_file.addEventListener('change',loadFiles);
 var load_new = false;
 var wf;
 function loadFiles(e){
     wf=e.target.files[0].webkitRelativePath.split("/")[0]+"/";
-    if (load_new) {
+    if(load_new) {
         project_foler.value = wf.replace("/","")
-        for (var i=0; i < e.target.files.length; i++){
+        for(var i=0; i < e.target.files.length; i++){
             project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);
         }
     } else {
         var jsons=[];
-        for (var i=0; i < e.target.files.length; i++){
+        for(var i=0; i < e.target.files.length; i++){
             project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);
-            if (e.target.files[i].type=="application/json"){jsons.push([i,e.target.files[i].name])}
+            if(e.target.files[i].type=="application/json"){jsons.push([i,e.target.files[i].name])}
         }
-        if (jsons.length==1){load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))}
-        else if (jsons.length > 1){
+        if(jsons.length==1){load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))}
+        else if(jsons.length > 1){
             var html="<div class='window'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><br><p>Select JSON project file</p><br><hr><div style='margin:0 16px 8px 16px; max-height:75vh; overflow-x:hidden;'>"
-            for (var f=0; f < jsons.length; f++){html+="<table class='button' style='width:412px; margin:8px 0px;' onclick='load_story_edit(open_file(\""+jsons[f][1]+"\")); modal_window(\"close\"); '><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
+            for(var f=0; f < jsons.length; f++){html+="<table class='button' style='width:412px; margin:8px 0px;' onclick='load_story_edit(open_file(\""+jsons[f][1]+"\")); modal_window(\"close\"); '><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
             html+="</div></div>"
             modal_window("open",html)
-        } else if (jsons.length==0){alert('json file no found')}
+        } else if(jsons.length==0){alert('json file no found')}
     }
 }
 function open_file(name){
-    for (var f=0; f < project_files.length; f++){if (project_files[f][0]==name){return (project_files[f][1])}}
+    for(var f=0; f < project_files.length; f++){if(project_files[f][0]==name){return (project_files[f][1])}}
 }
 function new_novel(){
     story_script={"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"200"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"nbvjhf","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":">"}],"style_file":"","autosave":false,"font":"","font_size":"","variables":{},"sounds":{}},"blocks":{"nbvjhf":["458px","167px","block",""]}};
@@ -736,10 +736,10 @@ function update_novel(){
 function load_story_edit(url){
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function(){
-        if (this.readyState==4 && this.status==200){
+        if(this.readyState==4 && this.status==200){
             new_novel()
             story_script=JSON.parse(this.responseText);
-            if (!story_script.parameters){alert("error in json file")} 
+            if(!story_script.parameters){alert("error in json file")}
 			else {
                 toast("json file loading completed");
                 parse_story()
@@ -750,7 +750,7 @@ function load_story_edit(url){
     xmlhttp.open("GET",url,true);
     xmlhttp.send();
     xmlhttp.onerror=function(){
-        if (this.status==0){alert('json file not loaded');}
+        if(this.status==0){alert('json file not loaded');}
     }
 }
 var all_blocks=0;
@@ -761,12 +761,12 @@ function parse_story(){
 	story_blocks.setAttribute("align","center");
     while (story_lines.hasChildNodes()){story_lines.removeChild(story_lines.firstChild);}
     all_blocks=0;
-	if (!story_script.blocks){story_script.blocks={}}
+	if(!story_script.blocks){story_script.blocks={}}
     while (Object.keys(story_script)[all_blocks]){
         creation_block(all_blocks);
         all_blocks++;
     }
-	if (story_script.parameters.languares){lang_select()}
+	if(story_script.parameters.languares){lang_select()}
     control_dlock()
     world_size()
 }
@@ -776,7 +776,7 @@ function lang_select(){
 }
 language_view.onchange=function(e){
 	languare=language_view.value;
-    if (scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2]);}
+    if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2]);}
     update_novel()
 };
 function creation_block(b){
@@ -785,15 +785,15 @@ function creation_block(b){
     var all=0;
     chapter.id=Object.keys(story_script)[b];
     var go="";
-    if (chapter.id != "parameters" && chapter.id != "blocks"){
-        for (var i=0; i < story_script[chapter.id].length; i++){
+    if(chapter.id != "parameters" && chapter.id != "blocks"){
+        for(var i=0; i < story_script[chapter.id].length; i++){
             element+="<div id='s_"+chapter.id+"_"+i+"' class='scene' align='center'>"
-            if (story_script[chapter.id][i].legacy_choice){
+            if(story_script[chapter.id][i].legacy_choice){
 				element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";legacy_choice_m(this.id);' title='Scene edit'></td></tr></tbody></table><div width='100%'>"
-                for (var l=0; l < story_script[chapter.id][i].legacy_choice.length; l++){
-                    if (story_script[chapter.id][i].legacy_choice[l][0]){
+                for(var l=0; l < story_script[chapter.id][i].legacy_choice.length; l++){
+                    if(story_script[chapter.id][i].legacy_choice[l][0]){
                         go=story_script[chapter.id][i].legacy_choice[l][3];
-                        if (story_script[go]){
+                        if(story_script[go]){
                             element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td><td colspan='3' align='right'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
                             creaton_line(all+"l"+l+go+all_blocks)
@@ -801,9 +801,9 @@ function creation_block(b){
                         } else {
                             element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td align='center'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                         }
-                    } else if (story_script[chapter.id][i].legacy_choice[l].go_to){
+                    } else if(story_script[chapter.id][i].legacy_choice[l].go_to){
                         go=story_script[chapter.id][i].legacy_choice[l].go_to;
-                        if (story_script[go]){
+                        if(story_script[go]){
                             element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
                             creaton_line(all+"l"+l+go+all_blocks)
@@ -813,14 +813,14 @@ function creation_block(b){
                 }
                 element+="</div>"
             } else {element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";scene_m(this.id,"+(i+1)+",\""+chapter.id+"\");' title='Scene edit'></td></tr></tbody></table>"}
-            if (story_script[chapter.id][i].background_image){element+="<div class='scene_bg' style=' background-image:url("+open_file(languare_data(story_script[chapter.id][i].background_image))+");background-color:"+story_script[chapter.id][i].background_color+";' width='100%'></div>"}
-            if (story_script[chapter.id][i].dialogs){
-                for (var d=0; d < story_script[chapter.id][i].dialogs.length; d++){
+            if(story_script[chapter.id][i].background_image){element+="<div class='scene_bg' style=' background-image:url("+open_file(languare_data(story_script[chapter.id][i].background_image))+");background-color:"+story_script[chapter.id][i].background_color+";' width='100%'></div>"}
+            if(story_script[chapter.id][i].dialogs){
+                for(var d=0; d < story_script[chapter.id][i].dialogs.length; d++){
 					element+="<div class='dialog' id='d_"+chapter.id+"_"+i+"_"+d+"'>"+"<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='24px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td><p class='namber'>scene:"+(i+1)+" | dialog:"+(d+1)+"</p></td><td id='m_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs;arr_n="+d+";dialog_m(this.id,'"+(d+1)+"','"+chapter.id+"',"+i+")\" class='add_button icon_m icon_show' title='Dialog'></td></tr></tbody></table>"
                     var n=languare_data(story_script[chapter.id][i].dialogs[d].name);
-					if (story_script[chapter.id][i].dialogs[d].back_to){
+					if(story_script[chapter.id][i].dialogs[d].back_to){
                         go=story_script[chapter.id][i].dialogs[d].back_to;
-                        if (story_script[go]){
+                        if(story_script[go]){
 						element+="<div class='dialog_element'>" 
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
 								+"<table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;' class='input_text_b'>"+option_block(go)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
@@ -832,41 +832,41 @@ function creation_block(b){
 						+"<div id='"+all+"b"+d+go+all_blocks+"' class='choice_b'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;' class='input_text_b'>"+option_block(go)+"</select>"+"</div></div>";}
 						element+="</div>"
                     }
-                    if (story_script[chapter.id][i].dialogs[d].text){
+                    if(story_script[chapter.id][i].dialogs[d].text){
 						var t = (languare_data(story_script[chapter.id][i].dialogs[d].text))
 						element+="<div class='dialog_element' align='left'>" 
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n.length>0)?"<p><b>"+n+"</p></b>" :"&nbsp;")+"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text';dialog_el(this.id,'Text',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table>"
 								+"<p>"+((t.length>0)?t:'&nbsp;')+"</p></div>"
 					}
-                    if (story_script[chapter.id][i].dialogs[d].text_add){
+                    if(story_script[chapter.id][i].dialogs[d].text_add){
                         var t = (languare_data(story_script[chapter.id][i].dialogs[d].text_add))
                         element+="<div class='dialog_element' align='left'>"
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n.length>0)?"<p><b>"+n+" " :"<p><b>")+"text add</b></p></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text_add' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text_add';dialog_el(this.id,'Text add',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table>"
                                 +"<p>"+((t.length>0)?t:'&nbsp;')+"</p></div>"
                     }
-                    if (story_script[chapter.id][i].dialogs[d].event){
+                    if(story_script[chapter.id][i].dialogs[d].event){
                         element+="<div class='dialog_element' align='left'>"
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Event<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_event' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='event';dialog_el(this.id,'Event',false)\" width='24px' class='icon_m icon_edit' title='Edit event'></td></tr></tbody></table>"
                                 +"<input class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].event=this.value' value='"+story_script[chapter.id][i].dialogs[d].event+"' type='text'></div>"
                     }
-                    if (story_script[chapter.id][i].dialogs[d].controll){
+                    if(story_script[chapter.id][i].dialogs[d].controll){
                         element+="<div class='dialog_element' align='left'>"
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Interface<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_controll' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='controll';dialog_el(this.id,'Interface',false)\" width='24px' class='icon_m icon_edit' title='Edit interface'></td></tr></tbody></table>"
                                 +"<div class='choice_b'><select class='input_text_b' oninput='story_script."+chapter.id+"["+i+"].dialogs["+d+"].controll=this.value'><option value='hidden'>Hidden</option><option value='visible' "+((story_script[chapter.id][i].dialogs[d].controll=="visible")?"selected":"")+">Visible</option></select></div></div>"
                     }
-                    if (story_script[chapter.id][i].dialogs[d].variables){
+                    if(story_script[chapter.id][i].dialogs[d].variables){
                         var t="";
                         for(var c=0;c<story_script[chapter.id][i].dialogs[d].variables.length;c++){t+="<table width='100%' height='28px' class='choice_b'><tbody><tr><td><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].variables["+c+"][0]=this.value;' class='input_text_b'>"+option_var(story_script[chapter.id][i].dialogs[d].variables[c][0])+"</select></td><td width='15%'><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].variables["+c+"][1]=this.value;' class='input_text_b'><option value='add'>add</option><option value='set' "+((story_script[chapter.id][i].dialogs[d].variables[c][1]=="set")?"selected":"")+">set</option></select></td><td width='34%'> <input class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].variables["+c+"][2]=this.value' value='"+story_script[chapter.id][i].dialogs[d].variables[c][2]+"' type='text'> </td><td width='5%'></td></tr></tbody></table>"};
                         element+="<div class='dialog_element' align='left'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Variables<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_variables' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='variables';dialog_el(this.id,'Variables',true)\" width='24px' class='icon_m icon_edit' title='Edit variables'></td></tr></tbody></table>"+t+"</div>"
                     }
-                    if (story_script[chapter.id][i].dialogs[d].choice){
+                    if(story_script[chapter.id][i].dialogs[d].choice){
                         element+="<div id='' class='dialog_element'>"
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
-                        for (var c=0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++){
+                        for(var c=0; c < story_script[chapter.id][i].dialogs[d].choice.length; c++){
                             go=story_script[chapter.id][i].dialogs[d].choice[c].go_to;
-                            if (go && go != "load" && go != "load_autosave" && go != "" && go != "undefined"){
+                            if(go && go != "load" && go != "load_autosave" && go != "" && go != "undefined"){
                                 var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
-                                if (story_script[go]){
+                                if(story_script[go]){
                                     element+="<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td class='button_block'></td><td style='padding:4px;'>"+((t=="")?go :t)+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                                     line_controll.push([go,chapter.id,all+"c"+d+go+all_blocks]);
                                     creaton_line(all+"c"+d+go+all_blocks)
@@ -879,9 +879,9 @@ function creation_block(b){
                         }
                         element+="</div>"
                     }
-					if (story_script[chapter.id][i].dialogs[d].go_to){
+					if(story_script[chapter.id][i].dialogs[d].go_to){
                         go=story_script[chapter.id][i].dialogs[d].go_to;
-                        if (story_script[go]){
+                        if(story_script[go]){
 						element+="<div class='dialog_element'>" 
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>go to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='go_to';dialog_el(this.id,'Go to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
 								+"<table id='"+all+"g"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
@@ -893,7 +893,7 @@ function creation_block(b){
 							+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go)+"</select>"+"</div></div>";}
 						element+="</div>"
                     }
-                    if (story_script[chapter.id][i].dialogs[d].html){
+                    if(story_script[chapter.id][i].dialogs[d].html){
                         element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>HTML code</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_html' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='html';dialog_el(this.id,'HTML code',true)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table></div>"
                     }
 					element+="<div align='right'><div id='add_d_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];add_element_d(this.id,'"+(d+1)+"')\" class='add_button icon_m icon_add' title='Add element to dialog'></div></div></div>"
@@ -905,7 +905,7 @@ function creation_block(b){
         element+="<div align='right' style='margin-right:8px;'><div id='add_b_"+chapter.id+"' onmouseup=\"add_element_b(this.id,\'"+chapter.id+"\')\" class='add_button icon_m icon_add' title='Add element to block'></div></div>"
         chapter.innerHTML="<div style='margin:2px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;'  onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon_show'></td><td align='center'>"+((chapter.id.length > 17)?chapter.id.slice(0,15)+"...":chapter.id )+"</td><td align='center' style='cursor:pointer; width:48px;' onmouseup=\"edit_block('"+chapter.id+"')\" class='icon button_block icon_edit'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('"+chapter.id+"')\" class='icon button_block icon_play'></td></tr></tbody></table></div><div id='"+chapter.id+"_content' style='display:"+((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>"+element+"</div>";
         chapter.className="story_block panel";
-		if (!story_script.blocks[chapter.id]){
+		if(!story_script.blocks[chapter.id]){
 			chapter.style.left=64+(320 * (all_blocks - 1))+"px";
 			chapter.style.top=64+(128 * (all_blocks - 1))+"px";
 			story_script.blocks[chapter.id]=[chapter.style.left,chapter.style.top,'none','#fff']
@@ -918,24 +918,24 @@ function creation_block(b){
     }
 }
 function languare_data(data){
-    if (data){return ((data[languare])?data[languare] :data);} 
+    if(data){return ((data[languare])?data[languare] :data);}
 	else {return ""}
 }
 function data_la(arr,key){
 	var s = arr[key];
 	arr[key]={};
-	for (var i=0;i<story_script.parameters.languares.length;i++){arr[key][story_script.parameters.languares[i]] = s;}
+	for(var i=0;i<story_script.parameters.languares.length;i++){arr[key][story_script.parameters.languares[i]] = s;}
 }
 function data_only(arr,key){
 	var n = arr[key][story_script.parameters.languares[0]];
 	var a=0;
-	for (var i=0;i<story_script.parameters.languares.length;i++){
+	for(var i=0;i<story_script.parameters.languares.length;i++){
 		if(arr[key][story_script.parameters.languares[i]]){
-			if (n.length == 0 || n == arr[key][story_script.parameters.languares[i]] || arr[key][story_script.parameters.languares[i]].length == 0){a++}
+			if(n.length == 0 || n == arr[key][story_script.parameters.languares[i]] || arr[key][story_script.parameters.languares[i]].length == 0){a++}
 			n=arr[key][story_script.parameters.languares[i]]
 		} else {a++}
 	}
-	if (a == story_script.parameters.languares.length){arr[key] = n};
+	if(a == story_script.parameters.languares.length){arr[key] = n};
 }
 function creaton_line(id){
     var newLine=document.createElementNS("http://www.w3.org/2000/svg",'line');
@@ -953,7 +953,7 @@ function save_file(){
     var ds=String(d.getSeconds());
     var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(story_script));
     var dlAnchorElem=document.getElementById('downloadAnchorElem');
-    if (story_script.parameters.title){n=(story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title;} 
+    if(story_script.parameters.title){n=(story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title;}
 	else {n="new_novel";}
     dlAnchorElem.setAttribute("href",dataStr);
     dlAnchorElem.setAttribute("download",n+'_'+d.getFullYear()+'_'+(dm.length < 2?'0'+dm :dm)+'_'+(dd.length < 2?'0'+dd :dd)+'_'+(dh.length < 2?'0'+dh :dh)+"-"+(di.length < 2?'0'+di :di)+"-"+(ds.length < 2?'0'+ds :ds)+'.json');
@@ -961,18 +961,18 @@ function save_file(){
 }
 function lines(elem){
     var to_go=document.getElementsByClassName("to_go");
-    for (var x=0; x < to_go.length; x++){
+    for(var x=0; x < to_go.length; x++){
         if(!setup_editor.lines){
-            if (elem==line_controll[x][1] || elem==line_controll[x][0]){document.getElementById(line_controll[x][2]+"l").style.visibility='visible'}
+            if(elem==line_controll[x][1] || elem==line_controll[x][0]){document.getElementById(line_controll[x][2]+"l").style.visibility='visible'}
             else {document.getElementById(line_controll[x][2]+"l").style.visibility='hidden'}
         }
         var title_block;
-        if (document.getElementById(line_controll[x][1]+"_content").style.display=='none'){
+        if(document.getElementById(line_controll[x][1]+"_content").style.display=='none'){
             title_block=document.getElementById(line_controll[x][0]).getBoundingClientRect();
             var rect=document.getElementById(line_controll[x][1]).getBoundingClientRect();
             var l1=(html.scrollLeft+rect.left)/scale;
             var l2=(html.scrollLeft+title_block.left)/scale
-            if (l1 > l2){
+            if(l1 > l2){
                 moveSlider(l1,'x2',line_controll[x][2]);
                 moveSlider((rect.top+html.scrollTop+(22*scale))/scale,'y2',line_controll[x][2]);
                 moveSlider((l2+(256)),'x1',line_controll[x][2]);
@@ -988,7 +988,7 @@ function lines(elem){
             var rect=document.getElementById(line_controll[x][2]).getBoundingClientRect();
             var l1=(html.scrollLeft+rect.left)/scale;
             var l2=(html.scrollLeft+title_block.left)/scale
-            if (l1 > l2){
+            if(l1 > l2){
                 moveSlider((l1-12),'x2',line_controll[x][2]);
                 moveSlider((rect.top+html.scrollTop+(12*scale))/scale,'y2',line_controll[x][2]);
                 moveSlider((l2+256),'x1',line_controll[x][2]);
@@ -1010,7 +1010,7 @@ var moveSlider=function(slider,direction,id){
 }
 function control_dlock(){
     all_blocks=document.getElementsByClassName("story_block");
-    for (var i=0; i < all_blocks.length; i++){movie_dlock(all_blocks[i].id)}
+    for(var i=0; i < all_blocks.length; i++){movie_dlock(all_blocks[i].id)}
 }
 var scroll_block=false;
 function movie_dlock(id){
@@ -1036,7 +1036,7 @@ function movie_dlock(id){
 			story_script.blocks[focus_block.id]=[focus_block.style.left,focus_block.style.top,document.getElementById(focus_block.id+"_content").style.display,focus_block.style.backgroundColor]
             document.onmousemove=null;
             focus_block.onmouseup=null;
-            if (window_zone.style.visibility != "visible"){scroll_block=false};
+            if(window_zone.style.visibility != "visible"){scroll_block=false};
             world_size()
         };
     }
@@ -1058,7 +1058,7 @@ function world_size(){
 }
 function block_open(id){
     var e=document.getElementById(id);
-    if (e.style.display === "block"){e.style.display="none";} 
+    if(e.style.display === "block"){e.style.display="none";}
 	else {e.style.display="block";}
     lines()
 }
@@ -1069,7 +1069,7 @@ var scroll_y=null;
 var scroll_xz=null;
 var scroll_yz=null;
 html.ontouchstart=function(e){
-    if (!scroll_block||scene_screen){
+    if(!scroll_block||scene_screen){
         startmove_x=e.touches[0].clientX;
         startmove_y=e.touches[0].clientY;
         scroll_x=html.scrollTop;
@@ -1088,7 +1088,7 @@ html.ontouchstart=function(e){
     }
 }
 scene_view.ontouchstart=function(e){
-    if (scene_screen){
+    if(scene_screen){
         startmove_x=e.touches[0].clientX;
         startmove_y=e.touches[0].clientY;
         scroll_x=scene_view.scrollTop;
@@ -1107,7 +1107,7 @@ scene_view.ontouchstart=function(e){
     }
 }
 html.onmousedown=function(e){
-    if (!scroll_block&&!scene_screen){
+    if(!scroll_block&&!scene_screen){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
         scroll_x=html.scrollTop;
@@ -1132,7 +1132,7 @@ html.onmousedown=function(e){
     }
 }
 scene_view.onmousedown=function(e){
-    if (scene_screen){
+    if(scene_screen){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
         scroll_x=scene_view.scrollTop;
@@ -1161,14 +1161,14 @@ function scroll_z(){
 }
 function modal_window(action,content){
     var window_zone=document.getElementById("window_zone");
-    if (action=='close'){
+    if(action=='close'){
         add_element.style.visibility="hidden";
         window_zone.style.visibility="hidden"
         window_zone.style.backgroundColor='rgba(110,95,165,0)';
         document.body.style.overflow='scroll';
         scroll_block=false;
         window_zone.innerHTML="";
-    } else if (action=='open' && window_zone.style.visibility != "visible"){
+    } else if(action=='open' && window_zone.style.visibility != "visible"){
         window_zone.style.visibility="visible";
         window_zone.style.backgroundColor='rgba(110,95,165,0.5)';
         document.body.style.overflow='hidden';
@@ -1178,8 +1178,8 @@ function modal_window(action,content){
 }
 function play_novel(bl){
     var story_preview=JSON.stringify(story_script)
-    for (var f=0; f < project_files.length; f++){
-        for (var r=JSON.stringify(story_script).split(project_files[f][0]).length+2; r > 0; r--){
+    for(var f=0; f < project_files.length; f++){
+        for(var r=JSON.stringify(story_script).split(project_files[f][0]).length+2; r > 0; r--){
             story_preview=story_preview.replace(project_files[f][0],project_files[f][1])
         }
     }
@@ -1192,14 +1192,14 @@ function search_block(){
     filter=input.value.toUpperCase();
     li=document.getElementsByClassName("story_block");
     var ferst=false
-    for (i=0; i < li.length; i++){
+    for(i=0; i < li.length; i++){
         txtValue=li[i].id.toUpperCase();
-        if (txtValue.toUpperCase().indexOf(filter) > -1){
+        if(txtValue.toUpperCase().indexOf(filter) > -1){
             li[i].style.opacity=1;
-            if (filter.length > 0 && !ferst){
+            if(filter.length > 0 && !ferst){
                 scroll_to_block(li[i]);
                 ferst=true;
-            } else if (filter==txtValue){
+            } else if(filter==txtValue){
                 scroll_to_block(li[i]);
                 ferst=true;
             }
@@ -1232,7 +1232,7 @@ function about(){
 function build(){
     let story_build = JSON.parse(JSON.stringify(story_script));
     var plugins_code="";
-    if (story_script.parameters.plugins){for (var i=0; i < story_script.parameters.plugins.length; i++){plugins_code+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>":"")}}
+    if(story_script.parameters.plugins){for(var i=0; i < story_script.parameters.plugins.length; i++){plugins_code+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>":"")}}
     delete story_build.parameters['plugins'];
     delete story_build.parameters['font'];
     delete story_build.parameters['font_size'];
@@ -1246,7 +1246,7 @@ function build(){
     toast("index.html file is created"); 
 }
 function jsonedit(arr){
-	if (arr){
+	if(arr){
 		var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>JSON Edit</p><br><p><textarea id='editJson' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid #cec8e3;'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	} else {
 		var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>JSON Edit</p><br><p><textarea id='editJson' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid #cec8e3;'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
@@ -1255,7 +1255,7 @@ function jsonedit(arr){
 }
 function big_languares(s){
     var lang='';
-    for (l=0; l < Object.keys(languares).length; l++){
+    for(l=0; l < Object.keys(languares).length; l++){
         lang+="<option value='"+languares[Object.keys(languares)[l]]+"' "+((languares[Object.keys(languares)[l]]==s)?"selected":"")+">"+languares[Object.keys(languares)[l]].toUpperCase()+" - "+Object.keys(languares)[l]+"</option>"
     }
     return lang;
@@ -1278,7 +1278,7 @@ function create_project(){
     li_v=document.getElementsByClassName("title_name");
     story_script.parameters.title={};
     story_script.parameters.languares=[];
-    for (var i=0; i < li_n.length; i++){
+    for(var i=0; i < li_n.length; i++){
         story_script.parameters.title[li_n[i].value]=li_v[i].value
         story_script.parameters.languares.push(li_n[i].value);
     }
@@ -1305,16 +1305,16 @@ function new_block(){
 }
 function create_block(){
 	var color_chec= document.forms.color_chec;
-	for (i=0; i < color_chec.length; i++){
-		if (color_chec[i].checked){
+	for(i=0; i < color_chec.length; i++){
+		if(color_chec[i].checked){
 		color_chec=color_bg[color_chec[i].value]
 		break;}
 	}
     var new_id=correct_name(block_id.value);
-	if (new_id != '' && !story_script[new_id]){
-		if (Object.keys(story_script).length <= 2){story_script.parameters.launch_story = new_id}
+	if(new_id != '' && !story_script[new_id]){
+		if(Object.keys(story_script).length <= 2){story_script.parameters.launch_story = new_id}
 		story_script[new_id]=[];
-		for (var i=0 ; i < Object.keys(story_script).length; i++){if (Object.keys(story_script)[i]==new_id){creation_block(i);break;}}
+		for(var i=0 ; i < Object.keys(story_script).length; i++){if(Object.keys(story_script)[i]==new_id){creation_block(i);break;}}
 		new_id=document.getElementById(new_id)
 		var rect=new_id.getBoundingClientRect();
 		new_id.style.backgroundColor=color_chec;
@@ -1325,7 +1325,7 @@ function create_block(){
 		control_dlock()
 		toast("new block created");
 		modal_window('close');
-    } else if (story_script[new_id]){
+    } else if(story_script[new_id]){
         toast("this name is used by other blocks");
         modal_window('close');
     } else {
@@ -1360,14 +1360,14 @@ function delet_block(id){
 }
 function updata_block(old_id){
 	var color_chec= document.forms.color_chec;
-	for (i=0; i < color_chec.length; i++){
-		if (color_chec[i].checked){
+	for(i=0; i < color_chec.length; i++){
+		if(color_chec[i].checked){
 		story_script.blocks[old_id][3]=color_bg[color_chec[i].value]
 		document.getElementById(old_id).style.backgroundColor=color_bg[color_chec[i].value]
 		break;}
 	}
 	var new_id=correct_name(block_id.value);
-	if (old_id != new_id && !story_script[new_id]){
+	if(old_id != new_id && !story_script[new_id]){
 		var story_rename=JSON.stringify(story_script)
 		new_novel();
 		story_script=JSON.parse(story_rename.replace(new RegExp('"'+old_id+'"',"g"),'"'+new_id+'"'));
@@ -1380,20 +1380,20 @@ function updata_block(old_id){
 function file_catalog(id,files,area,preview) {
     var code='<div class="window" style="width:480px; position:fixed;"><table style="width:100%;"><tbody><tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">File selection</td></tr><tr><td><div style="overflow-x:hidden;overflow-y:auto;max-height:80vh;"><table style="width:100%;"><tbody>'
     var f,t;
-    if (files == 'img'){
+    if(files == 'img'){
         files=['.jpg','.svg','.gif','.jpeg','.png','.webp','.apng','.bmp'];
-        for (f=0; f < project_files.length; f++){
-            for (t=0; t < files.length; t++){
+        for(f=0; f < project_files.length; f++){
+            for(t=0; t < files.length; t++){
                 if(project_files[f][0].indexOf(files[t]) > -1){
                     code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="copy_arr[arr_n].background_image[scene_la.value]=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';'+preview+'.style.backgroundImage=\'url('+open_file(project_files[f][0])+')\';add_element.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="64px" height="64px" style=\'border-radius:8px;background-image:url(\"'+project_files[f][1]+'\");background-size:cover;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                 }
             }
         }
     }
-    else if (files=='audio'){
+    else if(files=='audio'){
         files=['audio/mpeg'];
-        for (f=0; f < project_files.length; f++){
-            for (t=0; t < files.length; t++){
+        for(f=0; f < project_files.length; f++){
+            for(t=0; t < files.length; t++){
                 if(project_files[f][2].indexOf(files[t]) > -1){
                     code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="copy_arr[arr_n].background_music=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';add_element.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_audio_play"></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                 }
@@ -1411,8 +1411,8 @@ function file_catalog(id,files,area,preview) {
 function add_element_b(id,arr){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Add to block \''+arr+'\'</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="legacy_choice_add(\''+arr+'\');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Legacy choice</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scene_add(\''+arr+'\');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>Scene</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="legacy_choice_add(\''+arr+'\');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Legacy choice</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
@@ -1428,7 +1428,6 @@ function add_element_s(id,n){
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_play"></td><td><s>sound play</s></td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td><s>sound stop</s></td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text_add";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>text add</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td><s>art</s></td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td><s>choice</s></td></tr></tbody></table></td></tr>'
@@ -1478,7 +1477,7 @@ function legacy_choice_m(id){
 function scene_m(id,i,block){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Scene '+i+'</td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_data[1]='+(i-1)+';scen_editor(\''+block+'\',scen_data[1],1);scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
+                +((story_script[block][i-1].dialogs[0])?'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_data[1]='+(i-1)+';scen_editor(\''+block+'\',scen_data[1],1);scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>':'')
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scene_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
@@ -1489,11 +1488,11 @@ function scene_m(id,i,block){
 function dialog_el(id,n,e){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody><tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">'+n+'</td></tr>'
         if(e){
-            if (arr_n=='html'){
+            if(arr_n=='html'){
                 code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
-            } else if (arr_n=='text'||arr_n=='text_add'){
+            } else if(arr_n=='text'||arr_n=='text_add'){
                 code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_text_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
-            } else if (arr_n=='variables'){
+            } else if(arr_n=='variables'){
                 code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="variables_set_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             }
         }
@@ -1528,22 +1527,22 @@ function legacy_choice_add(arr){
 }
 function option_var(d){
 	var var_list='';
-	if (story_script.parameters.variables){for (l=0; l < Object.keys(story_script.parameters.variables).length; l++){var_list+="<option value='"+Object.keys(story_script.parameters.variables)[l]+"' "+((d==Object.keys(story_script.parameters.variables)[l])?"selected" :"")+">"+Object.keys(story_script.parameters.variables)[l]+"</option>"}}
+	if(story_script.parameters.variables){for(l=0; l < Object.keys(story_script.parameters.variables).length; l++){var_list+="<option value='"+Object.keys(story_script.parameters.variables)[l]+"' "+((d==Object.keys(story_script.parameters.variables)[l])?"selected" :"")+">"+Object.keys(story_script.parameters.variables)[l]+"</option>"}}
 	return var_list
 }
 function project_languares(d){
 	var lang='';
-	for (l=0; l < story_script.parameters.languares.length; l++){lang+="<option value='"+story_script.parameters.languares[l]+"' "+((d==story_script.parameters.languares[l])?"selected":"")+">"+story_script.parameters.languares[l].toUpperCase()+"</option>"}
+	for(l=0; l < story_script.parameters.languares.length; l++){lang+="<option value='"+story_script.parameters.languares[l]+"' "+((d==story_script.parameters.languares[l])?"selected":"")+">"+story_script.parameters.languares[l].toUpperCase()+"</option>"}
 	return lang
 }
 function option_block(d){
 	var scene_list='';
-	for (l=0; l < Object.keys(story_script).length; l++){if (Object.keys(story_script)[l] != "parameters" && Object.keys(story_script)[l] != "blocks"){scene_list+="<option value='"+Object.keys(story_script)[l]+"' "+((d==Object.keys(story_script)[l])?"selected" :"")+">"+Object.keys(story_script)[l]+"</option>"}}
+	for(l=0; l < Object.keys(story_script).length; l++){if(Object.keys(story_script)[l] != "parameters" && Object.keys(story_script)[l] != "blocks"){scene_list+="<option value='"+Object.keys(story_script)[l]+"' "+((d==Object.keys(story_script)[l])?"selected" :"")+">"+Object.keys(story_script)[l]+"</option>"}}
 	return scene_list
 }
 function legacy_choice_edit(){
 	var var_if="<table width='100%' id='legacy_choice_edit'><tbody>";
-	for (var i=0; i < arr_l[arr_n].legacy_choice.length-1; i++){
+	for(var i=0; i < arr_l[arr_n].legacy_choice.length-1; i++){
 		var_if +="<tr><td style='padding-right:4px; white-space:nowrap;' align='right'>"+((i==0)?"if {":"else if {")+"</td>"
 		+"<td style='width:128px;' valign='bottom'><select class='input_text legacy_var'>"+option_var(arr_l[arr_n].legacy_choice[i][0])+"</select></td>"
 		+"<td style='width:24px; border-right:1px solid #cec8e3; border-left:1px solid #cec8e3;' valign='bottom'><select class='input_text legacy_compare'><option value='&#61'>&#61</option><option value='&lt;'>&lt;</option><option value='&gt;'>&gt;</option></select></td>"
@@ -1601,7 +1600,7 @@ function legacy_choice_apply(){
     li_c=document.getElementsByClassName("legacy_compare");
     li_z=document.getElementsByClassName("legacy_value");
     li_b=document.getElementsByClassName("legacy_block");
-    for (var i=0; i < li_v.length; i++){
+    for(var i=0; i < li_v.length; i++){
 		arr_l[arr_n].legacy_choice.push([li_v[i].value,li_c[i].value,parseInt(li_z[i].value),li_b[i].value])
     }
 	arr_l[arr_n].legacy_choice.push({"go_to":legacy_go_to.value})
@@ -1622,17 +1621,17 @@ function dialog_add(){
 	update_novel();
 }
 function element_to(){
-	if (arr_n=='go_to'||arr_n=='back_to'){arr_l[arr_n]=story_script.parameters.launch_story;}
-    else if (arr_n=='event'){arr_l[arr_n]="event"}
-    else if (arr_n=='controll'){arr_l[arr_n]="visible"}
-    else if (arr_n=='variables'){arr_l[arr_n]=[[Object.keys(story_script.parameters.variables)[0], "add", 1]];variables_set_edit()}
-	else if (arr_n=='text'){
+	if(arr_n=='go_to'||arr_n=='back_to'){arr_l[arr_n]=story_script.parameters.launch_story;}
+    else if(arr_n=='event'){arr_l[arr_n]="event"}
+    else if(arr_n=='controll'){arr_l[arr_n]="visible"}
+    else if(arr_n=='variables'){arr_l[arr_n]=[[Object.keys(story_script.parameters.variables)[0], "add", 1]];variables_set_edit()}
+	else if(arr_n=='text'){
 		arr_l.text = {};
-	    for (var i=0; i < story_script.parameters.languares.length; i++){arr_l.text[story_script.parameters.languares[i]]='';}
+	    for(var i=0; i < story_script.parameters.languares.length; i++){arr_l.text[story_script.parameters.languares[i]]='';}
 	}
-    else if (arr_n=='text_add'){
+    else if(arr_n=='text_add'){
         arr_l.text_add = {};
-        for (var i=0; i < story_script.parameters.languares.length; i++){arr_l.text_add[story_script.parameters.languares[i]]='';}
+        for(var i=0; i < story_script.parameters.languares.length; i++){arr_l.text_add[story_script.parameters.languares[i]]='';}
     }
 	update_novel();
 }
@@ -1667,17 +1666,17 @@ function dialog_text_edit(){
     modal_window("open",html);	
 }
 function dialog_text_apply(){
-	if (text_style.value != "") {copy_arr[arr_n].style=text_style.value;} else {delete copy_arr[arr_n].style};
-	if (text_class.value != "") {copy_arr[arr_n].className=text_class.value;} else {delete copy_arr[arr_n].className};
-    if (text_color.value != "") {arr_l.color_text=text_color.value;} else {delete arr_l.color_text};
-    if (p_color.value != "") {arr_l.color=p_color.value;} else {delete arr_l.color};
+	if(text_style.value != "") {copy_arr[arr_n].style=text_style.value;} else {delete copy_arr[arr_n].style};
+	if(text_class.value != "") {copy_arr[arr_n].className=text_class.value;} else {delete copy_arr[arr_n].className};
+    if(text_color.value != "") {arr_l.color_text=text_color.value;} else {delete arr_l.color_text};
+    if(p_color.value != "") {arr_l.color=p_color.value;} else {delete arr_l.color};
 	var a = 0;
-	for (var i=0;i<story_script.parameters.languares.length;i++){a+=((copy_arr.name[story_script.parameters.languares[i]])?copy_arr.name[story_script.parameters.languares[i]].length:0)};
-	if (a > 0){
-		if (name_style.value != "") {copy_arr.name.style=name_style.value;} else {delete copy_arr.name.style}
-		if (name_class.value != "") {copy_arr.name.className=name_class.value;} else {delete copy_arr.name.className}
-        if (name_color.value != "") {copy_arr.name.color_text=name_color.value;} else {delete copy_arr.name.color_text};
-        if (n_color.value != "") {copy_arr.name.color=n_color.value;} else {delete copy_arr.name.color};
+	for(var i=0;i<story_script.parameters.languares.length;i++){a+=((copy_arr.name[story_script.parameters.languares[i]])?copy_arr.name[story_script.parameters.languares[i]].length:0)};
+	if(a > 0){
+		if(name_style.value != "") {copy_arr.name.style=name_style.value;} else {delete copy_arr.name.style}
+		if(name_class.value != "") {copy_arr.name.className=name_class.value;} else {delete copy_arr.name.className}
+        if(name_color.value != "") {copy_arr.name.color_text=name_color.value;} else {delete copy_arr.name.color_text};
+        if(n_color.value != "") {copy_arr.name.color=n_color.value;} else {delete copy_arr.name.color};
 		arr_l.name=JSON.parse(JSON.stringify(copy_arr.name));
 	} else {delete arr_l.name}
 	arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));
@@ -1687,7 +1686,7 @@ function dialog_text_apply(){
 }
 function scene_edit() {
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
-	if (!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
+	if(!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
 	var html="<div class='window' style='padding:24px 8px; width:640px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Settings scene</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[2].en+"</p><br><br>"
     +"<table width='100%' height='256px'><tbody><tr>"
     +"<td width='256px' id='scene_bg_preview' rowspan='6' style='border-radius:10px; background-color:#efefff; background-image:url("+open_file(copy_arr[arr_n].background_image[languare])+"); background-color:"+copy_arr[arr_n].background_color+"; background-size:cover; background-repeat:no-repeat; background-position:center;'>&nbsp;</td>"
@@ -1758,7 +1757,7 @@ function scen_edit_data(){
     dialog_speed.value=((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:"")
     n_size_w.value=((story_script.parameters.name_panel.size[0])?story_script.parameters.name_panel.size[0]:0)
     n_size_h.value=((story_script.parameters.name_panel.size[1])?story_script.parameters.name_panel.size[1]:0)
-    if (story_script.parameters.name_panel.position){
+    if(story_script.parameters.name_panel.position){
         n_position_l.value=((story_script.parameters.name_panel.position[0])?story_script.parameters.name_panel.position[0]:0)
         n_position_r.value=((story_script.parameters.name_panel.position[1])?story_script.parameters.name_panel.position[1]:0)
         n_position_t.value=((story_script.parameters.name_panel.position[2])?story_script.parameters.name_panel.position[2]:0)
@@ -1805,16 +1804,13 @@ function scen_edit_updare(show) {
 }
 function scen_editor(block,i,n) {
     if(scen_data[2]<n){
-        if (i>=story_script[block].length-1){i=story_script[block].length-1;}
-        if (!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
-        if (!story_script[block][i]){i-=1;n=story_script[block][i].dialogs.length;}
-    } else if(scen_data[2]>n){
-        if (!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;}
-    }
+        if(i>=story_script[block].length-1){i=story_script[block].length-1;}
+        if(!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
+        if(!story_script[block][i]){i-=1;n=story_script[block][i].dialogs.length;}
+    } else if(scen_data[2]>n){if(!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;}}
     scen_data=[block,i,n];
     p_width.value=setup_editor.preview[0];
     ratio_screen.selectedIndex=setup_editor.preview[1];
-    //scen_editor_apply();
     world.style.display="none";
     new_story_block.style.display="none";
     scene_maker.style.display="initial";
@@ -1822,7 +1818,6 @@ function scen_editor(block,i,n) {
     scene_screen=true;
     html.style.overflow="hidden"
     scrnr_title.innerHTML = block + " (scene:"+(i+1)+" | dialog:"+n+")"
-
     preview_size();
     scene_layout.style.backgroundImage = "url("+open_file(languare_data(story_script[block][i].background_image))+")";
     scene_layout.style.backgroundColor = story_script[block][i].background_color;
@@ -1877,25 +1872,49 @@ function scen_editor(block,i,n) {
         tue_text_block.style.color = story_script.parameters.text_panel.color_text;
         tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text);
         tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
-    }else{tue_text_block.style.visibility='hidden';}
+    }else{tue_text_block.style.visibility='hidden';tue_name_block.style.visibility='hidden';}
+    var b=0
+    // interfaces
+    //if(story_script[block][i].dialogs[n-1].controll!='hidden'){}
+    interface_buttons.innerHTML=""
+    for(b=0;b<story_script.parameters.buttons.length;b++){
+        interface_buttons.innerHTML+=story_script.parameters.buttons[b].name+"<br>"
+    }
+    interface_buttons.innerHTML+="<div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>"
+    // arts
+    arts_e.innerHTML=""
+    if(story_script[block][i].dialogs[n-1].art){
+        for(b=0;b<story_script[block][i].dialogs[n-1].art.length;b++){
+            arts_e.innerHTML+=languare_data(story_script[block][i].dialogs[n-1].art[b].url)+"<br>"
+        }
+    }
+    arts_e.innerHTML+="<div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>"
+    // button
+    buttons_e.innerHTML=""
+    if(story_script[block][i].dialogs[n-1].choice){
+        for(b=0;b<story_script[block][i].dialogs[n-1].choice.length;b++){
+            buttons_e.innerHTML+=story_script[block][i].dialogs[n-1].choice[b].go_to+"<br>"
+        }
+    }
+    buttons_e.innerHTML+="<div style='width:100%;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>"
 }
 function preview_size(){
-    if (screen_size.value==0){
+    if(screen_size.value==0){
         scale_scene=1;screen_preview.style.transform='scale(1)';scene_canvas.style.transform='scale(1)';
         screen_preview.style.backgroundSize="64px"
         screen_preview.style.width="100%";
         screen_preview.style.height="calc(100vh - 40px)";
-        if (ratio_screen.selectedIndex==0){
-            scene_layout.style.height="100%";
-            scene_layout.style.width=p_width.value+"%";
-        }else{
+        if(ratio_screen.selectedIndex==0){
             scene_layout.style.width="100%";
             scene_layout.style.height=p_width.value+"%";
+        }else{
+            scene_layout.style.height="100%";
+            scene_layout.style.width=p_width.value+"%";
         }
     } else {
         screen_preview.style.width=(screen_size.value*2.5)+"px";
         screen_preview.style.height=screen_preview.style.width;
-        if (ratio_screen.selectedIndex==0){
+        if(ratio_screen.selectedIndex==0){
             scene_layout.style.height=screen_size.value+"px";
             scene_layout.style.width=((100/p_width.value)*screen_size.value)+"px";
         }else{
@@ -1951,7 +1970,7 @@ function variables_set_apply(){
     li_c=document.getElementsByClassName("var_operation");
     li_z=document.getElementsByClassName("var_value");
     copy_arr.variables=[];
-    for (var i=0; i < li_v.length; i++){ copy_arr.variables.push( [li_v[i].value,li_c[i].value,parseInt(li_z[i].value)] ) };
+    for(var i=0; i < li_v.length; i++){ copy_arr.variables.push( [li_v[i].value,li_c[i].value,parseInt(li_z[i].value)] ) };
     arr_l.variables=JSON.parse(JSON.stringify(copy_arr.variables));
     modal_window("close");
     update_novel();
@@ -2004,11 +2023,11 @@ function setup(){
     var block_list;
     var i
     var li=document.getElementsByClassName("story_block");
-    if (!story_script.parameters.plugins){story_script.parameters.plugins=[]}
-    for (i=0; i < li.length; i++){block_list+="<option value='"+li[i].id+"' "+((li[i].id==story_script.parameters.launch_story)?"selected" :"")+">"+li[i].id+"</option>"}
+    if(!story_script.parameters.plugins){story_script.parameters.plugins=[]}
+    for(i=0; i < li.length; i++){block_list+="<option value='"+li[i].id+"' "+((li[i].id==story_script.parameters.launch_story)?"selected" :"")+">"+li[i].id+"</option>"}
     var var_list="<table width='100%' id='var_tablet'><tbody>";
-    if (story_script.parameters.variables){
-        for (i=0; i < Object.keys(story_script.parameters.variables).length; i++){
+    if(story_script.parameters.variables){
+        for(i=0; i < Object.keys(story_script.parameters.variables).length; i++){
             var_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><input class='var_name input_text' placeholder='Name' value='"+
                 Object.keys(story_script.parameters.variables)[i]+
                 "' type='text'></td><td><input class='var_vol input_text' placeholder='Value' style='padding-top:10px;' value='"+
@@ -2018,8 +2037,8 @@ function setup(){
     }
     var_list+="</tbody></table><div onclick=\"add_tr('var_tablet')\" class='icon icon_add' style='margin:16px 0 0 45%;height:26px; width:26px; cursor:pointer;'></div>"
     var sound_list="<table width='100%' id='var_sounds'><tbody>";
-    if (story_script.parameters.sounds){
-        for (i=0; i < Object.keys(story_script.parameters.sounds).length; i++){
+    if(story_script.parameters.sounds){
+        for(i=0; i < Object.keys(story_script.parameters.sounds).length; i++){
             sound_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><input class='sound_name input_text' placeholder='Name' value='"+
                 Object.keys(story_script.parameters.sounds)[i]+
                 "' type='text'></td><td><input class='sound_path input_text' placeholder='path to audio file' style='padding-top:10px;' value='"+
@@ -2029,8 +2048,8 @@ function setup(){
     }
     sound_list+="</tbody></table><div onclick=\"add_tr('var_sounds')\" class='icon icon_add' style='margin:16px 0 0 45%;height:26px; width:26px; cursor:pointer;'></div>"
     var title_list="<table width='100%' id='var_title'><tbody>";
-    if (story_script.parameters.title){
-        for (i=0; i < Object.keys(story_script.parameters.title).length; i++){
+    if(story_script.parameters.title){
+        for(i=0; i < Object.keys(story_script.parameters.title).length; i++){
             title_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><select class='input_text title_lang'>"
             title_list+=big_languares(Object.keys(story_script.parameters.title)[i])+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' value='"+
                 story_script.parameters.title[Object.keys(story_script.parameters.title)[i]]+
@@ -2039,7 +2058,7 @@ function setup(){
     }
     var plugins_show="<table id='plugin' style='width:100%;  border-spacing:10px; border-collapse:separate;'>"
     var plugins_name
-    for (i=0; i < Object.keys(plugins_list).length; i++){
+    for(i=0; i < Object.keys(plugins_list).length; i++){
         plugins_name=Object.keys(plugins_list)[i]
         plugins_show+="<tr><td align='right' style='padding-top:4px; height:40px;'><input id='"+plugins_name+"' type='checkbox' class='chec_plugin checkbox_a' "+((story_script.parameters.plugins.indexOf(plugins_name) > -1)?'checked' :'')+"></td><td align='left' style='width:80px;'>"+plugins_list[plugins_name].name+"</td><td>"+plugins_list[plugins_name].text+"</td></tr>"
     }
@@ -2101,8 +2120,8 @@ function setup(){
 }
 function set_menu(name){
     var li=document.getElementsByClassName("set_button");
-    for (var i=0; i < li.length; i++){
-        if (i==name){
+    for(var i=0; i < li.length; i++){
+        if(i==name){
             li[i].className='set_button set_select'
             document.getElementById('blank_'+i).style.visibility='visible';
         } else {
@@ -2117,15 +2136,15 @@ function add_tr(id){
     var td1=document.createElement("td");
     var td2=document.createElement("td");
     var td3=document.createElement("td");
-    if (id=='var_title' || id=='new_title'){
+    if(id=='var_title' || id=='new_title'){
         td1.innerHTML="<select class='input_text title_lang'>"+big_languares()+"</select>";
         td1.style="padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;";
         td2.innerHTML="<input class='title_name input_text' style='padding-top:10px;' type='text' placeholder='translated title'>";
-    } else if (id=='var_tablet'){
+    } else if(id=='var_tablet'){
         td1.innerHTML="<input class='var_name input_text' placeholder='name' style='padding-top:10px;' type='text'>";
         td1.style="padding-right:8px; border-right:1px solid #cec8e3; width:40%;";
         td2.innerHTML="<input class='var_vol input_text' style='padding-top:10px;' type='text' placeholder='value'>";
-    } else if (id=='var_sounds'){
+    } else if(id=='var_sounds'){
         td1.innerHTML="<input class='sound_name input_text' placeholder='name' style='padding-top:10px;' type='text'>";
         td1.style="padding-right:8px; border-right:1px solid #cec8e3; width:40%;";
         td2.innerHTML="<input class='sound_path input_text' style='padding-top:10px;' type='text' placeholder='path to audio file'>";
@@ -2159,8 +2178,8 @@ function apply_setup(){
     setup_editor.wheel=(forms[0].checked)?true:false;
     setup_editor.lines=all_lines.checked;
     forms=document.forms.bg_edit;
-    for (i=0; i < forms.length; i++){
-        if (forms[i].checked){
+    for(i=0; i < forms.length; i++){
+        if(forms[i].checked){
             setup_editor.fon=forms[i].value;
             break;}
     } editor_setup();
@@ -2170,27 +2189,27 @@ function apply_setup(){
     li_n=document.getElementsByClassName("var_name");
     li_v=document.getElementsByClassName("var_vol");
     story_script.parameters.variables={};
-    for (i=0; i < li_n.length; i++){
-        if (li_n[i].value != ""){story_script.parameters.variables[li_n[i].value]=li_v[i].value}
+    for(i=0; i < li_n.length; i++){
+        if(li_n[i].value != ""){story_script.parameters.variables[li_n[i].value]=li_v[i].value}
     }
     li_n=document.getElementsByClassName("sound_name");
     li_v=document.getElementsByClassName("sound_path");
     story_script.parameters.sounds={};
-    for (i=0; i < li_n.length; i++){
-        if (li_n[i].value != ""){ story_script.parameters.sounds[li_n[i].value]=li_v[i].value}
+    for(i=0; i < li_n.length; i++){
+        if(li_n[i].value != ""){ story_script.parameters.sounds[li_n[i].value]=li_v[i].value}
     }
     li_n=document.getElementsByClassName("title_lang");
     li_v=document.getElementsByClassName("title_name");
     story_script.parameters.title={};
     story_script.parameters.languares=[];
-    for (i=0; i < li_n.length; i++){
+    for(i=0; i < li_n.length; i++){
         story_script.parameters.title[li_n[i].value]=li_v[i].value
         story_script.parameters.languares.push(li_n[i].value);
     }
     li_v=document.getElementsByClassName("chec_plugin");
     story_script.parameters.plugins=[];
-    for (i=0; i < li_v.length; i++){
-        if (li_v[i].checked && plugins_list[li_v[i].id] ){story_script.parameters.plugins.push(li_v[i].id);}
+    for(i=0; i < li_v.length; i++){
+        if(li_v[i].checked && plugins_list[li_v[i].id] ){story_script.parameters.plugins.push(li_v[i].id);}
     }
     lang_select();
     update_novel();
@@ -2200,12 +2219,12 @@ function apply_setup(){
 var scale = 1;
 var scale_scene = 1;
 document.addEventListener('keydown',function(event){
-    if (!scroll_block||scene_screen){
-        if (event.code=='Equal'){world_scale(2)}
-        else if (event.code=='Minus'){world_scale(false)}
-        else if (event.code=='Digit0'){world_scale(1)}
-        else if (scene_screen && event.code=='Comma'){scen_editor(scen_data[0],scen_data[1],scen_data[2]-1)}
-        else if (scene_screen && event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
+    if(!scroll_block||scene_screen){
+        if(event.code=='Equal'){world_scale(2)}
+        else if(event.code=='Minus'){world_scale(false)}
+        else if(event.code=='Digit0'){world_scale(1)}
+        else if(scene_screen && event.code=='Comma'){scen_editor(scen_data[0],scen_data[1],scen_data[2]-1)}
+        else if(scene_screen && event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
     }
 });
 var scene_screen=false
@@ -2216,11 +2235,11 @@ function scene_z(){
     scroll_ys=((scene_view.scrollLeft+(scene_view.clientWidth/2))/scale_scene)-(scene_view.clientWidth/2);
 }
 function world_scale(s) {
-    if (scene_screen){
+    if(scene_screen){
         scene_z();
-        if (screen_size.value!=0) {
-            if (s==1){scale_scene=1;scene_canvas.style.transform='scale(1)';}
-            else if (s==2){scale_scene=Math.min(2,scale_scene+0.05);scene_canvas.style.transform='scale('+scale_scene+')';}
+        if(screen_size.value!=0) {
+            if(s==1){scale_scene=1;scene_canvas.style.transform='scale(1)';}
+            else if(s==2){scale_scene=Math.min(2,scale_scene+0.05);scene_canvas.style.transform='scale('+scale_scene+')';}
             else {scale_scene=Math.max(0.25,scale_scene-0.05);scene_canvas.style.transform='scale('+scale_scene+')';}
             scene_view.scrollTop = ((scroll_xs+(scene_view.clientHeight/2))*scale_scene)-(scene_view.clientHeight/2);
             scene_view.scrollLeft = ((scroll_ys+(scene_view.clientWidth/2))*scale_scene)-(scene_view.clientWidth/2);
@@ -2228,8 +2247,8 @@ function world_scale(s) {
             screen_preview.style.height=(screen_size.value*2.5)*scale_scene+"px";
             screen_preview.style.backgroundSize=64*scale_scene+"px"
         } else {
-            if (s==1){scale_scene=1;screen_preview.style.transform='scale(1)';}
-            else if (s==2){scale_scene=Math.min(2,scale_scene+0.05);screen_preview.style.transform='scale('+scale_scene+')';}
+            if(s==1){scale_scene=1;screen_preview.style.transform='scale(1)';}
+            else if(s==2){scale_scene=Math.min(2,scale_scene+0.05);screen_preview.style.transform='scale('+scale_scene+')';}
             else {scale_scene=Math.max(1,scale_scene-0.05);screen_preview.style.transform='scale('+scale_scene+')';}
             scene_view.scrollTop = ((scroll_xs+(scene_view.clientHeight/2))*scale_scene)-(scene_view.clientHeight/2);
             scene_view.scrollLeft = ((scroll_ys+(scene_view.clientWidth/2))*scale_scene)-(scene_view.clientWidth/2);
@@ -2237,8 +2256,8 @@ function world_scale(s) {
     } else {
         scroll_z();
         add_element.style.visibility='hidden';
-        if (s==1){scale=1;world.style.transform='scale(1)';}
-        else if (s==2){scale=Math.min(2,scale+0.05);world.style.transform='scale('+scale+')';}
+        if(s==1){scale=1;world.style.transform='scale(1)';}
+        else if(s==2){scale=Math.min(2,scale+0.05);world.style.transform='scale('+scale+')';}
         else {scale=Math.max(0.25,scale-0.05);world.style.transform='scale('+scale+')';}
         html.scrollTop = ((scroll_xz+(html.clientHeight/2))*scale)-(html.clientHeight/2);
         html.scrollLeft = ((scroll_yz+(html.clientWidth/2))*scale)-(html.clientWidth/2);
@@ -2247,29 +2266,29 @@ function world_scale(s) {
 function csv_export(){
     var n,i,d,l,r;
     var CSV='name\t';
-	for (i=0; i < story_script.parameters.languares.length; i++){CSV+=story_script.parameters.languares[i]+'\t';}
+	for(i=0; i < story_script.parameters.languares.length; i++){CSV+=story_script.parameters.languares[i]+'\t';}
 	CSV+='\rtitle\t';
-	for (i=0; i < story_script.parameters.languares.length; i++){CSV+=story_script.parameters.title[story_script.parameters.languares[i]]+'\t';}
+	for(i=0; i < story_script.parameters.languares.length; i++){CSV+=story_script.parameters.title[story_script.parameters.languares[i]]+'\t';}
 	CSV+='\r';
 	all_blocks=0;
     while (Object.keys(story_script)[all_blocks]){
 		var k=Object.keys(story_script)[all_blocks]
-		if (k != "parameters" && k != "blocks" ){
+		if(k != "parameters" && k != "blocks" ){
 			CSV+=k+'\r';
-			for (var i=0; i < story_script[k].length; i++){
-				if (story_script[k][i].dialogs){
-					for (d=0; d < story_script[k][i].dialogs.length; d++){
-						if (story_script[k][i].dialogs[d].text){
+			for(var i=0; i < story_script[k].length; i++){
+				if(story_script[k][i].dialogs){
+					for(d=0; d < story_script[k][i].dialogs.length; d++){
+						if(story_script[k][i].dialogs[d].text){
 							CSV+=languare_data(story_script[k][i].dialogs[d].name)+'\t';
-							for (l=0; l < story_script.parameters.languares.length; l++){CSV+=story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
+							for(l=0; l < story_script.parameters.languares.length; l++){CSV+=story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
 							CSV+='\r';
 						}
-						else if (story_script[k][i].dialogs[d].choice){
-							for (r=0; r < story_script[k][i].dialogs[d].choice.length; r++){
-								if (story_script[k][i].dialogs[d].choice[r].text){
+						else if(story_script[k][i].dialogs[d].choice){
+							for(r=0; r < story_script[k][i].dialogs[d].choice.length; r++){
+								if(story_script[k][i].dialogs[d].choice[r].text){
 									CSV+='choice,';
-									for (l=0; l < story_script.parameters.languares.length; l++){
-										if (story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+=story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
+									for(l=0; l < story_script.parameters.languares.length; l++){
+										if(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+=story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
 										else {CSV+='\t';}
 									}
 									CSV+='\r';
@@ -2281,7 +2300,7 @@ function csv_export(){
 			} CSV+='\r';
 		} all_blocks++;
     }
-    if (story_script.parameters.title){n="translate_kit_"+((story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title)}
+    if(story_script.parameters.title){n="translate_kit_"+((story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title)}
     else {n="translate_kit";}
     var uri='data:text/csv;charset=utf-8,'+encodeURIComponent(CSV);
     var dlAnchorElem=document.getElementById('downloadAnchorElem');
