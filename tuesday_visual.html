@@ -577,11 +577,11 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                         </div>
                         <table onclick="block_open('arts_e');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Arts</td></tr></tbody></table>
                         <div class="set_panel" id="arts_e" style="width:100%; display:block;"><div id='arts_ec'></div>
-                            <div style='width:100%;margin-bottom:16px;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
+                            <div style='width:100%;margin-bottom:16px;' align='center'><div id='add_art' class='add_button icon_m icon_add'></div></div>
                         </div>
                         <table onclick="block_open('choice_e');" class="set_title"  height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Buttons & Сhoice</td></tr></tbody></table>
                         <div class="set_panel" id="choice_e" style="width:100%; display:block;"><div id='choice_ec'></div>
-                            <div style='width:100%;margin-bottom:16px;' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
+                            <div style='width:100%;margin-bottom:16px;' align='center'><div id='add_choice' class='add_button icon_m icon_add'></div></div>
                         </div>
                     </div></td>
                 </tr>
@@ -1874,15 +1874,25 @@ function scen_editor(block,i,n) {
         tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
     }else{tue_text_block.style.visibility='hidden';tue_name_block.style.visibility='hidden';}
     button_panel_update();
-    var tue_art=document.getElementsByClassName("tue_art");
-    while (tue_art.length){scene_layout.removeChild(tue_art[0]);}
-    if(story_script[block][i].dialogs[n-1].art){art_panel_update(block,i,n);}
-    var tue_choice=document.getElementsByClassName("tue_choice");
-    while (tue_choice.length){scene_layout.removeChild(tue_choice[0]);}
-    if(story_script[block][i].dialogs[n-1].choice){choice_panel_update(block,i,n);}
+    if(story_script[block][i].dialogs[n-1].art){art_panel_update(block,i,n);
+    } else {
+        arts_ec.innerHTML="";
+        var tue_art=document.getElementsByClassName("tue_art");
+        while (tue_art.length){scene_layout.removeChild(tue_art[0]);}
+    }
+    add_art.setAttribute('onclick','art_panel_add("'+block+'",'+i+','+n+')');
+    if(story_script[block][i].dialogs[n-1].choice){choice_panel_update(block,i,n);
+    } else {
+           choice_ec.innerHTML=""
+           var tue_choice=document.getElementsByClassName("tue_choice");
+           while (tue_choice.length){scene_layout.removeChild(tue_choice[0]);}
+       }
+    add_choice.setAttribute('onclick','choice_panel_add("'+block+'",'+i+','+n+')');
 }
 function art_panel_update(block,i,n){
     arts_ec.innerHTML=""
+    var tue_art=document.getElementsByClassName("tue_art");
+    while (tue_art.length){scene_layout.removeChild(tue_art[0]);}
     for(var b=0;b<story_script[block][i].dialogs[n-1].art.length;b++){
         var art=document.createElement("img");
         art.setAttribute('draggable','false');
@@ -1899,51 +1909,55 @@ function art_panel_update(block,i,n){
         if(story_script[block][i].dialogs[n-1].art[b].position[2]!=0){art.style.top=story_script[block][i].dialogs[n-1].art[b].position[2];}
         if(story_script[block][i].dialogs[n-1].art[b].position[3]!=0){art.style.bottom=story_script[block][i].dialogs[n-1].art[b].position[3];}
         scene_layout.appendChild(art);
-        arts_ec.innerHTML+= art_panel_edit(story_script[block][i].dialogs[n-1].art[b])
+        arts_ec.innerHTML+= art_panel_edit(block,i,n,b)
     }
 }
-function art_panel_edit(a){
+function art_panel_add(block,i,n){
+    story_script[block][i].dialogs[n-1].art.push({"position":["25%","0","25%","0"],"size":["auto","50%"],"url":""});
+    b=story_script[block][i].dialogs[n-1].art.length-1;
+    art_panel_update(block,i,n)
+}
+function art_panel_edit(block,i,n,b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table width="100%"><tbody><tr>'
-        +'<td colspan="3" height="80px" align="right" style="border-bottom:1px solid #cec8e3;"><div style="width:calc(100% - 40px); height:100%; background-image:url('+((a.url[languare])?open_file(a.url[languare]):open_file(a.url))+');background-size:auto 100%;background-repeat:no-repeat;background-position:center;"></div></td>'
-        +'<td class="icon icon_del" onclick="" height="40px" align="right" style="width:30px;border-bottom:1px solid #cec8e3;background-position:top center;"></td>'
+        +'<td colspan="3" height="80px" align="right" style="border-bottom:1px solid #cec8e3;"><div style="width:calc(100% - 40px); height:100%; background-image:url('+((story_script[block][i].dialogs[n-1].art[b].url[languare])?open_file(story_script[block][i].dialogs[n-1].art[b].url[languare]):open_file(story_script[block][i].dialogs[n-1].art[b].url))+');background-size:auto 100%;background-repeat:no-repeat;background-position:center;"></div></td>'
+        +'<td class="icon icon_del" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art.splice('+b+',1);art_panel_update(\''+block+'\','+i+','+n+');" height="40px" align="right" style="width:30px;border-bottom:1px solid #cec8e3;background-position:top center;"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Art</td>'
         +'<td style="width:28px;" align="center"><select class="input_text" onchange="" style="height:28px;width:100%;border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:1px solid #cec8e3;">'+project_languares(languare)+'</select></td>'
-        +'<td ><input class="input_text" onmouseup="" type="text" style="width:100%;height:28px" value="'+((a.url[languare])?a.url[languare]:a.url)+'"></td>'
+        +'<td ><input class="input_text" onmouseup="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].url[languare])?story_script[block][i].dialogs[n-1].art[b].url[languare]:story_script[block][i].dialogs[n-1].art[b].url)+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art width</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+a.size[0]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[0]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art height</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+a.size[1]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+a.position[0]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[0]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+a.position[1]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+a.position[2]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[2]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+a.position[3]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[3]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Style CSS</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.style)?a.style:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].style)?story_script[block][i].dialogs[n-1].art[b].style:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Class Name</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.className)?a.className:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].className)?story_script[block][i].dialogs[n-1].art[b].className:'')+'"></td>'
     +'</tr></tbody></table></div>'
     return html;
 }
 function choice_panel_update(block,i,n){
     choice_ec.innerHTML=""
+    var tue_choice=document.getElementsByClassName("tue_choice");
+    while (tue_choice.length){scene_layout.removeChild(tue_choice[0]);}
     for(var b=0;b<story_script[block][i].dialogs[n-1].choice.length;b++){
-        
-        
-
         var choice=document.createElement("div");
         if(story_script[block][i].dialogs[n-1].choice[b].className){choice.className=story_script[block][i].dialogs[n-1].choice[b].className;}
         if(story_script[block][i].dialogs[n-1].choice[b].style){choice.style=story_script[block][i].dialogs[n-1].choice[b].style;}
@@ -1961,9 +1975,7 @@ function choice_panel_update(block,i,n){
                 choice.style.lineHeight=story_script[block][i].dialogs[n-1].choice[b].size[1];
             }
         }
-        if(story_script[block][i].dialogs[n-1].choice[b].art_size){
-            choice.style.backgroundSize=story_script[block][i].dialogs[n-1].choice[b].art_size[0]+" "+story_script[block][i].dialogs[n-1].choice[b].art_size[1];
-        }
+        if(story_script[block][i].dialogs[n-1].choice[b].art_size){choice.style.backgroundSize=story_script[block][i].dialogs[n-1].choice[b].art_size[0]+" "+story_script[block][i].dialogs[n-1].choice[b].art_size[1];}
         if(story_script[block][i].dialogs[n-1].choice[b].position[0] != 0){choice.style.left=story_script[block][i].dialogs[n-1].choice[b].position[0];}
         if(story_script[block][i].dialogs[n-1].choice[b].position[1] != 0){choice.style.right=story_script[block][i].dialogs[n-1].choice[b].position[1];}
         if(story_script[block][i].dialogs[n-1].choice[b].position[2] != 0){choice.style.top=story_script[block][i].dialogs[n-1].choice[b].position[2];}
@@ -1977,71 +1989,79 @@ function choice_panel_update(block,i,n){
             else {choice.innerHTML=story_script[block][i].dialogs[n-1].choice[b].text;}
         }
         scene_layout.appendChild(choice);
-        choice_ec.innerHTML+= choice_panel_edit(story_script[block][i].dialogs[n-1].choice[b])
+        choice_ec.innerHTML+= choice_panel_edit(block,i,n,b)
     }
 }
-function choice_panel_edit(a){
+function choice_panel_add(block,i,n){
+    story_script[block][i].dialogs[n-1].choice.push({"go_to": story_script.parameters.launch_story,"position":["25%","0","25%","0"],"size":["auto","50%"],"url":""});
+    b=story_script[block][i].dialogs[n-1].choice.length-1;
+    choice_panel_update(block,i,n)
+}
+function choice_panel_edit(block,i,n,b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table width="100%"><tbody><tr>'
         +'<td colspan="3" height="40px" align="left" style="border-bottom:1px solid #cec8e3;">12</td>'
-        +'<td class="icon icon_del" onmouseup="" height="40px" align="right" style="width:30px;border-bottom:1px solid #cec8e3;"></td>'
+        +'<td class="icon icon_del" onmouseup="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice.splice('+b+',1);choice_panel_update(\''+block+'\','+i+','+n+');" height="40px" align="right" style="width:30px;border-bottom:1px solid #cec8e3;"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Text</td>'
         +'<td style="width:28px;" align="center"><select class="input_text" onchange="" style="height:28px;width:100%;border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:1px solid #cec8e3;">'+project_languares(languare)+'</select></td>'
-        +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.text)?a.text[languare]:'')+'"></td>'
+        +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].text)?story_script[block][i].dialogs[n-1].choice[b].text[languare]:'')+'"></td>'
+    +'</tr><tr>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Go to</td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].go_to)?story_script[block][i].dialogs[n-1].choice[b].go_to:'')+'"></td>'
     +'</tr><tr>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Style CSS</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.style)?a.style:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].style)?story_script[block][i].dialogs[n-1].choice[b].style:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Width size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.size)?a.size[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size)?story_script[block][i].dialogs[n-1].choice[b].size[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Height size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.size)?a.size[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size)?story_script[block][i].dialogs[n-1].choice[b].size[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Color</td>'
         +'<td style="width:28px;" align="center"><div class="show_color"></div></td>'
-        +'<td style="padding-right:8px;"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.color)?a.color:'')+'"></td>'
+        +'<td style="padding-right:8px;"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].color)?story_script[block][i].dialogs[n-1].choice[b].color:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" oninput=""></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Color text</td>'
         +'<td style="width:28px;" align="center"><div class="show_color"></div></td>'
-        +'<td style="padding-right:8px;"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.color_text)?a.color_text:'')+'"></td>'
+        +'<td style="padding-right:8px;"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].color_text)?story_script[block][i].dialogs[n-1].choice[b].color_text:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" oninput=""></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Text size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.size_text)?a.size_text:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size_text)?story_script[block][i].dialogs[n-1].choice[b].size_text:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.className)?a.className:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].className)?story_script[block][i].dialogs[n-1].choice[b].className:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.position)?a.position[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.position)?a.position[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.position)?a.position[2]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[2]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.position)?a.position[3]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[3]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Indent text</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.indent_text)?a.indent_text:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].indent_text)?story_script[block][i].dialogs[n-1].choice[b].indent_text:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art</td>'
-        +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.art)?a.art:'')+'"></td>'
+        +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art)?story_script[block][i].dialogs[n-1].choice[b].art:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Width art</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.art_size)?a.art_size[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Height art</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.art_size)?a.art_size[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
-        +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((a.sound)?a.sound:'')+'"></td>'
+        +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].sound)?story_script[block][i].dialogs[n-1].choice[b].sound:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
     +'</tr></tbody></table></div>'
     return html;
