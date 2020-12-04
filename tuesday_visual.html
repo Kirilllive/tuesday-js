@@ -341,7 +341,6 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
     background-position:center;
     box-shadow:0px 2px 24px rgba(110,95,165,0.25);
 }
-.set_panel{}
 .set_title{background-color:#cec8e3;cursor:pointer;}
 .input_color{
     cursor:pointer;
@@ -385,8 +384,8 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
         <tbody>
             <tr>
                 <td class='button_menu' style='border-radius:20px 0 0 20px; border-right:1px solid #cec8e3;'><table onclick='new_block()' height="100%"><tbody><tr><td width='42px' class='icon icon_add'></td><td align='center'>Add story block</td><td width='16px'></td></tr></tbody></table></td>
-                <td width="42px" class='icon button_menu icon_equal' onclick='world_scale(2)' ></td>
-                <td width="42px" class='icon button_menu icon_scale' onclick='world_scale(1)' ></td>
+                <td width="42px" class='icon button_menu icon_equal' onclick='world_scale(2)'></td>
+                <td width="42px" class='icon button_menu icon_scale' onclick='world_scale(1)'></td>
                 <td width="42px" class='icon button_menu icon_minus' onclick='world_scale(false)' style='border-radius:0 20px 20px 0;'></td>
             </tr>
         </tbody>
@@ -586,7 +585,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                     </div></td>
                 </tr>
                 <tr>
-                    <td height="40px" align='center' style="background-color:#fff;" class='button_menu'><table class='button_menu' width='100%' height="100%" onclick='scen_edit_updare(false);'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Close</td><td width='42px'></td></tr></tbody></table></td>
+                    <td height="40px" align='center' style="background-color:#fff;" class='button_menu'><table class='button_menu' width='100%' height="100%" onclick='scen_edit_updare(false);'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td>
                 </tr>
             </tbody>
         </table>
@@ -1535,10 +1534,16 @@ function project_languares(d){
 	for(l=0; l < story_script.parameters.languares.length; l++){lang+="<option value='"+story_script.parameters.languares[l]+"' "+((d==story_script.parameters.languares[l])?"selected":"")+">"+story_script.parameters.languares[l].toUpperCase()+"</option>"}
 	return lang
 }
-function option_block(d){
-	var scene_list='';
-	for(l=0; l < Object.keys(story_script).length; l++){if(Object.keys(story_script)[l] != "parameters" && Object.keys(story_script)[l] != "blocks"){scene_list+="<option value='"+Object.keys(story_script)[l]+"' "+((d==Object.keys(story_script)[l])?"selected" :"")+">"+Object.keys(story_script)[l]+"</option>"}}
-	return scene_list
+function option_block(d,g){
+	var scene_list="";
+    scene_list+='<optgroup label="Story blocks">'
+    for(l=0;l<Object.keys(story_script).length;l++){if(Object.keys(story_script)[l] != "parameters" && Object.keys(story_script)[l] != "blocks"){scene_list+="<option value='"+Object.keys(story_script)[l]+"' "+((d==Object.keys(story_script)[l])?"selected" :"")+">"+Object.keys(story_script)[l]+"</option>"}}
+    if(g){
+        scene_list+='</optgroup><optgroup label="System function">';
+        for(s=0;s<Object.keys(button_name).length;s++){scene_list+="<option value='"+Object.keys(button_name)[s]+"' "+((d==Object.keys(button_name)[s])?"selected" :"")+">"+button_name[Object.keys(button_name)[s]]+"</option>"}
+    }
+    scene_list+='</optgroup>'
+    return scene_list
 }
 function legacy_choice_edit(){
 	var var_if="<table width='100%' id='legacy_choice_edit'><tbody>";
@@ -1625,12 +1630,10 @@ function element_to(){
     else if(arr_n=='event'){arr_l[arr_n]="event"}
     else if(arr_n=='controll'){arr_l[arr_n]="visible"}
     else if(arr_n=='variables'){arr_l[arr_n]=[[Object.keys(story_script.parameters.variables)[0], "add", 1]];variables_set_edit()}
-	else if(arr_n=='text'){
-		arr_l.text = {};
+	else if(arr_n=='text'){arr_l.text = {};
 	    for(var i=0; i < story_script.parameters.languares.length; i++){arr_l.text[story_script.parameters.languares[i]]='';}
 	}
-    else if(arr_n=='text_add'){
-        arr_l.text_add = {};
+    else if(arr_n=='text_add'){arr_l.text_add = {};
         for(var i=0; i < story_script.parameters.languares.length; i++){arr_l.text_add[story_script.parameters.languares[i]]='';}
     }
 	update_novel();
@@ -1778,7 +1781,7 @@ function scen_edit_data(){
         n_color_text_s.style.backgroundColor=story_script.parameters.name_panel.color_text
     } else {n_color_text.value=""}
 }
-function scen_edit_updare(show) {
+function scen_edit_updare(show){
     if(!style.value==""){story_script.parameters.text_panel.style=style.value} else {delete story_script.parameters.text_panel.style};
     if(!size_w.value==""){story_script.parameters.text_panel.size[0]=correct_value(size_w.value)};
     if(!size_h.value==""){story_script.parameters.text_panel.size[1]=correct_value(size_h.value)};
@@ -1802,13 +1805,15 @@ function scen_edit_updare(show) {
     if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
     else {scen_editor_apply()}
 }
-function scen_editor(block,i,n) {
+function scen_editor(block,i,n){
     if(scen_data[2]<n){
         if(i>=story_script[block].length-1){i=story_script[block].length-1;}
         if(!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
         if(!story_script[block][i]){i-=1;n=story_script[block][i].dialogs.length;}
     } else if(scen_data[2]>n){if(!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;}}
     scen_data=[block,i,n];
+    //arr_l=story_script[block][i];
+    //arr_n=n; //arr_l.dialogs[arr_n]
     p_width.value=setup_editor.preview[0];
     ratio_screen.selectedIndex=setup_editor.preview[1];
     world.style.display="none";
@@ -1817,10 +1822,10 @@ function scen_editor(block,i,n) {
     scroll_block=true;
     scene_screen=true;
     html.style.overflow="hidden"
-    scrnr_title.innerHTML = block + " (scene:"+(i+1)+" | dialog:"+n+")"
+    scrnr_title.innerHTML=block+" (scene:"+(i+1)+" | dialog:"+n+")"
     preview_size();
-    scene_layout.style.backgroundImage = "url("+open_file(languare_data(story_script[block][i].background_image))+")";
-    scene_layout.style.backgroundColor = story_script[block][i].background_color;
+    scene_layout.style.backgroundImage="url("+open_file(languare_data(story_script[block][i].background_image))+")";
+    scene_layout.style.backgroundColor=story_script[block][i].background_color;
     if(story_script[block][i].dialogs[n-1].text){
         tue_text_block.style.visibility='visible';
         tue_text_element.style.position="relative";
@@ -1865,7 +1870,7 @@ function scen_editor(block,i,n) {
             if(story_script.parameters.name_panel.position[1] != 0){tue_name_block.style.right=story_script.parameters.name_panel.position[1];}
             if(story_script.parameters.name_panel.position[2] != 0){tue_name_block.style.top=story_script.parameters.name_panel.position[2];}
             if(story_script.parameters.name_panel.position[3] != 0){tue_name_block.style.bottom=story_script.parameters.name_panel.position[3];}
-            tue_name_block.style.zIndex=1001;
+            tue_name_block.style.zIndex=2001+n;
             tue_name_block.style.visibility='visible';
         } else {tue_name_block.style.visibility='hidden';}
         tue_text_block.style.backgroundColor = story_script.parameters.text_panel.color;
@@ -1874,19 +1879,9 @@ function scen_editor(block,i,n) {
         tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
     }else{tue_text_block.style.visibility='hidden';tue_name_block.style.visibility='hidden';}
     button_panel_update();
-    if(story_script[block][i].dialogs[n-1].art){art_panel_update(block,i,n);
-    } else {
-        arts_ec.innerHTML="";
-        var tue_art=document.getElementsByClassName("tue_art");
-        while (tue_art.length){scene_layout.removeChild(tue_art[0]);}
-    }
+    if(story_script[block][i].dialogs[n-1].art){art_panel_update(block,i,n);} else {arts_ec.innerHTML="";var tue_art=document.getElementsByClassName("tue_art");while (tue_art.length){scene_layout.removeChild(tue_art[0]);}}
     add_art.setAttribute('onclick','art_panel_add("'+block+'",'+i+','+n+')');
-    if(story_script[block][i].dialogs[n-1].choice){choice_panel_update(block,i,n);
-    } else {
-           choice_ec.innerHTML=""
-           var tue_choice=document.getElementsByClassName("tue_choice");
-           while (tue_choice.length){scene_layout.removeChild(tue_choice[0]);}
-       }
+    if(story_script[block][i].dialogs[n-1].choice){choice_panel_update(block,i,n);} else {choice_ec.innerHTML="";var tue_choice=document.getElementsByClassName("tue_choice");while (tue_choice.length){scene_layout.removeChild(tue_choice[0]);}}
     add_choice.setAttribute('onclick','choice_panel_add("'+block+'",'+i+','+n+')');
 }
 function art_panel_update(block,i,n){
@@ -1928,28 +1923,28 @@ function art_panel_edit(block,i,n,b){
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art width</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[0]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[0]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[0]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art height</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[1]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[1]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[0]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[2]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[2]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[1]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[0]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[0]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[2]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[3]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[3]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[3]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[1]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Style CSS</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].style)?story_script[block][i].dialogs[n-1].art[b].style:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].style=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].style)?story_script[block][i].dialogs[n-1].art[b].style:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Class Name</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].className)?story_script[block][i].dialogs[n-1].art[b].className:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].className=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].className)?story_script[block][i].dialogs[n-1].art[b].className:'')+'"></td>'
     +'</tr></tbody></table></div>'
     return html;
 }
@@ -1983,6 +1978,7 @@ function choice_panel_update(block,i,n){
         choice.style.color=story_script[block][i].dialogs[n-1].choice[b].color_text;
         choice.style.padding=story_script[block][i].dialogs[n-1].choice[b].indent_text;
         choice.style.fontSize=story_script[block][i].dialogs[n-1].choice[b].size_text;
+        choice.style.zIndex=1001+n;
         choice.style.textAlign="center";
         if(story_script[block][i].dialogs[n-1].choice[b].text){
             if(story_script[block][i].dialogs[n-1].choice[b].text[languare]){choice.innerHTML=story_script[block][i].dialogs[n-1].choice[b].text[languare];}
@@ -1999,7 +1995,7 @@ function choice_panel_add(block,i,n){
 }
 function choice_panel_edit(block,i,n,b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table width="100%"><tbody><tr>'
-        +'<td colspan="3" height="40px" align="left" style="border-bottom:1px solid #cec8e3;">12</td>'
+    +'<td id="chdbn'+b+'" colspan="3" height="40px" align="left" style="border-bottom:1px solid #cec8e3;">'+((button_name[story_script[block][i].dialogs[n-1].choice[b].go_to])?button_name[story_script[block][i].dialogs[n-1].choice[b].go_to]:story_script[block][i].dialogs[n-1].choice[b].go_to)+'</td>'
         +'<td class="icon icon_del" onmouseup="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice.splice('+b+',1);choice_panel_update(\''+block+'\','+i+','+n+');" height="40px" align="right" style="width:30px;border-bottom:1px solid #cec8e3;"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Text</td>'
@@ -2007,61 +2003,60 @@ function choice_panel_edit(block,i,n,b){
         +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].text)?story_script[block][i].dialogs[n-1].choice[b].text[languare]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Go to</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].go_to)?story_script[block][i].dialogs[n-1].choice[b].go_to:'')+'"></td>'
-    +'</tr><tr>'
+        +'<td colspan="3"><select class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=this.value;" style="width:100%;height:28px" oninput="chdbn'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value)">'+option_block(story_script[block][i].dialogs[n-1].choice[b].go_to,true)+'</select></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Style CSS</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].style)?story_script[block][i].dialogs[n-1].choice[b].style:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text"  onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].style=this.value;" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].style)?story_script[block][i].dialogs[n-1].choice[b].style:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Width size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size)?story_script[block][i].dialogs[n-1].choice[b].size[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[0]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size)?story_script[block][i].dialogs[n-1].choice[b].size[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Height size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size)?story_script[block][i].dialogs[n-1].choice[b].size[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[1]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size)?story_script[block][i].dialogs[n-1].choice[b].size[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Color</td>'
-        +'<td style="width:28px;" align="center"><div class="show_color"></div></td>'
-        +'<td style="padding-right:8px;"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].color)?story_script[block][i].dialogs[n-1].choice[b].color:'')+'"></td>'
-        +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" oninput=""></td>'
+        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+story_script[block][i].dialogs[n-1].choice[b].color+';"></div></td>'
+        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].color)?story_script[block][i].dialogs[n-1].choice[b].color:'')+'"></td>'
+        +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color=this.value;choice_panel_update(\''+block+'\','+i+','+n+');"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Color text</td>'
-        +'<td style="width:28px;" align="center"><div class="show_color"></div></td>'
-        +'<td style="padding-right:8px;"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].color_text)?story_script[block][i].dialogs[n-1].choice[b].color_text:'')+'"></td>'
-        +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" oninput=""></td>'
+        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+story_script[block][i].dialogs[n-1].choice[b].color_text+';"></div></td>'
+        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].color_text)?story_script[block][i].dialogs[n-1].choice[b].color_text:'')+'"></td>'
+        +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Text size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size_text)?story_script[block][i].dialogs[n-1].choice[b].size_text:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size_text)?story_script[block][i].dialogs[n-1].choice[b].size_text:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].className)?story_script[block][i].dialogs[n-1].choice[b].className:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].className=this.value;" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].className)?story_script[block][i].dialogs[n-1].choice[b].className:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[2]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[2]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[0]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[2]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[3]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[3]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[3]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[1]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Indent text</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].indent_text)?story_script[block][i].dialogs[n-1].choice[b].indent_text:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].indent_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].indent_text)?story_script[block][i].dialogs[n-1].choice[b].indent_text:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art</td>'
         +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art)?story_script[block][i].dialogs[n-1].choice[b].art:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Width art</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[0]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Height art</td>'
-        +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[1]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
-        +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].sound)?story_script[block][i].dialogs[n-1].choice[b].sound:'')+'"></td>'
+        +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].sound)?story_script[block][i].dialogs[n-1].choice[b].sound:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
     +'</tr></tbody></table></div>'
     return html;
@@ -2119,72 +2114,64 @@ function button_panel_edit(b){
             +'<td '+((story_script.parameters.buttons[b].name=='tue_back'||story_script.parameters.buttons[b].name=='tue_next')?'':'class="icon icon_del" onmouseup="story_script.parameters.buttons.splice('+b+',1);button_panel_update();"')+' height="40px" align="right" style="width:30px;border-bottom:1px solid #cec8e3;"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="width:40%; padding-right:8px;">Function</td>'
-            +'<td colspan="3"><select class="input_text" oninput="uidbn'+b+'.innerHTML=button_name[this.value]" style="width:100%;">'
-                +'<option value="tue_back" '+((story_script.parameters.buttons[b].name=='tue_back')?'selected':'')+'>'+button_name.tue_back+'</option>'
-                +'<option value="tue_next" '+((story_script.parameters.buttons[b].name=='tue_next')?'selected':'')+'>'+button_name.tue_next+'</option>'
-                +'<option value="tue_home" '+((story_script.parameters.buttons[b].name=='tue_home')?'selected':'')+'>'+button_name.tue_home+'</option>'
-                +'<option value="tue_save" '+((story_script.parameters.buttons[b].name=='tue_save')?'selected':'')+'>'+button_name.tue_save+'</option>'
-                +'<option value="tue_load" '+((story_script.parameters.buttons[b].name=='tue_load')?'selected':'')+'>'+button_name.tue_load+'</option>'
-                +'<option value="tue_load_autosave" '+((story_script.parameters.buttons[b].name=='tue_load_autosave')?'selected':'')+'>'+button_name.tue_load_autosave+'</option>'
-                +'<option value="tue_fullScreen" '+((story_script.parameters.buttons[b].name=='tue_fullScreen')?'selected':'')+'>'+button_name.tue_fullScreen+'</option>'
-            +'</select></td>'
+            +'<td colspan="3"><select class="input_text" oninput="uidbn'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value);story_script.parameters.buttons['+b+'].name=this.value;" style="width:100%;height:28px">'+option_block(story_script.parameters.buttons[b].name,true)+'</select></select></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Text</td>'
             +'<td style="width:28px;" align="center"><select class="input_text" onchange="" style="height:28px;width:100%;border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:1px solid #cec8e3;">'+project_languares(languare)+'</select></td>'
             +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px;" value="'+((story_script.parameters.buttons[b].text)?story_script.parameters.buttons[b].text[languare]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Style CSS</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].style)?story_script.parameters.buttons[b].style:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].style)?story_script.parameters.buttons[b].style:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Width size</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size)?story_script.parameters.buttons[b].size[0]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[0]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size)?story_script.parameters.buttons[b].size[0]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Height size</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size)?story_script.parameters.buttons[b].size[1]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[1]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size)?story_script.parameters.buttons[b].size[1]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Color</td>'
-            +'<td style="width:28px;" align="center"><div class="show_color"></div></td>'
-            +'<td style="padding-right:8px;"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].color)?story_script.parameters.buttons[b].color:'')+'"></td>'
-            +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" oninput=""></td>'
+            +'<td style="width:28px;" align="center"><div class="show_color" '+((story_script.parameters.buttons[b].color)?'style="background-color:'+story_script.parameters.buttons[b].color+';"':"")+'></div></td>'
+            +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].color=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].color)?story_script.parameters.buttons[b].color:'')+'"></td>'
+            +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" onchange="story_script.parameters.buttons['+b+'].color=this.value;button_panel_update();"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Color text</td>'
-            +'<td style="width:28px;" align="center"><div class="show_color"></div></td>'
-            +'<td style="padding-right:8px;"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].color_text)?story_script.parameters.buttons[b].color_text:'')+'"></td>'
-            +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" oninput=""></td>'
+            +'<td style="width:28px;" align="center"><div class="show_color" '+((story_script.parameters.buttons[b].color_text)?'style="background-color:'+story_script.parameters.buttons[b].color_text+';"':"")+'></div></td>'
+            +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].color_text=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].color_text)?story_script.parameters.buttons[b].color_text:'')+'"></td>'
+            +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" onchange="story_script.parameters.buttons['+b+'].color_text=this.value;button_panel_update();"></td>'
         +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Size size</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size_text)?story_script.parameters.buttons[b].size_text:'')+'"></td>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Text size</td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size_text=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size_text)?story_script.parameters.buttons[b].size_text:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].className)?story_script.parameters.buttons[b].className:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].className=this.value" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].className)?story_script.parameters.buttons[b].className:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[0]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[2]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[2]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[1]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[0]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[0]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[2]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[3]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[3]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[3]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[1]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[1]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Indent text</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].indent_text)?story_script.parameters.buttons[b].indent_text:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].indent_text=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].indent_text)?story_script.parameters.buttons[b].indent_text:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Art</td>'
             +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].art)?story_script.parameters.buttons[b].art:'')+'"></td>'
             +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Width art</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].art_size)?story_script.parameters.buttons[b].art_size[0]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=art_size[0].value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].art_size)?story_script.parameters.buttons[b].art_size[0]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Height art</td>'
-            +'<td colspan="3"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].art_size)?story_script.parameters.buttons[b].art_size[1]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=art_size[1].value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].art_size)?story_script.parameters.buttons[b].art_size[1]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
-            +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].sound)?story_script.parameters.buttons[b].sound:'')+'"></td>'
+            +'<td colspan="2"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=sound.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].sound)?story_script.parameters.buttons[b].sound:'')+'"></td>'
             +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
     +'</tr></tbody></table></div>'
     return html;
@@ -2298,7 +2285,7 @@ function variables_set_apply(){
                                                 
 
 function correct_name(name){
-    return name.replace(/[\s.,%-]/g, '_');
+    return name.replace(/[\s.,%-:;]/g, '_');
 };
 function correct_value(name){
     if(name==parseInt(name)&&name!=0){
