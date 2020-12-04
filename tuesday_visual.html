@@ -357,7 +357,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
 }
 </style>
 </head>
-<body onload="world_size();" style='background-color:#efefff; font-size:14px;'>
+<body onload="world_size();" style='background-color:#efefff; font-size:12px;'>
     <input type="file" id="json_file" style="display:none; position:fixed;" multiple webkitdirectory/>
     <input type="color" id="paletr" style="position:fixed; visibility:hidden;" name="paletr">
 	<div id="menu_panel">
@@ -1852,7 +1852,7 @@ function scen_editor(block,i,n){
         tue_text_block.style.borderSpacing="0";
         tue_text_view=document.getElementById("tue_text_view");
         tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
-        tue_text_view.style.fontSize=story_script.parameters.text_panel.size_text;
+        tue_text_view.style.fontSize=((story_script.parameters.text_panel.size_text)?story_script.parameters.text_panel.size_text:story_script.parameters.font_size);
         tue_text_view.style.height="100%";
         if(story_script[block][i].dialogs[n-1].name && story_script.parameters.name_panel){
             if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;} else {tue_name_block.className=""};
@@ -1861,7 +1861,7 @@ function scen_editor(block,i,n){
             if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text} else {tue_name_block.style.color=null};
             tue_name_block.style.position="absolute";
             tue_name_block.style.padding=story_script.parameters.name_panel.indent_text;
-            tue_name_block.style.fontSize=story_script.parameters.name_panel.size_text;
+            tue_name_block.style.fontSize=((story_script.parameters.name_panel.size_text)?story_script.parameters.name_panel.size_text:story_script.parameters.font_size);
             tue_name_block.style.textAlign="center";
             if(tue_name_block.style.width=story_script.parameters.name_panel.size[0] != 0){tue_name_block.style.width=story_script.parameters.name_panel.size[0];}
             tue_name_block.style.height=story_script.parameters.name_panel.size[1];
@@ -1923,22 +1923,22 @@ function art_panel_edit(block,i,n,b){
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art width</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[0]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[0]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[0]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[0]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art height</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[1]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[1]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[2]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[2]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[2]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[2]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[0]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[0]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[0]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[0]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[3]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[3]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[3]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[3]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[1]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[1]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Style CSS</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].style=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].style)?story_script[block][i].dialogs[n-1].art[b].style:'')+'"></td>'
@@ -1977,7 +1977,7 @@ function choice_panel_update(block,i,n){
         if(story_script[block][i].dialogs[n-1].choice[b].position[3] != 0){choice.style.bottom=story_script[block][i].dialogs[n-1].choice[b].position[3];}
         choice.style.color=story_script[block][i].dialogs[n-1].choice[b].color_text;
         choice.style.padding=story_script[block][i].dialogs[n-1].choice[b].indent_text;
-        choice.style.fontSize=story_script[block][i].dialogs[n-1].choice[b].size_text;
+        choice.style.fontSize=((story_script[block][i].dialogs[n-1].choice[b].size_text)?story_script[block][i].dialogs[n-1].choice[b].size_text:story_script.parameters.font_size);
         choice.style.zIndex=1001+n;
         choice.style.textAlign="center";
         if(story_script[block][i].dialogs[n-1].choice[b].text){
@@ -2025,35 +2025,35 @@ function choice_panel_edit(block,i,n,b){
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Text size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size_text)?story_script[block][i].dialogs[n-1].choice[b].size_text:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].size_text)?story_script[block][i].dialogs[n-1].choice[b].size_text:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].className=this.value;" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].className)?story_script[block][i].dialogs[n-1].choice[b].className:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[2]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[2]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[2]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[2]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[0]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[3]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[3]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[3]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[3]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[1]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].position)?story_script[block][i].dialogs[n-1].choice[b].position[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Indent text</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].indent_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].indent_text)?story_script[block][i].dialogs[n-1].choice[b].indent_text:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].indent_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].indent_text)?story_script[block][i].dialogs[n-1].choice[b].indent_text:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art</td>'
         +'<td colspan="2"><input class="input_text" onchange="" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art)?story_script[block][i].dialogs[n-1].choice[b].art:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Width art</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[0]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Height art</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[1]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].art_size)?story_script[block][i].dialogs[n-1].choice[b].art_size[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
         +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].choice[b].sound)?story_script[block][i].dialogs[n-1].choice[b].sound:'')+'"></td>'
@@ -2083,7 +2083,7 @@ function button_panel_update(){
             ui_button.style.textAlign="center";
             ui_button.style.color=story_script.parameters.buttons[b].color_text;
             ui_button.style.padding=story_script.parameters.buttons[b].indent_text;
-            ui_button.style.fontSize=story_script.parameters.buttons[b].size_text;
+            ui_button.style.fontSize=((story_script.parameters.buttons[b].size_text)?story_script.parameters.buttons[b].size_text:story_script.parameters.font_size);
         }
         ui_button.style.zIndex=2000+b;
         ui_button.id=story_script.parameters.buttons[b].name;
@@ -2124,10 +2124,10 @@ function button_panel_edit(b){
             +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].style)?story_script.parameters.buttons[b].style:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Width size</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[0]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size)?story_script.parameters.buttons[b].size[0]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[0]=correct_value(this.value);button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size)?story_script.parameters.buttons[b].size[0]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Height size</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[1]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size)?story_script.parameters.buttons[b].size[1]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[1]=correct_value(this.value);button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size)?story_script.parameters.buttons[b].size[1]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Color</td>'
             +'<td style="width:28px;" align="center"><div class="show_color" '+((story_script.parameters.buttons[b].color)?'style="background-color:'+story_script.parameters.buttons[b].color+';"':"")+'></div></td>'
@@ -2140,22 +2140,22 @@ function button_panel_edit(b){
             +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" onchange="story_script.parameters.buttons['+b+'].color_text=this.value;button_panel_update();"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Text size</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size_text=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size_text)?story_script.parameters.buttons[b].size_text:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size_text=correct_value(this.value);button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].size_text)?story_script.parameters.buttons[b].size_text:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
             +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].className=this.value" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].className)?story_script.parameters.buttons[b].className:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[2]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[2]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[2]=correct_value(this.value);button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[2]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[0]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[0]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[0]=correct_value(this.value);button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[0]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[3]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[3]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[3]=correct_value(this.value);button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[3]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[1]=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[1]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[1]=correct_value(this.value);button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].position)?story_script.parameters.buttons[b].position[1]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Indent text</td>'
             +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].indent_text=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].indent_text)?story_script.parameters.buttons[b].indent_text:'')+'"></td>'
@@ -2165,10 +2165,10 @@ function button_panel_edit(b){
             +'<td height="40px" align="right" style="width:30px;" class="icon icon_load"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Width art</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=art_size[0].value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].art_size)?story_script.parameters.buttons[b].art_size[0]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].art_size[0]=correct_value(this.value);button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].art_size)?story_script.parameters.buttons[b].art_size[0]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Height art</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=art_size[1].value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].art_size)?story_script.parameters.buttons[b].art_size[1]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].art_size[1]=correct_value(this.value);button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].art_size)?story_script.parameters.buttons[b].art_size[1]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
             +'<td colspan="2"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=sound.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((story_script.parameters.buttons[b].sound)?story_script.parameters.buttons[b].sound:'')+'"></td>'
@@ -2449,7 +2449,7 @@ function apply_setup(){
     story_script.parameters.key.launch_story=key_launch_story.value
     story_script.parameters.key.load_autosave=key_load_autosave.value
     story_script.parameters.font=font.value
-    story_script.parameters.font_size=font_size.value
+    story_script.parameters.font_size=correct_value(font_size.value)
     story_script.parameters.text_panel.dialog_speed=dialog_speed.value
     //
     forms=document.forms.devices;
