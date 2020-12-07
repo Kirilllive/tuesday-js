@@ -284,6 +284,7 @@ function getLang() {
     else {languare=navigator.languagesubstring(0,2);}
     if (languare!='ru'&&languare!='en'&&languare!='ja'&&languare!='es'&&languare!='fr'){languare='en'}
     else {for(var i=0;i<translation[languare].length;i++){window.location.hash=languare;document.getElementById(translation[languare][i][0]).innerHTML=translation[languare][i][1];}}
+    for (i=0; i < lang_choise.length; i++){if (lang_choise[i].value==languare){lang_choise[i].checked=true;break;}}
 }
 var lang_choise=document.forms.lang
 lang_choise.onchange=function(e){
