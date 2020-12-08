@@ -27,7 +27,7 @@ If is necessary, it is possible to expand the basic functionality using JavaScri
 
 
 # Visualization
-The editor fully displays the structure of the script with all elements such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
+The editor fully displays the structure of the script with all elements, build branching narrative and dialogue. such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
 
 エディターは、会話オプションや選択肢のような全ての要素を伴うスクリプトの構造を完全に映し出します。これにより、ナビやスクリプトを編集しやすくします。
 
