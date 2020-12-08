@@ -724,13 +724,16 @@ function new_novel(){
     update_novel();
 }
 function update_novel(){
-    add_element.style.visibility="hidden";
-    story_blocks.innerHTML=""
-    line_controll=[];
-    search_block.value=""
-    while (story_lines.hasChildNodes()){story_lines.removeChild(story_lines.firstChild);}
-	parse_story();
-    lines();
+    if(scene_screen){scen_edit_updare(true)}
+    else {
+        add_element.style.visibility="hidden";
+        story_blocks.innerHTML=""
+        line_controll=[];
+        search_block.value=""
+        while (story_lines.hasChildNodes()){story_lines.removeChild(story_lines.firstChild);}
+        parse_story();
+        lines();
+    }
 }
 function load_story_edit(url){
     var xmlhttp=new XMLHttpRequest();
@@ -1423,6 +1426,7 @@ function add_element_b(id,arr){
 function add_element_s(id,n){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Add to scene '+n+'</td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>Add dialog</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="back_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_back"></td><td>back to</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="go_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_goto"></td><td>go to</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="event";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_event"></td><td>event</td></tr></tbody></table></td></tr>'
@@ -1807,11 +1811,10 @@ function scen_edit_updare(show){
     if(!n_size_h.value==""){story_script.parameters.name_panel.size[1]=correct_value(n_size_h.value)};
     if(!n_color_text.value==""){story_script.parameters.name_panel.color_text=n_color_text.value}else{delete story_script.parameters.name_panel.color_text};
     if(!n_color.value==""){story_script.parameters.name_panel.color=n_color.value}else{delete story_script.parameters.name_panel.color};
-    if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
-    else {scen_editor_apply()}
+    if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}else{scen_editor_apply()}
 }
 function scen_editor(block,i,n){
-        scen_element={};
+    scen_element={};
     if(scen_data[2]<n){
         if(i>=story_script[block].length-1){i=story_script[block].length-1;}
         if(!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
@@ -1832,7 +1835,7 @@ function scen_editor(block,i,n){
     preview_size();
     scene_layout.style.backgroundImage="url("+open_file(languare_data(story_script[block][i].background_image))+")";
     scene_layout.style.backgroundColor=story_script[block][i].background_color;
-    if(story_script[block][i].dialogs[n-1].text){
+    if(story_script[block][i].dialogs[n-1].text && (typeof story_script[block][i].dialogs[n-1].text!=='object' || (story_script[block][i].dialogs[n-1].text[languare] && typeof story_script[block][i].dialogs[n-1].text[languare]!=='object'))){
         tue_text_block.style.visibility='visible';
         tue_text_element.style.position="relative";
         if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;} else {tue_text_block.className=""};
@@ -1883,7 +1886,7 @@ function scen_editor(block,i,n){
         tue_text_block.style.color = story_script.parameters.text_panel.color_text;
         tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text);
         tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
-    }else{tue_text_block.style.visibility='hidden';tue_name_block.style.visibility='hidden';}
+    } else {tue_text_block.style.visibility='hidden';tue_name_block.style.visibility='hidden';}
     button_panel_update();
     if(story_script[block][i].dialogs[n-1].art){art_panel_update(block,i,n);} else {arts_ec.innerHTML="";var tue_art=document.getElementsByClassName("tue_art");while (tue_art.length){scene_layout.removeChild(tue_art[0]);}}
     add_art.setAttribute('onclick','art_panel_add("'+block+'",'+i+','+n+')');
