@@ -355,6 +355,16 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
     width:26px;
     height:26px;
 }
+#resizers {width:100px;height:100px;position:absolute;top:100px;left:100px;cursor: move;border: 2px dashed #cec8e3;}
+.resizer{width:10px;height:10px;border-radius:50%;background:#fff;border: 2px solid #cec8e3;position:absolute;}
+.top-left {left:-8px;top:-8px;cursor:nwse-resize;}
+.top-right {right:-8px;top:-8px;cursor:nesw-resize;}
+.bottom-left {left:-8px;bottom:-8px;cursor:nesw-resize;}
+.bottom-right {right:-8px;bottom:-8px;cursor:nwse-resize;}
+.size-right {right:-8px;top:50%;cursor:ew-resize;transform:translateY(-50%);}
+.size-top {left:50%;top:-8px;cursor:ns-resize;transform:translateX(-50%);}
+.size-left {left:-8px;top:50%;cursor:ew-resize;transform:translateY(-50%);}
+.size-bottom {left:50%;bottom:-8px;cursor:ns-resize;transform:translateX(-50%);}
 </style>
 </head>
 <body onload="world_size();" style='background-color:#efefff; font-size:12px;'>
@@ -404,6 +414,16 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                     <div id='scene_view' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing: border-box;' align='center'>
                         <div id='screen_preview' style='transform-origin:0 0;min-width:100%;min-height:100%;padding-top:40px;display:flex;justify-content:center;align-items:center;' onmouseup="window.getSelection().removeAllRanges();">
                             <div id='scene_canvas'><div id='scene_layout'>
+                                <div id='resizers' style='visibility:hidden;'>
+                                    <div class='resizer size-right'></div>
+                                    <div class='resizer top-right'></div>
+                                    <div class='resizer size-top'></div>
+                                    <div class='resizer top-left'></div>
+                                    <div class='resizer size-left'></div>
+                                    <div class='resizer bottom-left'></div>
+                                    <div class='resizer size-bottom'></div>
+                                    <div class='resizer bottom-right'></div>
+                                </div>
                             <table id="tue_text_block" align="center">
                                 <tbody>
                                    <tr>
@@ -1090,7 +1110,7 @@ html.ontouchstart=function(e){
     }
 }
 scene_view.ontouchstart=function(e){
-    if(scene_screen){
+    if(scene_screen&&scene_scroll){
         startmove_x=e.touches[0].clientX;
         startmove_y=e.touches[0].clientY;
         scroll_x=scene_view.scrollTop;
@@ -1129,12 +1149,12 @@ html.onmousedown=function(e){
 			html.onmousemove=null;
 			html.onmouseup=null;
 			document.onmousemove=null;
-			focus_block.onmouseup=null;
+			document.onmouseup=null;
 		};
     }
 }
 scene_view.onmousedown=function(e){
-    if(scene_screen){
+    if(scene_screen&&scene_scroll){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
         scroll_x=scene_view.scrollTop;
@@ -1153,7 +1173,7 @@ scene_view.onmousedown=function(e){
             html.onmousemove=null;
             html.onmouseup=null;
             document.onmousemove=null;
-            focus_block.onmouseup=null;
+            document.onmouseup=null;
         };
     }
 }
@@ -1813,6 +1833,7 @@ function scen_edit_updare(show){
     if(!n_color.value==""){story_script.parameters.name_panel.color=n_color.value}else{delete story_script.parameters.name_panel.color};
     if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}else{scen_editor_apply()}
 }
+var scene_scroll=false;
 function scen_editor(block,i,n){
     scen_element={};
     if(scen_data[2]<n){
@@ -1830,6 +1851,7 @@ function scen_editor(block,i,n){
     scene_maker.style.display="initial";
     scroll_block=true;
     scene_screen=true;
+    scene_scroll=true;
     html.style.overflow="hidden"
     scrnr_title.innerHTML=block+" (scene:"+(i+1)+" | dialog:"+n+")"
     preview_size();
@@ -1894,6 +1916,7 @@ function scen_editor(block,i,n){
     add_choice.setAttribute('onclick','choice_panel_add("'+block+'",'+i+','+n+')');
 }
 function art_panel_update(block,i,n){
+    droppFocus();
     arts_ec.innerHTML=""
     var tue_art=document.getElementsByClassName("tue_art");
     while (tue_art.length){scene_layout.removeChild(tue_art[0]);}
@@ -1902,10 +1925,12 @@ function art_panel_update(block,i,n){
         var art=document.createElement("img");
         art.id='art'+b
         art.setAttribute('draggable','false');
+        art.setAttribute('onclick','objSelect(this.id)');
         art.src=(story_script[block][i].dialogs[n-1].art[b].url[languare])?open_file(story_script[block][i].dialogs[n-1].art[b].url[languare]):open_file(story_script[block][i].dialogs[n-1].art[b].url)
         art.classList.add("tue_art");
         art.style="user-select:text;"+((story_script[block][i].dialogs[n-1].art[b].style)?story_script[block][i].dialogs[n-1].art[b].style:"")
         art.style.position="absolute";
+        art.style.zIndex=1001+b;
         if(story_script[block][i].dialogs[n-1].art[b].size){
             art.style.width=story_script[block][i].dialogs[n-1].art[b].size[0];
             art.style.height=story_script[block][i].dialogs[n-1].art[b].size[1];
@@ -1997,7 +2022,7 @@ function choice_panel_update(block,i,n){
         if(story_script[block][i].dialogs[n-1].choice[b].position[3] != 0){choice.style.bottom=story_script[block][i].dialogs[n-1].choice[b].position[3];}
         choice.style.color=story_script[block][i].dialogs[n-1].choice[b].color_text;
         choice.style.fontSize=((story_script[block][i].dialogs[n-1].choice[b].size_text)?story_script[block][i].dialogs[n-1].choice[b].size_text:story_script.parameters.font_size);
-        choice.style.zIndex=1001+n;
+        choice.style.zIndex=2001+n;
         choice.style.textAlign="center";
         if(story_script[block][i].dialogs[n-1].choice[b].text[languare].length>0){
             choice.innerHTML=story_script[block][i].dialogs[n-1].choice[b].text[languare];
@@ -2620,6 +2645,133 @@ function csv_export(){
     dlAnchorElem.download=n+".csv";
     dlAnchorElem.click();
 }
+
+
+
+
+
+
+
+
+
+
+var objFocus;
+function droppFocus(){
+    if(objFocus){
+        objFocus.style.width=resizers.style.width;
+        objFocus.style.height=resizers.style.height;
+        objFocus.style.top=resizers.style.top;
+        objFocus.style.left=resizers.style.left;
+        objFocus.style.zIndex=resizers.style.zIndex;
+        scene_layout.appendChild(objFocus);
+        objFocus='';
+        resizers.style.visibility = "hidden"
+    }
+}
+function objSelect(id){
+    droppFocus();
+    objFocus = document.getElementById(id);
+    resizers.style.height=objFocus.offsetHeight + "px"
+    resizers.style.width=objFocus.offsetWidth + "px"
+    resizers.style.top=objFocus.offsetTop + "px";
+    resizers.style.left=objFocus.offsetLeft + "px";
+    resizers.style.visibility = "visible"
+    resizers.style.zIndex=objFocus.style.zIndex;
+    objFocus.style.width='100%';
+    objFocus.style.height='100%';
+    objFocus.style.top='0px';
+    objFocus.style.left='0px';
+    objFocus.style.bottom='none';
+    objFocus.style.right='none';
+    resizers.appendChild(objFocus);
+}
+var moveSize=true;
+function makeResizableDiv(s) {
+    s.onmousedown = dragMouseDown;
+    function dragMouseDown(e) {
+        if (moveSize){
+            e = e || window.event;
+            e.preventDefault();
+            original_x = e.clientX;
+            original_y = e.clientY;
+            scene_scroll=false
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+    }
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        original_mouse_x = original_x - e.clientX;
+        original_mouse_y = original_y - e.clientY;
+        original_x = e.clientX;
+        original_y = e.clientY;
+        s.style.top = (s.offsetTop - original_mouse_y) + "px";
+        s.style.left = (s.offsetLeft - original_mouse_x) + "px";
+    }
+    function closeDragElement() {
+        scene_scroll=true
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+    const resizers = document.querySelectorAll(' .resizer')
+    const minSize = 26;
+    let original_width = 0, original_height = 0, original_x = 0, original_y = 0, original_mouse_x = 0, original_mouse_y = 0;
+    for (let i = 0;i < resizers.length; i++) {
+        const sizer = resizers[i];
+        sizer.addEventListener('mousedown', function(e) {
+            moveSize=false
+            scene_scroll=false
+            e.preventDefault()
+            original_width = parseFloat(getComputedStyle(s, null).getPropertyValue('width').replace('px', ''));
+            original_height = parseFloat(getComputedStyle(s, null).getPropertyValue('height').replace('px', ''));
+            original_x = parseFloat(getComputedStyle(s, null).getPropertyValue('left').replace('px', ''));
+            original_y = parseFloat(getComputedStyle(s, null).getPropertyValue('top').replace('px', ''));
+            original_mouse_x = e.pageX;
+            original_mouse_y = e.pageY;
+            window.addEventListener('mousemove', resize)
+            window.addEventListener('mouseup', stopResize)
+        })
+        function resize(e) {
+            if (sizer.classList.contains('bottom-right')) {
+                const width = original_width + (e.pageX - original_mouse_x);
+                const height = original_height + (e.pageY - original_mouse_y)
+                if (width > minSize) {s.style.width = width + 'px'}
+                if (height > minSize) {s.style.height = height + 'px'}
+            } else if (sizer.classList.contains('bottom-left')) {
+                const height = original_height + (e.pageY - original_mouse_y)
+                const width = original_width - (e.pageX - original_mouse_x)
+                if (height > minSize) {s.style.height = height + 'px'}
+                if (width > minSize) {s.style.width = width + 'px';s.style.left = original_x + (e.pageX - original_mouse_x) + 'px'}
+            } else if (sizer.classList.contains('top-right')) {
+                const width = original_width + (e.pageX - original_mouse_x)
+                const height = original_height - (e.pageY - original_mouse_y)
+                if (width > minSize) {s.style.width = width + 'px'}
+                if (height > minSize) {s.style.height = height + 'px';s.style.top = original_y + (e.pageY - original_mouse_y) + 'px'}
+            } else if (sizer.classList.contains('top-left')) {
+                const width = original_width - (e.pageX - original_mouse_x)
+                const height = original_height - (e.pageY - original_mouse_y)
+                if (width > minSize) {s.style.width = width + 'px';s.style.left = original_x + (e.pageX - original_mouse_x) + 'px'}
+                if (height > minSize) {s.style.height = height + 'px';s.style.top = original_y + (e.pageY - original_mouse_y) + 'px'}
+            } else if (sizer.classList.contains('size-top')) {
+                const height = original_height - (e.pageY - original_mouse_y)
+                if (height > minSize) {s.style.height = height + 'px';s.style.top = original_y + (e.pageY - original_mouse_y) + 'px'}
+            } else if (sizer.classList.contains('size-bottom')) {
+                const height = original_height + (e.pageY - original_mouse_y)
+                if (height > minSize) {s.style.height = height + 'px'}
+            } else if (sizer.classList.contains('size-left')) {
+                const width = original_width - (e.pageX - original_mouse_x)
+                if (width > minSize) {s.style.width = width + 'px';s.style.left = original_x + (e.pageX - original_mouse_x) + 'px'}
+            } else if (sizer.classList.contains('size-right')) {
+                const width = original_width + (e.pageX - original_mouse_x)
+                if (width > minSize) {s.style.width = width + 'px'}
+            }
+        }
+        function stopResize() {window.removeEventListener('mousemove', resize);moveSize=true;scene_scroll=true}
+    }
+}
+makeResizableDiv(document.getElementById("resizers"));
+
 </script>
 </body>
 </html>
