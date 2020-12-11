@@ -356,7 +356,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
     height:26px;
 }
 #resizers {width:100px;height:100px;position:absolute;top:100px;left:100px;cursor: move;border: 2px dashed #cec8e3;}
-.resizer{width:10px;height:10px;border-radius:50%;background:#fff;border: 2px solid #cec8e3;position:absolute;}
+.resizer{width:10px;height:10px;border-radius:50%;background:#fff;border: 2px solid #cec8e3;position:absolute;z-index:3000;}
 .top-left {left:-8px;top:-8px;cursor:nwse-resize;}
 .top-right {right:-8px;top:-8px;cursor:nesw-resize;}
 .bottom-left {left:-8px;bottom:-8px;cursor:nesw-resize;}
@@ -835,7 +835,7 @@ function creation_block(b){
                 }
                 element+="</div>"
             } else {element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";scene_m(this.id,"+(i+1)+",\""+chapter.id+"\");' title='Scene edit'></td></tr></tbody></table>"}
-            if((story_script[chapter.id][i].background_image&&story_script[chapter.id][i].background_image!="")||story_script[chapter.id][i].background_color){element+="<div class='scene_bg' style='background-image:url("+open_file(languare_data(story_script[chapter.id][i].background_image))+");background-color:"+story_script[chapter.id][i].background_color+";' width='100%'></div>"}
+            if(story_script[chapter.id][i].background_image && (typeof story_script[chapter.id][i].background_image!=='object' || (story_script[chapter.id][i].background_image[languare] && typeof story_script[chapter.id][i].background_image[languare]!=='object')) ||story_script[chapter.id][i].background_color){element+="<div class='scene_bg' style='background-image:url("+open_file(languare_data(story_script[chapter.id][i].background_image))+");background-color:"+story_script[chapter.id][i].background_color+";' width='100%'></div>"}
             if(story_script[chapter.id][i].dialogs){
                 for(var d=0; d < story_script[chapter.id][i].dialogs.length; d++){
 					element+="<div class='dialog' id='d_"+chapter.id+"_"+i+"_"+d+"'>"+"<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='24px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td><p class='namber'>scene:"+(i+1)+" | dialog:"+(d+1)+"</p></td><td id='m_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs;arr_n="+d+";dialog_m(this.id,'"+(d+1)+"','"+chapter.id+"',"+i+")\" class='add_button icon_m icon_show' title='Dialog'></td></tr></tbody></table>"
@@ -1248,7 +1248,7 @@ function toast (message){
     x.classList.add("toast_anim");
 }
 function about(){
-    var html="<div class='window' style='padding:24px 16px; width:412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.4 (alpha)</p><br><table style=' border-spacing:10px; border-collapse:separate;'><tr><td align='right'>E-Mail:</td><td align='left'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right'>Home:</td><td align='left'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr><tr><td align='right'>itch.io:</td><td align='left'><a href='https://kirill-live.itch.io/tuesday' target='_blank'>https://kirill-live.itch.io/tuesday-js</a></td></tr><tr><td align='right'>GitHub:</td><td align='left'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'>https://github.com/Kirilllive/tuesday-js</a></td></tr></table><br><p>Thanks for the help from users<hr><a href='https://itch.io/profile/laurentk' target='_blank'>LaurentK</a></p><br><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1000v200H0z' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p></div></div>"
+    var html="<div class='window' style='padding:24px 16px; width:412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.6 (beta)</p><br><table style=' border-spacing:10px; border-collapse:separate;'><tr><td align='right'>E-Mail:</td><td align='left'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right'>Home:</td><td align='left'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr><tr><td align='right'>itch.io:</td><td align='left'><a href='https://kirill-live.itch.io/tuesday' target='_blank'>https://kirill-live.itch.io/tuesday-js</a></td></tr><tr><td align='right'>GitHub:</td><td align='left'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'>https://github.com/Kirilllive/tuesday-js</a></td></tr></table><br><p>Thanks for the help from users<hr><a href='https://itch.io/profile/laurentk' target='_blank'>LaurentK</a></p><br><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1000v200H0z' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p></div></div>"
     modal_window("open",html);
 }
 function build(){
@@ -1831,11 +1831,10 @@ function scen_edit_updare(show){
     if(!n_size_h.value==""){story_script.parameters.name_panel.size[1]=correct_value(n_size_h.value)};
     if(!n_color_text.value==""){story_script.parameters.name_panel.color_text=n_color_text.value}else{delete story_script.parameters.name_panel.color_text};
     if(!n_color.value==""){story_script.parameters.name_panel.color=n_color.value}else{delete story_script.parameters.name_panel.color};
-    if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}else{scen_editor_apply()}
+    if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}else{scen_element={};scen_editor_apply()}
 }
 var scene_scroll=false;
 function scen_editor(block,i,n){
-    scen_element={};
     if(scen_data[2]<n){
         if(i>=story_script[block].length-1){i=story_script[block].length-1;}
         if(!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
@@ -1885,6 +1884,7 @@ function scen_editor(block,i,n){
         tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
         tue_text_view.style.fontSize=((story_script.parameters.text_panel.size_text)?story_script.parameters.text_panel.size_text:story_script.parameters.font_size);
         tue_text_view.style.height="100%";
+        tue_text_block.style.zIndex=1998;
         if(story_script[block][i].dialogs[n-1].name && story_script.parameters.name_panel){
             if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;} else {tue_name_block.className=""};
             if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;} else {tue_name_block.style=null};
@@ -1901,7 +1901,6 @@ function scen_editor(block,i,n){
             if(story_script.parameters.name_panel.position[1] != 0){tue_name_block.style.right=story_script.parameters.name_panel.position[1];}
             if(story_script.parameters.name_panel.position[2] != 0){tue_name_block.style.top=story_script.parameters.name_panel.position[2];}
             if(story_script.parameters.name_panel.position[3] != 0){tue_name_block.style.bottom=story_script.parameters.name_panel.position[3];}
-            tue_name_block.style.zIndex=2001+n;
             tue_name_block.style.visibility='visible';
         } else {tue_name_block.style.visibility='hidden';}
         tue_text_block.style.backgroundColor = story_script.parameters.text_panel.color;
@@ -1925,7 +1924,7 @@ function art_panel_update(block,i,n){
         var art=document.createElement("img");
         art.id='art'+b
         art.setAttribute('draggable','false');
-        art.setAttribute('onclick','objSelect(this.id)');
+        art.setAttribute('onclick','objSelect(this.id);arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+']');
         art.src=(story_script[block][i].dialogs[n-1].art[b].url[languare])?open_file(story_script[block][i].dialogs[n-1].art[b].url[languare]):open_file(story_script[block][i].dialogs[n-1].art[b].url)
         art.classList.add("tue_art");
         art.style="user-select:text;"+((story_script[block][i].dialogs[n-1].art[b].style)?story_script[block][i].dialogs[n-1].art[b].style:"")
@@ -1948,6 +1947,7 @@ function art_panel_add(block,i,n){
     story_script[block][i].dialogs[n-1].art.push({"position":["25%","0","25%","0"],"size":["auto","50%"],"url":""});
     b=story_script[block][i].dialogs[n-1].art.length-1;
     art_panel_update(block,i,n)
+    file_catalog('artt'+b,'img','artt'+b,'artpre'+b,'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[artl'+b+'.value]')
 }
 function art_panel_edit(block,i,n,b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
@@ -2140,7 +2140,7 @@ function button_panel_update(){
             ui_button.style.color=story_script.parameters.buttons[b].color_text;
             ui_button.style.fontSize=((story_script.parameters.buttons[b].size_text)?story_script.parameters.buttons[b].size_text:story_script.parameters.font_size);
         }
-        ui_button.style.zIndex=2000+b;
+        ui_button.style.zIndex=3000+b;
         ui_button.id=story_script.parameters.buttons[b].name+b;
         ui_button.classList.add("tue_controll");
         ui_button.style.position="absolute";
@@ -2645,17 +2645,8 @@ function csv_export(){
     dlAnchorElem.download=n+".csv";
     dlAnchorElem.click();
 }
-
-
-
-
-
-
-
-
-
-
 var objFocus;
+let arr_e;
 function droppFocus(){
     if(objFocus){
         objFocus.style.width=resizers.style.width;
@@ -2709,17 +2700,13 @@ function makeResizableDiv(s) {
         s.style.top = (s.offsetTop - original_mouse_y) + "px";
         s.style.left = (s.offsetLeft - original_mouse_x) + "px";
     }
-    function closeDragElement() {
-        scene_scroll=true
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
+    function closeDragElement() {saveResize();}
     const resizers = document.querySelectorAll(' .resizer')
     const minSize = 26;
     let original_width = 0, original_height = 0, original_x = 0, original_y = 0, original_mouse_x = 0, original_mouse_y = 0;
     for (let i = 0;i < resizers.length; i++) {
         const sizer = resizers[i];
-        sizer.addEventListener('mousedown', function(e) {
+        sizer.addEventListener('mousedown', function(e){
             moveSize=false
             scene_scroll=false
             e.preventDefault()
@@ -2730,7 +2717,7 @@ function makeResizableDiv(s) {
             original_mouse_x = e.pageX;
             original_mouse_y = e.pageY;
             window.addEventListener('mousemove', resize)
-            window.addEventListener('mouseup', stopResize)
+            screen_preview.addEventListener('mouseup', stopResize)
         })
         function resize(e) {
             if (sizer.classList.contains('bottom-right')) {
@@ -2767,11 +2754,28 @@ function makeResizableDiv(s) {
                 if (width > minSize) {s.style.width = width + 'px'}
             }
         }
-        function stopResize() {window.removeEventListener('mousemove', resize);moveSize=true;scene_scroll=true}
+        function stopResize() {
+            window.removeEventListener('mousemove', resize);
+            moveSize=true;
+            saveResize();
+        }
     }
 }
+function saveResize(){
+    if(!scene_scroll){
+        layout_width = parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('width').replace('px',''));
+        layout_height = parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('height').replace('px',''));
+        arr_e.position[0] = (resizers.style.left.replace('px','')/layout_width*100).toFixed(2)+'%';
+        arr_e.position[2] = (resizers.style.top.replace('px','')/layout_height*100).toFixed(2)+'%';
+        arr_e.size[0] = (resizers.style.width.replace('px','')/layout_width*100).toFixed(2)+'%';
+        arr_e.size[1] = (resizers.style.height.replace('px','')/layout_height*100).toFixed(2)+'%';
+        scen_edit_updare(true)
+    }
+    document.onmouseup = null;
+    document.onmousemove = null;
+    scene_scroll=true
+}
 makeResizableDiv(document.getElementById("resizers"));
-
 </script>
 </body>
 </html>
