@@ -1456,8 +1456,8 @@ function add_element_s(id,n){
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td><s>sound stop</s></td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>'
+                //+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
+                //+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
@@ -1475,8 +1475,8 @@ function add_element_d(id,n){
 				+((arr_l.text||arr_l.text_add)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>')
 				+((arr_l.text||arr_l.text_add)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="text_add";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>text add</td></tr></tbody></table></td></tr>')
                 +((arr_l.html)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>')
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
-				+((arr_l.choice)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>')
+				//+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
+				//+((arr_l.choice)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>')
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
@@ -2704,8 +2704,8 @@ function makeResizableDiv(s) {
         original_mouse_y = original_y - e.clientY;
         original_x = e.clientX;
         original_y = e.clientY;
-        s.style.top = (s.offsetTop - original_mouse_y) + "px";
-        s.style.left = (s.offsetLeft - original_mouse_x) + "px";
+        s.style.top = (s.offsetTop - original_mouse_y/scale_scene) + "px";
+        s.style.left = (s.offsetLeft - original_mouse_x/scale_scene) + "px";
     }
     function closeDragElement() {saveResize();}
     const resizers = document.querySelectorAll(' .resizer')
@@ -2728,36 +2728,36 @@ function makeResizableDiv(s) {
         })
         function resize(e) {
             if (sizer.classList.contains('bottom-right')) {
-                const width = original_width + (e.pageX - original_mouse_x);
-                const height = original_height + (e.pageY - original_mouse_y)
+                const width = original_width + (e.pageX - original_mouse_x)/scale_scene;
+                const height = original_height + (e.pageY - original_mouse_y)/scale_scene
                 if (width > minSize) {s.style.width = width + 'px'}
                 if (height > minSize) {s.style.height = height + 'px'}
             } else if (sizer.classList.contains('bottom-left')) {
-                const height = original_height + (e.pageY - original_mouse_y)
-                const width = original_width - (e.pageX - original_mouse_x)
+                const height = original_height + (e.pageY - original_mouse_y)/scale_scene
+                const width = original_width - (e.pageX - original_mouse_x)/scale_scene
                 if (height > minSize) {s.style.height = height + 'px'}
-                if (width > minSize) {s.style.width = width + 'px';s.style.left = original_x + (e.pageX - original_mouse_x) + 'px'}
+                if (width > minSize) {s.style.width = width + 'px';s.style.left = original_x + (e.pageX - original_mouse_x)/scale_scene + 'px'}
             } else if (sizer.classList.contains('top-right')) {
-                const width = original_width + (e.pageX - original_mouse_x)
-                const height = original_height - (e.pageY - original_mouse_y)
+                const width = original_width + (e.pageX - original_mouse_x)/scale_scene
+                const height = original_height - (e.pageY - original_mouse_y)/scale_scene
                 if (width > minSize) {s.style.width = width + 'px'}
-                if (height > minSize) {s.style.height = height + 'px';s.style.top = original_y + (e.pageY - original_mouse_y) + 'px'}
+                if (height > minSize) {s.style.height = height + 'px';s.style.top = original_y + (e.pageY - original_mouse_y)/scale_scene + 'px'}
             } else if (sizer.classList.contains('top-left')) {
-                const width = original_width - (e.pageX - original_mouse_x)
-                const height = original_height - (e.pageY - original_mouse_y)
-                if (width > minSize) {s.style.width = width + 'px';s.style.left = original_x + (e.pageX - original_mouse_x) + 'px'}
-                if (height > minSize) {s.style.height = height + 'px';s.style.top = original_y + (e.pageY - original_mouse_y) + 'px'}
+                const width = original_width - (e.pageX - original_mouse_x)/scale_scene
+                const height = original_height - (e.pageY - original_mouse_y)/scale_scene
+                if (width > minSize) {s.style.width = width + 'px';s.style.left = original_x + (e.pageX - original_mouse_x)/scale_scene + 'px'}
+                if (height > minSize) {s.style.height = height + 'px';s.style.top = original_y + (e.pageY - original_mouse_y)/scale_scene + 'px'}
             } else if (sizer.classList.contains('size-top')) {
-                const height = original_height - (e.pageY - original_mouse_y)
-                if (height > minSize) {s.style.height = height + 'px';s.style.top = original_y + (e.pageY - original_mouse_y) + 'px'}
+                const height = original_height - (e.pageY - original_mouse_y)/scale_scene
+                if (height > minSize) {s.style.height = height + 'px';s.style.top = original_y + (e.pageY - original_mouse_y)/scale_scene + 'px'}
             } else if (sizer.classList.contains('size-bottom')) {
-                const height = original_height + (e.pageY - original_mouse_y)
+                const height = original_height + (e.pageY - original_mouse_y)/scale_scene
                 if (height > minSize) {s.style.height = height + 'px'}
             } else if (sizer.classList.contains('size-left')) {
-                const width = original_width - (e.pageX - original_mouse_x)
-                if (width > minSize) {s.style.width = width + 'px';s.style.left = original_x + (e.pageX - original_mouse_x) + 'px'}
+                const width = original_width - (e.pageX - original_mouse_x)/scale_scene
+                if (width > minSize) {s.style.width = width + 'px';s.style.left = original_x + (e.pageX - original_mouse_x)/scale_scene + 'px'}
             } else if (sizer.classList.contains('size-right')) {
-                const width = original_width + (e.pageX - original_mouse_x)
+                const width = original_width + (e.pageX - original_mouse_x)/scale_scene
                 if (width > minSize) {s.style.width = width + 'px'}
             }
         }
@@ -2783,8 +2783,8 @@ function saveResize(){
             arr_e.size[0] = (resizers.style.width.replace('px','')/layout_width*100).toFixed(2)+'%';
             arr_e.size[1] = (resizers.style.height.replace('px','')/layout_height*100).toFixed(2)+'%';
         } else {
-            arr_e.size[0] = resizers.style.width;
-            arr_e.size[1] = resizers.style.height;
+            arr_e.size[0] = (resizers.style.width.replace('px','')-6)+'px';
+            arr_e.size[1] = (resizers.style.height.replace('px','')-6)+'px';
         }
         scen_edit_updare(true)
     }
