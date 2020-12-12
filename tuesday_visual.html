@@ -355,8 +355,8 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
     width:26px;
     height:26px;
 }
-#resizers {width:100px;height:100px;position:absolute;top:100px;left:100px;cursor: move;border: 2px dashed #cec8e3;}
-.resizer{width:10px;height:10px;border-radius:50%;background:#fff;border: 2px solid #cec8e3;position:absolute;z-index:3000;}
+#resizers {box-sizing:border-box;width:100px;height:100px;position:absolute;top:100px;left:100px;cursor: move;border: 2px dashed #cec8e3;}
+.resizer{width:10px;height:10px;border-radius:50%;background:#fff;border: 2px solid #cec8e3;position:absolute;z-index:4000;}
 .top-left {left:-8px;top:-8px;cursor:nwse-resize;}
 .top-right {right:-8px;top:-8px;cursor:nesw-resize;}
 .bottom-left {left:-8px;bottom:-8px;cursor:nesw-resize;}
@@ -427,8 +427,8 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                             <table id="tue_text_block" align="center">
                                 <tbody>
                                    <tr>
-                                        <td id="tue_text_element" style="position:relative;">
-                                            <div id="tue_text_view"></div>
+                                        <td id="tue_text_element" style="position:relative;" valign='top'>
+                                            <div id="tue_text_view" ></div>
                                             <div id="tue_name_block"></div>
                                         </td>
                                     </tr>
@@ -1456,8 +1456,8 @@ function add_element_s(id,n){
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td><s>sound stop</s></td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td><s>art</s></td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td><s>choice</s></td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
@@ -1475,8 +1475,8 @@ function add_element_d(id,n){
 				+((arr_l.text||arr_l.text_add)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>')
 				+((arr_l.text||arr_l.text_add)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'arr_n="text_add";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>text add</td></tr></tbody></table></td></tr>')
                 +((arr_l.html)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>')
-				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td><s>art</s></td></tr></tbody></table></td></tr>'
-				+((arr_l.choice)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td><s>choice</s></td></tr></tbody></table></td></tr>')
+				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
+				+((arr_l.choice)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>')
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
@@ -1827,6 +1827,9 @@ function scen_edit_updare(show){
     story_script.parameters.name_panel.indent_text=((n_indent_text.value)?correct_value(n_indent_text.value):0);
     if(!n_className.value==""){story_script.parameters.name_panel.className=className.value} else {delete story_script.parameters.name_panel.className};
     if(!n_style.value==""){story_script.parameters.name_panel.style=n_style.value} else {delete story_script.parameters.name_panel.style};
+    
+    if(n_size_text.value!=""){story_script.parameters.name_panel.size_text=correct_value(n_size_text.value)};
+    
     if(!n_size_w.value==""){story_script.parameters.name_panel.size[0]=correct_value(n_size_w.value)};
     if(!n_size_h.value==""){story_script.parameters.name_panel.size[1]=correct_value(n_size_h.value)};
     if(!n_color_text.value==""){story_script.parameters.name_panel.color_text=n_color_text.value}else{delete story_script.parameters.name_panel.color_text};
@@ -1880,11 +1883,11 @@ function scen_editor(block,i,n){
         if(story_script.parameters.text_panel.indent_bottom){tue_text_block.style.bottom=story_script.parameters.text_panel.indent_bottom;}
         tue_text_block.style.zIndex="1000";
         tue_text_block.style.borderSpacing="0";
+        tue_text_block.style.zIndex=1998;
         tue_text_view=document.getElementById("tue_text_view");
         tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
         tue_text_view.style.fontSize=((story_script.parameters.text_panel.size_text)?story_script.parameters.text_panel.size_text:story_script.parameters.font_size);
         tue_text_view.style.height="100%";
-        tue_text_block.style.zIndex=1998;
         if(story_script[block][i].dialogs[n-1].name && story_script.parameters.name_panel){
             if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;} else {tue_name_block.className=""};
             if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;} else {tue_name_block.style=null};
@@ -1952,7 +1955,7 @@ function art_panel_add(block,i,n){
 function art_panel_edit(block,i,n,b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',-1);art_panel_update(\''+block+'\','+i+','+n+');"height="22px"></td>'
-            +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',1);art_panel_update(\''+block+'\','+i+','+n+');"></td><td></td>'
+            +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',1);art_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
             +'<td width="24px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art.splice('+b+',1);art_panel_update(\''+block+'\','+i+','+n+');" ></td>'
     +'</tr><tr><td colspan="4" height="80px" align="center"><div id="artpre'+b+'" style="background-image:url('+((story_script[block][i].dialogs[n-1].art[b].url[languare])?open_file(story_script[block][i].dialogs[n-1].art[b].url[languare]):open_file(story_script[block][i].dialogs[n-1].art[b].url))+'); background-position:center; background-repeat:no-repeat; background-size:auto 100%; height:100%; width:100%";> </div></td></tr><tr>'
     +'<td class="icon_m icon_show" height="22px" onclick="block_open(\'artsp'+b+'\');scen_element.artsp'+b+'=artsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
@@ -1989,6 +1992,7 @@ function art_panel_edit(block,i,n,b){
     return html;
 }
 function choice_panel_update(block,i,n){
+    droppFocus();
     choice_ec.innerHTML=""
     var tue_choice=document.getElementsByClassName("tue_choice");
     while (tue_choice.length){scene_layout.removeChild(tue_choice[0]);}
@@ -1999,6 +2003,7 @@ function choice_panel_update(block,i,n){
         if(!story_script[block][i].dialogs[n-1].choice[b].art[languare]){data_la(story_script[block][i].dialogs[n-1].choice[b],'art')}
         var choice=document.createElement("div");
         choice.id='cho'+b
+        choice.setAttribute('onclick','objSelect(this.id);arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+']');
         if(story_script[block][i].dialogs[n-1].choice[b].className){choice.className=story_script[block][i].dialogs[n-1].choice[b].className;}
         if(story_script[block][i].dialogs[n-1].choice[b].style){choice.style=story_script[block][i].dialogs[n-1].choice[b].style;}
         choice.classList.add("tue_choice");
@@ -2015,7 +2020,7 @@ function choice_panel_update(block,i,n){
                 choice.style.lineHeight=story_script[block][i].dialogs[n-1].choice[b].size[1];
             }
         }
-        if(story_script[block][i].dialogs[n-1].choice[b].art_size){choice.style.backgroundSize=story_script[block][i].dialogs[n-1].choice[b].art_size[0]+" "+story_script[block][i].dialogs[n-1].choice[b].art_size[1];}
+        if(story_script[block][i].dialogs[n-1].choice[b].art_size){choice.style.backgroundSize=story_script[block][i].dialogs[n-1].choice[b].art_size[0]+" "+story_script[block][i].dialogs[n-1].choice[b].art_size[1];} else {story_script[block][i].dialogs[n-1].choice[b].art_size=['','']}
         if(story_script[block][i].dialogs[n-1].choice[b].position[0] != 0){choice.style.left=story_script[block][i].dialogs[n-1].choice[b].position[0];}
         if(story_script[block][i].dialogs[n-1].choice[b].position[1] != 0){choice.style.right=story_script[block][i].dialogs[n-1].choice[b].position[1];}
         if(story_script[block][i].dialogs[n-1].choice[b].position[2] != 0){choice.style.top=story_script[block][i].dialogs[n-1].choice[b].position[2];}
@@ -2041,7 +2046,7 @@ function choice_panel_add(block,i,n){
 function choice_panel_edit(block,i,n,b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+',-1);choice_panel_update(\''+block+'\','+i+','+n+');"height="22px"></td>'
-            +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+', 1);choice_panel_update(\''+block+'\','+i+','+n+');"></td><td></td>'
+            +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+', 1);choice_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
             +'<td width="24px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice.splice('+b+',1);choice_panel_update(\''+block+'\','+i+','+n+');" ></td>'
     +'</tr><tr><td id="chdbn'+b+'" colspan="4" height="24px" align="center">'+((button_name[story_script[block][i].dialogs[n-1].choice[b].go_to])?button_name[story_script[block][i].dialogs[n-1].choice[b].go_to]:story_script[block][i].dialogs[n-1].choice[b].go_to)+'</td></tr><tr>'
     +'<td class="icon_m icon_show" height="22px" onclick="block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
@@ -2120,6 +2125,7 @@ let button_name={
     'tue_fullScreen':'Full screen',
 }
 function button_panel_update(){
+    droppFocus();
     interface_buttons_c.innerHTML=""
     var clear_ui=document.getElementsByClassName("tue_controll");
     while (clear_ui.length){scene_layout.removeChild(clear_ui[0]);}
@@ -2142,6 +2148,7 @@ function button_panel_update(){
         }
         ui_button.style.zIndex=3000+b;
         ui_button.id=story_script.parameters.buttons[b].name+b;
+        ui_button.setAttribute('onclick','objSelect(this.id);arr_e=story_script.parameters.buttons['+b+']');
         ui_button.classList.add("tue_controll");
         ui_button.style.position="absolute";
         ui_button.style.width=story_script.parameters.buttons[b].size[0];
@@ -2166,7 +2173,7 @@ function button_panel_edit(b){
     }
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up" onclick="move_elenetn(story_script.parameters.buttons,'+b+',-1);button_panel_update();" height="22px"></td>'
-            +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.parameters.buttons,'+b+', 1);button_panel_update();"></td><td></td>'
+            +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.parameters.buttons,'+b+', 1);button_panel_update();"></td><td>&nbsp;</td>'
             +'<td width="24px" '+((story_script.parameters.buttons[b].name=='tue_back'||story_script.parameters.buttons[b].name=='tue_next')?'':'class="icon icon_del" onmouseup="story_script.parameters.buttons.splice('+b+',1);button_panel_update();"')+' style="cursor:pointer;"></td>'
             +'</tr><tr><td id="bt'+b+'" colspan="4" height="24px" align="center">'+button_name[story_script.parameters.buttons[b].name]+'</td></tr><tr>'
     +'<td height="22px" class="icon_m icon_show" onclick="block_open(\'bpsp'+b+'\');scen_element.bpsp'+b+'=bpsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
@@ -2763,12 +2770,22 @@ function makeResizableDiv(s) {
 }
 function saveResize(){
     if(!scene_scroll){
-        layout_width = parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('width').replace('px',''));
-        layout_height = parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('height').replace('px',''));
-        arr_e.position[0] = (resizers.style.left.replace('px','')/layout_width*100).toFixed(2)+'%';
-        arr_e.position[2] = (resizers.style.top.replace('px','')/layout_height*100).toFixed(2)+'%';
-        arr_e.size[0] = (resizers.style.width.replace('px','')/layout_width*100).toFixed(2)+'%';
-        arr_e.size[1] = (resizers.style.height.replace('px','')/layout_height*100).toFixed(2)+'%';
+        arr_e.position[0]=0;arr_e.position[1]=0;arr_e.position[2]=0;arr_e.position[3]=0
+        var layout_width = parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('width').replace('px',''));
+        var layout_height = parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('height').replace('px',''));
+        var z = resizers.style.left.replace('px','')
+        if ((layout_width/2)>=z){ arr_e.position[0] = (z/layout_width*100).toFixed(2)+'%';}
+        else { z = parseFloat(getComputedStyle(resizers, null).getPropertyValue('right').replace('px', '')); arr_e.position[1] = (z/layout_width*100).toFixed(2)+'%';}
+        z = resizers.style.top.replace('px','')
+        if ((layout_height/2)>=z){ arr_e.position[2] = (z/layout_height*100).toFixed(2)+'%';}
+        else { z = parseFloat(getComputedStyle(resizers, null).getPropertyValue('bottom').replace('px', '')); arr_e.position[3] = (z/layout_height*100).toFixed(2)+'%';}
+        if(arr_e.url){
+            arr_e.size[0] = (resizers.style.width.replace('px','')/layout_width*100).toFixed(2)+'%';
+            arr_e.size[1] = (resizers.style.height.replace('px','')/layout_height*100).toFixed(2)+'%';
+        } else {
+            arr_e.size[0] = resizers.style.width;
+            arr_e.size[1] = resizers.style.height;
+        }
         scen_edit_updare(true)
     }
     document.onmouseup = null;
