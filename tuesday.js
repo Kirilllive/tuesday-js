@@ -14,6 +14,7 @@ var dialog_timeout;
 var tue_story;
 var tue_bg_music;
 var tue_fullScreen=false;
+document.oncontextmenu = cmenu; function cmenu() { return false; } 
 document.addEventListener('keydown',function(event){
     var k=event.code;
     if(k == story_json.parameters.key.next){go_story();}
@@ -140,10 +141,12 @@ function get_lang(){
         if(story_json.parameters.buttons[i].className){button.className=story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style=story_json.parameters.buttons[i].style;}
 		if(story_json.parameters.buttons[i].text){
-            if (story_json.parameters.buttons[i].text.length>0){button.innerHTML=((story_json.parameters.buttons[i].text[languare])?story_json.parameters.buttons[i].text[languare]:story_json.parameters.buttons[i].text);}
+            if (story_json.parameters.buttons[i].text.length>0){
+                button.innerHTML=((story_json.parameters.buttons[i].text[languare])?story_json.parameters.buttons[i].text[languare]:story_json.parameters.buttons[i].text);
+                button.style.padding=story_json.parameters.buttons[i].indent_text;
+            }
             button.style.textAlign="center";
             button.style.color=story_json.parameters.buttons[i].color_text;
-            button.style.padding=story_json.parameters.buttons[i].indent_text;
             button.style.fontSize=story_json.parameters.buttons[i].size_text;
         }
         button.style.zIndex=2000+i;
@@ -294,6 +297,7 @@ function get_lang(){
                 art.classList.add("tue_art")
                 if(story_json[tue_story][scene].dialogs[dialog].art[i].style){art.style=story_json[tue_story][scene].dialogs[dialog].art[i].style;}
                 art.style.position="absolute";
+                if(story_json[tue_story][scene].dialogs[dialog].art[i].fit)art.style.objectFit=story_json[tue_story][scene].dialogs[dialog].art[i].fit;
                 if(story_json[tue_story][scene].dialogs[dialog].art[i].size){
                     art.style.width=story_json[tue_story][scene].dialogs[dialog].art[i].size[0];
                     art.style.height=story_json[tue_story][scene].dialogs[dialog].art[i].size[1];
@@ -316,7 +320,7 @@ function get_lang(){
                 choice.style.backgroundColor=story_json[tue_story][scene].dialogs[dialog].choice[i].color;
                 choice.style.backgroundRepeat="no-repeat";
                 choice.style.backgroundPosition="center";
-                choice.style.backgroundImage="url('"+story_json[tue_story][scene].dialogs[dialog].choice[i].art+"')";
+                if(story_json[tue_story][scene].dialogs[dialog].choice[i].art){choice.style.backgroundImage="url('"+((story_json[tue_story][scene].dialogs[dialog].choice[i].art[languare])?story_json[tue_story][scene].dialogs[dialog].choice[i].art[languare]:story_json[tue_story][scene].dialogs[dialog].choice[i].art)+"')";}
 				if(story_json[tue_story][scene].dialogs[dialog].choice[i].size){
 					if(story_json[tue_story][scene].dialogs[dialog].choice[i].size[0] != 0){
 						choice.style.width=story_json[tue_story][scene].dialogs[dialog].choice[i].size[0];}
@@ -337,7 +341,7 @@ function get_lang(){
                 choice.style.fontSize=story_json[tue_story][scene].dialogs[dialog].choice[i].size_text;
                 choice.style.textAlign="center";
                 choice.style.zIndex=1001+i;
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].text){
+                if(story_json[tue_story][scene].dialogs[dialog].choice[i].text && (typeof story_json[tue_story][scene].dialogs[dialog].choice[i].text!=='object' || (story_json[tue_story][scene].dialogs[dialog].choice[i].text[languare] && typeof story_json[tue_story][scene].dialogs[dialog].choice[i].text[languare]!=='object'))){
                     if(story_json[tue_story][scene].dialogs[dialog].choice[i].text[languare]){choice.innerHTML=story_json[tue_story][scene].dialogs[dialog].choice[i].text[languare];}
                     else {choice.innerHTML=story_json[tue_story][scene].dialogs[dialog].choice[i].text;}
                 }
