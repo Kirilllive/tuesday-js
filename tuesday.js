@@ -140,11 +140,9 @@ function get_lang(){
 		if(story_json.parameters.buttons[i].sound){button.setAttribute("onclick",(story_json.parameters.buttons[i].sound)?get_sound(story_json.parameters.buttons[i].sound):""+(story_json.parameters.buttons[i].sound_stop)?get_stop_sound(story_json.parameters.buttons[i].sound_stop):"")}
         if(story_json.parameters.buttons[i].className){button.className=story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style=story_json.parameters.buttons[i].style;}
-		if(story_json.parameters.buttons[i].text){
-            if (story_json.parameters.buttons[i].text.length>0){
-                button.innerHTML=((story_json.parameters.buttons[i].text[languare])?story_json.parameters.buttons[i].text[languare]:story_json.parameters.buttons[i].text);
-                button.style.padding=story_json.parameters.buttons[i].indent_text;
-            }
+        if(story_json.parameters.buttons[i].text && (typeof story_json.parameters.buttons[i].text!=='object' || (story_json.parameters.buttons[i].text[languare] && typeof story_json.parameters.buttons[i].text[languare]!=='object'))){
+            button.innerHTML=((story_json.parameters.buttons[i].text[languare])?story_json.parameters.buttons[i].text[languare]:story_json.parameters.buttons[i].text);
+            button.style.padding=story_json.parameters.buttons[i].indent_text;
             button.style.textAlign="center";
             button.style.color=story_json.parameters.buttons[i].color_text;
             button.style.fontSize=story_json.parameters.buttons[i].size_text;
@@ -158,7 +156,7 @@ function get_lang(){
         button.style.backgroundColor=story_json.parameters.buttons[i].color;
         button.style.backgroundRepeat="no-repeat";
         button.style.backgroundPosition="center";
-        button.style.backgroundImage="url('"+((story_json.parameters.buttons[i].art[languare])?story_json.parameters.buttons[i].art[languare]:story_json.parameters.buttons[i].art)+"')";
+        if(story_json.parameters.buttons[i].art){button.style.backgroundImage="url('"+((story_json.parameters.buttons[i].art[languare])?story_json.parameters.buttons[i].art[languare]:story_json.parameters.buttons[i].art)+"')";}
         if(story_json.parameters.buttons[i].art_size){button.style.backgroundSize=story_json.parameters.buttons[i].art_size[0]+" "+story_json.parameters.buttons[i].art_size[1];}
         if(story_json.parameters.buttons[i].position[0] != 0){button.style.left=story_json.parameters.buttons[i].position[0];}
         if(story_json.parameters.buttons[i].position[1] != 0){button.style.right=story_json.parameters.buttons[i].position[1];}
