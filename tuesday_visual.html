@@ -458,7 +458,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                     <td id='scrnr_title' height="40px" align='center' style="background-color:#fff;width:286px;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
                 <tr>
                     <td style="background-color:#fff; border-bottom:1px solid #cec8e3; border-top:1px solid #cec8e3;"><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>
-                        <table onclick="block_open('set_preview');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Preview</td></tr></tbody></table>
+                        <table onclick="block_open('set_preview');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Preview</td></tr></tbody></table>
                         <div class="set_panel" id="set_preview" style="width:100%; display:block;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:40%; padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
@@ -487,7 +487,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                 <input id='p_width' class='input_slider' onchange='setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='preview_size()' type="range" value='100' min="50" max="100" style='width:100%;'>
                             </td></tr>
                         </tbody></table></div>
-                        <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Text panel (global)</td></tr></tbody></table>
+                        <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Text panel (global)</td></tr></tbody></table>
                         <div class="set_panel" id="text_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:40%; padding-right:8px;'>Width size</td><td style='padding-right:8px;' colspan='3'>
@@ -538,7 +538,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                             </td></tr>
                         </tbody></table>
                         </div>
-                        <table onclick="block_open('name_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Name panel (global)</td></tr></tbody></table>
+                        <table onclick="block_open('name_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Name panel (global)</td></tr></tbody></table>
                         <div class="set_panel" id="name_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:40%; padding-right:8px;'>Width size</td><td style='padding-right:8px;' colspan='3'>
@@ -583,11 +583,11 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                             </td></tr>
                         </tbody></table>
                         </div>
-                        <table onclick="block_open('interface_buttons');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Interface buttons (global)</td></tr></tbody></table>
+                        <table onclick="block_open('interface_buttons');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Interface buttons (global)</td></tr></tbody></table>
                         <div class="interface_buttons" id="interface_buttons" style="width:100%; display:none;"><div id='interface_buttons_c'></div>
                             <div style='width:100%;margin-bottom:16px;' onclick='interface_buttons_c.innerHTML+=button_panel_edit(-1);button_panel_update();' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
                         </div>
-                        <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Scene content</td></tr></tbody></table>
+                        <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Scene content</td></tr></tbody></table>
                         <div class="set_panel" id="set_scene" style="width:100%; display:none;">
                             <table style="width:100%;"><tbody>
                                 <tr><td height='60px' align='center' valign='center'>
@@ -598,11 +598,11 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
                                 </td></tr>
                             </tbody></table>
                         </div>
-                        <table onclick="block_open('arts_e');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Arts</td></tr></tbody></table>
+                        <table onclick="block_open('arts_e');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Arts</td></tr></tbody></table>
                         <div class="set_panel" id="arts_e" style="width:100%; display:block;"><div id='arts_ec'></div>
                             <div style='width:100%;margin-bottom:16px;' align='center'><div id='add_art' class='add_button icon_m icon_add'></div></div>
                         </div>
-                        <table onclick="block_open('choice_e');" class="set_title"  height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_show'></td><td align='left' valign='center'>Buttons & Сhoice</td></tr></tbody></table>
+                        <table onclick="block_open('choice_e');" class="set_title"  height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Buttons & Сhoice</td></tr></tbody></table>
                         <div class="set_panel" id="choice_e" style="width:100%; display:block;"><div id='choice_ec'></div>
                             <div style='width:100%;margin-bottom:16px;' align='center'><div id='add_choice' class='add_button icon_m icon_add'></div></div>
                         </div>
@@ -744,7 +744,7 @@ function open_file(name){
     for(var f=0; f < project_files.length; f++){if(project_files[f][0]==name){name=(project_files[f][1]);break;}} return name;
 }
 function new_novel(){
-    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"200"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"nbvjhf","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{}},"blocks":{"nbvjhf":["458px","167px","block",""]}};
+    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"nbvjhf","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{}},"blocks":{"nbvjhf":["458px","167px","block",""]}};
     update_novel();
 }
 function update_novel(){
@@ -1973,7 +1973,7 @@ function art_panel_edit(block,i,n,b){
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',1);art_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
             +'<td width="24px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art.splice('+b+',1);art_panel_update(\''+block+'\','+i+','+n+');" ></td>'
     +'</tr><tr><td colspan="4" height="80px" align="center"><div id="artpre'+b+'" style="background-image:url('+((story_script[block][i].dialogs[n-1].art[b].url[languare])?open_file(story_script[block][i].dialogs[n-1].art[b].url[languare]):open_file(story_script[block][i].dialogs[n-1].art[b].url))+'); background-position:center; background-repeat:no-repeat; background-size:auto 100%; height:100%; width:100%";> </div></td></tr><tr>'
-    +'<td class="icon_m icon_show" height="22px" onclick="block_open(\'artsp'+b+'\');scen_element.artsp'+b+'=artsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
+    +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'artsp'+b+'\');scen_element.artsp'+b+'=artsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
     +'<table width="100%" id=artsp'+b+' style="display:'+((scen_element['artsp'+b])?scen_element['artsp'+b]:'none')+';border-top:1px solid #cec8e3;margin-top:8px;"><tbody><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Art</td>'
         +'<td style="width:28px;" align="center"><select id="artl'+b+'" class="input_text" onchange="artt'+b+'.value=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[this.value]" style="height:28px;width:100%;border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:1px solid #cec8e3;">'+project_languares(languare)+'</select></td>'
@@ -2065,7 +2065,7 @@ function choice_panel_edit(block,i,n,b){
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+', 1);choice_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
             +'<td width="24px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice.splice('+b+',1);choice_panel_update(\''+block+'\','+i+','+n+');" ></td>'
     +'</tr><tr><td id="chdbn'+b+'" colspan="4" height="24px" align="center">'+((button_name[story_script[block][i].dialogs[n-1].choice[b].go_to])?button_name[story_script[block][i].dialogs[n-1].choice[b].go_to]:story_script[block][i].dialogs[n-1].choice[b].go_to)+'</td></tr><tr>'
-    +'<td class="icon_m icon_show" height="22px" onclick="block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
+    +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
     +'<table id="chosp'+b+'" width="100%" style="display:'+((scen_element['chosp'+b])?scen_element['bpsp'+b]:'none')+';border-top:1px solid #cec8e3;margin-top:8px;"><tbody><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Text</td>'
         +'<td style="width:28px;" align="center"><select id="сts'+b+'" class="input_text" onchange="сtм'+b+'.value=((story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[this.value].length>0)?story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[this.value]:\'\')" style="height:28px;width:100%;border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:1px solid #cec8e3;">'+project_languares(languare)+'</select></td>'
@@ -2192,7 +2192,7 @@ function button_panel_edit(b){
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.parameters.buttons,'+b+', 1);button_panel_update();"></td><td>&nbsp;</td>'
             +'<td width="24px" '+((story_script.parameters.buttons[b].name=='tue_back'||story_script.parameters.buttons[b].name=='tue_next')?'':'class="icon icon_del" onmouseup="story_script.parameters.buttons.splice('+b+',1);button_panel_update();"')+' style="cursor:pointer;"></td>'
             +'</tr><tr><td id="bt'+b+'" colspan="4" height="24px" align="center">'+button_name[story_script.parameters.buttons[b].name]+'</td></tr><tr>'
-    +'<td height="22px" class="icon_m icon_show" onclick="block_open(\'bpsp'+b+'\');scen_element.bpsp'+b+'=bpsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
+    +'<td height="22px" class="icon_m icon_more" onclick="block_open(\'bpsp'+b+'\');scen_element.bpsp'+b+'=bpsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
     +'<table id="bpsp'+b+'" width="100%" style="display:'+((scen_element['bpsp'+b])?scen_element['bpsp'+b]:'none')+';border-top:1px solid #cec8e3;margin-top:8px;"><tbody><tr>'
             +'<td height="40px" align="right" style="width:40%; padding-right:8px;">Function</td>'
             +'<td colspan="3"><select class="input_text" oninput="bt'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value);story_script.parameters.buttons['+b+'].name=this.value;" style="width:100%;height:28px">'+option_block(story_script.parameters.buttons[b].name,true)+'</select></select></td>'
