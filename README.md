@@ -76,7 +76,12 @@ Preview allows you to start a project from a certain point in the script and wit
 ![Tuesday JS preview](screenshots/preview.png)
 
 
-# Getting started
+# Tutorial for Visual Editor
+
+Tutorial for creating visual novels: https://kirilllive.github.io/tuesday-js/tutorial.html
+
+
+# Tutorial for RunTime
 
 step 1
 The engine file "tuesday.js" downloaded from https://kirilllive.github.io/Tuesday/tuesday.js
