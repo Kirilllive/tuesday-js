@@ -380,7 +380,7 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
 				<tr>
 					<td align='center' title='New project' onclick='new_project();add_element.style.visibility="hidden";' class='icon button_menu icon_new'></td>
                     <td align='center' title='Load project folder ' onclick='load_new=false;json_file.click();add_element.style.visibility="hidden";' class='icon button_menu icon_load'></td>
-					<td align='center' title='Save JSON script project' onclick='save_file();add_element.style.visibility="hidden";' class='icon button_menu icon_save'></td>
+					<td align='center' title='Save JSON script project' onclick='fsave_file();add_element.style.visibility="hidden";' class='icon button_menu icon_save'></td>
 					<td align='center' title='Settings project' onclick='setup();add_element.style.visibility="hidden";' class='icon button_menu icon_setup'></td>
                     <td align='center' title='Edit json text' onclick='jsonedit();add_element.style.visibility="hidden";' class='icon button_menu icon_json'></td>
                     <td align='center' title='Export all text to CSV file' onclick='csv_export();add_element.style.visibility="hidden";' class='icon button_menu icon_csv'></td>
@@ -718,7 +718,9 @@ let project_files=[];
 img_file.addEventListener('change',loadFiles);
 var load_new = false;
 var wf;
+var myBlob;
 function loadFiles(e){
+    myBlob = e;
     wf=e.target.files[0].webkitRelativePath.split("/")[0]+"/";
     if(load_new) {
         project_foler.value = wf.replace("/","")
@@ -977,13 +979,23 @@ function save_file(){
     var dh=String(d.getHours());
     var di=String(d.getMinutes());
     var ds=String(d.getSeconds());
-    var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(story_script));
+    
+    
+    var blobUrl = URL.createObjectURL(myBlob);
     var dlAnchorElem=document.getElementById('downloadAnchorElem');
-    if(story_script.parameters.title){n=(story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title;}
-	else {n="new_novel";}
-    dlAnchorElem.setAttribute("href",dataStr);
-    dlAnchorElem.setAttribute("download",n+'_'+d.getFullYear()+'_'+(dm.length < 2?'0'+dm :dm)+'_'+(dd.length < 2?'0'+dd :dd)+'_'+(dh.length < 2?'0'+dh :dh)+"-"+(di.length < 2?'0'+di :di)+"-"+(ds.length < 2?'0'+ds :ds)+'.json');
-    dlAnchorElem.click();
+    dlAnchorElem.href = blobUrl;
+    dlAnchorElem.download = "aDefaultFileName.txt";
+    dlAnchorElem.innerHTML = "Click here to download the file";
+    document.body.appendChild(dlAnchorElem);
+    
+    
+    //var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(story_script));
+    //var dlAnchorElem=document.getElementById('downloadAnchorElem');
+    //if(story_script.parameters.title){n=(story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title;}
+	//else {n="new_novel";}
+    //dlAnchorElem.setAttribute("href",dataStr);
+    //dlAnchorElem.setAttribute("download",n+'_'+d.getFullYear()+'_'+(dm.length < 2?'0'+dm :dm)+'_'+(dd.length < 2?'0'+dd :dd)+'_'+(dh.length < 2?'0'+dh :dh)+"-"+(di.length < 2?'0'+di :di)+"-"+(ds.length < 2?'0'+ds :ds)+'.json');
+    //dlAnchorElem.click();
 }
 function lines(elem){
     var to_go=document.getElementsByClassName("to_go");
