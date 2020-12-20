@@ -13,18 +13,16 @@ a:visited {color: #fff;}
 a:hover {color: #fff;}
 a:active {color: #fff;}
 #window_zone {
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0,0,0,0);
-    position: fixed;
-    left: 0;
-    top: 0;
+    width:100%;
+    height:100vh;
+    background-color:rgba(0,0,0,0);
+    position:fixed;
+    left:0;
+    top:0;
     visibility:hidden;
-    transition-duration: 0.5s;
+    transition-duration:0.5s;
 }
-.content{
-    max-height: 100vh;
-}
+.content{max-height:100vh;max-width:100%;}
 </style>
 </head>
 <body>
@@ -288,7 +286,7 @@ a:active {color: #fff;}
 		</tr>
 	</tbody>
 </table>
-<div id='window_zone' onclick="modal_window('close')" style="height: 100vh; width:100%; overflow: scroll;" align='center'></div>
+<div id='window_zone' onclick="modal_window('close')" style="height: 100vh; width:100%;" align='center'></div>
 <script>
 function modal_window(action, i) {
     var window_zone = document.getElementById("window_zone");

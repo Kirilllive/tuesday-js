@@ -1558,7 +1558,7 @@ function scene_add(arr){
 	story_script[arr].push({"background_image":{},"background_music":"","dialogs":[]});
 	arr_l=story_script[arr]
 	arr_n=story_script[arr].length - 1
-	scene_edit()
+	scene_edit();
 	update_novel();
 }
 function legacy_choice_add(arr){
@@ -1970,7 +1970,7 @@ function art_panel_add(block,i,n){
     story_script[block][i].dialogs[n-1].art.push({"position":["25%","0","25%","0"],"size":["auto","50%"],"url":"","fit":"contain"});
     b=story_script[block][i].dialogs[n-1].art.length-1;
     art_panel_update(block,i,n)
-    file_catalog('artt'+b,'img','artt'+b,'artpre'+b,'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[artl'+b+'.value]')
+    file_catalog('artt'+b,'img','artt'+b,'artpre'+b,'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url')
 }
 function art_panel_edit(block,i,n,b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
@@ -1981,7 +1981,7 @@ function art_panel_edit(block,i,n,b){
     +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'artsp'+b+'\');scen_element.artsp'+b+'=artsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
     +'<table width="100%" id=artsp'+b+' style="display:'+((scen_element['artsp'+b])?scen_element['artsp'+b]:'none')+';border-top:1px solid #cec8e3;margin-top:8px;"><tbody><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Art</td>'
-        +'<td style="width:28px;" align="center"><select id="artl'+b+'" class="input_text" onchange="artt'+b+'.value=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[this.value]" style="height:28px;width:100%;border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:1px solid #cec8e3;">'+project_languares(languare)+'</select></td>'
+        +'<td style="width:28px;" align="center"><select id="artl'+b+'" class="input_text" onchange="if(!story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[languare]){data_la(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'],\'url\')} ; artt'+b+'.value=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[this.value]" style="height:28px;width:100%;border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:1px solid #cec8e3;">'+project_languares(languare)+'</select></td>'
         +'<td ><input id="artt'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[artl'+b+'.value]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].url[languare])?story_script[block][i].dialogs[n-1].art[b].url[languare]:story_script[block][i].dialogs[n-1].art[b].url)+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="file_catalog(\'artt'+b+'\',\'img\',\'artt'+b+'\',\'artpre'+b+'\',\'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[artl'+b+'.value]\')"></td>'
     +'</tr><tr>'
@@ -2795,6 +2795,7 @@ function saveResize(){
         var layout_width = parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('width').replace('px',''));
         var layout_height = parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('height').replace('px',''));
         var z = resizers.style.left.replace('px','')
+        var b = objFocus.style.borderWidth.replace('px', '')*2;
         if ((layout_width/2)>=z){ arr_e.position[0] = (z/layout_width*100).toFixed(2)+'%';}
         else { z = parseFloat(getComputedStyle(resizers, null).getPropertyValue('right').replace('px', '')); arr_e.position[1] = (z/layout_width*100).toFixed(2)+'%';}
         z = resizers.style.top.replace('px','')
@@ -2804,8 +2805,8 @@ function saveResize(){
             arr_e.size[0] = (resizers.style.width.replace('px','')/layout_width*100).toFixed(2)+'%';
             arr_e.size[1] = (resizers.style.height.replace('px','')/layout_height*100).toFixed(2)+'%';
         } else {
-            arr_e.size[0] = resizers.style.width;
-            arr_e.size[1] = resizers.style.height;
+            arr_e.size[0] = (resizers.style.width.replace('px','')-b)+'px';
+            arr_e.size[1] = (resizers.style.height.replace('px','')-b)+'px';
         }
         scen_edit_updare(true)
     }
