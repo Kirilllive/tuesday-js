@@ -241,10 +241,10 @@ function modal_window(action, i) {
         window_zone.style.visibility = "visible";
         window_zone.scrollTo(0, 0);
         window_zone.style.backgroundColor = 'rgba(110,95,165,0.75)';
-        document.body.style.overflow = 'hidden';
-        var img = document.createElement("img");
-        img.className = "content";
-        img.src = i;
+        document.body.style.overflow='hidden';
+        var img=document.createElement("img");
+        img.className="content";
+        img.src=i;
         window_zone.appendChild(img);
     }
 }
@@ -321,14 +321,14 @@ function getLang() {
     else {languare=navigator.languagesubstring(0,2);}
     if (languare!='ru'&&languare!='en'&&languare!='ja'&&languare!='es'&&languare!='fr'){languare='en'}
     else {for(var i=0;i<translation[languare].length;i++){window.location.hash=languare;document.getElementById(translation[languare][i][0]).innerHTML=translation[languare][i][1];}}
-    for (i=0; i < lang_choise.length; i++){if (lang_choise[i].value==languare){lang_choise[i].checked=true;break;}}
+    for (i=0;i<lang_choise.length;i++){if(lang_choise[i].value==languare){lang_choise[i].checked=true;break;}}
 }
 var lang_choise=document.forms.lang
 lang_choise.onchange=function(e){
-    for (i=0; i < lang_choise.length; i++){
+    for (i=0;i<lang_choise.length;i++){
         if (lang_choise[i].checked){
             if (lang_choise[i].value=='en'){window.location.hash='en';location.reload();}
-            else {languare=lang_choise[i].value; window.location.hash=languare; getLang();}
+            else {languare=lang_choise[i].value;window.location.hash=languare;getLang();}
         break;}
     }
 };

@@ -20,36 +20,11 @@
 	user-select:none;
 	outline:none;
 }
-.panel{
-	background-color:#fff;
-	box-shadow:0px 2px 24px rgba(110,95,165,0.25);
-	border-radius:16px;
-	padding:4px;
-}
-@keyframes flash{
-	0%{box-shadow:0px 2px 32px rgba(90,75,145,1);background-color:#cec8e3;}
-	25%{box-shadow:0px 2px 32px rgba(90,75,145,1);background-color:#cec8e3;}
-	100%{box-shadow:0px 2px 24px rgba(110,95,165,0.25);background-color:#fff;}
-}
-.story_block{
-	 min-height:28px;
-	 width:256px;
-	 position:absolute;
-	 cursor:all-scroll;
-}
-#world{
-    position:absolute;
-    -ms-transform:scale(1);
-    transform:scale(1);
-    -webkit-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-}
-line{
-	stroke:#6e5fa5;
-	stroke-dasharray:20;
-	stroke-width:2;
-	animation:dash 4s linear infinite;
-}
+.panel{background-color:#fff;box-shadow:0px 2px 24px rgba(110,95,165,0.25);border-radius:16px;padding:4px;}
+@keyframes flash{0%{box-shadow:0px 2px 32px rgba(90,75,145,1);background-color:#cec8e3;}25%{box-shadow:0px 2px 32px rgba(90,75,145,1);background-color:#cec8e3;}100%{box-shadow:0px 2px 24px rgba(110,95,165,0.25);background-color:#fff;}}
+.story_block{min-height:28px;width:256px;position:absolute;cursor:all-scroll;}
+#world{position:absolute;-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;}
+line{stroke:#6e5fa5;stroke-dasharray:20;stroke-width:2;animation:dash 4s linear infinite;}
 @keyframes dash{from{stroke-dashoffset:0} to{stroke-dashoffset:200;}}
 #toast{
 	position:fixed;
@@ -62,12 +37,7 @@ line{
 	box-shadow:0px 2px 24px rgba(110,95,165,0.25);
 	z-index:1008;
 }
-.toast_anim{
-	left:50%;
-	background-color:#fff;
-	border-radius:32px;
-	animation:viwe 0.25s,stop 2s 0.25s,close 0.5s 2s linear;
-}
+.toast_anim{left:50%;background-color:#fff;border-radius:32px;animation:viwe 0.25s,stop 2s 0.25s,close 0.5s 2s linear;}
 @keyframes viwe{from{opacity:0;bottom:64px} to{opacity:1;bottom:64px}}
 @keyframes stop{from{opacity:1;bottom:64px} to{opacity:1;bottom:64px}}
 @keyframes close{from{opacity:1;bottom:64px} to{opacity:0;bottom:-32px}}
@@ -94,24 +64,9 @@ line{
 	max-width:540px;
 	width:100%;
 }
-.button_block{
-	height:26px;
-	width:26px;
-	background-size:70% 70%;
-	background-repeat:no-repeat;
-	background-position:center;
-}
-.icon{
-	background-size:22px 22px;
-	background-repeat:no-repeat;
-	background-position:center;
-}
-.icon_m{
-	background-size:18px 18px;
-	background-repeat:no-repeat;
-	background-position:center;
-	cursor:pointer;
-}
+.button_block{height:26px;width:26px;background-size:70% 70%;background-repeat:no-repeat;background-position:center;}
+.icon{background-size:22px 22px;background-repeat:no-repeat;background-position:center;}
+.icon_m{background-size:18px 18px;background-repeat:no-repeat;background-position:center;cursor:pointer;}
 .button_menu{background-position:center;cursor:pointer;}
 .button_menu:hover{background-color:#cec8e3;}
 .icon_new{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yMjMsNTIuNjZWMjQ5SDM1VjZIMTc2LjM0WiIvPg0KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTIyMyw1M0gxNzZWNiIvPg0KPC9zdmc+DQo=")}
@@ -162,25 +117,9 @@ line{
 .bg_7{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KPHJlY3Qgb3BhY2l0eT0iMC4yNSIgZmlsbD0iI2ZmZiIgeD0iMTYiIHdpZHRoPSIzMiIgaGVpZ2h0PSI2NCIvPgo8cmVjdCBvcGFjaXR5PSIwLjI1IiBmaWxsPSIjZmZmIiB5PSIxNiIgd2lkdGg9IjY0IiBoZWlnaHQ9IjMyIi8+Cjwvc3ZnPgo=")}
 .img_mouse{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMTI4LDM2YTU1LjUsNTUuNSwwLDAsMSw1NS41LDU1LjV2NzNhNTUuNSw1NS41LDAsMCwxLTExMSwwdi03M0E1NS41LDU1LjUsMCwwLDEsMTI4LDM2WiIvPjxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xMjcuNSw1MWE4LDgsMCwwLDEsOCw4VjgxYTgsOCwwLDAsMS0xNiwwVjU5QTgsOCwwLDAsMSwxMjcuNSw1MVptNTUsNTFINzMuNW01NCwwVjg5bTAtMzhWMzciLz48L3N2Zz4K");}
 .img_touch{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTQyLjY2MSw0Ny4xMzJIMjEzLjMzOWExMCwxMCwwLDAsMSwxMCwxMFYxOTguODY4YTEwLDEwLDAsMCwxLTEwLDEwSDQyLjY2MWExMCwxMCwwLDAsMS0xMC0xMFY1Ny4xMzJBMTAsMTAsMCwwLDEsNDIuNjYxLDQ3LjEzMloiLz4KPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTMzLDE2NkgyMjNtLTk1LDQyVjE2NyIvPgo8L3N2Zz4K")}
-.scene{
-	background-color:#cec8e3;
-	border-radius:12px;
-	padding:4px;
-	margin-top:4px;
-}
-.dialog_element{
-	padding:4px;
-	font-size:12px;
-	border-radius:6px;
-	background-color:#fff;
-	margin-bottom:4px;
-}
-.dialog{
-	margin-top:4px;
-	padding:4px;
-	border-radius:8px;
-	background-color:#efefff;
-}
+.scene{background-color:#cec8e3;border-radius:12px;padding:4px;margin-top:4px;}
+.dialog_element{padding:4px;font-size:12px;border-radius:6px;background-color:#fff;margin-bottom:4px;}
+.dialog{margin-top:4px;padding:4px;border-radius:8px;background-color:#efefff;}
 .scene_bg{
 	padding:4px 8px;
 	border-radius:8px;
@@ -191,13 +130,7 @@ line{
 	width:calc(100% - 16px);
 	height:128px;
 }
-.element{
-	padding:4px;
-	border-radius:6px;
-	font-size:12px;
-	background-color:#fff;
-	margin-bottom:4px;
-}
+.element{padding:4px;border-radius:6px;font-size:12px;background-color:#fff;margin-bottom:4px;}
 .choice_b{
 	background-color:#efefff;
 	margin-bottom:8px;
@@ -209,16 +142,7 @@ line{
     font-size:12px;
 }
 #add_element{position:absolute;left:0;top:0;visibility:hidden;width:190px;}
-#window_zone{
-	height:100vh;
-	width:100%;
-	position:fixed;
-	left:0;
-	top:0;
-	visibility:hidden;
-	transition-duration:0.5s;
-	z-index:10000;
-}
+#window_zone{height:100vh;width:100%;position:fixed;left:0;top:0;visibility:hidden;transition-duration:0.5s;z-index:10000;}
 .window{
 	position:absolute;
 	top:50%;
@@ -228,34 +152,13 @@ line{
 	border-radius:16px;
 	box-shadow:0px 2px 24px rgba(110,95,165,0.25);
 }
-.button{
-	border-radius:8px;
-	width:100%;
-	height:90%;
-	background-color:#efefff;
-}
+.button{border-radius:8px;width:100%;height:90%;background-color:#efefff;}
 .button:hover{background-color:#cec8e3;}
-.big_button{
-	border-radius:20px;
-	height:40px;
-	background-color:#efefff;
-	cursor:pointer;
-}
+.big_button{border-radius:20px;height:40px;background-color:#efefff;cursor:pointer;}
 .big_button:hover{background-color:#cec8e3;}
-.big_button2{
-	border-radius:20px;
-	height:40px;
-	background-color:#fff;
-	box-shadow:0px 2px 24px rgba(110,95,165,0.25);
-	cursor:pointer;
-}
+.big_button2{border-radius:20px;height:40px;background-color:#fff;box-shadow:0px 2px 24px rgba(110,95,165,0.25);cursor:pointer;}
 .big_button2:hover{background-color:#cec8e3;}
-.big_button3{
-    border-radius:16px;
-    height:32px;
-    background-color:#efefff;
-    cursor:pointer;
-}
+.big_button3{border-radius:16px;height:32px;background-color:#efefff;cursor:pointer;}
 .big_button3:hover{background-color:#cec8e3;}
 .big_button3b{background-color:#efefff;}
 #search_block{
@@ -314,19 +217,8 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
 .select_tutorials{-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;}
 .chec_bg{border:2px solid #efefff; border-radius:8px;background-color:#cec8e3;height:68px;width:68px;content:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;}
 .chec_bg:checked{background-color:#efefff; border:2px solid #cec8e3;}
-#scene_maker{
-    height:100vh;
-    width:100%;
-    position:fixed;
-    left:0px;
-    top:0px;
-    display:none;
-}
-#scene_canvas{
-    height:calc(100vh - 40px);
-    width:calc(98vh - 40px);
-    position:relative;
-}
+#scene_maker{height:100vh;width:100%;position:fixed;left:0px;top:0px;display:none;}
+#scene_canvas{height:calc(100vh - 40px);width:calc(98vh - 40px);position:relative;}
 @media only screen and (max-width: 120vh) {#scene_canvas{height:72vw;width:72vw;}}
 #scene_layout{
     overflow:hidden;
@@ -344,19 +236,8 @@ hr{border-top:1px solid #cec8e3;margin:4px 0px;}
     box-shadow:0px 2px 24px rgba(110,95,165,0.25);
 }
 .set_title{background-color:#cec8e3;cursor:pointer;}
-.input_color{
-    cursor:pointer;
-    border: none;
-    height:100%;
-    width:100%;
-    opacity: 0;
-}
-.show_color{
-    background-color:#cec8e3;
-    border-radius:50%;
-    width:26px;
-    height:26px;
-}
+.input_color{cursor:pointer;border: none;height:100%;width:100%;opacity: 0;}
+.show_color{background-color:#cec8e3;border-radius:50%;width:26px;height:26px;}
 #resizers {box-sizing:border-box;width:100px;height:100px;position:absolute;top:100px;left:100px;cursor: move;border: 2px dashed #cec8e3;}
 .resizer{width:10px;height:10px;border-radius:50%;background:#fff;border: 2px solid #cec8e3;position:absolute;z-index:4000;}
 .top-left {left:-8px;top:-8px;cursor:nwse-resize;}
@@ -1192,13 +1073,13 @@ function modal_window(action,content){
         add_element.style.visibility="hidden";
         window_zone.style.visibility="hidden"
         window_zone.style.backgroundColor='rgba(110,95,165,0)';
-        document.body.style.overflow='scroll';
+        html.style.overflow='scroll';
         scroll_block=false;
         window_zone.innerHTML="";
     } else if(action=='open' && window_zone.style.visibility != "visible"){
         window_zone.style.visibility="visible";
         window_zone.style.backgroundColor='rgba(110,95,165,0.5)';
-        document.body.style.overflow='hidden';
+        html.style.overflow='hidden';
         window_zone.innerHTML=content;
         scroll_block=true;
     }
@@ -1206,10 +1087,12 @@ function modal_window(action,content){
 function play_novel(bl){
     var story_preview=JSON.stringify(story_script)
     for(var f=0; f < project_files.length; f++){for(var r=JSON.stringify(story_script).split(project_files[f][0]).length+2; r > 0; r--){story_preview=story_preview.replace(project_files[f][0],project_files[f][1])}}
+    var plugins_code="";
+    if(story_script.parameters.plugins){for(var i=0; i < story_script.parameters.plugins.length; i++){plugins_code+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+open_file(plugins_list[story_script.parameters.plugins[i]].file)+"'><\/script>":"<script type='text/javascript' src='"+open_file(story_script.parameters.plugins[i])+"'><\/script>")}}
     var fonts="";
     if(story_script.parameters.font_files){for(var i=0; i < Object.keys(story_script.parameters.font_files).length; i++){fonts+="@font-face{font-family:"+Object.keys(story_script.parameters.font_files)[i]+";src:url("+open_file(story_script.parameters.font_files[Object.keys(story_script.parameters.font_files)[i]])+");} "}}
     var preview=window.open("https://kirilllive.github.io/Tuesday/tuesday_visual.html","preview","location=no,scrollbars=no,width=640,height=480");
-    preview.document.write("<html><head><style>"+fonts+" "+((story_script.parameters.font)?"*{font-family:"+story_script.parameters.font+";} ":"")+"body{font-size:"+story_script.parameters.font_size+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript'>"+runtime+"<\/script><script>let story_preview="+story_preview+";  tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'}); "+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"')});" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
+    preview.document.write("<html><head><style>"+fonts+" "+((story_script.parameters.font)?"*{font-family:"+story_script.parameters.font+";} ":"")+"body{font-size:"+story_script.parameters.font_size+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript'>"+runtime+"<\/script>"+plugins_code+"<script>let story_preview="+story_preview+";  tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'}); "+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"')});" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
 }
 function search_block(){
     var input,filter,li,i,txtValue;
@@ -1262,10 +1145,10 @@ function about(){
 function build(){
     let story_build = JSON.parse(JSON.stringify(story_script));
     var plugins_code="";
-    var par=[((story_script.parameters.font)?story_script.parameters.font:0),((story_script.parameters.font_size)?story_script.parameters.font_size:0),((story_script.parameters.icon)?story_script.parameters.icon:0)]
-    if(story_script.parameters.plugins){for(var i=0; i < story_script.parameters.plugins.length; i++){plugins_code+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>":"")}}
+    if(story_script.parameters.plugins){for(var i=0; i < story_script.parameters.plugins.length; i++){plugins_code+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>":"<script type='text/javascript' src='"+story_script.parameters.plugins[i]+"'><\/script>")}}
     var fonts=""
     if(story_build.parameters.font_files){for(var i=0; i < Object.keys(story_build.parameters.font_files).length; i++){fonts+="@font-face{font-family:"+Object.keys(story_build.parameters.font_files)[i]+";src:url("+story_build.parameters.font_files[Object.keys(story_build.parameters.font_files)[i]]+");} "}}
+    var par=[((story_script.parameters.font)?story_script.parameters.font:0),((story_script.parameters.font_size)?story_script.parameters.font_size:0),((story_script.parameters.icon)?story_script.parameters.icon:0)]
     delete story_build.parameters['plugins'];
     delete story_build.parameters['font'];
     delete story_build.parameters['font_size'];
@@ -1479,6 +1362,7 @@ function add_element_s(id,n){
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>'
                 //+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
                 //+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>'
+                +((story_script.parameters.plugins.includes("show_toast"))?'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Toast</td></tr></tbody></table></td></tr>':'')
                 +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
@@ -1498,7 +1382,8 @@ function add_element_d(id,n){
                 +((arr_l.html)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>')
 				//+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick=\'add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
 				//+((arr_l.choice)?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>')
-				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+                +((arr_l.toast && !story_script.parameters.plugins.includes("show_toast"))?'':'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Toast</td></tr></tbody></table></td></tr>')
+                +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
@@ -1506,9 +1391,7 @@ function dialog_m(id,n,block,i){
 	var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
               +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Dialog '+n+'</td></tr>'
               +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_editor(\''+block+'\','+i+','+n+');scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
-              
               +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="duplicat_arr();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
-			  
               +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
               +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
               +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
@@ -1530,9 +1413,7 @@ function scene_m(id,i,block){
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid #cec8e3;" align="center">Scene '+i+'</td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scene_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
 				+((story_script[block][i-1].dialogs[0])?'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="scen_data[1]='+(i-1)+';scen_editor(\''+block+'\',scen_data[1],1);scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>':'')
-
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="duplicat_arr();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
-
                 +'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
@@ -2396,9 +2277,7 @@ function scen_compres(block,i,n){
                                                 
                                                 
 
-function correct_name(name){
-    return name.replace(/[\s.,%-:;]/g, '_');
-};
+function correct_name(name){return name.replace(/[\s.,%-:;]/g, '_');};
 function correct_value(name){
     if(name==parseInt(name)&&name!=0){
         return name+"px"
@@ -2416,46 +2295,29 @@ function setup(){
     if(!story_script.parameters.plugins){story_script.parameters.plugins=[]}
     for(i=0; i < li.length; i++){block_list+="<option value='"+li[i].id+"' "+((li[i].id==story_script.parameters.launch_story)?"selected" :"")+">"+li[i].id+"</option>"}
     var var_list="<table width='100%' id='var_tablet'><tbody>";
-    if(story_script.parameters.variables){
-        for(i=0; i < Object.keys(story_script.parameters.variables).length; i++){
-            var_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><input class='var_name input_text' placeholder='Name' value='"+
-                Object.keys(story_script.parameters.variables)[i]+"' type='text'></td><td><input class='var_vol input_text' placeholder='Value' style='padding-top:10px;' value='"+story_script.parameters.variables[Object.keys(story_script.parameters.variables)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.variables)[i]+"' class='icon icon_del'></td></tr>";
-        }
-    }
+    if(story_script.parameters.variables){for(i=0; i < Object.keys(story_script.parameters.variables).length; i++){var_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><input class='var_name input_text' placeholder='Name' value='"+Object.keys(story_script.parameters.variables)[i]+"' type='text'></td><td><input class='var_vol input_text' placeholder='Value' style='padding-top:10px;' value='"+story_script.parameters.variables[Object.keys(story_script.parameters.variables)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.variables)[i]+"' class='icon icon_del'></td></tr>";}}
     var_list+="</tbody></table><div onclick=\"add_tr('var_tablet')\" class='icon icon_add' style='margin:16px 0 0 45%;height:26px; width:26px; cursor:pointer;'></div>"
     var sound_list="<table width='100%' id='var_sounds'><tbody>";
-    if(story_script.parameters.sounds){
-        for(i=0; i < Object.keys(story_script.parameters.sounds).length; i++){
-            sound_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><input class='sound_name input_text' placeholder='Name' value='"+
-                Object.keys(story_script.parameters.sounds)[i]+"' type='text'></td><td><input class='sound_path input_text' placeholder='path to audio file' style='padding-top:10px;' value='"+story_script.parameters.sounds[Object.keys(story_script.parameters.sounds)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.sounds)[i]+"' class='icon icon_del'></td></tr>";
-        }
-    }
+    if(story_script.parameters.sounds){for(i=0; i < Object.keys(story_script.parameters.sounds).length; i++){sound_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><input class='sound_name input_text' placeholder='Name' value='"+Object.keys(story_script.parameters.sounds)[i]+"' type='text'></td><td><input class='sound_path input_text' placeholder='path to audio file' style='padding-top:10px;' value='"+story_script.parameters.sounds[Object.keys(story_script.parameters.sounds)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.sounds)[i]+"' class='icon icon_del'></td></tr>";}}
     sound_list+="</tbody></table><div onclick=\"add_tr('var_sounds')\" class='icon icon_add' style='margin:16px 0 0 45%;height:26px; width:26px; cursor:pointer;'></div>"
-    
     var font_list="<table width='100%' id='var_fonts'><tbody>";
-    if(story_script.parameters.font_files){
-        for(i=0; i < Object.keys(story_script.parameters.font_files).length; i++){
-            font_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><input class='font_name input_text' placeholder='Name' value='"+Object.keys(story_script.parameters.font_files)[i]+"' type='text'></td><td><input class='font_path input_text' placeholder='path to font file' style='padding-top:10px;' value='"+story_script.parameters.font_files[Object.keys(story_script.parameters.font_files)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.font_files)[i]+"' class='icon icon_del'></td></tr>";
-        }
-    }
+    if(story_script.parameters.font_files){for(i=0; i < Object.keys(story_script.parameters.font_files).length; i++){font_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><input class='font_name input_text' placeholder='Name' value='"+Object.keys(story_script.parameters.font_files)[i]+"' type='text'></td><td><input class='font_path input_text' placeholder='path to font file' style='padding-top:10px;' value='"+story_script.parameters.font_files[Object.keys(story_script.parameters.font_files)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet "+Object.keys(story_script.parameters.font_files)[i]+"' class='icon icon_del'></td></tr>";}}
     font_list+="</tbody></table><div onclick=\"add_tr('var_fonts')\" class='icon icon_add' style='margin:16px 0 0 45%;height:26px; width:26px; cursor:pointer;'></div>"
     data_la(story_script.parameters,'title');
     var title_list="<table width='100%' id='var_title'><tbody>";
     if(story_script.parameters.title){
         for(i=0; i < Object.keys(story_script.parameters.title).length; i++){
             title_list+="<tr><td style='padding-right:8px; border-right:1px solid #cec8e3; width:40%; padding-top:10px;'><select class='input_text title_lang'>"
-            title_list+=big_languares(Object.keys(story_script.parameters.title)[i])+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' value='"+
-                story_script.parameters.title[Object.keys(story_script.parameters.title)[i]]+
-                "' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";
+            title_list+=big_languares(Object.keys(story_script.parameters.title)[i])+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' value='"+story_script.parameters.title[Object.keys(story_script.parameters.title)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";
         }
     }
     var plugins_show="<table id='plugin' style='width:100%;  border-spacing:10px; border-collapse:separate;'>"
     var plugins_name
-    for(i=0; i < Object.keys(plugins_list).length; i++){
-        plugins_name=Object.keys(plugins_list)[i]
-        plugins_show+="<tr><td align='right' style='padding-top:4px; height:40px;'><input id='"+plugins_name+"' type='checkbox' class='chec_plugin checkbox_a' "+((story_script.parameters.plugins.indexOf(plugins_name) > -1)?'checked' :'')+"></td><td align='left' style='width:80px;'>"+plugins_list[plugins_name].name+"</td><td>"+plugins_list[plugins_name].text+"</td></tr>"
-    }
+    for(i=0; i < Object.keys(plugins_list).length; i++){plugins_name=Object.keys(plugins_list)[i];plugins_show+="<tr><td align='right' style='padding-top:4px; height:40px;'><input id='"+plugins_name+"' type='checkbox' class='chec_plugin checkbox_a' "+((story_script.parameters.plugins.indexOf(plugins_name) > -1)?'checked' :'')+"></td><td align='left' style='width:80px;'>"+plugins_list[plugins_name].name+"</td><td>"+plugins_list[plugins_name].text+"</td></tr>"}
     plugins_show+="</table>"
+    var addon_list="<table width='100%' id='var_addon'><tbody>";
+    if(story_script.parameters.plugins){for(i=0; i < story_script.parameters.plugins.length; i++){if(!plugins_list[story_script.parameters.plugins[i]]){addon_list+="<tr><td style='padding-right:8px; padding-left:8px; width:calc(100% - 14px); padding-top:10px;'><input class='addon_path input_text' placeholder='path to plugin js file' value='"+story_script.parameters.plugins[i]+"' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:14px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";}}}
+    addon_list+="</tbody></table><div onclick='add_addon()' class='icon icon_add' style='margin:16px 0 0 45%;height:26px; width:26px; cursor:pointer;'></div>"
     title_list+="</tbody></table><div onclick=\"add_tr('var_title')\" class='icon icon_add' style='margin:16px 0 0 45%;height:26px; width:26px; cursor:pointer;'></div>"
     var html="<div class='window' style='padding:24px 16px; width:480px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Settings project</p><br>"+
         "<table width='100%' style='height:60vh; border-radius:8px; border-top:1px solid #cec8e3;'><tbody>"+
@@ -2501,7 +2363,7 @@ function setup(){
         "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_7' value='bg_7' "+((setup_editor.fon=='bg_7')?'checked' :'')+"></td>"+
         "</tr></tbody></table></form></div>"+
         //
-        "<div id='blank_2' style='visibility:hidden;' class='set_blank'>"+plugins_show+"</div>"+
+        "<div id='blank_2' style='visibility:hidden;' class='set_blank'>"+plugins_show+"<br>"+addon_list+"</div>"+
         //
         "</td></tr>"+
         "<tr><td id='set_2' onclick='set_menu(1)' align='right' class='set_button'>Editor</td></tr>"+
@@ -2558,6 +2420,21 @@ function add_tr(id){
     row.appendChild(td3);
     tbody.appendChild(row);
 }
+function add_addon(){
+    var tbody=document.getElementById('var_addon').getElementsByTagName('tbody')[0];
+    var row=document.createElement("tr");
+    var td1=document.createElement("td");
+    var td3=document.createElement("td");
+    td1.innerHTML="<input class='addon_path input_text' placeholder='path to plugin js file' type='text'>";
+    td1.style="padding-right:8px; padding-left:8px; width:calc(100% - 14px); padding-top:10px;";
+    td3.style="width:14px; cursor:pointer;";
+    td3.title="delet";
+    td3.className="icon icon_del";
+    td3.setAttribute("onclick","var a=this.closest('tr'); a.parentElement.removeChild(a);");
+    row.appendChild(td1);
+    row.appendChild(td3);
+    tbody.appendChild(row);
+}
 function apply_setup(){
     var i,li_n,li_v,forms;
     story_script.parameters.launch_story=launch_story.value
@@ -2589,15 +2466,15 @@ function apply_setup(){
     li_n=document.getElementsByClassName("var_name");
     li_v=document.getElementsByClassName("var_vol");
     story_script.parameters.variables={};
-    for(i=0; i < li_n.length; i++){if(li_n[i].value != ""){story_script.parameters.variables[li_n[i].value]=li_v[i].value}}
+    for(i=0; i < li_n.length; i++){if(li_n[i].value!=""){story_script.parameters.variables[li_n[i].value]=li_v[i].value}}
     li_n=document.getElementsByClassName("font_name");
     li_v=document.getElementsByClassName("font_path");
     story_script.parameters.font_files={};
-    for(i=0; i < li_n.length; i++){if(li_n[i].value != ""){ story_script.parameters.font_files[li_n[i].value]=li_v[i].value}}
+    for(i=0; i < li_n.length; i++){if(li_n[i].value!=""){ story_script.parameters.font_files[li_n[i].value]=li_v[i].value}}
     li_n=document.getElementsByClassName("sound_name");
     li_v=document.getElementsByClassName("sound_path");
     story_script.parameters.sounds={};
-    for(i=0; i < li_n.length; i++){if(li_n[i].value != ""){ story_script.parameters.sounds[li_n[i].value]=li_v[i].value}}
+    for(i=0; i < li_n.length; i++){if(li_n[i].value!=""){ story_script.parameters.sounds[li_n[i].value]=li_v[i].value}}
     li_n=document.getElementsByClassName("title_lang");
     li_v=document.getElementsByClassName("title_name");
     story_script.parameters.title={};
@@ -2607,6 +2484,8 @@ function apply_setup(){
     li_v=document.getElementsByClassName("chec_plugin");
     story_script.parameters.plugins=[];
     for(i=0; i < li_v.length; i++){if(li_v[i].checked && plugins_list[li_v[i].id] ){story_script.parameters.plugins.push(li_v[i].id);}}
+    li_v=document.getElementsByClassName("addon_path");
+    for(i=0; i < li_v.length; i++){if(li_n[i].value!=""){story_script.parameters.plugins.push(li_v[i].value);}}
     lang_select();
     update_novel();
     modal_window('close');
@@ -2782,7 +2661,7 @@ function makeResizableDiv(s) {
             window.addEventListener('mousemove', resize)
             screen_preview.addEventListener('mouseup', stopResize)
         })
-        function resize(e) {
+        function resize(e){
             if (sizer.classList.contains('bottom-right')) {
                 const width = original_width + (e.pageX - original_mouse_x)/scale_scene;
                 const height = original_height + (e.pageY - original_mouse_y)/scale_scene
