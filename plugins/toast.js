@@ -16,4 +16,9 @@ function toast(message) {
     void tue_toast.offsetParent;
     tue_toast.classList.add("toast_anim");
 }
-tuesday.addEventListener('creation_dialog', function(event) {if (story_json[tue_story][scene].dialogs[dialog].toast){toast(story_json[tue_story][scene].dialogs[dialog].toast)}});
+tuesday.addEventListener('creation_dialog', function(event) {
+    if (story_json[tue_story][scene].dialogs[dialog].toast){
+        if (story_json[tue_story][scene].dialogs[dialog].toast[languare]){toast(story_json[tue_story][scene].dialogs[dialog].toast[languare])}
+        else {toast(story_json[tue_story][scene].dialogs[dialog].toast)}
+    }
+});
