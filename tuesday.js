@@ -347,10 +347,10 @@ function get_lang(){
 				if(story_json[tue_story][scene].dialogs[dialog].choice[i].variables){
 					for(var g=0;g < story_json[tue_story][scene].dialogs[dialog].choice[i].variables.length;g++){
 						if(story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][1] == "add"){
-							v += "story_json.parameters.variables['"+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][0]+"']"+" += "+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][2]+";"
+							v += "story_json.parameters.variables."+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][0]+" += "+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][2]+";"
 						}
 						else if(story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][1] == "set"){
-							v += "story_json.parameters.variables['"+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][0]+"']"+"="+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][2]+";"
+							v += "story_json.parameters.variables."+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][0]+" = "+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][2]+";"
 						}
 					}
 				}
@@ -361,7 +361,7 @@ function get_lang(){
 					else {
 						choice.setAttribute("onclick",v+"go_to('"+g+"');"+add_sound())
 					}
-				}else{choice.setAttribute("onclick",v+"go_story(true);del_element('tue_choice');"+add_sound());}
+				}else{choice.setAttribute("onclick","del_element('tue_choice'); "+v+"go_story(true);"+add_sound());}
                 tuesday.appendChild(choice);
 				function add_sound(){
 					var s='';
@@ -459,8 +459,7 @@ function get_lang(){
 		if(story_json[tue_story][scene].dialogs[dialog].text){
 			if(story_json[tue_story][scene].dialogs[dialog].text[languare] == 'skip'){back_story()}
 			else {creation_dialog();};
-		}
-		else if(story_json[tue_story][scene].dialogs[dialog].text_add){
+		} else if(story_json[tue_story][scene].dialogs[dialog].text_add){
 			if(story_json[tue_story][scene].dialogs[dialog].text_add[languare] == 'skip'){back_story()}
 			else {
 				if(story_json[tue_story][scene].dialogs[dialog].text_add[languare]){
@@ -471,8 +470,7 @@ function get_lang(){
 				}else{dialog_text=dialog_text.replace(story_json[tue_story][scene].dialogs[dialog+1].text_add,"")};
 				creation_dialog();
 			};
-		}
-		else {
+		} else {
 			creation_dialog();
 			del_element("tue_choice")
             del_element("tue_html_dialog")
