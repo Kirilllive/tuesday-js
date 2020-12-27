@@ -525,12 +525,12 @@ let plugins_list={
     "show_toast":{
         "name":"show toast",
         "text":"small message appears for a while",
-        "file":"plugins/toast.js"
+        "code":"let tue_toast;function creation_tost(){var t=document.createElement(\"style\");t.type=\"text/css\",t.innerHTML=\"#toast{position: fixed;opacity: 0;top: -96px;z-index: 1000;}.toast_anim{left: 50%;transform: translateX(-50%);animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;}@keyframes viwe {from {opacity: 0; top: 3em}to {opacity: 1; top: 3em}}@keyframes stop {from {opacity: 1; top: 3em}to {opacity: 1; top: 3em}}@keyframes close {from {opacity: 1; top: 3em}to {opacity: 0; top: -96px}}\",document.getElementsByTagName(\"head\")[0].appendChild(t),(tue_toast=document.createElement(\"div\")).id=\"toast\",tue_toast.innerHTML=\"<table border=\'0\' height=\'100%\' width=\'100%\'><tbody><tr><td id=\'toast_message\' align=\'center\' valign=\'center\' ></td></tr></tbody></table>\",document.body.appendChild(tue_toast)}function toast(t){tue_toast.classList.remove(\"toast_anim\"),document.getElementById(\"toast_message\").innerHTML=t,tue_toast.offsetParent,tue_toast.classList.add(\"toast_anim\")}creation_tost(),tuesday.addEventListener(\"creation_dialog\",function(t){story_json[tue_story][scene].dialogs[dialog].toast&&(story_json[tue_story][scene].dialogs[dialog].toast[languare]?toast(story_json[tue_story][scene].dialogs[dialog].toast[languare]):toast(story_json[tue_story][scene].dialogs[dialog].toast))});"
     },
     "touch_swipe":{
         "name":"touch swipe",
         "text":"switches dialogue by swiping your finger across the touchscreen",
-        "file":"plugins/touch_swipe.js"
+        "code":"var endTime,starttouch=null;window.addEventListener(\"touchstart\",function(t){startTime=new Date,starttouch=1===t.touches.length?t.touches.item(0).clientX:null}),window.addEventListener(\"touchend\",function(t){var e=new Date-startTime;if(starttouch&&e<500){var n=t.changedTouches.item(0).clientX;n>starttouch+40&&back_story(),n<starttouch-40&&go_story()}});"
     }
 }
 var languare="en";
@@ -1091,12 +1091,18 @@ function modal_window(action,content){
 function play_novel(bl){
     var story_preview=JSON.stringify(story_script)
     for(var f=0; f < project_files.length; f++){for(var r=JSON.stringify(story_script).split(project_files[f][0]).length+2; r > 0; r--){story_preview=story_preview.replace(project_files[f][0],project_files[f][1])}}
-    var plugins_code="";
-    if(story_script.parameters.plugins){for(var i=0; i < story_script.parameters.plugins.length; i++){plugins_code+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+open_file(plugins_list[story_script.parameters.plugins[i]].file)+"'><\/script>":"<script type='text/javascript' src='"+open_file(story_script.parameters.plugins[i])+"'><\/script>")}}
+    var plugins_code=" ";
+    var plugins_file="";
+    if(story_script.parameters.plugins){for(var i=0; i < story_script.parameters.plugins.length; i++){
+        if(plugins_list[story_script.parameters.plugins[i]]){
+            if (plugins_list[story_script.parameters.plugins[i]].code){plugins_code+=plugins_list[story_script.parameters.plugins[i]].code+" "}
+            else if(plugins_list[story_script.parameters.plugins[i]].file){plugins_file+="<script type='text/javascript' src='"+open_file(plugins_list[story_script.parameters.plugins[i]].file)+"'><\/script>"}
+        } else {plugins_file+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+open_file(plugins_list[story_script.parameters.plugins[i]].file)+"'><\/script>":"<script type='text/javascript' src='"+open_file(story_script.parameters.plugins[i])+"'><\/script>")}
+    }}
     var fonts="";
     if(story_script.parameters.font_files){for(var i=0; i < Object.keys(story_script.parameters.font_files).length; i++){fonts+="@font-face{font-family:"+Object.keys(story_script.parameters.font_files)[i]+";src:url("+open_file(story_script.parameters.font_files[Object.keys(story_script.parameters.font_files)[i]])+");} "}}
     var preview=window.open("https://kirilllive.github.io/Tuesday/tuesday_visual.html","preview","location=no,scrollbars=no,width=640,height=480");
-    preview.document.write("<html><head><style>"+fonts+" "+((story_script.parameters.font)?"*{font-family:"+story_script.parameters.font+";} ":"")+"body{font-size:"+story_script.parameters.font_size+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript'>"+runtime+"<\/script>"+plugins_code+"<script>let story_preview="+story_preview+";  tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'}); "+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"')});" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
+    preview.document.write("<html><head><style>"+fonts+" "+((story_script.parameters.font)?"*{font-family:"+story_script.parameters.font+";} ":"")+"body{font-size:"+story_script.parameters.font_size+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_preview="+story_preview+";  tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'}); "+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"')});" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
 }
 function search_block(){
     var input,filter,li,i,txtValue;
@@ -1148,8 +1154,14 @@ function about(){
 }
 function build(){
     let story_build = JSON.parse(JSON.stringify(story_script));
-    var plugins_code="";
-    if(story_script.parameters.plugins){for(var i=0; i < story_script.parameters.plugins.length; i++){plugins_code+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>":"<script type='text/javascript' src='"+story_script.parameters.plugins[i]+"'><\/script>")}}
+    var plugins_file="";
+    var plugins_code=" ";
+    if(story_script.parameters.plugins){for(var i=0; i < story_script.parameters.plugins.length; i++){
+        if(plugins_list[story_script.parameters.plugins[i]]){
+            if (plugins_list[story_script.parameters.plugins[i]].code){plugins_code+=plugins_list[story_script.parameters.plugins[i]].code+" "}
+            else if(plugins_list[story_script.parameters.plugins[i]].file){plugins_file+="<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>"}
+        } else {plugins_file+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+plugins_list[story_script.parameters.plugins[i]].file+"'><\/script>":"<script type='text/javascript' src='"+story_script.parameters.plugins[i]+"'><\/script>")}
+    }}
     var fonts=""
     if(story_build.parameters.font_files){for(var i=0; i < Object.keys(story_build.parameters.font_files).length; i++){fonts+="@font-face{font-family:"+Object.keys(story_build.parameters.font_files)[i]+";src:url("+story_build.parameters.font_files[Object.keys(story_build.parameters.font_files)[i]]+");} "}}
     var par=[((story_script.parameters.font)?story_script.parameters.font:0),((story_script.parameters.font_size)?story_script.parameters.font_size:0),((story_script.parameters.icon)?story_script.parameters.icon:0)]
@@ -1160,7 +1172,7 @@ function build(){
     delete story_build.parameters.font_files;
     delete story_build.blocks;
     var story_preview=JSON.stringify(story_build)
-    var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent("<html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<style>"+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript'>"+runtime+"<\/script>"+plugins_code+"<script>let story_novel="+story_preview+"; load_story('data',story_novel); <\/script><\/body><\/html>");
+    var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent("<html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<style>"+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_novel="+story_preview+"; load_story('data',story_novel); <\/script><\/body><\/html>");
     var dlAnchorElem=document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href",dataStr);
     dlAnchorElem.setAttribute('download','index.html');
