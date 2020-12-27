@@ -131,7 +131,7 @@ function get_lang(){
 		}
 	}
 	tuesday.dispatchEvent(new Event('script_executed'));
-    if (localStorage.getItem("tue_auto_data")){story_json.parameters.variables=JSON.parse(localStorage.getItem("tue_auto_data"));}
+    if (localStorage.getItem("tue_auto_data" && story_json.parameters.autosave)){story_json.parameters.variables=JSON.parse(localStorage.getItem("tue_auto_data"));}
 	creation_buttons();
     creation_scene();
 } function creation_buttons(){
