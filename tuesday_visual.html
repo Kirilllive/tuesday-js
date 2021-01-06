@@ -2661,7 +2661,8 @@ function csv_export(){
     var CSV='name\t';
 	for(i=0; i < story_script.parameters.languares.length; i++){CSV+=story_script.parameters.languares[i]+'\t';}
 	CSV+='\rtitle\t';
-	for(i=0; i < story_script.parameters.languares.length; i++){CSV+=story_script.parameters.title[story_script.parameters.languares[i]]+'\t';}
+	if(story_script.parameters.title[languare]){for(i=0; i < story_script.parameters.languares.length; i++){CSV+=story_script.parameters.title[story_script.parameters.languares[i]]+'\t';}}
+    else {CSV+=story_script.parameters.title}
 	CSV+='\r';
 	all_blocks=0;
     while (Object.keys(story_script)[all_blocks]){
@@ -2686,11 +2687,12 @@ function csv_export(){
 							for(r=0; r < story_script[k][i].dialogs[d].choice.length; r++){
 								if(story_script[k][i].dialogs[d].choice[r].text){
 									CSV+='choice \t';
-									for(l=0; l < story_script.parameters.languares.length; l++){
+									if(story_script[k][i].dialogs[d].choice[r].text[languare]){for(l=0; l < story_script.parameters.languares.length; l++){
 										if(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+=story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
 										else {CSV+='\t';}
-									}
-									CSV+='\r';
+									}} else {CSV+=story_script[k][i].dialogs[d].choice[r].text.replace(new RegExp('\t',"g"),'')+'\t';}
+                                    CSV+='\r'
+                                    
 								}
 							}
 						}
