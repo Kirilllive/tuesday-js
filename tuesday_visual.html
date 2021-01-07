@@ -650,6 +650,7 @@ function load_story_edit(url){
             if(!story_script.parameters){alert("error in json file")}
 			else {
                 toast("json file loading completed");
+                languare=story_script.parameters.languares[0]
                 parse_story()
                 lines()
             }
@@ -846,7 +847,7 @@ if(arr[key][story_script.parameters.languares[0]]){
 	for(var i=0;i<story_script.parameters.languares.length;i++){
 		if(arr[key][story_script.parameters.languares[i]]){
 			if(n.length==0 || n==arr[key][story_script.parameters.languares[i]] || arr[key][story_script.parameters.languares[i]].length==0){a++}
-			n=arr[key][story_script.parameters.languares[i]]
+			else {n=arr[key][story_script.parameters.languares[i]]}
 		} else {a++}
 	}
 	if(a == story_script.parameters.languares.length){arr[key]=n};
@@ -1326,7 +1327,7 @@ function file_catalog(id,files,area,preview,arr){
         for(f=0; f < project_files.length; f++){
             for(t=0; t < files.length; t++){
                 if(project_files[f][0].indexOf(files[t]) > -1){
-                    code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="'+((a.length>1)? a+'.src=\''+open_file(project_files[f][0])+'\';':'')+' '+arr+'=\''+project_files[f][0]+'\';  '+area+'.value=\''+project_files[f][0]+'\';'+((preview!=0)?preview+'.style.backgroundImage=\'url('+open_file(project_files[f][0])+')\'':'')+';  add_element.style.visibility=\'hidden\';  "><table style="margin:4px;"><tbody><tr><td width="64px" height="64px" style=\'border-radius:8px;background-image:url(\"'+project_files[f][1]+'\");background-size:cover;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                    code+='<tr><td class="add_el" style="border-bottom:1px solid #cec8e3;" onclick="'+((a.length>1)? a+'.src=\''+project_files[f][1]+'\';':'')+' '+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';'+((preview!=0)?preview+'.style.backgroundImage=\'url('+project_files[f][1]+')\'':'')+';add_element.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="64px" height="64px" style=\'border-radius:8px;background-image:url(\"'+project_files[f][1]+'\");background-size:cover;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                 }
             }
         }
@@ -1472,7 +1473,7 @@ function menu_view(id,code){
     menu_add.style.left=html.scrollLeft+rect.right+20+"px";
 }
 function scene_add(arr){
-	story_script[arr].push({"background_image":{},"background_music":"","dialogs":[]});
+	story_script[arr].push({"background_image":"","background_music":"","dialogs":[]});
 	arr_l=story_script[arr]
 	arr_n=story_script[arr].length - 1
 	scene_edit();
@@ -1502,7 +1503,7 @@ function option_block(d,g){
         scene_list+='</optgroup><optgroup label="System function">';
         for(s=0;s<Object.keys(button_name).length;s++){scene_list+="<option value='"+Object.keys(button_name)[s]+"' "+((d==Object.keys(button_name)[s])?"selected" :"")+">"+button_name[Object.keys(button_name)[s]]+"</option>"}
     }
-    scene_list+="<option value='tue_go' "+((d=="tue_go")?"selected" :"")+">Next story</option></optgroup>"
+    scene_list+="<option value='tue_go' "+((d=="tue_go")?"selected" :"")+">Next scene</option></optgroup>"
     return scene_list
 }
 function legacy_choice_edit(){
@@ -1595,12 +1596,8 @@ function element_to(){
     else if(arr_n=='controll'){arr_l[arr_n]="visible"}
     else if(arr_n=='variables'){arr_l[arr_n]=[[Object.keys(story_script.parameters.variables)[0], "add", 1]];variables_set_edit()}
     else if(arr_n=='choice'){arr_l.choice = [];edit_choice();}
-    else if(arr_n=='text'){arr_l.text = {};
-	    for(var i=0; i < story_script.parameters.languares.length; i++){arr_l.text[story_script.parameters.languares[i]]='';}
-	}
-    else if(arr_n=='text_add'){arr_l.text_add = {};
-        for(var i=0; i < story_script.parameters.languares.length; i++){arr_l.text_add[story_script.parameters.languares[i]]='';}
-    }
+    else if(arr_n=='text'){arr_l.text = {};for(var i=0;i<story_script.parameters.languares.length;i++){arr_l.text[story_script.parameters.languares[i]]='';}}
+    else if(arr_n=='text_add'){arr_l.text_add = {};for(var i=0;i<story_script.parameters.languares.length;i++){arr_l.text_add[story_script.parameters.languares[i]]='';}}
 	update_novel();
 }
 let copy_arr = {};
@@ -1612,7 +1609,7 @@ function dialog_text_edit(){
 	+"<table width='100%'><tbody><tr><td width='80px' align='center'>languare:</td>"
 	+"<td width='40px'><select class='input_text' id='text_la' onchange='name_text.value=copy_arr.name[this.value];dialogtext.value=copy_arr.text[this.value];text_сhars.innerHTML=dialogtext.value.length' style='height:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:0'>"+project_languares(languare)+"</select></td>"
 	+"<td width='90px' align='center'>сharacters:</td><td id='text_сhars'>" + copy_arr[arr_n][languare].length + "</td><td></td></tr></tbody></table><table width='100%'><tbody><tr>"
-	+"<td><textarea id='dialogtext' oninput='text_сhars.innerHTML=this.value.length;copy_arr[arr_n][text_la.value]=this.value;' class='input_text' style='resize:none;padding:4px;-moz-box-sizing:border-box; box-sizing:border-box;height:calc(90vh - 256px);width:100%;border:1px solid #cec8e3;'>" + copy_arr[arr_n][languare] + "</textarea></td>"
+	+"<td><textarea id='dialogtext' oninput='text_сhars.innerHTML=this.value.length;copy_arr[arr_n][text_la.value]=this.value;' class='input_text' style='resize:none;padding:4px;-moz-box-sizing:border-box; box-sizing:border-box;height:calc(90vh - 256px);width:100%;border:1px solid #cec8e3;'>" + ((copy_arr[arr_n][languare].length>0)?copy_arr[arr_n][languare]:'&nbsp;') + "</textarea></td>"
 	+"<td width='286px' valign='top'><div style='width:100%;height:calc(90vh - 256px);overflow-x:hidden;overflow-y:auto;'><table width='100%'><tbody>"
 	+"<tr><td width='80px' height='40px' align='left' style='padding-left:8px; border-bottom:1px solid #cec8e3;' colspan='3'>Settings text panel</td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='text_color' class='input_text' value='"+((copy_arr.color_text)?copy_arr.color_text:"")+"' type='text'></td>"
@@ -1657,14 +1654,15 @@ function dialog_text_apply(){
 function scene_edit() {
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
     if(!copy_arr[arr_n].background_image){copy_arr[arr_n].background_image=""}
-	if(!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
+    if(!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
     var html="<div class='window' style='padding:24px 8px; width:640px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Settings scene</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[2].en+"</p><br><br>"
     +"<table width='100%' height='256px'><tbody><tr>"
-    +"<td width='256px' id='scene_bg_preview' rowspan='6' style='border-radius:10px; background-color:#efefff; background-image:url("+open_file(copy_arr[arr_n].background_image[languare])+"); background-color:"+copy_arr[arr_n].background_color+"; background-size:cover; background-repeat:no-repeat; background-position:center;'>&nbsp;</td>"
+    +"<td width='256px' id='scene_bg_preview' rowspan='6' style='border-radius:10px; background-color:#efefff; background-image:url("+open_file((copy_arr[arr_n].background_image[languare])?copy_arr[arr_n].background_image[languare]:copy_arr[arr_n].background_image)+"); background-color:"+copy_arr[arr_n].background_color+"; background-size:cover; background-repeat:no-repeat; background-position:center;'>&nbsp;</td>"
     +"<td width='50px' align='right' style='height:28px;padding-right:8px;'>Image:</td>"
     +"<td style='width:40px;'><select class='input_text' id='scene_la' onchange='scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[this.value])+\")\"; scene_bg_url.value=copy_arr[arr_n].background_image[this.value];' style='height:28px; width:40px; border-left:1px solid #cec8e3; border-right:1px solid #cec8e3;'>"+project_languares(languare)+"</select></td>"
-    +"<td><input id='scene_bg_url' class='input_text' style='height:28px; width:100%;' oninput='copy_arr[arr_n].background_image[scene_la.value]=this.value;scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[scene_la.value])+\")\";' value='"+((copy_arr[arr_n].background_image[languare].length>0)?copy_arr[arr_n].background_image[languare]:'&nbsp;')+"' type='text'></td>"
-    +"<td id='files_img' class='icon icon_load' style='height:40px; width:40px;' onclick='file_catalog(this.id,\"img\",\"scene_bg_url\",\"scene_bg_preview\",\"copy_arr[arr_n].background_image[scene_la.value]\")'></td>"
+        +"<td><input id='scene_bg_url' class='input_text' style='height:28px; width:100%;' oninput='copy_arr[arr_n].background_image[scene_la.value]=this.value;scene_bg_preview.style.backgroundImage=\"url(\"+open_file(copy_arr[arr_n].background_image[scene_la.value])+\")\";' value='"+((copy_arr[arr_n].background_image[languare].length>0)?copy_arr[arr_n].background_image[languare]:'&nbsp;')+"' type='text'></td>"
+
+    +"<td id='files_img' class='icon icon_load' style='height:40px; width:40px;' onclick='file_catalog(\"scene_bg_url\",\"img\",\"scene_bg_url\",\"scene_bg_preview\",\"copy_arr[arr_n].background_image[scene_la.value]\")'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding-right:8px;'>Music:</td>"
     +"<td colspan='2'><input id='scene_music' class='input_text' style='height:28px;' value='"+((copy_arr[arr_n].background_music)?copy_arr[arr_n].background_music:"")+"' type='text'></td>"
@@ -1714,10 +1712,11 @@ function edit_choice(){
     copy_arr=JSON.parse(JSON.stringify(arr_l));
     var choice_list="<table width='98%' id='var_choice' style='margin:10px 0 10px 0;'><tbody>";
         for(var l=0; l < copy_arr[arr_n].length; l++){
+        if(!copy_arr[arr_n][l].text[languare]){data_la(copy_arr[arr_n][l],'text')}
         choice_list+="<tr><td style='width:32px;height:26px;'>Text</td><td valign='bottom' style='height:26px;width:28px;'><select id='chol"+l+"' class='input_text' onchange='cho"+l+".value=copy_arr."+arr_n+"["+l+"].text[this.value];' style='height:26px;width:30px;border-left:1px solid #cec8e3; border-right:1px solid #cec8e3; border-bottom:1px solid #cec8e3;'>"+project_languares(languare)+"</select></td><td><input id='cho"+l+"' class='input_text' oninput='copy_arr."+arr_n+"["+l+"].text[chol"+l+".value]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].text[languare]+"' type='text'></td><td style='width:64px;padding-right:8px;' align='right'>Position X</td><td style='width:48px;'><input class='input_text' style='height:26px;' oninput='copy_arr."+arr_n+"["+l+"].position[0]=this.value;' value='"+copy_arr[arr_n][l].position[0]+"' type='text'></td><td style='width:16px;' align='center'>Y</td><td style='width:48px;'><input class='input_text' oninput='copy_arr."+arr_n+"["+l+"].position[2]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].position[2]+"' type='text'></td><td style='width:48px;' align='right'>go to:</td><td style='width:92px;'><select onchange='copy_arr."+arr_n+"["+l+"].go_to=this.value;' class='input_text'>"+option_block(copy_arr[arr_n][l].go_to,true)+"</select></td><td onclick='copy_arr."+arr_n+"["+l+"]={}; var a=this.closest(\"tr\"); a.parentElement.removeChild(a);' style='width:32px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
     }
     choice_list+="</tbody></table>"
-    var html="<div class='window' style='padding:24px 8px;width:568px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Choice edit</p><br><hr style='margin:0;'><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'>"+choice_list+"<div onclick=\"edit_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div></div><br><br><table class='big_button' width='256px' onclick='   for(var l=copy_arr[arr_n].length;l>=0;l--){if(!copy_arr[arr_n][l]||!copy_arr[arr_n][l].go_to){copy_arr[arr_n].splice(l,1);}};data_only(copy_arr,arr_n);arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();modal_window(\"close\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    var html="<div class='window' style='padding:24px 8px;width:568px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Choice edit</p><br><hr style='margin:0;'><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'>"+choice_list+"<div onclick=\"edit_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div></div><br><br><table class='big_button' width='256px' onclick='   for(var l=copy_arr[arr_n].length;l>=0;l--){if(!copy_arr[arr_n][l]||!copy_arr[arr_n][l].go_to){copy_arr[arr_n].splice(l,1);} else {data_only(copy_arr[arr_n][l],\"text\");}};arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();modal_window(\"close\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_choice_new(){
@@ -2143,8 +2142,8 @@ function choice_panel_edit(block,i,n,b){
     return html;
 }
 let button_name={
-    'tue_back':'Back story',
-    'tue_next':'Next story',
+    'tue_back':'Back dialog',
+    'tue_next':'Next dialog',
     'tue_home':'Start block',
     'tue_save':'Save stage',
     'tue_load':'Load stage',
