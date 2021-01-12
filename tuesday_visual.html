@@ -2388,11 +2388,16 @@ function scen_compres(block,i,n){
                                                 
                                                 
 
-function correct_name(name){return name.trim().replace(/[\s.,':;]/g, '_');};
+function correct_name(name){return name.trim().replace(/[\s.,':;]/g,'_');};
+let units=['px','%','em',"pc","pt","in","mm","cm","ex","ch","rem","vw","vh"];
 function correct_value(name){
-    if(name==parseInt(name)&&name!=0){
-        return name+"px"
-    } else {return name}
+    var l="px"
+    if (name.indexOf("calc")>-1) {return name}
+    else if(name.indexOf("+")>-1 || name.indexOf("-")>-1 || name.indexOf("*")>-1 || name.indexOf("/")>-1) {
+        for(var u=0;u<units.length;u++){if(name.indexOf(units[u])>-1){name=name.replace(new RegExp(units[u],'g'),'');l=units[u];}}
+        return eval(name)+l;}
+    else if(name==parseInt(name)&&name!=0){ return name+l}
+    else {return name}
 }
 function move_elenetn(arr,o,n){
 	var new_index=((o+n)<0)?o:o+n;
