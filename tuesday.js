@@ -354,14 +354,14 @@ function get_lang(){
 						}
 					}
 				}
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].go_to && story_json[tue_story][scene].dialogs[dialog].choice[i].go_to!="tue_go"){
-					var g=story_json[tue_story][scene].dialogs[dialog].choice[i].go_to;
-					if(g == "tue_load_autosave"){choice.setAttribute("onclick","load_stag('auto');"+add_sound());}
-					else if(g == "load"){choice.setAttribute("onclick","load_stag('bookmark');"+add_sound());}
-					else {
-						choice.setAttribute("onclick",v+"go_to('"+g+"');"+add_sound())
-					}
-				}else{choice.setAttribute("onclick","del_element('tue_choice'); "+v+"go_story(true);"+add_sound());}
+                if (story_json[tue_story][scene].dialogs[dialog].choice[i].go_to){
+                    var g=story_json[tue_story][scene].dialogs[dialog].choice[i].go_to;
+                    if (g == "tue_go"){choice.setAttribute("onclick","del_element('tue_choice'); "+v+"go_story(true);"+add_sound());}
+                    else if (g == "tue_load_autosave"){choice.setAttribute("onclick","load_stag('auto');"+add_sound());}
+                    else if (g == "load"){choice.setAttribute("onclick","load_stag('bookmark');"+add_sound());}
+                    else if (g == "tue_no"||g == ""){choice.setAttribute("onclick","")}
+                    else {choice.setAttribute("onclick",v+"go_to('"+g+"');"+add_sound())}
+                } else {choice.setAttribute("onclick",v+"go_story(true);del_element('tue_choice');"+add_sound());tuesday.appendChild(choice);}
                 tuesday.appendChild(choice);
 				function add_sound(){
 					var s='';
