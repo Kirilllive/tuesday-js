@@ -2655,8 +2655,8 @@ var objFocus;
 let arr_e;
 function droppFocus(){
     if(objFocus){
-        objFocus.style.width=arr_e.size[0];
-        objFocus.style.height=arr_e.size[1];
+        objFocus.style.width=resizers.style.width;
+        objFocus.style.height=resizers.style.height;
         objFocus.style.top=resizers.style.top;
         objFocus.style.left=resizers.style.left;
         objFocus.style.zIndex=resizers.style.zIndex;
@@ -2678,6 +2678,7 @@ function objSelect(id){
     resizers.style.zIndex=objFocus.style.zIndex;
     resizers.style.transform=objFocus.style.transform;
     objFocus.style.transform="";
+    objFocus.style.boxSizing='border-box';
     objFocus.style.width='100%';
     objFocus.style.height='100%';
     objFocus.style.top='0px';
@@ -2711,23 +2712,23 @@ function makeResizableDiv(s){
         s.style.left=(s.offsetLeft-original_mouse_x/scale_scene)+"px";
     }
     function closeDragElement(){saveResize();}
-    const resizers=document.querySelectorAll(' .resizer')
+    const resizers=document.getElementsByClassName("resizer");
     const minSize=26;
-    let original_width=0, original_height=0, original_x=0, original_y=0, original_mouse_x=0, original_mouse_y=0;
+    let original_width=0,original_height=0,original_x=0,original_y=0,original_mouse_x=0,original_mouse_y=0;
     for (let i=0;i<resizers.length;i++){
         const sizer=resizers[i];
-        sizer.addEventListener('mousedown', function(e){
+        sizer.addEventListener('mousedown',function(e){
             moveSize=false
             scene_scroll=false
             e.preventDefault()
-            original_width=parseFloat(getComputedStyle(s, null).getPropertyValue('width').replace('px', ''));
-            original_height=parseFloat(getComputedStyle(s, null).getPropertyValue('height').replace('px', ''));
-            original_x=parseFloat(getComputedStyle(s, null).getPropertyValue('left').replace('px', ''));
-            original_y=parseFloat(getComputedStyle(s, null).getPropertyValue('top').replace('px', ''));
+            original_width=parseFloat(getComputedStyle(s,null).getPropertyValue('width').replace('px',''));
+            original_height=parseFloat(getComputedStyle(s,null).getPropertyValue('height').replace('px',''));
+            original_x=parseFloat(getComputedStyle(s,null).getPropertyValue('left').replace('px',''));
+            original_y=parseFloat(getComputedStyle(s,null).getPropertyValue('top').replace('px',''));
             original_mouse_x=e.pageX;
             original_mouse_y=e.pageY;
-            window.addEventListener('mousemove', resize)
-            screen_preview.addEventListener('mouseup', stopResize)
+            window.addEventListener('mousemove',resize)
+            screen_preview.addEventListener('mouseup',stopResize)
         })
         function resize(e){
             if (sizer.classList.contains('bottom-right')){
@@ -2765,7 +2766,7 @@ function makeResizableDiv(s){
             }
         }
         function stopResize(){
-            window.removeEventListener('mousemove', resize);
+            window.removeEventListener('mousemove',resize);
             moveSize=true;
             saveResize();
         }
@@ -2774,15 +2775,15 @@ function makeResizableDiv(s){
 function saveResize(){
     if(!scene_scroll){
         arr_e.position[0]=0;arr_e.position[1]=0;arr_e.position[2]=0;arr_e.position[3]=0
-        var layout_width=parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('width').replace('px',''));
-        var layout_height=parseFloat(getComputedStyle(scene_layout, null).getPropertyValue('height').replace('px',''));
+        var layout_width=parseFloat(getComputedStyle(scene_layout,null).getPropertyValue('width').replace('px',''));
+        var layout_height=parseFloat(getComputedStyle(scene_layout,null).getPropertyValue('height').replace('px',''));
         var z=resizers.style.left.replace('px','')
-        var b=objFocus.style.borderWidth.replace('px', '')*2;
-        if ((layout_width/2)>=z){ arr_e.position[0]=(z/layout_width*100).toFixed(2)+'%';}
-        else{ z=parseFloat(getComputedStyle(resizers, null).getPropertyValue('right').replace('px', '')); arr_e.position[1]=(z/layout_width*100).toFixed(2)+'%';}
+        var b=objFocus.style.borderWidth.replace('px','')*2;
+        if ((layout_width/2)>=z){arr_e.position[0]=(z/layout_width*100).toFixed(2)+'%';}
+        else{ z=parseFloat(getComputedStyle(resizers,null).getPropertyValue('right').replace('px',''));arr_e.position[1]=(z/layout_width*100).toFixed(2)+'%';}
         z=resizers.style.top.replace('px','')
-        if ((layout_height/2)>=z){ arr_e.position[2]=(z/layout_height*100).toFixed(2)+'%';}
-        else{ z=parseFloat(getComputedStyle(resizers, null).getPropertyValue('bottom').replace('px', '')); arr_e.position[3]=(z/layout_height*100).toFixed(2)+'%';}
+        if ((layout_height/2)>=z){arr_e.position[2]=(z/layout_height*100).toFixed(2)+'%';}
+        else{z=parseFloat(getComputedStyle(resizers,null).getPropertyValue('bottom').replace('px',''));arr_e.position[3]=(z/layout_height*100).toFixed(2)+'%';}
         if(arr_e.url){
             arr_e.size[0]=((resizers.style.width.replace('px','')-b)/layout_width*100).toFixed(2)+'%';
             arr_e.size[1]=((resizers.style.height.replace('px','')-b)/layout_height*100).toFixed(2)+'%';
