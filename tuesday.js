@@ -358,8 +358,13 @@ function get_lang(){
                     var g=story_json[tue_story][scene].dialogs[dialog].choice[i].go_to;
                     if (g == "tue_go"){choice.setAttribute("onclick","del_element('tue_choice'); "+v+"go_story(true);"+add_sound());}
                     else if (g == "tue_load_autosave"){choice.setAttribute("onclick","load_stag('auto');"+add_sound());}
-                    else if (g == "load"){choice.setAttribute("onclick","load_stag('bookmark');"+add_sound());}
+                    else if (g == "load"||g == "tue_load"){choice.setAttribute("onclick","load_stag('bookmark');"+add_sound());}
+                    else if (g == "tue_save"){choice.setAttribute("onclick","save_stag('bookmark');"+add_sound());}
                     else if (g == "tue_no"||g == ""){choice.setAttribute("onclick","")}
+                    else if (g == "tue_fullScreen"){choice.setAttribute("onclick","full_screen();");}
+                    else if (g == "tue_home"){choice.setAttribute("onclick",'document.getElementById("tue_home").addEventListener("click",function(){go_to("'+story_json.parameters.launch_story+'")});');}
+                    else if (g == "tue_back"){choice.setAttribute("onclick","back_story();");}
+                    else if (g == "tue_next"){choice.setAttribute("onclick","go_story();");}
                     else {choice.setAttribute("onclick",v+"go_to('"+g+"');"+add_sound())}
                 } else {choice.setAttribute("onclick",v+"go_story(true);del_element('tue_choice');"+add_sound());tuesday.appendChild(choice);}
                 tuesday.appendChild(choice);
