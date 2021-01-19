@@ -23,9 +23,12 @@
 :root {
   --cw:#efefff;
   --cb:#cec8e3;
+  --cs:rgba(110,95,165,0.25);
+  --cm:rgba(110,95,165,0.5);
+  --cf:rgba(90,75,145,1);
 }
-.panel{background-color:#fff;box-shadow:0px 2px 24px rgba(110,95,165,0.25);border-radius:16px;padding:4px;}
-@keyframes flash{0%{box-shadow:0px 2px 32px rgba(90,75,145,1);background-color:var(--cb);}25%{box-shadow:0px 2px 32px rgba(90,75,145,1);background-color:var(--cb);}100%{box-shadow:0px 2px 24px rgba(110,95,165,0.25);background-color:#fff;}}
+.panel{background-color:#fff;box-shadow:0px 2px 24px var(--cs);border-radius:16px;padding:4px;}
+@keyframes flash{0%{box-shadow:0px 2px 32px var(--cf);background-color:var(--cb);}25%{box-shadow:0px 2px 32px var(--cf);background-color:var(--cb);}100%{box-shadow:0px 2px 24px var(--cs);background-color:#fff;}}
 .story_block{min-height:28px;width:256px;position:absolute;cursor:all-scroll;}
 #world{position:absolute;-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;}
 line{stroke:#6e5fa5;stroke-dasharray:20;stroke-width:2;animation:dash 4s linear infinite;}
@@ -38,7 +41,7 @@ line{stroke:#6e5fa5;stroke-dasharray:20;stroke-width:2;animation:dash 4s linear 
 	padding:0px 32px;
 	height:40px;
 	min-width:128px;
-	box-shadow:0px 2px 24px rgba(110,95,165,0.25);
+	box-shadow:0px 2px 24px var(--cs);
 	z-index:10000;
 }
 .toast_anim{left:50%;background-color:#fff;border-radius:32px;animation:viwe 0.25s,stop 2s 0.25s,close 0.5s 2s linear;}
@@ -53,7 +56,7 @@ line{stroke:#6e5fa5;stroke-dasharray:20;stroke-width:2;animation:dash 4s linear 
 	right:32px;
     border-radius:20px;
     background-color:#fff;
-    box-shadow:0px 2px 24px rgba(110,95,165,0.25);
+    box-shadow:0px 2px 24px var(--cs);
     cursor:pointer;
 }
 #menu_panel{
@@ -61,7 +64,7 @@ line{stroke:#6e5fa5;stroke-dasharray:20;stroke-width:2;animation:dash 4s linear 
 	top:0;
 	left:0;
 	background-color:#fff;
-	box-shadow:0px 2px 24px rgba(110,95,165,0.25);
+	box-shadow:0px 2px 24px var(--cs);
 	border-radius:0 0 16px 0;
 	position:fixed;
 	height:40px;
@@ -156,13 +159,13 @@ line{stroke:#6e5fa5;stroke-dasharray:20;stroke-width:2;animation:dash 4s linear 
 	left:50%;
 	background-color:#fff;
 	border-radius:16px;
-	box-shadow:0px 2px 24px rgba(110,95,165,0.25);
+	box-shadow:0px 2px 24px var(--cs);
 }
 .button{border-radius:8px;width:100%;height:90%;background-color:var(--cw);}
 .button:hover{background-color:var(--cb);}
 .big_button{border-radius:20px;height:40px;background-color:var(--cw);cursor:pointer;}
 .big_button:hover{background-color:var(--cb);}
-.big_button2{border-radius:20px;height:40px;background-color:#fff;box-shadow:0px 2px 24px rgba(110,95,165,0.25);cursor:pointer;}
+.big_button2{border-radius:20px;height:40px;background-color:#fff;box-shadow:0px 2px 24px var(--cs);cursor:pointer;}
 .big_button2:hover{background-color:var(--cb);}
 .big_button3{border-radius:16px;height:32px;background-color:var(--cw);cursor:pointer;}
 .big_button3:hover{background-color:var(--cb);}
@@ -239,7 +242,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
     background-size:cover;
     background-repeat:no-repeat;
     background-position:center;
-    box-shadow:0px 2px 24px rgba(110,95,165,0.25);
+    box-shadow:0px 2px 24px var(--cs);
 }
 .set_title{background-color:var(--cb);cursor:pointer;}
 .input_color{cursor:pointer;border: none;height:100%;width:100%;opacity: 0;}
@@ -516,15 +519,15 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
         </table>
     </div>
 <script>
-
-
 function set_viwe(){
-var r = document.querySelector(':root');
-r.style.setProperty('--cb', '#000');
-alert(12)
+    var r = document.querySelector(':root');
+    r.style.setProperty('--cb', '#bbb');
+    r.style.setProperty('--cw', '#eee');
+    r.style.setProperty('--cs', 'rgba(0,0,0,0.25)');
+    r.style.setProperty('--cf', '#fff');
+    r.style.setProperty('--cm', 'rgba(0,0,0,0.25)');
 }
-var body=document.body,
-    html=document.documentElement;
+var body=document.body,html=document.documentElement;
 var all_blocks=document.getElementsByClassName("story_block");
 var story_lines=document.getElementById("story_lines");
 var menu_add=document.getElementById('add_element');
@@ -1095,7 +1098,7 @@ function modal_window(action,content){
         window_zone.innerHTML="";
     } else if(action=='open'&&window_zone.style.visibility!="visible"){
         window_zone.style.visibility="visible";
-        window_zone.style.backgroundColor='rgba(110,95,165,0.5)';
+        window_zone.style.backgroundColor='var(--cm)'//'rgba(110,95,165,0.5)';
         html.style.overflow='hidden';
         window_zone.innerHTML=content;
         scroll_block=true;
