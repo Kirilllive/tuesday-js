@@ -274,7 +274,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 					<td align='center' title='Settings project' onclick='setup();add_element.style.visibility="hidden";' class='icon button_menu icon_setup'></td>
                     <td align='center' title='Edit json text' onclick='jsonedit();add_element.style.visibility="hidden";' class='icon button_menu icon_json'></td>
                     <td align='center' title='Export all text to CSV file' onclick='csv_export();add_element.style.visibility="hidden";' class='icon button_menu icon_csv'></td>
-                    <td align='center' title='About visual editor' onclick='set_viwe();about();add_element.style.visibility="hidden";' class='icon button_menu icon_about'></td>
+                    <td align='center' title='About visual editor' onclick='about();add_element.style.visibility="hidden";' class='icon button_menu icon_about'></td>
                     <td align='center' style='width:88px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
                     <td align='center' style='width:40px;'><select class='input_text' id='language_view' style='height:40px; border-right:1px solid var(--cb); border-bottom:0'><option value='en'>EN</option></select></td>
 					<td align='center' title='Build project' onclick='build();add_element.style.visibility="hidden";' class='icon button_menu icon_build'></td>
@@ -519,14 +519,21 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
         </table>
     </div>
 <script>
-function set_viwe(){
+function set_ui(t){
     var r = document.querySelector(':root');
-    r.style.setProperty('--cb', '#bbb');
-    r.style.setProperty('--cw', '#eee');
-    r.style.setProperty('--cs', 'rgba(0,0,0,0.25)');
-    r.style.setProperty('--cf', '#fff');
-    r.style.setProperty('--cm', 'rgba(0,0,0,0.25)');
+    r.style.setProperty('--cb', color_ui[t][0]);
+    r.style.setProperty('--cw', color_ui[t][1]);
+    r.style.setProperty('--cs', color_ui[t][2]);
+    r.style.setProperty('--cf', color_ui[t][3]);
+    r.style.setProperty('--cm', color_ui[t][4]);
 }
+let color_ui=[
+    ['#cec8e3','#efefff','rgba(110,95,165,0.25)','rgba(90,75,145,1)','rgba(110,95,165,0.5)'],
+    ['#a3cdf0','#dff1ff','rgba(83,150,204,0.25)','#fff','rgba(134,161,183,0.5)'],
+    ['#bbb','#eee','rgba(0,0,0,0.25)','#fff','rgba(0,0,0,0.25)'],
+    ['#bdd3a5','#dfebd5','rgba(109,124,91,0.25)','#fff','rgba(109,124,91,0.5)'],
+    ['#e6c69d','#ffe9cb','rgba(172,144,99,0.5)','#fff','rgba(172,144,99,0.25)']
+]
 var body=document.body,html=document.documentElement;
 var all_blocks=document.getElementsByClassName("story_block");
 var story_lines=document.getElementById("story_lines");
@@ -574,6 +581,7 @@ let texts={
 let setup_editor={
         'wheel':true,
         'fon':'',
+        'ui':0,
         'lines':false,
         'preview':[76,1],
         'ferst':true
@@ -592,6 +600,7 @@ function editor_setup(){
     screen_preview.className=setup_editor.fon;
     preview_size();
     if(setup_editor.wheel){html.style.overflow='hidden';}
+    if(setup_editor.ui!=0){set_ui(setup_editor.ui);}
     else{html.style.overflow='auto';}
 }
 function color_element(id,color){
@@ -2433,7 +2442,17 @@ function setup(){
         "<tr><td align='right' style='padding-top:4px; height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==false)?'checked' :'')+"></td><td align='left' style='width:80px;'>TouchPad </td><td> swipe scrolling is recommended for Laptops and MacBooks</td></tr>"+
         "</tbody></table></form><br><p align='left' style=' margin-left:8px;'>Display script</p><hr><table id='controll' style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody>"+
         "<tr><td align='right' style='padding-top:4px; height:40px;'><input id='all_lines' type='checkbox' class='chec_plugin checkbox_a' "+((setup_editor.lines)?'checked' :'')+"></td><td align='left' style='width:80px;'>All Lines </td><td> Show all lines of a block or only a selected block</td></tr>"+
-        "</tbody></table><br><p align='left' style=' margin-left:8px;'>Background</p><hr><form id='bg_edit'><table style='width:100%;'><tbody><tr>"+
+        "</tbody></table><br>"+
+        "<p align='left' style='margin-left:8px;'>Color them</p><hr><form id='ui_color'>"+
+        "<table style='border-spacing:10px;border-collapse:separate;'><tbody><tr>"+
+		"<td class='color_select' style='background-color:"+color_ui[0][0]+";'><input class='checkbox_b' type='radio' name='color' value='0' "+((setup_editor.ui==0)?'checked' :'')+"></td>"+
+		"<td class='color_select' style='background-color:"+color_ui[1][0]+";'><input class='checkbox_b' type='radio' name='color' value='1' "+((setup_editor.ui==1)?'checked' :'')+"></td>"+
+		"<td class='color_select' style='background-color:"+color_ui[2][0]+";'><input class='checkbox_b' type='radio' name='color' value='2' "+((setup_editor.ui==2)?'checked' :'')+"></td>"+
+		"<td class='color_select' style='background-color:"+color_ui[3][0]+";'><input class='checkbox_b' type='radio' name='color' value='3' "+((setup_editor.ui==3)?'checked' :'')+"></td>"+
+		"<td class='color_select' style='background-color:"+color_ui[4][0]+";'><input class='checkbox_b' type='radio' name='color' value='4' "+((setup_editor.ui==4)?'checked' :'')+"></td>"+
+		"</tr></tbody></table>"+
+        "</form><br>"+
+        "<p align='left' style='margin-left:8px;'>Background</p><hr><form id='bg_edit'><table style='width:100%;'><tbody><tr>"+
         "<td align='center' height='92px'><input type='radio' name='bg_edit' class='chec_bg' value='' "+((setup_editor.fon=='')?'checked' :'')+"></td>"+
         "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_1' value='bg_1' "+((setup_editor.fon=='bg_1')?'checked' :'')+"></td>"+
         "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_2' value='bg_2' "+((setup_editor.fon=='bg_2')?'checked' :'')+"></td>"+
@@ -2442,7 +2461,7 @@ function setup(){
         "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_5' value='bg_5' "+((setup_editor.fon=='bg_5')?'checked' :'')+"></td>"+
         "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_6' value='bg_6' "+((setup_editor.fon=='bg_6')?'checked' :'')+"></td>"+
         "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_7' value='bg_7' "+((setup_editor.fon=='bg_7')?'checked' :'')+"></td></tr><tr>"+
-        "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_8' value='bg_8' "+((setup_editor.fon=='bg_8')?'checked' :'')+"></td>"+
+        "<td align='center' height='92px'><input type='radio' name='bg_edit' class='chec_bg bg_8' value='bg_8' "+((setup_editor.fon=='bg_8')?'checked' :'')+"></td>"+
         "<td align='center'></td>"+
         "<td align='center'></td>"+
         "<td align='center'></td>"+
@@ -2542,6 +2561,8 @@ function apply_setup(){
     setup_editor.lines=all_lines.checked;
     forms=document.forms.bg_edit;
     for(i=0;i<forms.length;i++){if(forms[i].checked){setup_editor.fon=forms[i].value;break;}}
+    forms=document.forms.ui_color;
+    for(i=0;i<forms.length;i++){if(forms[i].checked){setup_editor.ui=forms[i].value;if(setup_editor.ui==0){set_ui(0)};break;}}
     editor_setup();
     localStorage.setItem("editor_setup",JSON.stringify(setup_editor));
     //
