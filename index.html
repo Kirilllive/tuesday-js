@@ -42,6 +42,14 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
 .icon_e-mail{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNzMuNDk0LDcwLjQ5Mmw0OCwzMC4wMDgiLz4KICA8cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNTMuNTA2LDcwLjQ5MmwtNDgsMzAuMDA4Ii8+CiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTYzLjQ5NCw3NC41MDhsNTcuOTc1LTQ1Ljk5NFYxMDAuNUg1LjV2LTcyWiIvPgogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik02My40OTQsMjguNDkybDU4LDAuMDA4LTU4LDQ2LjAwOEw1LjUsMjguNVoiLz4KPC9zdmc+Cg==")}
 #window_zone {height:100vh;width:100%;display:flex;justify-content:center;align-items:center;background-color:rgba(0,0,0,0);position:fixed;left:0;top:0;visibility:hidden;transition-duration:0.5s;}
 .content{max-height:104vh;max-width:104%;}
+.gallery {width:100%;height:220px;background-size:cover;background-position:center;margin-bottom:8px;background-color:#9587c8;}
+.responsive {padding: 0 6px;float:left;width:25%;height:240px;box-sizing:border-box;}
+@media only screen and (max-width:700px){
+  .responsive {width:50%;margin: 6px 0;}
+}
+@media only screen and (max-width:500px;){
+  .responsive {width:100%;}
+}
 </style>
 </head>
 <body>
@@ -182,7 +190,7 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
                 <tr><td colspan='2' height='64px'></td></tr>
             </tbody>
         </table>
-        </tr></td><tr><td align="center" style='background: rgba(110,95,165,0.4);'>
+        </tr></td><tr><td align="center" style='background:rgba(110,95,165,0.4);'>
         <table style='border-spacing:8px;border-collapse:separate;max-width:800px;width:100%;color:#fff;margin:32px 0px 128px 0px;'>
               <tr><td align='center' class='box'>
                   <p id='donut'><b>You can support the project on Patreon!</b></p><br>
@@ -225,6 +233,15 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
                   <br>
               </td></tr>
           </table>
+        </tr></td><tr><td align="center" style='background: rgba(110,95,165,0.4);'>
+        <table style='border-spacing:8px;border-collapse:separate;max-width:800px;width:100%;color:#fff;margin:16px 0px 128px 0px;'>
+            <tr><td align='center' class='box' style='padding-bottom:46px;'>
+                <p id='thanks'>Mascot from other Artists<hr style='margin:8px 0px; border-top:1px solid #fff;'></p><br>
+                <div class="responsive"><a target="_blank" href="https://twitter.com/SweetBeanPaste_"><div class="gallery" style="background-image:url('https://pbs.twimg.com/media/EsA8mI_W4AMxdNi?format=jpg&name=medium');"></div><div>@SweetBeanPaste_</div></a></div>
+                <div class="responsive"><a target="_blank" href="https://twitter.com/3strawberrymoon"><div class="gallery" style="background-image:url('https://pbs.twimg.com/media/ErX0wHKVkAAHvmI?format=jpg&name=medium');"></div><div>@3strawberrymoon</div></a></div>
+                <div class="responsive"><a target="_blank" href="https://twitter.com/oekakiaim"><div class="gallery" style="background-image:url('https://img.itch.zone/aW1nLzQ2MTQzMzIuanBn/original/wGTNP%2B.jpg');"></div><div>@oekakiaim</div></a></div>
+            </td></tr>
+        </table>
 </tr></td></tbody></table>
 <div id='window_zone' onclick="modal_window('close')" align='center'></div>
 <script>
