@@ -601,7 +601,7 @@ function editor_setup(){
     screen_preview.className=setup_editor.fon;
     preview_size();
     if(setup_editor.wheel){html.style.overflow='hidden';}
-    if(setup_editor.ui!=0){set_ui(setup_editor.ui);}
+    if(setup_editor.ui&&setup_editor.ui!=0){set_ui(setup_editor.ui);}
     else{html.style.overflow='auto';}
 }
 function color_element(id,color){
@@ -1108,7 +1108,7 @@ function modal_window(action,content){
         window_zone.innerHTML="";
     } else if(action=='open'&&window_zone.style.visibility!="visible"){
         window_zone.style.visibility="visible";
-        window_zone.style.backgroundColor='var(--cm)'//'rgba(110,95,165,0.5)';
+        window_zone.style.backgroundColor='var(--cm)'//'#cec8e3';
         html.style.overflow='hidden';
         window_zone.innerHTML=content;
         scroll_block=true;
