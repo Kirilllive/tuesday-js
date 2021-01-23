@@ -14,6 +14,7 @@ var dialog_timeout;
 var tue_story;
 var tue_bg_music;
 var tue_fullScreen=false;
+var arr_dialog
 document.oncontextmenu = cmenu; function cmenu() { return false; } 
 document.addEventListener('keydown',function(event){
     var k=event.code;
@@ -174,13 +175,14 @@ function get_lang(){
     if(document.getElementById('tue_load')){document.getElementById('tue_load').addEventListener('click',function(){load_stag('bookmark')});}
     if(document.getElementById('tue_fullScreen')){document.getElementById('tue_fullScreen').addEventListener('click',function(){full_screen()});}
 } function creation_scene(){
+    arr_dialog = story_json[tue_story][scene]
     del_element("tue_html_scene");
-    if(story_json[tue_story][scene].legacy_choice){
-        for(var i=0;i < story_json[tue_story][scene].legacy_choice.length;i++){
-            var choice_n=story_json[tue_story][scene].legacy_choice[i][0];
-            var choice_s=story_json[tue_story][scene].legacy_choice[i][1];
-            var choice_v=story_json[tue_story][scene].legacy_choice[i][2];
-            var choice_g=story_json[tue_story][scene].legacy_choice[i][3];
+    if(arr_dialog.legacy_choice){
+        for(var i=0;i < arr_dialog.legacy_choice.length;i++){
+            var choice_n=arr_dialog.legacy_choice[i][0];
+            var choice_s=arr_dialog.legacy_choice[i][1];
+            var choice_v=arr_dialog.legacy_choice[i][2];
+            var choice_g=arr_dialog.legacy_choice[i][3];
             if(choice_s == ">" && story_json.parameters.variables[choice_n] > choice_v){
                 go_to(choice_g);
                 break;
@@ -190,172 +192,173 @@ function get_lang(){
             } else if(choice_s == "=" && story_json.parameters.variables[choice_n] == choice_v){
                 go_to(choice_g);
                 break;
-            } else if(story_json[tue_story][scene].legacy_choice[i].go_to){
-                go_to(story_json[tue_story][scene].legacy_choice[i].go_to);
+            } else if(arr_dialog.legacy_choice[i].go_to){
+                go_to(arr_dialog.legacy_choice[i].go_to);
                 break;
-            } else if(i == story_json[tue_story][scene].legacy_choice.length-1){
+            } else if(i == arr_dialog.legacy_choice.length-1){
                 scene++;
                 dialog=0;
                 creation_scene();
             }
         }
     }
-    if(story_json[tue_story][scene].background_class){
-        tuesday.className=story_json[tue_story][scene].background_class;
+    if(arr_dialog.background_class){
+        tuesday.className=arr_dialog.background_class;
     } else {tuesday.className=""}
-    if(story_json[tue_story][scene].background_color){
-        tuesday.style.backgroundColor=story_json[tue_story][scene].background_color;
+    if(arr_dialog.background_color){
+        tuesday.style.backgroundColor=arr_dialog.background_color;
     }
-    if(story_json[tue_story][scene].background_image){
-        if(story_json[tue_story][scene].background_image[languare]){tuesday.style.backgroundImage="url('"+story_json[tue_story][scene].background_image[languare]+"')";}
-        else {tuesday.style.backgroundImage="url('"+story_json[tue_story][scene].background_image+"')";}
+    if(arr_dialog.background_image){
+        if(arr_dialog.background_image[languare]){tuesday.style.backgroundImage="url('"+arr_dialog.background_image[languare]+"')";}
+        else {tuesday.style.backgroundImage="url('"+arr_dialog.background_image+"')";}
     }
 	if(document.getElementById("tue_home")){
 		if(tue_story == story_json.parameters.launch_story){document.getElementById("tue_home").style.visibility="hidden";}
 		else {document.getElementById("tue_home").style.visibility="visible";}
 	}
-    if (story_json[tue_story][scene].html){
-        if (story_json[tue_story][scene].html[languare]){
+    if (arr_dialog.html){
+        if (arr_dialog.html[languare]){
             var html=document.createElement("div");
             html.className='tue_html_scene';
-            html.innerHTML=story_json[tue_story][scene].html[languare];
+            html.innerHTML=arr_dialog.html[languare];
             tuesday.appendChild(html);
         } else {
         var html=document.createElement("div");
         html.className='tue_html_scene';
-        html.innerHTML=story_json[tue_story][scene].html;
+        html.innerHTML=arr_dialog.html;
         tuesday.appendChild(html);
         }
     }
     creation_dialog();
-    if(story_json[tue_story][scene].background_music){search_music()}
+    if(arr_dialog.background_music){search_music()}
 } function creation_dialog(){
-		if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !story_json[tue_story][scene].dialogs[dialog].go_to){document.getElementById('tue_next').style.visibility='hidden';}
+        arr_dialog = story_json[tue_story][scene].dialogs[dialog]
+		if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
 		else {document.getElementById("tue_next").style.visibility="visible";} 
-		if(scene == 0 && dialog == 0 && !story_json[tue_story][scene].dialogs[dialog].back_to){document.getElementById('tue_back').style.visibility='hidden'}
+		if(scene == 0 && dialog == 0 && !arr_dialog.back_to){document.getElementById('tue_back').style.visibility='hidden'}
 		else {document.getElementById("tue_back").style.visibility="visible";}
-		if(story_json[tue_story][scene].dialogs[dialog].controll == 'hidden'){
+		if(arr_dialog.controll == 'hidden'){
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="hidden";}
-		} else if(story_json[tue_story][scene].dialogs[dialog].controll == 'visible'){
+		} else if(arr_dialog.controll == 'visible'){
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="visible";}
 		}
-        if(story_json[tue_story][scene].dialogs[dialog].text){
+        if(arr_dialog.text && arr_dialog.text!='' && arr_dialog.text[languare]!=''){
             tue_text_block.style.visibility='visible';
             tue_text_view.innerHTML="";
             values_in_text(false);
             clearTimeout(dialog_timeout);
             anim_text();
-            if(story_json[tue_story][scene].dialogs[dialog].text.className){ tue_text_block.className=story_json[tue_story][scene].dialogs[dialog].text.className}
-			if(story_json[tue_story][scene].dialogs[dialog].text.style){tue_text_block.style=story_json[tue_story][scene].dialogs[dialog].text.style}
-        } else if(story_json[tue_story][scene].dialogs[dialog].text_add){
+            if(arr_dialog.text.className){ tue_text_block.className=arr_dialog.text.className}
+			if(arr_dialog.text.style){tue_text_block.style=arr_dialog.text.style}
+        } else if(arr_dialog.text_add && arr_dialog.text_add!='' && arr_dialog.text_add[languare]!=''){
 			tue_text_block.style.visibility='visible';
 			tue_text_view.innerHTML="";
 			values_in_text(true);
             clearTimeout(dialog_timeout);
             anim_text();
 		}else{tue_text_block.style.visibility='hidden';}
-		if(story_json[tue_story][scene].dialogs[dialog].color){tue_text_block.style.backgroundColor=story_json[tue_story][scene].dialogs[dialog].color;}
+		if(arr_dialog.color){tue_text_block.style.backgroundColor=arr_dialog.color;}
         else if(story_json.parameters.text_panel.color){tue_text_block.style.backgroundColor=story_json.parameters.text_panel.color;}
-        if(story_json[tue_story][scene].dialogs[dialog].color_text){tue_text_view.style.color=story_json[tue_story][scene].dialogs[dialog].color_text;}
+        if(arr_dialog.color_text){tue_text_view.style.color=arr_dialog.color_text;}
 		else if(story_json.parameters.text_panel.color_text){tue_text_view.style.color=story_json.parameters.text_panel.color_text;}
-        if(story_json[tue_story][scene].dialogs[dialog].name){
-            if(story_json[tue_story][scene].dialogs[dialog].name[languare]){
-                tue_name_block.innerHTML=story_json[tue_story][scene].dialogs[dialog].name[languare]
-                tue_name_block.style.backgroundColor=story_json[tue_story][scene].dialogs[dialog].name.color;
-                tue_name_block.style.color=story_json[tue_story][scene].dialogs[dialog].name.color_text;
-                if(story_json[tue_story][scene].dialogs[dialog].name.className){ tue_name_block.className=story_json[tue_story][scene].dialogs[dialog].name.className}
+        if(arr_dialog.name){
+            if(arr_dialog.name[languare]){
+                tue_name_block.innerHTML=arr_dialog.name[languare]
+                tue_name_block.style.backgroundColor=arr_dialog.name.color;
+                tue_name_block.style.color=arr_dialog.name.color_text;
+                if(arr_dialog.name.className){ tue_name_block.className=arr_dialog.name.className}
             } else if(story_json.parameters.characters){
-				if(story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name]){
-                tue_name_block.innerHTML=story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name][languare]
-                tue_name_block.style.backgroundColor=story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].color;
-                tue_name_block.style.color=story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].color_text;
-					if(story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].className){
-						tue_name_block.className=story_json.parameters.characters[story_json[tue_story][scene].dialogs[dialog].name].className
+				if(story_json.parameters.characters[arr_dialog.name]){
+                tue_name_block.innerHTML=story_json.parameters.characters[arr_dialog.name][languare]
+                tue_name_block.style.backgroundColor=story_json.parameters.characters[arr_dialog.name].color;
+                tue_name_block.style.color=story_json.parameters.characters[arr_dialog.name].color_text;
+					if(story_json.parameters.characters[arr_dialog.name].className){
+						tue_name_block.className=story_json.parameters.characters[arr_dialog.name].className
 					}
 				}else{
-					tue_name_block.innerHTML=story_json[tue_story][scene].dialogs[dialog].name
-					tue_name_block.style.backgroundColor=story_json[tue_story][scene].dialogs[dialog].name.color;
-					tue_name_block.style.color=story_json[tue_story][scene].dialogs[dialog].name.color_text;
-					if(story_json[tue_story][scene].dialogs[dialog].name.className){ tue_name_block.className=story_json[tue_story][scene].dialogs[dialog].name.className}
+					tue_name_block.innerHTML=arr_dialog.name
+					tue_name_block.style.backgroundColor=arr_dialog.name.color;
+					tue_name_block.style.color=arr_dialog.name.color_text;
+					if(arr_dialog.name.className){ tue_name_block.className=arr_dialog.name.className}
 				}	
 			}else{
-				tue_name_block.innerHTML=story_json[tue_story][scene].dialogs[dialog].name
+				tue_name_block.innerHTML=arr_dialog.name
 			}
             tue_name_block.style.visibility='visible';
         }else{tue_name_block.style.visibility='hidden';}
         del_element("tue_art");
-        if(story_json[tue_story][scene].dialogs[dialog].art){
-            for(i=0;i < story_json[tue_story][scene].dialogs[dialog].art.length;i++){
+        if(arr_dialog.art){
+            for(i=0;i < arr_dialog.art.length;i++){
                 var art=document.createElement("img");
-                if(story_json[tue_story][scene].dialogs[dialog].art[i].url[languare]){
-                art.src=story_json[tue_story][scene].dialogs[dialog].art[i].url[languare];}
-                else if(story_json[tue_story][scene].dialogs[dialog].art[i].url){art.src=story_json[tue_story][scene].dialogs[dialog].art[i].url;}
+                if(arr_dialog.art[i].url[languare]){
+                art.src=arr_dialog.art[i].url[languare];}
+                else if(arr_dialog.art[i].url){art.src=arr_dialog.art[i].url;}
                 art.classList.add("tue_art")
-                if(story_json[tue_story][scene].dialogs[dialog].art[i].style){art.style=story_json[tue_story][scene].dialogs[dialog].art[i].style;}
+                if(arr_dialog.art[i].style){art.style=arr_dialog.art[i].style;}
                 art.style.position="absolute";
-                if(story_json[tue_story][scene].dialogs[dialog].art[i].fit)art.style.objectFit=story_json[tue_story][scene].dialogs[dialog].art[i].fit;
-                if(story_json[tue_story][scene].dialogs[dialog].art[i].size){
-                    art.style.width=story_json[tue_story][scene].dialogs[dialog].art[i].size[0];
-                    art.style.height=story_json[tue_story][scene].dialogs[dialog].art[i].size[1];
+                if(arr_dialog.art[i].fit)art.style.objectFit=arr_dialog.art[i].fit;
+                if(arr_dialog.art[i].size){
+                    art.style.width=arr_dialog.art[i].size[0];
+                    art.style.height=arr_dialog.art[i].size[1];
                 }
-                if(story_json[tue_story][scene].dialogs[dialog].art[i].position[0] != 0){art.style.left= story_json[tue_story][scene].dialogs[dialog].art[i].position[0];}
-                if(story_json[tue_story][scene].dialogs[dialog].art[i].position[1] != 0){art.style.right= story_json[tue_story][scene].dialogs[dialog].art[i].position[1];}
-                if(story_json[tue_story][scene].dialogs[dialog].art[i].position[2] != 0){art.style.top= story_json[tue_story][scene].dialogs[dialog].art[i].position[2];}
-                if(story_json[tue_story][scene].dialogs[dialog].art[i].position[3] != 0){art.style.bottom= story_json[tue_story][scene].dialogs[dialog].art[i].position[3];}
+                if(arr_dialog.art[i].position[0] != 0){art.style.left= arr_dialog.art[i].position[0];}
+                if(arr_dialog.art[i].position[1] != 0){art.style.right= arr_dialog.art[i].position[1];}
+                if(arr_dialog.art[i].position[2] != 0){art.style.top= arr_dialog.art[i].position[2];}
+                if(arr_dialog.art[i].position[3] != 0){art.style.bottom= arr_dialog.art[i].position[3];}
                 tuesday.appendChild(art);
             }
         }
-        if(story_json[tue_story][scene].dialogs[dialog].choice){
+        if(arr_dialog.choice){
 			tue_next.style.visibility='hidden';
-            for(i=0;i < story_json[tue_story][scene].dialogs[dialog].choice.length;i++){
+            for(i=0;i < arr_dialog.choice.length;i++){
                 var choice=document.createElement("div");
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].className){choice.className=story_json[tue_story][scene].dialogs[dialog].choice[i].className;}
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].style){choice.style=story_json[tue_story][scene].dialogs[dialog].choice[i].style;}
+                if(arr_dialog.choice[i].className){choice.className=arr_dialog.choice[i].className;}
+                if(arr_dialog.choice[i].style){choice.style=arr_dialog.choice[i].style;}
                 choice.classList.add("tue_choice");
                 choice.style.position="absolute";
-                choice.style.backgroundColor=story_json[tue_story][scene].dialogs[dialog].choice[i].color;
+                choice.style.backgroundColor=arr_dialog.choice[i].color;
                 choice.style.backgroundRepeat="no-repeat";
                 choice.style.backgroundPosition="center";
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].art){choice.style.backgroundImage="url('"+((story_json[tue_story][scene].dialogs[dialog].choice[i].art[languare])?story_json[tue_story][scene].dialogs[dialog].choice[i].art[languare]:story_json[tue_story][scene].dialogs[dialog].choice[i].art)+"')";}
-				if(story_json[tue_story][scene].dialogs[dialog].choice[i].size){
-					if(story_json[tue_story][scene].dialogs[dialog].choice[i].size[0] != 0){
-						choice.style.width=story_json[tue_story][scene].dialogs[dialog].choice[i].size[0];}
-					if(story_json[tue_story][scene].dialogs[dialog].choice[i].size[1] != 0){
-						choice.style.height=story_json[tue_story][scene].dialogs[dialog].choice[i].size[1];
-						choice.style.lineHeight=story_json[tue_story][scene].dialogs[dialog].choice[i].size[1];
+                if(arr_dialog.choice[i].art){choice.style.backgroundImage="url('"+((arr_dialog.choice[i].art[languare])?arr_dialog.choice[i].art[languare]:arr_dialog.choice[i].art)+"')";}
+				if(arr_dialog.choice[i].size){
+					if(arr_dialog.choice[i].size[0] != 0){
+						choice.style.width=arr_dialog.choice[i].size[0];}
+					if(arr_dialog.choice[i].size[1] != 0){
+						choice.style.height=arr_dialog.choice[i].size[1];
+						choice.style.lineHeight=arr_dialog.choice[i].size[1];
 					}
 				}
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].art_size){
-                    choice.style.backgroundSize=story_json[tue_story][scene].dialogs[dialog].choice[i].art_size[0]+" "+story_json[tue_story][scene].dialogs[dialog].choice[i].art_size[1];
+                if(arr_dialog.choice[i].art_size){
+                    choice.style.backgroundSize=arr_dialog.choice[i].art_size[0]+" "+arr_dialog.choice[i].art_size[1];
                 }
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].position[0] != 0){choice.style.left=story_json[tue_story][scene].dialogs[dialog].choice[i].position[0];}
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].position[1] != 0){choice.style.right=story_json[tue_story][scene].dialogs[dialog].choice[i].position[1];}
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].position[2] != 0){choice.style.top=story_json[tue_story][scene].dialogs[dialog].choice[i].position[2];}
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].position[3] != 0){choice.style.bottom=story_json[tue_story][scene].dialogs[dialog].choice[i].position[3];}
-                choice.style.color=story_json[tue_story][scene].dialogs[dialog].choice[i].color_text;
-                choice.style.padding=story_json[tue_story][scene].dialogs[dialog].choice[i].indent_text;
-                choice.style.fontSize=story_json[tue_story][scene].dialogs[dialog].choice[i].size_text;
+                if(arr_dialog.choice[i].position[0] != 0){choice.style.left=arr_dialog.choice[i].position[0];}
+                if(arr_dialog.choice[i].position[1] != 0){choice.style.right=arr_dialog.choice[i].position[1];}
+                if(arr_dialog.choice[i].position[2] != 0){choice.style.top=arr_dialog.choice[i].position[2];}
+                if(arr_dialog.choice[i].position[3] != 0){choice.style.bottom=arr_dialog.choice[i].position[3];}
+                choice.style.color=arr_dialog.choice[i].color_text;
+                choice.style.padding=arr_dialog.choice[i].indent_text;
+                choice.style.fontSize=arr_dialog.choice[i].size_text;
                 choice.style.textAlign="center";
                 choice.style.zIndex=1001+i;
-                if(story_json[tue_story][scene].dialogs[dialog].choice[i].text && (typeof story_json[tue_story][scene].dialogs[dialog].choice[i].text!=='object' || (story_json[tue_story][scene].dialogs[dialog].choice[i].text[languare] && typeof story_json[tue_story][scene].dialogs[dialog].choice[i].text[languare]!=='object'))){
-                    if(story_json[tue_story][scene].dialogs[dialog].choice[i].text[languare]){choice.innerHTML=story_json[tue_story][scene].dialogs[dialog].choice[i].text[languare];}
-                    else {choice.innerHTML=story_json[tue_story][scene].dialogs[dialog].choice[i].text;}
+                if(arr_dialog.choice[i].text && (typeof arr_dialog.choice[i].text!=='object' || (arr_dialog.choice[i].text[languare] && typeof arr_dialog.choice[i].text[languare]!=='object'))){
+                    if(arr_dialog.choice[i].text[languare]){choice.innerHTML=arr_dialog.choice[i].text[languare];}
+                    else {choice.innerHTML=arr_dialog.choice[i].text;}
                 }
 				var v='';
-				if(story_json[tue_story][scene].dialogs[dialog].choice[i].variables){
-					for(var g=0;g < story_json[tue_story][scene].dialogs[dialog].choice[i].variables.length;g++){
-						if(story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][1] == "add"){
-							v += "story_json.parameters.variables."+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][0]+" += "+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][2]+";"
+				if(arr_dialog.choice[i].variables){
+					for(var g=0;g < arr_dialog.choice[i].variables.length;g++){
+						if(arr_dialog.choice[i].variables[g][1] == "add"){
+							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+" += "+arr_dialog.choice[i].variables[g][2]+";"
 						}
-						else if(story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][1] == "set"){
-							v += "story_json.parameters.variables."+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][0]+" = "+story_json[tue_story][scene].dialogs[dialog].choice[i].variables[g][2]+";"
+						else if(arr_dialog.choice[i].variables[g][1] == "set"){
+							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+" = "+arr_dialog.choice[i].variables[g][2]+";"
 						}
 					}
 				}
-                if (story_json[tue_story][scene].dialogs[dialog].choice[i].go_to){
-                    var g=story_json[tue_story][scene].dialogs[dialog].choice[i].go_to;
+                if (arr_dialog.choice[i].go_to){
+                    var g=arr_dialog.choice[i].go_to;
                     if (g == "tue_go"){choice.setAttribute("onclick","del_element('tue_choice'); "+v+"go_story(true);"+add_sound());}
                     else if (g == "tue_load_autosave"){choice.setAttribute("onclick","load_stag('auto');"+add_sound());}
                     else if (g == "load"||g == "tue_load"){choice.setAttribute("onclick","load_stag('bookmark');"+add_sound());}
@@ -370,56 +373,57 @@ function get_lang(){
                 tuesday.appendChild(choice);
 				function add_sound(){
 					var s='';
-					if(story_json[tue_story][scene].dialogs[dialog].choice[i].sound){s=get_sound(story_json[tue_story][scene].dialogs[dialog].choice[i].sound)};
-					if(story_json[tue_story][scene].dialogs[dialog].choice[i].sound_stop){s += get_stop_sound(story_json[tue_story][scene].dialogs[dialog].choice[i].sound_stop)};
+					if(arr_dialog.choice[i].sound){s=get_sound(arr_dialog.choice[i].sound)};
+					if(arr_dialog.choice[i].sound_stop){s += get_stop_sound(arr_dialog.choice[i].sound_stop)};
 					return s;
 				}
             }
         }
-        if (story_json[tue_story][scene].dialogs[dialog].html){
-            if (story_json[tue_story][scene].dialogs[dialog].html[languare]){
+        if (arr_dialog.html){
+            if (arr_dialog.html[languare]){
                 var html=document.createElement("div");
                 html.className='tue_html_dialog';
-                html.innerHTML=story_json[tue_story][scene].dialogs[dialog].html[languare];
+                html.innerHTML=arr_dialog.html[languare];
                 tuesday.appendChild(html);
             } else {
                 var html=document.createElement("div");
                 html.className='tue_html_dialog';
-                html.innerHTML=story_json[tue_story][scene].dialogs[dialog].html;
+                html.innerHTML=arr_dialog.html;
                 tuesday.appendChild(html);
             }
         }
-		if(story_json[tue_story][scene].dialogs[dialog].variables){
-			for(var i=0;i < story_json[tue_story][scene].dialogs[dialog].variables.length;i++){
-				var choice_n=story_json[tue_story][scene].dialogs[dialog].variables[i][0]
-				if(story_json[tue_story][scene].dialogs[dialog].variables[i][1] == "add"){
-					story_json.parameters.variables[choice_n] += story_json[tue_story][scene].dialogs[dialog].variables[i][2];
-                    tuesday.dispatchEvent(new Event( story_json[tue_story][scene].dialogs[dialog].variables[i][0]+'_add'));
-				} else if(story_json[tue_story][scene].dialogs[dialog].variables[i][1] == "set"){story_json.parameters.variables[choice_n]=story_json[tue_story][scene].dialogs[dialog].variables[i][2];}
-                    tuesday.dispatchEvent(new Event( story_json[tue_story][scene].dialogs[dialog].variables[i][0]+'_set'));
+		if(arr_dialog.variables){
+			for(var i=0;i < arr_dialog.variables.length;i++){
+				var choice_n=arr_dialog.variables[i][0]
+				if(arr_dialog.variables[i][1] == "add"){
+					story_json.parameters.variables[choice_n] += arr_dialog.variables[i][2];
+                    tuesday.dispatchEvent(new Event( arr_dialog.variables[i][0]+'_add'));
+				} else if(arr_dialog.variables[i][1] == "set"){story_json.parameters.variables[choice_n]=arr_dialog.variables[i][2];}
+                    tuesday.dispatchEvent(new Event( arr_dialog.variables[i][0]+'_set'));
 			}
 		}
-        if(story_json[tue_story][scene].dialogs[dialog].event){
-            tuesday.dispatchEvent(new Event( story_json[tue_story][scene].dialogs[dialog].event ));
+        if(arr_dialog.event){
+            tuesday.dispatchEvent(new Event( arr_dialog.event ));
         }
-		if(story_json[tue_story][scene].dialogs[dialog].sound_stop){
-			var s=story_json[tue_story][scene].dialogs[dialog].sound_stop;
+		if(arr_dialog.sound_stop){
+			var s=arr_dialog.sound_stop;
 			sound_stop((s[languare])?s[languare]:s);
 		}
-		if(story_json[tue_story][scene].dialogs[dialog].sound){
-			var s=story_json[tue_story][scene].dialogs[dialog].sound;
+		if(arr_dialog.sound){
+			var s=arr_dialog.sound;
 			sound_play((s[languare])?s[languare]:s )
 		}
 		tuesday.dispatchEvent(new Event('creation_dialog'));
 } function values_in_text(add){
+    arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 	var str=""
 	if(!add){
 		dialog_letter=0
-		str=(story_json[tue_story][scene].dialogs[dialog].text[languare])?story_json[tue_story][scene].dialogs[dialog].text[languare]:story_json[tue_story][scene].dialogs[dialog].text;
+		str=(arr_dialog.text[languare])?arr_dialog.text[languare]:arr_dialog.text;
 	}else{
 		dialog_letter=dialog_text.length;
 		str=dialog_text
-		str +=(story_json[tue_story][scene].dialogs[dialog].text_add[languare])?story_json[tue_story][scene].dialogs[dialog].text_add[languare]:story_json[tue_story][scene].dialogs[dialog].text_add;
+		str +=(arr_dialog.text_add[languare])?arr_dialog.text_add[languare]:arr_dialog.text_add;
 	}
     let regexp=/<(.*?)>/g;
     let matchAll=str.matchAll(regexp);
@@ -430,17 +434,18 @@ function get_lang(){
     };
 	dialog_text=str
 } function go_story(choice){
-	if(!story_json[tue_story][scene].dialogs[dialog].choice || choice){
-		if(story_json[tue_story][scene].dialogs[dialog].go_to){
-			var go=story_json[tue_story][scene].dialogs[dialog].go_to;
+    arr_dialog = story_json[tue_story][scene].dialogs[dialog]
+	if(!arr_dialog.choice || choice){
+		if(arr_dialog.go_to){
+			var go=arr_dialog.go_to;
 			go_to(go)
 		} else if(dialog < story_json[tue_story][scene].dialogs.length - 1){
 			dialog++;
-			if(story_json[tue_story][scene].dialogs[dialog].text){
-				if(story_json[tue_story][scene].dialogs[dialog].text[languare] == 'skip'){go_story()} 
+			if(arr_dialog.text){
+				if(arr_dialog.text[languare] == 'skip'){go_story()}
 				else {creation_dialog();};
-			} else if(story_json[tue_story][scene].dialogs[dialog].text_add){
-				if(story_json[tue_story][scene].dialogs[dialog].text_add[languare] == 'skip'){go_story()} 
+			} else if(arr_dialog.text_add){
+				if(arr_dialog.text_add[languare] == 'skip'){go_story()}
 				else {creation_dialog();};
 			}else{ creation_dialog();}
 		}else{
@@ -454,22 +459,23 @@ function get_lang(){
         if(story_json.parameters.autosave){save_stag('auto')};
 	} 
 } function back_story(){
+    arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 	del_element("tue_choice")
     del_element("tue_html_dialog")
-    if(story_json[tue_story][scene].dialogs[dialog].back_to){
-        var go=story_json[tue_story][scene].dialogs[dialog].back_to;
+    if(arr_dialog.back_to){
+        var go=arr_dialog.back_to;
         go_to(go)
     } else if(dialog > 0){
         dialog -= 1;
-		if(story_json[tue_story][scene].dialogs[dialog].text){
-			if(story_json[tue_story][scene].dialogs[dialog].text[languare] == 'skip'){back_story()}
+		if(arr_dialog.text){
+			if(arr_dialog.text[languare] == 'skip'){back_story()}
 			else {creation_dialog();};
-		} else if(story_json[tue_story][scene].dialogs[dialog].text_add){
-			if(story_json[tue_story][scene].dialogs[dialog].text_add[languare] == 'skip'){back_story()}
+		} else if(arr_dialog.text_add){
+			if(arr_dialog.text_add[languare] == 'skip'){back_story()}
 			else {
-				if(story_json[tue_story][scene].dialogs[dialog].text_add[languare]){
-					dialog_text=dialog_text.replace(story_json[tue_story][scene].dialogs[dialog].text_add[languare],"")
-				}else{dialog_text=dialog_text.replace(story_json[tue_story][scene].dialogs[dialog].text_add,"")};
+				if(arr_dialog.text_add[languare]){
+					dialog_text=dialog_text.replace(arr_dialog.text_add[languare],"")
+				}else{dialog_text=dialog_text.replace(arr_dialog.text_add,"")};
 				if(story_json[tue_story][scene].dialogs[dialog+1].text_add[languare]){
 					dialog_text=dialog_text.replace(story_json[tue_story][scene].dialogs[dialog+1].text_add[languare],"")
 				}else{dialog_text=dialog_text.replace(story_json[tue_story][scene].dialogs[dialog+1].text_add,"")};
