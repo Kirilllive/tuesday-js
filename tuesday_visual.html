@@ -23,6 +23,7 @@
 :root {
   --cw:#efefff;
   --cb:#cec8e3;
+  --cl:#6e5fa5;
   --cs:rgba(110,95,165,0.25);
   --cm:rgba(110,95,165,0.5);
   --cf:rgba(90,75,145,1);
@@ -31,7 +32,7 @@
 @keyframes flash{0%{box-shadow:0px 2px 32px var(--cf);background-color:var(--cb);}25%{box-shadow:0px 2px 32px var(--cf);background-color:var(--cb);}100%{box-shadow:0px 2px 24px var(--cs);background-color:#fff;}}
 .story_block{min-height:28px;width:256px;position:absolute;cursor:all-scroll;}
 #world{position:absolute;-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;}
-line{stroke:#6e5fa5;stroke-dasharray:20;stroke-width:2;animation:dash 4s linear infinite;}
+line{stroke:var(--cl);stroke-dasharray:20;stroke-width:2;animation:dash 4s linear infinite;}
 @keyframes dash{from{stroke-dashoffset:0} to{stroke-dashoffset:200;}}
 #toast{
 	position:fixed;
@@ -527,13 +528,14 @@ function set_ui(t){
     r.style.setProperty('--cs', color_ui[t][2]);
     r.style.setProperty('--cf', color_ui[t][3]);
     r.style.setProperty('--cm', color_ui[t][4]);
+    r.style.setProperty('--cl', color_ui[t][5]);
 }
 let color_ui=[
-    ['#cec8e3','#efefff','rgba(110,95,165,0.25)','rgba(90,75,145,1)','rgba(110,95,165,0.5)'],
-    ['#a3cdf0','#dff1ff','rgba(83,150,204,0.25)','#fff','rgba(134,161,183,0.5)'],
-    ['#bbb','#eee','rgba(0,0,0,0.25)','#fff','rgba(0,0,0,0.25)'],
-    ['#bdd3a5','#dfebd5','rgba(109,124,91,0.25)','#fff','rgba(109,124,91,0.5)'],
-    ['#edb740','#e4d7ba','rgba(0,0,0,0.25)','#fff','rgba(0,0,0,0.25)']
+    ['#cec8e3','#efefff','rgba(110,95,165,0.25)','rgba(90,75,145,1)','rgba(110,95,165,0.5)','#6e5fa5'],
+    ['#a3cdf0','#dff1ff','rgba(83,150,204,0.25)','#fff','rgba(134,161,183,0.5)','#006bc4'],
+    ['#bbb','#eee','rgba(0,0,0,0.25)','#fff','rgba(0,0,0,0.25)','#888'],
+    ['#bdd3a5','#dfebd5','rgba(109,124,91,0.25)','#fff','rgba(109,124,91,0.5)','#427e00'],
+    ['#edb740','#e4d7ba','rgba(0,0,0,0.25)','#fff','rgba(0,0,0,0.25)','#755000']
 ]
 var body=document.body,html=document.documentElement;
 var all_blocks=document.getElementsByClassName("story_block");
@@ -2600,12 +2602,15 @@ function apply_setup(){
 var scale=1;
 var scale_scene=1;
 document.addEventListener('keydown',function(event){
-    if(!scroll_block||scene_screen){
-        if(event.code=='Equal'){world_scale(2)}
-        else if(event.code=='Minus'){world_scale(false)}
-        else if(event.code=='Digit0'){world_scale(1)}
-        else if(scene_screen&&event.code=='Comma'){scen_editor(scen_data[0],scen_data[1],scen_data[2]-1)}
-        else if(scene_screen&&event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
+    if(event.altKey){
+        if(!scroll_block||scene_screen){
+            if(event.code=='Equal'){world_scale(2)}
+            else if(event.code=='Minus'){world_scale(false)}
+            else if(event.code=='Digit0'){world_scale(1)}
+            else if(scene_screen&&event.code=='Comma'){scen_editor(scen_data[0],scen_data[1],scen_data[2]-1)}
+            else if(scene_screen&&event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
+        }
+        if(event.code=='KeyR'){play_novel();}
     }
 });
 var scene_screen=false
