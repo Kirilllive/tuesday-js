@@ -587,7 +587,8 @@ let setup_editor={
         'ui':0,
         'lines':false,
         'preview':[76,1],
-        'ferst':true
+        'ferst':true,
+        'pvw':[640,480]
     };
 if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"))}
 if(setup_editor.ferst){
@@ -604,6 +605,7 @@ function editor_setup(){
     preview_size();
     if(setup_editor.wheel){html.style.overflow='hidden';}
     if(setup_editor.ui&&setup_editor.ui!=0){set_ui(setup_editor.ui);}
+    if(!setup_editor.pvw){setup_editor.pvw=[640,480];}
     else{html.style.overflow='auto';}
 }
 function color_element(id,color){
@@ -1129,7 +1131,7 @@ function play_novel(bl){
     }}
     var fonts="";
     if(story_script.parameters.font_files){for(var i=0;i<Object.keys(story_script.parameters.font_files).length;i++){fonts+="@font-face{font-family:"+Object.keys(story_script.parameters.font_files)[i]+";src:url("+open_file(story_script.parameters.font_files[Object.keys(story_script.parameters.font_files)[i]])+");} "}}
-    var preview=window.open("https://kirilllive.github.io/Tuesday/tuesday_visual.html","preview","location=no,scrollbars=no,width=640,height=480");
+    var preview=window.open("https://kirilllive.github.io/Tuesday/tuesday_visual.html","preview","location=no,scrollbars=no,width="+setup_editor.pvw[0]+",height="+setup_editor.pvw[1]);
     preview.document.write("<html><head><style>"+fonts+" "+((story_script.parameters.font)?"*{font-family:"+story_script.parameters.font+";} ":"")+"body{font-size:"+story_script.parameters.font_size+"; background-color:#fff; border-collapse:collapse; border:none; margin:0; padding:0; border:0; border-spacing:0px; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%; height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_preview="+story_preview+";  tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'}); "+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"')});" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
 }
 function search_block(){
@@ -2419,16 +2421,16 @@ function setup(){
         "<table width='100%' style='height:60vh; border-radius:8px; border-top:1px solid var(--cb);'><tbody>"+
         "<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>Project</td><td width='100%' valign='top' rowspan='6' style='position:relative;'>"+
         //
-        "<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'>"+
-        "<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px; width:60%;'><table style='width:100%'><tbody><tr><td><input id='autosave' type='checkbox' class='checkbox_a' "+((story_script.parameters.autosave)?'checked' :'')+"></td><td align='right'>Clear localStorage:</td></tr></tbody></table></td><td onclick=\"localStorage.clear();toast('localStorage clear');\" style='width:40px; cursor:pointer;' title='clear autosave' class='icon icon_del'></td></tr>"+
+        "<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
+        "<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px; width:60%;'><table style='width:100%'><tbody><tr><td><input id='autosave' type='checkbox' class='checkbox_a' "+((story_script.parameters.autosave)?'checked':'')+"></td><td align='right'>Clear localStorage:</td></tr></tbody></table></td><td onclick=\"localStorage.clear();toast('localStorage clear');\" style='width:40px; cursor:pointer;' title='clear autosave' class='icon icon_del'></td></tr>"+
         "<tr><td align='right'>story launch block </td><td align='left' colspan='2'><select class='input_text' id='launch_story'>"+((block_list)?block_list :'')+"</select></td></tr>"+
-        "<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='"+((story_script.parameters.style_file)?story_script.parameters.style_file :'')+"' type='text'></td><td id='l_css' style='width:14px; cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\".css\",\"style_file\",0,\"story_script.parameters.style_file\")'></td></tr>"+
-        "<tr><td align='right'>dialog speed </td><td align='left' colspan='2'><input id='dialog_speed_s' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed :'')+"' type='text'></td></tr>"+"<tr><td align='right'>font family </td><td align='left' colspan='2'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr>"+
-        "<tr><td align='right'>font size </td><td align='left' colspan='2'><input id='font_size' class='input_text' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size :'')+"' type='text'></td></tr>"+
+        "<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='"+((story_script.parameters.style_file)?story_script.parameters.style_file:'')+"' type='text'></td><td id='l_css' style='width:14px; cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\".css\",\"style_file\",0,\"story_script.parameters.style_file\")'></td></tr>"+
+        "<tr><td align='right'>dialog speed </td><td align='left' colspan='2'><input id='dialog_speed_s' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:'')+"' type='text'></td></tr><tr><td align='right'>font family </td><td align='left' colspan='2'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr>"+
+        "<tr><td align='right'>font size </td><td align='left' colspan='2'><input id='font_size' class='input_text' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size:'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>icon </td><td align='left'><input id='icon' class='input_text' value='"+((story_script.parameters.icon)?story_script.parameters.icon :'')+"' type='text'></td><td id='l_icon'style='width:14px; cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\"img\",\"icon\",0,\"story_script.parameters.icon\")'></td></tr>"+
         "</table><br><p align='left' style=' margin-left:8px;'>name project</p><hr>"+title_list+"</div>"+
         //
-        "<div id='blank_6' style='visibility:hidden;' class='set_blank'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'>"+
+        "<div id='blank_6' style='visibility:hidden;' class='set_blank'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody>"+
         "<tr><td align='right'>next </td><td align='left'><input id='key_next' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.next)?story_script.parameters.key.next :'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>back </td><td align='left'><input id='key_back' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.back)?story_script.parameters.key.back :'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>save stage</td><td align='left'><input id='key_save' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.save)?story_script.parameters.key.save :'')+"' type='text'></td></tr>"+
@@ -2446,11 +2448,16 @@ function setup(){
         "<div id='blank_1' style='visibility:hidden;' class='set_blank'><br><p align='left' style=' margin-left:8px;'>Devices control</p><hr><form id='devices'><table id='controll' style='width:100%;  border-spacing:10px; border-collapse:separate;'>"+
         "<tr><td align='right' style='padding-top:4px; height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==true)?'checked' :'')+"></td><td align='left' style='width:80px;'>Mouse </td><td> scrolling with the mouse cursor, zooming with the wheel</td></tr>"+
         "<tr><td align='right' style='padding-top:4px; height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==false)?'checked' :'')+"></td><td align='left' style='width:80px;'>TouchPad </td><td> swipe scrolling is recommended for Laptops and MacBooks</td></tr>"+
-        "</tbody></table></form><br><p align='left' style=' margin-left:8px;'>Display script</p><hr><table id='controll' style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody>"+
+        "</tbody></table></form><br>"+
+        "<p align='left' style='margin-left:8px;'>Preview window size</p><hr>"+
+        "<table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
+        "<tr><td align='right'>Width</td><td align='left' colspan='2'><input id='pv_v' class='input_text' value='"+setup_editor.pvw[0]+"' type='text'></td></tr>"+
+        "<tr><td align='right'>Height</td><td align='left' colspan='2'><input id='pv_h' class='input_text' value='"+setup_editor.pvw[1]+"' type='text'></td></tr>"+
+        "</tbody></table><br>"+
+        "<p align='left' style=' margin-left:8px;'>Display script</p><hr><table id='controll' style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody>"+
         "<tr><td align='right' style='padding-top:4px; height:40px;'><input id='all_lines' type='checkbox' class='chec_plugin checkbox_a' "+((setup_editor.lines)?'checked' :'')+"></td><td align='left' style='width:80px;'>All Lines </td><td> Show all lines of a block or only a selected block</td></tr>"+
         "</tbody></table><br>"+
-        "<p align='left' style='margin-left:8px;'>Color them</p><hr><form id='ui_color'>"+
-        "<table style='border-spacing:10px;border-collapse:separate;'><tbody><tr>"+thems+
+        "<p align='left' style='margin-left:8px;'>Color them</p><hr><form id='ui_color'>"+thems+
         "</form><br>"+
         "<p align='left' style='margin-left:8px;'>Background</p><hr><form id='bg_edit'><table style='width:100%;'><tbody><tr>"+
         "<td align='center' height='92px'><input type='radio' name='bg_edit' class='chec_bg' value='' "+((setup_editor.fon=='')?'checked' :'')+"></td>"+
@@ -2559,6 +2566,7 @@ function apply_setup(){
     forms=document.forms.devices;
     setup_editor.wheel=(forms[0].checked)?true:false;
     setup_editor.lines=all_lines.checked;
+    setup_editor.pvw=[pv_v.value,pv_h.value];
     forms=document.forms.bg_edit;
     for(i=0;i<forms.length;i++){if(forms[i].checked){setup_editor.fon=forms[i].value;break;}}
     forms=document.forms.ui_color;
