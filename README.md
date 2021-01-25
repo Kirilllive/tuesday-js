@@ -5,6 +5,8 @@ is a free open source engine to creating visual novels, interactive stories and 
 
 は、ビジュアルノベルやインタラクティブフィクション、テキストベースの冒険ゲームを作るためのオープンエンジンです。JavaScriptで書かれており、サードベンダーのライブラリは使われていません。pc用のモバイルアプリやプログラムを作る際の、Apache Cordovaフレームワークによるサポートがあります。エンジンには、divやimgのようなHTMLドキュメントの標準要素DOMを使用しており、ブラウザによってサポートされている、svgグラフィックやgifやcssスタイルのアニメを含む、任意のメディアフォーマットを使うことができます。
 
+The editor combines a drag and drop tool to create scenes and interfaces, as well as a visual scenario editor in form of flowcharts node, which displays all the plot elements and branching of the story. This makes it easier to navigate through the script and helps to create a large story with many plot options.
+
 Home Page: https://kirilllive.github.io/tuesday-js/
 
 Documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
@@ -75,6 +77,7 @@ Preview allows you to start a project from a certain point in the script and wit
 
 ![Tuesday JS preview](screenshots/preview.png)
 
+The goal of Tuesday JS is to make project development no more difficult than working in an office program to make presentations, and does not require special skills from the user.
 
 # Tutorial for Visual Editor
 
