@@ -348,7 +348,7 @@ function get_lang(){
                 }
                 tuesday.appendChild(art);
             }
-        }
+        } else {del_element("tue_art");}
         if(arr_dialog.choice){
 			tue_next.style.visibility='hidden';
             for(i=0;i < arr_dialog.choice.length;i++){
