@@ -298,7 +298,8 @@ function get_lang(){
                     for(o=0;o<old.length;o++){
                         if(arr_dialog.art[i].url==old[o].getAttribute('src')||arr_dialog.art[i].url[languare]==old[o].getAttribute('src')){
                             if(arr_dialog.art[i].style){old[o].style=arr_dialog.art[i].style;}
-                            old[o].style.transitionDuration="0.5s";
+                            if(arr_dialog.art[i].move&&arr_dialog.art[i].move!=0){old[o].style.transitionDuration=arr_dialog.art[i].move+"s";} else {old[o].style.transitionDuration=null}
+                            if(arr_dialog.art[i].opacity){old[o].style.opacity=arr_dialog.art[i].opacity;} else {old[o].style.opacity=null}
                             if(arr_dialog.art[i].fit)old[o].style.objectFit=arr_dialog.art[i].fit;
                             if(arr_dialog.art[i].size){
                                 old[o].style.width=arr_dialog.art[i].size[0];
@@ -332,6 +333,7 @@ function get_lang(){
                 if(arr_dialog.art[i].style){art.style=arr_dialog.art[i].style;}
                 art.style.position="absolute";
                 if(arr_dialog.art[i].fit)art.style.objectFit=arr_dialog.art[i].fit;
+                if(arr_dialog.art[i].opacity){art.style.opacity=arr_dialog.art[i].opacity;} else {art.style.opacity=null}
                 if(arr_dialog.art[i].size){
                     art.style.width=arr_dialog.art[i].size[0];
                     art.style.height=arr_dialog.art[i].size[1];
