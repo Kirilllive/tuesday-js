@@ -1355,6 +1355,11 @@ function edit_block(id){
 }
 function delet_block(id){
 	delete story_script[id];
+    if(story_script.parameters.launch_story==id){
+        for(i=0;i<color_chec.length;i++){
+            if(Object.keys(story_script)[i]!='parameters'&&Object.keys(story_script)[i]!='blocks'){story_script.parameters.launch_story=Object.keys(story_script)[i];break;}
+        }
+    }
 	update_novel();
 	toast("block removed");
 	modal_window ('close');
@@ -2113,7 +2118,15 @@ function choice_panel_update(block,i,n){
 }
 function choice_panel_add(block,i,n){
     if(!story_script[block][i].dialogs[n-1].choice){story_script[block][i].dialogs[n-1].choice=[]}
-    story_script[block][i].dialogs[n-1].choice.push({"go_to":story_script.parameters.launch_story,"position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]],"color":story_script.parameters.text_panel.color,"color_text":story_script.parameters.text_panel.color_text,"text":"button"});
+    var a=story_script[block][i].dialogs[n-1].choice.length
+    if(a>0){
+        story_script[block][i].dialogs[n-1].choice.push(JSON.parse(JSON.stringify(story_script[block][i].dialogs[n-1].choice[a-1])))
+        story_script[block][i].dialogs[n-1].choice[a].position=["50%","0","50%","0"];
+        story_script[block][i].dialogs[n-1].choice[a].go_to=story_script.parameters.launch_story;
+        story_script[block][i].dialogs[n-1].choice[a].text="button";
+    } else {
+        story_script[block][i].dialogs[n-1].choice.push({"go_to":story_script.parameters.launch_story,"position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]],"color":story_script.parameters.text_panel.color,"color_text":story_script.parameters.text_panel.color_text,"text":"choice"});
+    }
     b=story_script[block][i].dialogs[n-1].choice.length-1;
     choice_panel_update(block,i,n)
 }
@@ -2236,8 +2249,14 @@ function button_panel_update(){
         ui_button.setAttribute('onclick','objSelect(this.id);arr_e=story_script.parameters.buttons['+b+']');
         ui_button.classList.add("tue_controll");
         ui_button.style.position="absolute";
-        ui_button.style.width=story_script.parameters.buttons[b].size[0];
-        ui_button.style.height=story_script.parameters.buttons[b].size[1];
+        if(story_script.parameters.buttons[b].size){
+            if(story_script.parameters.buttons[b].size[0]!=0){
+                ui_button.style.width=story_script.parameters.buttons[b].size[0];}
+            if(story_script.parameters.buttons[b].size[1]!=0){
+                ui_button.style.height=story_script.parameters.buttons[b].size[1];
+                ui_button.style.lineHeight=story_script.parameters.buttons[b].size[1];
+            }
+        }
         ui_button.style.backgroundColor=story_script.parameters.buttons[b].color;
         ui_button.style.backgroundRepeat="no-repeat";
         ui_button.style.backgroundPosition="center";
@@ -2253,8 +2272,17 @@ function button_panel_update(){
 }
 function button_panel_edit(b){
     if(b==-1){
-        story_script.parameters.buttons.push({"name":"","position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]],"color":story_script.parameters.text_panel.color,"art":"","text":"","color_text":story_script.parameters.text_panel.color_text})
-        b=story_script.parameters.buttons.length-1
+        var a=story_script.parameters.buttons.length
+        if(a>0){
+            story_script.parameters.buttons.push(JSON.parse(JSON.stringify(story_script.parameters.buttons[a-1])))
+            story_script.parameters.buttons[a].position=["50%","0","50%","0"];
+            story_script.parameters.buttons[a].name="none";
+            story_script.parameters.buttons[a].text="button";
+        }
+        else {
+            story_script.parameters.buttons.push({"name":"none","position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]],"color":story_script.parameters.text_panel.color,"art":"","text":"button","color_text":story_script.parameters.text_panel.color_text})
+        }
+        b=a-1
     }
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up" onclick="move_elenetn(story_script.parameters.buttons,'+b+',-1);button_panel_update();" height="22px"></td>'
