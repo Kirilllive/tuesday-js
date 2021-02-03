@@ -138,7 +138,10 @@ function get_lang(){
 } function creation_buttons(){
     for(i=0;i < story_json.parameters.buttons.length;i++){
         var button=document.createElement("div");
-		if(story_json.parameters.buttons[i].sound){button.setAttribute("onclick",(story_json.parameters.buttons[i].sound)?get_sound(story_json.parameters.buttons[i].sound):""+(story_json.parameters.buttons[i].sound_stop)?get_stop_sound(story_json.parameters.buttons[i].sound_stop):"")}
+        var v='';
+        if(story_json.parameters.buttons[i].sound){v+=(story_json.parameters.buttons[i].sound)?get_sound(story_json.parameters.buttons[i].sound):""+((story_json.parameters.buttons[i].sound_stop)?";"+get_stop_sound(story_json.parameters.buttons[i].sound_stop):"")+";"}
+        if(story_json.parameters.buttons[i].js){v+=story_json.parameters.buttons[i].js}
+        button.setAttribute("onclick",v+";")
         if(story_json.parameters.buttons[i].className){button.className=story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style=story_json.parameters.buttons[i].style;}
         if(story_json.parameters.buttons[i].text && (typeof story_json.parameters.buttons[i].text!=='object' || (story_json.parameters.buttons[i].text[languare] && typeof story_json.parameters.buttons[i].text[languare]!=='object'))){
@@ -389,26 +392,27 @@ function get_lang(){
 				if(arr_dialog.choice[i].variables){
 					for(var g=0;g < arr_dialog.choice[i].variables.length;g++){
 						if(arr_dialog.choice[i].variables[g][1] == "add"){
-							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+" += "+arr_dialog.choice[i].variables[g][2]+";"
+							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+"+="+arr_dialog.choice[i].variables[g][2]+";"
 						}
 						else if(arr_dialog.choice[i].variables[g][1] == "set"){
-							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+" = "+arr_dialog.choice[i].variables[g][2]+";"
+							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+"="+arr_dialog.choice[i].variables[g][2]+";"
 						}
 					}
 				}
+                if (arr_dialog.choice[i].js){v+=arr_dialog.choice[i].js+";"}
                 if (arr_dialog.choice[i].go_to){
                     var g=arr_dialog.choice[i].go_to;
                     if (g == "tue_go"){choice.setAttribute("onclick","del_element('tue_choice'); "+v+"go_story(true);"+add_sound());}
-                    else if (g == "tue_load_autosave"){choice.setAttribute("onclick","load_stag('auto');"+add_sound());}
-                    else if (g == "load"||g == "tue_load"){choice.setAttribute("onclick","load_stag('bookmark');"+add_sound());}
-                    else if (g == "tue_save"){choice.setAttribute("onclick","save_stag('bookmark');"+add_sound());}
-                    else if (g == "tue_no"||g == ""){choice.setAttribute("onclick","")}
-                    else if (g == "tue_fullScreen"){choice.setAttribute("onclick","full_screen();");}
-                    else if (g == "tue_home"){choice.setAttribute("onclick",'document.getElementById("tue_home").addEventListener("click",function(){go_to("'+story_json.parameters.launch_story+'")});');}
-                    else if (g == "tue_back"){choice.setAttribute("onclick","back_story();");}
-                    else if (g == "tue_next"){choice.setAttribute("onclick","go_story();");}
+                    else if (g == "tue_load_autosave"){choice.setAttribute("onclick",v+"load_stag('auto');"+add_sound());}
+                    else if (g == "load"||g == "tue_load"){choice.setAttribute("onclick",v+"load_stag('bookmark');"+add_sound());}
+                    else if (g == "tue_save"){choice.setAttribute("onclick",v+"save_stag('bookmark');"+add_sound());}
+                    else if (g == "tue_no"||g == ""){choice.setAttribute("onclick",v)}
+                    else if (g == "tue_fullScreen"){choice.setAttribute("onclick",v+"full_screen();");}
+                    else if (g == "tue_home"){choice.setAttribute("onclick",v+'document.getElementById("tue_home").addEventListener("click",function(){go_to("'+story_json.parameters.launch_story+'")});');}
+                    else if (g == "tue_back"){choice.setAttribute("onclick",v+"back_story();");}
+                    else if (g == "tue_next"){choice.setAttribute("onclick",v+"go_story();");}
                     else {choice.setAttribute("onclick",v+"go_to('"+g+"');"+add_sound())}
-                } else {choice.setAttribute("onclick",v+"go_story(true);del_element('tue_choice');"+add_sound());tuesday.appendChild(choice);}
+                } else {choice.setAttribute("onclick",v+"go_story(true);del_element('tue_choice');"+add_sound());}
                 tuesday.appendChild(choice);
 				function add_sound(){
 					var s='';
