@@ -5,6 +5,8 @@ is a free open source engine to creating visual novels, interactive stories and 
 
 は、ビジュアルノベルやインタラクティブフィクション、テキストベースの冒険ゲームを作るためのオープンエンジンです。JavaScriptで書かれており、サードベンダーのライブラリは使われていません。pc用のモバイルアプリやプログラムを作る際の、Apache Cordovaフレームワークによるサポートがあります。エンジンには、divやimgのようなHTMLドキュメントの標準要素DOMを使用しており、ブラウザによってサポートされている、svgグラフィックやgifやcssスタイルのアニメを含む、任意のメディアフォーマットを使うことができます。
 
+est un moteur open source gratuit pour créer des romans visuels, des histoires interactives et des jeux d'aventure basés sur du texte. Écrit en JavaScript, il n’utilise aucune bibliothèque tierce. Les projets peuvent être exportés vers Apache Cordova pour créer des applications mobiles ou des programmes PC. Le moteur utilise des éléments de document HTML standard DOM tels que div et img, ce qui permet d'utiliser tout format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.
+
 The editor combines a drag and drop tool to create scenes and interfaces, as well as a visual scenario editor in form of flowcharts node, which displays all the plot elements and branching of the story. This makes it easier to navigate through the script and helps to create a large story with many plot options.
 
 Home Page: https://kirilllive.github.io/tuesday-js/
@@ -27,11 +29,15 @@ If is necessary, it is possible to expand the basic functionality using JavaScri
 ビジュアルエディターはグラフィックもしくはキネティックノベルを、プログラミングの知識なしで作ることができます。
 必要であれば、JavaScriptやcssを使って、基本機能を拡大することができます。
 
+L'éditeur visuel vous permet de créer des graphiques ou des romans dynamiques sans aucune connaissance en programmation.
+Vous avez ensuite toute latitude, si nécessaire, d'étendre les fonctionnalités de base en utilisant JavaScript et css.
 
 # Visualization
 The editor fully displays the structure of the script with all elements, build branching narrative and dialogue. such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
 
 エディターは、会話オプションや選択肢のような全ての要素を伴うスクリプトの構造を完全に映し出します。これにより、ナビやスクリプトを編集しやすくします。
+
+L'éditeur affiche entièrement la structure du scénario avec tous les éléments tels que les options de dialogue et les conséquences des réponses choisies. La navigation et la modification du scénario en est ainsi facilité.
 
 ![Tuesday JS script structure](screenshots/script_structure.png)
 
@@ -42,6 +48,9 @@ In your scene layout, you can use standard HTML units in percentage pixels or ce
 
 は、すべての要素をその場所に配置できるだけでなく、さまざまな画面でシーンがどのように変化するかを示します。 
 シーンレイアウトでは、パーセンテージピクセルまたはセンチメートル単位の標準HTML単位を使用して、シーンをさまざまな画面により適切に適合させることができます。
+
+L'éditeur de scène peut non seulement organiser tous les éléments à leur place, mais il montre également comment la scène changera sur différents écrans. 
+Dans la mise en page de votre scène, vous pouvez utiliser des unités HTML standard en pourcentage de pixels ou en centimètres pour mieux adapter la scène à différents écrans.
 
 ![Tuesday JS scene editor](screenshots/scene_editor.png)
 
@@ -57,6 +66,11 @@ All texts can be exported to a table csv file for editing and adding localizatio
 プレビュー機能により、選択した言語でプロジェクトを運営することができます。
 すべてのテキストは、編集や他の版にローカリゼーションしたものを加えることができるよう、table csv fileに書き出されます。
 
+De nombreuses options permettent d'adapter les histoires dans d'autres langues. 
+Vous pouvez définir la traduction de presque tous les éléments de votre projet, tels que le texte et les graphiques. 
+La fonction d'aperçu vous permet d'exécuter le projet dans la langue sélectionnée. 
+Tous les textes peuvent être exportés vers un fichier csv pour édition et ajout de localisations dans un autre éditeur, tel qu'un tableur.
+
 ![Tuesday JS localization](screenshots/localization.png)
 
 
@@ -67,6 +81,11 @@ The editor has a built-in tool to work with JSON, with its help you can edit the
 すべての要素を含むスクリプトはJSON形式で保存されます。この形式で、ほとんどのプログラミングげんごが使えます。これにより、あなたのスクリプトを、他のエンジンやプラットフォームに移すことができます。
 エディターにはJSONで作業するための埋め込みツールがあり、スクリプトのすべてのコンテンツや選択した要素を編集することができます。
 
+
+Tous les éléments du scénario sont stockés dans une structure JSON, un format universel lisible par la quasi totalité des langages de programmation. Vous pouvez ainsi porter votre scénario sur un autre moteur ou une autre plateforme. 
+L'éditeur dispose d'un outil intégré pour travailler la structure JSON qui vous permet de modifier l'intégralité du scénario ou uniquement un élément spécifique.
+	
+
 ![Tuesday JS json edit](screenshots/json_edit.png)
 
 
@@ -74,6 +93,8 @@ The editor has a built-in tool to work with JSON, with its help you can edit the
 Preview allows you to start a project from a certain point in the script and with the selected localization.
 
 プレビューにより、スクリプトの特定の部分や選択したローカライゼーションでプロジェクトを始めることができます。
+
+L'aperçu vous permet de démarrer un projet à partir de n'importe quel point du scénario et avec la localisation sélectionnée.
 
 ![Tuesday JS preview](screenshots/preview.png)
 

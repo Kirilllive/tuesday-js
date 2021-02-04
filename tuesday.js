@@ -236,6 +236,7 @@ function get_lang(){
     if(arr_dialog.background_music){search_music()}
 } function creation_dialog(){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog]
+        if(arr_dialog.js){eval(arr_dialog.js)}
 		if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
 		else {document.getElementById("tue_next").style.visibility="visible";} 
 		if(scene == 0 && dialog == 0 && !arr_dialog.back_to){document.getElementById('tue_back').style.visibility='hidden'}
