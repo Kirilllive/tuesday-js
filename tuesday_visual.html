@@ -1293,7 +1293,7 @@ function create_project(){
 }
 function new_block(){
 	var html="<div class='window' style='padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><br>"
-		+"<form id='color_chec'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input autofocus id='block_id' value='block "+(Object.keys(story_script).length-1)+"' class='input_text' type='text'></td></tr></tbody></table><br><p style=':14px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse:separate;'><tbody><tr>"
+		+"<form id='color_chec' onsubmit='create_block()'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input id='block_id' value='block "+(Object.keys(story_script).length-1)+"' class='input_text' type='text'></td></tr></tbody></table><br><p style=':14px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse:separate;'><tbody><tr>"
 		+"<td class='color_select' style='background-color:"+color_bg[0]+";'><input class='checkbox_b' type='radio' name='color' value='0'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[1]+";'><input class='checkbox_b' type='radio' name='color' value='1'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[2]+";'><input class='checkbox_b' type='radio' name='color' value='2'></td>"
@@ -1343,7 +1343,7 @@ function create_block(){
 }
 function edit_block(id){
 	var html="<div class='window' style='padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr>"
-		+"<form id='color_chec'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input autofocus id='block_id' class='input_text' type='text' value="+id+"></td></tr></tbody></table><br><p style=' margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse:separate;'><tbody><tr>"
+		+"<form id='color_chec' onsubmit='updata_block(\""+id+"\")'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input id='block_id' class='input_text' type='text' value="+id+"></td></tr></tbody></table><br><p style=' margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse:separate;'><tbody><tr>"
 		+"<td class='color_select' style='background-color:"+color_bg[0]+";'><input class='checkbox_b' type='radio' name='color' value='0'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[1]+";'><input class='checkbox_b' type='radio' name='color' value='1'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[2]+";'><input class='checkbox_b' type='radio' name='color' value='2'></td>"
