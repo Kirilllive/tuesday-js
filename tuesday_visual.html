@@ -1293,7 +1293,7 @@ function create_project(){
 }
 function new_block(){
 	var html="<div class='window' style='padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr><br>"
-		+"<form id='color_chec' onsubmit='create_block()'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input id='block_id' value='block "+(Object.keys(story_script).length-1)+"' class='input_text' type='text'></td></tr></tbody></table><br><p style=':14px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse:separate;'><tbody><tr>"
+		+"<form id='color_chec' onsubmit='return false; create_block();'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input id='block_id' value='block "+(Object.keys(story_script).length-1)+"' class='input_text' type='text'></td></tr></tbody></table><br><p style=':14px; margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse:separate;'><tbody><tr>"
 		+"<td class='color_select' style='background-color:"+color_bg[0]+";'><input class='checkbox_b' type='radio' name='color' value='0'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[1]+";'><input class='checkbox_b' type='radio' name='color' value='1'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[2]+";'><input class='checkbox_b' type='radio' name='color' value='2'></td>"
@@ -1311,39 +1311,41 @@ function new_block(){
     modal_window("open",html);
 }
 function create_block(){
-	var color_chec= document.forms.color_chec;
-	for(i=0;i<color_chec.length;i++){
-		if(color_chec[i].checked){
-		color_chec=color_bg[color_chec[i].value]
-		break;}
-	}
-    var new_id=correct_name(block_id.value);
-	if(new_id!=''&&!story_script[new_id]){
-		if(Object.keys(story_script).length<=2){story_script.parameters.launch_story=new_id}
-		story_script[new_id]=[];
-		for(var i=0 ;i<Object.keys(story_script).length;i++){if(Object.keys(story_script)[i]==new_id){creation_block(i);break;}}
-		new_id=document.getElementById(new_id)
-		var rect=new_id.getBoundingClientRect();
-		new_id.style.backgroundColor=color_chec;
-		new_id.style.left=html.scrollLeft+((html.clientWidth/2)-(rect.width/2))+"px";
-        new_id.style.top=html.scrollTop+((html.clientHeight/2)-(rect.height/2))+"px";
-		new_id.style.animation="flash 2s 1";
-		new_id.style.WebkitAnimation="flash 2s 1";
-		control_dlock()
-		toast("new block created");
-		modal_window('close');
-    } else if(story_script[new_id]){
-        toast("this name is used by other blocks");
-        modal_window('close');
-    }else{
-        toast("block id not entered");
-        modal_window('close');
-    }
-    story_script.blocks[new_id.id]=[new_id.style.left,new_id.style.top,document.getElementById(new_id.id+"_content").style.display,new_id.style.backgroundColor]
+    if (/^[\w\s]+$/i.test(block_id.value)){
+        var color_chec= document.forms.color_chec;
+        for(i=0;i<color_chec.length;i++){
+            if(color_chec[i].checked){
+            color_chec=color_bg[color_chec[i].value]
+            break;}
+        }
+        var new_id=correct_name(block_id.value);
+        if(new_id!=''&&!story_script[new_id]){
+            if(Object.keys(story_script).length<=2){story_script.parameters.launch_story=new_id}
+            story_script[new_id]=[];
+            for(var i=0 ;i<Object.keys(story_script).length;i++){if(Object.keys(story_script)[i]==new_id){creation_block(i);break;}}
+            new_id=document.getElementById(new_id)
+            var rect=new_id.getBoundingClientRect();
+            new_id.style.backgroundColor=color_chec;
+            new_id.style.left=html.scrollLeft+((html.clientWidth/2)-(rect.width/2))+"px";
+            new_id.style.top=html.scrollTop+((html.clientHeight/2)-(rect.height/2))+"px";
+            new_id.style.animation="flash 2s 1";
+            new_id.style.WebkitAnimation="flash 2s 1";
+            control_dlock()
+            toast("new block created");
+            modal_window('close');
+        } else if(story_script[new_id]){
+            toast("this name is used by other blocks");
+            modal_window('close');
+        }else{
+            toast("block id not entered");
+            modal_window('close');
+        }
+        story_script.blocks[new_id.id]=[new_id.style.left,new_id.style.top,document.getElementById(new_id.id+"_content").style.display,new_id.style.backgroundColor]
+    } else {toast('Only <b>latin</b> characters & numbers')}
 }
 function edit_block(id){
 	var html="<div class='window' style='padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New story block</p><hr>"
-		+"<form id='color_chec' onsubmit='updata_block(\""+id+"\")'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input id='block_id' class='input_text' type='text' value="+id+"></td></tr></tbody></table><br><p style=' margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse:separate;'><tbody><tr>"
+		+"<form id='color_chec' onsubmit='return false;updata_block(\""+id+"\");'><table style='width:100%;  border-spacing:10px; border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input id='block_id' class='input_text' type='text' value="+id+"></td></tr></tbody></table><br><p style=' margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px; border-collapse:separate;'><tbody><tr>"
 		+"<td class='color_select' style='background-color:"+color_bg[0]+";'><input class='checkbox_b' type='radio' name='color' value='0'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[1]+";'><input class='checkbox_b' type='radio' name='color' value='1'></td>"
 		+"<td class='color_select' style='background-color:"+color_bg[2]+";'><input class='checkbox_b' type='radio' name='color' value='2'></td>"
@@ -1372,23 +1374,25 @@ function delet_block(id){
 	modal_window ('close');
 }
 function updata_block(old_id){
-	var color_chec= document.forms.color_chec;
-	for(i=0;i<color_chec.length;i++){
-		if(color_chec[i].checked){
-		story_script.blocks[old_id][3]=color_bg[color_chec[i].value]
-		document.getElementById(old_id).style.backgroundColor=color_bg[color_chec[i].value]
-		break;}
-	}
-	var new_id=correct_name(block_id.value);
-	if(old_id!=new_id&&!story_script[new_id]){
-		var story_rename=JSON.stringify(story_script)
-		new_novel();
-		story_script=JSON.parse(story_rename.replace(new RegExp('"'+old_id+'"',"g"),'"'+new_id+'"'));
-		parse_story();
-		lines();
-		toast("block updated");
-    } else if(story_script[new_id]){toast("this name is used by other blocks");}
-	modal_window ('close');
+    if (/^[\w\s]+$/i.test(block_id.value)){
+        var color_chec= document.forms.color_chec;
+        for(i=0;i<color_chec.length;i++){
+            if(color_chec[i].checked){
+            story_script.blocks[old_id][3]=color_bg[color_chec[i].value]
+            document.getElementById(old_id).style.backgroundColor=color_bg[color_chec[i].value]
+            break;}
+        }
+        var new_id=correct_name(block_id.value);
+        if(old_id!=new_id&&!story_script[new_id]){
+            var story_rename=JSON.stringify(story_script)
+            new_novel();
+            story_script=JSON.parse(story_rename.replace(new RegExp('"'+old_id+'"',"g"),'"'+new_id+'"'));
+            parse_story();
+            lines();
+            toast("block updated");
+        } else if(story_script[new_id]){toast("this name is used by other blocks");}
+        modal_window ('close');
+    } else {toast('Only <b>latin</b> characters & numbers')}
 }
 function file_catalog(id,files,area,preview,arr){
     var code='<div class="window" style="width:480px; position:fixed;"><table style="width:100%;"><tbody><tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">File selection</td></tr><tr><td><div style="overflow-x:hidden;overflow-y:auto;max-height:80vh;"><table style="width:100%;"><tbody>'
