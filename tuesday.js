@@ -229,8 +229,8 @@ function get_lang(){
         tuesday.appendChild(html);
         }
     }
+    if(arr_dialog.background_music){search_music();}
     if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();}
-    if(arr_dialog.background_music){search_music()}
 } function creation_dialog(){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 		if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
