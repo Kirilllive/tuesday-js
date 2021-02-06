@@ -1,5 +1,16 @@
 ![Tuesday js visual novels engine](https://img.itch.zone/aW1nLzQ2NjQ2MjIuanBn/original/CuLgIr.jpg)
 
+
+  _______                  _                    _  _____ 
+ |__   __|                | |                  | |/ ____|
+    | |_   _  ___  ___  __| | __ _ _   _       | | (___  
+    | | | | |/ _ \/ __|/ _` |/ _` | | | |  _   | |\___ \ 
+    | | |_| |  __/\__ \ (_| | (_| | |_| | | |__| |____) |
+    |_|\__,_|\___||___/\__,_|\__,_|\__, |  \____/|_____/ 
+                                    __/ |                
+                                   |___/                 
+
+
 # Tuesday JS
 is a free open source engine to creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. The projects can be exported to Apache Cordova to create mobile applications or PC programs. The engine uses standard HTML document elements DOM such as div and img, this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.
 
