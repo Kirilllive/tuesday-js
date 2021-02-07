@@ -299,6 +299,7 @@ function get_lang(){
                         if(arr_dialog.art[i].url==old[o].getAttribute('src')||arr_dialog.art[i].url[languare]==old[o].getAttribute('src')){
                             if(arr_dialog.art[i].style){old[o].style=arr_dialog.art[i].style;}
                             if(arr_dialog.art[i].move&&arr_dialog.art[i].move!=0){old[o].style.transitionDuration=arr_dialog.art[i].move+"s";} else {old[o].style.transitionDuration=null}
+                            if(arr_dialog.art[i].speed&&arr_dialog.art[i].speed!=''){old[o].style.transitionTimingFunction=arr_dialog.art[i].speed;} else {old[o].style.transitionTimingFunction=null}
                             if(arr_dialog.art[i].opacity){old[o].style.opacity=arr_dialog.art[i].opacity;} else {old[o].style.opacity=null}
                             if(arr_dialog.art[i].fit)old[o].style.objectFit=arr_dialog.art[i].fit;
                             if(arr_dialog.art[i].size){
