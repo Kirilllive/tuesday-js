@@ -1256,7 +1256,7 @@ function build_zip(dataStr){
     const reader = new FileReader();
     var arhiv = new JSZip();
     arhiv.file("index.html", dataStr);
-    for(var f=0;f<project_files.length;f++){if(project_files[f][2]!="application/json"&&dataStr.indexOf(project_files[f][0])>-1){arhiv.file(project_files[f][0],load_files[f],{binary:true});}}
+    for(var f=0;f<project_files.length;f++){if(project_files[f][2]!="application/json"&&dataStr.indexOf(project_files[f][0])>-1){arhiv.file(((project_files[f][2].indexOf('audio/mpeg')>-1)?project_files[f][0]+'.mp3':project_files[f][0]),load_files[f],{binary:true});}}
     arhiv.generateAsync({type:"blob"})
     .then(function(content) {
         var n="new";
