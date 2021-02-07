@@ -274,17 +274,17 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 		<table  width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center' title='New project' onclick='new_project();add_element.style.visibility="hidden";' class='icon button_menu icon_new'></td>
-                    <td align='center' title='Load project folder ' onclick='load_new=false;json_file.click();add_element.style.visibility="hidden";' class='icon button_menu icon_load'></td>
-					<td align='center' title='Save JSON script project' onclick='save_file();add_element.style.visibility="hidden";' class='icon button_menu icon_save'></td>
-					<td align='center' title='Settings project' onclick='setup();add_element.style.visibility="hidden";' class='icon button_menu icon_setup'></td>
-                    <td align='center' title='Edit json text' onclick='jsonedit();add_element.style.visibility="hidden";' class='icon button_menu icon_json'></td>
-                    <td align='center' title='Export all text to CSV file' onclick='csv_export();add_element.style.visibility="hidden";' class='icon button_menu icon_csv'></td>
-                    <td align='center' title='About visual editor' onclick='about();add_element.style.visibility="hidden";' class='icon button_menu icon_about'></td>
+					<td align='center' title='New project' onclick='new_project();menu_add.style.visibility="hidden";' class='icon button_menu icon_new'></td>
+                    <td align='center' title='Load project folder ' onclick='load_new=false;json_file.click();menu_add.style.visibility="hidden";' class='icon button_menu icon_load'></td>
+					<td align='center' title='Save JSON script project' onclick='save_file();menu_add.style.visibility="hidden";' class='icon button_menu icon_save'></td>
+					<td align='center' title='Settings project' onclick='setup();menu_add.style.visibility="hidden";' class='icon button_menu icon_setup'></td>
+                    <td align='center' title='Edit json text' onclick='jsonedit();menu_add.style.visibility="hidden";' class='icon button_menu icon_json'></td>
+                    <td align='center' title='Export all text to CSV file' onclick='csv_export();menu_add.style.visibility="hidden";' class='icon button_menu icon_csv'></td>
+                    <td align='center' title='About visual editor' onclick='about();menu_add.style.visibility="hidden";' class='icon button_menu icon_about'></td>
                     <td align='center' style='width:88px;'><input type="text" id="search_block" onkeyup="search_block()" placeholder="search block"></td>
                     <td align='center' style='width:40px;'><select class='input_text' id='language_view' style='height:40px; border-right:1px solid var(--cb); border-bottom:0'><option value='en'>EN</option></select></td>
-					<td align='center' title='Build project' onclick='build_choice();add_element.style.visibility="hidden";' class='icon button_menu icon_build'></td>
-					<td align='center' style='border-radius:0 0 16px 0;' title='Run preview Project' onclick='play_novel();add_element.style.visibility="hidden";' class='icon button_menu icon_play'></td>
+					<td align='center' title='Build project' onclick='build_choice();menu_add.style.visibility="hidden";' class='icon button_menu icon_build'></td>
+					<td align='center' style='border-radius:0 0 16px 0;' title='Run preview Project' onclick='play_novel();menu_add.style.visibility="hidden";' class='icon button_menu icon_play'></td>
 				</tr>
 			</tbody>
 		</table>
@@ -668,7 +668,7 @@ function new_novel(){
 function update_novel(){
     if(scene_screen){scen_edit_updare(true)}
     else{
-        add_element.style.visibility="hidden";
+        menu_add.style.visibility="hidden";
         story_blocks.innerHTML=""
         line_controll=[];
         search_block.value=""
@@ -774,17 +774,45 @@ function creation_block(b){
 						+"<div id='"+all+"b"+d+go+all_blocks+"' class='choice_b'>"+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;' class='input_text_b'>"+option_block(go,0)+"</select>"+"</div></div>";}
 						element+="</div>"
                     }
+                    if(story_script[chapter.id][i].dialogs[d].art){
+                        var t="<table width='100%' height='64px' style='margin:8px 0;'><tbody><tr>"
+                            +((story_script[chapter.id][i].dialogs[d].art[0])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[0].url))+") no-repeat center;background-size:contain;'></td>":"")
+                            +((story_script[chapter.id][i].dialogs[d].art[1])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[1].url))+") no-repeat center;background-size:contain;'></td>":"")
+                            +((story_script[chapter.id][i].dialogs[d].art[2])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[2].url))+") no-repeat center;background-size:contain;'></td>":"")
+                            +((story_script[chapter.id][i].dialogs[d].art[3])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[3].url))+") no-repeat center;background-size:contain;'></td>":"")
+                            +((story_script[chapter.id][i].dialogs[d].art[4])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[4].url))+") no-repeat center;background-size:contain;'></td>":"")
+                            +"</tr></tbody></table>"
+                        element+="<div class='dialog_element' align='left'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Art<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_art' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='art';scen_data=[\'"+chapter.id+"\',"+i+","+(d+1)+"];dialog_el(this.id,'Art',true);\" width='24px' class='icon_m icon_edit' title='Scen editor'></td></tr></tbody></table>"+t+"</div>"
+                    }
                     if(story_script[chapter.id][i].dialogs[d].text){
-						var t=(languare_data(story_script[chapter.id][i].dialogs[d].text))
+						var t=languare_data(story_script[chapter.id][i].dialogs[d].text)
 						element+="<div class='dialog_element' align='left'>"
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n.length>0)?"<p><b>"+n+"</p></b>" :"&nbsp;")+"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text';dialog_el(this.id,'Text',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table>"
 								+"<p style='padding:4px;'>"+((t.length>0)?t:'&nbsp;')+"</p></div>"
 					}
                     if(story_script[chapter.id][i].dialogs[d].text_add){
-                        var t=(languare_data(story_script[chapter.id][i].dialogs[d].text_add))
+                        var t=languare_data(story_script[chapter.id][i].dialogs[d].text_add)
                         element+="<div class='dialog_element' align='left'>"
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n.length>0)?"<p><b>"+n+" " :"<p><b>")+"text add</b></p></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text_add' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text_add';dialog_el(this.id,'Text add',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table>"
                                 +"<p>"+((t.length>0)?t:'&nbsp;')+"</p></div>"
+                    }
+                    if(story_script[chapter.id][i].dialogs[d].choice){
+                        element+="<div class='dialog_element'>"
+								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
+                        for(var c=0;c<story_script[chapter.id][i].dialogs[d].choice.length;c++){
+                            go=story_script[chapter.id][i].dialogs[d].choice[c].go_to;
+                            if(go&&go!=""&&go!="undefined"){
+                                var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
+                                if(story_script[go]){
+                                    element+="<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go,2)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
+                                    line_controll.push([go,chapter.id,all+"c"+d+go+all_blocks]);
+                                    creaton_line(all+"c"+d+go+all_blocks);
+                                }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go,2)+"</select></td><td class='button_block icon'></td></tr></tbody></table>"}
+                            }else{var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
+								element+="<table style='width:100%;' class='choice_b'><tbody><tr><td class='button_block'></td><td style='padding:4px;'>"+((t=="")?go:t)+"</td><td class='button_block icon'></td></tr></tbody></table>"
+                            }all++
+                        }
+                        element+="</div>"
                     }
                     if(story_script[chapter.id][i].dialogs[d].sound_stop){
                         element+="<div class='dialog_element' align='left'>"
@@ -820,24 +848,6 @@ function creation_block(b){
                     if(story_script[chapter.id][i].dialogs[d].js){
                         element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>JavaScript code</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_js' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='js';dialog_el(this.id,'JavaScript code',true);\" width='24px' class='icon_m icon_edit' title='JavaScript html'></td></tr></tbody></table></div>"
                     }
-                    if(story_script[chapter.id][i].dialogs[d].choice){
-                        element+="<div class='dialog_element'>"
-								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
-                        for(var c=0;c<story_script[chapter.id][i].dialogs[d].choice.length;c++){
-                            go=story_script[chapter.id][i].dialogs[d].choice[c].go_to;
-                            if(go&&go!=""&&go!="undefined"){
-                                var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
-                                if(story_script[go]){
-                                    element+="<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go,2)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
-                                    line_controll.push([go,chapter.id,all+"c"+d+go+all_blocks]);
-                                    creaton_line(all+"c"+d+go+all_blocks);
-                                }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go,2)+"</select></td><td class='button_block icon'></td></tr></tbody></table>"}
-                            }else{var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
-								element+="<table style='width:100%;' class='choice_b'><tbody><tr><td class='button_block'></td><td style='padding:4px;'>"+((t=="")?go:t)+"</td><td class='button_block icon'></td></tr></tbody></table>"
-                            }all++
-                        }
-                        element+="</div>"
-                    }
 					if(story_script[chapter.id][i].dialogs[d].go_to){
                         go=story_script[chapter.id][i].dialogs[d].go_to;
                         if(story_script[go]){
@@ -852,9 +862,9 @@ function creation_block(b){
 							+"<select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go,0)+"</select>"+"</div></div>";}
 						element+="</div>"
                     }
-					element+="<div align='right'><div id='add_d_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];add_element_d(this.id,'"+(d+1)+"')\" class='add_button icon_m icon_add' title='Add element to dialog'></div></div></div>"
+					element+="<div align='right'><div id='add_d_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];scen_data=[\'"+chapter.id+"\',"+i+","+(d+1)+"];add_element_d(this.id,'"+(d+1)+"')\" class='add_button icon_m icon_add' title='Add element to dialog'></div></div></div>"
                 }
-				element+="<div align='right' style='margin-right:4px;'><div id='add_s_"+chapter.id+"_"+i+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs;arr_n="+d+";add_element_s(this.id,'"+(i+1)+"')\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
+				element+="<div align='right' style='margin-right:4px;'><div id='add_s_"+chapter.id+"_"+i+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs;arr_n="+d+";  scen_data=[\'"+chapter.id+"\',"+i+","+(d+1)+"];  add_element_s(this.id,'"+(i+1)+"')\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
             }
             element+="</div>"
         }
@@ -976,7 +986,7 @@ var scroll_block=false;
 function movie_dlock(id){
     var focus_block=document.getElementById(id);
     focus_block.onmousedown=function(e){
-        add_element.style.visibility="hidden";
+        menu_add.style.visibility="hidden";
         var coords=getCoords(focus_block);
         var shiftX=(e.pageX-coords.left);
         var shiftY=(e.pageY-coords.top);
@@ -1122,7 +1132,7 @@ function scroll_z(){
 function modal_window(action,content){
     var window_zone=document.getElementById("window_zone");
     if(action=='close'){
-        add_element.style.visibility="hidden";
+        menu_add.style.visibility="hidden";
         window_zone.style.visibility="hidden"
         window_zone.style.backgroundColor='rgba(110,95,165,0)';
         html.style.overflow='scroll';
@@ -1260,7 +1270,7 @@ function build_zip(dataStr){
     });
 }
 function jsonedit(arr){
-	if(arr){var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>JSON Edit</p><br><p><textarea id='editJson' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
+	if(arr){var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>JSON Edit</p><br><p><textarea id='editJson' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
     else{var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>JSON Edit</p><br><p><textarea id='editJson' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
     modal_window("open",html);
 }
@@ -1399,9 +1409,9 @@ function updata_block(old_id){
 function file_catalog(id,files,area,preview,arr){
     var code,f,t,a;
     if(project_files.length==0){
-        code="<div class='window' style='position:fixed; padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick=\"add_element.style.visibility='hidden';\"></div></div><p>Project folder/location</p><hr><br><div style='overflow-x:hidden; overflow-y:auto; width:100%; max-height:60vh;'>"
-        +"<table style='width:100%;'><tbody><tr><td><input id='project_foler' onclick=\"load_new=true;json_file.click();add_element.style.visibility='hidden';\" class='input_text' style='padding-top:10px;' type='text'></td><td onclick=\"load_new=true;json_file.click();add_element.style.visibility='hidden';\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_load'></td></tr></tbody></table><p class='text_tutorials_b select_tutorials'>"+texts.tutorials[3].en+"</p><br><br>"
-        +"</div><br><br><table class='big_button' width='256px' onclick=\"add_element.style.visibility='hidden';\"><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+        code="<div class='window' style='position:fixed; padding:24px 8px; width:360px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick=\"menu_add.style.visibility='hidden';\"></div></div><p>Project folder/location</p><hr><br><div style='overflow-x:hidden; overflow-y:auto; width:100%; max-height:60vh;'>"
+        +"<table style='width:100%;'><tbody><tr><td><input id='project_foler' onclick=\"load_new=true;json_file.click();menu_add.style.visibility='hidden';\" class='input_text' style='padding-top:10px;' type='text'></td><td onclick=\"load_new=true;json_file.click();menu_add.style.visibility='hidden';\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_load'></td></tr></tbody></table><p class='text_tutorials_b select_tutorials'>"+texts.tutorials[3].en+"</p><br><br>"
+        +"</div><br><br><table class='big_button' width='256px' onclick=\"menu_add.style.visibility='hidden';\"><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     }else{
         code='<div class="window" style="width:480px; position:fixed;"><table style="width:100%;"><tbody><tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">File selection</td></tr><tr><td><div style="overflow-x:hidden;overflow-y:auto;max-height:80vh;"><table style="width:100%;"><tbody>'
         if (id.indexOf('artt')>-1){a=id.replace("artt","art")}
@@ -1411,7 +1421,7 @@ function file_catalog(id,files,area,preview,arr){
             for(f=0;f<project_files.length;f++){
                 for(t=0;t<files.length;t++){
                     if(project_files[f][0].indexOf(files[t])>-1){
-                        code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((a.length>1)?a+'.src=\''+project_files[f][1]+'\';':'')+' '+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';'+((preview!=0)?preview+'.style.backgroundImage=\'url('+project_files[f][1]+')\'':'')+';add_element.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="64px" height="64px" style=\'border-radius:8px;background-image:url(\"'+project_files[f][1]+'\");background-size:cover;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                        code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((a.length>1)?a+'.src=\''+project_files[f][1]+'\';':'')+' '+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';'+((preview!=0)?preview+'.style.backgroundImage=\'url('+project_files[f][1]+')\'':'')+';menu_add.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="64px" height="64px" style=\'border-radius:8px;background-image:url(\"'+project_files[f][1]+'\");background-size:cover;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                     }
                 }
             }
@@ -1421,7 +1431,7 @@ function file_catalog(id,files,area,preview,arr){
             for(f=0;f<project_files.length;f++){
                 for(t=0;t< files.length;t++){
                     if(project_files[f][2].indexOf(files[t])>-1){
-                        code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="var n='+((id!='files_auio')?'add_audio(\''+project_files[f][0]+'\')':'\''+project_files[f][0]+'\'')+';'+arr+'=n;'+area+'.value=n;add_element.style.visibility=\'hidden\';'+((preview=='update')?'update_novel();':'')+'"><table style="margin:4px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_audio_play"></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                        code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="var n='+((id!='files_auio')?'add_audio(\''+project_files[f][0]+'\')':'\''+project_files[f][0]+'\'')+';'+arr+'=n;'+area+'.value=n;menu_add.style.visibility=\'hidden\';'+((preview=='update')?'update_novel();':'')+'"><table style="margin:4px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_audio_play"></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                     }
                 }
             }
@@ -1430,12 +1440,12 @@ function file_catalog(id,files,area,preview,arr){
             for(f=0;f<project_files.length;f++){
                 for(t=0;t<files.length;t++){
                     if(project_files[f][0].indexOf(files[t])>-1){
-                        code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';add_element.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_new"></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                        code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';menu_add.style.visibility=\'hidden\';"><table style="margin:4px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_new"></td><td style="padding:0px 8px;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                     }
                 }
             }
         }
-        code+='</tbody></table></div></td></tr><tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="52px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr></tbody></table></div>'
+        code+='</tbody></table></div></td></tr><tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="52px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr></tbody></table></div>'
     }
     menu_file=document.getElementById('add_element');
     menu_file.innerHTML=code
@@ -1449,84 +1459,86 @@ function add_audio(d){
 function add_element_b(id,arr){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Add to block \''+arr+'\'</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scene_add(\''+arr+'\');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>Scene</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'legacy_choice_add(\''+arr+'\')':'setup();set_menu(5);')+';add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Legacy choice</td></tr></tbody></table></td></tr>'
-				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scene_add(\''+arr+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>Scene</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'legacy_choice_add(\''+arr+'\')':'setup();set_menu(5);')+';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Legacy choice</td></tr></tbody></table></td></tr>'
+				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
 function add_element_s(id,n){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Add to scene '+n+'</td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>Add dialog</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="back_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_back"></td><td>back to</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="go_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_goto"></td><td>go to</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="event";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_event"></td><td>event</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="controll";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_controll"></td><td>interface</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\' '+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'dialog_add();arr_l=arr_l[arr_n];arr_n="variables";element_to();':'setup();set_menu(5);')+' add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_var"></td><td>variables</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>Add dialog</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="back_to";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_back"></td><td>back to</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="go_to";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_goto"></td><td>go to</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="event";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_event"></td><td>event</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="controll";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_controll"></td><td>interface</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\' '+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'dialog_add();arr_l=arr_l[arr_n];arr_n="variables";element_to();':'setup();set_menu(5);')+' menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_var"></td><td>variables</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="art";scen_editor(scen_data[0],scen_data[1],scen_data[2]);menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'sound\';element_to();dialog_audio_edit(\''+id+'\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_play"></td><td>play sound</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'sound_stop\';element_to();dialog_audio_edit(\''+id+'\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td>stop sound</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();copy_arr=arr_l[arr_n];edit_code(\'js\',\'JavaScript\');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JavaScript code</td></tr></tbody></table></td></tr>'
-                //+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'choice\';element_to();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>'
-                +((story_script.parameters.plugins)?((story_script.parameters.plugins.includes("show_toast"))?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'toast\';edit_toast();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_toast"></td><td>Toast</td></tr></tbody></table></td></tr>':''):'')
-                +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text";element_to();dialog_text_edit();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'html\';edit_html();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();copy_arr=arr_l[arr_n];edit_code(\'js\',\'JavaScript\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JavaScript code</td></tr></tbody></table></td></tr>'
+                //+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'choice\';element_to();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>'
+                +((story_script.parameters.plugins)?((story_script.parameters.plugins.includes("show_toast"))?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'toast\';edit_toast();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_toast"></td><td>Toast</td></tr></tbody></table></td></tr>':''):'')
+                +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
 function add_element_d(id,n){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Add element to dialog '+n+'</td></tr>'
-				+((arr_l.back_to)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="back_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_back"></td><td>back to</td></tr></tbody></table></td></tr>')
-				+((arr_l.go_to)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="go_to";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_goto"></td><td>go to</td></tr></tbody></table></td></tr>')
-				+((arr_l.event)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="event";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_event"></td><td>event</td></tr></tbody></table></td></tr>')
-				+((arr_l.controll)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="controll";element_to();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_controll"></td><td>interface</td></tr></tbody></table></td></tr>')
-				+((arr_l.variables)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\' '+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'arr_n="variables";element_to();':'setup();set_menu(5);')+' add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_var"></td><td>variables</td></tr></tbody></table></td></tr>')
-				+((arr_l.sound)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="sound";element_to();dialog_audio_edit("'+id+'");\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_play"></td><td>play sound</td></tr></tbody></table></td></tr>')
+				+((arr_l.back_to)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="back_to";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_back"></td><td>back to</td></tr></tbody></table></td></tr>')
+				+((arr_l.go_to)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="go_to";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_goto"></td><td>go to</td></tr></tbody></table></td></tr>')
+				+((arr_l.event)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="event";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_event"></td><td>event</td></tr></tbody></table></td></tr>')
+				+((arr_l.controll)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="controll";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_controll"></td><td>interface</td></tr></tbody></table></td></tr>')
+				+((arr_l.variables)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\' '+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'arr_n="variables";element_to();':'setup();set_menu(5);')+' menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_var"></td><td>variables</td></tr></tbody></table></td></tr>')
+                +((arr_l.art)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'scen_editor(scen_data[0],scen_data[1],scen_data[2]);menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>')
+                +((arr_l.sound)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="sound";element_to();dialog_audio_edit("'+id+'");\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_play"></td><td>play sound</td></tr></tbody></table></td></tr>')
 				+((arr_l.sound_stop)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="sound_stop";element_to();dialog_audio_edit("'+id+'");\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td>stop sound</td></tr></tbody></table></td></tr>')
-				+((arr_l.text||arr_l.text_add)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="text";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>')
-				+((arr_l.text||arr_l.text_add)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="text_add";element_to();dialog_text_edit();add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>text add</td></tr></tbody></table></td></tr>')
-                +((arr_l.html)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_n=\'html\';edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>')
-				+((arr_l.js)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="copy_arr=arr_l;edit_code(\'js\',\'JavaScript\');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JavaScript code</td></tr></tbody></table></td></tr>')
-				//+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'add_element.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
-				+((arr_l.choice)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_n=\'choice\';element_to();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>')
-                +((story_script.parameters.plugins)?((!arr_l.toast&&story_script.parameters.plugins.includes("show_toast"))?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_n=\'toast\';edit_toast();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_toast"></td><td>Toast</td></tr></tbody></table></td></tr>':''):'')
-                +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+				+((arr_l.text||arr_l.text_add)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="text";element_to();dialog_text_edit();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>text</td></tr></tbody></table></td></tr>')
+				+((arr_l.text||arr_l.text_add)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="text_add";element_to();dialog_text_edit();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>text add</td></tr></tbody></table></td></tr>')
+                +((arr_l.html)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_n=\'html\';edit_html();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_html"></td><td>HTML code</td></tr></tbody></table></td></tr>')
+				+((arr_l.js)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="copy_arr=arr_l;edit_code(\'js\',\'JavaScript\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JavaScript code</td></tr></tbody></table></td></tr>')
+				//+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>'
+				+((arr_l.choice)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_n=\'choice\';element_to();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>choice</td></tr></tbody></table></td></tr>')
+                +((story_script.parameters.plugins)?((!arr_l.toast&&story_script.parameters.plugins.includes("show_toast"))?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_n=\'toast\';edit_toast();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_toast"></td><td>Toast</td></tr></tbody></table></td></tr>':''):'')
+                +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
 function dialog_m(id,n,block,i){
 	var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
               +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Dialog '+n+'</td></tr>'
-              +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scen_editor(\''+block+'\','+i+','+n+');scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
-              +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="duplicat_arr();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
-              +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
-              +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
-              +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+              +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scen_editor(\''+block+'\','+i+','+n+');scen_edit_data();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
+              +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="duplicat_arr();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
+              +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
+              +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
+              +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="scen_edit_data();menu_add.style.visibility=\'hidden\';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
               +'</tbody></table></div>'
 	menu_view(id,code)
 }
 function legacy_choice_m(id){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Legacy choice</td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="legacy_choice_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
-				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="legacy_choice_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
+				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
 function scene_m(id,i,block){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Scene '+i+'</td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scene_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
-				+((story_script[block][i-1].dialogs[0])?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scen_data[1]='+(i-1)+';scen_editor(\''+block+'\',scen_data[1],1);scen_edit_data();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>':'')
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="duplicat_arr();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
-                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
-				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
-				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scene_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+				+((story_script[block][i-1].dialogs[0])?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scen_data[1]='+(i-1)+';scen_editor(\''+block+'\',scen_data[1],1);scen_edit_data();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>':'')
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="duplicat_arr();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
+                +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
+				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
+				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
 	menu_view(id,code)
 }
@@ -1534,24 +1546,26 @@ function dialog_el(id,n,e){
     var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody><tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">'+n+'</td></tr>'
         if(e){
             if(arr_n=='html'){
-                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="edit_html();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="edit_html();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             } else if(arr_n=='text'||arr_n=='text_add'){
-                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_text_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_text_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             } else if(arr_n=='variables'){
-                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="variables_set_edit();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="variables_set_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             } else if (arr_n=='toast'){
-                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="edit_toast();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="edit_toast();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             } else if (arr_n=='choice'){
-                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="edit_choice();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="edit_choice();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             } else if (arr_n=='sound'||arr_n=='sound_stop'){
-                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_audio_edit(\''+id+'\');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_audio_edit(\''+id+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             } else if (arr_n=='js'){
-                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="copy_arr=arr_l;edit_code(\'js\',\'JavaScript\');add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="copy_arr=arr_l;edit_code(\'js\',\'JavaScript\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
+            } else if (arr_n=='art'){
+                code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scen_editor(scen_data[0],scen_data[1],scen_data[2]);menu_add.style.visibility=\'hidden\';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
             }
         }
-        code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="delete arr_l.name;element_dialog_del();add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="add_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+        code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="delete arr_l.name;element_dialog_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
 	menu_view(id,code)
 }
@@ -1562,7 +1576,7 @@ function menu_view(id,code){
 	menu_add=document.getElementById('add_element');
     menu_add.style.visibility='visible';
 	menu_add.innerHTML=code;
-    menu_add.style.top=html.scrollTop+rect.top+"px";
+    menu_add.style.top=(html.scrollTop+rect.top)+"px";
     menu_add.style.left=html.scrollLeft+rect.right+20+"px";
 }
 function scene_add(arr){
@@ -1780,11 +1794,11 @@ function scene_edit_apply(){
     else{update_novel();}
 }
 function edit_html(){
-    var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>HTML code edit</p><br><p><textarea id='editHtml' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+((arr_l[arr_n])?arr_l[arr_n]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=editHtml.value;update_novel();modal_window(\"close\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>HTML code edit</p><br><p><textarea id='editHtml' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+((arr_l[arr_n])?arr_l[arr_n]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=editHtml.value;update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_code(vol,n){
-    var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>"+n+" code edit</p><br><p><textarea id='editcode' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+((copy_arr[vol])?copy_arr[vol]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='copy_arr[\""+vol+"\"]=editcode.value;update_novel();modal_window(\"close\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    var html="<div class='window' style='padding:24px 8px; width:75vw;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>"+n+" code edit</p><br><p><textarea id='editcode' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+((copy_arr[vol])?copy_arr[vol]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='copy_arr[\""+vol+"\"]=editcode.value;update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_toast(){
@@ -1794,7 +1808,7 @@ function edit_toast(){
     var toast_list="<table width='90%' id='var_toast' style='margin:10px 0 10px 0;'><tbody>";
     for(var l=0;l<story_script.parameters.languares.length;l++){toast_list+="<tr><td align='center' style='width:40px;'>"+story_script.parameters.languares[l]+"</td><td style='calc(100% - 40px)'><input class='addon_path input_text' oninput='copy_arr[arr_n]."+story_script.parameters.languares[l]+"=this.value;' value='"+copy_arr[arr_n][story_script.parameters.languares[l]]+"' type='text'></td></tr>";}
     toast_list+="</tbody></table>"
-    var html="<div class='window' style='padding:24px 8px;width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Toast edit</p><br><hr style='margin:0;'><div style='max-height:75vh;overflow-x:hidden;overflow-y:auto;'>"+toast_list+"</div><br><table class='big_button' width='256px' onclick='data_only(copy_arr,arr_n);arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();modal_window(\"close\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    var html="<div class='window' style='padding:24px 8px;width:512px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Toast edit</p><br><hr style='margin:0;'><div style='max-height:75vh;overflow-x:hidden;overflow-y:auto;'>"+toast_list+"</div><br><table class='big_button' width='256px' onclick='data_only(copy_arr,arr_n);arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_choice(){
@@ -1805,7 +1819,7 @@ function edit_choice(){
         choice_list+="<tr><td style='width:32px;height:26px;'>Text</td><td valign='bottom' style='height:26px;width:28px;'><select id='chol"+l+"' class='input_text' onchange='cho"+l+".value=copy_arr."+arr_n+"["+l+"].text[this.value];' style='height:26px;width:30px;border-left:1px solid var(--cb); border-right:1px solid var(--cb); border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select></td><td><input id='cho"+l+"' class='input_text' oninput='copy_arr."+arr_n+"["+l+"].text[chol"+l+".value]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].text[languare]+"' type='text'></td><td style='width:64px;padding-right:8px;' align='right'>Position X</td><td style='width:48px;'><input class='input_text' style='height:26px;' oninput='copy_arr."+arr_n+"["+l+"].position[0]=this.value;' value='"+copy_arr[arr_n][l].position[0]+"' type='text'></td><td style='width:16px;' align='center'>Y</td><td style='width:48px;'><input class='input_text' oninput='copy_arr."+arr_n+"["+l+"].position[2]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].position[2]+"' type='text'></td><td style='width:48px;' align='right'>go to:</td><td style='width:92px;'><select onchange='copy_arr."+arr_n+"["+l+"].go_to=this.value;' class='input_text'>"+option_block(copy_arr[arr_n][l].go_to,2)+"</select></td><td onclick='copy_arr."+arr_n+"["+l+"]={}; var a=this.closest(\"tr\"); a.parentElement.removeChild(a);' style='width:32px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
     }
     choice_list+="</tbody></table>"
-    var html="<div class='window' style='padding:24px 8px;width:568px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Choice edit</p><br><hr style='margin:0;'><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'>"+choice_list+"<div onclick=\"edit_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div></div><br><br><table class='big_button' width='256px' onclick='for(var l=copy_arr[arr_n].length;l>=0;l--){if(!copy_arr[arr_n][l]||!copy_arr[arr_n][l].go_to){copy_arr[arr_n].splice(l,1);}else{data_only(copy_arr[arr_n][l],\"text\");}};arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();modal_window(\"close\");add_element.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    var html="<div class='window' style='padding:24px 8px;width:568px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Choice edit</p><br><hr style='margin:0;'><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'>"+choice_list+"<div onclick=\"edit_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div></div><br><br><table class='big_button' width='256px' onclick='for(var l=copy_arr[arr_n].length;l>=0;l--){if(!copy_arr[arr_n][l]||!copy_arr[arr_n][l].go_to){copy_arr[arr_n].splice(l,1);}else{data_only(copy_arr[arr_n][l],\"text\");}};arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_choice_new(){
@@ -2762,7 +2776,7 @@ function world_scale(s){
         }
     }else{
         scroll_z();
-        add_element.style.visibility='hidden';
+        menu_add.style.visibility='hidden';
         if(s==1){scale=1;world.style.transform='scale(1)';}
         else if(s==2){scale=Math.min(2,scale+0.05);world.style.transform='scale('+scale+')';}
         else{scale=Math.max(0.25,scale-0.05);world.style.transform='scale('+scale+')';}
