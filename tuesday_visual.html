@@ -662,7 +662,7 @@ function open_file(name){
     for(var f=0;f<project_files.length;f++){if(project_files[f][0]==name){name=(project_files[f][1]);break;}} return name;
 }
 function new_novel(){
-    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"#cec8e3","size_text":"44px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{}},"blocks":{}};
+    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["0","55%","0","8px"],"size":["52px","52px"],"color":"","size_text":"44px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["55%","0","0","8px"],"size":["52px","52px"],"color":"","size_text":"44px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{}},"blocks":{}};
     update_novel();
 }
 function update_novel(){
@@ -775,7 +775,7 @@ function creation_block(b){
 						element+="</div>"
                     }
                     if(story_script[chapter.id][i].dialogs[d].art){
-                        var t="<table width='100%' height='64px' style='margin:8px 0;'><tbody><tr>"
+                        var t="<table width='100%' height='64px' style='margin:4px 0;'><tbody><tr>"
                             +((story_script[chapter.id][i].dialogs[d].art[0])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[0].url))+") no-repeat center;background-size:contain;'></td>":"")
                             +((story_script[chapter.id][i].dialogs[d].art[1])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[1].url))+") no-repeat center;background-size:contain;'></td>":"")
                             +((story_script[chapter.id][i].dialogs[d].art[2])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[2].url))+") no-repeat center;background-size:contain;'></td>":"")
@@ -2072,9 +2072,10 @@ function art_panel_edit(block,i,n,b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',-1);art_panel_update(\''+block+'\','+i+','+n+');"height="22px"></td>'
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',1);art_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
-            +'<td width="24px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art.splice('+b+',1);art_panel_update(\''+block+'\','+i+','+n+');" ></td>'
-    +'</tr><tr><td colspan="4" height="80px" align="center"><div id="artpre'+b+'" style="background-image:url('+((story_script[block][i].dialogs[n-1].art[b].url[languare])?open_file(story_script[block][i].dialogs[n-1].art[b].url[languare]):open_file(story_script[block][i].dialogs[n-1].art[b].url))+'); background-position:center; background-repeat:no-repeat; background-size:auto 100%; height:100%; width:100%";> </div></td></tr><tr>'
-    +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'artsp'+b+'\');scen_element.artsp'+b+'=artsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
+            +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));art_panel_update(\''+block+'\','+i+','+n+');"></td>'
+            +'<td width="26px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art.splice('+b+',1);art_panel_update(\''+block+'\','+i+','+n+');" ></td>'
+    +'</tr><tr><td colspan="5" height="80px" align="center"><div id="artpre'+b+'" style="background-image:url('+((story_script[block][i].dialogs[n-1].art[b].url[languare])?open_file(story_script[block][i].dialogs[n-1].art[b].url[languare]):open_file(story_script[block][i].dialogs[n-1].art[b].url))+'); background-position:center; background-repeat:no-repeat; background-size:auto 100%; height:100%; width:100%";> </div></td></tr><tr>'
+    +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'artsp'+b+'\');scen_element.artsp'+b+'=artsp'+b+'.style.display;"></td><td colspan="2"></td></tr></tbody></table>'
     +'<table width="100%" id=artsp'+b+' style="display:'+((scen_element['artsp'+b])?scen_element['artsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Art</td>'
         +'<td style="width:28px;" align="center"><select id="artl'+b+'" class="input_text" onchange="if(!story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[languare]){data_la(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'],\'url\')} ; artt'+b+'.value=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb); border-right:1px solid var(--cb); border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
@@ -2186,6 +2187,7 @@ function choice_panel_edit(block,i,n,b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+',-1);choice_panel_update(\''+block+'\','+i+','+n+');"height="22px"></td>'
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+', 1);choice_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
+            +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));choice_panel_update(\''+block+'\','+i+','+n+');"></td>'
             +'<td width="24px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice.splice('+b+',1);choice_panel_update(\''+block+'\','+i+','+n+');" ></td>'
     +'</tr><tr><td id="chdbn'+b+'" colspan="4" height="24px" align="center">'+((button_name[story_script[block][i].dialogs[n-1].choice[b].go_to])?button_name[story_script[block][i].dialogs[n-1].choice[b].go_to]:story_script[block][i].dialogs[n-1].choice[b].go_to)+'</td></tr><tr>'
     +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
@@ -2337,8 +2339,9 @@ function button_panel_edit(b){
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up" onclick="move_elenetn(story_script.parameters.buttons,'+b+',-1);button_panel_update();" height="22px"></td>'
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.parameters.buttons,'+b+', 1);button_panel_update();"></td><td>&nbsp;</td>'
+            +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.parameters.buttons;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));button_panel_update();"></td>'
             +'<td width="24px" '+((story_script.parameters.buttons[b].name=='tue_back'||story_script.parameters.buttons[b].name=='tue_next')?'':'class="icon icon_del" onmouseup="story_script.parameters.buttons.splice('+b+',1);button_panel_update();"')+' style="cursor:pointer;"></td>'
-            +'</tr><tr><td id="bt'+b+'" colspan="4" height="24px" align="center">'+((button_name[story_script.parameters.buttons[b].name])?button_name[story_script.parameters.buttons[b].name]:'None')+'</td></tr><tr>'
+            +'</tr><tr><td id="bt'+b+'" colspan="5" height="24px" align="center">'+((button_name[story_script.parameters.buttons[b].name])?button_name[story_script.parameters.buttons[b].name]:'None')+'</td></tr><tr>'
     +'<td height="22px" class="icon_m icon_more" onclick="block_open(\'bpsp'+b+'\');scen_element.bpsp'+b+'=bpsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
     +'<table id="bpsp'+b+'" width="100%" style="display:'+((scen_element['bpsp'+b])?scen_element['bpsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
             +'<td height="40px" align="right" style="width:40%; padding-right:8px;">Function</td>'
