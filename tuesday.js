@@ -91,9 +91,10 @@ function get_lang(){
 		tue_text_block.style.right="0";
 	}
 	if(story_json.parameters.text_panel.indent_bottom){tue_text_block.style.bottom=story_json.parameters.text_panel.indent_bottom;}
-    tue_text_block.style.zIndex="1000";
-    tue_text_block.style.borderSpacing="0";
+    tue_text_block.style.zIndex=1000;
+    tue_text_block.style.borderSpacing=0;
     tue_text_view=document.getElementById("tue_text_view");
+    tue_text_view.style.boxSizing="border-box";
     tue_text_view.style.padding=story_json.parameters.text_panel.indent_text;
     tue_text_view.style.fontSize=story_json.parameters.text_panel.size_text;
 	tue_text_view.style.height="100%";
