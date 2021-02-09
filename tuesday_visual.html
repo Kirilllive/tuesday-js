@@ -388,10 +388,10 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                         <div class="set_panel" id="text_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:40%; padding-right:8px;'>Width size</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='size_w' class='input_text' onchange='scen_edit_updare(true)' type="text" value='95%' style='width:100%;'>
+                                <input id='size_w' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='95%' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Height size</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='size_h' class='input_text' onchange='scen_edit_updare(true)' type="text" value='25%' style='width:100%;'>
+                                <input id='size_h' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='25%' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='style' class='input_text' onchange='scen_edit_updare(true)' type="text" value='' style='width:100%;'>
@@ -407,7 +407,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                                 <input id='color_text_b' type="color" name="paletr" class='input_color' oninput='color_text.value=this.value;color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Font size</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='size_text' class='input_text' onchange='scen_edit_updare(true)' type="text" value='20px' style='width:100%;'>
+                                <input id='size_text' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='20px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Font family</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='font_family' class='input_text' onchange='scen_edit_updare(true)' type="text" value='20px' style='width:100%;'>
@@ -416,33 +416,34 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                                 <input id='className' class='input_text' onchange='scen_edit_updare(true)' type="text" value='100' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Dialog speed</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='dialog_speed' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
+                                <input id='dialog_speed' class='input_text' onchange='this.value=correct_value(this.value,true);scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Top position</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_t' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
+                                <input id='position_t' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Left position</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_l' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
+                                <input id='position_l' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Bottom position</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='indent_bottom' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
+                                <input id='indent_bottom' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Right position</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='position_r' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
+                                <input id='position_r' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='indent_text' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
+                                <input id='indent_text' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                         </tbody></table>
                         </div>
-                        <table onclick="block_open('name_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Name panel (global)</td></tr></tbody></table>
+                        <table onclick="block_open('name_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left'
+                        ='center'>Name panel (global)</td></tr></tbody></table>
                         <div class="set_panel" id="name_panel_g" style="width:100%; display:none;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:40%; padding-right:8px;'>Width size</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_size_w' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
+                                <input id='n_size_w' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Height size</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_size_h' class='input_text' onchange='scen_edit_updare(true)' type="text" value='48px' style='width:100%;'>
+                                <input id='n_size_h' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='48px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_style' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
@@ -458,25 +459,25 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                                 <input id='n_color_text_b' type="color" name="paletr" class='input_color' oninput='n_color_text.value=this.value;n_color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Font size</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_size_text' class='input_text' onchange='scen_edit_updare(true)' type="text" value='18px' style='width:100%;'>
+                                <input id='n_size_text' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='18px' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_className' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Top position</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_t' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
+                                <input id='n_position_t' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Left position</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_l' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
+                                <input id='n_position_l' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Bottom position</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_b' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
+                                <input id='n_position_b' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Right position</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_position_r' class='input_text' onchange='scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
+                                <input id='n_position_r' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_indent_text' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
+                                <input id='n_indent_text' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" style='width:100%;'>
                             </td></tr>
                         </tbody></table>
                         </div>
@@ -1220,7 +1221,7 @@ function toast(message){
     x.classList.add("toast_anim");
 }
 function about(){
-    var html="<div class='window' style='padding:24px 16px; width:412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.12 (Beta)</p><br><table style=' border-spacing:10px; border-collapse:separate;'><tr><td align='right'>E-Mail:</td><td align='left'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right'>Home:</td><td align='left'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr><tr><td align='right'>itch.io:</td><td align='left'><a href='https://kirill-live.itch.io/tuesday-js' target='_blank'>https://kirill-live.itch.io/tuesday-js</a></td></tr><tr><td align='right'>GitHub:</td><td align='left'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'>https://github.com/Kirilllive/tuesday-js</a></td></tr></table><br><p>Thanks for the help from users</p><hr><br><table width='100%' align='center'><tbody><tr>"
+    var html="<div class='window' style='padding:24px 16px; width:412px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.16 (Beta)</p><br><table style=' border-spacing:10px; border-collapse:separate;'><tr><td align='right'>E-Mail:</td><td align='left'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right'>Home:</td><td align='left'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr><tr><td align='right'>itch.io:</td><td align='left'><a href='https://kirill-live.itch.io/tuesday-js' target='_blank'>https://kirill-live.itch.io/tuesday-js</a></td></tr><tr><td align='right'>GitHub:</td><td align='left'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'>https://github.com/Kirilllive/tuesday-js</a></td></tr></table><br><p>Thanks for the help from users</p><hr><br><table width='100%' align='center'><tbody><tr>"
     +"<td width='25%' align='center'></td>"
     +"<td width='25%' align='center'><a href='https://itch.io/profile/laurentk' target='_blank'>LaurentK</a></td>"
     +"<td width='25%' align='center'>Argosa</td>"
@@ -2125,10 +2126,10 @@ function art_panel_edit(block,i,n,b){
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Opacity</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=correct_value(this.value,false);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].opacity)?story_script[block][i].dialogs[n-1].art[b].opacity:1)+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].opacity)?story_script[block][i].dialogs[n-1].art[b].opacity:1)+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Time transform</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].move=this.value;" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].move)?story_script[block][i].dialogs[n-1].art[b].move:0)+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].move=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].move)?story_script[block][i].dialogs[n-1].art[b].move:0)+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Speed transform</td>'
         +'<td colspan="3"><select class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].speed=this.value;" style="width:100%;height:28px"><option value="ease" '+((story_script[block][i].dialogs[n-1].art[b].speed=='ease')?'selected':'')+'>ease</option><option value="linear" '+((story_script[block][i].dialogs[n-1].art[b].speed=='linear')?'selected':'')+'>linear</option><option value="ease-in" '+((story_script[block][i].dialogs[n-1].art[b].speed=='ease-in')?'selected':'')+'>ease-in</option><option value="ease-out" '+((story_script[block][i].dialogs[n-1].art[b].speed=='ease-out')?'selected':'')+'>ease-out</option><option value="ease-in-out" '+((story_script[block][i].dialogs[n-1].art[b].speed=='ease-in-out')?'selected':'')+'>ease-in-out</option></select></td>'
@@ -2526,7 +2527,7 @@ function scen_compres(block,i,n){
 function correct_name(name){return name.trim().replace(/[\s.,':;]/g,'_');};
 let units=['px','%','em',"pc","pt","in","mm","cm","ex","ch","rem","vw","vh"];
 function correct_value(name,unit){
-    var l=((unit)?"px":"")
+    var l=((!unit)?"px":"")
     if (name.indexOf("calc")>-1){return name}
     else if(name.indexOf("+")>-1||name.indexOf("-")>-1||name.indexOf("*")>-1||name.indexOf("/")>-1){
         for(var u=0;u<units.length;u++){if(name.indexOf(units[u])>-1){name=name.replace(new RegExp(units[u],'g'),'');l=units[u];}}
