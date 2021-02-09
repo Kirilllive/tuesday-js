@@ -15,6 +15,7 @@ var tue_story;
 var tue_bg_music;
 var tue_fullScreen=false;
 var arr_dialog
+var timers
 document.oncontextmenu = cmenu; function cmenu() { return false; } 
 document.addEventListener('keydown',function(event){
     var k=event.code;
@@ -231,7 +232,7 @@ function get_lang(){
         }
     }
     if(arr_dialog.background_music){search_music();}
-    if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();}
+    if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();} else {tue_text_block.style.visibility='hidden';}
 } function creation_dialog(){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 		if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
@@ -452,6 +453,8 @@ function get_lang(){
 			sound_play((s[languare])?s[languare]:s )
 		}
         if(arr_dialog.js){eval(arr_dialog.js)}
+        clearTimeout(timers);
+        if(arr_dialog.timer){timers=setTimeout(function(){if(arr_dialog.timer[1]=='tue_go'){go_story(true);} else {go_to(arr_dialog.timer[1])}},arr_dialog.timer[0]);}
 		tuesday.dispatchEvent(new Event('creation_dialog'));
 } function values_in_text(add){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
