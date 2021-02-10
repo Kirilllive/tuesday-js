@@ -168,6 +168,11 @@ line{stroke:var(--cl);stroke-dasharray:20;stroke-width:2;animation:dash 4s linea
 	border-radius:16px;
 	box-shadow:0px 2px 24px var(--cs);
 }
+.add_w{
+	background-color:#fff;
+	border-radius:16px;
+	box-shadow:0px 2px 24px var(--cs);
+}
 .button{border-radius:8px;width:100%;height:90%;background-color:var(--cw);}
 .button:hover{background-color:var(--cb);}
 .big_button{border-radius:20px;height:40px;background-color:var(--cw);cursor:pointer;}
@@ -777,7 +782,7 @@ function creation_block(b){
 						element+="</div>"
                     }
                     if(story_script[chapter.id][i].dialogs[d].art){
-                        var t="<table width='100%' height='64px' style='margin:4px 0;'><tbody><tr>"
+                        var t="<table width='100%' height='48px' style='margin:4px 0;'><tbody><tr>"
                             +((story_script[chapter.id][i].dialogs[d].art[0])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[0].url))+") no-repeat center;background-size:contain;'></td>":"")
                             +((story_script[chapter.id][i].dialogs[d].art[1])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[1].url))+") no-repeat center;background-size:contain;'></td>":"")
                             +((story_script[chapter.id][i].dialogs[d].art[2])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[2].url))+") no-repeat center;background-size:contain;'></td>":"")
@@ -1479,16 +1484,16 @@ function add_audio(d){
     return n
 }
 function add_element_b(id,arr){
-    var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
+    var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Add to block \''+arr+'\'</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scene_add(\''+arr+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>Scene</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'legacy_choice_add(\''+arr+'\')':'setup();set_menu(5);')+';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Legacy choice</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
-	menu_view(id,code)
+	menu_view(id,code,48)
 }
 function add_element_s(id,n){
-    var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
+    var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Add to scene '+n+'</td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>Add dialog</td></tr></tbody></table></td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="back_to";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_back"></td><td>back to</td></tr></tbody></table></td></tr>'
@@ -1508,10 +1513,10 @@ function add_element_s(id,n){
                 +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				
                 +'</tbody></table></div>'
-	menu_view(id,code)
+	menu_view(id,code,48)
 }
 function add_element_d(id,n){
-    var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
+    var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Add element to dialog '+n+'</td></tr>'
 				+((arr_l.back_to)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'arr_n="back_to";element_to();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_back"></td><td>back to</td></tr></tbody></table></td></tr>')
 				+((arr_l.art)?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'scen_editor(scen_data[0],scen_data[1],scen_data[2]);menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>art</td></tr></tbody></table></td></tr>')
@@ -1530,10 +1535,10 @@ function add_element_d(id,n){
 				+((story_script.parameters.plugins)?((!arr_l.toast&&story_script.parameters.plugins.includes("show_toast"))?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_n=\'toast\';edit_toast();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_toast"></td><td>Toast</td></tr></tbody></table></td></tr>':''):'')
                 +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
-	menu_view(id,code)
+	menu_view(id,code,130)
 }
 function dialog_m(id,n,block,i){
-	var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
+	var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
               +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Dialog '+n+'</td></tr>'
               +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scen_editor(\''+block+'\','+i+','+n+');scen_edit_data();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>'
               +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="duplicat_arr();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
@@ -1541,20 +1546,20 @@ function dialog_m(id,n,block,i){
               +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
               +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="scen_edit_data();menu_add.style.visibility=\'hidden\';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
               +'</tbody></table></div>'
-	menu_view(id,code)
+	menu_view(id,code,48)
 }
 function legacy_choice_m(id){
-    var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
+    var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Legacy choice</td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="legacy_choice_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
-	menu_view(id,code)
+	menu_view(id,code,48)
 }
 function scene_m(id,i,block){
-    var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody>'
+    var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
 				+'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Scene '+i+'</td></tr>'
                 +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scene_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
 				+((story_script[block][i-1].dialogs[0])?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scen_data[1]='+(i-1)+';scen_editor(\''+block+'\',scen_data[1],1);scen_edit_data();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_layout"></td><td>Scene edit</td></tr></tbody></table></td></tr>':'')
@@ -1563,10 +1568,10 @@ function scene_m(id,i,block){
 				+'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
 				+'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
 				+'</tbody></table></div>'
-	menu_view(id,code)
+	menu_view(id,code,48)
 }
 function dialog_el(id,n,e){
-    var code='<div class="window" style="width:220px;"><table style="width:100%;"><tbody><tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">'+n+'</td></tr>'
+    var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody><tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">'+n+'</td></tr>'
         if(e){
             if(arr_n=='html'){
                 code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="edit_html();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>'
@@ -1590,17 +1595,18 @@ function dialog_el(id,n,e){
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="delete arr_l.name;element_dialog_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
-	menu_view(id,code)
+	menu_view(id,code,48)
 }
 let arr_l;
 let arr_n;
-function menu_view(id,code){
+function menu_view(id,code,top){
 	var rect=document.getElementById(id).getBoundingClientRect();
 	menu_add=document.getElementById('add_element');
     menu_add.style.visibility='visible';
 	menu_add.innerHTML=code;
     menu_add.style.top=(html.scrollTop+rect.top)+"px";
-    menu_add.style.left=html.scrollLeft+rect.right+20+"px";
+    menu_add.style.left=html.scrollLeft+rect.right+"px";
+    menu_add.style.top=html.scrollLeft+rect.top-top+"px";
 }
 function scene_add(arr){
 	story_script[arr].push({"background_image":"","background_music":"","dialogs":[]});
