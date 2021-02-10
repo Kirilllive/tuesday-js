@@ -1604,9 +1604,8 @@ function menu_view(id,code,top){
 	menu_add=document.getElementById('add_element');
     menu_add.style.visibility='visible';
 	menu_add.innerHTML=code;
-    menu_add.style.top=(html.scrollTop+rect.top)+"px";
     menu_add.style.left=html.scrollLeft+rect.right+"px";
-    menu_add.style.top=html.scrollLeft+rect.top-top+"px";
+    menu_add.style.top=html.scrollTop+rect.top-top+"px";
 }
 function scene_add(arr){
 	story_script[arr].push({"background_image":"","background_music":"","dialogs":[]});
