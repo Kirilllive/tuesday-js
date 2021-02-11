@@ -371,6 +371,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;'>
                                <select id='screen_size' class='input_text' oninput='preview_size();' style='width:100%;'>
                                     <option value="0">My screen</option>
+                                    <option value="-1">Preview size</option>
                                     <option value="1080">1080</option>
                                     <option value="720">720</option>
                                     <option value="480">480</option>
@@ -2471,11 +2472,11 @@ function preview_size(){
         screen_preview.style.width=(screen_size.value*2.5)+"px";
         screen_preview.style.height=screen_preview.style.width;
         if(ratio_screen.selectedIndex==0){
-            scene_layout.style.height=screen_size.value+"px";
-            scene_layout.style.width=((100/p_width.value)*screen_size.value)+"px";
+            scene_layout.style.height=(screen_size.value==-1)?setup_editor.pvw[0]+"px":screen_size.value+"px";
+            scene_layout.style.width=(screen_size.value==-1)?setup_editor.pvw[1]+"px":((100/p_width.value)*screen_size.value)+"px";
         }else{
-            scene_layout.style.width=screen_size.value+"px";
-            scene_layout.style.height=((100/p_width.value)*screen_size.value)+"px";
+            scene_layout.style.width=(screen_size.value==-1)?setup_editor.pvw[0]+"px":screen_size.value+"px";
+            scene_layout.style.height=(screen_size.value==-1)?setup_editor.pvw[1]+"px":((100/p_width.value)*screen_size.value)+"px";
         }
     }
     scene_view.scrollTop=(screen_preview.clientHeight/2)-(scene_view.clientHeight/2);
