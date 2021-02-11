@@ -1801,7 +1801,7 @@ function scene_edit(){
     +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"scene_color\",\""+copy_arr[arr_n].background_color+"\")'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding-right:8px;'>Size:</td>"
-    +"<td colspan='2'><select id='scene_size' class='input_text'>"
+    +"<td colspan='2'><select id='scene_size' oninput='scene_bg_preview.style.backgroundSize=this.value' class='input_text'>"
         +"<option value='cover'>cover</option>"
         +"<option "+((copy_arr[arr_n].background_size=='contain')?'selected':'')+" value='contain'>contain</option>"
         +"<option "+((copy_arr[arr_n].background_size=='fill')?'selected':'')+" value='100% 100%'>fill</option>"
