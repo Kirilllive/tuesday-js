@@ -2472,11 +2472,11 @@ function preview_size(){
         screen_preview.style.width=(screen_size.value*2.5)+"px";
         screen_preview.style.height=screen_preview.style.width;
         if(ratio_screen.selectedIndex==0){
-            scene_layout.style.height=(screen_size.value==-1)?setup_editor.pvw[0]+"px":screen_size.value+"px";
-            scene_layout.style.width=(screen_size.value==-1)?setup_editor.pvw[1]+"px":((100/p_width.value)*screen_size.value)+"px";
+            scene_layout.style.height=(screen_size.value==-1)?setup_editor.pvw[1]+"px":screen_size.value+"px";
+            scene_layout.style.width=(screen_size.value==-1)?setup_editor.pvw[0]+"px":((100/p_width.value)*screen_size.value)+"px";
         }else{
-            scene_layout.style.width=(screen_size.value==-1)?setup_editor.pvw[0]+"px":screen_size.value+"px";
-            scene_layout.style.height=(screen_size.value==-1)?setup_editor.pvw[1]+"px":((100/p_width.value)*screen_size.value)+"px";
+            scene_layout.style.width=(screen_size.value==-1)?setup_editor.pvw[1]+"px":screen_size.value+"px";
+            scene_layout.style.height=(screen_size.value==-1)?setup_editor.pvw[0]+"px":((100/p_width.value)*screen_size.value)+"px";
         }
     }
     scene_view.scrollTop=(screen_preview.clientHeight/2)-(scene_view.clientHeight/2);
