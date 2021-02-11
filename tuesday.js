@@ -68,9 +68,8 @@ function get_lang(){
         }else{document.title=story_json.parameters.title;}
     }
     tuesday.style.backgroundRepeat="no-repeat";
-    tuesday.style.backgroundSize="cover";
     tuesday.style.backgroundPosition="center";
-    tuesday.style.position="relative"
+    tuesday.style.position="relative";
     tuesday.style.overflow="hidden";
     tuesday.innerHTML="<table id='tue_text_block' align='center'><tbody><tr><td id='tue_text_element'><div id='tue_text_view'></div></td></tr></tbody></table>";
     tue_text_block=document.getElementById("tue_text_block");
@@ -208,6 +207,7 @@ function get_lang(){
             }
         }
     }
+    tuesday.style.backgroundSize=((!arr_dialog.background_size)?"cover":arr_dialog.background_size);
     if(arr_dialog.background_class){
         tuesday.className=arr_dialog.background_class;
     } else {tuesday.className=""}
