@@ -1232,6 +1232,12 @@ function search_text(id,s){
     var n = i.value.indexOf(s,[search])
     search = n+s.length;
     i.setSelectionRange(n,search);
+    var w,y=0;
+    for (w=0;w<i.value.split("\n").length;w++) {
+        if(y>search){break}
+        else {y=i.value.indexOf("\n",[y+1])}
+    }
+    i.scrollTop = ((i.rows+2) * w)-(i.rows+2);
 }
 function go_to_block(bl){bl=document.getElementById(bl);scroll_to_block(bl);}
 function scroll_to_block(bl){
@@ -1329,7 +1335,7 @@ function jsonedit(arr){
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
-    +"<p><textarea id='editJson' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
+    +"<p><textarea id='editJson' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
     else{var html="<div class='window' style='padding:0px 2px 16px 0px; width:75vw;'>"
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
@@ -1338,7 +1344,7 @@ function jsonedit(arr){
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
-    +"<textarea id='editJson' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
+    +"<textarea id='editJson' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
     modal_window("open",html);
 }
 function big_languares(s){
@@ -1886,7 +1892,7 @@ function edit_html(){
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editHtml\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
-    +"<p><textarea id='editHtml' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+((arr_l[arr_n])?arr_l[arr_n]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=editHtml.value;update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    +"<p><textarea id='editHtml' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+((arr_l[arr_n])?arr_l[arr_n]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=editHtml.value;update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_code(vol,n){
@@ -1898,7 +1904,7 @@ function edit_code(vol,n){
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editcode\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
-    +"<p><textarea id='editcode' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+((copy_arr[vol])?copy_arr[vol]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='copy_arr[\""+vol+"\"]=editcode.value;update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    +"<p><textarea id='editcode' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none; padding-left:0px; height:calc(90vh - 128px); width:100%; border:1px solid var(--cb);'>"+((copy_arr[vol])?copy_arr[vol]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='copy_arr[\""+vol+"\"]=editcode.value;update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_toast(){
