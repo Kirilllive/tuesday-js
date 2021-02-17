@@ -1996,88 +1996,95 @@ function edit_choice_new(){
 let scen_data=[];
 let scen_element={};
 function scen_edit_data(){
+    var arr_t=story_script.parameters.text_panel
+    var arr_p=story_script.parameters.name_panel
     s_scene_edit.setAttribute("onclick","arr_l=story_script['"+scen_data[0]+"'];arr_n="+scen_data[1]+";scene_edit();");
     s_scene_text.setAttribute("onclick","if(!story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].text){story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].text=''};arr_l=story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];arr_n='text';dialog_text_edit();");
-    size_w.value=((story_script.parameters.text_panel.size[0])?story_script.parameters.text_panel.size[0]:"")
-    size_h.value=((story_script.parameters.text_panel.size[1])?story_script.parameters.text_panel.size[1]:"")
-    className.value=((story_script.parameters.text_panel.className)?story_script.parameters.text_panel.className:"")
-    style.value=((story_script.parameters.text_panel.style)?story_script.parameters.text_panel.style:"")
-    if(story_script.parameters.text_panel.position){
-        position_l.value=((story_script.parameters.text_panel.position[0])?story_script.parameters.text_panel.position[0]:0)
-        position_r.value=((story_script.parameters.text_panel.position[1])?story_script.parameters.text_panel.position[1]:0)
-        position_t.value=((story_script.parameters.text_panel.position[3])?story_script.parameters.text_panel.position[3]:0)
+    size_w.value=((arr_t.size[0])?arr_t.size[0]:"")
+    size_h.value=((arr_t.size[1])?arr_t.size[1]:"")
+    className.value=((arr_t.className)?arr_t.className:"")
+    style.value=((arr_t.style)?arr_t.style:"")
+    if(arr_t.position){
+        position_l.value=((arr_t.position[0])?arr_t.position[0]:0)
+        position_r.value=((arr_t.position[1])?arr_t.position[1]:0)
+        position_t.value=((arr_t.position[3])?arr_t.position[3]:0)
     }
-    if(story_script.parameters.text_panel.color){
-        color_t.value=story_script.parameters.text_panel.color
-        color_t_b.value=story_script.parameters.text_panel.color
-        color_t_s.style.backgroundColor=story_script.parameters.text_panel.color
+    if(arr_t.color){
+        color_t.value=arr_t.color
+        color_t_b.value=arr_t.color
+        color_t_s.style.backgroundColor=arr_t.color
     }else{color_t.value=""}
-    if(story_script.parameters.text_panel.color_text){
-        color_text.value=story_script.parameters.text_panel.color_text
-        color_text_b.value=story_script.parameters.text_panel.color_text
-        color_text_s.style.backgroundColor=story_script.parameters.text_panel.color_text
+    if(arr_t.color_text){
+        color_text.value=arr_t.color_text
+        color_text_b.value=arr_t.color_text
+        color_text_s.style.backgroundColor=arr_t.color_text
     }else{color_text.value=""}
-    indent_bottom.value=((story_script.parameters.text_panel.indent_bottom)?story_script.parameters.text_panel.indent_bottom:"")
-    indent_text.value=((story_script.parameters.text_panel.indent_text)?story_script.parameters.text_panel.indent_text:"")
-    size_text.value=((story_script.parameters.text_panel.size_text)?story_script.parameters.text_panel.size_text:"")
+    indent_bottom.value=((arr_t.indent_bottom)?arr_t.indent_bottom:"")
+    indent_text.value=((arr_t.indent_text)?arr_t.indent_text:"")
+    size_text.value=((arr_t.size_text)?arr_t.size_text:"")
     font_family.value=((story_script.parameters.font)?story_script.parameters.font:"")
-    dialog_speed.value=((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:"")
-    n_size_w.value=((story_script.parameters.name_panel.size[0])?story_script.parameters.name_panel.size[0]:0)
-    n_size_h.value=((story_script.parameters.name_panel.size[1])?story_script.parameters.name_panel.size[1]:0)
-    if(story_script.parameters.name_panel.position){
-        n_position_l.value=((story_script.parameters.name_panel.position[0])?story_script.parameters.name_panel.position[0]:0)
-        n_position_r.value=((story_script.parameters.name_panel.position[1])?story_script.parameters.name_panel.position[1]:0)
-        n_position_t.value=((story_script.parameters.name_panel.position[2])?story_script.parameters.name_panel.position[2]:0)
-        n_position_b.value=((story_script.parameters.name_panel.position[3])?story_script.parameters.name_panel.position[3]:0)
+    dialog_speed.value=((arr_t.dialog_speed)?arr_t.dialog_speed:"")
+    n_size_w.value=((arr_p.size[0])?arr_p.size[0]:0)
+    n_size_h.value=((arr_p.size[1])?arr_p.size[1]:0)
+    if(arr_p.position){
+        n_position_l.value=((arr_p.position[0])?arr_p.position[0]:0)
+        n_position_r.value=((arr_p.position[1])?arr_p.position[1]:0)
+        n_position_t.value=((arr_p.position[2])?arr_p.position[2]:0)
+        n_position_b.value=((arr_p.position[3])?arr_p.position[3]:0)
     }
-    n_className.value=((story_script.parameters.name_panel.className)?story_script.parameters.name_panel.className:"")
-    n_style.value=((story_script.parameters.name_panel.style)?story_script.parameters.name_panel.style:"")
-    n_indent_text.value=((story_script.parameters.name_panel.indent_text)?story_script.parameters.name_panel.indent_text:"")
-    n_size_text.value=((story_script.parameters.name_panel.size_text)?story_script.parameters.name_panel.size_text:"")
-    n_font_family.value=((story_script.parameters.name_panel.font_family)?story_script.parameters.name_panel.font_family:"")
-    if(story_script.parameters.name_panel.color){
-        n_color.value=story_script.parameters.name_panel.color
-        n_color_b.value=story_script.parameters.name_panel.color
-        n_color_s.style.backgroundColor=story_script.parameters.name_panel.color
+    n_className.value=((arr_p.className)?arr_p.className:"")
+    n_style.value=((arr_p.style)?arr_p.style:"")
+    n_indent_text.value=((arr_p.indent_text)?arr_p.indent_text:"")
+    n_size_text.value=((arr_p.size_text)?arr_p.size_text:"")
+    n_font_family.value=((arr_p.font_family)?arr_p.font_family:"")
+    if(arr_p.color){
+        n_color.value=arr_p.color
+        n_color_b.value=arr_p.color
+        n_color_s.style.backgroundColor=arr_p.color
     }else{n_color.value=""}
-    if(story_script.parameters.name_panel.color_text){
-        n_color_text.value=story_script.parameters.name_panel.color_text
-        n_color_text_b.value=story_script.parameters.name_panel.color_text
-        n_color_text_s.style.backgroundColor=story_script.parameters.name_panel.color_text
+    if(arr_p.color_text){
+        n_color_text.value=arr_p.color_text
+        n_color_text_b.value=arr_p.color_text
+        n_color_text_s.style.backgroundColor=arr_p.color_text
     }else{n_color_text.value=""}
 }
 function scen_edit_updare(show){
-    if(!style.value==""){story_script.parameters.text_panel.style=style.value}else{delete story_script.parameters.text_panel.style};
-    if(!size_w.value==""){story_script.parameters.text_panel.size[0]=correct_value(size_w.value)};
-    if(!size_h.value==""){story_script.parameters.text_panel.size[1]=correct_value(size_h.value)};
-    if(!className.value==""){story_script.parameters.text_panel.className=className.value}else{delete story_script.parameters.text_panel.className};
-    story_script.parameters.text_panel.dialog_speed=dialog_speed.value;
-    story_script.parameters.text_panel.position=[((position_l.value)?correct_value(position_l.value):0),((position_r.value)?correct_value(position_r.value):0),((position_t.value)?correct_value(position_t.value):0),0];
-    if(!color_text.value==""){story_script.parameters.text_panel.color_text=color_text.value}else{delete story_script.parameters.text_panel.color_text};
-    if(!color_t.value==""){story_script.parameters.text_panel.color=color_t.value}else{delete story_script.parameters.text_panel.color};
-    if(!size_text.value==""){story_script.parameters.text_panel.size_text=correct_value(size_text.value)};
-    if(!font_family.value==""){story_script.parameters.text_panel.font_family=font_family.value}else{delete story_script.parameters.text_panel.font_family};
-    story_script.parameters.text_panel.indent_text=((indent_text.value)?correct_value(indent_text.value):0);
-    story_script.parameters.text_panel.indent_bottom=((indent_bottom.value)?correct_value(indent_bottom.value):0);
-    story_script.parameters.name_panel.position=[((n_position_l.value)?correct_value(n_position_l.value):0),((n_position_r.value)?correct_value(n_position_r.value):0),((n_position_t.value)?correct_value(n_position_t.value):0),((n_position_b.value)?correct_value(n_position_b.value):0)];
-    story_script.parameters.name_panel.indent_text=((n_indent_text.value)?correct_value(n_indent_text.value):0);
-    if(!n_className.value==""){story_script.parameters.name_panel.className=className.value}else{delete story_script.parameters.name_panel.className};
-    if(!n_style.value==""){story_script.parameters.name_panel.style=n_style.value}else{delete story_script.parameters.name_panel.style};
-    if(n_size_text.value!=""){story_script.parameters.name_panel.size_text=correct_value(n_size_text.value)};
-    if(n_font_family.value!=""){story_script.parameters.name_panel.font_family=correct_value(n_font_family.value)};
-    if(!n_size_w.value==""){story_script.parameters.name_panel.size[0]=correct_value(n_size_w.value)};
-    if(!n_size_h.value==""){story_script.parameters.name_panel.size[1]=correct_value(n_size_h.value)};
-    if(!n_color_text.value==""){story_script.parameters.name_panel.color_text=n_color_text.value}else{delete story_script.parameters.name_panel.color_text};
-    if(!n_color.value==""){story_script.parameters.name_panel.color=n_color.value}else{delete story_script.parameters.name_panel.color};
+    var arr_t=story_script.parameters.text_panel
+    var arr_p=story_script.parameters.name_panel
+    if(!style.value==""){arr_t.style=style.value}else{delete arr_t.style};
+    if(!size_w.value==""){arr_t.size[0]=correct_value(size_w.value)};
+    if(!size_h.value==""){arr_t.size[1]=correct_value(size_h.value)};
+    if(!className.value==""){arr_t.className=className.value}else{delete arr_t.className};
+    arr_t.dialog_speed=dialog_speed.value;
+    arr_t.position=[((position_l.value)?correct_value(position_l.value):0),((position_r.value)?correct_value(position_r.value):0),((position_t.value)?correct_value(position_t.value):0),0];
+    if(!color_text.value==""){arr_t.color_text=color_text.value}else{delete arr_t.color_text};
+    if(!color_t.value==""){arr_t.color=color_t.value}else{delete arr_t.color};
+    if(!size_text.value==""){arr_t.size_text=correct_value(size_text.value)};
+    if(!font_family.value==""){arr_t.font_family=font_family.value}else{delete arr_t.font_family};
+    arr_t.indent_text=((indent_text.value)?correct_value(indent_text.value):0);
+    arr_t.indent_bottom=((indent_bottom.value)?correct_value(indent_bottom.value):0);
+    arr_p.position=[((n_position_l.value)?correct_value(n_position_l.value):0),((n_position_r.value)?correct_value(n_position_r.value):0),((n_position_t.value)?correct_value(n_position_t.value):0),((n_position_b.value)?correct_value(n_position_b.value):0)];
+    arr_p.indent_text=((n_indent_text.value)?correct_value(n_indent_text.value):0);
+    if(!n_className.value==""){arr_p.className=className.value}else{delete arr_p.className};
+    if(!n_style.value==""){arr_p.style=n_style.value}else{delete arr_p.style};
+    if(n_size_text.value!=""){arr_p.size_text=correct_value(n_size_text.value)};
+    if(n_font_family.value!=""){arr_p.font_family=correct_value(n_font_family.value)};
+    if(!n_size_w.value==""){arr_p.size[0]=correct_value(n_size_w.value)};
+    if(!n_size_h.value==""){arr_p.size[1]=correct_value(n_size_h.value)};
+    if(!n_color_text.value==""){arr_p.color_text=n_color_text.value}else{delete arr_p.color_text};
+    if(!n_color.value==""){arr_p.color=n_color.value}else{delete arr_p.color};
     if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}else{scen_element={};scen_editor_apply()}
 }
 var scene_scroll=false;
 function scen_editor(block,i,n){
+    var arr_s=story_script[block][i].dialogs[n-1]
+    var arr_t=story_script.parameters.text_panel
+    var arr_p=story_script.parameters.name_panel
     if(scen_data[2]<n){
         if(i>=story_script[block].length-1){i=story_script[block].length-1;}
-        if(!story_script[block][i].dialogs[n-1]){i+=1;n=1;}
+        if(!arr_s){i+=1;n=1;}
         if(!story_script[block][i]||story_script[block][i].dialogs.length==0){i-=1;n=story_script[block][i].dialogs.length;toast('not scene')}
-    } else if(scen_data[2]>n){if(!story_script[block][i].dialogs[n-1]){i-=1;n=story_script[block][i].dialogs.length;}}
+    } else if(scen_data[2]>n){if(!arr_s){i-=1;n=story_script[block][i].dialogs.length;}}
     scen_data=[block,i,n];
     p_width.value=setup_editor.preview[0];
     ratio_screen.selectedIndex=setup_editor.preview[1];
@@ -2093,214 +2100,219 @@ function scen_editor(block,i,n){
     scene_layout.style.backgroundImage="url("+open_file(languare_data(story_script[block][i].background_image))+")";
     scene_layout.style.backgroundSize=((!story_script[block][i].background_size)?"cover":story_script[block][i].background_size);
     scene_layout.style.backgroundColor=story_script[block][i].background_color;
-    if(story_script[block][i].dialogs[n-1].text&&(typeof story_script[block][i].dialogs[n-1].text!=='object'||(story_script[block][i].dialogs[n-1].text[languare]&&typeof story_script[block][i].dialogs[n-1].text[languare]!=='object'))){
+    if(arr_s.text&&(typeof arr_s.text!=='object'||(arr_s.text[languare]&&typeof arr_s.text[languare]!=='object'))){
         tue_text_block.style.visibility='visible';
         tue_text_element.style.position="relative";
-        if(story_script.parameters.text_panel.className){tue_text_block.className=story_script.parameters.text_panel.className;}else{tue_text_block.className=""};
-        if(story_script.parameters.text_panel.style){tue_text_block.style=story_script.parameters.text_panel.style;}else{tue_text_block.style=null};
+        if(arr_t.className){tue_text_block.className=arr_t.className;}else{tue_text_block.className=""};
+        if(arr_t.style){tue_text_block.style=arr_t.style;}else{tue_text_block.style=null};
         tue_text_block.style.position="absolute";
         tue_text_block.style.margin="auto";
         tue_text_block.style.borderCollapse="separate";
-        if(story_script.parameters.text_panel.size){
-            tue_text_block.style.width=story_script.parameters.text_panel.size[0];
-            tue_text_block.style.height=story_script.parameters.text_panel.size[1];
+        if(arr_t.size){
+            tue_text_block.style.width=arr_t.size[0];
+            tue_text_block.style.height=arr_t.size[1];
         }
-        if(story_script.parameters.text_panel.position){
-            tue_text_block.style.left=(story_script.parameters.text_panel.position[0]!=0)?story_script.parameters.text_panel.position[0]:"0";
-            tue_text_block.style.right=(story_script.parameters.text_panel.position[1]!=0)?story_script.parameters.text_panel.position[1]:"0";
-            if(story_script.parameters.text_panel.position[2]!=0){tue_text_block.style.top=story_script.parameters.text_panel.position[2];}
-            if(story_script.parameters.text_panel.position[3]!=0){tue_text_block.style.bottom=story_script.parameters.text_panel.position[3];}
+        if(arr_t.position){
+            tue_text_block.style.left=(arr_t.position[0]!=0)?arr_t.position[0]:"0";
+            tue_text_block.style.right=(arr_t.position[1]!=0)?arr_t.position[1]:"0";
+            if(arr_t.position[2]!=0){tue_text_block.style.top=arr_t.position[2];}
+            if(arr_t.position[3]!=0){tue_text_block.style.bottom=arr_t.position[3];}
         }else{
             tue_text_block.style.left="0";
             tue_text_block.style.right="0";
         }
-        if(story_script.parameters.text_panel.indent_bottom){tue_text_block.style.bottom=story_script.parameters.text_panel.indent_bottom;}
+        if(arr_t.indent_bottom){tue_text_block.style.bottom=arr_t.indent_bottom;}
         tue_text_block.style.zIndex="1000";
         tue_text_block.style.borderSpacing="0";
         tue_text_block.style.zIndex=1998;
         tue_text_view=document.getElementById("tue_text_view");
-        tue_text_view.style.padding=story_script.parameters.text_panel.indent_text;
-        tue_text_view.style.fontSize=((story_script.parameters.text_panel.size_text)?story_script.parameters.text_panel.size_text:story_script.parameters.font_size);
-        tue_text_view.style.fontFamily=((story_script.parameters.text_panel.font_family)?story_script.parameters.text_panel.font_family:story_script.parameters.font);
+        tue_text_view.style.padding=arr_t.indent_text;
+        tue_text_view.style.fontSize=((arr_t.size_text)?arr_t.size_text:story_script.parameters.font_size);
+        tue_text_view.style.fontFamily=((arr_t.font_family)?arr_t.font_family:story_script.parameters.font);
         tue_text_view.style.height="100%";
-        if(story_script[block][i].dialogs[n-1].name&&story_script.parameters.name_panel){
-            if(story_script.parameters.name_panel.className){tue_name_block.className=story_script.parameters.name_panel.className;}else{tue_name_block.className=""};
-            if(story_script.parameters.name_panel.style){tue_name_block.style=story_script.parameters.name_panel.style;}else{tue_name_block.style=null};
-            if(story_script.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_script.parameters.name_panel.color};
-            if(story_script.parameters.name_panel.color_text){tue_name_block.style.color=story_script.parameters.name_panel.color_text}else{tue_name_block.style.color=null};
+        if(arr_s.name&&arr_p){
+            if(arr_p.className){tue_name_block.className=arr_p.className;}else{tue_name_block.className=""};
+            if(arr_p.style){tue_name_block.style=arr_p.style;}else{tue_name_block.style=null};
+            if(arr_p.color){tue_name_block.style.backgroundColor=arr_p.color};
+            if(arr_p.color_text){tue_name_block.style.color=arr_p.color_text}else{tue_name_block.style.color=null};
             tue_name_block.style.position="absolute";
-            tue_name_block.style.padding=story_script.parameters.name_panel.indent_text;
-            tue_name_block.style.fontSize=((story_script.parameters.name_panel.size_text)?story_script.parameters.name_panel.size_text:story_script.parameters.font_size);
-            tue_name_block.style.fontFamily=((story_script.parameters.name_panel.font_family)?story_script.parameters.name_panel.font_family:story_script.parameters.font);
+            tue_name_block.style.padding=arr_p.indent_text;
+            tue_name_block.style.fontSize=((arr_p.size_text)?arr_p.size_text:story_script.parameters.font_size);
+            tue_name_block.style.fontFamily=((arr_p.font_family)?arr_p.font_family:story_script.parameters.font);
             tue_name_block.style.textAlign="center";
-            if(tue_name_block.style.width=story_script.parameters.name_panel.size[0]!=0){tue_name_block.style.width=story_script.parameters.name_panel.size[0];}
-            tue_name_block.style.height=story_script.parameters.name_panel.size[1];
-            tue_name_block.style.lineHeight=story_script.parameters.name_panel.size[1];
-            if(story_script.parameters.name_panel.position[0]!=0){tue_name_block.style.left=story_script.parameters.name_panel.position[0];}
-            if(story_script.parameters.name_panel.position[1]!=0){tue_name_block.style.right=story_script.parameters.name_panel.position[1];}
-            if(story_script.parameters.name_panel.position[2]!=0){tue_name_block.style.top=story_script.parameters.name_panel.position[2];}
-            if(story_script.parameters.name_panel.position[3]!=0){tue_name_block.style.bottom=story_script.parameters.name_panel.position[3];}
+            if(tue_name_block.style.width=arr_p.size[0]!=0){tue_name_block.style.width=arr_p.size[0];}
+            tue_name_block.style.height=arr_p.size[1];
+            tue_name_block.style.lineHeight=arr_p.size[1];
+            if(arr_p.position[0]!=0){tue_name_block.style.left=arr_p.position[0];}
+            if(arr_p.position[1]!=0){tue_name_block.style.right=arr_p.position[1];}
+            if(arr_p.position[2]!=0){tue_name_block.style.top=arr_p.position[2];}
+            if(arr_p.position[3]!=0){tue_name_block.style.bottom=arr_p.position[3];}
             tue_name_block.style.visibility='visible';
         }else{tue_name_block.style.visibility='hidden';}
-        tue_text_block.style.backgroundColor=story_script.parameters.text_panel.color;
-        tue_text_block.style.color=story_script.parameters.text_panel.color_text;
-        tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text);
-        tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
+        tue_text_block.style.backgroundColor=arr_t.color;
+        tue_text_block.style.color=arr_t.color_text;
+        tue_text_view.innerHTML=languare_data(arr_s.text);
+        tue_name_block.innerHTML=languare_data(arr_s.name);
     }else{tue_text_block.style.visibility='hidden';tue_name_block.style.visibility='hidden';}
     button_panel_update();
-    if(story_script[block][i].dialogs[n-1].art){art_panel_update(block,i,n);}else{arts_ec.innerHTML="";var tue_art=document.getElementsByClassName("tue_art");while(tue_art.length){scene_layout.removeChild(tue_art[0]);}}
+    if(arr_s.art){art_panel_update(block,i,n);}else{arts_ec.innerHTML="";var tue_art=document.getElementsByClassName("tue_art");while(tue_art.length){scene_layout.removeChild(tue_art[0]);}}
     add_art.setAttribute('onclick','art_panel_add("'+block+'",'+i+','+n+')');
-    if(story_script[block][i].dialogs[n-1].choice){choice_panel_update(block,i,n);}else{choice_ec.innerHTML="";var tue_choice=document.getElementsByClassName("tue_choice");while(tue_choice.length){scene_layout.removeChild(tue_choice[0]);}}
+    if(arr_s.choice){choice_panel_update(block,i,n);}else{choice_ec.innerHTML="";var tue_choice=document.getElementsByClassName("tue_choice");while(tue_choice.length){scene_layout.removeChild(tue_choice[0]);}}
     add_choice.setAttribute('onclick','choice_panel_add("'+block+'",'+i+','+n+')');
 }
 function art_panel_update(block,i,n){
     droppFocus();
     arts_ec.innerHTML=""
+    var arr_s=story_script[block][i].dialogs[n-1]
     var tue_art=document.getElementsByClassName("tue_art");
     while(tue_art.length){scene_layout.removeChild(tue_art[0]);}
-    for(var b=0;b<story_script[block][i].dialogs[n-1].art.length;b++){
-        if(!story_script[block][i].dialogs[n-1].art[b].url[languare]){data_corr(story_script[block][i].dialogs[n-1].art[b],'url')}
+    for(var b=0;b<arr_s.art.length;b++){
+        if(!arr_s.art[b].url[languare]){data_corr(arr_s.art[b],'url')}
         var art=document.createElement("img");
         art.id='art'+b
         art.setAttribute('draggable','false');
         art.setAttribute('onclick','objSelect(this.id);arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+']');
-        art.src=(story_script[block][i].dialogs[n-1].art[b].url[languare])?open_file(story_script[block][i].dialogs[n-1].art[b].url[languare]):open_file(story_script[block][i].dialogs[n-1].art[b].url)
+        art.src=(arr_s.art[b].url[languare])?open_file(arr_s.art[b].url[languare]):open_file(arr_s.art[b].url)
         art.classList.add("tue_art");
-        art.style="user-select:text;"+((story_script[block][i].dialogs[n-1].art[b].style)?story_script[block][i].dialogs[n-1].art[b].style:"")
+        art.style="user-select:text;"+((arr_s.art[b].style)?arr_s.art[b].style:"")
         art.style.position="absolute";
         art.style.zIndex=1001+b;
-        if(story_script[block][i].dialogs[n-1].art[b].fit)art.style.objectFit=story_script[block][i].dialogs[n-1].art[b].fit;
-        if(story_script[block][i].dialogs[n-1].art[b].size){
-            art.style.width=story_script[block][i].dialogs[n-1].art[b].size[0];
-            art.style.height=story_script[block][i].dialogs[n-1].art[b].size[1];
+        if(arr_s.art[b].fit)art.style.objectFit=arr_s.art[b].fit;
+        if(arr_s.art[b].size){
+            art.style.width=arr_s.art[b].size[0];
+            art.style.height=arr_s.art[b].size[1];
         }
-        if(story_script[block][i].dialogs[n-1].art[b].position[0]!=0){art.style.left=story_script[block][i].dialogs[n-1].art[b].position[0];}
-        if(story_script[block][i].dialogs[n-1].art[b].position[1]!=0){art.style.right=story_script[block][i].dialogs[n-1].art[b].position[1];}
-        if(story_script[block][i].dialogs[n-1].art[b].position[2]!=0){art.style.top=story_script[block][i].dialogs[n-1].art[b].position[2];}
-        if(story_script[block][i].dialogs[n-1].art[b].position[3]!=0){art.style.bottom=story_script[block][i].dialogs[n-1].art[b].position[3];}
-        if(story_script[block][i].dialogs[n-1].art[b].opacity){art.style.opacity=story_script[block][i].dialogs[n-1].art[b].opacity;}
+        if(arr_s.art[b].position[0]!=0){art.style.left=arr_s.art[b].position[0];}
+        if(arr_s.art[b].position[1]!=0){art.style.right=arr_s.art[b].position[1];}
+        if(arr_s.art[b].position[2]!=0){art.style.top=arr_s.art[b].position[2];}
+        if(arr_s.art[b].position[3]!=0){art.style.bottom=arr_s.art[b].position[3];}
+        if(arr_s.art[b].opacity){art.style.opacity=arr_s.art[b].opacity;}
         scene_layout.appendChild(art);
         arts_ec.innerHTML+=art_panel_edit(block,i,n,b)
     }
 }
 function art_panel_add(block,i,n){
-    if(!story_script[block][i].dialogs[n-1].art){story_script[block][i].dialogs[n-1].art=[]}
-    story_script[block][i].dialogs[n-1].art.push({"position":["25%","0","25%","0"],"size":["auto","50%"],"url":"","fit":"contain"});
-    b=story_script[block][i].dialogs[n-1].art.length-1;
+    var arr_s=story_script[block][i].dialogs[n-1]
+    if(!arr_s.art){arr_s.art=[]}
+    arr_s.art.push({"position":["25%","0","25%","0"],"size":["auto","50%"],"url":"","fit":"contain"});
+    b=arr_s.art.length-1;
     art_panel_update(block,i,n)
     file_catalog('artt'+b,'img','artt'+b,'artpre'+b,'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url')
 }
 function art_panel_edit(block,i,n,b){
+    var arr_s=story_script[block][i].dialogs[n-1]
     var html='<div class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',-1);art_panel_update(\''+block+'\','+i+','+n+');"height="22px"></td>'
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',1);art_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
             +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));art_panel_update(\''+block+'\','+i+','+n+');"></td>'
             +'<td width="26px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art.splice('+b+',1);art_panel_update(\''+block+'\','+i+','+n+');" ></td>'
-    +'</tr><tr><td colspan="5" height="80px" align="center"><div id="artpre'+b+'" style="background-image:url('+((story_script[block][i].dialogs[n-1].art[b].url[languare])?open_file(story_script[block][i].dialogs[n-1].art[b].url[languare]):open_file(story_script[block][i].dialogs[n-1].art[b].url))+'); background-position:center; background-repeat:no-repeat; background-size:auto 100%; height:100%; width:100%";> </div></td></tr><tr>'
+    +'</tr><tr><td colspan="5" height="80px" align="center"><div id="artpre'+b+'" style="background-image:url('+((arr_s.art[b].url[languare])?open_file(arr_s.art[b].url[languare]):open_file(arr_s.art[b].url))+'); background-position:center; background-repeat:no-repeat; background-size:auto 100%; height:100%; width:100%";> </div></td></tr><tr>'
     +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'artsp'+b+'\');scen_element.artsp'+b+'=artsp'+b+'.style.display;"></td><td colspan="2"></td></tr></tbody></table>'
     +'<table width="100%" id=artsp'+b+' style="display:'+((scen_element['artsp'+b])?scen_element['artsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Art</td>'
         +'<td style="width:28px;" align="center"><select id="artl'+b+'" class="input_text" onchange="if(!story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[languare]){data_la(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'],\'url\')} ; artt'+b+'.value=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb); border-right:1px solid var(--cb); border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
-        +'<td ><input id="artt'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[artl'+b+'.value]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].url[languare])?story_script[block][i].dialogs[n-1].art[b].url[languare]:story_script[block][i].dialogs[n-1].art[b].url)+'"></td>'
+        +'<td ><input id="artt'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[artl'+b+'.value]=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].url[languare])?arr_s.art[b].url[languare]:arr_s.art[b].url)+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="file_catalog(\'artt'+b+'\',\'img\',\'artt'+b+'\',\'artpre'+b+'\',\'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[artl'+b+'.value]\')"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art width</td>'
-        +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[0]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[0]+'"></td>'
-        +'<td height="40px" align="right" rowspan="2"><input id="artp'+b+'" onchange="var f=(this.checked)?\'contain\':\'fill\';art'+b+'.style.objectFit=f;story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].fit=f;" type="checkbox" class="proportion_c" '+((story_script[block][i].dialogs[n-1].art[b].fit=='contain')?'checked':'')+'></td>'
+        +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[0]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].size[0]+'"></td>'
+        +'<td height="40px" align="right" rowspan="2"><input id="artp'+b+'" onchange="var f=(this.checked)?\'contain\':\'fill\';art'+b+'.style.objectFit=f;story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].fit=f;" type="checkbox" class="proportion_c" '+((arr_s.art[b].fit=='contain')?'checked':'')+'></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art height</td>'
-        +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].size[1]+'"></td>'
+        +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].size[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[2]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[2]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[2]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].position[2]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[0]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[0]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[0]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].position[0]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[3]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[3]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[3]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].position[3]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+story_script[block][i].dialogs[n-1].art[b].position[1]+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].position[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Opacity</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].opacity)?story_script[block][i].dialogs[n-1].art[b].opacity:1)+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].opacity)?arr_s.art[b].opacity:1)+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Time transform</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].move=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].move)?story_script[block][i].dialogs[n-1].art[b].move:0)+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].move=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].move)?arr_s.art[b].move:0)+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Speed transform</td>'
-        +'<td colspan="3"><select class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].speed=this.value;" style="width:100%;height:28px"><option value="ease" '+((story_script[block][i].dialogs[n-1].art[b].speed=='ease')?'selected':'')+'>ease</option><option value="linear" '+((story_script[block][i].dialogs[n-1].art[b].speed=='linear')?'selected':'')+'>linear</option><option value="ease-in" '+((story_script[block][i].dialogs[n-1].art[b].speed=='ease-in')?'selected':'')+'>ease-in</option><option value="ease-out" '+((story_script[block][i].dialogs[n-1].art[b].speed=='ease-out')?'selected':'')+'>ease-out</option><option value="ease-in-out" '+((story_script[block][i].dialogs[n-1].art[b].speed=='ease-in-out')?'selected':'')+'>ease-in-out</option></select></td>'
+        +'<td colspan="3"><select class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].speed=this.value;" style="width:100%;height:28px"><option value="ease" '+((arr_s.art[b].speed=='ease')?'selected':'')+'>ease</option><option value="linear" '+((arr_s.art[b].speed=='linear')?'selected':'')+'>linear</option><option value="ease-in" '+((arr_s.art[b].speed=='ease-in')?'selected':'')+'>ease-in</option><option value="ease-out" '+((arr_s.art[b].speed=='ease-out')?'selected':'')+'>ease-out</option><option value="ease-in-out" '+((arr_s.art[b].speed=='ease-in-out')?'selected':'')+'>ease-in-out</option></select></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Style CSS</td>'
-        +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].style=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].style)?story_script[block][i].dialogs[n-1].art[b].style:'')+'"></td>'
+        +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].style=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].style)?arr_s.art[b].style:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'];edit_code(\'style\',\'Style CSS\');"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Class Name</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].className=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((story_script[block][i].dialogs[n-1].art[b].className)?story_script[block][i].dialogs[n-1].art[b].className:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].className=this.value;art_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].className)?arr_s.art[b].className:'')+'"></td>'
     +'</tr></tbody></table></div>'
     return html;
 }
 function choice_panel_update(block,i,n){
     droppFocus();
     choice_ec.innerHTML=""
+    var arr_s=story_script[block][i].dialogs[n-1]
     var tue_choice=document.getElementsByClassName("tue_choice");
     while(tue_choice.length){scene_layout.removeChild(tue_choice[0]);}
-    for(var b=0;b<story_script[block][i].dialogs[n-1].choice.length;b++){
-        if(!story_script[block][i].dialogs[n-1].choice[b].text){story_script[block][i].dialogs[n-1].choice[b].text={}}
-        if(!story_script[block][i].dialogs[n-1].choice[b].text[languare]){data_corr(story_script[block][i].dialogs[n-1].choice[b],'text')}
-        if(!story_script[block][i].dialogs[n-1].choice[b].art){story_script[block][i].dialogs[n-1].choice[b].art={}}
-        if(!story_script[block][i].dialogs[n-1].choice[b].art[languare]){data_corr(story_script[block][i].dialogs[n-1].choice[b],'art')}
+    for(var b=0;b<arr_s.choice.length;b++){
+        if(!arr_s.choice[b].text){arr_s.choice[b].text={}}
+        if(!arr_s.choice[b].text[languare]){data_corr(arr_s.choice[b],'text')}
+        if(!arr_s.choice[b].art){arr_s.choice[b].art={}}
+        if(!arr_s.choice[b].art[languare]){data_corr(arr_s.choice[b],'art')}
         var choice=document.createElement("div");
         choice.id='cho'+b
         choice.setAttribute('onclick','objSelect(this.id);arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+']');
-        if(story_script[block][i].dialogs[n-1].choice[b].className){choice.className=story_script[block][i].dialogs[n-1].choice[b].className;}
-        if(story_script[block][i].dialogs[n-1].choice[b].style){choice.style=story_script[block][i].dialogs[n-1].choice[b].style;}
+        if(arr_s.choice[b].className){choice.className=arr_s.choice[b].className;}
+        if(arr_s.choice[b].style){choice.style=arr_s.choice[b].style;}
         choice.classList.add("tue_choice");
         choice.style.position="absolute";
-        choice.style.backgroundColor=story_script[block][i].dialogs[n-1].choice[b].color;
+        choice.style.backgroundColor=arr_s.choice[b].color;
         choice.style.backgroundRepeat="no-repeat";
         choice.style.backgroundPosition="center";
-        choice.style.backgroundImage="url('"+open_file((story_script[block][i].dialogs[n-1].choice[b].art[languare])?story_script[block][i].dialogs[n-1].choice[b].art[languare]:story_script[block][i].dialogs[n-1].choice[b].art)+"')";
-        if(story_script[block][i].dialogs[n-1].choice[b].size){
-            if(story_script[block][i].dialogs[n-1].choice[b].size[0]!=0){
-                choice.style.width=story_script[block][i].dialogs[n-1].choice[b].size[0];}
-            if(story_script[block][i].dialogs[n-1].choice[b].size[1]!=0){
-                choice.style.height=story_script[block][i].dialogs[n-1].choice[b].size[1];
+        choice.style.backgroundImage="url('"+open_file((arr_s.choice[b].art[languare])?arr_s.choice[b].art[languare]:arr_s.choice[b].art)+"')";
+        if(arr_s.choice[b].size){
+            if(arr_s.choice[b].size[0]!=0){
+                choice.style.width=arr_s.choice[b].size[0];}
+            if(arr_s.choice[b].size[1]!=0){
+                choice.style.height=arr_s.choice[b].size[1];
             }
         }
-        if(story_script[block][i].dialogs[n-1].choice[b].art_size){choice.style.backgroundSize=story_script[block][i].dialogs[n-1].choice[b].art_size[0]+" "+story_script[block][i].dialogs[n-1].choice[b].art_size[1];}else{story_script[block][i].dialogs[n-1].choice[b].art_size=['','']}
-        if(story_script[block][i].dialogs[n-1].choice[b].position[0]!=0){choice.style.left=story_script[block][i].dialogs[n-1].choice[b].position[0];}
-        if(story_script[block][i].dialogs[n-1].choice[b].position[1]!=0){choice.style.right=story_script[block][i].dialogs[n-1].choice[b].position[1];}
-        if(story_script[block][i].dialogs[n-1].choice[b].position[2]!=0){choice.style.top=story_script[block][i].dialogs[n-1].choice[b].position[2];}
-        if(story_script[block][i].dialogs[n-1].choice[b].position[3]!=0){choice.style.bottom=story_script[block][i].dialogs[n-1].choice[b].position[3];}
-        choice.style.color=story_script[block][i].dialogs[n-1].choice[b].color_text;
-        choice.style.fontSize=((story_script[block][i].dialogs[n-1].choice[b].size_text)?story_script[block][i].dialogs[n-1].choice[b].size_text:story_script.parameters.font_size);
-        choice.style.fontFamily=((story_script[block][i].dialogs[n-1].choice[b].font_family)?story_script[block][i].dialogs[n-1].choice[b].font_family:story_script.parameters.font_family);
+        if(arr_s.choice[b].art_size){choice.style.backgroundSize=arr_s.choice[b].art_size[0]+" "+arr_s.choice[b].art_size[1];}else{arr_s.choice[b].art_size=['','']}
+        if(arr_s.choice[b].position[0]!=0){choice.style.left=arr_s.choice[b].position[0];}
+        if(arr_s.choice[b].position[1]!=0){choice.style.right=arr_s.choice[b].position[1];}
+        if(arr_s.choice[b].position[2]!=0){choice.style.top=arr_s.choice[b].position[2];}
+        if(arr_s.choice[b].position[3]!=0){choice.style.bottom=arr_s.choice[b].position[3];}
+        choice.style.color=arr_s.choice[b].color_text;
+        choice.style.fontSize=((arr_s.choice[b].size_text)?arr_s.choice[b].size_text:story_script.parameters.font_size);
+        choice.style.fontFamily=((arr_s.choice[b].font_family)?arr_s.choice[b].font_family:story_script.parameters.font_family);
         choice.style.zIndex=2001+n;
         choice.style.display="flex";
-        choice.style.justifyContent=((story_script[block][i].dialogs[n-1].choice[b].align)?story_script[block][i].dialogs[n-1].choice[b].align[0]:"center");
-        choice.style.alignItems=((story_script[block][i].dialogs[n-1].choice[b].align)?story_script[block][i].dialogs[n-1].choice[b].align[1]:"center");
-        if(story_script[block][i].dialogs[n-1].choice[b].text[languare].length>0){
-            choice.innerHTML=story_script[block][i].dialogs[n-1].choice[b].text[languare];
-            choice.style.padding=story_script[block][i].dialogs[n-1].choice[b].indent_text;
+        choice.style.justifyContent=((arr_s.choice[b].align)?arr_s.choice[b].align[0]:"center");
+        choice.style.alignItems=((arr_s.choice[b].align)?arr_s.choice[b].align[1]:"center");
+        if(arr_s.choice[b].text[languare].length>0){
+            choice.innerHTML=arr_s.choice[b].text[languare];
+            choice.style.padding=arr_s.choice[b].indent_text;
         }
         scene_layout.appendChild(choice);
         choice_ec.innerHTML+=choice_panel_edit(block,i,n,b);
     }
 }
 function choice_panel_add(block,i,n){
-    if(!story_script[block][i].dialogs[n-1].choice){story_script[block][i].dialogs[n-1].choice=[]}
-    var a=story_script[block][i].dialogs[n-1].choice.length
+    var arr_s=story_script[block][i].dialogs[n-1]
+    if(!arr_s.choice){arr_s.choice=[]}
+    var a=arr_s.choice.length
     if(a>0){
-        story_script[block][i].dialogs[n-1].choice.push(JSON.parse(JSON.stringify(story_script[block][i].dialogs[n-1].choice[a-1])))
-        story_script[block][i].dialogs[n-1].choice[a].position=["50%","0","50%","0"];
-        story_script[block][i].dialogs[n-1].choice[a].go_to=story_script.parameters.launch_story;
-        story_script[block][i].dialogs[n-1].choice[a].text="button";
+        arr_s.choice.push(JSON.parse(JSON.stringify(arr_s.choice[a-1])))
+        arr_s.choice[a].position=["50%","0","50%","0"];
+        arr_s.choice[a].go_to=story_script.parameters.launch_story;
+        arr_s.choice[a].text="button";
     } else {
-        story_script[block][i].dialogs[n-1].choice.push({"go_to":story_script.parameters.launch_story,"position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]],"color":story_script.parameters.text_panel.color,"color_text":story_script.parameters.text_panel.color_text,"text":"choice"});
+        arr_s.choice.push({"go_to":story_script.parameters.launch_story,"position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]],"color":story_script.parameters.text_panel.color,"color_text":story_script.parameters.text_panel.color_text,"text":"choice"});
     }
-    b=story_script[block][i].dialogs[n-1].choice.length-1;
+    b=arr_s.choice.length-1;
     choice_panel_update(block,i,n)
 }
 function choice_panel_edit(block,i,n,b){
@@ -2330,17 +2342,17 @@ function choice_panel_edit(block,i,n,b){
         +'<td height="40px" align="right" style="padding-right:8px;">Align</td>'
         +'<td colspan="3" align="center">'
         +'<table><tbody><tr>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'left\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='left'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-start\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-start'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
             +'<td><input class="icon icon_cent align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'center\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='center'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'right\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='right'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleX(-1) scaleY(-1);"></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-end\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-end'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleX(-1) scaleY(-1);"></td>'
         +'</tr><tr>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'left\',\'center\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='left'&&arr_s.align[1]=='center')?'checked':'')+'></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-start\',\'center\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-start'&&arr_s.align[1]=='center')?'checked':'')+'></td>'
             +'<td><input class="icon icon_cent align" type="radio" name="align_c'+b+'" onchange="delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align;choice_panel_update(\''+block+'\','+i+','+n+');" '+((!arr_s.align)?'checked':'')+'></td>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'right\',\'center\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='right'&&arr_s.align[1]=='center')?'checked':'')+' style="transform:scaleX(-1);"></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-end\',\'center\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-end'&&arr_s.align[1]=='center')?'checked':'')+' style="transform:scaleX(-1);"></td>'
         +'</tr><tr>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'left\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='left'&&arr_s.align[1]=='flex-end')?'checked':'')+'></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-start\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-start'&&arr_s.align[1]=='flex-end')?'checked':'')+'></td>'
             +'<td><input class="icon icon_cent align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'center\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='center'&&arr_s.align[1]=='flex-end')?'checked':'')+'></td>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'right\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='right'&&arr_s.align[1]=='flex-end')?'checked':'')+' style="transform:scaleX(-1);"></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-end\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-end'&&arr_s.align[1]=='flex-end')?'checked':'')+' style="transform:scaleX(-1);"></td>'
         +'</tr></tbody></table>'
         +'</td>'
     +'</tr><tr>'
@@ -2425,49 +2437,50 @@ let button_name={
 function button_panel_update(){
     droppFocus();
     interface_buttons_c.innerHTML=""
+    var arr_s=story_script.parameters.buttons
     var clear_ui=document.getElementsByClassName("tue_controll");
     while(clear_ui.length){scene_layout.removeChild(clear_ui[0]);}
-    for(var b=0;b<story_script.parameters.buttons.length;b++){
-        if(!story_script.parameters.buttons[b].text){story_script.parameters.buttons[b].text={}}
-        if(!story_script.parameters.buttons[b].text[languare]){data_corr(story_script.parameters.buttons[b],'text')}
-        if(!story_script.parameters.buttons[b].art){story_script.parameters.buttons[b].art={}}
-        if(!story_script.parameters.buttons[b].art[languare]){data_corr(story_script.parameters.buttons[b],'art')}
+    for(var b=0;b<arr_s.length;b++){
+        if(!arr_s[b].text){arr_s[b].text={}}
+        if(!arr_s[b].text[languare]){data_corr(arr_s[b],'text')}
+        if(!arr_s[b].art){arr_s[b].art={}}
+        if(!arr_s[b].art[languare]){data_corr(arr_s[b],'art')}
         var ui_button=document.createElement("div");
-        if(story_script.parameters.buttons[b].className){ui_button.className=story_script.parameters.buttons[b].className;}
-        if(story_script.parameters.buttons[b].style){ui_button.style=story_script.parameters.buttons[b].style;}
-        if(story_script.parameters.buttons[b].text){
-            if (story_script.parameters.buttons[b].text[languare].length>0){
-                ui_button.innerHTML=story_script.parameters.buttons[b].text[languare];
-                ui_button.style.padding=story_script.parameters.buttons[b].indent_text;
+        if(arr_s[b].className){ui_button.className=arr_s[b].className;}
+        if(arr_s[b].style){ui_button.style=arr_s[b].style;}
+        if(arr_s[b].text){
+            if (arr_s[b].text[languare].length>0){
+                ui_button.innerHTML=arr_s[b].text[languare];
+                ui_button.style.padding=arr_s[b].indent_text;
             };
             ui_button.style.display="flex";
-            ui_button.style.justifyContent=((story_script.parameters.buttons[b].align)?story_script.parameters.buttons[b].align[0]:"center");
-            ui_button.style.alignItems=((story_script.parameters.buttons[b].align)?story_script.parameters.buttons[b].align[1]:"center");
-            ui_button.style.color=story_script.parameters.buttons[b].color_text;
-            ui_button.style.fontSize=((story_script.parameters.buttons[b].size_text)?story_script.parameters.buttons[b].size_text:story_script.parameters.font_size);
-            ui_button.style.fontFamily=((story_script.parameters.buttons[b].font_family)?story_script.parameters.buttons[b].font_family:story_script.parameters.font);
+            ui_button.style.justifyContent=((arr_s[b].align)?arr_s[b].align[0]:"center");
+            ui_button.style.alignItems=((arr_s[b].align)?arr_s[b].align[1]:"center");
+            ui_button.style.color=arr_s[b].color_text;
+            ui_button.style.fontSize=((arr_s[b].size_text)?arr_s[b].size_text:story_script.parameters.font_size);
+            ui_button.style.fontFamily=((arr_s[b].font_family)?arr_s[b].font_family:story_script.parameters.font);
         }
         ui_button.style.zIndex=3000+b;
-        ui_button.id=story_script.parameters.buttons[b].name+b;
-        ui_button.setAttribute('onclick','objSelect(this.id);arr_e=story_script.parameters.buttons['+b+']');
+        ui_button.id=arr_s[b].name+b;
+        ui_button.setAttribute('onclick','objSelect(this.id);arr_e=arr_s['+b+']');
         ui_button.classList.add("tue_controll");
         ui_button.style.position="absolute";
-        if(story_script.parameters.buttons[b].size){
-            if(story_script.parameters.buttons[b].size[0]!=0){
-                ui_button.style.width=story_script.parameters.buttons[b].size[0];}
-            if(story_script.parameters.buttons[b].size[1]!=0){
-                ui_button.style.height=story_script.parameters.buttons[b].size[1];
+        if(arr_s[b].size){
+            if(arr_s[b].size[0]!=0){
+                ui_button.style.width=arr_s[b].size[0];}
+            if(arr_s[b].size[1]!=0){
+                ui_button.style.height=arr_s[b].size[1];
             }
         }
-        ui_button.style.backgroundColor=story_script.parameters.buttons[b].color;
+        ui_button.style.backgroundColor=arr_s[b].color;
         ui_button.style.backgroundRepeat="no-repeat";
         ui_button.style.backgroundPosition="center";
-        ui_button.style.backgroundImage="url('"+open_file((story_script.parameters.buttons[b].art[languare])?story_script.parameters.buttons[b].art[languare]:story_script.parameters.buttons[b].art)+"')";
-        if(story_script.parameters.buttons[b].art_size){ui_button.style.backgroundSize=story_script.parameters.buttons[b].art_size[0]+" "+story_script.parameters.buttons[b].art_size[1];}
-        if(story_script.parameters.buttons[b].position[0]!=0){ui_button.style.left=story_script.parameters.buttons[b].position[0];}
-        if(story_script.parameters.buttons[b].position[1]!=0){ui_button.style.right=story_script.parameters.buttons[b].position[1];}
-        if(story_script.parameters.buttons[b].position[2]!=0){ui_button.style.top=story_script.parameters.buttons[b].position[2];}
-        if(story_script.parameters.buttons[b].position[3]!=0){ui_button.style.bottom=story_script.parameters.buttons[b].position[3];}
+        ui_button.style.backgroundImage="url('"+open_file((arr_s[b].art[languare])?arr_s[b].art[languare]:arr_s[b].art)+"')";
+        if(arr_s[b].art_size){ui_button.style.backgroundSize=arr_s[b].art_size[0]+" "+arr_s[b].art_size[1];}
+        if(arr_s[b].position[0]!=0){ui_button.style.left=arr_s[b].position[0];}
+        if(arr_s[b].position[1]!=0){ui_button.style.right=arr_s[b].position[1];}
+        if(arr_s[b].position[2]!=0){ui_button.style.top=arr_s[b].position[2];}
+        if(arr_s[b].position[3]!=0){ui_button.style.bottom=arr_s[b].position[3];}
         scene_layout.appendChild(ui_button);
         interface_buttons_c.innerHTML+=button_panel_edit(b)
     }
@@ -2505,17 +2518,17 @@ function button_panel_edit(b){
             +'<td height="40px" align="right" style="padding-right:8px;">Align</td>'
             +'<td colspan="3" align="center">'
             +'<table><tbody><tr>'
-                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'left\',\'flex-start\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='left'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
+                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'flex-start\',\'flex-start\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='flex-start'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
                 +'<td><input class="icon icon_cent align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'center\',\'flex-start\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='center'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
-                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'right\',\'flex-start\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='right'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleX(-1) scaleY(-1);"></td>'
+                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'flex-end\',\'flex-start\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='flex-end'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleX(-1) scaleY(-1);"></td>'
             +'</tr><tr>'
-                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'left\',\'center\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='left'&&arr_s.align[1]=='center')?'checked':'')+'></td>'
+                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'flex-start\',\'center\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='flex-start'&&arr_s.align[1]=='center')?'checked':'')+'></td>'
                 +'<td><input class="icon icon_cent align" type="radio" name="align_b'+b+'" onchange="delete story_script.parameters.buttons['+b+'].align;button_panel_update(true);" '+((!arr_s.align)?'checked':'')+'></td>'
-                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'right\',\'center\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='right'&&arr_s.align[1]=='center')?'checked':'')+' style="transform:scaleX(-1);"></td>'
+                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'flex-end\',\'center\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='flex-end'&&arr_s.align[1]=='center')?'checked':'')+' style="transform:scaleX(-1);"></td>'
             +'</tr><tr>'
-                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'left\',\'flex-end\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='left'&&arr_s.align[1]=='flex-end')?'checked':'')+'></td>'
+                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'flex-start\',\'flex-end\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='flex-start'&&arr_s.align[1]=='flex-end')?'checked':'')+'></td>'
                 +'<td><input class="icon icon_cent align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'center\',\'flex-end\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='center'&&arr_s.align[1]=='flex-end')?'checked':'')+'></td>'
-                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'right\',\'flex-end\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='right'&&arr_s.align[1]=='flex-end')?'checked':'')+' style="transform:scaleX(-1);"></td>'
+                +'<td><input class="icon icon_left align" type="radio" name="align_b'+b+'" onchange="story_script.parameters.buttons['+b+'].align=[\'flex-end\',\'flex-end\'];button_panel_update(true);" '+((arr_s.align&&arr_s.align[0]=='flex-end'&&arr_s.align[1]=='flex-end')?'checked':'')+' style="transform:scaleX(-1);"></td>'
             +'</tr></tbody></table>'
             +'</td>'
         +'</tr><tr>'
@@ -2663,9 +2676,10 @@ function variables_set_apply(){
 }
 function scen_compres(block,i,n){
     var a=0;
-    if (story_script[block][i].dialogs[n-1]){
-        if(story_script[block][i].dialogs[n-1].art){for(a=0;a<story_script[block][i].dialogs[n-1].art.length;a++){data_only(story_script[block][i].dialogs[n-1].art[a],'url');}}
-        if(story_script[block][i].dialogs[n-1].choice){for(a=0;a<story_script[block][i].dialogs[n-1].choice.length;a++){data_only(story_script[block][i].dialogs[n-1].choice[a],'art');}}
+    var arr_s=story_script[block][i].dialogs[n-1]
+    if (arr_s){
+        if(arr_s.art){for(a=0;a<arr_s.art.length;a++){data_only(arr_s.art[a],'url');}}
+        if(arr_s.choice){for(a=0;a<arr_s.choice.length;a++){data_only(arr_s.choice[a],'art');}}
     }
 }
 function correct_name(name){return name.trim().replace(/[\s.,':;]/g,'_');};
