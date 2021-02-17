@@ -238,7 +238,7 @@ function get_lang(){
         }
     }
     if(arr_dialog.background_music){search_music();}
-    if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();} else {tue_text_block.style.visibility='hidden';}
+    if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();} else {del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");tue_text_block.style.visibility='hidden';}
 } function creation_dialog(){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 		if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
@@ -386,7 +386,7 @@ function get_lang(){
                 choice.style.fontSize=arr_dialog.choice[i].size_text;
                 choice.style.fontFamily=((arr_dialog.choice[i].font_family)?arr_dialog.choice[i].font_family:story_json.parameters.font);
                 choice.style.display="flex";
-                choice.style.justifyContent=((arr_dialog.choice[i])?arr_dialog.choice[i].align[0]:"center");
+                choice.style.justifyContent=((arr_dialog.choice[i].align)?arr_dialog.choice[i].align[0]:"center");
                 choice.style.alignItems=((arr_dialog.choice[i].align)?arr_dialog.choice[i].align[1]:"center");
                 choice.style.zIndex=1001+i;
                 if(arr_dialog.choice[i].text && (typeof arr_dialog.choice[i].text!=='object' || (arr_dialog.choice[i].text[languare] && typeof arr_dialog.choice[i].text[languare]!=='object'))){
