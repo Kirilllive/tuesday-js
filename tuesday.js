@@ -98,6 +98,7 @@ function get_lang(){
     tue_text_view.style.boxSizing="border-box";
     tue_text_view.style.padding=story_json.parameters.text_panel.indent_text;
     tue_text_view.style.fontSize=story_json.parameters.text_panel.size_text;
+    tue_text_view.style.fontFamily=((story_json.parameters.text_panel.font_family)?story_json.parameters.text_panel.font_family:story_json.parameters.font);
 	tue_text_view.style.height="100%";
     if(story_json.parameters.name_panel){
         if(story_json.parameters.name_panel.className){tue_name_block.className=story_json.parameters.name_panel.className;}
@@ -108,6 +109,7 @@ function get_lang(){
         tue_name_block.id="tue_name_block";
         tue_name_block.style.padding=story_json.parameters.name_panel.indent_text;
         tue_name_block.style.fontSize=story_json.parameters.name_panel.size_text;
+        tue_name_block.style.fontFamily=((story_json.parameters.name_panel.font_family)?story_json.parameters.name_panel.font_family:story_json.parameters.font);
         tue_name_block.style.textAlign="center";
         if(tue_name_block.style.width=story_json.parameters.name_panel.size[0]!=0){tue_name_block.style.width=story_json.parameters.name_panel.size[0];}
         tue_name_block.style.height=story_json.parameters.name_panel.size[1];
@@ -152,6 +154,7 @@ function get_lang(){
             button.style.textAlign="center";
             button.style.color=story_json.parameters.buttons[i].color_text;
             button.style.fontSize=story_json.parameters.buttons[i].size_text;
+            button.style.fontFamily=((story_json.parameters.buttons[i].font_family)?story_json.parameters.buttons[i].font_family:story_json.parameters.font);
         }
         button.style.zIndex=2000+i;
         button.id=story_json.parameters.buttons[i].name;
@@ -380,6 +383,7 @@ function get_lang(){
                 choice.style.color=arr_dialog.choice[i].color_text;
                 choice.style.padding=arr_dialog.choice[i].indent_text;
                 choice.style.fontSize=arr_dialog.choice[i].size_text;
+                choice.style.fontFamily=((arr_dialog.choice[i].font_family)?arr_dialog.choice[i].font_family:story_json.parameters.font);
                 choice.style.textAlign="center";
                 choice.style.zIndex=1001+i;
                 if(arr_dialog.choice[i].text && (typeof arr_dialog.choice[i].text!=='object' || (arr_dialog.choice[i].text[languare] && typeof arr_dialog.choice[i].text[languare]!=='object'))){
