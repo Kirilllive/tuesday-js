@@ -151,7 +151,9 @@ function get_lang(){
         if(story_json.parameters.buttons[i].text && (typeof story_json.parameters.buttons[i].text!=='object' || (story_json.parameters.buttons[i].text[languare] && typeof story_json.parameters.buttons[i].text[languare]!=='object'))){
             button.innerHTML=((story_json.parameters.buttons[i].text[languare])?story_json.parameters.buttons[i].text[languare]:story_json.parameters.buttons[i].text);
             button.style.padding=story_json.parameters.buttons[i].indent_text;
-            button.style.textAlign="center";
+            button.style.display="flex";
+            button.style.justifyContent="center";
+            button.style.alignItems="center";
             button.style.color=story_json.parameters.buttons[i].color_text;
             button.style.fontSize=story_json.parameters.buttons[i].size_text;
             button.style.fontFamily=((story_json.parameters.buttons[i].font_family)?story_json.parameters.buttons[i].font_family:story_json.parameters.font);
@@ -370,7 +372,6 @@ function get_lang(){
 						choice.style.width=arr_dialog.choice[i].size[0];}
 					if(arr_dialog.choice[i].size[1] != 0){
 						choice.style.height=arr_dialog.choice[i].size[1];
-						choice.style.lineHeight=arr_dialog.choice[i].size[1];
 					}
 				}
                 if(arr_dialog.choice[i].art_size){
@@ -384,7 +385,9 @@ function get_lang(){
                 choice.style.padding=arr_dialog.choice[i].indent_text;
                 choice.style.fontSize=arr_dialog.choice[i].size_text;
                 choice.style.fontFamily=((arr_dialog.choice[i].font_family)?arr_dialog.choice[i].font_family:story_json.parameters.font);
-                choice.style.textAlign="center";
+                choice.style.display="flex";
+                choice.style.justifyContent="center";
+                choice.style.alignItems="center";
                 choice.style.zIndex=1001+i;
                 if(arr_dialog.choice[i].text && (typeof arr_dialog.choice[i].text!=='object' || (arr_dialog.choice[i].text[languare] && typeof arr_dialog.choice[i].text[languare]!=='object'))){
                     if(arr_dialog.choice[i].text[languare]){choice.innerHTML=arr_dialog.choice[i].text[languare];}
