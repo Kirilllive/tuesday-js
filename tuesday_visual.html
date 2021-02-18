@@ -376,13 +376,13 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                             <tr><td height='40px' align='right' style='width:40%; padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
                                 <select id='ratio_screen' class='input_text' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size()' style='width:100%;'>
                                       <option value=true>landscape</option>
-                                      <option value=false>Portrait</option>
+                                      <option value=false selected>Portrait</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;'>
                                <select id='screen_size' class='input_text' oninput='preview_size();' style='width:100%;'>
                                     <option value="0">My screen</option>
-                                    <option value="-1">Preview size</option>
+                                    <option value="-1" selected>Preview size</option>
                                     <option value="1080">1080</option>
                                     <option value="720">720</option>
                                     <option value="480">480</option>
@@ -824,7 +824,7 @@ function creation_block(b){
                         for(var c=0;c<story_script[chapter.id][i].dialogs[d].choice.length;c++){
                             go=story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if(go&&go!=""&&go!="undefined"){
-                                data_corr(story_script[chapter.id][i].dialogs[d].choice[c],'text')
+                                if(story_script[chapter.id][i].dialogs[d].choice[c].text){data_corr(story_script[chapter.id][i].dialogs[d].choice[c],'text')}
                                 var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text)
                                 if(story_script[go]){
                                     element+="<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();' class='input_text_b'>"+option_block(go,2)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
@@ -1795,30 +1795,32 @@ let copy_arr={};
 function dialog_audio_edit(id){copy_arr=arr_l;file_catalog(id,'audio',id,'update','copy_arr[arr_n]');}
 function dialog_text_edit(){
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
+    var n
 	if(!copy_arr.name){copy_arr.name={}}
-    if(!copy_arr[arr_n][languare]){data_la(copy_arr,arr_n)}
+    if(story_script.parameters.characters&&story_script.parameters.characters[copy_arr.name]){n=story_script.parameters.characters[copy_arr.name]}
+    if(!copy_arr[arr_n][languare]){data_la(copy_arr,arr_n)};
 	var html="<div class='window' style='padding:24px 8px; width:90%; max-width:800px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Dialog text</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[1].en+"</p>"
 	+"<table width='100%'><tbody><tr><td width='80px' align='center'>languare:</td>"
-	+"<td width='40px'><select class='input_text' id='text_la' onchange='name_text.value=copy_arr.name[this.value];dialogtext.value=copy_arr.text[this.value];text_сhars.innerHTML=dialogtext.value.length' style='height:40px; border-left:1px solid var(--cb); border-right:1px solid var(--cb); border-bottom:0'>"+project_languares(languare)+"</select></td>"
-	+"<td width='90px' align='center'>сharacters:</td><td id='text_сhars'>"+copy_arr[arr_n][languare].length+"</td><td></td></tr></tbody></table><table width='100%'><tbody><tr>"
-	+"<td><textarea id='dialogtext' oninput='text_сhars.innerHTML=this.value.length;copy_arr[arr_n][text_la.value]=this.value;' class='input_text' style='resize:none;padding:4px;-moz-box-sizing:border-box; box-sizing:border-box;height:calc(90vh - 256px);width:100%;border:1px solid var(--cb);'>"+((copy_arr[arr_n][languare].length>0)?copy_arr[arr_n][languare]:'&nbsp;')+"</textarea></td>"
+	+"<td width='40px'><select class='input_text' id='text_la' onchange='"+((n)?"name_text.value=((story_script.parameters.characters[copy_arr.name][this.value])?story_script.parameters.characters[copy_arr.name][this.value]:\"\")":"name_text.value=((copy_arr.name[this.value])?copy_arr.name[this.value]:\"\")")+";dialogtext.value=((copy_arr.text[this.value])?copy_arr.text[this.value]:\"\");text_сhars.innerHTML=dialogtext.value.length' style='height:40px; border-left:1px solid var(--cb); border-right:1px solid var(--cb); border-bottom:0'>"+project_languares(languare)+"</select></td>"
+	+"<td width='90px' align='center'>symbols:</td><td id='text_сhars'>"+copy_arr[arr_n][languare].length+"</td><td></td></tr></tbody></table><table width='100%'><tbody><tr>"
+	+"<td><textarea id='dialogtext' oninput='text_сhars.innerHTML=this.value.length;copy_arr[arr_n][text_la.value]=this.value;' class='input_text' style='resize:none;padding:4px;-moz-box-sizing:border-box; box-sizing:border-box;height:calc(90vh - 256px);width:100%;border:1px solid var(--cb);'>"+((copy_arr[arr_n][languare].length>0)?copy_arr[arr_n][languare]:"")+"</textarea></td>"
 	+"<td width='286px' valign='top'><div style='width:100%;height:calc(90vh - 256px);overflow-x:hidden;overflow-y:auto;'><table width='100%'><tbody>"
 	+"<tr><td width='80px' height='40px' align='left' style='padding-left:8px; border-bottom:1px solid var(--cb);' colspan='3'>Settings text panel</td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='text_color' class='input_text' value='"+((copy_arr.color_text)?copy_arr.color_text:"")+"' type='text'></td>"
-    +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"text_color\",\""+copy_arr.name.color+"\");'></td></tr>"
+    +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"text_color\",text_color.value);'></td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Panel color</td><td><input id='p_color' class='input_text' value='"+((copy_arr.color_text)?copy_arr.color:"")+"' type='text'></td>"
-    +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"p_color\",\""+copy_arr.color+"\");'></td></tr>"
+    +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"p_color\",p_color.value);'></td></tr>"
 	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Style</td><td><input id='text_style' class='input_text' value='"+((copy_arr[arr_n].style)?copy_arr[arr_n].style:"")+"' type='text'></td><td></td></tr>"
 	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='text_class' class='input_text' value='"+((copy_arr[arr_n].className)?copy_arr[arr_n].className:"")+"' type='text'></td><td></td></tr>"
 	+"<tr><td height='28px' align='left' colspan='3'></td></tr>"
 	+"<tr><td height='40px' align='left' style='padding-left:8px; border-bottom:1px solid var(--cb);' colspan='3'>Settings name panel</td></tr>"
-	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Character name</td><td><input id='name_text' class='input_text' oninput='copy_arr.name[text_la.value]=this.value;' value='"+((copy_arr.name[languare])?copy_arr.name[languare]:"")+"' type='text'></td><td class='icon icon_load'></td></tr>"
-	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Style</td><td><input id='name_style' class='input_text' value='"+((copy_arr.name.style)?copy_arr.name.style:"")+"' type='text'></td><td></td></tr>"
-	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='name_class' class='input_text' value='"+((copy_arr.name.className)?copy_arr.name.className:"")+"' type='text'></td><td></td></tr>"
-    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='name_color' class='input_text' value='"+((copy_arr.name.color_text)?copy_arr.name.color_text:"")+"' type='text'></td>"
-    +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"name_color\",\""+copy_arr.name.color_text+"\");'></td></tr>"
-    +"<tr><td align='right' style='padding-right:8px;'>Panel color</td><td><input id='n_color' class='input_text' value='"+((copy_arr.name.color_text)?copy_arr.name.color:"")+"' type='text'></td>"
-    +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"n_color\",\""+copy_arr.name.color+"\");'></td></tr>"
+	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Character name</td><td><input id='name_text' class='input_text' oninput='"+((n)?"story_script.parameters.characters[copy_arr.name][text_la.value]=this.value;":"copy_arr.name[text_la.value]=this.value;")+"' value='"+((n&&n[languare])?n[languare]:((copy_arr.name[languare])?copy_arr.name[languare]:""))+"' type='text'></td><td class='icon icon_load'></td></tr>"
+	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Style</td><td><input id='c_style' class='input_text' value='"+((n&&n.style)?n.style:((copy_arr.name.style)?copy_arr.name.style:""))+"' type='text'></td><td></td></tr>"
+	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='c_class' class='input_text' value='"+((n&&n.className)?n.className:((copy_arr.name.className)?copy_arr.name.className:""))+"' type='text'></td><td></td></tr>"
+    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='t_color' class='input_text' value='"+((n&&n.color_text)?n.color_text:((copy_arr.name.color_text)?copy_arr.name.color_text:""))+"' type='text'></td>"
+    +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"t_color\",t_color.value);'></td></tr>"
+    +"<tr><td align='right' style='padding-right:8px;'>Panel color</td><td><input id='c_color' class='input_text' value='"+((n&&n.color)?n.color:((copy_arr.name.color_text)?copy_arr.name.color:""))+"' type='text'></td>"
+    +"<td class='icon icon_color' style='height:40px; width:40px;' onclick='color_element(\"c_color\",c_color.value);'></td></tr>"
     +"</tbody></table></div></td>"
 	+"</tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
@@ -1829,15 +1831,30 @@ function dialog_text_apply(){
     if(text_color.value!=""){arr_l.color_text=text_color.value;}else{delete arr_l.color_text};
     if(p_color.value!=""){arr_l.color=p_color.value;}else{delete arr_l.color};
     data_only(copy_arr,'text');
-	var a=0;
-	for(var i=0;i<story_script.parameters.languares.length;i++){a+=((copy_arr.name[story_script.parameters.languares[i]])?copy_arr.name[story_script.parameters.languares[i]].length:0)};
-	if(a>0){
-		if(name_style.value!=""){copy_arr.name.style=name_style.value;}else{delete copy_arr.name.style}
-		if(name_class.value!=""){copy_arr.name.className=name_class.value;}else{delete copy_arr.name.className}
-        if(name_color.value!=""){copy_arr.name.color_text=name_color.value;}else{delete copy_arr.name.color_text};
-        if(n_color.value!=""){copy_arr.name.color=n_color.value;}else{delete copy_arr.name.color};
-		arr_l.name=JSON.parse(JSON.stringify(copy_arr.name));
-	}else{delete arr_l.name}
+    
+    if(!story_script.parameters.characters){story_script.parameters.characters={};}
+    var arr_s=story_script.parameters.characters,n,l,c=0;
+    if(!story_script.parameters.characters[copy_arr.name]){
+        for(l=0;l<story_script.parameters.languares.length;l++){
+            var z=copy_arr.name[story_script.parameters.languares[l]];
+            if(z){c+=z.length;}
+            if(z && z.length>0 && /^[\w\s]+$/i.test(z) ){n=correct_name(z);break;}
+        }
+        if(c>0){
+            if(n==''){n='char'+Object.keys(arr_s).length}
+            arr_s[n]=JSON.parse(JSON.stringify(copy_arr.name))
+        }
+    }else{
+        n=copy_arr.name;
+    };
+    if(n){
+        if(c_style.value!=""){arr_s[n].style=c_style.value;}else{delete arr_s[n].style}
+        if(c_class.value!=""){arr_s[n].className=c_class.value;}else{delete arr_s[n].className}
+        if(t_color.value!=""){arr_s[n].color_text=t_color.value;}else{delete arr_s[n].color_text};
+        if(c_color.value!=""){arr_s[n].color=c_color.value;}else{delete arr_s[n].color};
+        arr_l.name=n
+    }
+    
 	arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));
 	modal_window("close");
     if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
@@ -2130,7 +2147,8 @@ function scen_editor(block,i,n){
         tue_text_view.style.fontSize=((arr_t.size_text)?arr_t.size_text:story_script.parameters.font_size);
         tue_text_view.style.fontFamily=((arr_t.font_family)?arr_t.font_family:story_script.parameters.font);
         tue_text_view.style.height="100%";
-        if(arr_s.name&&arr_p){
+        tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text);
+        if(story_script[block][i].dialogs[n-1].name&&arr_p){
             if(arr_p.className){tue_name_block.className=arr_p.className;}else{tue_name_block.className=""};
             if(arr_p.style){tue_name_block.style=arr_p.style;}else{tue_name_block.style=null};
             if(arr_p.color){tue_name_block.style.backgroundColor=arr_p.color};
@@ -2147,12 +2165,11 @@ function scen_editor(block,i,n){
             if(arr_p.position[1]!=0){tue_name_block.style.right=arr_p.position[1];}
             if(arr_p.position[2]!=0){tue_name_block.style.top=arr_p.position[2];}
             if(arr_p.position[3]!=0){tue_name_block.style.bottom=arr_p.position[3];}
+            tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
             tue_name_block.style.visibility='visible';
         }else{tue_name_block.style.visibility='hidden';}
         tue_text_block.style.backgroundColor=arr_t.color;
         tue_text_block.style.color=arr_t.color_text;
-        tue_text_view.innerHTML=languare_data(arr_s.text);
-        tue_name_block.innerHTML=languare_data(arr_s.name);
     }else{tue_text_block.style.visibility='hidden';tue_name_block.style.visibility='hidden';}
     button_panel_update();
     if(arr_s.art){art_panel_update(block,i,n);}else{arts_ec.innerHTML="";var tue_art=document.getElementsByClassName("tue_art");while(tue_art.length){scene_layout.removeChild(tue_art[0]);}}
@@ -2293,7 +2310,7 @@ function choice_panel_update(block,i,n){
         choice.style.display="flex";
         choice.style.justifyContent=((arr_s[b].align)?arr_s[b].align[0]:"center");
         choice.style.alignItems=((arr_s[b].align)?arr_s[b].align[1]:"center");
-        if(arr_s[b].text[languare].length>0){
+        if(arr_s[b].text[languare]){
             choice.innerHTML=arr_s[b].text[languare];
             choice.style.padding=arr_s[b].indent_text;
         }
@@ -2338,7 +2355,7 @@ function choice_panel_edit(block,i,n,b){
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Text</td>'
         +'<td style="width:28px;" align="center"><select id="сts'+b+'" class="input_text" onchange="сtм'+b+'.value=((story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[this.value].length>0)?story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[this.value]:\'\')" style="height:28px;width:100%;border-left:1px solid var(--cb); border-right:1px solid var(--cb); border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
-        +'<td colspan="2"><input id="сtм'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[сts'+b+'.value]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].text[languare].length>0)?arr_s[b].text[languare]:'')+'"></td>'
+        +'<td colspan="2"><input id="сtм'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[сts'+b+'.value]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].text[languare])?arr_s[b].text[languare]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Align</td>'
         +'<td colspan="3" align="center">'
@@ -2450,7 +2467,7 @@ function button_panel_update(){
         if(arr_s[b].className){ui_button.className=arr_s[b].className;}
         if(arr_s[b].style){ui_button.style=arr_s[b].style;}
         if(arr_s[b].text){
-            if (arr_s[b].text[languare].length>0){
+            if (arr_s[b].text[languare]){
                 ui_button.innerHTML=arr_s[b].text[languare];
                 ui_button.style.padding=arr_s[b].indent_text;
             };
