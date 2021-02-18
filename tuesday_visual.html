@@ -2166,6 +2166,8 @@ function art_panel_update(block,i,n){
     var arr_s=story_script[block][i].dialogs[n-1]
     var tue_art=document.getElementsByClassName("tue_art");
     while(tue_art.length){scene_layout.removeChild(tue_art[0]);}
+    if(arr_s.art.length==0){delete story_script[block][i].dialogs[n-1].art}
+    else {
     for(var b=0;b<arr_s.art.length;b++){
         if(!arr_s.art[b].url[languare]){data_corr(arr_s.art[b],'url')}
         var art=document.createElement("img");
@@ -2189,7 +2191,7 @@ function art_panel_update(block,i,n){
         if(arr_s.art[b].opacity){art.style.opacity=arr_s.art[b].opacity;}
         scene_layout.appendChild(art);
         arts_ec.innerHTML+=art_panel_edit(block,i,n,b)
-    }
+    }}
 }
 function art_panel_add(block,i,n){
     var arr_s=story_script[block][i].dialogs[n-1]
@@ -2254,48 +2256,50 @@ function art_panel_edit(block,i,n,b){
 function choice_panel_update(block,i,n){
     droppFocus();
     choice_ec.innerHTML=""
-    var arr_s=story_script[block][i].dialogs[n-1]
+    var arr_s=story_script[block][i].dialogs[n-1].choice
     var tue_choice=document.getElementsByClassName("tue_choice");
     while(tue_choice.length){scene_layout.removeChild(tue_choice[0]);}
-    for(var b=0;b<arr_s.choice.length;b++){
-        if(!arr_s.choice[b].text){arr_s.choice[b].text={}}
-        if(!arr_s.choice[b].text[languare]){data_corr(arr_s.choice[b],'text')}
-        if(!arr_s.choice[b].art){arr_s.choice[b].art={}}
-        if(!arr_s.choice[b].art[languare]){data_corr(arr_s.choice[b],'art')}
+    if(arr_s.length==0){delete story_script[block][i].dialogs[n-1].choice}
+    else {
+    for(var b=0;b<arr_s.length;b++){
+        if(!arr_s[b].text){arr_s[b].text={}}
+        if(!arr_s[b].text[languare]){data_corr(arr_s[b],'text')}
+        if(!arr_s[b].art){arr_s[b].art={}}
+        if(!arr_s[b].art[languare]){data_corr(arr_s[b],'art')}
         var choice=document.createElement("div");
         choice.id='cho'+b
         choice.setAttribute('onclick','objSelect(this.id);arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+']');
-        if(arr_s.choice[b].className){choice.className=arr_s.choice[b].className;}
-        if(arr_s.choice[b].style){choice.style=arr_s.choice[b].style;}
+        if(arr_s[b].className){choice.className=arr_s[b].className;}
+        if(arr_s[b].style){choice.style=arr_s[b].style;}
         choice.classList.add("tue_choice");
         choice.style.position="absolute";
-        choice.style.backgroundColor=arr_s.choice[b].color;
+        choice.style.backgroundColor=arr_s[b].color;
         choice.style.backgroundRepeat="no-repeat";
         choice.style.backgroundPosition="center";
-        choice.style.backgroundImage="url('"+open_file((arr_s.choice[b].art[languare])?arr_s.choice[b].art[languare]:arr_s.choice[b].art)+"')";
-        if(arr_s.choice[b].size){
-            if(arr_s.choice[b].size[0]!=0){choice.style.width=arr_s.choice[b].size[0];}
-            if(arr_s.choice[b].size[1]!=0){choice.style.height=arr_s.choice[b].size[1];}
+        choice.style.backgroundImage="url('"+open_file((arr_s[b].art[languare])?arr_s[b].art[languare]:arr_s[b].art)+"')";
+        if(arr_s[b].size){
+            if(arr_s[b].size[0]!=0){choice.style.width=arr_s[b].size[0];}
+            if(arr_s[b].size[1]!=0){choice.style.height=arr_s[b].size[1];}
         }
-        if(arr_s.choice[b].art_size){choice.style.backgroundSize=arr_s.choice[b].art_size[0]+" "+arr_s.choice[b].art_size[1];}else{arr_s.choice[b].art_size=['','']}
-        if(arr_s.choice[b].position[0]!=0){choice.style.left=arr_s.choice[b].position[0];}
-        if(arr_s.choice[b].position[1]!=0){choice.style.right=arr_s.choice[b].position[1];}
-        if(arr_s.choice[b].position[2]!=0){choice.style.top=arr_s.choice[b].position[2];}
-        if(arr_s.choice[b].position[3]!=0){choice.style.bottom=arr_s.choice[b].position[3];}
-        choice.style.color=arr_s.choice[b].color_text;
-        choice.style.fontSize=((arr_s.choice[b].size_text)?arr_s.choice[b].size_text:story_script.parameters.font_size);
-        choice.style.fontFamily=((arr_s.choice[b].font_family)?arr_s.choice[b].font_family:story_script.parameters.font_family);
+        if(arr_s[b].art_size){choice.style.backgroundSize=arr_s[b].art_size[0]+" "+arr_s[b].art_size[1];}else{arr_s[b].art_size=['','']}
+        if(arr_s[b].position[0]!=0){choice.style.left=arr_s[b].position[0];}
+        if(arr_s[b].position[1]!=0){choice.style.right=arr_s[b].position[1];}
+        if(arr_s[b].position[2]!=0){choice.style.top=arr_s[b].position[2];}
+        if(arr_s[b].position[3]!=0){choice.style.bottom=arr_s[b].position[3];}
+        choice.style.color=arr_s[b].color_text;
+        choice.style.fontSize=((arr_s[b].size_text)?arr_s[b].size_text:story_script.parameters.font_size);
+        choice.style.fontFamily=((arr_s[b].font_family)?arr_s[b].font_family:story_script.parameters.font_family);
         choice.style.zIndex=2001+n;
         choice.style.display="flex";
-        choice.style.justifyContent=((arr_s.choice[b].align)?arr_s.choice[b].align[0]:"center");
-        choice.style.alignItems=((arr_s.choice[b].align)?arr_s.choice[b].align[1]:"center");
-        if(arr_s.choice[b].text[languare].length>0){
-            choice.innerHTML=arr_s.choice[b].text[languare];
-            choice.style.padding=arr_s.choice[b].indent_text;
+        choice.style.justifyContent=((arr_s[b].align)?arr_s[b].align[0]:"center");
+        choice.style.alignItems=((arr_s[b].align)?arr_s[b].align[1]:"center");
+        if(arr_s[b].text[languare].length>0){
+            choice.innerHTML=arr_s[b].text[languare];
+            choice.style.padding=arr_s[b].indent_text;
         }
         scene_layout.appendChild(choice);
         choice_ec.innerHTML+=choice_panel_edit(block,i,n,b);
-    }
+    }}
 }
 function choice_panel_add(block,i,n){
     var arr_s=story_script[block][i].dialogs[n-1]
@@ -2313,11 +2317,11 @@ function choice_panel_add(block,i,n){
     choice_panel_update(block,i,n)
 }
 function choice_panel_edit(block,i,n,b){
-    var arr_s=story_script[block][i].dialogs[n-1].choice[b]
+    var arr_s=story_script[block][i].dialogs[n-1].choice
     var var_list="<table id='var_table"+b+"' width='100%'><tbody><tr><td style='width:128px;' valign='bottom'></td><td style='width:48px; border-right:1px solid var(--cb); border-left:1px solid var(--cb);'></td><td></td><td style='width:30px;'></td></tr>"
-    if (arr_s.variables){
-        for(var c=0;c<arr_s.variables.length;c++){
-            var_list+="<tr><td valign='bottom'><select class='input_text var_name' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][0]=this.value'>"+option_var(arr_s.variables[c][0])+"</select></td><td style='border-right:1px solid var(--cb); border-left:1px solid var(--cb);'><select class='input_text var_operation' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][1]=this.value'><option value='add'>add</option><option value='set' "+((arr_s.variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][2]=this.value' value='"+ arr_s.variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\"); a.parentElement.removeChild(a);' style='cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
+    if (arr_s[b].variables){
+        for(var c=0;c<arr_s[b].variables.length;c++){
+            var_list+="<tr><td valign='bottom'><select class='input_text var_name' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][0]=this.value'>"+option_var(arr_s[b].variables[c][0])+"</select></td><td style='border-right:1px solid var(--cb); border-left:1px solid var(--cb);'><select class='input_text var_operation' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][1]=this.value'><option value='add'>add</option><option value='set' "+((arr_s[b].variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][2]=this.value' value='"+ arr_s[b].variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\"); a.parentElement.removeChild(a);' style='cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
         };
     }
     var_list+="</tbody></table>"+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?"<div onclick=\"if (!story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables){story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables=[]}; story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables.push( ['"+Object.keys(story_script.parameters.variables)[0]+"','add',0] ); choice_panel_update('"+block+"',"+i+","+n+");\" class='icon_m icon_add' style='margin-top:16px;height:26px; width:100%; cursor:pointer;'></div>":"<div onclick=\"setup();set_menu(5);\" class='icon_m icon_add' style='margin-top:16px;height:26px; width:100%; cursor:pointer;'></div>")
@@ -2326,94 +2330,94 @@ function choice_panel_edit(block,i,n,b){
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+', 1);choice_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
             +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));choice_panel_update(\''+block+'\','+i+','+n+');"></td>'
             +'<td width="24px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice.splice('+b+',1);choice_panel_update(\''+block+'\','+i+','+n+');" ></td>'
-    +'</tr><tr><td id="chdbn'+b+'" colspan="4" height="24px" align="center">'+((button_name[arr_s.go_to])?button_name[arr_s.go_to]:arr_s.go_to)+'</td></tr><tr>'
+    +'</tr><tr><td id="chdbn'+b+'" colspan="4" height="24px" align="center">'+((button_name[arr_s[b].go_to])?button_name[arr_s[b].go_to]:arr_s[b].go_to)+'</td></tr><tr>'
     +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
-    +'<table id="chosp'+b+'" width="100%" style="display:'+((scen_element['chosp'+b])?scen_element['bpsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
+    +'<table id="chosp'+b+'" width="100%" style="display:'+((scen_element['chosp'+b])?scen_element['chosp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Go to</td>'
-        +'<td colspan="3"><select class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=this.value;" style="width:100%;height:28px" oninput="chdbn'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value)">'+option_block(arr_s.go_to,2)+'</select></td>'
+        +'<td colspan="3"><select class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=this.value;" style="width:100%;height:28px" oninput="chdbn'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value)">'+option_block(arr_s[b].go_to,2)+'</select></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Text</td>'
         +'<td style="width:28px;" align="center"><select id="сts'+b+'" class="input_text" onchange="сtм'+b+'.value=((story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[this.value].length>0)?story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[this.value]:\'\')" style="height:28px;width:100%;border-left:1px solid var(--cb); border-right:1px solid var(--cb); border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
-        +'<td colspan="2"><input id="сtм'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[сts'+b+'.value]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.text[languare].length>0)?arr_s.text[languare]:'')+'"></td>'
+        +'<td colspan="2"><input id="сtм'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[сts'+b+'.value]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].text[languare].length>0)?arr_s[b].text[languare]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Align</td>'
         +'<td colspan="3" align="center">'
         +'<table><tbody><tr>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-start\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-start'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
-            +'<td><input class="icon icon_cent align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'center\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='center'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-end\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-end'&&arr_s.align[1]=='flex-start')?'checked':'')+' style="transform:scaleX(-1) scaleY(-1);"></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-start\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s[b].align&&arr_s[b].align[0]=='flex-start'&&arr_s[b].align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
+            +'<td><input class="icon icon_cent align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'center\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s[b].align&&arr_s[b].align[0]=='center'&&arr_s[b].align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-end\',\'flex-start\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s[b].align&&arr_s[b].align[0]=='flex-end'&&arr_s[b].align[1]=='flex-start')?'checked':'')+' style="transform:scaleX(-1) scaleY(-1);"></td>'
         +'</tr><tr>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-start\',\'center\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-start'&&arr_s.align[1]=='center')?'checked':'')+'></td>'
-            +'<td><input class="icon icon_cent align" type="radio" name="align_c'+b+'" onchange="delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align;choice_panel_update(\''+block+'\','+i+','+n+');" '+((!arr_s.align)?'checked':'')+'></td>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-end\',\'center\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-end'&&arr_s.align[1]=='center')?'checked':'')+' style="transform:scaleX(-1);"></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-start\',\'center\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s[b].align&&arr_s[b].align[0]=='flex-start'&&arr_s[b].align[1]=='center')?'checked':'')+'></td>'
+            +'<td><input class="icon icon_cent align" type="radio" name="align_c'+b+'" onchange="delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align;choice_panel_update(\''+block+'\','+i+','+n+');" '+((!arr_s[b].align)?'checked':'')+'></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-end\',\'center\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s[b].align&&arr_s[b].align[0]=='flex-end'&&arr_s[b].align[1]=='center')?'checked':'')+' style="transform:scaleX(-1);"></td>'
         +'</tr><tr>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-start\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-start'&&arr_s.align[1]=='flex-end')?'checked':'')+'></td>'
-            +'<td><input class="icon icon_cent align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'center\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='center'&&arr_s.align[1]=='flex-end')?'checked':'')+'></td>'
-            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-end\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s.align&&arr_s.align[0]=='flex-end'&&arr_s.align[1]=='flex-end')?'checked':'')+' style="transform:scaleX(-1);"></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-start\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s[b].align&&arr_s[b].align[0]=='flex-start'&&arr_s[b].align[1]=='flex-end')?'checked':'')+'></td>'
+            +'<td><input class="icon icon_cent align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'center\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s[b].align&&arr_s[b].align[0]=='center'&&arr_s[b].align[1]=='flex-end')?'checked':'')+'></td>'
+            +'<td><input class="icon icon_left align" type="radio" name="align_c'+b+'" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].align=[\'flex-end\',\'flex-end\'];choice_panel_update(\''+block+'\','+i+','+n+');" '+((arr_s[b].align&&arr_s[b].align[0]=='flex-end'&&arr_s[b].align[1]=='flex-end')?'checked':'')+' style="transform:scaleX(-1);"></td>'
         +'</tr></tbody></table>'
         +'</td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Style CSS</td>'
-        +'<td colspan="2"><input class="input_text"  onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].style=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.style)?arr_s.style:'')+'"></td>'
+        +'<td colspan="2"><input class="input_text"  onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].style=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].style)?arr_s[b].style:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];edit_code(\'style\',\'Style CSS\');"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Width size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.size)?arr_s.size[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Height size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.size)?arr_s.size[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Color</td>'
-        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+arr_s.color+';"></div></td>'
-        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.color)?arr_s.color:'')+'"></td>'
+        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+arr_s[b].color+';"></div></td>'
+        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color)?arr_s[b].color:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color=this.value;choice_panel_update(\''+block+'\','+i+','+n+');"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Color text</td>'
-        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+arr_s.color_text+';"></div></td>'
-        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.color_text)?arr_s.color_text:'')+'"></td>'
+        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+arr_s[b].color_text+';"></div></td>'
+        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color_text)?arr_s[b].color_text:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_color"><input type="color" name="paletr" class="input_color" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Font size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.size_text)?arr_s.size_text:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size_text)?arr_s[b].size_text:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Font family</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].font_family=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.font_family)?arr_s.font_family:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].font_family=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].font_family)?arr_s[b].font_family:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].className=this.value;" type="text" style="width:100%;height:28px" value="'+((arr_s.className)?arr_s.className:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].className=this.value;" type="text" style="width:100%;height:28px" value="'+((arr_s[b].className)?arr_s[b].className:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[2]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.position)?arr_s.position[2]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[2]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].position[2]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Left position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.position)?arr_s.position[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].position[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Bottom position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[3]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.position)?arr_s.position[3]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[3]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].position[3]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.position)?arr_s.position[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].position[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Indent text</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].indent_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.indent_text)?arr_s.indent_text:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].indent_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].indent_text)?arr_s[b].indent_text:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Art</td>'
         +'<td style="width:28px;" align="center"><select id="сas'+b+'" class="input_text" onchange="сtt'+b+'.value=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb); border-right:1px solid var(--cb); border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
-        +'<td><input id="сtt'+b+'" class="input_text" onchange="var v=document.getElementById(\'сas'+b+'\');story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art[v.value]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.art[languare])?arr_s.art[languare]:'')+'"></td>'
+        +'<td><input id="сtt'+b+'" class="input_text" onchange="var v=document.getElementById(\'сas'+b+'\');story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art[v.value]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].art[languare])?arr_s[b].art[languare]:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="file_catalog(\'сtt'+b+'\',\'img\',\'сtt'+b+'\',\'cho'+b+'\',\'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art[сas'+b+'.value]\')"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Width art</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.art_size)?arr_s.art_size[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].art_size)?arr_s[b].art_size[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Height art</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.art_size)?arr_s.art_size[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].art_size)?arr_s[b].art_size[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
-        +'<td colspan="2"><input id="сst'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.sound)?arr_s.sound:'')+'"></td>'
+        +'<td colspan="2"><input id="сst'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].sound)?arr_s[b].sound:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="file_catalog(\'сst'+b+'\',\'audio\',\'сst'+b+'\',\'cho'+b+'\',\'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound\')"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">JavaScript</td>'
-        +'<td colspan="2"><input id="сst'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].js=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s.js)?arr_s.js:'')+'"></td>'
+        +'<td colspan="2"><input id="сst'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].js=this.value;choice_panel_update(\''+block+'\','+i+','+n+');" type="text" style="width:100%;height:28px" value="'+((arr_s[b].js)?arr_s.js:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];edit_code(\'js\',\'JavaScript\');"></td>'
     +'</tr><tr>'
         +'<td colspan="4" height="40px" align="left" style="padding-left:8px; border-bottom:1px solid var(--cb);">Variables</td>'
@@ -2500,8 +2504,8 @@ function button_panel_edit(b){
             +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.parameters.buttons;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));button_panel_update();"></td>'
             +'<td width="24px" '+((arr_s[b].name=='tue_back'||arr_s[b].name=='tue_next')?'':'class="icon icon_del" onmouseup="story_script.parameters.buttons.splice('+b+',1);button_panel_update();"')+' style="cursor:pointer;"></td>'
             +'</tr><tr><td id="bt'+b+'" colspan="5" height="24px" align="center">'+((button_name[arr_s[b].name])?button_name[arr_s[b].name]:'None')+'</td></tr><tr>'
-    +'<td height="22px" class="icon_m icon_more" onclick="block_open(\'bpsp'+b+'\');scen_element.bpsp'+b+'=bpsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
-    +'<table id="bpsp'+b+'" width="100%" style="display:'+((scen_element['bpsp'+b])?scen_element['bpsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
+        +'<td height="22px" class="icon_m icon_more" onclick="block_open(\'bpsp'+b+'\');scen_element.bpsp'+b+'=bpsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
+        +'<table id="bpsp'+b+'" width="100%" style="display:'+((scen_element['bpsp'+b])?scen_element['bpsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
             +'<td height="40px" align="right" style="width:40%; padding-right:8px;">Function</td>'
             +'<td colspan="3"><select class="input_text" oninput="bt'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value);story_script.parameters.buttons['+b+'].name=this.value;" style="width:100%;height:28px">'+option_block(arr_s[b].name,3)+'</select></select></td>'
         +'</tr><tr>'
