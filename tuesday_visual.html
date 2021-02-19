@@ -138,6 +138,7 @@ line{stroke:var(--cl);stroke-dasharray:20;stroke-width:2;animation:dash 4s linea
 .img_wait{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4NCjxjaXJjbGUgY3g9IjY0IiBjeT0iNjQiIHI9IjU2IiBzdHlsZT0ic3Ryb2tlOiAjMDAwOyBzdHJva2UtZGFzaGFycmF5OjM2MDsgc3Ryb2tlLWRhc2hvZmZzZXQ6MzYwOyBzdHJva2Utd2lkdGg6NjsgZmlsbDp0cmFuc3BhcmVudCI+DQo8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZHVyPSIxLjVzIiB0bz0iLTM2MCIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4NCjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjAgNjQgNjQ7MzYwIDY0IDY0IiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPg0KPC9jaXJjbGU+DQo8L3N2Zz4NCg==")}
 .icon_left{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEyOSwxNjBIMTBNMTI5LDMySDEwTTI0NSw5NkgxME0xOTEsMjI0SDkiLz48L3N2Zz4K")}
 .icon_cent{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTE4NywxNjBINjhNMTg3LDMySDY4TTI0NSw5NkgxME0yMTgsMjI0SDM2Ii8+PC9zdmc+Cg==")}
+.icon_char{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSI2IiBkPSJNNSwxMjZjMC0yNSwyNy00Niw2MC00NnM1OSwyMC41ODQsNTksNDZNNjUsNjNBMzAsMzAsMCwxLDEsOTUsMzMsMzAsMzAsMCwwLDEsNjUsNjNaIi8+PC9zdmc+Cg==")}
 .scene{background-color:var(--cb);border-radius:12px;padding:4px;margin-top:4px;}
 .dialog_element{padding:4px;font-size:12px;border-radius:6px;background-color:#fff;margin-bottom:4px;}
 .dialog{margin-top:4px;padding:4px;border-radius:8px;background-color:var(--cw);}
@@ -727,8 +728,10 @@ function parse_story(){
     while(story_lines.hasChildNodes()){story_lines.removeChild(story_lines.firstChild);}
     all_blocks=0;
 	if(!story_script.blocks){story_script.blocks={}}
-    if(!story_script.parameters.title){story_script.parameters.title=""}
     if(!story_script.parameters.key){story_script.parameters.key=""}
+    if(!story_script.parameters.title){story_script.parameters.title=""}
+    if(!story_script.parameters.variables){story_script.parameters.variables={}}
+    if(!story_script.parameters.characters){story_script.parameters.characters={}}
     while(Object.keys(story_script)[all_blocks]){creation_block(all_blocks);all_blocks++;}
 	if(story_script.parameters.languares){lang_select()}
     control_dlock()
@@ -781,7 +784,7 @@ function creation_block(b){
             if(story_script[chapter.id][i].dialogs){
                 for(var d=0;d<story_script[chapter.id][i].dialogs.length;d++){
 					element+="<div class='dialog' id='d_"+chapter.id+"_"+i+"_"+d+"'>"+"<table height='22px' width='100%' style='margin-bottom:4px'><tbody><tr><td width='24px' class='icon_m icon_up' title='Dialog up' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",-1)'></td><td width='24px' class='icon_m icon_down' title='Dialog down' onmouseup='move_elenetn(story_script."+chapter.id+"["+i+"].dialogs,"+d+",1)'></td><td><p class='namber'>scene:"+(i+1)+" | dialog:"+(d+1)+"</p></td><td id='m_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs;arr_n="+d+";dialog_m(this.id,'"+(d+1)+"','"+chapter.id+"',"+i+")\" class='add_button icon_m icon_show' title='Dialog'></td></tr></tbody></table>"
-                    var n=languare_data(story_script[chapter.id][i].dialogs[d].name);
+                    var n=(story_script[chapter.id][i].dialogs[d].name&&story_script.parameters.characters[story_script[chapter.id][i].dialogs[d].name])?story_script.parameters.characters[story_script[chapter.id][i].dialogs[d].name][languare]:languare_data(story_script[chapter.id][i].dialogs[d].name)
 					if(story_script[chapter.id][i].dialogs[d].back_to){
                         go=story_script[chapter.id][i].dialogs[d].back_to;
                         if(story_script[go]){
@@ -808,8 +811,10 @@ function creation_block(b){
                     }
                     if(story_script[chapter.id][i].dialogs[d].text){
 						var t=languare_data(story_script[chapter.id][i].dialogs[d].text)
-						element+="<div class='dialog_element' align='left'>"
-								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n.length>0)?"<p><b>"+n+"</p></b>" :"&nbsp;")+"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text';dialog_el(this.id,'Text',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table>"
+                        element+="<div class='dialog_element' align='left'>"
+								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"
+                                +((n)?"<p><b>"+n+"</p></b>" :"&nbsp;")
+                                +"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text';dialog_el(this.id,'Text',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table>"
 								+"<p style='padding:4px;'>"+((t.length>0)?t:'&nbsp;')+"</p></div>"
 					}
                     if(story_script[chapter.id][i].dialogs[d].text_add){
@@ -1299,6 +1304,11 @@ function build(tip){
     var fonts=""
     if(story_build.parameters.font_files){for(var i=0;i<Object.keys(story_build.parameters.font_files).length;i++){fonts+="@font-face{font-family:"+Object.keys(story_build.parameters.font_files)[i]+";src:url("+story_build.parameters.font_files[Object.keys(story_build.parameters.font_files)[i]]+");} "}}
     var par=[((story_script.parameters.font)?story_script.parameters.font:0),((story_script.parameters.font_size)?story_script.parameters.font_size:0),((story_script.parameters.icon)?story_script.parameters.icon:0)]
+    if(Object.keys(story_script.parameters.characters).length==0){delete story_script.parameters.characters}
+    if(Object.keys(story_script.parameters.variables).length==0){delete story_script.parameters.variables}
+    if(Object.keys(story_script.parameters.sounds).length==0){delete story_script.parameters.sounds}
+    if(Object.keys(story_script.parameters.key).length==0){delete story_script.parameters.key}
+    if(story_script.parameters.style_file.length==0){delete story_script.parameters.style_file}
     delete story_build.parameters['plugins'];
     delete story_build.parameters['font'];
     delete story_build.parameters['font_size'];
@@ -1814,7 +1824,7 @@ function dialog_text_edit(){
 	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='text_class' class='input_text' value='"+((copy_arr[arr_n].className)?copy_arr[arr_n].className:"")+"' type='text'></td><td></td></tr>"
 	+"<tr><td height='28px' align='left' colspan='3'></td></tr>"
 	+"<tr><td height='40px' align='left' style='padding-left:8px; border-bottom:1px solid var(--cb);' colspan='3'>Settings name panel</td></tr>"
-	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Character name</td><td><input id='name_text' class='input_text' oninput='"+((n)?"story_script.parameters.characters[copy_arr.name][text_la.value]=this.value;":"copy_arr.name[text_la.value]=this.value;")+"' value='"+((n&&n[languare])?n[languare]:((copy_arr.name[languare])?copy_arr.name[languare]:""))+"' type='text'></td><td class='icon icon_load'></td></tr>"
+	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Character name</td><td><input id='name_text' class='input_text' oninput='"+((n)?"story_script.parameters.characters[copy_arr.name][text_la.value]=this.value;":"copy_arr.name[text_la.value]=this.value;")+"' value='"+((n&&n[languare])?n[languare]:((copy_arr.name[languare])?copy_arr.name[languare]:""))+"' type='text'></td><td class='icon icon_char' style='cursor:pointer;' onclick='dialog_char();'></td></tr>"
 	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Style</td><td><input id='c_style' class='input_text' value='"+((n&&n.style)?n.style:((copy_arr.name.style)?copy_arr.name.style:""))+"' type='text'></td><td></td></tr>"
 	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='c_class' class='input_text' value='"+((n&&n.className)?n.className:((copy_arr.name.className)?copy_arr.name.className:""))+"' type='text'></td><td></td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='t_color' class='input_text' value='"+((n&&n.color_text)?n.color_text:((copy_arr.name.color_text)?copy_arr.name.color_text:""))+"' type='text'></td>"
@@ -1825,14 +1835,37 @@ function dialog_text_edit(){
 	+"</tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
+function dialog_char(){
+    var code,f,t,a;
+    code='<div class="window" style="width:480px; position:fixed;"><table style="width:100%;"><tbody><tr>'
+        +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center" onclick="" width="52px"></td>'
+        +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Character selection</td>'
+        +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center" title="update working folder" onclick="load_new=true;json_file.click();menu_add.style.visibility=\'hidden\';" width="52px" class="icon icon_load"></td>'
+        +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center" width="88px"><input type="text" class="search" id="search_file" onkeyup="search_file()" placeholder="search file"></td>'
+        +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center" onclick="menu_add.style.visibility=\'hidden\';" width="52px" class="icon icon_close"></td>'
+        +'</tr><tr><td colspan="5"><div style="overflow-x:hidden;overflow-y:auto;max-height:80vh;"><table style="width:100%;"><tbody>'
+    for(t=0;t<Object.keys(story_script.parameters.characters).length;t++){
+        var p=story_script.parameters.characters[Object.keys(story_script.parameters.characters)[t]][languare]
+        code+='<tr><td class="add_el add_file" title="'+p+'" style="height:42px;padding:4px;border-bottom:1px solid var(--cb);" onclick="copy_arr.name=\''+Object.keys(story_script.parameters.characters)[t]+'\';dialog_char_update();menu_add.style.visibility=\'hidden\';"><table style="height:42px;"><tbody><tr><td class="icon icon_char" width="42px"></td><td style="padding:0px 8px;">'+p+'</td></tr></tbody></table></td></tr>'
+    }
+    code+='</tbody></table></div></td></tr><tr><td colspan="5" style="border-radius:0 0 16px 16px;height:16px;"></td></tr></tbody></table></div>'
+    menu_file=document.getElementById('add_element');
+    menu_file.innerHTML=code
+    menu_file.style.visibility='visible';
+}
+function dialog_char_update(){
+    name_text.value=copy_arr.name
+    c_class.value=(story_script.parameters.characters[copy_arr.name].className)?story_script.parameters.characters[copy_arr.name].className:'';
+    t_color.value=(story_script.parameters.characters[copy_arr.name].color_text)?story_script.parameters.characters[copy_arr.name].style:'';
+    c_style.value=(story_script.parameters.characters[copy_arr.name].style)?story_script.parameters.characters[copy_arr.name].style:'';
+    c_color.value=(story_script.parameters.characters[copy_arr.name].color)?story_script.parameters.characters[copy_arr.name].color:'';
+}
 function dialog_text_apply(){
 	if(text_style.value!=""){copy_arr[arr_n].style=text_style.value;}else{delete copy_arr[arr_n].style};
 	if(text_class.value!=""){copy_arr[arr_n].className=text_class.value;}else{delete copy_arr[arr_n].className};
     if(text_color.value!=""){arr_l.color_text=text_color.value;}else{delete arr_l.color_text};
     if(p_color.value!=""){arr_l.color=p_color.value;}else{delete arr_l.color};
     data_only(copy_arr,'text');
-    
-    if(!story_script.parameters.characters){story_script.parameters.characters={};}
     var arr_s=story_script.parameters.characters,n,l,c=0;
     if(!story_script.parameters.characters[copy_arr.name]){
         for(l=0;l<story_script.parameters.languares.length;l++){
@@ -1844,9 +1877,7 @@ function dialog_text_apply(){
             if(n==''){n='char'+Object.keys(arr_s).length}
             arr_s[n]=JSON.parse(JSON.stringify(copy_arr.name))
         }
-    }else{
-        n=copy_arr.name;
-    };
+    }else{n=copy_arr.name;};
     if(n){
         if(c_style.value!=""){arr_s[n].style=c_style.value;}else{delete arr_s[n].style}
         if(c_class.value!=""){arr_s[n].className=c_class.value;}else{delete arr_s[n].className}
@@ -1854,7 +1885,6 @@ function dialog_text_apply(){
         if(c_color.value!=""){arr_s[n].color=c_color.value;}else{delete arr_s[n].color};
         arr_l.name=n
     }
-    
 	arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));
 	modal_window("close");
     if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
@@ -1864,7 +1894,7 @@ function scene_edit(){
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
     if(!copy_arr[arr_n].background_image){copy_arr[arr_n].background_image=""}
     if(!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
-    var html="<div class='window' style='padding:24px 8px; width:640px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Settings scene</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[2].en+"</p><br><br>"
+    var html="<div class='window' style='padding:24px 8px; width:640px;'><div style='position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>Settings scene</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[2].en+"</p><br><br>"
     +"<table width='100%' height='256px'><tbody><tr>"
     +"<td width='256px' id='scene_bg_preview' rowspan='6' style='border-radius:10px; background-color:var(--cw); background-image:url("+open_file((copy_arr[arr_n].background_image[languare])?copy_arr[arr_n].background_image[languare]:copy_arr[arr_n].background_image)+"); background-color:"+copy_arr[arr_n].background_color+"; background-size:cover; background-repeat:no-repeat; background-position:center;'>&nbsp;</td>"
     +"<td width='50px' align='right' style='height:28px;padding-right:8px;'>Image:</td>"
@@ -1953,7 +1983,7 @@ function edit_choice(){
         choice_list+="<tr><td style='width:32px;height:26px;'>Text</td><td valign='bottom' style='height:26px;width:28px;'><select id='chol"+l+"' class='input_text' onchange='cho"+l+".value=copy_arr."+arr_n+"["+l+"].text[this.value];' style='height:26px;width:30px;border-left:1px solid var(--cb); border-right:1px solid var(--cb); border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select></td><td><input id='cho"+l+"' class='input_text' oninput='copy_arr."+arr_n+"["+l+"].text[chol"+l+".value]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].text[languare]+"' type='text'></td><td style='width:64px;padding-right:8px;' align='right'>Position X</td><td style='width:48px;'><input class='input_text' style='height:26px;' oninput='copy_arr."+arr_n+"["+l+"].position[0]=this.value;' value='"+copy_arr[arr_n][l].position[0]+"' type='text'></td><td style='width:16px;' align='center'>Y</td><td style='width:48px;'><input class='input_text' oninput='copy_arr."+arr_n+"["+l+"].position[2]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].position[2]+"' type='text'></td><td style='width:48px;' align='right'>go to:</td><td style='width:92px;'><select onchange='copy_arr."+arr_n+"["+l+"].go_to=this.value;' class='input_text'>"+option_block(copy_arr[arr_n][l].go_to,2)+"</select></td><td onclick='copy_arr."+arr_n+"["+l+"]={}; var a=this.closest(\"tr\"); a.parentElement.removeChild(a);' style='width:32px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
     }
     choice_list+="</tbody></table>"
-    var html="<div class='window' style='padding:24px 8px;width:568px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Choice edit</p><br><hr style='margin:0;'><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'>"+choice_list+"<div onclick=\"edit_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div></div><br><br><table class='big_button' width='256px' onclick='for(var l=copy_arr[arr_n].length;l>=0;l--){if(!copy_arr[arr_n][l]||!copy_arr[arr_n][l].go_to){copy_arr[arr_n].splice(l,1);}else{data_only(copy_arr[arr_n][l],\"text\");}};arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    var html="<div class='window' style='padding:24px 8px;width:568px;'><div style'position:relative;'><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><p>Choice edit</p><br><hr style='margin:0;'><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'>"+choice_list+"<div onclick=\"edit_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px;width:26px;cursor:pointer;'></div></div><br><br><table class='big_button' width='256px' onclick='for(var l=copy_arr[arr_n].length;l>=0;l--){if(!copy_arr[arr_n][l]||!copy_arr[arr_n][l].go_to){copy_arr[arr_n].splice(l,1);}else{data_only(copy_arr[arr_n][l],\"text\");}};arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_choice_new(){
@@ -2736,7 +2766,7 @@ function setup(){
             +big_languares(Object.keys(story_script.parameters.title)[i])+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' value='"+story_script.parameters.title[Object.keys(story_script.parameters.title)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";
         }
     }
-    var plugins_show="<table id='plugin' style='width:100%;  border-spacing:10px; border-collapse:separate;'>"
+    var plugins_show="<table id='plugin' style='width:100%;border-spacing:10px;border-collapse:separate;'>"
     var plugins_name
     for(i=0;i<Object.keys(plugins_list).length;i++){plugins_name=Object.keys(plugins_list)[i];plugins_show+="<tr><td align='right' style='padding-top:4px; height:40px;'><input id='"+plugins_name+"' type='checkbox' class='chec_plugin checkbox_a' "+((story_script.parameters.plugins.indexOf(plugins_name)>-1)?'checked' :'')+"></td><td align='left' style='width:80px;'>"+plugins_list[plugins_name].name+"</td><td>"+plugins_list[plugins_name].text+"</td></tr>"}
     plugins_show+="</table>"
@@ -2766,14 +2796,14 @@ function setup(){
         "<tr><td align='right'>back </td><td align='left'><input id='key_back' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.back)?story_script.parameters.key.back :'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>save stage</td><td align='left'><input id='key_save' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.save)?story_script.parameters.key.save :'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>load stage</td><td align='left'><input id='key_load' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.load)?story_script.parameters.key.load :'')+"' type='text'></td></tr>"+
-        "<tr><td align='right'>full screen </td><td align='left'><input id='key_full_screen' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.full_screen)?story_script.parameters.key.full_screen :'')+"' type='text'></td></tr>"+
-        "<tr><td align='right'>launch screen </td><td align='left'><input id='key_launch_story' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.launch_story)?story_script.parameters.key.launch_story :'')+"' type='text'></td></tr>"+
-        "<tr><td align='right'>load autosave </td><td align='left' style='width:60%;'><input id='key_load_autosave' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.load_autosave)?story_script.parameters.key.load_autosave :'')+"' type='text'></td></tr>"+
+        "<tr><td align='right'>full screen</td><td align='left'><input id='key_full_screen' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.full_screen)?story_script.parameters.key.full_screen :'')+"' type='text'></td></tr>"+
+        "<tr><td align='right'>launch screen</td><td align='left'><input id='key_launch_story' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.launch_story)?story_script.parameters.key.launch_story :'')+"' type='text'></td></tr>"+
+        "<tr><td align='right'>load autosave</td><td align='left' style='width:60%;'><input id='key_load_autosave' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.load_autosave)?story_script.parameters.key.load_autosave :'')+"' type='text'></td></tr>"+
         "</table></div>"+
         //
         "<div id='blank_5' style='visibility:hidden;' class='set_blank'>"+var_list+"</div>"+
         "<div id='blank_4' style='visibility:hidden;' class='set_blank'>"+sound_list+"</div>"+
-        "<div id='blank_7' style='visibility:hidden;' class='set_blank'>Characters</div>"+
+        "<div id='blank_7' style='visibility:hidden;' class='set_blank'>"+chars_list()+"</div>"+
         "<div id='blank_3' style='visibility:hidden;' class='set_blank'>"+font_list+"</div>"+
         //
         "<div id='blank_1' style='visibility:hidden;' class='set_blank'><br><p align='left' style=' margin-left:8px;'>Devices control</p><hr><form id='devices'><table id='controll' style='width:100%;  border-spacing:10px; border-collapse:separate;'>"+
@@ -2814,10 +2844,33 @@ function setup(){
         "<tr><td id='set_5' onclick='set_menu(4)' align='right' class='set_button'>Sounds</td></tr>"+
         "<tr><td id='set_6' onclick='set_menu(5)' align='right' class='set_button'>Variables</td></tr>"+
         "<tr><td id='set_7' onclick='set_menu(6)' align='right' class='set_button'>Keyboard</td></tr>"+
-        "<tr><td id='set_8' onclick='set_menu(7)' align='right' class='set_button' style='border-radius:0 0 0 16px;'>Characters</td></tr>"+
+        "<tr><td id='set_8' onclick='set_menu(7)' align='right' class='set_button' style='border-radius:0 0 0 16px;padding-left:20px;'>Characters</td></tr>"+
         "<tr><td style='border-right:1px solid var(--cb);'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='apply_setup()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
+function chars_list(){
+    var chars_list='';
+    if(story_script.parameters.characters){
+        var arr_s=story_script.parameters.characters
+        for(var i=0;i<Object.keys(arr_s).length;i++){
+            chars_list+="<table class='ui_buttons dialog' style='width:calc(100% - 16px);margin:8px;border-spacing:4px;border-collapse:separate;'><tbody>"
+            +"<tr><td colspan='2' align='center'><table style='height:22px;width:100%;'><tbody><tr>"
+                +"<td width='20px'></td>"
+                +"<td width='24px'></td>"
+                +"<td></td>"
+                +"<td width='32px' class='icon_m icon_copu' title='duplicate' onclick='story_script.parameters.characters."+Object.keys(arr_s)[i]+"_copu=JSON.parse(JSON.stringify(story_script.parameters.characters."+Object.keys(arr_s)[i]+"));chars_list_update();'></td>"
+                +"<td width='32px' class='icon icon_del' title='delete' style='cursor:pointer;' onclick='delete story_script.parameters.characters."+Object.keys(arr_s)[i]+";chars_list_update();'></td>"
+            +"</tr></tbody></table></td></tr>"
+            for(var l=0;l<story_script.parameters.languares.length;l++){chars_list+="<tr><td align='right'>"+story_script.parameters.languares[l]+"</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+"."+story_script.parameters.languares[l]+"=this.value' value='"+((arr_s[Object.keys(arr_s)[i]][story_script.parameters.languares[l]])?arr_s[Object.keys(arr_s)[i]][story_script.parameters.languares[l]]:"")+"' type='text'></td></tr>"}
+            chars_list+="<tr><td align='right'>class name</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".className=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].className)?arr_s[Object.keys(arr_s)[i]].className:"")+"' type='text'></td></tr>"
+            +"<tr><td align='right'>style</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".style=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].style)?arr_s[Object.keys(arr_s)[i]].style:"")+"' type='text'></td></tr>"
+            +"<tr><td align='right'>color</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".color=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].color)?arr_s[Object.keys(arr_s)[i]].color:"")+"' type='text'></td></tr>"
+            +"<tr><td align='right'>color text</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".color_text=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].color_text)?arr_s[Object.keys(arr_s)[i]].color_text:"")+"' type='text'></td></tr>"
+            +"</tbody></table>"
+        }
+    } return chars_list+"<div onclick='story_script.parameters.characters.char"+Object.keys(story_script.parameters.characters).length+"={};chars_list_update();' class='icon icon_add' style='margin:16px 0 0 45%;height:26px; width:26px; cursor:pointer;'></div>";
+}
+function chars_list_update(){blank_7.innerHTML=chars_list();}
 function set_menu(name){
     var li=document.getElementsByClassName("set_button");
     for(var i=0;i<li.length;i++){
