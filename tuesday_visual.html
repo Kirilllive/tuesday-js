@@ -2254,7 +2254,7 @@ function art_panel_add(block,i,n){
 }
 function art_panel_edit(block,i,n,b){
     var arr_s=story_script[block][i].dialogs[n-1]
-    var html='<div id="b_art'+b+'" class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
+    var html='<div id="b_art'+b+'" class="ui_buttons dialog" style="margin:8px;"><table style="width:100%" ondblclick="objSelect(\'art'+b+'\');story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+']"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',-1);art_panel_update(\''+block+'\','+i+','+n+');"height="22px"></td>'
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',1);art_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
             +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));art_panel_update(\''+block+'\','+i+','+n+');"></td>'
@@ -2376,7 +2376,7 @@ function choice_panel_edit(block,i,n,b){
         };
     }
     var_list+="</tbody></table>"+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?"<div onclick=\"if (!story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables){story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables=[]}; story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables.push( ['"+Object.keys(story_script.parameters.variables)[0]+"','add',0] ); choice_panel_update('"+block+"',"+i+","+n+");\" class='icon_m icon_add' style='margin-top:16px;height:26px; width:100%; cursor:pointer;'></div>":"<div onclick=\"setup();set_menu(5);\" class='icon_m icon_add' style='margin-top:16px;height:26px; width:100%; cursor:pointer;'></div>")
-    var html='<div id="b_cho'+b+'" class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
+    var html='<div id="b_cho'+b+'" class="ui_buttons dialog" style="margin:8px;"><table style="width:100%" ondblclick="objSelect(\'cho'+b+'\');arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+']"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+',-1);choice_panel_update(\''+block+'\','+i+','+n+');"height="22px"></td>'
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+', 1);choice_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
             +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));choice_panel_update(\''+block+'\','+i+','+n+');"></td>'
@@ -2549,7 +2549,7 @@ function button_panel_edit(b){
         }
         b=a-1
     }
-    var html='<div id=b_'+arr_s[b].name+b+' class="ui_buttons dialog" style="margin:8px;"><table style="width:100%"><tbody><tr>'
+    var html='<div id=b_'+arr_s[b].name+b+' class="ui_buttons dialog" style="margin:8px;"><table style="width:100%" ondblclick="objSelect(\''+arr_s[b].name+b+'\');arr_e=story_script.parameters.buttons['+b+']"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up" onclick="move_elenetn(story_script.parameters.buttons,'+b+',-1);button_panel_update();" height="22px"></td>'
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.parameters.buttons,'+b+', 1);button_panel_update();"></td><td>&nbsp;</td>'
             +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.parameters.buttons;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));button_panel_update();"></td>'
