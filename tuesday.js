@@ -59,6 +59,25 @@ function get_lang(){
 			if(this.status == 0){alert( 'Error load json file Cross-Origin Resource Sharing(CORS)' );}
 		}
     }
+}
+function name_block_update(){
+		if(story_json.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_json.parameters.name_panel.color;}
+        if(story_json.parameters.name_panel.color_text){tue_name_block.style.color=story_json.parameters.name_panel.color_text;} else {tue_name_block.style.color=story_json.parameters.text_panel.color_text}
+		tue_name_block.style.position="absolute";
+        tue_name_block.id="tue_name_block";
+        tue_name_block.style.padding=story_json.parameters.name_panel.indent_text;
+        tue_name_block.style.fontSize=story_json.parameters.name_panel.size_text;
+        tue_name_block.style.fontFamily=((story_json.parameters.name_panel.font_family)?story_json.parameters.name_panel.font_family:story_json.parameters.font);
+        tue_name_block.style.textAlign="center";
+        if(tue_name_block.style.width=story_json.parameters.name_panel.size[0]!=0){tue_name_block.style.width=story_json.parameters.name_panel.size[0];}
+        tue_name_block.style.height=story_json.parameters.name_panel.size[1];
+        tue_name_block.style.lineHeight=story_json.parameters.name_panel.size[1];
+        if(story_json.parameters.name_panel.position[0]!=0){tue_name_block.style.left=story_json.parameters.name_panel.position[0];}
+        if(story_json.parameters.name_panel.position[1]!=0){tue_name_block.style.right=story_json.parameters.name_panel.position[1];}
+        if(story_json.parameters.name_panel.position[2]!=0){tue_name_block.style.top=story_json.parameters.name_panel.position[2];}
+        if(story_json.parameters.name_panel.position[3]!=0){tue_name_block.style.bottom=story_json.parameters.name_panel.position[3];}
+        tue_name_block.style.zIndex=1001;
+        
 } function base_creation(){
     get_lang();
 	if(story_json.parameters.style_file){add_style(story_json.parameters.style_file)}
@@ -103,23 +122,8 @@ function get_lang(){
     if(story_json.parameters.name_panel){
         if(story_json.parameters.name_panel.className){tue_name_block.className=story_json.parameters.name_panel.className;}
         if(story_json.parameters.name_panel.style){tue_name_block.style=story_json.parameters.name_panel.style;}
-		if(story_json.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_json.parameters.name_panel.color;}
-        if(story_json.parameters.name_panel.color_text){tue_name_block.style.color=story_json.parameters.name_panel.color_text;} else {tue_name_block.style.color=story_json.parameters.text_panel.color_text}
-		tue_name_block.style.position="absolute";
-        tue_name_block.id="tue_name_block";
-        tue_name_block.style.padding=story_json.parameters.name_panel.indent_text;
-        tue_name_block.style.fontSize=story_json.parameters.name_panel.size_text;
-        tue_name_block.style.fontFamily=((story_json.parameters.name_panel.font_family)?story_json.parameters.name_panel.font_family:story_json.parameters.font);
-        tue_name_block.style.textAlign="center";
-        if(tue_name_block.style.width=story_json.parameters.name_panel.size[0]!=0){tue_name_block.style.width=story_json.parameters.name_panel.size[0];}
-        tue_name_block.style.height=story_json.parameters.name_panel.size[1];
-        tue_name_block.style.lineHeight=story_json.parameters.name_panel.size[1];
-        if(story_json.parameters.name_panel.position[0]!=0){tue_name_block.style.left=story_json.parameters.name_panel.position[0];}
-        if(story_json.parameters.name_panel.position[1]!=0){tue_name_block.style.right=story_json.parameters.name_panel.position[1];}
-        if(story_json.parameters.name_panel.position[2]!=0){tue_name_block.style.top=story_json.parameters.name_panel.position[2];}
-        if(story_json.parameters.name_panel.position[3]!=0){tue_name_block.style.bottom=story_json.parameters.name_panel.position[3];}
-        tue_name_block.style.zIndex=1001;
         tue_text_element.appendChild(tue_name_block);
+        name_block_update();
     }
     tue_bg_music=document.createElement("AUDIO");
     tue_bg_music.id="tue_bg_music";
@@ -273,15 +277,17 @@ function get_lang(){
 		else if(story_json.parameters.text_panel.color_text){tue_text_view.style.color=story_json.parameters.text_panel.color_text;}
         if(arr_dialog.name){
             if(arr_dialog.name[languare]){
+                if(arr_dialog.name.style){tue_name_block.style=arr_dialog.name.style;name_block_update();} else if(story_json.parameters.name_panel.style){tue_name_block.style=story_json.parameters.name_panel.style;name_block_update();}
                 tue_name_block.innerHTML=arr_dialog.name[languare]
                 tue_name_block.style.backgroundColor=arr_dialog.name.color;
                 tue_name_block.style.color=arr_dialog.name.color_text;
                 if(arr_dialog.name.className){ tue_name_block.className=arr_dialog.name.className}
             } else if(story_json.parameters.characters){
 				if(story_json.parameters.characters[arr_dialog.name]){
-                tue_name_block.innerHTML=story_json.parameters.characters[arr_dialog.name][languare]
-                tue_name_block.style.backgroundColor=story_json.parameters.characters[arr_dialog.name].color;
-                tue_name_block.style.color=story_json.parameters.characters[arr_dialog.name].color_text;
+                    if(story_json.parameters.characters[arr_dialog.name].style){tue_name_block.style=story_json.parameters.characters[arr_dialog.name].style;name_block_update();} else if(story_json.parameters.name_panel.style){tue_name_block.style=story_json.parameters.name_panel.style;name_block_update();}
+                    tue_name_block.innerHTML=story_json.parameters.characters[arr_dialog.name][languare]
+                    tue_name_block.style.backgroundColor=story_json.parameters.characters[arr_dialog.name].color;
+                    tue_name_block.style.color=story_json.parameters.characters[arr_dialog.name].color_text;
 					if(story_json.parameters.characters[arr_dialog.name].className){
 						tue_name_block.className=story_json.parameters.characters[arr_dialog.name].className
 					}
