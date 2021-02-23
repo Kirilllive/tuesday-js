@@ -433,6 +433,7 @@ function name_block_update(){
 				}
             }
         }
+        del_element("tue_html_dialog");
         if (arr_dialog.html){
             if (arr_dialog.html[languare]){
                 var html=document.createElement("div");
