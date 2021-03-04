@@ -41,7 +41,7 @@ function get_lang(){
         story_json=url;
         base_creation();
         tuesday.dispatchEvent(new Event('script_loaded'));
-		creation_sound();
+		if(story_json.parameters.sounds){creation_sound();}
     } else if(tip == 'file'){
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.onreadystatechange=function(){
@@ -50,7 +50,7 @@ function get_lang(){
 				catch(e){ if(this.status > 0){alert('Json structure error')}}
                 base_creation();
                 tuesday.dispatchEvent(new Event('script_loaded'));
-				creation_sound();
+				if(story_json.parameters.sounds){creation_sound()};
             }
         };
         xmlhttp.open("GET",url,true);
@@ -333,6 +333,67 @@ function name_block_update(){
 			}
             tue_name_block.style.visibility='visible';
         }else{tue_name_block.style.visibility='hidden';}
+        if(arr_dialog.video){
+            var video=document.getElementsByClassName("tue_video")[0];
+            var source
+            if(!video){
+                video=document.createElement("video");
+                source=document.createElement("source");
+                video.classList.add("tue_video");
+            }else{source=video.getElementsByTagName("source").item(0)}
+            if(arr_dialog.video.style){video.style=arr_dialog.video.style;}else{video.style='';}
+            if(arr_dialog.video.className){video.style=arr_dialog.video.className+" tue_video"}
+            video.style.position="absolute";
+            source.src=art_data(arr_dialog.video.url)
+            video.style.minWidth="100%";
+            video.style.minHeight="100%";
+            video.style.left="50%";
+            video.style.top="50%";
+            video.style.transform='translateX(-50%) translateY(-50%)';
+            if(arr_dialog.video.fit){
+                if(arr_dialog.video.fit=='contain'){
+                    video.style.minWidth="0";
+                    video.style.minHeight="0";
+                    video.style.width="100%";
+                    video.style.height="100%";
+                } else if(arr_dialog.video.fit=='position'){
+                    video.style.minWidth='0';
+                    video.style.minHeight='0';
+                    video.style.transform='none';
+                    video.style.width=arr_dialog.video.size[0];
+                    video.style.height=arr_dialog.video.size[1];
+                    if(arr_dialog.video.position[0]!=0){video.style.left=arr_dialog.video.position[0];}
+                    if(arr_dialog.video.position[1]!=0){video.style.right=arr_dialog.video.position[1];}
+                    if(arr_dialog.video.position[2]!=0){video.style.top=arr_dialog.video.position[2];}
+                    if(arr_dialog.video.position[3]!=0){video.style.bottom=arr_dialog.video.position[3];}
+                }
+            }
+            video.autoplay=true;
+            if(arr_dialog.video.loop){video.loop=arr_dialog.video.loop;}else{video.loop=false;}
+            if(arr_dialog.video.sound && arr_dialog.video.sound>0){video.muted=false;video.volume=arr_dialog.video.sound/100;}else{video.muted=true;}
+            if(arr_dialog.video.time_start){video.currentTime=arr_dialog.video.time_start}
+            if(arr_dialog.video.time_end){
+                if(arr_dialog.video.loop){
+                    video.ontimeupdate=function(){if(video.currentTime>=arr_dialog.video.time_end){video.currentTime=((arr_dialog.video.time_start)?arr_dialog.video.time_start:0)}}
+                } else if(arr_dialog.video.go_to){
+                    video.ontimeupdate=function(){if(video.currentTime>=arr_dialog.video.time_end){
+                    video.pause();
+                    if (arr_dialog.video.go_to=="tue_go"){go_story(true);}
+                    else {go_to(arr_dialog.video.go_to)}
+                }}
+                } else {
+                    video.ontimeupdate=function(){if(video.currentTime>=arr_dialog.video.time_end){video.pause()}}
+                }
+            }else{
+                video.onended=function(){
+                    if (arr_dialog.video.go_to=="tue_go"){go_story(true)}
+                    else {go_to(arr_dialog.video.go_to)}
+                }
+            }
+            video.play();
+            video.appendChild(source);
+            tuesday.appendChild(video);
+        }else{del_element("tue_video");}
         if(arr_dialog.art){
             var old=document.getElementById("tuesday").getElementsByClassName("tue_art");
             var src=false
