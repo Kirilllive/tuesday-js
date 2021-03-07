@@ -363,7 +363,6 @@ function name_block_update(){
                     if(arr_dialog.video.position[3]!=0){video.style.bottom=arr_dialog.video.position[3];}
                 } else if(arr_dialog.video.fit=='cover'){video.setAttribute('onloadedmetadata','video_size();');}
             } else {video.setAttribute('onloadedmetadata','video_size();');}
-            video.autoplay=true;
             if(arr_dialog.video.loop){video.loop=arr_dialog.video.loop;}else{video.loop=false;}
             if(arr_dialog.video.sound && arr_dialog.video.sound>0){video.muted=false;video.volume=arr_dialog.video.sound/100;}else{video.muted=true;}
             if(arr_dialog.video.time_start){video.currentTime=arr_dialog.video.time_start}
@@ -385,7 +384,7 @@ function name_block_update(){
                     else {go_to(arr_dialog.video.go_to)}
                 }
             }
-            video.play();
+            if(!arr_dialog.video.stop||arr_dialog.video.stop!=true){video.autoplay=true;tue_video.play();}
             video.appendChild(source);
             tuesday.appendChild(video);
             if(arr_dialog.video.fit=='cover'||!arr_dialog.video.fit){video_size();}
