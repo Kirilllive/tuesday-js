@@ -15,9 +15,9 @@ Documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
 
 Patreon: https://www.patreon.com/kirill_live
 
-itch.io: https://kirill-live.itch.io/tuesday
+itch.io: https://kirill-live.itch.io/tuesday-js
 
-Twitter: https://twitter.com/TuesdayJs
+Twitter: https://twitter.com/TuesdayJS_vn
 
 # Visual editor
 
@@ -108,7 +108,7 @@ Tutorial for creating visual novels: https://kirilllive.github.io/tuesday-js/tut
 # Tutorial for RunTime
 
 step 1
-The engine file "tuesday.js" downloaded from https://kirilllive.github.io/Tuesday/tuesday.js
+The engine file "tuesday.js" downloaded from https://kirilllive.github.io/tuesday-js/tuesday.js
 
 step 2
 Index.html file with id = 'tuesday' elements to display the novel
@@ -219,3 +219,5 @@ Index.html file with id = 'tuesday' elements to display the novel
 ```
 
 ![Tuesday JS visual novels engine Akihabara 秋葉原](screenshots/20201202_122259.jpg)
+
+![Tuesday JS visual novels engine Akihabara 秋葉原](https://img.itch.zone/aW1nLzUxODg4MzAuanBn/500x/9zjC9s.jpg)
