@@ -334,13 +334,14 @@ function name_block_update(){
             tue_name_block.style.visibility='visible';
         }else{tue_name_block.style.visibility='hidden';}
         if(arr_dialog.video){
-            var video=document.getElementsByClassName("tue_video")[0];
+            var video=document.getElementById("tue_video");
             if(!video){
                 video=document.createElement("video");
-                video.classList.add("tue_video");
+                video.id="tue_video"
+                video.classList.add("tue_v");
             }
             if(arr_dialog.video.style){video.style=arr_dialog.video.style;}else{video.style='';}
-            if(arr_dialog.video.className){video.style=arr_dialog.video.className+" tue_video"}
+            if(arr_dialog.video.className){video.style=arr_dialog.video.className+" tue_v"}
             video.style.position="absolute";
             video.setAttribute('onloadedmetadata','');
             video.src=art_data(arr_dialog.video.url)
@@ -359,11 +360,11 @@ function name_block_update(){
                     if(arr_dialog.video.position[1]!=0){video.style.right=arr_dialog.video.position[1];}
                     if(arr_dialog.video.position[2]!=0){video.style.top=arr_dialog.video.position[2];}
                     if(arr_dialog.video.position[3]!=0){video.style.bottom=arr_dialog.video.position[3];}
-                } else if(arr_dialog.video.fit=='cover'){video.setAttribute('onloadedmetadata','video_size();');}
-            } else {video.setAttribute('onloadedmetadata','video_size();');}
+                }
+            }
             if(arr_dialog.video.loop){video.loop=arr_dialog.video.loop;}else{video.loop=false;}
             if(arr_dialog.video.sound && arr_dialog.video.sound>0){video.muted=false;video.volume=arr_dialog.video.sound/100;}else{video.muted=true;}
-            if(arr_dialog.video.time_start){video.currentTime=arr_dialog.video.time_start}
+            if(arr_dialog.video.time_start){video.onloadedmetadata = function() { this.currentTime=arr_dialog.video.time_start;if(!arr_dialog.video.fit||arr_dialog.video.fit=='cover'){video_size();}if(arr_dialog.video.stop){this.pause();}};}
             if(arr_dialog.video.time_end){
                 if(arr_dialog.video.loop){
                     video.ontimeupdate=function(){if(video.currentTime>=arr_dialog.video.time_end){video.currentTime=((arr_dialog.video.time_start)?arr_dialog.video.time_start:0)}}
@@ -382,10 +383,10 @@ function name_block_update(){
                     else {go_to(arr_dialog.video.go_to)}
                 }
             }
-            if(!arr_dialog.video.stop||arr_dialog.video.stop!=true){video.autoplay=true;video.play();}
+            if(!arr_dialog.video.stop||arr_dialog.video.stop!=true){video.autoplay=true;}
             tuesday.appendChild(video);
             if(arr_dialog.video.fit=='cover'||!arr_dialog.video.fit){video_size();}
-        }else{del_element("tue_video");}
+        }else{del_element("tue_v");}
         if(arr_dialog.art){
             var old=document.getElementById("tuesday").getElementsByClassName("tue_art");
             var src=false
@@ -743,13 +744,13 @@ function name_block_update(){
     if (data[languare]){return data[languare]}
     else {return data}
 } function video_size(){
-    var tue_video=document.getElementsByClassName("tue_video")[0];
+    var video=document.getElementById("tue_video");
     var tue_size=tuesday.getBoundingClientRect();
     if(tue_size.width>tue_size.height){
-        if(tue_video.videoWidth<tue_video.videoHeight){tue_video.style.height='100%';tue_video.style.width='auto';}
-        else{tue_video.style.height='auto';tue_video.style.width='100%';}
+        if(video.videoWidth<video.videoHeight){video.style.height='100%';video.style.width='auto';}
+        else{video.style.height='auto';video.style.width='100%';}
     } else {
-        if(tue_video.videoWidth<tue_video.videoHeight){tue_video.style.height='auto';tue_video.style.width='100%';}
-        else{tue_video.style.height='100%';tue_video.style.width='auto';}
+        if(video.videoWidth<video.videoHeight){video.style.height='auto';video.style.width='100%';}
+        else{video.style.height='100%';video.style.width='auto';}
     }
 }

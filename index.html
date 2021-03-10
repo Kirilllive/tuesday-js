@@ -50,6 +50,8 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
 @media only screen and (max-width:500px;){
   .responsive {width:100%;}
 }
+.screen{transition-duration:0.8s;transform: scale(1,1);height:auto;width:90%;cursor:pointer;}
+.screen:hover{transition-duration:0.3s;transform: scale(1.05,1.05);height:auto;width:90%;}
 </style>
 </head>
 <body>
@@ -125,11 +127,11 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
     <div align="center" style='padding:26px;border-radius:16px;position:absolute;right:20px;top:5vh;transform-style: flat preserve-3d;perspective: 500px;perspective-origin: 100px 200px; '>
         <div  class = "buttons logo" style="padding: 16px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="92" height="92" viewBox="0 0 128 128">
-                <path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" d="M17,10.015H64c26.346,0,48,21.763,48,48.18s-21.654,48.18-48,48.18V102.36"/>
-                <path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" d="M42,108V10m22,0v98"/>
-                <circle fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" cx="53" cy="108" r="11"/>
+                <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5px" >
+                <path d="M17,10.015H64c26.346,0,48,21.763,48,48.18s-21.654,48.18-48,48.18V102.36M42,108V10m22,0v98"/>
+                <circle cx="53" cy="108" r="11"/></g>
             </svg>
-            <p style='font-size:38px;color:#fff;'>TuesDay</p><p style='font-size:18px;color:#fff;'>visual novel engine</p>
+            <p style='font-size:32px;color:#fff;'>TUESDAY</p><p style='font-size:18px;color:#fff;margin-top:7px;'>visual novel engine</p>
         </div>
     </div>
     </tr></td><tr><td style='background:#cec8e3;' align="center">
@@ -164,27 +166,27 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
             <tbody>
                 <tr><td colspan='2' height='128px' align='center'><div id='screen_5' align='center'>The visual editor allows you to create a graphic or kinetic novel without programming knowledge.<br>If necessary, it is possible to expand the basic functionality using JavaScript and css.</div></td></tr>
                 <tr>
-                    <td style='width:50%;' align="right"><img onclick="modal_window('open',this.src)" src='screenshots/script_structure.png' style='height:auto; width:90%;cursor:pointer;'></td>
+                    <td style='width:50%;' align="right"><img onclick="modal_window('open',this.src)" src='screenshots/script_structure.png' class='screen'></td>
                     <td style='width:50%;' align="left"><b><div id='title_1'>Visualization</div></b><br><br><div id='screen_1' align='left' style='max-width:640px;'>The editor fully displays the structure of the script with all elements, build branching narrative and dialogue. such as dialog options and selection consequences. This makes it easier to navigate and edit the script.</div></td>
                 </tr>
                 <tr><td colspan='2' height='64px'></td></tr>
                 <tr>
                     <td style='width:50%;' align="right"><b><div id='title_6'>Scene editor</div></b><br><br><div id='screen_6' align='right' style='max-width:640px;'>The scene editor can not only arrange all the elements in their places, it also shows how the scene will change on different screens. In your scene layout, you can use standard HTML units in percentage pixels or centimeters to better adapt the scene to different screens.</div></td>
-                    <td style='width:50%;' align="left"><img onclick="modal_window('open',this.src)" src='screenshots/scene_editor.png' style='height:auto; width:90%;cursor:pointer;'></td>
+                    <td style='width:50%;' align="left"><img onclick="modal_window('open',this.src)" src='screenshots/scene_editor.png' class='screen'></td>
                 </tr>
                 <tr><td colspan='2' height='64px'></td></tr>
                 <tr>
-                    <td align="right"><img onclick="modal_window('open',this.src)" src='screenshots/localization.png' style='height:auto; width:90%;cursor:pointer;'></td>
+                    <td align="right"><img onclick="modal_window('open',this.src)" src='screenshots/localization.png' class='screen'></td>
                     <td align="left" align="center"><b><div id='title_2'>Localization</div></b><br><br><div id='screen_2' align='left' style='max-width:640px;'>Ample opportunities to localize stories into other languages. You can set the translation for almost any element of your project, such as text and graphics. The preview function allows you to run the project in the selected language. All texts can be exported to a table csv file for editing and adding localizations in another editor.</div></td>
                 </tr>
                 <tr><td colspan='2' height='64px'></td></tr>
                 <tr>
                     <td align="right"><b><div id='title_3'>JSON</div></b><br><br><div id='screen_3' align='right' style='max-width:640px;'>A story script with all the elements stored in a JSON structure. Almost any programming language can work with this format. This allows you to port your script to another engine or platform. The editor has a built-in tool to work with JSON, with its help you can edit the entire contents of the script or just the selected element.</div></td>
-                    <td align="left"><img onclick="modal_window('open',this.src)" src='screenshots/json_edit.png' style='height:auto; width:90%;cursor:pointer;'></td>
+                    <td align="left"><img onclick="modal_window('open',this.src)" src='screenshots/json_edit.png' class='screen'></td>
                 </tr>
                 <tr><td colspan='2' height='64px'></td></tr>
                 <tr>
-                    <td align="right"><img onclick="modal_window('open',this.src)" src='screenshots/preview.png' style='height:auto; width:90%;cursor:pointer;'></td>
+                    <td align="right"><img onclick="modal_window('open',this.src)" src='screenshots/preview.png' class='screen'></td>
                     <td align="left"><b><div id='title_4'>Preview</div></b><br><br><div id='screen_4' align='left' style='max-width:640px;'>Preview allows you to start a project from a certain point in the script and with the selected localization.</div></td>
                 </tr>
                 <tr><td colspan='2' height='64px'></td></tr>
