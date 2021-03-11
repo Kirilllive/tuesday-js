@@ -219,5 +219,3 @@ Index.html file with id = 'tuesday' elements to display the novel
 ```
 
 ![Tuesday JS visual novels engine Akihabara 秋葉原](screenshots/20201202_122259.jpg)
-
-![Tuesday JS visual novels engine Akihabara 秋葉原](https://img.itch.zone/aW1nLzUxODg4MzAuanBn/500x/9zjC9s.jpg)
