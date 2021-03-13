@@ -984,7 +984,7 @@ if(arr[key]&&arr[key][story_script.parameters.languares[0]]){
 			else{n=arr[key][story_script.parameters.languares[i]]}
 		}else{a++}
 	} if(a==story_script.parameters.languares.length){arr[key]=n}
-}else{delete arr[key];if(key=='art'){delete arr.art_size}}}
+}else if(arr[key].length==0){delete arr[key];if(key=='art'){delete arr.art_size}}}
 function creaton_line(id){
     var newLine=document.createElementNS("http://www.w3.org/2000/svg",'line');
     newLine.id=id+"l"
@@ -2439,8 +2439,9 @@ function video_size(){
 function panel_art(id){
     var arr_s,arr_t,tbody=document.getElementById(id);
     if(id=='atp_edit'){arr_s=story_script.parameters.text_panel;arr_t='story_script.parameters.text_panel'}
-else if(id=='anp_edit'){arr_s=story_script.parameters.name_panel;arr_t='story_script.parameters.name_panel'}
-    if(!arr_s.art){arr_s.art="";data_la(arr_s,'art')}
+    else if(id=='anp_edit'){arr_s=story_script.parameters.name_panel;arr_t='story_script.parameters.name_panel'}
+    if(!arr_s.art){arr_s.art="";}
+    data_la(arr_s,'art');
     if(!arr_s.art_size){arr_s.art_size=' '}
     tbody.innerHTML='<tr><td height="40px" align="right" style="padding-right:8px;">Art</td>'
         +'<td style="width:28px;" align="center"><select id="la'+id+'" class="input_text" onchange="lat'+id+'.value='+arr_t+'.art[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
