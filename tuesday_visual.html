@@ -415,8 +415,9 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Height size</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='size_h' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='25%' style='width:100%;'>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>
                                 <input id='style' class='input_text' onchange='scen_edit_updare(true)' type="text" value='' style='width:100%;'>
+                            </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.text_panel;edit_code('style','Style CSS');">
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='color_t_s'></div></td><td style='padding-right:8px;'>
                                 <input id='color_t' class='input_text' onchange='color_t_b.value=this.value;color_t_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
@@ -467,8 +468,9 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Height size</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_size_h' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_updare(true)' type="text" value='48px' style='width:100%;'>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>
                                 <input id='n_style' class='input_text' onchange='scen_edit_updare(true)' type="text" style='width:100%;'>
+                            </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.name_panel;edit_code('style','Style CSS');">
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_s'></div></td><td style='padding-right:8px;'>
                                 <input id='n_color' class='input_text' onchange='n_color_b.value=this.value;n_color_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
@@ -2226,7 +2228,8 @@ function scen_edit_data(){
 function scen_edit_updare(show){
     var arr_t=story_script.parameters.text_panel
     var arr_p=story_script.parameters.name_panel
-    if(!style.value==""){arr_t.style=style.value}else{delete arr_t.style};
+    if(document.getElementById('editcode')&&editcode.value!=""){style.value=(arr_t.style)?arr_t.style:''}
+    else if(!style.value==""){arr_t.style=style.value}else{delete arr_t.style};
     if(!size_w.value==""){arr_t.size[0]=correct_value(size_w.value)};
     if(!size_h.value==""){arr_t.size[1]=correct_value(size_h.value)};
     if(!className.value==""){arr_t.className=className.value}else{delete arr_t.className};
@@ -2241,7 +2244,8 @@ function scen_edit_updare(show){
     arr_p.position=[((n_position_l.value)?correct_value(n_position_l.value):0),((n_position_r.value)?correct_value(n_position_r.value):0),((n_position_t.value)?correct_value(n_position_t.value):0),((n_position_b.value)?correct_value(n_position_b.value):0)];
     arr_p.indent_text=((n_indent_text.value)?correct_value(n_indent_text.value):0);
     if(!n_className.value==""){arr_p.className=className.value}else{delete arr_p.className};
-    if(!n_style.value==""){arr_p.style=n_style.value}else{delete arr_p.style};
+    if(document.getElementById('editcode')&&editcode.value!=""){n_style.value=(arr_p.style)?arr_p.style:''}
+    else if(!n_style.value==""){arr_p.style=n_style.value}else{delete arr_p.style};
     if(n_size_text.value!=""){arr_p.size_text=correct_value(n_size_text.value)};
     if(n_font_family.value!=""){arr_p.font_family=correct_value(n_font_family.value)};
     if(!n_size_w.value==""){arr_p.size[0]=correct_value(n_size_w.value)};
@@ -2316,22 +2320,17 @@ function scen_editor(block,i,n){
         }else{video.muted=true;}
         video.loop=true;
         if(!story_script[block][i].dialogs[n-1].video.stop||story_script[block][i].dialogs[n-1].video.stop!=true){video.autoplay=true;video.play();}
-        
-        
-        
         if(story_script[block][i].dialogs[n-1].video.time_start){video.onloadedmetadata = function() { this.currentTime=story_script[block][i].dialogs[n-1].video.time_start;if(!story_script[block][i].dialogs[n-1].video.fit||story_script[block][i].dialogs[n-1].video.fit=='cover'){video_size();}if(story_script[block][i].dialogs[n-1].video.stop){this.pause();}};}
-        
-        //if(story_script[block][i].dialogs[n-1].video.time_start){video.currentTime=story_script[block][i].dialogs[n-1].video.time_start}
         if(story_script[block][i].dialogs[n-1].video.time_end && story_script[block][i].dialogs[n-1].video.time_end!=0){video.ontimeupdate = function(){if(this.currentTime>=story_script[block][i].dialogs[n-1].video.time_end){this.currentTime=story_script[block][i].dialogs[n-1].video.time_start}};}
         scene_layout.appendChild(video);
         
     }else if(document.getElementById("scen_video")){scen_video.style.display="none";}
     if(story_script[block][i].dialogs[n-1]){
         if(story_script[block][i].dialogs[n-1].text&&(typeof story_script[block][i].dialogs[n-1].text!=='object'||(story_script[block][i].dialogs[n-1].text[languare]&&typeof story_script[block][i].dialogs[n-1].text[languare]!=='object'))){
+            if(arr_t.style){tue_text_block.style=arr_t.style;}else{tue_text_block.style=null};
             tue_text_block.style.visibility='visible';
             tue_text_element.style.position="relative";
             if(arr_t.className){tue_text_block.className=arr_t.className;}else{tue_text_block.className=""};
-            if(arr_t.style){tue_text_block.style=arr_t.style;}else{tue_text_block.style=null};
             tue_text_block.style.position="absolute";
             tue_text_block.style.margin="auto";
             tue_text_block.style.borderCollapse="separate";
@@ -2378,7 +2377,7 @@ function scen_editor(block,i,n){
                 tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
                 tue_name_block.style.visibility='visible';
             }else{tue_name_block.style.visibility='hidden';}
-            tue_text_block.style.backgroundColor=arr_t.color;
+            if(arr_t.color){tue_text_block.style.backgroundColor=arr_t.color;}
             bg_art(arr_p,'tue_name_block');
             bg_art(arr_t,'tue_text_block');
             function bg_art(arr_u,tue_id){
