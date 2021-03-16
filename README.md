@@ -11,7 +11,7 @@ The editor combines a drag and drop tool to create scenes and interfaces, as wel
 
 Home Page: https://kirilllive.github.io/tuesday-js/
 
-Documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
+Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
 
 Patreon: https://www.patreon.com/kirill_live
 
