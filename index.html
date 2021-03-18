@@ -45,15 +45,18 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
 #window_zone {height:100vh;width:100%;display:flex;justify-content:center;align-items:center;background-color:rgba(0,0,0,0);position:fixed;left:0;top:0;visibility:hidden;transition-duration:0.5s;}
 .content{max-height:104vh;max-width:104%;}
 .gallery {width:100%;height:220px;background-size:cover;background-position:center;margin-bottom:8px;background-color:#9587c8;border-radius:8px;}
-.responsive {padding: 0 6px;float:left;width:25%;height:240px;box-sizing:border-box;}
+.responsive {padding: 0 6px;float:left;width:25%;height:240px;box-sizing:border-box;transition-duration:0.8s;transform: scale(1,1);}
 @media only screen and (max-width:700px){
   .responsive {width:50%;margin: 6px 0;}
 }
 @media only screen and (max-width:500px;){
   .responsive {width:100%;}
 }
+.responsive:hover{transition-duration:0.3s;transform: scale(1.04,1.04)}
+
 .screen{transition-duration:0.8s;transform: scale(1,1);height:auto;width:90%;cursor:pointer;}
 .screen:hover{transition-duration:0.3s;transform: scale(1.02,1.02);height:auto;width:90%;}
+
 </style>
 </head>
 <body>
