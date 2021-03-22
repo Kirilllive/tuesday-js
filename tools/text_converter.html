@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
+<title>Text to Tuesday JS</title>
+<style>
+*{
+	font-family:Arial;
+    font-size:12px;
+	border-collapse:collapse;
+	border:none;
+	margin:0;
+	padding:0;
+	border-spacing:0px;
+	outline:none;
+}
+textarea{
+    resize:none;
+    width:calc(100% - 2px);
+    height:calc(100vh - 84px);
+    background-color:#efefff;
+    border:1px solid #cec8e3;
+}
+.main{
+width:50%;height:32px; border:1px solid #cec8e3;padding-left:8px;
+}
+button{border-radius:8px;background-color:#efefff;}
+button:hover{background-color:#cec8e3;}
+.input_text{
+	border:0;
+	font-family:Arial;
+	font-size:12px;
+	-webkit-appearance:none;
+	border-bottom:1px solid var(--cb);
+	background-color:transparent;
+	cursor:text;
+	height:28px;
+	width:128px;
+	-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
+}
+</style>
+</head>
+<body  onload='big_languares();new_story()'>
+<a id="downloadAnchorElem" style="display:none;position:fixed;"></a>
+<table style="width:100%;height:100vh;">
+	<tbody>
+		<tr>
+			<td colspan="2" style='height:48px; padding-left:8px;' align='left'>
+                <button type="button" onclick='new_story()' style='width:128px;height:32px;'>New Story</button>
+                <select class='input_text' id='language_view' style='height:32px;border-right:1px solid #cec8e3;border-bottom:1px solid #cec8e3;width:84px;' onchange='del_lan()'><option value='en'>EN</option></select>
+                <input id="title" type="text" style='height:31px;border-bottom:1px solid #cec8e3;width:164px;' onchange="texts.parameters.title[texts.parameters.languares[0]]=this.value;edit_2.value=JSON.stringify(texts,null,'\t');">
+<!--                max characters:-->
+<!--                <input id="chars" type="number" style='height:31px;border-bottom:1px solid #cec8e3;width:40px;margin-right:16px;' onchange="">-->
+                <button type="button" onclick='apply_edit(1)' style='width:128px;height:32px;'>Add scene +></button>
+                <button type="button" onclick='apply_edit(0)' style='width:128px;height:32px;'>Add block =></button>
+                <button type="button" onclick='save_json()' style='width:128px;height:32px;'>Save JSON </button>
+            </td>
+		</tr>
+		<tr>
+			<td class='main'>Original text</td>
+			<td class='main'>Tuesday JSON</td>
+		</tr>
+  		<tr>
+			<td><textarea id='edit_1' wrap='off' onchange='this.value+="\n"'></textarea></td>
+			<td><textarea id='edit_2' wrap='off' ></textarea></td>
+		</tr>
+	</tbody>
+</table>
+<script>
+    let languares= {"English":"en","Japanese":"ja","French":"fr","Russian":"ru","Spanish":"es","Chinese":"zh","Korean":"ko","Dutch":"nl","Afar":"aa","Abkhazian":"ab","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa,Chewa,Nyanja":"ny","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi,Dhivehi,Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula,Fulah,Pulaar,Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","German":"de","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut,Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda,Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic,Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto,Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Portuguese":"pt","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang,Chuang":"za","Zulu":"zu"}
+    var base='{"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"story name"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["2.5%","0","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["0","2.5%","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{}}}';
+    let texts={};
+    var i,s,t
+    function apply_edit(b){
+        t=document.getElementById('edit_1').value.replace(/[.]\s/g,'.§').replace(/[!]\s/g,'!§').replace(/[?]\s/g,'?§').replace(/[\n]/g,'§');
+        const w=t.split('§');
+        if(b==0){
+            s='block_'+Object.keys(texts).length
+            texts[s]=[{"dialogs":[]}];
+            for (i=0;i<w.length-1;i++){
+                if(w[i].length>0){
+                    texts[s][0].dialogs.push(text_cut(w[i]));
+                }
+            }
+        } else if(b==1){
+            texts[s].push({"dialogs":[]});
+            for (i=0;i<w.length-1;i++){
+                if(w[i].length>0){
+                    texts[s][ texts[s].length-1 ].dialogs.push(text_cut(w[i]));
+                }
+            }
+        }
+        edit_2.value = JSON.stringify(texts,null,'\t');
+    }
+    function text_cut(j){
+        j.trim()
+        //if (chars.value<j.length){}
+        //else {}
+        return {'text':j};
+    }
+    function big_languares(){
+        var lang='<optgroup>';
+        for(l=0;l<Object.keys(languares).length;l++){lang+="<option value='"+languares[Object.keys(languares)[l]]+"' "+((languares[Object.keys(languares)[l]]==s)?"selected":"")+">"+languares[Object.keys(languares)[l]].toUpperCase()+" - "+Object.keys(languares)[l]+"</option>"+((l==7)?"</optgroup><optgroup>":"")}
+        lang+='</optgroup>';
+        language_view.innerHTML=lang
+    }
+    function save_json(){
+        var n,dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(texts)),dlAnchorElem=document.getElementById('downloadAnchorElem');
+        if(texts.parameters.title){n=(texts.parameters.title.en)?texts.parameters.title.en :texts.parameters.title;}
+        else{n="transformed_story";}
+        dlAnchorElem.setAttribute("href",dataStr);
+        dlAnchorElem.setAttribute("download",n+'.json');
+        dlAnchorElem.click();
+    }
+    function new_story(){
+        texts=JSON.parse(base);
+        edit_2.value=''
+        title.value=texts.parameters.title[texts.parameters.languares[0]]
+    }
+    function del_lan(){
+        var l=texts.parameters.languares[0],n=texts.parameters.title[l];
+        texts.parameters.languares[0]=language_view.value;
+        texts.parameters.title[language_view.value]=n;
+        delete texts.parameters.title[l];
+        edit_2.value = JSON.stringify(texts,null,'\t');
+    }
+</script>
+</body>
+</html>
