@@ -1763,8 +1763,7 @@ function option_block(d,g){
             if(y){scene_list+="<option value='"+Object.keys(button_name)[s]+"' "+((d==Object.keys(button_name)[s])?"selected":"")+">"+button_name[Object.keys(button_name)[s]]+"</option>"}
         }
     }
-    scene_list+='</optgroup>'
-    return scene_list
+    return scene_list+'</optgroup>'
 }
 function legacy_choice_edit(){
 	var var_if="<table width='100%' id='legacy_choice_edit'><tbody>";
