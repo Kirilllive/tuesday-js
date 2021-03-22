@@ -69,14 +69,20 @@ button:hover{background-color:#cec8e3;}
 </table>
 <script>
     let languares= {"English":"en","Japanese":"ja","French":"fr","Russian":"ru","Spanish":"es","Chinese":"zh","Korean":"ko","Dutch":"nl","Afar":"aa","Abkhazian":"ab","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa,Chewa,Nyanja":"ny","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi,Dhivehi,Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula,Fulah,Pulaar,Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","German":"de","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut,Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda,Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic,Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto,Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Portuguese":"pt","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang,Chuang":"za","Zulu":"zu"}
-    var base='{"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"story name"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["2.5%","0","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["0","2.5%","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{}}}';
+    var base='{"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"story name"},"launch_story":"block_1","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["2.5%","0","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["0","2.5%","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{}}}';
     let texts={};
     var i,s,t
     function apply_edit(b){
-        t=document.getElementById('edit_1').value.replace(/[.]\s/g,'.§').replace(/[!]\s/g,'!§').replace(/[?]\s/g,'?§').replace(/[\n]/g,'§');
+        t=document.getElementById('edit_1').value.replace(/[.]\s/g,'.§').replace(/[!]\s/g,'!§').replace(/[?]\s/g,'?§').replace(/[,]\s/g,',§').replace(/[\n]/g,'§');
         const w=t.split('§');
         if(b==0){
-            s='block_'+Object.keys(texts).length
+            var z=Object.keys(texts).length
+            if(texts[s]){
+                var x=Object.keys(texts[s]).length-1;
+                var y=Object.keys(texts[s][x].dialogs).length-1;
+                texts[s][x].dialogs[y].go_to='block_'+z;
+            }
+            s='block_'+z
             texts[s]=[{"dialogs":[]}];
             for (i=0;i<w.length-1;i++){
                 if(w[i].length>0){
@@ -106,9 +112,7 @@ button:hover{background-color:#cec8e3;}
         language_view.innerHTML=lang
     }
     function save_json(){
-        var n,dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(texts)),dlAnchorElem=document.getElementById('downloadAnchorElem');
-        if(texts.parameters.title){n=(texts.parameters.title.en)?texts.parameters.title.en :texts.parameters.title;}
-        else{n="transformed_story";}
+        var n=texts.parameters.title[texts.parameters.languares[0]],dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(texts)),dlAnchorElem=document.getElementById('downloadAnchorElem');
         dlAnchorElem.setAttribute("href",dataStr);
         dlAnchorElem.setAttribute("download",n+'.json');
         dlAnchorElem.click();
