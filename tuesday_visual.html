@@ -46,7 +46,7 @@ line{stroke:var(--cl);stroke-dasharray:20;stroke-width:2;animation:dash 4s linea
 	box-shadow:0px 2px 24px var(--cs);
 	z-index:10000;
 }
-.toast_anim{left:50%;background-color:#fff;border-radius:32px;animation:viwe 0.25s,stop 2s 0.25s,close 0.5s 2s linear;}
+.toast_anim{left:50%;border-radius:32px;animation:viwe 0.25s,stop 2s 0.25s,close 0.5s 2s linear;}
 @keyframes viwe{from{opacity:0;bottom:64px} to{opacity:1;bottom:64px}}
 @keyframes stop{from{opacity:1;bottom:64px} to{opacity:1;bottom:64px}}
 @keyframes close{from{opacity:1;bottom:64px} to{opacity:0;bottom:-32px}}
@@ -1357,7 +1357,7 @@ function build(tip){
         dlAnchorElem.setAttribute("href",dataStr);
         dlAnchorElem.setAttribute('download','index.html');
         dlAnchorElem.click();
-        toast("index.html file is created",'#f0f');
+        toast("index.html file is created");
     }
     if(tip==1){
         var dataStr="<html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<meta charset='UTF-8'><style>"+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+";background-color:#fff;border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_novel="+story_preview+";load_story('data',story_novel);<\/script><\/body><\/html>";

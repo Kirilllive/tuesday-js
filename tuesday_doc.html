@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
-<title>Tuesday js Documentation</title>
+<title>TuesdayJS Structure</title>
 <style>
  * {
     font-family: Arial;
@@ -256,9 +256,11 @@ hr {border: solid 1px #cec8e3;}
 	  <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" d="M42,108V10m22,0v98"/>
 	  <circle fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8px" cx="53" cy="108" r="11"/>
 	</svg>
-	<p style='font-size: 64px;'>TuesDay</p><p style='font-size:30px;'>visual novel engine</p>
+	<p style='font-size: 64px;'>TuesdayJS</p><p style='font-size:36px;'>visual novel engine</p>
 </div>
 <p><span class='three_2'></span><b>Tuesday</b> a free open source engine for creating visual novels, interactive stories and text-based adventure games. Written in javaScript language without using third-party libraries. There is support for the Apache Cordova framework for creating native applications for mobile devices and desktops. The engine uses standard HTML document elements like div and img, which makes it possible to use almost any media format supported by browser, including vector graphics in svg format, gif animation and extensive css styling capabilities. Such a structure allows you to easily extend the functionality with standard html methods</p>
+<br>
+<p>This documentation describes the structure of a JSON file and the capabilities of RunTime tuesday.js <b>without using a visual editor.</b></p>
 <br>
 <br>
 <br>
@@ -693,7 +695,7 @@ The display of the script on the html page occurs through the div element with <
 <br>
 <p>Global parameters for most characteristics on <b>"<a href="#name_panel">name_panel</a>"</b>. By specifying id, character identifier and parameters required for it, including localization. Further, if you specify this id in the <b>"<a href="#e_name">name</a>"</b>dialog parameter, then all values ​​for this symbol will be taken from this array. Unless the dialog itself has its own parameters set in<b>"<a href="#name_panel">name_panel</a>"</b>.</p>
 <pre class='code_box'><code>	"characters": {
-		"<span class='comm'>id персонажа</span>": {
+		"<span class='comm'>character id</span>": {
 			"<a href="#color" class='code_link'>color</a>": "<span class='comm'>background color name panel</span>",
 			"<a href="#color_text" class='code_link'>color_text</a>": "<span class='comm'> text color name panel</span>",
 			"<a href="#className" class='code_link'>className</a>": "<span class='comm'>a set of css style classes для name panel</span>",
@@ -828,8 +830,8 @@ The display of the script on the html page occurs through the div element with <
 <br>
 <p>An array of sound files used in the project. Due to the specifics of the browser support for audio formats (mpeg or ogg), you need to specify a file without an extension, the engine itself will determine the supported format .ogg or .mp3. The project can use the only mp3, it can be played in almost all browsers. But in case this is not the case, it is recommended to duplicate the audio data in .ogg format with the same name and in the same folder.</p>
 <pre class='code_box'><code>	"sounds": {
-			"id_sound_1":"<span class='comm'>Путь к файлу без расширение</span>",
-			"id_sound_2":"<span class='comm'>Путь к файлу без расширение</span>",
+			"id_sound_1":"<span class='comm'>File path without extension</span>",
+			"id_sound_2":"<span class='comm'>File path without extension</span>",
 		}
 </code></pre>
 </div>
@@ -1172,7 +1174,7 @@ The display of the script on the html page occurs through the div element with <
 <p>The dialog box can display the values ​​of the variable from the <b>"parameters" / "<a href="#variables" >variables</a>"</b>. section. If you specify the name of the variable in angle brackets, then the value from the variable of the same name will appear in the text instead.</p>
 <pre class='code_box'><code>{
 	"parameters": {
-		<span class='comm'>другие значения</span>
+		<span class='comm'>other values</span>
 		"<a href="#variables" class='code_link'>variables</a>": [
 			"health_points": 100
 		],
@@ -1540,7 +1542,7 @@ Localization option supported
 <br>
 <a id="go_to"></a>
 <p><b>"go_to"</b> - Go to the block with the specified id name, or you can specify the functionality of one of the <a href="#system_Buttons"><b>System Buttons</b></a></p>
-<pre class='code_box'><code>		"go_to": "<span class='comm'>Следующий id блока</span>",</code></pre>
+<pre class='code_box'><code>		"go_to": "<span class='comm'>Next block id</span>",</code></pre>
 <br>
 <br>
 <a id="style"></a>
