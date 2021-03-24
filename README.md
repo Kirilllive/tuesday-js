@@ -1,4 +1,4 @@
-![Tuesday js visual novels engine](https://img.itch.zone/aW1nLzUwOTQwMjkuanBn/original/V1ppEa.jpg)
+![Tuesday js visual novels engine](https://img.itch.zone/aW1nLzU1MDg0NTkuanBn/original/mYr%2BBb.jpg)
 
 # Tuesday JS
 is a free open source engine to creating visual novels, interactive stories and text-based adventure games. Written in JavaScript without using any third party libraries. The projects can be exported to Apache Cordova to create mobile applications or PC programs. The engine uses standard HTML document elements DOM such as div and img, this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.
@@ -39,7 +39,7 @@ The editor fully displays the structure of the script with all elements, build b
 
 L'éditeur affiche entièrement la structure du scénario avec tous les éléments tels que les options de dialogue et les conséquences des réponses choisies. La navigation et la modification du scénario en est ainsi facilité.
 
-![Tuesday JS script structure](screenshots/script_structure.png)
+![Tuesday JS script structure](screenshots/script_structure.jpg)
 
 
 # Scene editor
@@ -52,7 +52,7 @@ In your scene layout, you can use standard HTML units in percentage pixels or ce
 L'éditeur de scène peut non seulement organiser tous les éléments à leur place, mais il montre également comment la scène changera sur différents écrans. 
 Dans la mise en page de votre scène, vous pouvez utiliser des unités HTML standard en pourcentage de pixels ou en centimètres pour mieux adapter la scène à différents écrans.
 
-![Tuesday JS scene editor](screenshots/scene_editor.png)
+![Tuesday JS scene editor](screenshots/scene_editor.jpg)
 
 
 # Localization
@@ -71,7 +71,7 @@ Vous pouvez définir la traduction de presque tous les éléments de votre proje
 La fonction d'aperçu vous permet d'exécuter le projet dans la langue sélectionnée. 
 Tous les textes peuvent être exportés vers un fichier csv pour édition et ajout de localisations dans un autre éditeur, tel qu'un tableur.
 
-![Tuesday JS localization](screenshots/localization.png)
+![Tuesday JS localization](screenshots/localization.jpg)
 
 
 # JSON
@@ -86,7 +86,7 @@ Tous les éléments du scénario sont stockés dans une structure JSON, un forma
 L'éditeur dispose d'un outil intégré pour travailler la structure JSON qui vous permet de modifier l'intégralité du scénario ou uniquement un élément spécifique.
 	
 
-![Tuesday JS json edit](screenshots/json_edit.png)
+![Tuesday JS json edit](screenshots/json_edit.jpg)
 
 
 # Preview
@@ -96,7 +96,7 @@ Preview allows you to start a project from a certain point in the script and wit
 
 L'aperçu vous permet de démarrer un projet à partir de n'importe quel point du scénario et avec la localisation sélectionnée.
 
-![Tuesday JS preview](screenshots/preview.png)
+![Tuesday JS preview](screenshots/preview.jpg)
 
 The goal of Tuesday JS is to make project development no more difficult than working in an office program to make presentations, and does not require special skills from the user.
 
