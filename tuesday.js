@@ -395,7 +395,7 @@ function name_block_update(){
                 for(i=0;i<arr_dialog.art.length;i++){
                     src=false;
                     for(o=0;o<old.length;o++){
-                        if(arr_dialog.art[i].url==old[o].getAttribute('src')||arr_dialog.art[i].url[languare]==old[o].getAttribute('src')){
+                        if(arr_dialog.art[i].url==old[o].getAttribute('volume')||arr_dialog.art[i].url[languare]==old[o].getAttribute('volume')){
                             if(arr_dialog.art[i].style){old[o].style=arr_dialog.art[i].style;}
                             if(arr_dialog.art[i].move&&arr_dialog.art[i].move!=0){
                                 old[o].style.transitionDuration=arr_dialog.art[i].move+"s";
@@ -429,6 +429,7 @@ function name_block_update(){
             function creation_art(i){
                 var art=document.createElement("img");
                 art.src=art_data(arr_dialog.art[i].url);
+                art.setAttribute("volume",((arr_dialog.art[i].url[languare])?arr_dialog.art[i].url[languare]:arr_dialog.art[i].url));
                 art.classList.add("tue_art")
                 art.style="user-select:text;"+((arr_dialog.art[i].style)?arr_dialog.art[i].style:"")
                 art.style.position="absolute";
