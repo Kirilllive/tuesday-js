@@ -3690,7 +3690,14 @@ function state_back(n){
     story_script=JSON.parse(back_up[state_num]);
     if(scene_screen){scen_edit_updare(true)}else{update_novel();}
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+        var s=document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "https://tuesday.wantasoul.com/js/tue_cloud.js";
+        document.body.appendChild(html);}
+);
+
 </script>
-<script src="plugins/tue_cloud.js"></script>
 </body>
 </html>
