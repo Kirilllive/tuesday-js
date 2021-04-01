@@ -2334,7 +2334,8 @@ function scen_editor(block,i,n){
     html.style.overflow="hidden"
     scrnr_title.innerHTML=block+" (scene:"+(i+1)+" | dialog:"+n+")"
     preview_size();
-    scene_layout.style.backgroundImage="url("+open_file(languare_data(story_script[block][i].background_image))+")";
+    scene_layout.style.backgroundImage='none';
+    scene_layout.style.backgroundImage='url('+open_file(languare_data(story_script[block][i].background_image))+')';
     scene_layout.style.backgroundSize=((!story_script[block][i].background_size)?"cover":story_script[block][i].background_size);
     scene_layout.style.backgroundColor=story_script[block][i].background_color;
     if(story_script[block][i].dialogs[n-1].video){
