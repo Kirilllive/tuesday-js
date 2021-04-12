@@ -137,7 +137,6 @@ La función de vista previa te permite iniciar tu proyecto desde cierto punto en
 
 ![Tuesday JS preview](screenshots/preview.jpg)
 
-The goal of Tuesday JS is to make project development no more difficult than working in an office program to make presentations, and does not require special skills from the user.
 
 # Tutorial for Visual Editor
 
@@ -258,3 +257,5 @@ Index.html file with id = 'tuesday' elements to display the novel
 ```
 
 ![Tuesday JS visual novels engine Akihabara 秋葉原](screenshots/20201202_122259.jpg)
+
+The goal of Tuesday JS is to make project development no more difficult than working in an office program to make presentations, and does not require special skills from the user.
