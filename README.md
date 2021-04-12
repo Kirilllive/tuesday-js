@@ -48,7 +48,7 @@ The editor fully displays the structure of the script with all elements, build b
 
 L'éditeur affiche entièrement la structure du scénario avec tous les éléments tels que les options de dialogue et les conséquences des réponses choisies. La navigation et la modification du scénario en est ainsi facilité.
 
-El editor de escenas no solo puede organizar todos los elementos en sus lugares, sino que también muestra cómo cambiará la escena en diferentes pantallas. En el diseño de su escena, puede usar unidades HTML estándar en porcentaje de píxeles o centímetros para adaptar mejor la escena a diferentes pantallas.
+El editor muestra la estructura completa del script con todos sus elementos, como diálogos con diferentes opciones y las consecuencias de dichas opciones. Esto hace que sea más fácil navegar por el proyecto y editar el script.
 
 Редактор полностью отображает структуру сценария со всеми элементами, выстраивает разветвленное повествование и диалоги. такие как параметры диалога и последствия выбора. Это упрощает навигацию и редактирование сценария.
 
