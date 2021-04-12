@@ -273,7 +273,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 .set_title{background-color:var(--cb);cursor:pointer;}
 .input_color{cursor:pointer;border: none;height:100%;width:100%;opacity: 0;}
 .show_color{background-color:var(--cb);border-radius:50%;width:26px;height:26px;}
-#resizers{box-sizing:border-box;width:100px;height:100px;position:absolute;top:100px;left:100px;cursor: move;border: 2px dashed var(--cb);}
+#resizers{box-sizing:border-box;width:100px;height:100px;position:absolute;top:100px;left:100px;cursor:move;border: 2px dashed var(--cb);}
 .resizer{width:10px;height:10px;border-radius:50%;background:#fff;border: 2px solid var(--cb);position:absolute;z-index:4000;}
 .top-left{left:-8px;top:-8px;cursor:nwse-resize;}
 .top-right{right:-8px;top:-8px;cursor:nesw-resize;}
@@ -2679,7 +2679,7 @@ function choice_panel_update(block,i,n){
         choice.style.color=arr_s[b].color_text;
         choice.style.fontSize=((arr_s[b].size_text)?arr_s[b].size_text:story_script.parameters.font_size);
         choice.style.fontFamily=((arr_s[b].font_family)?arr_s[b].font_family:story_script.parameters.font_family);
-        choice.style.zIndex=2001+n;
+        choice.style.zIndex=2001+b;
         choice.style.display="flex";
         choice.style.justifyContent=((arr_s[b].align)?arr_s[b].align[0]:"center");
         choice.style.alignItems=((arr_s[b].align)?arr_s[b].align[1]:"center");
@@ -3692,7 +3692,6 @@ function state_back(n){
     story_script=JSON.parse(back_up[state_num]);
     if(scene_screen){scen_edit_updare(true)}else{update_novel();}
 }
-
 document.addEventListener("DOMContentLoaded", function() {
         var s=document.createElement("script");
         s.type = "text/javascript";
