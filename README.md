@@ -16,11 +16,11 @@ Home Page: https://kirilllive.github.io/tuesday-js/
 
 Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
 
-Patreon: https://www.patreon.com/kirill_live
-
 itch.io: https://kirill-live.itch.io/tuesday-js
 
 Twitter: https://twitter.com/TuesdayJS_vn
+
+Patreon: https://www.patreon.com/kirill_live
 
 # Visual editor
 
