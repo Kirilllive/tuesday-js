@@ -262,6 +262,7 @@ documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
 
 
 
+
 ![Tuesday JS visual novels engine Akihabara 秋葉原](screenshots/20201202_122259.jpg)
 
 The goal of Tuesday JS is to make project development no more difficult than working in an office program to make presentations, and does not require special skills from the user.
