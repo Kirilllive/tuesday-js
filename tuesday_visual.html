@@ -300,7 +300,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 		<table  width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center' title='New project' onclick='new_project();menu_add.style.visibility="hidden";' class='icon button_menu icon_new'></td>
+					<td align='center' title='New project' onclick='location.reload();' class='icon button_menu icon_new'></td>
                     <td align='center' title='Load project folder ' onclick='load_new=false;json_file.click();menu_add.style.visibility="hidden";' class='icon button_menu icon_load'></td>
 					<td align='center' title='Save JSON script project' onclick='save_file();menu_add.style.visibility="hidden";' class='icon button_menu icon_save'></td>
                     <td align='center' title='Undo' onclick='state_back(1);' class='icon button_menu icon_undo'></td>
@@ -1442,19 +1442,6 @@ function big_languares(s){
     var lang='<optgroup>';
     for(l=0;l<Object.keys(languares).length;l++){lang+="<option value='"+languares[Object.keys(languares)[l]]+"' "+((languares[Object.keys(languares)[l]]==s)?"selected":"")+">"+languares[Object.keys(languares)[l]].toUpperCase()+" - "+Object.keys(languares)[l]+"</option>"+((l==7)?"</optgroup><optgroup>":"")}
     return lang+='</optgroup>';
-}
-function new_project(){
-    scen_editor_apply();
-    new_novel();
-    var html="<div class='window' style='padding:24px 8px;width:360px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")' ></div></div><p>New project</p><hr><br><div style='overflow-x:hidden;overflow-y:auto;width:100%;max-height:60vh;'>"
-        +"<p align='left' style=' margin-left:8px;'>Project folder/location</p>"
-        +"<table style='width:100%;'><tbody><tr><td><input id='project_foler' onclick=\"load_new=true;json_file.click()\" class='input_text' style='padding-top:10px;' type='text'></td><td onclick=\"load_new=true;json_file.click()\" style='width:40px;cursor:pointer;' title='delet' class='icon icon_load'></td></tr></tbody></table><p class='text_tutorials_b select_tutorials'>"+texts.tutorials[3].en+"</p><br><br>"
-        +"<p align='left' style=' margin-left:8px;'>Name project</p><table id='new_title'><tbody>"
-        +"<tr><td style='padding-right:8px;border-right:1px solid var(--cb);width:40%;padding-top:10px;'><select class='input_text title_lang'>"+big_languares()+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' type='text' value='"+
-        story_script.parameters.title.en+"'></td><td onclick=\"var a=this.closest('tr');a.parentElement.removeChild(a);\" style='width:40px;cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
-        +"</tbody></table><div onclick=\"add_tr('new_title')\" class='icon icon_add' style='margin-top:16px;height:26px;width:26px;cursor:pointer;'></div>"
-        +"</div><br><br><table class='big_button' width='256px' onclick='create_project()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create project</td><td width='42px'></td></tr></tbody></table></div>"
-    modal_window("open",html);
 }
 function create_project(){
     li_n=document.getElementsByClassName("title_lang");
@@ -2709,13 +2696,13 @@ function choice_panel_add(block,i,n){
 }
 function choice_panel_edit(block,i,n,b){
     var arr_s=story_script[block][i].dialogs[n-1].choice
-    var var_list="<table id='var_table"+b+"' width='100%'><tbody><tr><td style='width:128px;' valign='bottom'></td><td style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);'></td><td></td><td style='width:30px;'></td></tr>"
+    var var_choice="<table id='var_table"+b+"' width='100%'><tbody><tr><td style='width:128px;' valign='bottom'></td><td style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);'></td><td></td><td style='width:30px;'></td></tr>"
     if(arr_s[b].variables){
         for(var c=0;c<arr_s[b].variables.length;c++){
-            var_list+="<tr><td valign='bottom'><select class='input_text var_name' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][0]=this.value'>"+option_var(arr_s[b].variables[c][0])+"</select></td><td style='border-right:1px solid var(--cb);border-left:1px solid var(--cb);'><select class='input_text var_operation' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][1]=this.value'><option value='add'>add</option><option value='set' "+((arr_s[b].variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][2]=this.value' value='"+ arr_s[b].variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\");a.parentElement.removeChild(a);' style='cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
+            var_choice+="<tr><td valign='bottom'><select class='input_text choice_var_name' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][0]=this.value'>"+option_var(arr_s[b].variables[c][0])+"</select></td><td style='border-right:1px solid var(--cb);border-left:1px solid var(--cb);'><select class='input_text choice_var_operation' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][1]=this.value'><option value='add'>add</option><option value='set' "+((arr_s[b].variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text choice_var_value' onchange='story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables["+c+"][2]=this.value' value='"+ arr_s[b].variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\");a.parentElement.removeChild(a);' style='cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
         };
     };
-    var_list+="</tbody></table>"+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?"<div onclick=\"if (!story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables){story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables=[]};story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables.push( ['"+Object.keys(story_script.parameters.variables)[0]+"','add',0] );choice_panel_update('"+block+"',"+i+","+n+");\" class='icon_m icon_add' style='margin-top:16px;height:26px;width:100%;cursor:pointer;'></div>":"<div onclick=\"setup();set_menu(4);\" class='icon_m icon_add' style='margin-top:16px;height:26px;width:100%;cursor:pointer;'></div>")
+    var_choice+="</tbody></table>"+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?"<div onclick=\"if (!story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables){story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables=[]};story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].variables.push( ['"+Object.keys(story_script.parameters.variables)[0]+"','add',0] );choice_panel_update('"+block+"',"+i+","+n+");\" class='icon_m icon_add' style='margin-top:16px;height:26px;width:100%;cursor:pointer;'></div>":"<div onclick=\"setup();set_menu(4);\" class='icon_m icon_add' style='margin-top:16px;height:26px;width:100%;cursor:pointer;'></div>")
     var html='<div id="b_cho'+b+'" class="ui_buttons dialog" style="margin:8px;"><table style="width:100%" ondblclick="objSelect(\'cho'+b+'\');arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+']"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+',-1);choice_panel_update(\''+block+'\','+i+','+n+');"height="22px"></td>'
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+', 1);choice_panel_update(\''+block+'\','+i+','+n+');"></td><td>&nbsp;</td>'
@@ -2838,7 +2825,7 @@ function choice_panel_edit(block,i,n,b){
     +'</tr><tr>'
         +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Variables</td>'
     +'</tr><tr>'
-        +'<td colspan="4">'+var_list+'</td>'
+        +'<td colspan="4">'+var_choice+'</td>'
     +'</tr></tbody></table></div>'
     return html;
 }
