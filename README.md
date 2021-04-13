@@ -257,6 +257,7 @@ Index.html file with id = 'tuesday' elements to display the novel
 ```
 
 More information about RunTime and JSON script  you can be found in
+
 documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
 
 
