@@ -237,7 +237,7 @@ Create a story file story.json
 }
 ```
 
-Possible startup problems
+Possible startup problems RunTime и устройстве сценария в JSON 
 
 Index.html file with id = 'tuesday' elements to display the novel
 ```html
@@ -255,6 +255,10 @@ Index.html file with id = 'tuesday' elements to display the novel
     </body>
 </html>
 ```
+
+More information about RunTime and JSON script  you can be found in the documentation
+https://kirilllive.github.io/tuesday-js/tuesday_doc.html
+
 
 ![Tuesday JS visual novels engine Akihabara 秋葉原](screenshots/20201202_122259.jpg)
 
