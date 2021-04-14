@@ -1367,7 +1367,6 @@ function build(tip){
     if(story_script.parameters.key&&Object.keys(story_script.parameters.key).length==0){delete story_script.parameters.key}
     if(story_script.parameters.style_file&&story_script.parameters.style_file.length==0){delete story_script.parameters.style_file}
     delete story_build.parameters['plugins'];
-    delete story_build.parameters['font'];
     delete story_build.parameters['font_size'];
     delete story_build.parameters['icon'];
     delete story_build.parameters.font_files;
