@@ -2415,7 +2415,7 @@ function scen_editor(block,i,n){
                 if(arr_p.position[1]!=0){tue_name_block.style.right=arr_p.position[1];}
                 if(arr_p.position[2]!=0){tue_name_block.style.top=arr_p.position[2];}
                 if(arr_p.position[3]!=0){tue_name_block.style.bottom=arr_p.position[3];}
-                tue_name_block.innerHTML=languare_data(story_script[block][i].dialogs[n-1].name);
+                tue_name_block.innerHTML=((story_script.parameters.characters && story_script.parameters.characters[story_script[block][i].dialogs[n-1].name])  ?  languare_data(story_script.parameters.characters[story_script[block][i].dialogs[n-1].name])  :  languare_data(story_script[block][i].dialogs[n-1].name) );
                 tue_name_block.style.visibility='visible';
             }else{tue_name_block.style.visibility='hidden';}
             if(arr_t.color){tue_text_block.style.backgroundColor=arr_t.color;}
