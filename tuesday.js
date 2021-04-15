@@ -173,7 +173,7 @@ function name_block_update(){
         if(story_json.parameters.buttons[i].className){button.className=story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style=story_json.parameters.buttons[i].style;}
         if(story_json.parameters.buttons[i].text && (typeof story_json.parameters.buttons[i].text!=='object' || (story_json.parameters.buttons[i].text[languare] && typeof story_json.parameters.buttons[i].text[languare]!=='object'))){
-            button.innerHTML=((story_json.parameters.buttons[i].text[languare])?story_json.parameters.buttons[i].text[languare]:story_json.parameters.buttons[i].text);
+            button.innerHTML=values_button(art_data(story_json.parameters.buttons[i].text))
             button.style.padding=story_json.parameters.buttons[i].indent_text;
             button.style.display="flex";
             button.style.justifyContent=((story_json.parameters.buttons[i].align)?story_json.parameters.buttons[i].align[0]:"center");
@@ -447,6 +447,10 @@ function name_block_update(){
                 tuesday.appendChild(art);
             }
         } else {del_element("tue_art");}
+        var button_ui=document.getElementsByClassName("tue_controll");
+        for(i=0;i<button_ui.length;i++){
+            button_ui[i].innerHTML=values_button(art_data(story_json.parameters.buttons[i].text))
+        }
         if(arr_dialog.choice){
 			tue_next.style.visibility='hidden';
             for(i=0;i < arr_dialog.choice.length;i++){
@@ -491,17 +495,16 @@ function name_block_update(){
                 choice.style.alignItems=((arr_dialog.choice[i].align)?arr_dialog.choice[i].align[1]:"center");
                 choice.style.zIndex=1001+i;
                 if(arr_dialog.choice[i].text && (typeof arr_dialog.choice[i].text!=='object' || (arr_dialog.choice[i].text[languare] && typeof arr_dialog.choice[i].text[languare]!=='object'))){
-                    if(arr_dialog.choice[i].text[languare]){choice.innerHTML=arr_dialog.choice[i].text[languare];}
-                    else {choice.innerHTML=arr_dialog.choice[i].text;}
+                    choice.innerHTML=values_button(art_data(arr_dialog.choice[i].text));
                 }
 				var v='';
 				if(arr_dialog.choice[i].variables){
 					for(var g=0;g < arr_dialog.choice[i].variables.length;g++){
 						if(arr_dialog.choice[i].variables[g][1] == "add"){
-							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+"+="+arr_dialog.choice[i].variables[g][2]+";"
+							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+"+="+((typeof arr_dialog.choice[i].variables[g][2]=="number")?arr_dialog.choice[i].variables[g][2]:"'"+arr_dialog.choice[i].variables[g][2]+"'")+";"
 						}
 						else if(arr_dialog.choice[i].variables[g][1] == "set"){
-							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+"="+arr_dialog.choice[i].variables[g][2]+";"
+							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+"="+((typeof arr_dialog.choice[i].variables[g][2]=="number")?arr_dialog.choice[i].variables[g][2]:"'"+arr_dialog.choice[i].variables[g][2]+"'")+";"
 						}
 					}
 				}
@@ -586,6 +589,9 @@ function name_block_update(){
         str=str.replace( firstMatch[0],story_json.parameters.variables[firstMatch[1]])
     };
 	dialog_text=str
+}
+function values_button(e){
+    let t=e.matchAll(/<(.*?)>/g);t=Array.from(t);for(var a=0;a<t.length;a++){let o=t[a];e=e.replace(o[0],story_json.parameters.variables[o[1]])}return e
 } function go_story(choice){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 	if(!arr_dialog.choice || choice){
