@@ -573,11 +573,6 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
             </tbody>
         </table>
     </div>
-
-
-
-
-
 <script>
 function set_ui(t){
     var r = document.querySelector(':root');
@@ -990,11 +985,11 @@ function data_corr(arr,key){
 function data_la(arr,key){
     var s=((Object.keys(arr[key])[0]==languare)?arr[key][languare]:arr[key]);
     arr[key]={};
-    for(var i=0;i<story_script.parameters.languares.length;i++){arr[key][story_script.parameters.languares[i]]=s;}
+    if(typeof s!=='object'){for(var i=0;i<story_script.parameters.languares.length;i++){arr[key][story_script.parameters.languares[i]]=s;}}else{arr[key]=s}
 }
 function data_only(arr,key){
-if(arr[key]&&arr[key][story_script.parameters.languares[0]]){
-	var n=arr[key][story_script.parameters.languares[0]];
+if(arr[key]&&arr[key][languare]){
+	var n=arr[key][languare];
 	var a=0;
 	for(var i=0;i<story_script.parameters.languares.length;i++){
 		if(arr[key][story_script.parameters.languares[i]]){
@@ -3109,7 +3104,7 @@ function variables_set_apply(){
     li_c=document.getElementsByClassName("var_operation");
     li_z=document.getElementsByClassName("var_value");
     copy_arr.variables=[];
-    for(var i=0;i<li_v.length;i++){ copy_arr.variables.push( [li_v[i].value,li_c[i].value,parseInt(li_z[i].value)] ) };
+    for(var i=0;i<li_v.length;i++){copy_arr.variables.push([li_v[i].value,li_c[i].value,((parseFloat(li_z[i].value)==li_z[i].value)?parseFloat(li_z[i].value):li_z[i].value)])};
     arr_l.variables=JSON.parse(JSON.stringify(copy_arr.variables));
     modal_window("close");
     update_novel();state_save();
