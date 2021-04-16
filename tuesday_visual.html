@@ -575,7 +575,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
     </div>
 <script>
 function set_ui(t){
-    var r = document.querySelector(':root');
+    var r=document.querySelector(':root');
     r.style.setProperty('--cb', color_ui[t][0]);
     r.style.setProperty('--cw', color_ui[t][1]);
     r.style.setProperty('--cs', color_ui[t][2]);
@@ -1320,7 +1320,7 @@ function toast(message, color){
     x.classList.add("toast_anim");
 }
 function about(){
-    var html="<div class='window' style='padding:24px 16px;width:412px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.34 (Beta)</p><br><table style=' border-spacing:10px;border-collapse:separate;'><tr><td align='right'>E-Mail:</td><td align='left'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right'>Home:</td><td align='left'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr><tr><td align='right'>itch.io:</td><td align='left'><a href='https://kirill-live.itch.io/tuesday-js' target='_blank'>https://kirill-live.itch.io/tuesday-js</a></td></tr><tr><td align='right'>Steam:</td><td align='left'><a href='https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine' target='_blank'>https://store.steampowered.com/app/1575970/Tuesday_JS...</a></td></tr><tr><td align='right'>GitHub:</td><td align='left'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'>https://github.com/Kirilllive/tuesday-js</a></td></tr></table><br><p>Thanks for the help from users</p><hr><br><table width='100%' align='center'><tbody><tr>"
+    var html="<div class='window' style='padding:24px 16px;width:412px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.36 (Beta)</p><br><table style=' border-spacing:10px;border-collapse:separate;'><tr><td align='right'>E-Mail:</td><td align='left'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right'>Home:</td><td align='left'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr><tr><td align='right'>itch.io:</td><td align='left'><a href='https://kirill-live.itch.io/tuesday-js' target='_blank'>https://kirill-live.itch.io/tuesday-js</a></td></tr><tr><td align='right'>Steam:</td><td align='left'><a href='https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine' target='_blank'>https://store.steampowered.com/app/1575970/Tuesday_JS...</a></td></tr><tr><td align='right'>GitHub:</td><td align='left'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'>https://github.com/Kirilllive/tuesday-js</a></td></tr></table><br><p>Thanks for the help from users</p><hr><br><table width='100%' align='center'><tbody><tr>"
     +"<td width='25%' align='center'></td>"
     +"<td width='25%' align='center'><a href='https://twitter.com/laurentgontier' target='_blank'>Laurent Gontier</a></td>"
     +"<td width='25%' align='center'>Argosa</td>"
@@ -1739,6 +1739,7 @@ function dialog_el(id,n,e){
             }
         }
         code+='<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="data_copy(\''+arr_n+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copy"></td><td>Copy '+arr_n+'</td></tr></tbody></table></td></tr>'
+        +((arr_n==buf[0])?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="data_past();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_refrash"></td><td>Replayce '+arr_n+'</td></tr></tbody></table></td></tr>':'')
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="delete arr_l.name;element_dialog_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
