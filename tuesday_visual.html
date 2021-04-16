@@ -1982,7 +1982,7 @@ function dialog_text_edit(){
 	+"<tr><td width='80px' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);' colspan='3'>Settings text panel</td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='text_color' class='input_text' value='"+((copy_arr.color_text)?copy_arr.color_text:"")+"' type='text'></td>"
     +"<td class='icon icon_color' style='height:40px;width:40px;' onclick='color_element(\"text_color\",text_color.value);'></td></tr>"
-    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Panel color</td><td><input id='p_color' class='input_text' value='"+((copy_arr.color_text)?copy_arr.color:"")+"' type='text'></td>"
+    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Panel color</td><td><input id='p_color' class='input_text' value='"+((copy_arr.color)?copy_arr.color:"")+"' type='text'></td>"
     +"<td class='icon icon_color' style='height:40px;width:40px;' onclick='color_element(\"p_color\",p_color.value);'></td></tr>"
 	+"<tr><td height='40px' align='right' style='padding-right:8px;'>Style</td><td><input id='text_style' class='input_text' value='"+((copy_arr[arr_n].style)?copy_arr[arr_n].style:"")+"' type='text'></td><td></td></tr>"
 	+"<tr><td height='40px' align='right' style='padding-right:8px;'>ClassName</td><td><input id='text_class' class='input_text' value='"+((copy_arr[arr_n].className)?copy_arr[arr_n].className:"")+"' type='text'></td><td></td></tr>"
@@ -2401,8 +2401,8 @@ function scen_editor(block,i,n){
             if(story_script[block][i].dialogs[n-1].name&&arr_p){
                 if(arr_p.className){tue_name_block.className=arr_p.className;}else{tue_name_block.className=""};
                 if(arr_p.style){tue_name_block.style=arr_p.style;}else if(story_script.parameters.characters[story_script[block][i].dialogs[n-1].name] && story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].style){tue_name_block.style=story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].style}else{tue_name_block.style=null};
-                if(arr_p.color){tue_name_block.style.backgroundColor=arr_p.color}else if(story_script.parameters.characters[story_script[block][i].dialogs[n-1].name] && story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].color){tue_name_block.style.backgroundColor=story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].color}else{tue_name_block.style.backgroundColor=null};
-                if(arr_p.color_text){tue_name_block.style.color=arr_p.color_text}else if(story_script.parameters.characters[story_script[block][i].dialogs[n-1].name] && story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].color_text){tue_name_block.style.color=story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].color_text}else{tue_name_block.style.color=null};
+                if(story_script.parameters.characters[story_script[block][i].dialogs[n-1].name] && story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].color){tue_name_block.style.backgroundColor=story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].color}else if(arr_p.color){tue_name_block.style.backgroundColor=arr_p.color}else{tue_name_block.style.backgroundColor=null};
+                if(story_script.parameters.characters[story_script[block][i].dialogs[n-1].name] && story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].color_text){tue_name_block.style.color=story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].color_text}else if(arr_p.color_text){tue_name_block.style.color=arr_p.color_text}else{tue_name_block.style.color=null};
                 tue_name_block.style.position="absolute";
                 tue_name_block.style.padding=arr_p.indent_text;
                 tue_name_block.style.fontSize=((arr_p.size_text)?arr_p.size_text:story_script.parameters.font_size);
@@ -2418,7 +2418,8 @@ function scen_editor(block,i,n){
                 tue_name_block.innerHTML=((story_script.parameters.characters && story_script.parameters.characters[story_script[block][i].dialogs[n-1].name])  ?  languare_data(story_script.parameters.characters[story_script[block][i].dialogs[n-1].name])  :  languare_data(story_script[block][i].dialogs[n-1].name) );
                 tue_name_block.style.visibility='visible';
             }else{tue_name_block.style.visibility='hidden';}
-            if(arr_t.color){tue_text_block.style.backgroundColor=arr_t.color;}
+            if(arr_s.color){tue_text_block.style.backgroundColor=arr_s.color;}else if(arr_t.color){tue_text_block.style.backgroundColor=arr_t.color;}
+            if(arr_s.color_text){tue_text_block.style.color=arr_s.color_text;}else if(arr_t.color_text){tue_text_block.style.color=arr_t.color_text;}
             bg_art(arr_p,'tue_name_block');
             bg_art(arr_t,'tue_text_block');
             function bg_art(arr_u,tue_id){
@@ -2440,7 +2441,6 @@ function scen_editor(block,i,n){
                     }else{tue_id.style.backgroundSize=arr_u.art_size;}
                 }
             }
-            tue_text_block.style.color=arr_t.color_text;
             tue_text_block.setAttribute("ondblclick","s_scene_text.onclick();");
         }else{tue_text_block.style.visibility='hidden';tue_name_block.style.visibility='hidden';}
         panel_art('anp_edit');panel_art('atp_edit');button_panel_update();
