@@ -3467,36 +3467,34 @@ function csv_export(){
 						if(story_script[k][i].dialogs[d].text){
 							CSV+=languare_data(story_script[k][i].dialogs[d].name)+'\t';
 							if(story_script[k][i].dialogs[d].text[languare]){for(l=0;l<story_script.parameters.languares.length;l++){
-                                if(typeof story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]]!=='object'){CSV+=story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
+                                if(typeof story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]]==='string'){CSV+=story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
                                 else{CSV+='\t';}
                                 }
                             }
-                            else if(typeof story_script[k][i].dialogs[d].text!=='object'){CSV+=story_script[k][i].dialogs[d].text.replace(new RegExp('\t',"g"),'')+'\t';}
+                            else if(typeof story_script[k][i].dialogs[d].text==='string'){CSV+=story_script[k][i].dialogs[d].text.replace(new RegExp('\t',"g"),'')+'\t';}
 							CSV+='\r';
 						}else if(story_script[k][i].dialogs[d].text_add){
 							CSV+=languare_data(story_script[k][i].dialogs[d].name)+'\t';
 							if(story_script[k][i].dialogs[d].text_add[languare]){for(l=0;l<story_script.parameters.languares.length;l++){
-                                if(typeof story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]]!=='object'){CSV+=story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
+                                if(typeof story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]]==='string'){CSV+=story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
                                 else{CSV+='\t';}
                                 }
                             }
-							else if(typeof story_script[k][i].dialogs[d].text_add!=='object'){CSV+=story_script[k][i].dialogs[d].text_add.replace(new RegExp('\t',"g"),'')+'\t';}
+							else if(typeof story_script[k][i].dialogs[d].text_add==='string'){CSV+=story_script[k][i].dialogs[d].text_add.replace(new RegExp('\t',"g"),'')+'\t';}
                             CSV+='\r';
 						}else if(story_script[k][i].dialogs[d].choice){
 							for(r=0;r<story_script[k][i].dialogs[d].choice.length;r++){
 								if(story_script[k][i].dialogs[d].choice[r].text){
-									CSV+='choice \t';
-									if(story_script[k][i].dialogs[d].choice[r].text[languare]){for(l=0;l<story_script.parameters.languares.length;l++){
-										if(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+=story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
-										else{CSV+='\t';}
-									}}else if(typeof story_script[k][i].dialogs[d].choice[r].text!=='object'){CSV+=story_script[k][i].dialogs[d].choice[r].text.replace(new RegExp('\t',"g"),'')+'\t';}
-                                    CSV+='\r'
+									if(story_script[k][i].dialogs[d].choice[r].text[languare] && story_script[k][i].dialogs[d].choice[r].text.length>0){CSV+='choice \t';for(l=0;l<story_script.parameters.languares.length;l++){
+										if(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+=story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t\r'}
+										else{CSV+='\t\r'}
+									}}else if(typeof story_script[k][i].dialogs[d].choice[r].text==='string' && story_script[k][i].dialogs[d].choice[r].text.length>0){CSV+='choice \t'+story_script[k][i].dialogs[d].choice[r].text.replace(new RegExp('\t',"g"),'')+'\t\r'}
 								}
 							}
 						}
-					} CSV+='\r';
+					}
 				}
-			} CSV+='\r';
+			}
 		} all_blocks++;
     }
     if(story_script.parameters.title){n="translate_kit_"+((story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title)}
