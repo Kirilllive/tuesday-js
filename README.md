@@ -22,6 +22,8 @@ Twitter: https://twitter.com/TuesdayJS_vn
 
 Patreon: https://www.patreon.com/kirill_live
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E54DM6V)
+
 # Visual editor
 
 visual editor for web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
@@ -266,3 +268,5 @@ documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
 ![Tuesday JS visual novels engine Akihabara 秋葉原](screenshots/20201202_122259.jpg)
 
 The goal of Tuesday JS is to make project development no more difficult than working in an office program to make presentations, and does not require special skills from the user.
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E54DM6V)
