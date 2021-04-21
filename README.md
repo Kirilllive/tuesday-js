@@ -22,7 +22,7 @@ Twitter: https://twitter.com/TuesdayJS_vn
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E54DM6V)
 
-[![Patreon](https://art.ngfiles.com/comments/123000/iu_123116_5471963.png)](https://www.patreon.com/kirill_live)
+[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
 
 # Visual editor
 
@@ -271,4 +271,4 @@ The goal of Tuesday JS is to make project development no more difficult than wor
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E54DM6V)
 
-[![Patreon](https://art.ngfiles.com/comments/123000/iu_123116_5471963.png)](https://www.patreon.com/kirill_live)
+[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
