@@ -718,7 +718,7 @@ function open_file(name){
     for(var f=0;f<project_files.length;f++){if(project_files[f][0]==name){name=(project_files[f][1]);break;}} return name;
 }
 function new_novel(){
-    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["2.5%","0","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["0","2.5%","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{}},"blocks":{}};
+    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"color":"#efefff","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10"},"name_panel":{"size":["0","48px"],"position":["0","0","-48px","0"],"size_text":"18px"},"title":{"en":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["2.5%","0","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["0","2.5%","0","32px"],"size":["38px","38px"],"color":"","size_text":"28px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","csv_separator":"\t","variables":{},"sounds":{}},"blocks":{}};
     update_novel();
     state_num=0;back_up=[];state_save();
 }
@@ -766,6 +766,7 @@ function parse_story(){
 	if(!story_script.blocks){story_script.blocks={}}
     if(!story_script.parameters.key){story_script.parameters.key=""}
     if(!story_script.parameters.title){story_script.parameters.title=""}
+	if(!story_script.parameters.csv_separator){story_script.parameters.csv_separator="\t"}
     if(!story_script.parameters.variables){story_script.parameters.variables={}}
     if(!story_script.parameters.characters){story_script.parameters.characters={}}
     while(Object.keys(story_script)[all_blocks]){creation_block(all_blocks);all_blocks++;}
@@ -1365,6 +1366,7 @@ function build(tip){
     delete story_build.parameters['font_size'];
     delete story_build.parameters['icon'];
     delete story_build.parameters.font_files;
+	delete story_build.parameters.csv_separator;
     delete story_build.blocks;
     var story_preview=JSON.stringify(story_build)
     if(tip==0){
@@ -3190,6 +3192,7 @@ function setup(){
         "<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='"+((story_script.parameters.style_file)?story_script.parameters.style_file:'')+"' type='text'></td><td id='l_css' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\".css\",\"style_file\",0,\"story_script.parameters.style_file\")'></td></tr>"+
         "<tr><td align='right'>dialog speed </td><td align='left' colspan='2'><input id='dialog_speed_s' onchange='this.value=parseInt(correct_value(this.value,true))' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:'')+"' type='text'></td></tr><tr><td align='right'>font family </td><td align='left' colspan='2'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>font size </td><td align='left' colspan='2'><input id='font_size' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size:'')+"' type='text'></td></tr>"+
+        "<tr><td align='right'>csv separator </td><td align='left' colspan='2'><input max_length='3' id='csv_separator' class='input_text' value='"+((story_script.parameters.csv_separator)?story_script.parameters.csv_separator:'\t')+"' type='text'></td></tr>"+
         "<tr><td align='right'>icon </td><td align='left'><input id='icon' class='input_text' value='"+((story_script.parameters.icon)?story_script.parameters.icon :'')+"' type='text'></td><td id='l_icon'style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\"img\",\"icon\",0,\"story_script.parameters.icon\")'></td></tr>"+
         "<tr><td height='20px'></td><td></td></tr>"+
         "<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px;width:60%;'><table style='width:100%'><tbody><tr><td><input id='autosave' type='checkbox' class='checkbox_a' "+((story_script.parameters.autosave)?'checked':'')+"></td><td align='right'>Clear localStorage:</td></tr></tbody></table></td><td onclick=\"localStorage.clear();toast('localStorage clear');\" style='width:40px;cursor:pointer;' title='clear autosave' class='icon icon_del'></td></tr>"+
@@ -3353,6 +3356,7 @@ function apply_setup(){
     story_script.parameters.font=font.value
     story_script.parameters.font_size=correct_value(font_size.value)
     story_script.parameters.text_panel.dialog_speed=dialog_speed_s.value
+    story_script.parameters.csv_separator=csv_separator.value
     //
     forms=document.forms.devices;
     setup_editor.wheel=(forms[0].checked)?true:false;
@@ -3448,12 +3452,23 @@ function world_scale(s){
         html.scrollLeft=((scroll_yz+(html.clientWidth/2))*scale)-(html.clientWidth/2);
     }
 }
+function csv_wrap_entry(str) {
+	var sep = story_script.parameters.csv_separator;
+	if (sep == '\t'){
+		return str.replace(new RegExp('\t',"g"),'')+sep;
+	} else
+	{
+		return '"'+str.replace(new RegExp('"',"g"),'""')+'"'+sep;
+	}
+	
+}
 function csv_export(){
     var n,i,d,l,r;
-    var CSV='name\t';
-	for(i=0;i<story_script.parameters.languares.length;i++){CSV+=story_script.parameters.languares[i]+'\t';}
-	CSV+='\rtitle\t';
-	if(story_script.parameters.title[languare]){for(i=0;i<story_script.parameters.languares.length;i++){CSV+=story_script.parameters.title[story_script.parameters.languares[i]]+'\t';}}
+	var sep = story_script.parameters.csv_separator;
+    var CSV='name'+sep;
+	for(i=0;i<story_script.parameters.languares.length;i++){CSV+=story_script.parameters.languares[i]+sep;}
+	CSV+='\rtitle'+sep;
+	if(story_script.parameters.title[languare]){for(i=0;i<story_script.parameters.languares.length;i++){CSV+=csv_wrap_entry(story_script.parameters.title[story_script.parameters.languares[i]]);}}
     else{CSV+=story_script.parameters.title}
 	CSV+='\r';
 	all_blocks=0;
@@ -3465,19 +3480,19 @@ function csv_export(){
 				if(story_script[k][i].dialogs){
 					for(d=0;d<story_script[k][i].dialogs.length;d++){
 						if(story_script[k][i].dialogs[d].text){
-							CSV+=languare_data(story_script[k][i].dialogs[d].name)+'\t';
+							CSV+=csv_wrap_entry(languare_data(story_script[k][i].dialogs[d].name));
 							if(story_script[k][i].dialogs[d].text[languare]){for(l=0;l<story_script.parameters.languares.length;l++){
-                                if(typeof story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]]==='string'){CSV+=story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
-                                else{CSV+='\t';}
+                                if(typeof story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]]==='string'){CSV+=csv_wrap_entry(story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]]);}
+                                else{CSV+=sep;}
                                 }
                             }
-                            else if(typeof story_script[k][i].dialogs[d].text==='string'){CSV+=story_script[k][i].dialogs[d].text.replace(new RegExp('\t',"g"),'')+'\t';}
+                            else if(typeof story_script[k][i].dialogs[d].text==='string'){CSV+=csv_wrap_entry(story_script[k][i].dialogs[d].text);}
 							CSV+='\r';
 						}else if(story_script[k][i].dialogs[d].text_add){
-							CSV+=languare_data(story_script[k][i].dialogs[d].name)+'\t';
+							CSV+=csv_wrap_entry(languare_data(story_script[k][i].dialogs[d].name));
 							if(story_script[k][i].dialogs[d].text_add[languare]){for(l=0;l<story_script.parameters.languares.length;l++){
-                                if(typeof story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]]==='string'){CSV+=story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t';}
-                                else{CSV+='\t';}
+                                if(typeof story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]]==='string'){CSV+=csv_wrap_entry(story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]]);}
+                                else{CSV+=sep;}
                                 }
                             }
 							else if(typeof story_script[k][i].dialogs[d].text_add==='string'){CSV+=story_script[k][i].dialogs[d].text_add.replace(new RegExp('\t',"g"),'')+'\t';}
@@ -3485,10 +3500,10 @@ function csv_export(){
 						}else if(story_script[k][i].dialogs[d].choice){
 							for(r=0;r<story_script[k][i].dialogs[d].choice.length;r++){
 								if(story_script[k][i].dialogs[d].choice[r].text){
-									if(story_script[k][i].dialogs[d].choice[r].text[languare] && story_script[k][i].dialogs[d].choice[r].text.length>0){CSV+='choice \t';for(l=0;l<story_script.parameters.languares.length;l++){
-										if(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+=story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp('\t',"g"),'')+'\t\r'}
-										else{CSV+='\t\r'}
-									}}else if(typeof story_script[k][i].dialogs[d].choice[r].text==='string' && story_script[k][i].dialogs[d].choice[r].text.length>0){CSV+='choice \t'+story_script[k][i].dialogs[d].choice[r].text.replace(new RegExp('\t',"g"),'')+'\t\r'}
+									if(story_script[k][i].dialogs[d].choice[r].text[languare] && story_script[k][i].dialogs[d].choice[r].text.length>0){CSV+='choice'+sep;for(l=0;l<story_script.parameters.languares.length;l++){
+										if(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+=csv_wrap_entry(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]])+'\r'}
+										else{CSV+=sep+'\r'}
+									}}else if(typeof story_script[k][i].dialogs[d].choice[r].text==='string' && story_script[k][i].dialogs[d].choice[r].text.length>0){CSV+='choice'+sep+csv_wrap_entry(story_script[k][i].dialogs[d].choice[r].text)+'\r'}
 								}
 							}
 						}
