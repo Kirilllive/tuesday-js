@@ -20,9 +20,9 @@ itch.io: https://kirill-live.itch.io/tuesday-js
 
 Twitter: https://twitter.com/TuesdayJS_vn
 
-Patreon: https://www.patreon.com/kirill_live
-
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E54DM6V)
+
+[![Patreon](https://art.ngfiles.com/comments/123000/iu_123116_5471963.png)](https://www.patreon.com/kirill_live)
 
 # Visual editor
 
@@ -270,3 +270,5 @@ documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
 The goal of Tuesday JS is to make project development no more difficult than working in an office program to make presentations, and does not require special skills from the user.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E54DM6V)
+
+[![Patreon](https://art.ngfiles.com/comments/123000/iu_123116_5471963.png)](https://www.patreon.com/kirill_live)
