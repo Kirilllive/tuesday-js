@@ -225,13 +225,13 @@ Create a story file story.json
         {
             "dialogs":[
                 {
-					"back_to": "main_menu",
-					"text":"1234567890",
-					"name":"numbers"
+                    "back_to": "main_menu",
+                    "text":"1234567890",
+                    "name":"numbers"
                 },{
-					"go_to": "main_menu",
-					"text":"ABCDEFZHIKLMNOPQRSTVX",
-					"name":"letters"
+                    "go_to": "main_menu",
+                    "text":"ABCDEFZHIKLMNOPQRSTVX",
+                    "name":"letters"
                 }
             ]
         }
