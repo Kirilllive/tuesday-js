@@ -2043,10 +2043,10 @@ function dialog_char_update(){
     c_color.value=(arr_s&&arr_s.color)?arr_s.color:'';
 }
 function dialog_text_apply(){
-	if(text_style.value!=""){copy_arr[arr_n].style=text_style.value;}//else{delete copy_arr[arr_n].style};
-	if(text_class.value!=""){copy_arr[arr_n].className=text_class.value;}//else{delete copy_arr[arr_n].className};
-    if(text_color.value!=""){arr_l.color_text=text_color.value;}//else{delete arr_l.color_text};
-    if(p_color.value!=""){arr_l.color=p_color.value;}//else{delete arr_l.color};
+	if(text_style.value!=""){copy_arr[arr_n].style=text_style.value;}else{delete copy_arr[arr_n].style};
+	if(text_class.value!=""){copy_arr[arr_n].className=text_class.value;}else{delete copy_arr[arr_n].className};
+    if(text_color.value!=""){arr_l.color_text=text_color.value;}else{delete arr_l.color_text};
+    if(p_color.value!=""){arr_l.color=p_color.value;}else{delete arr_l.color};
     data_only(copy_arr,arr_n);
     var arr_s=story_script.parameters.characters,n=0,l,c=0;
     if(copy_arr.name.length!=0&&!story_script.parameters.characters[copy_arr.name]){
@@ -2061,10 +2061,10 @@ function dialog_text_apply(){
         } toast('Added new character '+n);
     }else if(copy_arr.name&&copy_arr.name.length!=0){n=copy_arr.name;};
     if(n){
-        if(c_style.value!=""){arr_s[n].style=c_style.value;}//else{delete arr_s[n].style}
-        if(c_class.value!=""){arr_s[n].className=c_class.value;}//else{delete arr_s[n].className}
-        if(t_color.value!=""){arr_s[n].color_text=t_color.value;}//else{delete arr_s[n].color_text};
-        if(c_color.value!=""){arr_s[n].color=c_color.value;}//else{delete arr_s[n].color};
+        if(c_style.value!=""){arr_s[n].style=c_style.value;}else{delete arr_s[n].style}
+        if(c_class.value!=""){arr_s[n].className=c_class.value;}else{delete arr_s[n].className}
+        if(t_color.value!=""){arr_s[n].color_text=t_color.value;}else{delete arr_s[n].color_text};
+        if(c_color.value!=""){arr_s[n].color=c_color.value;}else{delete arr_s[n].color};
         arr_l.name=n
     }
     if(Object.keys(copy_arr.name).length==0){delete arr_l.name}
@@ -2242,7 +2242,7 @@ function scen_edit_data(){
     if(arr_t.position){
         position_l.value=((arr_t.position[0])?arr_t.position[0]:0)
         position_r.value=((arr_t.position[1])?arr_t.position[1]:0)
-        position_t.value=((arr_t.position[3])?arr_t.position[3]:0)
+        position_t.value=((arr_t.position[2])?arr_t.position[2]:0)
     } if(arr_t.color){
         color_t.value=arr_t.color
         color_t_b.value=arr_t.color
@@ -2253,7 +2253,7 @@ function scen_edit_data(){
         color_text_b.value=arr_t.color_text
         color_text_s.style.backgroundColor=arr_t.color_text
     }else{color_text.value=""}
-    indent_bottom.value=((arr_t.indent_bottom)?arr_t.indent_bottom:"")
+    indent_bottom.value=((arr_t.indent_bottom)?arr_t.indent_bottom:0)
     indent_text.value=((arr_t.indent_text)?arr_t.indent_text:"")
     size_text.value=((arr_t.size_text)?arr_t.size_text:"")
     font_family.value=((story_script.parameters.font)?story_script.parameters.font:"")
@@ -2291,14 +2291,14 @@ function scen_edit_updare(show){
     arr_t.size[1]=correct_value(size_h.value);
     arr_t.className=className.value
     arr_t.dialog_speed=dialog_speed.value;
-    arr_t.position=[((position_l.value)?correct_value(position_l.value):0),((position_r.value)?correct_value(position_r.value):0),((position_t.value)?correct_value(position_t.value):0),0];
+    arr_t.position=[correct_value(position_l.value),correct_value(position_r.value),correct_value(position_t.value)];
     arr_t.color_text=color_text.value
     arr_t.color=color_t.value
     arr_t.size_text=correct_value(size_text.value);
     arr_t.font_family=font_family.value
     arr_t.indent_text=((indent_text.value)?correct_value(indent_text.value):0);
     arr_t.indent_bottom=((indent_bottom.value)?correct_value(indent_bottom.value):0);
-    arr_p.position=[((n_position_l.value)?correct_value(n_position_l.value):0),((n_position_r.value)?correct_value(n_position_r.value):0),((n_position_t.value)?correct_value(n_position_t.value):0),((n_position_b.value)?correct_value(n_position_b.value):0)];
+    arr_p.position=[correct_value(n_position_l.value),correct_value(n_position_r.value),correct_value(n_position_t.value),correct_value(n_position_b.value)];
     arr_p.indent_text=((n_indent_text.value)?correct_value(n_indent_text.value):0);
     arr_p.className=n_className.value
     if(document.getElementById('editcode')&&editcode.value!=""){n_style.value=(arr_p.style)?arr_p.style:''}
@@ -2406,7 +2406,7 @@ function scen_editor(block,i,n){
                 tue_text_block.style.left="0";
                 tue_text_block.style.right="0";
             }
-            if(arr_t.indent_bottom){tue_text_block.style.bottom=arr_t.indent_bottom;}
+            tue_text_block.style.bottom=arr_t.indent_bottom;
             tue_text_block.style.zIndex="1000";
             tue_text_block.style.borderSpacing="0";
             tue_text_block.style.zIndex=1998;
@@ -2429,10 +2429,10 @@ function scen_editor(block,i,n){
                 if(tue_name_block.style.width=arr_p.size[0]!=0){tue_name_block.style.width=arr_p.size[0];}
                 tue_name_block.style.height=arr_p.size[1];
                 tue_name_block.style.lineHeight=arr_p.size[1];
-                if(arr_p.position[0]!=0){tue_name_block.style.left=arr_p.position[0];}
-                if(arr_p.position[1]!=0){tue_name_block.style.right=arr_p.position[1];}
-                if(arr_p.position[2]!=0){tue_name_block.style.top=arr_p.position[2];}
-                if(arr_p.position[3]!=0){tue_name_block.style.bottom=arr_p.position[3];}
+                tue_name_block.style.left=arr_p.position[0];
+                tue_name_block.style.right=arr_p.position[1];
+                tue_name_block.style.top=arr_p.position[2];
+                tue_name_block.style.bottom=arr_p.position[3];
                 tue_name_block.innerHTML=((story_script.parameters.characters && story_script.parameters.characters[story_script[block][i].dialogs[n-1].name])  ?  languare_data(story_script.parameters.characters[story_script[block][i].dialogs[n-1].name])  :  languare_data(story_script[block][i].dialogs[n-1].name) );
                 tue_name_block.style.visibility='visible';
             }else{tue_name_block.style.visibility='hidden';}
