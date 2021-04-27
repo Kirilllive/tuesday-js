@@ -2254,17 +2254,17 @@ function scen_edit_data(){
         color_text_s.style.backgroundColor=arr_t.color_text
     }else{color_text.value=""}
     indent_bottom.value=((arr_t.indent_bottom)?arr_t.indent_bottom:0)
-    indent_text.value=((arr_t.indent_text)?arr_t.indent_text:"")
-    size_text.value=((arr_t.size_text)?arr_t.size_text:"")
-    font_family.value=((story_script.parameters.font)?story_script.parameters.font:"")
-    dialog_speed.value=((arr_t.dialog_speed)?arr_t.dialog_speed:"")
+    indent_text.value=arr_t.indent_text
+    size_text.value=arr_t.size_text
+    font_family.value=story_script.parameters.font
+    dialog_speed.value=arr_t.dialog_speed
     n_size_w.value=((arr_p.size[0])?arr_p.size[0]:0)
     n_size_h.value=((arr_p.size[1])?arr_p.size[1]:0)
     if(arr_p.position){
-        n_position_l.value=((arr_p.position[0])?arr_p.position[0]:0)
-        n_position_r.value=((arr_p.position[1])?arr_p.position[1]:0)
-        n_position_t.value=((arr_p.position[2])?arr_p.position[2]:0)
-        n_position_b.value=((arr_p.position[3])?arr_p.position[3]:0)
+        n_position_l.value=arr_p.position[0]
+        n_position_r.value=arr_p.position[1]
+        n_position_t.value=arr_p.position[2]
+        n_position_b.value=arr_p.position[3]
     }
     n_className.value=((arr_p.className)?arr_p.className:"")
     n_style.value=((arr_p.style)?arr_p.style:"")
