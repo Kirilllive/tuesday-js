@@ -212,10 +212,7 @@ function name_block_update(){
     }
     if(document.getElementById('tue_next')){document.getElementById('tue_next').addEventListener('click',function(){go_story()});}
     if(document.getElementById('tue_back')){document.getElementById('tue_back').addEventListener('click',function(){back_story()});}
-    if(document.getElementById('tue_home')){
-        var g=story_json.parameters.launch_story;
-        document.getElementById('tue_home').addEventListener('click',function(){go_to(g)});
-    }
+    if(document.getElementById('tue_home')){document.getElementById('tue_home').addEventListener('click',function(){go_to(story_json.parameters.launch_story)});}
     if(document.getElementById('tue_save')){document.getElementById('tue_save').addEventListener('click',function(){save_stag('bookmark')});}
     if(document.getElementById('tue_load')){document.getElementById('tue_load').addEventListener('click',function(){load_stag('bookmark')});}
     if(document.getElementById('tue_fullScreen')){document.getElementById('tue_fullScreen').addEventListener('click',function(){full_screen()});}
@@ -516,7 +513,7 @@ function name_block_update(){
                     else if (g == "tue_save"){choice.setAttribute("onclick",v+"save_stag('bookmark');"+add_sound());}
                     else if (g == "tue_no"||g == ""){choice.setAttribute("onclick",v)}
                     else if (g == "tue_fullScreen"){choice.setAttribute("onclick",v+"full_screen();");}
-                    else if (g == "tue_home"){choice.setAttribute("onclick",v+'document.getElementById("tue_home").addEventListener("click",function(){go_to("'+story_json.parameters.launch_story+'")});');}
+                    else if (g == "tue_home"){choice.setAttribute("onclick",v+'go_to("'+story_json.parameters.launch_story+'");');}
                     else if (g == "tue_back"){choice.setAttribute("onclick",v+"back_story();");}
                     else if (g == "tue_next"){choice.setAttribute("onclick",v+"go_story();");}
                     else {choice.setAttribute("onclick",v+"go_to('"+g+"');"+add_sound())}
