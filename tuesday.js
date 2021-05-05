@@ -620,8 +620,8 @@ function values_button(e){
     if(arr_dialog.back_to){
         var go=arr_dialog.back_to;
         go_to(go)
-    } else if(dialog > 0){
-        dialog -= 1;
+    } else if(dialog>0){
+        dialog-=1;
 		if(arr_dialog.text){
 			if(arr_dialog.text[languare] == 'skip'){back_story()}
 			else {creation_dialog();};
@@ -636,8 +636,8 @@ function values_button(e){
 				}else{dialog_text=dialog_text.replace(story_json[tue_story][scene].dialogs[dialog+1].text_add,"")};
 				creation_dialog();
 			};
-		} else {
-			creation_dialog();
+		}else{
+			dialog=0;creation_dialog();
 			del_element("tue_choice")
             del_element("tue_html_dialog")
 		};
