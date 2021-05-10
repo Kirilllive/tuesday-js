@@ -403,6 +403,7 @@ function name_block_update(){
                                 old[o].style.width=arr_dialog.art[i].size[0];
                                 old[o].style.height=arr_dialog.art[i].size[1];
                             }
+                            old[o].style.transform=((arr_dialog.art[i].hotspot)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
                             if(arr_dialog.art[i].position[0]!=0){old[o].style.left=arr_dialog.art[i].position[0];}
                             if(arr_dialog.art[i].position[1]!=0){
                                 old[o].style.left="calc(100% - "+arr_dialog.art[i].position[1]+" - "+arr_dialog.art[i].size[0]+")";
@@ -435,6 +436,11 @@ function name_block_update(){
                     art.style.width=arr_dialog.art[i].size[0];
                     art.style.height=arr_dialog.art[i].size[1];
                 }
+                
+                
+                art.style.transform=((arr_dialog.art[i].hotspot)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
+
+                
                 if(arr_dialog.art[i].position[0]!=0){art.style.left=arr_dialog.art[i].position[0];}
                 if(arr_dialog.art[i].position[1]!=0){art.style.left="calc(100% - "+arr_dialog.art[i].position[1]+" - "+arr_dialog.art[i].size[0]+")";}
                 if(arr_dialog.art[i].position[2]!=0){art.style.top=arr_dialog.art[i].position[2];}
@@ -478,6 +484,7 @@ function name_block_update(){
                         choice.style.borderImage="url('"+art_data(arr_dialog.choice[i].art)+"') "+arr_dialog.choice[i].patch[0]+" "+arr_dialog.choice[i].patch[1]+" "+arr_dialog.choice[i].patch[2]+" "+arr_dialog.choice[i].patch[3]+" stretch stretch";
                     } else {choice.style.backgroundSize=arr_dialog.choice[i].art_size;}
                 }
+                choice.style.transform=((arr_dialog.choice[i].hotspot)?" translate("+arr_dialog.choice[i].hotspot[0]+","+arr_dialog.choice[i].hotspot[1]+")":"")+((arr_dialog.choice[i].angle)?"rotate("+arr_dialog.choice[i].angle+"deg)":"")
                 if(arr_dialog.choice[i].position[0] != 0){choice.style.left=arr_dialog.choice[i].position[0];}
                 if(arr_dialog.choice[i].position[1] != 0){choice.style.right=arr_dialog.choice[i].position[1];}
                 if(arr_dialog.choice[i].position[2] != 0){choice.style.top=arr_dialog.choice[i].position[2];}
