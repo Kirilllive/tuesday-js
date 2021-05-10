@@ -637,9 +637,9 @@ function values_button(e){
 				creation_dialog();
 			};
 		}else{
-			dialog=0;creation_dialog();
-			del_element("tue_choice")
-            del_element("tue_html_dialog")
+			creation_dialog();
+			del_element("tue_choice");
+            del_element("tue_html_dialog");
 		};
     }else{
         scene-=1;
