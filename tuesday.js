@@ -451,7 +451,7 @@ function name_block_update(){
         } else {del_element("tue_art");}
         var button_ui=document.getElementsByClassName("tue_controll");
         for(i=0;i<button_ui.length;i++){
-            button_ui[i].innerHTML=values_button(art_data(story_json.parameters.buttons[i].text))
+            if(story_json.parameters.buttons[i].text){button_ui[i].innerHTML=values_button(art_data(story_json.parameters.buttons[i].text))}
         }
         if(arr_dialog.choice){
 			tue_next.style.visibility='hidden';
