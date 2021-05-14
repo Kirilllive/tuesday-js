@@ -3645,8 +3645,8 @@ function makeResizableDiv(s){
         s.style.top=(s.offsetTop-original_mouse_y/scale_scene)+"px";
         s.style.left=(s.offsetLeft-original_mouse_x/scale_scene)+"px";
     }
-    s.ontouchstart=dragMouseDown;
-    function dragMouseDown(e){
+    s.ontouchstart=dragTouchDown;
+    function dragTouchDown(e){
         if(moveSize){
             e=e||window.event;
             e.preventDefault();
@@ -3816,6 +3816,8 @@ function saveResize(a){
     }
     document.onmouseup=null;
     document.onmousemove=null;
+    document.ontouchend=null;
+    document.ontouchmove=null;
     scene_scroll=true
     state_save();
 }
