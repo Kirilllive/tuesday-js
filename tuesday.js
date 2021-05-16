@@ -204,6 +204,7 @@ function name_block_update(){
                 button.style.borderImage="url('"+art_data(story_json.parameters.buttons[i].art)+"') "+story_json.parameters.buttons[i].patch[0]+" "+story_json.parameters.buttons[i].patch[1]+" "+story_json.parameters.buttons[i].patch[2]+" "+story_json.parameters.buttons[i].patch[3]+" stretch stretch";
             } else {button.style.backgroundSize=story_json.parameters.buttons[i].art_size;}
         }
+        button.style.transform=((story_json.parameters.buttons[i].hotspot)?" translate("+story_json.parameters.buttons[i].hotspot[0]+","+story_json.parameters.buttons[i].hotspot[1]+")":"")+((story_json.parameters.buttons[i].angle)?"rotate("+story_json.parameters.buttons[i].angle+"deg)":"")
         if(story_json.parameters.buttons[i].position[0] != 0){button.style.left=story_json.parameters.buttons[i].position[0];}
         if(story_json.parameters.buttons[i].position[1] != 0){button.style.right=story_json.parameters.buttons[i].position[1];}
         if(story_json.parameters.buttons[i].position[2] != 0){button.style.top=story_json.parameters.buttons[i].position[2];}
