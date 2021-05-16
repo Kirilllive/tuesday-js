@@ -695,7 +695,8 @@ var load_files
 img_file.addEventListener('change',loadFiles);
 var load_new=false;
 var wf;
-function clerFiles(){
+function clear_Files(){
+    if(scene_screen){scen_edit_updare(false)};
     for(var i=0;i<project_files.length;i++){URL.revokeObjectURL(project_files[i][1])}
     project_files=[];
 }
@@ -703,11 +704,11 @@ function loadFiles(e){
     load_files=e.target.files
     wf=e.target.files[0].webkitRelativePath.split("/")[0]+"/";
     if(load_new){
-        clerFiles();
+        clear_Files();
         for(var i=0;i<e.target.files.length;i++){project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
         project_foler.value=wf;
     }else{
-        var jsons=[];clerFiles();
+        var jsons=[];clear_Files();
         for(var i=0;i<e.target.files.length;i++){
             project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);
             if(e.target.files[i].type=="application/json"){jsons.push([i,e.target.files[i].name])}
