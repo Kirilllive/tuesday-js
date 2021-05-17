@@ -141,7 +141,7 @@ button:hover{background-color:#cec8e3;}
         pars_text();
         story_script[blocks.value]=[];
         story_script[blocks.value].push({"dialogs":[]});
-        for (i=0;i<w.length-1;i++){if(w[i].length>0){story_script[blocks.value][0].dialogs.push(text_cut(w[i]));}}
+        for (i=0;i<w.length-1;i++){if(w[i].length>0){story_script[blocks.value][0].dialogs.push(text_cut(w[i]));}};
         edit_2.value=JSON.stringify(story_script,null,'\t');
     }
 </script>
