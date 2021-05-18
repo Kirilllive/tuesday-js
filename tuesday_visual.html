@@ -390,14 +390,14 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
                                 <select id='ratio_screen' class='input_text' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size();video_size();' style='width:100%;'>
-                                      <option value=true>landscape</option>
-                                      <option value=false selected>Portrait</option>
+                                      <option value=true selected>landscape</option>
+                                      <option value=false>Portrait</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;'>
                                <select id='screen_size' class='input_text' oninput='preview_size();' style='width:100%;'>
-                                    <option value="0">My screen</option>
-                                    <option value="-1" selected>Preview size</option>
+                                    <option value="0" selected>My screen</option>
+                                    <option value="-1">Preview size</option>
                                     <option value="1080">1080</option>
                                     <option value="720">720</option>
                                     <option value="480">480</option>
@@ -651,7 +651,7 @@ let setup_editor={
         'fon':'',
         'ui':0,
         'lines':false,
-        'preview':[76,1],
+        'preview':[76,0],
         'ferst':true,
         'pvw':[640,480]
 };
