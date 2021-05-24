@@ -287,7 +287,6 @@ function name_block_update(){
 		}
         if(arr_dialog.text && arr_dialog.text!='' && arr_dialog.text[languare]!=''){
             tue_text_block.style.visibility='visible';
-            tue_text_view.innerHTML="";
             values_in_text(false);
             clearTimeout(dialog_timeout);
             anim_text();
@@ -295,7 +294,6 @@ function name_block_update(){
 			if(arr_dialog.text.style){tue_text_block.style=arr_dialog.text.style}
         } else if(arr_dialog.text_add && arr_dialog.text_add!='' && arr_dialog.text_add[languare]!=''){
 			tue_text_block.style.visibility='visible';
-			tue_text_view.innerHTML="";
 			values_in_text(true);
             clearTimeout(dialog_timeout);
             anim_text();
@@ -583,7 +581,7 @@ function name_block_update(){
 	}else{
 		dialog_letter=dialog_text.length;
 		str=dialog_text
-		str +=(arr_dialog.text_add[languare])?arr_dialog.text_add[languare]:arr_dialog.text_add;
+		str+=(arr_dialog.text_add[languare])?arr_dialog.text_add[languare]:arr_dialog.text_add;
 	}
     let regexp=/<(.*?)>/g;
     let matchAll=str.matchAll(regexp);
