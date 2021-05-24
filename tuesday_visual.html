@@ -702,7 +702,6 @@ img_file.addEventListener('change',loadFiles);
 var load_new=false;
 var wf;
 function clear_Files(){
-    if(scene_screen){scen_edit_updare(false)};
     for(var i=0;i<project_files.length;i++){URL.revokeObjectURL(project_files[i][1])}
     project_files=[];
 }
@@ -750,6 +749,7 @@ function update_novel(){
 }
 function load_story_edit(url){
     var xmlhttp=new XMLHttpRequest();
+    if(scene_screen){scen_edit_updare(false)};
     xmlhttp.onreadystatechange=function(){
         if(this.readyState==4&&this.status==200){
             new_novel()
