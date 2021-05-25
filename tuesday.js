@@ -190,7 +190,7 @@ function name_block_update(){
         button.style.height=story_json.parameters.buttons[i].size[1];
         button.style.backgroundColor=story_json.parameters.buttons[i].color;
         button.style.backgroundRepeat="no-repeat";
-        button.style.backgroundPosition="center";
+        button.style.backgroundPosition=((story_json.parameters.buttons[i].art_align)?story_json.parameters.buttons[i].art_align[0]+" "+story_json.parameters.buttons[i].art_align[1]:"center");
         if(story_json.parameters.buttons[i].art){button.style.backgroundImage="url('"+art_data(story_json.parameters.buttons[i].art)+"')";}
         if(story_json.parameters.buttons[i].art_size){
             if (story_json.parameters.buttons[i].art_size=='patch'){button.style.backgroundImage='none'}
@@ -462,7 +462,7 @@ function name_block_update(){
                 choice.style.position="absolute";
                 choice.style.backgroundColor=arr_dialog.choice[i].color;
                 choice.style.backgroundRepeat="no-repeat";
-                choice.style.backgroundPosition="center";
+                choice.style.backgroundPosition=((arr_dialog.choice[i].art_align)?arr_dialog.choice[i].art_align[0]+" "+arr_dialog.choice[i].art_align[1]:"center");
                 if(arr_dialog.choice[i].art){choice.style.backgroundImage="url('"+art_data(arr_dialog.choice[i].art)+"')";}
 				if(arr_dialog.choice[i].size){
 					if(arr_dialog.choice[i].size[0] != 0){
