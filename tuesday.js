@@ -402,6 +402,9 @@ function name_block_update(){
                                 old[o].style.width=arr_dialog.art[i].size[0];
                                 old[o].style.height=arr_dialog.art[i].size[1];
                             }
+                            
+                            if(arr_dialog.art[i].align){old[o].style.objectPosition=arr_dialog.art[i].align[0]+" "+arr_dialog.art[i].align[1];}
+                            
                             old[o].style.transform=((arr_dialog.art[i].hotspot)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
                             if(arr_dialog.art[i].position[0]!=0){old[o].style.left=arr_dialog.art[i].position[0];}
                             if(arr_dialog.art[i].position[1]!=0){
@@ -435,11 +438,8 @@ function name_block_update(){
                     art.style.width=arr_dialog.art[i].size[0];
                     art.style.height=arr_dialog.art[i].size[1];
                 }
-                
-                
                 art.style.transform=((arr_dialog.art[i].hotspot)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
-
-                
+                if(arr_dialog.art[i].align){art.style.objectPosition=arr_dialog.art[i].align[0]+" "+arr_dialog.art[i].align[1];}
                 if(arr_dialog.art[i].position[0]!=0){art.style.left=arr_dialog.art[i].position[0];}
                 if(arr_dialog.art[i].position[1]!=0){art.style.left="calc(100% - "+arr_dialog.art[i].position[1]+" - "+arr_dialog.art[i].size[0]+")";}
                 if(arr_dialog.art[i].position[2]!=0){art.style.top=arr_dialog.art[i].position[2];}
