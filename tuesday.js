@@ -14,8 +14,9 @@ var dialog_timeout;
 var tue_story;
 var tue_bg_music;
 var tue_fullScreen=false;
-var arr_dialog
-var timers
+var arr_dialog;
+var timers;
+var controll=true;
 document.oncontextmenu = cmenu; function cmenu(){return false;}
 window.onmousedown = window.onselectstart = function(){return false;};
 document.addEventListener('keydown',function(event){
@@ -278,10 +279,12 @@ function name_block_update(){
 		else {document.getElementById("tue_next").style.visibility="visible";} 
 		if(scene == 0 && dialog == 0 && !arr_dialog.back_to){document.getElementById('tue_back').style.visibility='hidden'}
 		else {document.getElementById("tue_back").style.visibility="visible";}
-		if(arr_dialog.controll == 'hidden'){
+		if(arr_dialog.controll == 'hidden' || arr_dialog.controll == 'hidden_here'){
+            if (arr_dialog.controll != 'hidden_here') {controll=false;}
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="hidden";}
-		} else if(arr_dialog.controll == 'visible'){
+		} else if(arr_dialog.controll == 'visible' || controll==true) {
+            controll=true;
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="visible";}
 		}
