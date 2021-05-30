@@ -949,7 +949,7 @@ function creation_block(b){
                     if(story_script[chapter.id][i].dialogs[d].controll){
                         element+="<div class='dialog_element' align='left'>"
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Interface<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_controll' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='controll';dialog_el(this.id,'Interface',false)\" width='24px' class='icon_m icon_edit' title='Edit interface'></td></tr></tbody></table>"
-                                +"<div class='choice_b'><select class='input_text_b' oninput='story_script."+chapter.id+"["+i+"].dialogs["+d+"].controll=this.value'><option value='hidden_here'>Hidden only here</option><option value='hidden'>Hidden</option><option value='visible' "+((story_script[chapter.id][i].dialogs[d].controll=="visible")?"selected":"")+">Visible</option></select></div></div>"
+                                +"<div class='choice_b'><select class='input_text_b' oninput='story_script."+chapter.id+"["+i+"].dialogs["+d+"].controll=this.value'><option value='hidden_here' "+((story_script[chapter.id][i].dialogs[d].controll=="hidden_here")?"selected":"")+">Hidden only here</option><option value='hidden' "+((story_script[chapter.id][i].dialogs[d].controll=="hidden")?"selected":"")+">Hidden</option><option value='visible' "+((story_script[chapter.id][i].dialogs[d].controll=="visible")?"selected":"")+">Visible</option></select></div></div>"
                     }
                     if(story_script[chapter.id][i].dialogs[d].html){
                         element+="<div class='dialog_element' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"html\";edit_html();'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>HTML code</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_html' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='html';dialog_el(this.id,'HTML code',true);\" width='24px' class='icon_m icon_edit' title='Edit html'></td></tr></tbody></table></div>"
@@ -1853,14 +1853,14 @@ function project_languares(d){
 }
 function option_block(d,g){
 	var scene_list="";
-    if(g>=1){scene_list+="<option value='tue_no' "+((d=="tue_no")?"selected":"")+">None</option><optgroup label='Story blocks'><option value='tue_go' "+((d=="tue_go")?"selected":"")+">Next scene</option>"}else{scene_list+="<optgroup label='Story blocks'>"}
-    for(var l=0;l<Object.keys(story_script).length;l++){if(Object.keys(story_script)[l]!="parameters"&&Object.keys(story_script)[l]!="blocks"){scene_list+="<option value='"+Object.keys(story_script)[l]+"' "+((d==Object.keys(story_script)[l])?"selected":"")+">"+Object.keys(story_script)[l]+"</option>"}}
+    if(g>=1){scene_list+="<option value='tue_no' "+((d=="tue_no")?"selected":"")+">None</option>";}
+    if(g!=3){
+        scene_list+="<optgroup label='Story blocks'><option value='tue_go' "+((d=="tue_go")?"selected":"")+">Next scene</option>";
+        for(var l=0;l<Object.keys(story_script).length;l++){if(Object.keys(story_script)[l]!="parameters"&&Object.keys(story_script)[l]!="blocks"){scene_list+="<option value='"+Object.keys(story_script)[l]+"' "+((d==Object.keys(story_script)[l])?"selected":"")+">"+Object.keys(story_script)[l]+"</option>"}}}
     if(g>=2){scene_list+='</optgroup><optgroup label="System function">';
         for(var s=0;s<Object.keys(button_name).length;s++){
             var y=true
-            if(g==2){for(var f=0;f<story_script.parameters.buttons.length;f++){
-                if(story_script.parameters.buttons[f].name==Object.keys(button_name)[s]){y=false;break;}
-            }}
+            if(g==2){for(var f=0;f<story_script.parameters.buttons.length;f++){if(story_script.parameters.buttons[f].name==Object.keys(button_name)[s]){y=false;break;}}}
             if(y){scene_list+="<option value='"+Object.keys(button_name)[s]+"' "+((d==Object.keys(button_name)[s])?"selected":"")+">"+button_name[Object.keys(button_name)[s]]+"</option>"}
         }
     }
@@ -2942,8 +2942,6 @@ function choice_panel_edit(block,i,n,b){
     return html;
 }
 let button_name={
-    'tue_back':'Back dialog',
-    'tue_next':'Next dialog',
     'tue_home':'Start block',
     'tue_save':'Save stage',
     'tue_load':'Load stage',
@@ -3037,9 +3035,8 @@ function button_panel_edit(b){
             +'</tr><tr><td id="bt'+b+'" colspan="5" height="40px" align="center" style="background-image:url('+open_file((arr_s[b].art[languare])?arr_s[b].art[languare]:arr_s[b].art)+');background-position:center;background-repeat:no-repeat;background-size:contain;">'+((arr_s[b].text[languare])?arr_s[b].text[languare]:((arr_s[b].text.length>0)?arr_s[b].text:arr_s[b].name))+'</td></tr><tr>'
         +'<td height="22px" class="icon_m icon_more" onclick="block_open(\'bpsp'+b+'\');scen_element.bpsp'+b+'=bpsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
         +'<table id="bpsp'+b+'" width="100%" style="display:'+((scen_element['bpsp'+b])?scen_element['bpsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
-            +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Function</td>'
-            +'<td colspan="3"><select class="input_text" oninput="bt'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value);story_script.parameters.buttons['+b+'].name=this.value;state_save();" style="width:100%;height:28px">'+option_block(arr_s[b].name,3)+'</select></select></td>'
-        +'</tr><tr>'
+            +((arr_s[b].name=='tue_back'||arr_s[b].name=='tue_next')?'':'<td height="40px" align="right" style="width:40%;padding-right:8px;">Function</td><td colspan="3"><select class="input_text" oninput="bt'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value);story_script.parameters.buttons['+b+'].name=this.value;state_save();" style="width:100%;height:28px">'+option_block(arr_s[b].name,3)+'</select></select></td></tr>')
+        +'<tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Text</td>'
             +'<td style="width:28px;" align="center"><select id="bts'+b+'" class="input_text" onchange="btv'+b+'.value=((story_script.parameters.buttons['+b+'].text[this.value].length>0)?story_script.parameters.buttons['+b+'].text[this.value]:\'\');" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
             +'<td colspan="2"><input id="btv'+b+'" class="input_text" onchange="story_script.parameters.buttons['+b+'].text[bts'+b+'.value]=this.value;button_panel_update(true);state_save();" type="text" style="width:100%;height:28px;" value="'+((arr_s[b].text[languare])?arr_s[b].text[languare]:'')+'"></td>'
