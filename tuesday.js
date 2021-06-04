@@ -698,7 +698,7 @@ function values_button(e){
     var len=del.length;
     for(var i=0;i < len;i++){del[0].parentNode.removeChild(del[0]);}
 } function anim_text(){
-    if(dialog_speed == 0){tue_text_view.innerHTML=dialog_text;}
+    if(dialog_speed == 0){tue_text_view.innerHTML=dialog_text.replace('\n',"<br>");}
     else if(dialog_speed != 0 && dialog_letter < dialog_text.length){dialog_timeout=setTimeout(add_letter,dialog_speed);}
 	else if(dialog_letter == dialog_text.length){tue_text_view.innerHTML=dialog_text.replace('\n',"<br>");tuesday.dispatchEvent(new Event('dialog_end'));}
 } function add_letter(){
