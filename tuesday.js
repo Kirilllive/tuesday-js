@@ -592,7 +592,7 @@ function name_block_update(){
 } function values_in_text(add){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 	var str=""
-	if(!add){
+    if(!add){
 		dialog_letter=0
 		str=(arr_dialog.text[languare])?arr_dialog.text[languare]:arr_dialog.text;
 	}else{
@@ -700,9 +700,9 @@ function values_button(e){
 } function anim_text(){
     if(dialog_speed == 0){tue_text_view.innerHTML=dialog_text;}
     else if(dialog_speed != 0 && dialog_letter < dialog_text.length){dialog_timeout=setTimeout(add_letter,dialog_speed);}
-	else if(dialog_letter == dialog_text.length){tue_text_view.innerHTML=dialog_text;tuesday.dispatchEvent(new Event('dialog_end'));}
+	else if(dialog_letter == dialog_text.length){tue_text_view.innerHTML=dialog_text.replace('\n',"<br>");tuesday.dispatchEvent(new Event('dialog_end'));}
 } function add_letter(){
-    tue_text_view.innerHTML=dialog_text.slice(0,dialog_letter);
+    tue_text_view.innerHTML=dialog_text.slice(0,dialog_letter).replace('\n',"<br>");
     dialog_letter++;
     anim_text();
 } function search_music(){
