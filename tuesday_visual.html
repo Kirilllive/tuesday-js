@@ -2095,7 +2095,7 @@ function dialog_text_apply(){
 	if(text_class.value!=""){copy_arr[arr_n].className=text_class.value;}else{delete copy_arr[arr_n].className};
     if(text_color.value!=""){arr_l.color_text=text_color.value;}else{delete arr_l.color_text};
     if(p_color.value!=""){arr_l.color=p_color.value;}else{delete arr_l.color};
-    data_only(copy_arr,arr_n);
+    if(!copy_arr[arr_n].style&&!copy_arr[arr_n].className)data_only(copy_arr,arr_n);
     var arr_s=story_script.parameters.characters,n=0,l,c=0;
     if(copy_arr.name.length!=0&&!story_script.parameters.characters[copy_arr.name]){
         for(l=0;l<story_script.parameters.languares.length;l++){
