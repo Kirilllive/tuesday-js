@@ -3387,7 +3387,7 @@ function setup(){
         "<div id='blank_6' style='visibility:hidden;' class='set_blank'>"+plugins_show+"<br>"+addon_list+"</div>"+
         //
         "</td></tr>"+
-        "<tr><td id='set_1' onclick='set_menu(1)' align='right' class='set_button'>Languares</td></tr>"+
+        "<tr><td id='set_1' onclick='set_menu(1)' align='right' class='set_button'>Languages</td></tr>"+
         "<tr><td id='set_2' onclick='set_menu(2)' align='right' class='set_button'>Characters</td></tr>"+
         "<tr><td id='set_3' onclick='set_menu(3)' align='right' class='set_button'>Keyboard</td></tr>"+
         "<tr><td id='set_4' onclick='set_menu(4)' align='right' class='set_button'>Variables</td></tr>"+
@@ -3445,7 +3445,7 @@ function add_tr(id){
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;padding-top:10px;";
         td2.innerHTML="<input class='title_name input_text' value='"+languare_data(story_script.parameters.title)+"' style='padding-top:10px;' type='text' placeholder='translated title'>";
     }else if(id=='var_tablet'){
-        td1.innerHTML="<input class='var_name input_text' value='varible"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name' onchange='this.value=correct_name(this.value)' style='padding-top:10px;' type='text'>";
+        td1.innerHTML="<input class='var_name input_text' value='variable"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name' onchange='this.value=correct_name(this.value)' style='padding-top:10px;' type='text'>";
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;";
         td2.innerHTML="<input class='var_vol input_text' style='padding-top:10px;' type='text' placeholder='value'>";
     }else if(id=='var_sounds'){
