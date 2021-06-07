@@ -8,10 +8,6 @@ The editor combines a drag and drop tool to create scenes and interfaces, as wel
 
 est un moteur open source gratuit pour créer des romans visuels, des histoires interactives et des jeux d'aventure basés sur du texte. Écrit en JavaScript, il n’utilise aucune bibliothèque tierce. Les projets peuvent être exportés vers Apache Cordova pour créer des applications mobiles ou des programmes PC. Le moteur utilise des éléments de document HTML standard DOM tels que div et img, ce qui permet d'utiliser tout format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.
 
-es un motor gratuito y de código abierto para crear novelas visuales, historias interactivas y juegos de aventura basados en texto. El mismo está programado en JavaSript sin usar ninguna librería de terceros. Los proyectos pueden ser exportados a Apache Cordova para crear aplicaciones móviles o programas de PC. El motor utiliza el estándar HTML de documentos DOM como div e img, lo que le permite utilizar cualquier tipo de formato multimedia soportado por los navegadores, incluyendo gráficos vectoriales svg, animaciones gifs y estilos css.
-
-бесплатный движок с открытым исходным кодом для создания визуальных новелл, интерактивных историй и текстовых приключенческих игр. Написано на JavaScript без использования сторонних библиотек. Проэкт возможно экспортировать в Apache Cordova для создания мобильных приложений или программ для ПК. Движок использует стандартные элементы DOM документа HTML, такие как div и img, что позволяет использовать практически любой медиаформат, поддерживаемый браузерами, включая векторную графику svg, анимацию gif и стили css.
-
 Home Page: https://kirilllive.github.io/tuesday-js/
 
 Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
@@ -37,11 +33,6 @@ If is necessary, it is possible to expand the basic functionality using JavaScri
 L'éditeur visuel vous permet de créer des graphiques ou des romans dynamiques sans aucune connaissance en programmation.
 Vous avez ensuite toute latitude, si nécessaire, d'étendre les fonctionnalités de base en utilisant JavaScript et css.
 
-El editor te permite crear gráficos o novelas cinéticas sin tener ningún conocimiento de programación.
-También es posible expandir las funcionalidades básicas usando JavaScript y css.
-
-Визуальный редактор позволяет создавать графический или кинетический роман без знания программирования.
-При необходимости возможно расширение базового функционала с помощью JavaScript и css.
 
 # Visualization
 The editor fully displays the structure of the script with all elements, build branching narrative and dialogue. such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
@@ -50,9 +41,6 @@ The editor fully displays the structure of the script with all elements, build b
 
 L'éditeur affiche entièrement la structure du scénario avec tous les éléments tels que les options de dialogue et les conséquences des réponses choisies. La navigation et la modification du scénario en est ainsi facilité.
 
-El editor muestra la estructura completa del script con todos sus elementos, como diálogos con diferentes opciones y las consecuencias de dichas opciones. Esto hace que sea más fácil navegar por el proyecto y editar el script.
-
-Редактор полностью отображает структуру сценария со всеми элементами, выстраивает разветвленное повествование и диалоги. такие как параметры диалога и последствия выбора. Это упрощает навигацию и редактирование сценария.
 
 ![Tuesday JS script structure](screenshots/script_structure.jpg)
 
@@ -66,12 +54,6 @@ In your scene layout, you can use standard HTML units in percentage pixels or ce
 
 L'éditeur de scène peut non seulement organiser tous les éléments à leur place, mais il montre également comment la scène changera sur différents écrans. 
 Dans la mise en page de votre scène, vous pouvez utiliser des unités HTML standard en pourcentage de pixels ou en centimètres pour mieux adapter la scène à différents écrans.
-
-El editor de escenas no solo puede organizar todos los elementos en sus lugares, sino que también muestra cómo cambiará la escena en diferentes pantallas. 
-En el diseño de su escena, puede usar unidades HTML estándar en porcentaje de píxeles o centímetros para adaptar mejor la escena a diferentes pantallas.
-
-Редактор сцены может не только расставить все элементы на своих местах, он также показывает, как сцена будет меняться на разных экранах. 
-В макете сцены вы можете использовать стандартные единицы HTML в процентах пикселей или сантиметрах, чтобы лучше адаптировать сцену к разным экранам.
 	
 
 ![Tuesday JS scene editor](screenshots/scene_editor.jpg)
@@ -93,15 +75,6 @@ Vous pouvez définir la traduction de presque tous les éléments de votre proje
 La fonction d'aperçu vous permet d'exécuter le projet dans la langue sélectionnée. 
 Tous les textes peuvent être exportés vers un fichier csv pour édition et ajout de localisations dans un autre éditeur, tel qu'un tableur.
 
-Amplias oportunidades para localizar historias a otros lenguajes. 
-Puedes seleccionar traducciones para prácticamente todos los elementos de tu proyecto, ya sean textos o gráficos. 
-La función de vista previa te permite probar tu proyecto en el lenguaje seleccionado. 
-Todos los textos pueden ser exportados a un archivo csv para editarlo y añadir las localizaciones en otro editor.
-
-Широкие возможности для локализации истории на другие языки.
-Вы можете задать перевод практически для любого элемента проекта, как текст и графика.
-Функция предварительного просмотра позволяет запускать проект на выбранном языке.
-Все тексты можно экспортировать в табличный файл csv для редактирования и добавления локализации в другом редакторе.
 
 ![Tuesday JS localization](screenshots/localization.jpg)
 
@@ -115,12 +88,6 @@ The editor has a built-in tool to work with JSON, with its help you can edit the
 
 Tous les éléments du scénario sont stockés dans une structure JSON, un format universel lisible par la quasi totalité des langages de programmation. Vous pouvez ainsi porter votre scénario sur un autre moteur ou une autre plateforme. 
 L'éditeur dispose d'un outil intégré pour travailler la structure JSON qui vous permet de modifier l'intégralité du scénario ou uniquement un élément spécifique.
-
-El script con todos sus elementos es guardado en una estructura JSON. Prácticamente cualquier lenguaje de programación puede trabajar con este formato. Esto te permite exportar tu script a cualquier otro motor o plataforma. 
-El editor tiene una herramienta incorporada para trabajar con JSON, con la misma puedes editar todo el contenido del script o simplemente un elemento seleccionado.
-
-Сценарий истории со всеми элементами, хранящимися в структуре JSON. С этим форматом может работать практически любой язык программирования. Это позволяет вам перенести ваш сценарий на другой движок или платформу. 
-В редакторе есть встроеный инструмент для работы с JSON, с его помощью вы можете редактировать все содержимое сценария или только выбранный элемент.
 	
 
 ![Tuesday JS json edit](screenshots/json_edit.jpg)
@@ -133,9 +100,7 @@ Preview allows you to start a project from a certain point in the script and wit
 
 L'aperçu vous permet de démarrer un projet à partir de n'importe quel point du scénario et avec la localisation sélectionnée.
 
-La función de vista previa te permite iniciar tu proyecto desde cierto punto en el script y con la localización seleccionada.
 
-Предварительный просмотр позволяет запускать проект с определенного места сценария и с выбранной локализацией.
 
 ![Tuesday JS preview](screenshots/preview.jpg)
 
