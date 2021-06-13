@@ -414,11 +414,11 @@ function name_block_update(){
                             old[o].style.transform=((arr_dialog.art[i].hotspot)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
                             if(arr_dialog.art[i].position[0]!=0){old[o].style.left=arr_dialog.art[i].position[0];}
                             if(arr_dialog.art[i].position[1]!=0){
-                                old[o].style.left="calc(100% - "+arr_dialog.art[i].position[1]+" - "+arr_dialog.art[i].size[0]+")";
+                                old[o].style.left="calc(100% - "+arr_dialog.art[i].position[1]+" - "+((arr_dialog.art[i].size[0]=='auto')?arr_dialog.art[i].size[1]:arr_dialog.art[i].size[0])+")";
                             }
                             if(arr_dialog.art[i].position[2]!=0){old[o].style.top=arr_dialog.art[i].position[2];}
                             if(arr_dialog.art[i].position[3]!=0){
-                                old[o].style.top="calc(100% - "+arr_dialog.art[i].position[3]+" - "+arr_dialog.art[i].size[1]+")";
+                                old[o].style.top="calc(100% - "+arr_dialog.art[i].position[3]+" - "+((arr_dialog.art[i].size[1]=='auto')?arr_dialog.art[i].size[0]:arr_dialog.art[i].size[1])+")";
                             }
                             src=true;
                             old[o].style.zIndex=i;
