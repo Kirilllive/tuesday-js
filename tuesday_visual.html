@@ -1453,14 +1453,15 @@ function build_base(){
         reader.onload=function(){
             if((project_files[arr_n][2].indexOf("image")>-1||project_files[arr_n][2].indexOf("video")>-1)){story_script.base.push(reader.result); copy_arr=copy_arr.replace(new RegExp('"'+project_files[arr_n][0]+'"',"g"),story_script.base.length);}
             else if(project_files[arr_n][2]!="audio/mpeg"){copy_arr=copy_arr.replace(new RegExp(project_files[arr_n][0],"g"),reader.result);}
-            if(arr_n<load_files.length-1){arr_n++;build_base(arr_n);}
+            if(arr_n<load_files.length-1){arr_n++;build_base();}
             else if (arr_n==load_files.length-1){build(0);}
         }
     } else {
-        if(arr_n<load_files.length-1){arr_n++;build_base(arr_n);}
+        if(arr_n<load_files.length-1){arr_n++;build_base();}
         else if (arr_n==load_files.length-1){build(0);}
     }
 }
+
 function build_zip(dataStr){
     modal_window("open","<div class='window' style='padding:24px 24px;'><table><tbody><tr><td style='width:32px;height:32px;background-repeat:no-repeat;background-size: 32px 32px;background-position:center;' class='img_wait'></td><td align='center' style='width:144px;'>Creation ZIP archive</td></tr></tbody></table></div>");
     var arhiv = new JSZip();
