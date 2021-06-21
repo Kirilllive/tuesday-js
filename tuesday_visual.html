@@ -235,6 +235,7 @@ line{stroke:var(--cl);stroke-dasharray:20;stroke-width:2;animation:dash 4s linea
 .input_slider{-webkit-appearance:none;height:8px;background: var(--cw);outline:none;border-radius:8px;}
 .input_slider::-webkit-slider-thumb {-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cb);cursor:pointer;border:3px solid #fff;}
 .input_slider::-moz-range-thumb {-moz-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--cb);cursor:pointer;border:3px solid #fff;}
+.input_slider::-moz-range-progress {-moz-appearance:none;height:8px;background: var(--cb);outline:none;border-radius:8px;}
 input[type="text"]{text-indent:4px;}
 select{text-align-last:center;}
 .input_text:focus{border-bottom:1px solid #000;}
@@ -2686,7 +2687,8 @@ function art_panel_edit(block,i,n,b){
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].position[1]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Opacity</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].opacity)?arr_s.art[b].opacity:1)+'"></td>'
+        +'<td ><input id="opacity_t" class="input_text" onchange="opacity_r.value=correct_value(this.value,true);story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].opacity)?arr_s.art[b].opacity:1)+'"></td>'
+        +'<td colspan="2" align="right" ><input id="opacity_r" class="input_slider" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=this.value;art_panel_update(\''+block+'\','+i+','+n+');state_save();" oninput="opacity_t.value=this.value;" type="range" value="'+((arr_s.art[b].opacity)?arr_s.art[b].opacity:1)+'" min="0" max="1" step="0.01" style="width:96%;background: var(--cb);"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">HotSpot X</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].hotspot[0]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].hotspot)?arr_s.art[b].hotspot[0]:0)+'"></td>'
@@ -2704,7 +2706,7 @@ function art_panel_edit(block,i,n,b){
         +'<td colspan="3"><select class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].speed=this.value;state_save();" style="width:100%;height:28px"><option value="ease" '+((arr_s.art[b].speed=='ease')?'selected':'')+'>ease</option><option value="linear" '+((arr_s.art[b].speed=='linear')?'selected':'')+'>linear</option><option value="ease-in" '+((arr_s.art[b].speed=='ease-in')?'selected':'')+'>ease-in</option><option value="ease-out" '+((arr_s.art[b].speed=='ease-out')?'selected':'')+'>ease-out</option><option value="ease-in-out" '+((arr_s.art[b].speed=='ease-in-out')?'selected':'')+'>ease-in-out</option></select></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Style CSS</td>'
-        +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].style=this.value;art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].style)?arr_s.art[b].style:'')+'"></td>'
+        +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].style=this.value;art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px;" value="'+((arr_s.art[b].style)?arr_s.art[b].style:'')+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'];edit_code(\'style\',\'Style CSS\');"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Class Name</td>'
