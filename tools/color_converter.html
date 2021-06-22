@@ -99,7 +99,7 @@ function color_rgb_parse() {
     color_red.value=matches[1].split(",")[0];
     color_blue.value=matches[1].split(",")[2];
     color_green.value=matches[1].split(",")[1];
-    color_alpha.value=matches[1].split(",")[3];
+    if(matches[1].split(",")[3]){color_alpha.value=matches[1].split(",")[3]}else{color_alpha.value=1};
     color_hex();
 }
 function color_hex(f,g,b) {
@@ -113,7 +113,7 @@ function color_hex(f,g,b) {
     text_blue.value=color_blue.value;
     text_green.value=color_green.value;
     text_alpha.value=color_alpha.value;
-    box_color.style.background=rgb_color.value
+    box_color.style.backgroundColor=rgb_color.value
 }
 function color_rgb(h) {
     if(h.length==4){h="#"+h.slice(1,2)+h.slice(1,2)+h.slice(2,3)+h.slice(2,3)+h.slice(3,4)+h.slice(3,4)}
