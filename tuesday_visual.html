@@ -3928,19 +3928,20 @@ function saveResize(s,a){
 }
 makeResizableDiv(document.getElementById("resizers"));
 function edit_color(n,c){
-    var code='<div class="window" style="position:fixed;padding:16px 8px;width:380px;"><div><div class="window_close icon icon_close" onclick="menu_add.style.visibility=\'hidden\';" ></div></div><p>Color</p><br><hr style="margin:0px;">'
+    var h=((c.indexOf('#')>-1)?true:false)
+    var code='<div class="window" style="position:fixed;padding:12px 8px;width:380px;"><div><div class="window_close icon icon_close" onclick="menu_add.style.visibility=\'hidden\';" ></div></div><p>Color</p><hr style="margin-top:10px;">'
     +'<form id="format_color"><table><tbody><tr><td colspan="4" align="center" valign="bottom" style="width:420px;height:108px;">'
         +'<div style="position:relative;width:138px;height:100px;">'
             +'<div id="old_color" style="width:84px;height:84px;border-radius:50%;border:1px solid var(--cb);position:absolute;top:0px;left:0%;background-color:'+c+';"></div>'
             +'<div id="box_color" style="width:100px;height:100px;border-radius:50%;border:1px solid var(--cb);position:absolute;right:0%;bottom:0%;"></div>'
     +'</div></td></tr><tr>'
-        +'<td align="right" height="40px" style="width:64px;padding-right:8px;"><input class="checkbox_a" type="radio" name="format" checked></td>'
+        +'<td align="right" height="40px" style="width:64px;padding-right:8px;"><input class="checkbox_a" type="radio" name="format" '+((!h)?'checked':'')+'></td>'
         +'<td style="width:40px;">RGB:</td>'
-        +'<td><input id="rgb_color" onchange="color_rgb_parse()" class="input_text" type="text" '+((c.indexOf('#')==-1)?'value="'+c+'"':'')+'></td>'
+        +'<td><input id="rgb_color" onchange="color_rgb_parse()" class="input_text" type="text" '+((!h)?'value="'+c+'"':'')+'></td>'
     +'</tr><tr>'
-        +'<td align="right" style="padding-right:8px;"><input class="checkbox_a" type="radio" name="format"></td>'
+        +'<td align="right" style="padding-right:8px;"><input class="checkbox_a" type="radio" name="format" '+((h)?'checked':'')+'></td>'
         +'<td>HEX:</td>'
-        +'<td><input id="hex_color" onchange="color_rgb(this.value)" class="input_text" type="text" '+((c.indexOf('#')>-1)?'value="'+c+'"':'')+'></td>'
+        +'<td><input id="hex_color" onchange="color_rgb(this.value)" class="input_text" type="text" '+((h)?'value="'+c+'"':'')+'></td>'
     +'</tr><tr><td style="height:10px;" colspan="4"></td></tr><tr>'
         +'<td align="right" style="height:40px;padding-right:8px;">Red</td>'
         +'<td><input id="text_red" onchange="color_red.value=this.value;color_hex();" class="input_text" type="text"></td>'
