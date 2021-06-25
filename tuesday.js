@@ -258,6 +258,7 @@ function name_block_update(){
     if(arr_dialog.background_color){
         tuesday.style.backgroundColor=arr_dialog.background_color;
     }
+    if(arr_dialog.background_align){tuesday.style.backgroundPosition=arr_dialog.background_align;}
     if(arr_dialog.background_image){tuesday.style.backgroundImage="url('"+art_data(arr_dialog.background_image)+"')";}
 	if(document.getElementById("tue_home")){
 		if(tue_story == story_json.parameters.launch_story){document.getElementById("tue_home").style.visibility="hidden";}
