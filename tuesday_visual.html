@@ -442,11 +442,11 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                             </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.text_panel;edit_code('style','Style CSS');">
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='color_t_s'></div></td><td style='padding-right:8px;'>
-                                <input id='color_t' class='input_text' onchange='color_t_b.value=this.value;color_t_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
+                                <input id='color_t' class='input_text' onchange='color_t_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("color_t",color_t.value)'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color text</td><td style='width:40px;' align='center'><div class='show_color' id='color_text_s'></div></td><td style='padding-right:8px;'>
-                                <input id='color_text' class='input_text' onchange='color_text_b.value=this.value;color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
+                                <input id='color_text' class='input_text' onchange='color_text_s.style.backgroundColor=this.value;scen_edit_updare(true);' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("color_text",color_text.value)'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Font size</td><td style='padding-right:8px;' colspan='3'>
@@ -3935,7 +3935,7 @@ function edit_color(n,c){
             +'<div id="old_color" style="width:84px;height:84px;border-radius:50%;border:1px solid var(--cb);position:absolute;top:0px;left:0%;background-color:'+c+';"></div>'
             +'<div id="box_color" style="width:100px;height:100px;border-radius:50%;border:1px solid var(--cb);position:absolute;right:0%;bottom:0%;"></div>'
     +'</div></td></tr><tr>'
-        +'<td align="right" height="40px" style="width:64px;padding-right:8px;"><input class="checkbox_a" type="radio" name="format" '+((!h)?'checked':'')+'></td>'
+        +'<td align="right" height="40px" style="width:64px;padding-right:8px;"><input id="rgba_color" class="checkbox_a" type="radio" name="format" '+((!h)?'checked':'')+'></td>'
         +'<td style="width:40px;">RGB:</td>'
         +'<td><input id="rgb_color" onchange="color_rgb_parse()" class="input_text" type="text" '+((!h)?'value="'+c+'"':'')+'></td>'
     +'</tr><tr>'
@@ -3992,7 +3992,10 @@ function color_hex(f,g,b) {
     g=parseInt(color_green.value).toString(16);g=g.length<2?"0"+g:g
     b=parseInt(color_blue.value).toString(16);b=b.length<2?"0"+b:b
     hex_color.value="#"+r+g+b;
-    if(color_alpha.value<1){rgb_color.value="rgba("+color_red.value+","+color_green.value+","+color_blue.value+","+color_alpha.value+")";}
+    if(color_alpha.value<1){
+        rgb_color.value="rgba("+color_red.value+","+color_green.value+","+color_blue.value+","+color_alpha.value+")";
+        rgba_color.checked=true
+    }
     else {rgb_color.value="rgb("+color_red.value+","+color_green.value+","+color_blue.value+")";}
     text_red.value=color_red.value;
     text_blue.value=color_blue.value;
