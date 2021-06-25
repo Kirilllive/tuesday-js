@@ -2400,6 +2400,7 @@ function scen_editor(block,i,n){
     scene_layout.style.backgroundImage='none';
     scene_layout.style.backgroundImage='url('+open_file(languare_data(story_script[block][i].background_image))+')';
     scene_layout.style.backgroundSize=((!story_script[block][i].background_size)?"cover":story_script[block][i].background_size);
+    scene_layout.style.backgroundPosition=((!story_script[block][i].background_align)?"center":story_script[block][i].background_align);
     scene_layout.style.backgroundColor=story_script[block][i].background_color;
     if(story_script[block][i].dialogs[n-1].video){
         var video=document.getElementById("scen_video");
