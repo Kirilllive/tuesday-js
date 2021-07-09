@@ -69,7 +69,9 @@ function name_block_update(){
         tue_name_block.style.padding=story_json.parameters.name_panel.indent_text;
         tue_name_block.style.fontSize=story_json.parameters.name_panel.size_text;
         tue_name_block.style.fontFamily=((story_json.parameters.name_panel.font_family)?story_json.parameters.name_panel.font_family:story_json.parameters.font);
-        tue_name_block.style.textAlign="center";
+        tue_name_block.style.display="flex";
+        tue_name_block.style.justifyContent=((story_json.parameters.name_panel.align)?story_json.parameters.name_panel.align[0]:"center");
+        tue_name_block.style.alignItems=((story_json.parameters.name_panel.align)?story_json.parameters.name_panel.align[1]:"center");
         if(tue_name_block.style.width=story_json.parameters.name_panel.size[0]!=0){tue_name_block.style.width=story_json.parameters.name_panel.size[0];}
         tue_name_block.style.height=story_json.parameters.name_panel.size[1];
         tue_name_block.style.lineHeight=story_json.parameters.name_panel.size[1];
@@ -300,7 +302,6 @@ function name_block_update(){
             clearTimeout(dialog_timeout);
             anim_text();
             if(arr_dialog.text.className){ tue_text_block.className=arr_dialog.text.className}
-			if(arr_dialog.text.style){tue_text_block.style=arr_dialog.text.style}
         } else if(arr_dialog.text_add && arr_dialog.text_add!='' && arr_dialog.text_add[languare]!=''){
 			tue_text_block.style.visibility='visible';
 			values_in_text(true);
@@ -313,7 +314,6 @@ function name_block_update(){
 		else if(story_json.parameters.text_panel.color_text){tue_text_view.style.color=story_json.parameters.text_panel.color_text;}
         if(arr_dialog.name){
             if(arr_dialog.name[languare]){
-                if(arr_dialog.name.style){tue_name_block.style=arr_dialog.name.style;name_block_update();} else if(story_json.parameters.name_panel.style){tue_name_block.style=story_json.parameters.name_panel.style;name_block_update();}
                 tue_name_block.innerHTML=arr_dialog.name[languare]
                 tue_name_block.style.backgroundColor=arr_dialog.name.color;
                 tue_name_block.style.color=arr_dialog.name.color_text;
