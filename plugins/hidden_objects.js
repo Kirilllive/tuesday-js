@@ -5,6 +5,7 @@ var scroll_x = null;
 var scroll_y = null;
 function size_scene(){
     arr_dialog = story_json[tue_story][scene].hidden_objects
+    tue_text_view.innerHTML='';
     findobjects=arr_dialog.laibl.items;
     var view=document.createElement("div");
     view.id='tue_hiddenobjects';
@@ -20,7 +21,7 @@ function size_scene(){
     room.style.backgroundRepeat="no-repeat";
     room.style.backgroundPosition="center";
     room.style.backgroundSize="cover";
-    if(arr_dialog.color){room.style.backgroundColor=arr_dialog.color;}
+    if(arr_dialog.color){view.style.backgroundColor=arr_dialog.color;}
     room.style.backgroundImage='url("'+arr_dialog.art+'")';
     room.style.position="relative"
     for(var i=0;i<arr_dialog.objects.length;i++){
@@ -49,7 +50,12 @@ function size_scene(){
             }else{
                 name.style.backgroundRepeat="no-repeat";
                 name.style.backgroundPosition="center";
-                name.style.backgroundSize=arr_dialog.objects[i].fit;
+                if(arr_dialog.objects[i].art_size){name.style.backgroundSize=arr_dialog.objects[i].art_size;}
+                else if(arr_dialog.laibl.art_size){
+                    if (arr_dialog.laibl.art_size=='patch'){name.style.backgroundImage='none'}
+                    if (typeof arr_dialog.laibl.art_size==='object'){name.style.backgroundSize=arr_dialog.laibl.art_size[0]+" "+arr_dialog.laibl.art_size[1];}
+                    else {name.style.backgroundSize=arr_dialog.laibl.art_size;}
+                }
                 name.style.backgroundImage='url("'+arr_dialog.objects[i].art+'")';
             }
             r=s+Math.round(Math.random()*(step-1));
@@ -59,19 +65,20 @@ function size_scene(){
             tue_text_view.appendChild(name);
             z++
         }
-        tue_text_block.style.visibility='visible';
         room.appendChild(item);
     }
+    tue_text_block.style.visibility='visible';
+    if(story_json.parameters.text_panel.color){tue_text_block.style.backgroundColor=story_json.parameters.text_panel.color;}
+    tue_next.style.visibility='hidden';
+    tue_back.style.visibility='hidden';
     view.appendChild(room);
     tuesday.appendChild(view);
-    //size
     var rect=tuesday.getBoundingClientRect();
     if((arr_dialog.size[0]/arr_dialog.size[1])>(rect.width/rect.height)){tue_objectsroom.style.transform='scale('+rect.height/arr_dialog.size[1]+')'}
     else{tue_objectsroom.style.transform='scale('+rect.width/arr_dialog.size[0]+')'}
     tue_objectsroom.style.transformOrigin="left top";
     tue_objectsroom.style.marginBottom=arr_dialog.size[1]*-1+"px";
     tue_objectsroom.style.marginRight=arr_dialog.size[0]*-1+"px";
-    //move
     view.ontouchstart = function(e) {
         startmove_x = e.touches[0].clientX;
         startmove_y = e.touches[0].clientY;
@@ -107,6 +114,14 @@ function size_scene(){
 }
 function find_item(){
     findobjects--
-    if(findobjects==0){alert(arr_dialog.end)}
+    if(findobjects==0){
+        if(arr_dialog.js){eval(arr_dialog.js)}
+        tue_hiddenobjects.remove();
+        if (arr_dialog.go_to=="tue_go"){
+            scene++;dialog=0;
+            creation_scene();
+        }
+        else {go_to(arr_dialog.go_to)}
+    }
 }
 tuesday.addEventListener('hidden_objects',function(event){size_scene();});
