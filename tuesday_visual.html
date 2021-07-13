@@ -405,7 +405,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                         <div class="set_panel" id="set_preview" style="width:100%;display:block;">
                         <table style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
-                                <select id='ratio_screen' class='input_text' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(true);video_size();' style='width:100%;'>
+                                <select id='ratio_screen' class='input_text' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(false);video_size();' style='width:100%;'>
                                       <option value=true selected>landscape</option>
                                       <option value=false>Portrait</option>
                                 </select>
@@ -421,14 +421,14 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Screen</td><td style='padding-right:8px;'>
-                               <select class='input_text' oninput='p_width.value=this.value;setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(true);video_size();' style='width:100%;'>
+                               <select class='input_text' oninput='p_width.value=this.value;setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(false);video_size();' style='width:100%;'>
                                     <option value="100">1:1</option>
                                     <option value="76" selected>4:3</option>
                                     <option value="56">16:9</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Ratio</td><td style='padding-right:8px;'>
-                                <input id='p_width' class='input_slider input_slider_progress' onchange='setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='preview_size(true);video_size();' type="range" value='100' min="50" max="100" style='width:100%;'>
+                                <input id='p_width' class='input_slider input_slider_progress' onchange='setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='preview_size(false);video_size();' type="range" value='100' min="50" max="100" style='width:100%;'>
                             </td></tr>
                         </tbody></table></div>
                         <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Text panel (global)</td></tr></tbody></table>

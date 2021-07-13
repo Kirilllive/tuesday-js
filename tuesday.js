@@ -62,25 +62,24 @@ function get_lang(){
     }
 }
 function name_block_update(){
-		if(story_json.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_json.parameters.name_panel.color;}
-        if(story_json.parameters.name_panel.color_text){tue_name_block.style.color=story_json.parameters.name_panel.color_text;} else {tue_name_block.style.color=story_json.parameters.text_panel.color_text}
-		tue_name_block.style.position="absolute";
-        tue_name_block.id="tue_name_block";
-        tue_name_block.style.padding=story_json.parameters.name_panel.indent_text;
-        tue_name_block.style.fontSize=story_json.parameters.name_panel.size_text;
-        tue_name_block.style.fontFamily=((story_json.parameters.name_panel.font_family)?story_json.parameters.name_panel.font_family:story_json.parameters.font);
-        tue_name_block.style.display="flex";
-        tue_name_block.style.justifyContent=((story_json.parameters.name_panel.align)?story_json.parameters.name_panel.align[0]:"center");
-        tue_name_block.style.alignItems=((story_json.parameters.name_panel.align)?story_json.parameters.name_panel.align[1]:"center");
-        if(tue_name_block.style.width=story_json.parameters.name_panel.size[0]!=0){tue_name_block.style.width=story_json.parameters.name_panel.size[0];}
-        tue_name_block.style.height=story_json.parameters.name_panel.size[1];
-        tue_name_block.style.lineHeight=story_json.parameters.name_panel.size[1];
-        if(story_json.parameters.name_panel.position[0]!=0){tue_name_block.style.left=story_json.parameters.name_panel.position[0];}
-        if(story_json.parameters.name_panel.position[1]!=0){tue_name_block.style.right=story_json.parameters.name_panel.position[1];}
-        if(story_json.parameters.name_panel.position[2]!=0){tue_name_block.style.top=story_json.parameters.name_panel.position[2];}
-        if(story_json.parameters.name_panel.position[3]!=0){tue_name_block.style.bottom=story_json.parameters.name_panel.position[3];}
-        tue_name_block.style.zIndex=1001;
-        
+    if(story_json.parameters.name_panel.color){tue_name_block.style.backgroundColor=story_json.parameters.name_panel.color;}
+    if(story_json.parameters.name_panel.color_text){tue_name_block.style.color=story_json.parameters.name_panel.color_text;} else {tue_name_block.style.color=story_json.parameters.text_panel.color_text}
+    tue_name_block.style.position="absolute";
+    tue_name_block.id="tue_name_block";
+    tue_name_block.style.padding=story_json.parameters.name_panel.indent_text;
+    tue_name_block.style.fontSize=story_json.parameters.name_panel.size_text;
+    tue_name_block.style.fontFamily=((story_json.parameters.name_panel.font_family)?story_json.parameters.name_panel.font_family:story_json.parameters.font);
+    tue_name_block.style.display="flex";
+    tue_name_block.style.justifyContent=((story_json.parameters.name_panel.align)?story_json.parameters.name_panel.align[0]:"center");
+    tue_name_block.style.alignItems=((story_json.parameters.name_panel.align)?story_json.parameters.name_panel.align[1]:"center");
+    if(tue_name_block.style.width=story_json.parameters.name_panel.size[0]!=0){tue_name_block.style.width=story_json.parameters.name_panel.size[0];}
+    tue_name_block.style.height=story_json.parameters.name_panel.size[1];
+    tue_name_block.style.lineHeight=story_json.parameters.name_panel.size[1];
+    if(story_json.parameters.name_panel.position[0]!=0){tue_name_block.style.left=story_json.parameters.name_panel.position[0];}
+    if(story_json.parameters.name_panel.position[1]!=0){tue_name_block.style.right=story_json.parameters.name_panel.position[1];}
+    if(story_json.parameters.name_panel.position[2]!=0){tue_name_block.style.top=story_json.parameters.name_panel.position[2];}
+    if(story_json.parameters.name_panel.position[3]!=0){tue_name_block.style.bottom=story_json.parameters.name_panel.position[3];}
+    tue_name_block.style.zIndex=1001;
 } function base_creation(){
     get_lang();
 	if(story_json.parameters.style_file){add_style(story_json.parameters.style_file)}
@@ -226,6 +225,7 @@ function name_block_update(){
         }
     }
 } function creation_scene(){
+    tue_text_block.style.visibility='hidden';
     arr_dialog = story_json[tue_story][scene]
     del_element("tue_html_scene");
     if(arr_dialog.legacy_choice){
@@ -252,7 +252,7 @@ function name_block_update(){
                 creation_scene();
             }
         }
-    }
+    } else if (!arr_dialog.dialogs){tuesday.dispatchEvent(new Event(Object.keys(arr_dialog)[0]));}
     tuesday.style.backgroundSize=((!arr_dialog.background_size)?"cover":arr_dialog.background_size);
     if(arr_dialog.background_class){
         tuesday.className=arr_dialog.background_class;
@@ -273,14 +273,14 @@ function name_block_update(){
             html.innerHTML=arr_dialog.html[languare];
             tuesday.appendChild(html);
         } else {
-        var html=document.createElement("div");
-        html.className='tue_html_scene';
-        html.innerHTML=arr_dialog.html;
-        tuesday.appendChild(html);
+            var html=document.createElement("div");
+            html.className='tue_html_scene';
+            html.innerHTML=arr_dialog.html;
+            tuesday.appendChild(html);
         }
     }
     if(arr_dialog.background_music){search_music();}
-    if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();} else {del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");tue_text_block.style.visibility='hidden';}
+    if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();} else {del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");}
 } function creation_dialog(){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 		if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
