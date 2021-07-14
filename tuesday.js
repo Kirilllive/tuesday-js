@@ -169,7 +169,7 @@ function name_block_update(){
     for(i=0;i < story_json.parameters.buttons.length;i++){
         var button=document.createElement("div");
         var v='';
-        if(story_json.parameters.buttons[i].sound){v+=(story_json.parameters.buttons[i].sound)?get_sound(story_json.parameters.buttons[i].sound):""+((story_json.parameters.buttons[i].sound_stop)?";"+get_stop_sound(story_json.parameters.buttons[i].sound_stop):"")+";"}
+        if(story_json.parameters.buttons[i].sound){v+=(story_json.parameters.buttons[i].sound)?get_sound(story_json.parameters.buttons[i].sound):((story_json.parameters.buttons[i].sound_stop)?";"+get_stop_sound(story_json.parameters.buttons[i].sound_stop):"")+";"}
         if(story_json.parameters.buttons[i].js){v+=story_json.parameters.buttons[i].js}
         button.setAttribute("onclick",v+";")
         if(story_json.parameters.buttons[i].className){button.className=story_json.parameters.buttons[i].className;}
