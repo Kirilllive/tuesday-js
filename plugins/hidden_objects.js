@@ -7,7 +7,7 @@ function hidden_objects(){
     arr_dialog = story_json[tue_story][scene].hidden_objects
     tue_text_view.innerHTML='';
     tuesday.style.backgroundImage='none'
-    findobjects=(story_json.parameters.hidden_objects.laibl.items>arr_dialog.objects.length)?arr_dialog.objects.length:story_json.parameters.hidden_objects.laibl.items;
+    findobjects=(story_json.parameters.hidden_objects.label.items>arr_dialog.objects.length)?arr_dialog.objects.length:story_json.parameters.hidden_objects.label.items;
     var view=document.createElement("div");
     view.id='tue_hiddenobjects';
     view.style='height:100%;width:100%;overflow:auto;';
@@ -25,7 +25,7 @@ function hidden_objects(){
     if(arr_dialog.color){view.style.backgroundColor=arr_dialog.color;}
     room.style.backgroundImage='url("'+arr_dialog.art+'")';
     room.style.position="relative"
-    var sound=(story_json.parameters.hidden_objects.laibl_find.sound)?story_json.parameters.hidden_objects.laibl_find.sound:""
+    var sound=(story_json.parameters.hidden_objects.label_find.sound)?story_json.parameters.hidden_objects.label_find.sound:""
     for(var i=0;i<arr_dialog.objects.length;i++){
         var item=document.createElement("div");
         item.style.width=arr_dialog.objects[i].size[0]+"px";
@@ -41,31 +41,31 @@ function hidden_objects(){
         if(i==r && z<findobjects){
             s+=step;
             item.setAttribute("onclick",'sound_play("'+((arr_dialog.objects[i].sound)?arr_dialog.objects[i].sound:sound)+'");this.remove();'+((arr_dialog.objects[i].js)?arr_dialog.objects[i].js:'')+';find_item("item'+i+'");');
-            name.style.width=story_json.parameters.hidden_objects.laibl.size[0];
-            name.style.height=story_json.parameters.hidden_objects.laibl.size[1];
+            name.style.width=story_json.parameters.hidden_objects.label.size[0];
+            name.style.height=story_json.parameters.hidden_objects.label.size[1];
             name.style.float="left";
             name.id="item"+i;
-            if(story_json.parameters.hidden_objects.laibl.tip=="text"||!story_json.parameters.hidden_objects.laibl.tip){
+            if(story_json.parameters.hidden_objects.label.tip=="text"||!story_json.parameters.hidden_objects.label.tip){
                 name.style.display="flex";
-                name.style.justifyContent=(story_json.parameters.hidden_objects.laibl.align)?story_json.parameters.hidden_objects.laibl.align[0]:"center";
-                name.style.alignItems=(story_json.parameters.hidden_objects.laibl.align)?story_json.parameters.hidden_objects.laibl.align[1]:"center";
+                name.style.justifyContent=(story_json.parameters.hidden_objects.label.align)?story_json.parameters.hidden_objects.label.align[0]:"center";
+                name.style.alignItems=(story_json.parameters.hidden_objects.label.align)?story_json.parameters.hidden_objects.label.align[1]:"center";
                 name.innerHTML=art_data(arr_dialog.objects[i].name)
             }
-            if(story_json.parameters.hidden_objects.laibl.tip=="art"||!story_json.parameters.hidden_objects.laibl.tip){
+            if(story_json.parameters.hidden_objects.label.tip=="art"||!story_json.parameters.hidden_objects.label.tip){
                 name.style.backgroundRepeat="no-repeat";
-                name.style.backgroundPosition=(story_json.parameters.hidden_objects.laibl.art_align)?story_json.parameters.hidden_objects.laibl.art_align:"center";
-                if(story_json.parameters.hidden_objects.laibl.color_text){name.style.color=story_json.parameters.hidden_objects.laibl.color_text;}
+                name.style.backgroundPosition=(story_json.parameters.hidden_objects.label.art_align)?story_json.parameters.hidden_objects.label.art_align:"center";
+                if(story_json.parameters.hidden_objects.label.color_text){name.style.color=story_json.parameters.hidden_objects.label.color_text;}
                 if(arr_dialog.objects[i].art_size){name.style.backgroundSize=arr_dialog.objects[i].art_size;}
-                else if(story_json.parameters.hidden_objects.laibl.art_size){
-                    if (typeof story_json.parameters.hidden_objects.laibl.art_size==='object'){name.style.backgroundSize=story_json.parameters.hidden_objects.laibl.art_size[0]+" "+story_json.parameters.hidden_objects.laibl.art_size[1];}
-                    else {name.style.backgroundSize=story_json.parameters.hidden_objects.laibl.art_size;}
+                else if(story_json.parameters.hidden_objects.label.art_size){
+                    if (typeof story_json.parameters.hidden_objects.label.art_size==='object'){name.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size[0]+" "+story_json.parameters.hidden_objects.label.art_size[1];}
+                    else {name.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size;}
                 }
                 name.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
             }
             r=s+Math.round(Math.random()*(step-1));
             if(!arr_dialog.objects[r]){step=1;r=arr_dialog.objects.length-1;}
-            if(story_json.parameters.hidden_objects.laibl.style){name.style=story_json.parameters.hidden_objects.laibl.style;}
-            if(story_json.parameters.hidden_objects.laibl.color){name.style.backgroundColor=story_json.parameters.hidden_objects.laibl.color}
+            if(story_json.parameters.hidden_objects.label.style){name.style=story_json.parameters.hidden_objects.label.style;}
+            if(story_json.parameters.hidden_objects.label.color){name.style.backgroundColor=story_json.parameters.hidden_objects.label.color}
             tue_text_view.appendChild(name);
             z++
         }
@@ -129,12 +129,12 @@ function hidden_objects(){
 }
 function find_item(id){
     findobjects--
-    if(story_json.parameters.hidden_objects.laibl_find.del){document.getElementById(id).remove();}
+    if(story_json.parameters.hidden_objects.label_find.del){document.getElementById(id).remove();}
     else {
         id=document.getElementById(id);
-        if(story_json.parameters.hidden_objects.laibl_find.className){id.className=story_json.parameters.hidden_objects.laibl_find.className}
-        if(story_json.parameters.hidden_objects.laibl_find.color){id.style.backgroundColor=story_json.parameters.hidden_objects.laibl_find.color}
-        if(story_json.parameters.hidden_objects.laibl_find.color_text){id.style.color=story_json.parameters.hidden_objects.laibl_find.color_text;}
+        if(story_json.parameters.hidden_objects.label_find.className){id.className=story_json.parameters.hidden_objects.label_find.className}
+        if(story_json.parameters.hidden_objects.label_find.color){id.style.backgroundColor=story_json.parameters.hidden_objects.label_find.color}
+        if(story_json.parameters.hidden_objects.label_find.color_text){id.style.color=story_json.parameters.hidden_objects.label_find.color_text;}
     }
     if(findobjects<=0){
         if(arr_dialog.js){eval(arr_dialog.js)}
