@@ -370,6 +370,7 @@ function name_block_update(){
             if(arr_dialog.video.loop){video.loop=arr_dialog.video.loop;}else{video.loop=false;}
             if(arr_dialog.video.sound && arr_dialog.video.sound>0){video.muted=false;video.volume=arr_dialog.video.sound/100;}else{video.muted=true;}
             if(arr_dialog.video.time_start){video.onloadedmetadata = function() { this.currentTime=arr_dialog.video.time_start;if(!arr_dialog.video.fit||arr_dialog.video.fit=='cover'){video_size();}if(arr_dialog.video.stop){this.pause();}};}
+            else if(arr_dialog.video.fit=='cover'||!arr_dialog.video.fit){video.onloadedmetadata=function(){video_size();}}
             if(arr_dialog.video.time_end){
                 if(arr_dialog.video.loop){
                     video.ontimeupdate=function(){if(video.currentTime>=arr_dialog.video.time_end){video.currentTime=((arr_dialog.video.time_start)?arr_dialog.video.time_start:0)}}
@@ -390,7 +391,6 @@ function name_block_update(){
             }
             if(!arr_dialog.video.stop||arr_dialog.video.stop!=true){video.autoplay=true;}
             tuesday.appendChild(video);
-            if(arr_dialog.video.fit=='cover'||!arr_dialog.video.fit){video_size();}
         }else{del_element("tue_v");}
         if(arr_dialog.art){
             var old=document.getElementById("tuesday").getElementsByClassName("tue_art");
@@ -782,11 +782,6 @@ function values_button(e){
 } function video_size(){
     var video=document.getElementById("tue_video");
     var tue_size=tuesday.getBoundingClientRect();
-    if(tue_size.width>tue_size.height){
-        if(video.videoWidth<video.videoHeight){video.style.height='100%';video.style.width='auto';}
-        else{video.style.height='auto';video.style.width='100%';}
-    } else {
-        if(video.videoWidth<video.videoHeight){video.style.height='auto';video.style.width='100%';}
-        else{video.style.height='100%';video.style.width='auto';}
-    }
+    if((video.videoWidth/video.videoHeight)>(tue_size.width/tue_size.height)){video.style.height='100%';video.style.width='auto';}
+    else{video.style.height='auto';video.style.width='100%';}
 }
