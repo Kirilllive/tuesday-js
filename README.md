@@ -10,8 +10,6 @@ est un moteur open source gratuit pour créer des romans visuels, des histoires 
 
 available for online use in any modern web browser, as well as for Android devices and desktops PC​
 
-Run online editor: https://kirilllive.github.io/tuesday-js/tuesday_visual.html
-
 Home Page: https://kirilllive.github.io/tuesday-js/
 
 Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
