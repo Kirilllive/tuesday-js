@@ -8,7 +8,7 @@ The editor combines a drag and drop tool to create scenes and interfaces, as wel
 
 est un moteur open source gratuit pour créer des romans visuels, des histoires interactives et des jeux d'aventure basés sur du texte. Écrit en JavaScript, il n’utilise aucune bibliothèque tierce. Les projets peuvent être exportés vers Apache Cordova pour créer des applications mobiles ou des programmes PC. Le moteur utilise des éléments de document HTML standard DOM tels que div et img, ce qui permet d'utiliser tout format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.
 
-available for online use in any modern web browser, as well as for Android devices and desktops PC​
+Visual editor can be run online in any modern browser, as well as for Android devices and desktops PC
 
 Home Page: https://kirilllive.github.io/tuesday-js/
 
