@@ -1,14 +1,14 @@
 ![Tuesday js visual novels engine](https://img.itch.zone/aW1nLzU1MDg0NTkuanBn/original/mYr%2BBb.jpg)
 
 # Tuesday JS online visual novel engine 
-is a free open source engine to creating visual novels, interactive fiction and text-based adventure games. Written in JavaScript without using any third party libraries. The projects can be exported to Apache Cordova to create mobile applications or PC programs. The engine uses standard HTML document elements DOM such as div and img, this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.
-The editor combines a drag and drop tool to create scenes and interfaces, as well as a visual scenario editor in form of flowcharts node, which displays all the plot elements and branching of the story. This makes it easier to navigate through the script and helps to create a large story with many plot options.
+is a web-based free and open-source visual novel editor, it can be used in web browser. Written in JavaScript without using any third party libraries, not requiring additional software installation. The projects can be exported to Apache Cordova to create mobile applications or PC programs. The engine uses standard HTML document elements DOM such as div and img, this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.
+The visual editor allows you to create a graphic or kinetic novel without programming knowledge and combines a drag and drop tool to create scenes and interfaces, as well as a visual scenario editor in form of flowcharts node, which displays all the plot elements and branching of the story. This makes it easier to navigate through the script and helps to create a large story with many plot options.
 
 は、ビジュアルノベルやインタラクティブフィクション、テキストベースの冒険ゲームを作るためのオープンエンジンです。JavaScriptで書かれており、サードベンダーのライブラリは使われていません。pc用のモバイルアプリやプログラムを作る際の、Apache Cordovaフレームワークによるサポートがあります。エンジンには、divやimgのようなHTMLドキュメントの標準要素DOMを使用しており、ブラウザによってサポートされている、svgグラフィックやgifやcssスタイルのアニメを含む、任意のメディアフォーマットを使うことができます。
 
 est un moteur open source gratuit pour créer des romans visuels, des histoires interactives et des jeux d'aventure basés sur du texte. Écrit en JavaScript, il n’utilise aucune bibliothèque tierce. Les projets peuvent être exportés vers Apache Cordova pour créer des applications mobiles ou des programmes PC. Le moteur utilise des éléments de document HTML standard DOM tels que div et img, ce qui permet d'utiliser tout format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.
 
-Visual editor can be run online in any modern browser, as well as for Android devices and desktops PC
+The visual editor can be launched online in any modern browser, as well as versions for Android devices and desktop PCs. All versions are fully compatible with each other and have the same interface.
 
 Home Page: https://kirilllive.github.io/tuesday-js/
 
