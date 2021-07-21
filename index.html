@@ -24,7 +24,7 @@ body{background-image:url("data:image/jpeg;base64,/9j/4Qh1RXhpZgAATU0AKgAAAAgABw
 background-size:cover;background-repeat:no-repeat;background-position:center;background-color:rgb(149,135,200);background-attachment:fixed;}
 .main_block{max-width:800px;width:100%;height:70vh;min-height:328px;position:relative;z-index:0;}
 .art{display:block;pointer-events:none;height:110vh;min-height:640px;}
-.box{background-color:rgba(110,95,165,0.75);padding:18px;border-radius:8px;}
+.box{background-color:rgba(110,95,165,0.5);padding:18px;border-radius:8px;}
 .buttons{background-color:rgba(110,95,165,0.75);padding:0px;transition-duration:0.8s;}
 .buttons:hover{background-color:#9587c8;transition-duration:0.3s;}
 .buttons_panel{width:200px;border-spacing:8px;border-collapse:separate;transform: rotateY(35deg) scaleX(1.1);transition-duration:0.8s;}
@@ -33,8 +33,8 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
 .radio_element input {position: absolute;top:0;left:0;width:0;height:0;opacity:0;}
 .checkmark{position:absolute;top:0;left:0;width:32px;height:32px;font-size:12px;border-radius:16px;background-color:none;transition-duration:0.8s;}
 .radio_element input:checked ~ .checkmark{background-color:#9587c8;transition-duration:0.8s;}
-.logo{border-radius:16px;transform: rotateY(340deg) scaleX(1.1);}
-.logo:hover{border-radius:16px;transform: rotateY(350deg) scaleX(1.1);}
+.logo{border-radius:8px;transform: rotateY(340deg) scaleX(1.1);}
+.logo:hover{border-radius:8px;transform: rotateY(350deg) scaleX(1.1);}
 .icon{width:26px;height:32px;background-repeat:no-repeat;background-position:center;background-size:24px 24px;}
 .icon_m{width:42px;height:40px;background-repeat:no-repeat;background-position:center;background-size:20px 20px;}
 .icon_github{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZD0iTSAxMjgsMCBDIDU3LjI4LDAgMCw1Ny4yOCAwLDEyOCBjIDAsNTYuNjQgMzYuNjQsMTA0LjQ4IDg3LjUyLDEyMS40NCA2LjQsMS4xMiA4LjgsLTIuNzIgOC44LC02LjA4IDAsLTMuMDQgLTAuMTYsLTEzLjEyIC0wLjE2LC0yMy44NCBDIDY0LDIyNS40NCA1NS42OCwyMTEuNjggNTMuMTIsMjA0LjQ4IDUxLjY4LDIwMC44IDQ1LjQ0LDE4OS40NCA0MCwxODYuNCBjIC00LjQ4LC0yLjQgLTEwLjg4LC04LjMyIC0wLjE2LC04LjQ4IDEwLjA4LC0wLjE2IDE3LjI4LDkuMjggMTkuNjgsMTMuMTIgMTEuNTIsMTkuMzYgMjkuOTIsMTMuOTIgMzcuMjgsMTAuNTYgMS4xMiwtOC4zMiA0LjQ4LC0xMy45MiA4LjE2LC0xNy4xMiAtMjguNDgsLTMuMiAtNTguMjQsLTE0LjI0IC01OC4yNCwtNjMuMiAwLC0xMy45MiA0Ljk2LC0yNS40NCAxMy4xMiwtMzQuNCAtMS4yOCwtMy4yIC01Ljc2LC0xNi4zMiAxLjI4LC0zMy45MiAwLDAgMTAuNzIsLTMuMzYgMzUuMiwxMy4xMiAxMC4yNCwtMi44OCAyMS4xMiwtNC4zMiAzMiwtNC4zMiAxMC44OCwwIDIxLjc2LDEuNDQgMzIsNC4zMiAyNC40OCwtMTYuNjQgMzUuMiwtMTMuMTIgMzUuMiwtMTMuMTIgNy4wNCwxNy42IDIuNTYsMzAuNzIgMS4yOCwzMy45MiA4LjE2LDguOTYgMTMuMTIsMjAuMzIgMTMuMTIsMzQuNCAwLDQ5LjEyIC0yOS45Miw2MCAtNTguNCw2My4yIDQuNjQsNCA4LjY0LDExLjY4IDguNjQsMjMuNjggMCwxNy4xMiAtMC4xNiwzMC44OCAtMC4xNiwzNS4yIDAsMy4zNiAyLjQsNy4zNiA4LjgsNi4wOCBDIDIxOS4zNiwyMzIuNDggMjU2LDE4NC40OCAyNTYsMTI4IDI1Niw1Ny4yOCAxOTguNzIsMCAxMjgsMCBaIiBmaWxsPSIjZmZmIiAvPgo8L3N2Zz4K")}
@@ -134,7 +134,7 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
             </tbody>
         </table>
     </div>
-    <div align="center" style='padding:26px;border-radius:16px;position:absolute;right:20px;top:5vh;transform-style: flat preserve-3d;perspective:500px;perspective-origin: 100px 200px;'>
+    <div align="center" style='padding:26px;position:absolute;right:20px;top:5vh;transform-style: flat preserve-3d;perspective:500px;perspective-origin: 100px 200px;'>
         <a href="tuesday_visual.html" target='_blank'><div  class = "buttons logo" style="padding: 16px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="92" height="92" viewBox="0 0 128 128">
                 <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5px" >
@@ -148,7 +148,7 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
         <table style='position:static;border-spacing:8px;border-collapse:separate;max-width:800px;width:100%;color:#fff;margin-top:-242px;'>
                 <tr><td align='right'>
                 <form id='lang'>
-                <table style="border-radius:16px;background-color:rgba(110,95,165,0.75);" border="0" height="32" cellspacing="0" cellpadding="0" align="right">
+                <table style="border-radius:16px;background-color:rgba(110,95,165,0.5);" border="0" height="32" cellspacing="0" cellpadding="0" align="right">
                     <tbody>
                         <tr>
                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='en'><span class="checkmark">EN</span></label></td>
@@ -162,7 +162,9 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
                 </form>
                 </td></tr>
                 <tr><td align='left' class='box'>
-                  <p><b><span id='title'>Tuesday JS visual novel engine </span></b><br><br><span id='description'>is a simple web-based free and open-source visual novel editor, it can be used in web browser. Written in JavaScript without using any third party libraries, not requiring additional software installation. The projects can be exported to Apache Cordova to create mobile applications or PC programs. The engine uses standard HTML document elements DOM such as div and img, this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.<br>The visual editor can be launched online in any modern browser, as well as versions for Android devices and desktop PCs. All versions are fully compatible with each other and have the same interface.</span></p>
+                  <p><b><span id='title'>Tuesday JS visual novel engine </span></b><br><br><div id='description'>simple web-based free and open-source visual novel editor, that can be used in a web browser. Written in JavaScript without using any third party libraries, not requiring additional software installation. The engine uses standard HTML document elements DOM such as div and img, this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.</p>
+                  <br><p>The editor is designed to create interactive fiction, graphic or kinetic novels without knowledge of programming languages, Uses a drag and drop interface for scene editing and and make interfaces. The story script is displayed as a flowchart node with all plot elements and branches. This makes it easier to navigate and helps you create a great story with a lot of plot options.</p>
+                  <br><p>The Editor is also available as a standalone application for Android devices and desktops. All versions are fully compatible with each other and have the same interface.</p></div>
                   <br><div align='center'><table style='border-spacing:8px; border-collapse:separate; width:100%; max-width:640px;'>
                       <tr><td class='icon icon_twitter' style='width: 10%;'></td><td align='left'><a href='https://twitter.com/TuesdayJS_vn' target='_blank'>@TuesdayJS_vn</a></td>
                       <td class='icon icon_e-mail' style='width: 10%;'></td><td align='left'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr>
@@ -174,7 +176,7 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
     </tr></td><tr><td style='color:#fff;padding-top:64px; background: linear-gradient(0deg, rgba(110,95,165,0.4) 0%, rgba(149,135,200,0.75) 45%, #cec8e3 90%);' align="center">
         <table style='max-width:1920px; border-spacing:8px; border-collapse:separate;width:100%;'>
             <tbody>
-                <tr><td colspan='2' height='128px' align='center' valign='top'><div id='screen_5' align='center' style='max-width:750px;'>The visual editor allows you to create a graphic or kinetic novel without programming knowledge and combines a drag and drop tool to create scenes and interfaces, as well as a visual scenario editor in form of flowcharts node, which displays all the plot elements and branching of the story. This makes it easier to navigate through the script and helps to create a large story with many plot options.</div></td></tr>
+                <tr><td colspan='2' height='128px' align='center' valign='top'></td></tr>
                 <tr>
                     <td style='width:50%;' align="center"><img onclick="modal_window('open',this.src)" src='screenshots/script_structure.jpg' class='screen' alt="visualization structure script" title="visualization structure script"></td>
                     <td style='width:50%;' align="left"><b><div id='title_1'>Visualization</div></b><br><br><div id='screen_1' align='left' style='max-width:640px;'>The editor fully displays the structure of the script with all elements, build branching narrative and dialogue. such as dialog options and selection consequences. This makes it easier to navigate and edit the script.</div></td>
@@ -202,7 +204,7 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
                 <tr><td colspan='2' height='80px'></td></tr>
             </tbody>
         </table>
-        <table style='max-width:1024px; border-spacing:8px; border-collapse:separate;width:100%;padding:64px 0;'>
+        <table style='max-width:800px; border-spacing:8px; border-collapse:separate;width:100%;padding:32px 0;'>
         <tbody>
             <tr>
                 <td colspan="2" align="center" height='80px'><b>Tools</b></td></tr>
@@ -220,11 +222,11 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
             </tr>
         </tbody>
         </table>
-        <div align="center" style='width:100%;background:rgba(110,95,165,0.4);padding-top:24px;'><p><b>Projects made on Tuesday JS</b></p>
-        <div align="center" style='padding:16px 0px;display: inline-block;'>
-            <div class="gameponsive"><a target="_blank" href="https://tuesday-js.itch.io/rock-paper-scissors"><div class="gallery" style="background-image:url('https://img.itch.zone/aW1nLzU4ODA3MTcucG5n/315x250%23c/AEvmEF.png');width:250px;height:203px;"></div><div>Rock Paper Scissors</div></a></div>
-        </div>
-        </div>
+<!--        <div align="center" style='width:100%;background:rgba(110,95,165,0.4);padding-top:24px;'><p><b>Projects made on Tuesday JS</b></p>-->
+<!--        <div align="center" style='padding:16px 0px;display: inline-block;'>-->
+<!--            <div class="gameponsive"><a target="_blank" href="https://tuesday-js.itch.io/rock-paper-scissors"><div class="gallery" style="background-image:url('https://img.itch.zone/aW1nLzU4ODA3MTcucG5n/315x250%23c/AEvmEF.png');width:250px;height:203px;"></div><div>Rock Paper Scissors</div></a></div>-->
+<!--        </div>-->
+<!--        </div>-->
         </tr></td><tr><td align="center" style='background:rgba(110,95,165,0.4);'>
         <table style='border-spacing:8px;border-collapse:separate;max-width:800px;width:100%;color:#fff;margin:128px 0px 128px 0px;'>
             <tr><td align='center' class='box'>
@@ -273,19 +275,13 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
               </td></tr>
           </table>
         </tr></td><tr><td align="center" style='background: rgba(110,95,165,0.4);'>
-<!--        <table class='box'  style='border-spacing:8px;border-collapse:separate;max-width:800px;width:100%;color:#fff;margin:16px 0px 128px 0px;'><tbody>-->
-<!--            <tr><td align='center'>Articles<hr style='margin:8px 0px; border-top:1px solid #fff;'><br></td></tr>-->
-<!--            <tr><td style="height:32px;"><a href="http://www.nathalielawhead.com/candybox/talk-transcript-the-browser-is-a-creative-playground" target="_blank">The Candybox Blog / The browser is a creative playground!</a></td></tr>-->
-<!--            <tr><td style="height:32px;"><a href="https://gcup.ru/load/constructors/tuesday_js/2-1-0-2800" target="_blank">GCUP / Конструкторы игр</a></td></tr>-->
-<!--            <tr><td style="height:32px"><a href="https://alternativeto.net/software/tuesday-js/about/" target="_blank">Alternativeto.net / Game Development</a></td></tr>-->
-<!--        </tbody></table>-->
         <table style='border-spacing:8px;border-collapse:separate;max-width:800px;width:100%;color:#fff;margin:16px 0px 128px 0px;'>
             <tr><td align='center' class='box' style='padding-bottom:46px;'>
-                <p id='thanks'>Mascot from other Artists<hr style='margin:8px 0px; border-top:1px solid #fff;'></p><br>
-                <div class="responsive"><a target="_blank" href="https://twitter.com/SweetBeanPaste_"><div class="gallery" style="background-image:url('https://pbs.twimg.com/media/EsA8mI_W4AMxdNi?format=jpg&name=medium');"></div><div>@SweetBeanPaste_</div></a></div>
-                <div class="responsive"><a target="_blank" href="https://twitter.com/3strawberrymoon"><div class="gallery" style="background-image:url('https://pbs.twimg.com/media/ErX0wHKVkAAHvmI?format=jpg&name=medium');"></div><div>@3strawberrymoon</div></a></div>
-                <div class="responsive"><a target="_blank" href="https://twitter.com/oekakiaim"><div class="gallery" style="background-image:url('https://img.itch.zone/aW1nLzQ2MTQzMzIuanBn/original/wGTNP%2B.jpg');"></div><div>@oekakiaim</div></a></div>
-                <div class="responsive"><a target="_blank" href="https://twitter.com/Kirill_Live_"><div class="gallery" style="background-image:url('https://pbs.twimg.com/media/EssiH8vW8AI1zaB?format=jpg&name=medium');"></div><div>@Kirill_Live_</div></a></div>
+                <p id='thanks'><b>Mascot from other Artists</b></p><br>
+                <div class="responsive"><a target="_blank" href="https://twitter.com/SweetBeanPaste_"><div class="gallery" style="background-image:url('https://pbs.twimg.com/media/EsA8mI_W4AMxdNi?format=jpg&name=medium');width:180px;height:220px;"></div><div>@SweetBeanPaste_</div></a></div>
+                <div class="responsive"><a target="_blank" href="https://twitter.com/3strawberrymoon"><div class="gallery" style="background-image:url('https://pbs.twimg.com/media/ErX0wHKVkAAHvmI?format=jpg&name=medium');width:180px;height:220px;"></div><div>@3strawberrymoon</div></a></div>
+                <div class="responsive"><a target="_blank" href="https://twitter.com/oekakiaim"><div class="gallery" style="background-image:url('https://img.itch.zone/aW1nLzQ2MTQzMzIuanBn/original/wGTNP%2B.jpg');width:180px;height:220px;"></div><div>@oekakiaim</div></a></div>
+                <div class="responsive"><a target="_blank" href="https://twitter.com/Kirill_Live_"><div class="gallery" style="background-image:url('https://pbs.twimg.com/media/EssiH8vW8AI1zaB?format=jpg&name=medium');width:180px;height:220px;"></div><div>@Kirill_Live_</div></a></div>
             </td></tr>
         </table>
         
@@ -319,7 +315,7 @@ var languare = 'en';
 let translation = {
 "ru":[
     ["title","Tuesday JS движок визуальных новелл"],
-    ["description","Бесплатный движок с открытым исходным кодом для создания визуальных новелл, интерактивных историй и текстовых приключенческих игр. Написано на JavaScript без использования сторонних библиотек. Проэкт возможно экспортировать в Apache Cordova для создания мобильных приложений или программ для ПК. Движок использует стандартные элементы DOM документа HTML, такие как div и img, что позволяет использовать практически любой медиаформат, поддерживаемый браузерами, включая векторную графику svg, анимацию gif и стили css.<br>Визуальный редактор можно запустить онлайн в любом актуальном браузере, а также на Android устройствах и настольных компьютерах."],
+    ["description","простой бесплатный веб-редактор визуальных новелл с открытым исходным кодом. Написан на JavaScript без использования сторонних библиотек, не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы документа HTML DOM, такие как div и img, что позволяет использовать любой медиаформат поддерживаемый браузерами, включая векторную графику svg, анимацию gif и стили css.</p><br><p>Редактор предназначен для создания интерактивных историй, графических или кинетических романов без знания языков программирования. Используеться интерфейс перетаскивания для редактирования сцен и созанию интерфейсов. Сценарий истории отображается в виде узла блок-схемы со всеми элементами и ветвями сюжета. Что упрощает навигацию и поможет создать большую историю с множеством вариантов сюжета.</p><br><p>Редактор также доступен как приложение для Android устройств и настольных ПК. Все версии полностью совместимы друг с другом и имеют одинаковый интерфейс.</p>"],
     ["thanks","Спасибо за помощь от пользователей"],
     ["donut","Буду рад любой поддержке проекта"],
     ["title_1","Визуализация"],
@@ -330,7 +326,6 @@ let translation = {
     ["screen_4","Предварительный просмотр позволяет запускать проект с определенного места сценария и с выбранной локализацией."],
     ["title_2","Локализация"],
     ["screen_2","Широкие возможности для локализации истории на другие языки.Вы можете задать перевод практически для любого элемента проекта, как текст и графика.Функция предварительного просмотра позволяет запускать проект на выбранном языке.Все тексты можно экспортировать в табличный файл csv для редактирования и добавления локализации в другом редакторе."],
-    ["screen_5","Визуальный редактор позволяет вам создавать графический или кинетический роман без знаний программирования и сочетает в себе инструмент перетаскивания для создания сцен и интерфейсов, а также визуальный редактор сценариев в виде узла блок-схем, который отображает все элементы сюжета и ветвление история. Это упрощает навигацию по сценарию и помогает создать большую историю с множеством вариантов сюжета."],
     ["title_6","Редактор сцены"],
     ["screen_6","может не только расставить все элементы на своих местах, он также показывает, как сцена будет меняться на разных экранах. В макете сцены вы можете использовать стандартные единицы HTML в процентах пикселей или сантиметрах, чтобы лучше адаптировать сцену к разным экранам."]
 ],"ja":[
@@ -362,7 +357,6 @@ let translation = {
     ["screen_4","La función de vista previa te permite iniciar tu proyecto desde cierto punto en el script y con la localización seleccionada."],
     ["title_2","Localización"],
     ["screen_2","Amplias oportunidades para localizar historias a otros lenguajes. Puedes seleccionar traducciones para prácticamente todos los elementos de tu proyecto, ya sean textos o gráficos. La función de vista previa te permite probar tu proyecto en el lenguaje seleccionado. Todos los textos pueden ser exportados a un archivo csv para editarlo y añadir las localizaciones en otro editor."],
-    ["screen_5","El editor te permite crear gráficos o novelas cinéticas sin tener ningún conocimiento de programación.<br>También es posible expandir las funcionalidades básicas usando JavaScript y css."],
     ["title_6","Editor de escena"],
     ["screen_6","El editor de escenas no solo puede organizar todos los elementos en sus lugares, sino que también muestra cómo cambiará la escena en diferentes pantallas. En el diseño de su escena, puede usar unidades HTML estándar en porcentaje de píxeles o centímetros para adaptar mejor la escena a diferentes pantallas."]
 ],"fr":[
@@ -378,7 +372,6 @@ let translation = {
     ["screen_4","L'aperçu vous permet de démarrer un projet à partir de n'importe quel point du scénario et avec la localisation sélectionnée."],
     ["title_2","Localisation"],
     ["screen_2","De nombreuses options permettent d'adapter les histoires dans d'autres langues. Vous pouvez définir la traduction de presque tous les éléments de votre projet, tels que le texte et les graphiques. La fonction d'aperçu vous permet d'exécuter le projet dans la langue sélectionnée. Tous les textes peuvent être exportés vers un fichier csv pour édition et ajout de localisations dans un autre éditeur, tel qu'un tableur."],
-    ["screen_5","L'éditeur visuel vous permet de créer des graphiques ou des romans dynamiques sans aucune connaissance en programmation.<br>Vous avez ensuite toute latitude, si nécessaire, d'étendre les fonctionnalités de base en utilisant JavaScript et css."],
     ["title_6","Éditeur de scène"],
     ["screen_6","L'éditeur de scène peut non seulement organiser tous les éléments à leur place, mais il montre également comment la scène changera sur différents écrans. Dans la mise en page de votre scène, vous pouvez utiliser des unités HTML standard en pourcentage de pixels ou en centimètres pour mieux adapter la scène à différents écrans."]
 ]}
