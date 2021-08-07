@@ -1537,9 +1537,11 @@ function create_project(){
         story_script.parameters.title[li_n[i].value]=li_v[i].value
         story_script.parameters.languares.push(li_n[i].value);
     }
+    languare=story_script.parameters.languares[0]
     modal_window("close");
     document.dispatchEvent(new Event('tue_story_new'));
     state_num=0;back_up=[];state_save();
+    toast('New project created')
 }
 function new_block(){
 	var html="<div class='window' style='width:380px;'><div class='win_head'>New story block<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><br>"
