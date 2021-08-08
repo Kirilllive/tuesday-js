@@ -37,7 +37,7 @@
 @keyframes flash{0%{box-shadow:0px 2px 32px var(--cf);background-color:var(--cb);}25%{box-shadow:0px 2px 32px var(--cf);background-color:var(--cb);}100%{box-shadow:0px 2px 24px var(--cs);background-color:var(--wn);}}
 @keyframes flash2{0%{box-shadow:0px 0px 16px var(--cb);background-color:var(--cw);}50%{box-shadow:0px 0px 12px var(--cb);background-color:var(--cb);}}
 .story_block{min-height:28px;width:256px;position:absolute;cursor:all-scroll; background-color:var(--wn);}
-#world{position:absolute;-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;}
+#world{position:absolute;-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;background-color:var(--cw);background-blend-mode:overlay;}
 line{stroke:var(--cl);stroke-dasharray:20;stroke-width:2;animation:dash 4s linear infinite;}
 @keyframes dash{from{stroke-dashoffset:0} to{stroke-dashoffset:200;}}
 #toast{
@@ -366,7 +366,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
             <tbody>
                 <tr><td rowspan="3">
                     <div id='scene_view' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' align='center' onmouseover='this.tabindex=1' onmouseout='this.tabindex=0'>
-                        <div id='screen_preview' style='transform-origin:0 0;min-width:100%;min-height:100%;padding-top:40px;display:flex;justify-content:center;align-items:center;' onmouseup="window.getSelection().removeAllRanges();">
+                        <div id='screen_preview' style='background-color:var(--cw);background-blend-mode:overlay;transform-origin:0 0;min-width:100%;min-height:100%;padding-top:40px;display:flex;justify-content:center;align-items:center;' onmouseup="window.getSelection().removeAllRanges();">
                             <div id='scene_canvas'><div id='scene_layout'>
                                 <div id='resizers' style='visibility:hidden;'>
                                     <div class='resizer size-right'></div>
