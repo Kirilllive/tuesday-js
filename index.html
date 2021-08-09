@@ -210,15 +210,15 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
                 <td colspan="2" align="center" height='80px'><b>Tools</b></td></tr>
             <tr>
                 <td style="width:25%;height:180px;"><a href='tuesday_doc.html' target='_blank'><img src='screenshots/json_edit.jpg' class='screen' style="max-width:315px;width:100%;height:auto;"></a></td>
-                <td style="width:75%;"><a href='tuesday_doc.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>You can use all Tuesday.js functions without using the visual editor. By enabling editing the json file directly you will have your choice of editor to use. You can find more information about RunTime and JSON script options in the <u style='text-decoration:underline;'><a href='tuesday_doc.html' target='_blank'>documentation</a></u></div></td>
+                <td style="width:75%;" id="tool_1"><a href='tuesday_doc.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>You can use all Tuesday.js functions without using the visual editor. By enabling editing the json file directly you will have your choice of editor to use. You can find more information about RunTime and JSON script options in the <u style='text-decoration:underline;'><a href='tuesday_doc.html' target='_blank'>documentation</a></u></a>.</td>
             </tr>
             <tr>
                 <td style="width:25%;height:180px;"><a href='tools/color_converter.html' target='_blank'><img src='screenshots/color_converter.jpg' class='screen' style="max-width:315px;width:100%;height:auto;"></a></td>
-                <td style="width:75%;"><a href='tools/color_converter.html' target='_blank'><b>Color converter</b></a><br><br>Tuesday.JS allows conversion of RGB to HEX color formats and vice versa. You can also get a color directly from an image. There are additional functions for calculating the proportional aspect ratio when resizing the image</td>
+                <td style="width:75%;" id="tool_2"><a href='tools/color_converter.html' target='_blank'><b>Color converter</b></a><br><br>Tuesday.JS allows conversion of RGB to HEX color formats and vice versa. You can also get a color directly from an image. There are additional functions for calculating the proportional aspect ratio when resizing the image.</td>
             </tr>
             <tr>
                 <td style="width:25%;height:180px;"><a href='tools/text_converter.html' target='_blank'><img src='screenshots/text_converter.jpg' class='screen' style="max-width:315px;width:100%;height:auto;"></a></td>
-                <td style="width:75%;"><a href='tools/text_converter.html' target='_blank'><b>Text converter</b></a><br><br>You are able to convert plain story text to JSON for Tuesday.JS. The text converter will split story text into small parts for use in dialogues.</td>
+                <td style="width:75%;" id="tool_3"><a href='tools/text_converter.html' target='_blank'><b>Text converter</b></a><br><br>You are able to convert plain story text to JSON for Tuesday.JS. The text converter will split story text into small parts for use in dialogues.</td>
             </tr>
         </tbody>
         </table>
@@ -346,7 +346,7 @@ let translation = {
     ["screen_6","は、すべての要素をその場所に配置できるだけでなく、さまざまな画面でシーンがどのように変化するかを示します。 シーンレイアウトでは、パーセンテージピクセルまたはセンチメートル単位の標準HTML単位を使用して、シーンをさまざまな画面により適切に適合させることができます。"]
 ],"es":[
     ["title","Tuesday JS motor de novela visual"],
-    ["description","Es un motor gratuito y de código abierto para crear novelas visuales, historias interactivas y juegos de aventura basados en texto. El mismo está programado en JavaSript sin usar ninguna librería de terceros. Los proyectos pueden ser exportados a Apache Cordova para crear aplicaciones móviles o programas de PC. El motor utiliza el estándar HTML de documentos DOM como div e img, lo que le permite utilizar cualquier tipo de formato multimedia soportado por los navegadores, incluyendo gráficos vectoriales svg, animaciones gifs y estilos css.<br>Visual editor can be run online in any modern browser, as well as for Android devices and desktops PC"],
+    //["description",""],
     ["thanks","¡Gracias por tu ayuda!"],
     ["donut","¡Puedes apoyar el proyecto en Patreon!"],
     ["title_1","Visualización"],
@@ -358,10 +358,15 @@ let translation = {
     ["title_2","Localización"],
     ["screen_2","Amplias oportunidades para localizar historias a otros lenguajes. Puedes seleccionar traducciones para prácticamente todos los elementos de tu proyecto, ya sean textos o gráficos. La función de vista previa te permite probar tu proyecto en el lenguaje seleccionado. Todos los textos pueden ser exportados a un archivo csv para editarlo y añadir las localizaciones en otro editor."],
     ["title_6","Editor de escena"],
-    ["screen_6","El editor de escenas no solo puede organizar todos los elementos en sus lugares, sino que también muestra cómo cambiará la escena en diferentes pantallas. En el diseño de su escena, puede usar unidades HTML estándar en porcentaje de píxeles o centímetros para adaptar mejor la escena a diferentes pantallas."]
+    ["screen_6","El editor de escenas no solo puede organizar todos los elementos en sus lugares, sino que también muestra cómo cambiará la escena en diferentes pantallas. En el diseño de su escena, puede usar unidades HTML estándar en porcentaje de píxeles o centímetros para adaptar mejor la escena a diferentes pantallas."],
+    ["screen_6","Cet éditeur vous permet d'organiser les éléments sur une scène. Il montre également comment la scène va changer sur différents écrans. Dans la mise en page de la scène, vous pouvez utiliser des objets HTML standard dont les dimensions s'expriment en pourcentage de pixels ou en centimètres pour mieux adapter la scène aux différents écrans."],
+    //["tool_1","<a href='tuesday_doc.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br> <u style='text-decoration:underline;'><a href='tuesday_doc.html' target='_blank'>documentation</a></u></a>."],
+    //["tool_2","<a href='tools/color_converter.html' target='_blank'><b>Conversion des couleurs</b></a><br><br> "],
+    //["tool_3","<a href='tools/text_converter.html' target='_blank'><b>Conversion de texte</b></a><br><br> "]
+
 ],"fr":[
     ["title","Tuesday JS moteur de roman visuel"],
-    ["description","Est un moteur open source gratuit pour créer des romans visuels, des histoires interactives et des jeux d'aventure basés sur du texte. Écrit en JavaScript, il n’utilise aucune bibliothèque tierce. Les projets peuvent être exportés vers Apache Cordova pour créer des applications mobiles ou des programmes PC. Le moteur utilise des éléments de document HTML standard DOM tels que div et img, ce qui permet d'utiliser tout format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.<br>Visual editor can be run online in any modern browser, as well as for Android devices and desktops PC"],
+    ["description","Es un motor gratuito y de código abierto para crear novelas visuales, historias interactivas y juegos de aventura basados en texto. El mismo está programado en JavaSript sin usar ninguna librería de terceros. Los proyectos pueden ser exportados a Apache Cordova para crear aplicaciones móviles o programas de PC. El motor utiliza el estándar HTML de documentos DOM como div e img, lo que le permite utilizar cualquier tipo de formato multimedia soportado por los navegadores, incluyendo gráficos vectoriales svg, animaciones gifs y estilos css.<br>Visual editor can be run online in any modern browser, as well as for Android devices and desktops PC</p><br><p>L'éditeur est conçu pour créer des fictions interactives graphiques ou cinétiques sans connaissance particulière des langages de programmation. Il utilise une interface glisser-déposer pour l'édition de scènes et pour créer des interfaces. Le scénario s'affiche sous la forme d'un organigramme composé de tous les éléments et branches de l'intrigue. Cela facilite la navigation et vous aide à créer des histoires avec de nombreuses options d'intrigue.</p><br><p>L'éditeur est disponible en tant qu'application autonome pour les appareils Android et les ordinateurs de bureau. Toutes les versions sont entièrement compatibles entre elles et partagent la même interface.</p>"],
     ["thanks","Merci pour votre aide!"],
     ["donut","Je veux soutenir le projet sur patreon"],
     ["title_1","Visualisation"],
@@ -373,7 +378,10 @@ let translation = {
     ["title_2","Localisation"],
     ["screen_2","De nombreuses options permettent d'adapter les histoires dans d'autres langues. Vous pouvez définir la traduction de presque tous les éléments de votre projet, tels que le texte et les graphiques. La fonction d'aperçu vous permet d'exécuter le projet dans la langue sélectionnée. Tous les textes peuvent être exportés vers un fichier csv pour édition et ajout de localisations dans un autre éditeur, tel qu'un tableur."],
     ["title_6","Éditeur de scène"],
-    ["screen_6","L'éditeur de scène peut non seulement organiser tous les éléments à leur place, mais il montre également comment la scène changera sur différents écrans. Dans la mise en page de votre scène, vous pouvez utiliser des unités HTML standard en pourcentage de pixels ou en centimètres pour mieux adapter la scène à différents écrans."]
+    ["screen_6","Cet éditeur vous permet d'organiser les éléments sur une scène. Il montre également comment la scène va changer sur différents écrans. Dans la mise en page de la scène, vous pouvez utiliser des objets HTML standard dont les dimensions s'expriment en pourcentage de pixels ou en centimètres pour mieux adapter la scène aux différents écrans."],
+    ["tool_1","<a href='tuesday_doc.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>Vous pouvez utiliser toutes les fonctions de Tuesday.js sans passer par l'éditeur visuel. En activant la modification directe du fichier json, vous pouvez choisir de l'éditer dans tout autre éditeur de votre choix. Vous trouverez plus d'informations sur les options de script RunTime et JSON dans la <u style='text-decoration:underline;'><a href='tuesday_doc.html' target='_blank'>documentation</a></u></a>."],
+    ["tool_2","<a href='tools/color_converter.html' target='_blank'><b>Conversion des couleurs</b></a><br><br>Tuesday JS permet la conversion des formats de couleurs RVB en HEX et vice versa. Vous pouvez également prélever une couleur directement dans une image.Il existe des fonctions supplémentaires pour calculer le rapport de proportions lors du redimensionnement de l'image"],
+    ["tool_3","<a href='tools/text_converter.html' target='_blank'><b>Conversion de texte</b></a><br><br>Vous pouvez convertir le texte brut de l'histoire en JSON pour Tuesday JS. Le convertisseur de texte divisera le texte de l'histoire en petites parties à utiliser dans les dialogues."]
 ]}
 function getLang() {
     if (window.location.hash=='#ru'){languare='ru'}
