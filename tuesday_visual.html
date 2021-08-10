@@ -866,13 +866,13 @@ function creation_block(b){
                         if(story_script[go]){
 						element+="<div class='dialog_element'>"
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_back_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
-								+"<table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+								+"<table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             line_controll.push([go,chapter.id,all+"b"+d+go+all_blocks]);
                             creaton_line(all+"b"+d+go+all_blocks)
                             all++
                         }else{element+="<div class='dialog_element'>"
-						+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
-						+"<div id='"+all+"b"+d+go+all_blocks+"' class='choice_b'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;'>"+option_block(go,0)+"</select></div></div>";}
+                            +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
+                            +"<div id='"+all+"b"+d+go+all_blocks+"' class='choice_b'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();'>"+option_block(go,0)+"</select></div>";}
 						element+="</div>"
                     }
                     if(story_script[chapter.id][i].dialogs[d].video){
@@ -970,12 +970,12 @@ function creation_block(b){
 						element+="</div>"
                     }
                     if(story_script[chapter.id][i].dialogs[d].event){
-                        element+="<div class='dialog_element' align='left'>"
+                        element+="<div class='dialog_element'>"
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Event<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_event' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='event';dialog_el(this.id,'Event',false)\" width='24px' class='icon_m icon_edit' title='Edit event'></td></tr></tbody></table>"
                                 +"<input class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].event=this.value' value='"+story_script[chapter.id][i].dialogs[d].event+"' type='text'></div>"
                     }
                     if(story_script[chapter.id][i].dialogs[d].controll){
-                        element+="<div class='dialog_element' align='left'>"
+                        element+="<div class='dialog_element'>"
                                 +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Interface<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_controll' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='controll';dialog_el(this.id,'Interface',false)\" width='24px' class='icon_m icon_edit' title='Edit interface'></td></tr></tbody></table>"
                                 +"<div class='choice_b'><select style='background-color:var(--cw);' oninput='story_script."+chapter.id+"["+i+"].dialogs["+d+"].controll=this.value'><option value='hidden_here' "+((story_script[chapter.id][i].dialogs[d].controll=="hidden_here")?"selected":"")+">Hidden only here</option><option value='hidden' "+((story_script[chapter.id][i].dialogs[d].controll=="hidden")?"selected":"")+">Hidden</option><option value='visible' "+((story_script[chapter.id][i].dialogs[d].controll=="visible")?"selected":"")+">Visible</option></select></div></div>"
                     }
@@ -1127,6 +1127,7 @@ var scroll_block=false;
 function movie_dlock(id){
     var focus_block=document.getElementById(id);
     focus_block.onmousedown=function(e){
+        story_blocks.appendChild(focus_block);
         menu_add.style.visibility="hidden";
         var coords=getCoords(focus_block);
         var shiftX=(e.pageX-coords.left);
@@ -1135,7 +1136,6 @@ function movie_dlock(id){
         focus_block.style.position='absolute';
         focus_block.style.animation=false;
         focus_block.style.WebkitAnimation=false;
-        story_blocks.appendChild(focus_block);
         moveAt(e);
         function moveAt(e){
             focus_block.style.left=((e.pageX-shiftX)/scale)+'px';
@@ -1199,13 +1199,8 @@ function block_open(id){
     lines()
 }
 var startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null,scroll_xz=null,scroll_yz=null,dictat_m=0,dictat_s=0;
-					 
-				  
-				  
-				   
-				   
 html.ontouchstart=function(e){
-    if(!scroll_block||(!scene_screen&&!scene_scroll)){
+    if(!scroll_block||(scene_screen&&!scene_scroll)){
         html.style.overflow='scroll';
         startmove_x=e.touches[0].clientX;
         startmove_y=e.touches[0].clientY;
@@ -1561,6 +1556,7 @@ function create_project(){
     toast('New project created')
 }
 function new_block(){
+    menu_add.style.visibility="hidden";
 	var html="<div class='window' style='width:380px;'><div class='win_head'>New story block<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><br>"
 		+"<form id='color_chec' onsubmit='return false;create_block();'><table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input id='block_id' value='block "+(Object.keys(story_script).length-1)+"' class='input_text' type='text'></td></tr></tbody></table><br><p style=':14px;margin-left:12px;' align='left'>color block</p><br><table style='width:100%;border-spacing:4px;border-collapse:separate;'><tbody><tr>"
 		+"<td align='center'><input style='background-color:"+color_bg[0]+";' class='checkbox_b' type='radio' name='color' value='0'></td>"
