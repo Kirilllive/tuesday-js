@@ -1,23 +1,17 @@
-var findobjects = 0
-var startmove_x = null;
-var startmove_y = null;
-var scroll_x = null;
-var scroll_y = null;
+var findobjects=0,startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null;
 function hidden_objects(){
-    arr_dialog = story_json[tue_story][scene].hidden_objects
+    arr_dialog=story_json[tue_story][scene].hidden_objects
     tue_text_view.innerHTML='';
     tuesday.style.backgroundImage='none'
     findobjects=(story_json.parameters.hidden_objects.label.items>arr_dialog.objects.length)?arr_dialog.objects.length:story_json.parameters.hidden_objects.label.items;
     var view=document.createElement("div");
     view.id='tue_hiddenobjects';
     view.style='height:100%;width:100%;overflow:auto;';
-    var room=document.createElement("div");
-    var step=Math.round(arr_dialog.objects.length / findobjects);
-    var s=0,z=0;
+    var room=document.createElement("div"),step=Math.round(arr_dialog.objects.length/findobjects),s=0,z=0;
     if(findobjects<arr_dialog.objects.length&&step<2){step=2}
     var r=Math.round(Math.random()*(step-1));
     room.id="tue_objectsroom";
-    room.style.width= arr_dialog.size[0]+"px";
+    room.style.width=arr_dialog.size[0]+"px";
     room.style.height=arr_dialog.size[1]+"px";
     room.style.backgroundRepeat="no-repeat";
     room.style.backgroundPosition="center";
@@ -85,43 +79,43 @@ function hidden_objects(){
     tue_objectsroom.style.marginRight=arr_dialog.size[0]*-1+"px";
     if(arr_dialog.background_music){
         if(tue_bg_music.canPlayType("audio/mpeg")){
-            if(arr_dialog.background_music.indexOf("blob:") > -1){
+            if(arr_dialog.background_music.indexOf("blob:")>-1){
                 tue_bg_music.src=arr_dialog.background_music;
-            } else if(arr_dialog.background_music.indexOf(".mp3") > -1){
+            }else if(arr_dialog.background_music.indexOf(".mp3")>-1){
                 tue_bg_music.src=arr_dialog.background_music;
             }else{tue_bg_music.src=arr_dialog.background_music+".mp3";}
         }else{tue_bg_music.src=arr_dialog.background_music+".ogg";}
         tue_bg_music.loop=true;
         tue_bg_music.play();
     }
-    view.ontouchstart = function(e) {
-        startmove_x = e.touches[0].clientX;
-        startmove_y = e.touches[0].clientY;
-        scroll_x = view.scrollTop;
-        scroll_y = view.scrollLeft;
-        document.ontouchmove = function(e) {
-            view.scrollTop = scroll_x - (e.touches[0].clientY - startmove_y);
-            view.scrollLeft = scroll_y - (e.touches[0].clientX - startmove_x);
+    view.ontouchstart=function(e) {
+        startmove_x=e.touches[0].clientX;
+        startmove_y=e.touches[0].clientY;
+        scroll_x=view.scrollTop;
+        scroll_y=view.scrollLeft;
+        document.ontouchmove=function(e) {
+            view.scrollTop=scroll_x-(e.touches[0].clientY-startmove_y);
+            view.scrollLeft=scroll_y-(e.touches[0].clientX-startmove_x);
         };
-        document.ontouchend = function (e){
-            document.ontouchmove = null;
-            document.ontouchend = null;
+        document.ontouchend=function (e){
+            document.ontouchmove=null;
+            document.ontouchend=null;
         };
     }
-    view.onmousedown = function(e) {
-        startmove_x = e.clientX;
-        startmove_y = e.clientY;
-        scroll_x = view.scrollTop;
-        scroll_y = view.scrollLeft;
-        document.onmousemove = function(e) {
-            view.scrollTop = scroll_x - (e.clientY - startmove_y);
-            view.scrollLeft = scroll_y - (e.clientX - startmove_x);
+    view.onmousedown=function(e) {
+        startmove_x=e.clientX;
+        startmove_y=e.clientY;
+        scroll_x=view.scrollTop;
+        scroll_y=view.scrollLeft;
+        document.onmousemove=function(e) {
+            view.scrollTop=scroll_x-(e.clientY-startmove_y);
+            view.scrollLeft=scroll_y-(e.clientX-startmove_x);
         };
-        document.onmouseup = function (e){
-            document.onmousemove = null;
-            document.onmouseup = null;
+        document.onmouseup=function(e){
+            document.onmousemove=null;
+            document.onmouseup=null;
         };
-        document.onmouseleave = function(){
+        document.onmouseleave=function(){
 			document.onmousemove=null;
 			document.onmouseup=null;
 		};
