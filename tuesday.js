@@ -92,7 +92,7 @@ function name_block_update(){
     tuesday.style.backgroundPosition="center";
     tuesday.style.position="relative";
     tuesday.style.overflow="hidden";
-    if(story_json.parameters.cursors.main){tuesday.style.cursor="url("+story_json.parameters.cursors.main[0]+") "+story_json.parameters.cursors.main[1]+" "+story_json.parameters.cursors.main[2]+",auto";}
+    if(story_json.parameters.cursors.main){tuesday.style.cursor="url("+art_data(story_json.parameters.cursors.main[0])+") "+story_json.parameters.cursors.main[1]+" "+story_json.parameters.cursors.main[2]+",auto";}
     tuesday.innerHTML="<table id='tue_text_block' align='center'><tbody><tr><td id='tue_text_element'><div id='tue_text_view'></div></td></tr></tbody></table>";
     tue_text_block=document.getElementById("tue_text_block");
 	tue_text_element=document.getElementById("tue_text_element");
@@ -193,7 +193,7 @@ function name_block_update(){
         button.style.height=story_json.parameters.buttons[i].size[1];
         button.style.backgroundColor=story_json.parameters.buttons[i].color;
         button.style.backgroundRepeat="no-repeat";
-        if(story_json.parameters.cursors.button){button.style.cursor="url("+story_json.parameters.cursors.button[0]+") "+story_json.parameters.cursors.button[1]+" "+story_json.parameters.cursors.button[2]+",auto";}
+        if(story_json.parameters.cursors.button){button.style.cursor="url("+art_data(story_json.parameters.cursors.button[0])+") "+story_json.parameters.cursors.button[1]+" "+story_json.parameters.cursors.button[2]+",auto";}
         button.style.backgroundPosition=((story_json.parameters.buttons[i].art_align)?story_json.parameters.buttons[i].art_align[0]+" "+story_json.parameters.buttons[i].art_align[1]:"center");
         if(story_json.parameters.buttons[i].art){button.style.backgroundImage="url('"+art_data(story_json.parameters.buttons[i].art)+"')";}
         if(story_json.parameters.buttons[i].art_size){
@@ -476,7 +476,7 @@ function name_block_update(){
                 choice.style.backgroundColor=arr_dialog.choice[i].color;
                 choice.style.backgroundRepeat="no-repeat";
                 choice.style.backgroundPosition=((arr_dialog.choice[i].art_align)?arr_dialog.choice[i].art_align[0]+" "+arr_dialog.choice[i].art_align[1]:"center");
-                if(story_json.parameters.cursors.choice){choice.style.cursor="url("+story_json.parameters.cursors.choice[0]+") "+story_json.parameters.cursors.choice[1]+" "+story_json.parameters.cursors.choice[2]+",auto";}
+                if(story_json.parameters.cursors.choice){choice.style.cursor="url("+art_data(story_json.parameters.cursors.choice[0])+") "+story_json.parameters.cursors.choice[1]+" "+story_json.parameters.cursors.choice[2]+",auto";}
                 if(arr_dialog.choice[i].art){choice.style.backgroundImage="url('"+art_data(arr_dialog.choice[i].art)+"')";}
 				if(arr_dialog.choice[i].size){
 					if(arr_dialog.choice[i].size[0] != 0){
