@@ -695,6 +695,8 @@ let texts={"tutorials":[{
         "en":"CSV Comma-Separated Values."
         },{
         "en":"TSV tab separated values."
+        },{
+        "en":"the limit of the cursor size is 128×128px. Larger cursor images are ignored. However, you should limit yourself to the size 32×32 for maximum compatibility with operating systems and platforms."
         }
 ]}
 let setup_editor={
@@ -3443,9 +3445,9 @@ function setup(){
         "<div id='blank_4' style='visibility:hidden;' class='set_blank'>"+var_list+"</div>"+
         "<div id='blank_5' style='visibility:hidden;' class='set_blank'>"+sound_list+"</div>"+
         "<div id='blank_2' style='visibility:hidden;' class='set_blank'>"+chars_list()+"</div>"+
-        "<div id='blank_7' style='visibility:hidden;' class='set_blank'>"+font_list+"</div>"+
+        "<div id='blank_8' style='visibility:hidden;' class='set_blank'>"+font_list+"</div>"+
         //
-        "<div id='blank_8' style='visibility:hidden;' class='set_blank'><br><p align='left' style=' margin-left:8px;'>Devices control</p><hr><form id='devices'><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'>"+
+        "<div id='blank_9' style='visibility:hidden;' class='set_blank'><br><p align='left' style=' margin-left:8px;'>Devices control</p><hr><form id='devices'><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==true)?'checked' :'')+"></td><td align='left' style='width:80px;'>Mouse </td><td> scrolling with the mouse cursor, zooming with the wheel</td></tr>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==false)?'checked' :'')+"></td><td align='left' style='width:80px;'>TouchPad </td><td> swipe scrolling is recommended for Laptops and MacBooks</td></tr>"+
         "</tbody></table></form><br>"+
@@ -3474,7 +3476,13 @@ function setup(){
         "<td align='center'><input type='radio' name='bg_edit' class='chec_bg bg_a' value='bg_a' "+((setup_editor.fon=='bg_a')?'checked' :'')+"></td>"+
         "</tr></tbody></table></form></div>"+
         //
-        "<div id='blank_6' style='visibility:hidden;' class='set_blank'>"+plugins_show+"<br>"+addon_list+"</div>"+
+        "<div id='blank_7' style='visibility:hidden;' class='set_blank'>"+plugins_show+"<br>"+addon_list+"</div>"+
+        //
+        "<div id='blank_6' style='visibility:hidden;padding:10px;' class='set_blank'><p style='border-radius:8px;' class='text_tutorials_a select_tutorials'>"+texts.tutorials[13].en+"</p><table style='width:100%;'><tbody>"+
+        "<td style='height:40px;padding-right:10px;' align='right'>Main cursor  </td><td><input class='cur_i input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.main[0])?story_script.parameters.cursors.main[0]:"")+"' type='text'></td><td>hotspot X</td><td><input style='width:38px;' class='cur_x input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.main[1])?story_script.parameters.cursors.main[1]:0)+"' type='text'></td><td>Y</td><td><input style='width:38px;' class='cur_y input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.main[2])?story_script.parameters.cursors.main[2]:0)+"' type='text'></td></tr><tr>"+
+        "<td style='height:40px;padding-right:10px;' align='right'>Button cursor</td><td><input class='cur_i input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.button[0])?story_script.parameters.cursors.button[0]:"")+"' type='text'></td><td>hotspot X</td><td><input style='width:38px;' class='cur_x input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.button[1])?story_script.parameters.cursors.button[1]:0)+"' type='text'></td><td>Y</td><td><input style='width:38px;' class='cur_y input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.button[2])?story_script.parameters.cursors.button[2]:0)+"' type='text'></td></tr><tr>"+
+        "<td style='height:40px;padding-right:10px;' align='right'>Choice cursor</td><td><input class='cur_i input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.choice[0])?story_script.parameters.cursors.choice[0]:"")+"' type='text'></td><td>hotspot X</td><td><input style='width:38px;' class='cur_x input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.choice[1])?story_script.parameters.cursors.choice[1]:0)+"' type='text'></td><td>Y</td><td><input style='width:38px;' class='cur_y input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.choice[2])?story_script.parameters.cursors.choice[2]:0)+"' type='text'></td></tr><tr>"+
+        "</tr></tbody></table></div>"+
         //
         "</td></tr>"+
         "<tr><td id='set_1' onclick='set_menu(1)' align='right' class='set_button'>Languages</td></tr>"+
@@ -3482,9 +3490,10 @@ function setup(){
         "<tr><td id='set_3' onclick='set_menu(3)' align='right' class='set_button'>Keyboard</td></tr>"+
         "<tr><td id='set_4' onclick='set_menu(4)' align='right' class='set_button'>Variables</td></tr>"+
         "<tr><td id='set_5' onclick='set_menu(5)' align='right' class='set_button'>Sounds</td></tr>"+
-        "<tr><td id='set_6' onclick='set_menu(6)' align='right' class='set_button'>Add-on</td></tr>"+
-        "<tr><td id='set_7' onclick='set_menu(7)' align='right' class='set_button'>Fonts</td></tr>"+
-        "<tr><td id='set_8' onclick='set_menu(8)' align='right' class='set_button' style='border-radius:0 0 0 16px;padding-left:20px;'>Editor</td></tr>"+
+        "<tr><td id='set_6' onclick='set_menu(6)' align='right' class='set_button'>Cursors</td></tr>"+
+        "<tr><td id='set_7' onclick='set_menu(7)' align='right' class='set_button'>Add-on</td></tr>"+
+        "<tr><td id='set_8' onclick='set_menu(8)' align='right' class='set_button'>Fonts</td></tr>"+
+        "<tr><td id='set_9' onclick='set_menu(9)' align='right' class='set_button' style='border-radius:0 0 0 16px;padding-left:20px;'>Editor</td></tr>"+
         "<tr><td style='border-right:1px solid var(--cb);'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='apply_setup()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
@@ -3535,15 +3544,15 @@ function add_tr(id){
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;padding-top:10px;";
         td2.innerHTML="<input class='title_name input_text' value='"+languare_data(story_script.parameters.title)+"' style='padding-top:10px;' type='text' placeholder='translated title'>";
     }else if(id=='var_tablet'){
-        td1.innerHTML="<input class='var_name input_text' value='variable"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name' onchange='this.value=correct_name(this.value)' style='padding-top:10px;' type='text'>";
+        td1.innerHTML="<input class='var_name input_text' value='variable"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name variable' onchange='this.value=correct_name(this.value)' style='padding-top:10px;' type='text'>";
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;";
         td2.innerHTML="<input class='var_vol input_text' style='padding-top:10px;' type='text' placeholder='value'>";
     }else if(id=='var_sounds'){
-        td1.innerHTML="<input class='sound_name input_text' placeholder='name' style='padding-top:10px;' type='text'>";
+        td1.innerHTML="<input class='sound_name input_text' value='Sound"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name sound' style='padding-top:10px;' type='text'>";
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;";
         td2.innerHTML="<input class='sound_path input_text' style='padding-top:10px;' type='text' placeholder='path to audio file'>";
     }else if(id=='var_fonts'){
-        td1.innerHTML="<input class='font_name input_text' placeholder='name' style='padding-top:10px;' type='text'>";
+        td1.innerHTML="<input class='font_name input_text' value='NameFont"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name font' style='padding-top:10px;' type='text'>";
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;";
         td2.innerHTML="<input class='font_path input_text' style='padding-top:10px;' type='text' placeholder='path to font file'>";
     }
@@ -3616,6 +3625,16 @@ function apply_setup(){
     li_v=document.getElementsByClassName("sound_path");
     story_script.parameters.sounds={};
     for(i=0;i<li_n.length;i++){if(li_n[i].value!=""){ story_script.parameters.sounds[li_n[i].value]=li_v[i].value}}
+    
+    li_n=document.getElementsByClassName("cur_y");
+    li_v=document.getElementsByClassName("cur_x");
+    forms=document.getElementsByClassName("cur_i");
+    story_script.parameters.cursors={};
+    if(forms[0].value!=''){story_script.parameters.cursors.main  =[forms[0].value,li_v[0].value,li_n[0].value];}
+    if(forms[1].value!=''){story_script.parameters.cursors.button=[forms[1].value,li_v[1].value,li_n[1].value];}
+    if(forms[2].value!=''){story_script.parameters.cursors.choice=[forms[2].value,li_v[2].value,li_n[2].value];}
+    if(Object.keys(story_script.parameters.cursors).length==0){delete story_script.parameters.cursors}
+    
     li_n=document.getElementsByClassName("title_lang");
     li_v=document.getElementsByClassName("title_name");
     story_script.parameters.title={};
