@@ -1955,7 +1955,7 @@ function hidden_objects_edit(){
     var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr>"
     +"<td rowspan='3'>"
     +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' onmouseup='window.getSelection().removeAllRanges();'>"
-    +"<div style='display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;'><div id='ho_room' style='position:relative;background-image:url("+open_file(arr_l[arr_n].art)+");background-size:cover;width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;'>"
+    +"<div style='display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;'><div id='ho_room' style='position:relative;background-image:url("+open_file(arr_l[arr_n].art)+");background-size:cover;width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);'>"
     for(var i=0;i<arr_l[arr_n].objects.length;i++){tool+="<div id='item"+i+"' onclick='objSelect(this.id,\"ho_room\")' style='position:absolute;top:"+arr_l[arr_n].objects[i].position[1]+"px;left:"+arr_l[arr_n].objects[i].position[0]+"px;width:"+arr_l[arr_n].objects[i].size[0]+"px;height:"+arr_l[arr_n].objects[i].size[1]+"px;background-image:url("+open_file(arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;"+((arr_l[arr_n].objects[i].fit)?"background-size:"+arr_l[arr_n].objects[i].fit+";":"")+"'></div>"}
     tool+="</div></div></div></td>"
     +"<td style='width:286px;height:40px;background-color:var(--wn);'>info</td>"
@@ -1964,7 +1964,11 @@ function hidden_objects_edit(){
     +"<td height='40px' style='background-color:var(--wn);' onclick='open_tool();'>close</td></tr></tbody></table>"
     open_tool(tool);
     adden_scroll(document.getElementById('ho_preview'));
-    adden_sizer(document.getElementById('ho_room'));
+    adden_sizer(document.getElementById('ho_room'),"ho_stopResize();");
+}
+function ho_stopResize() {
+    window.removeEventListener('mousemove', resize);
+    moveSize=true
 }
 function open_tool(content){
     if(content&&tools_zone.style.visibility!="visible"){
@@ -1972,26 +1976,27 @@ function open_tool(content){
         menu_panel.style.zIndex='20000';
         tools_zone.innerHTML=content;
         tools_zone.style.visibility="visible";
-        scroll_block=false;scene_screen=true;scene_scroll=false;
+        scroll_block=true;scene_screen=true;scene_scroll=true;
     }else{
         tools_zone.style.visibility="hidden";
         html.style.overflow='scroll';
         menu_panel.style.zIndex=null;
         tools_zone.innerHTML="";
-        scroll_block=true;
+        scroll_block=false;scene_screen=false;
     }
 }
-function adden_sizer(id){
+function adden_sizer(id,f){
     var r=document.createElement("div");
     r.style='visibility:hidden;';
     r.id=id.id+"_sizer";
     r.className="drag";
     r.innerHTML="<div class='resizer size-right'></div><div class='resizer top-right'></div><div class='resizer size-top'></div><div class='resizer top-left'></div><div class='resizer size-left'></div><div class='resizer bottom-left'></div><div class='resizer size-bottom'></div><div class='resizer bottom-right'></div><div class='resizer rotate'></div>";
     id.appendChild(r);
-    makeResizableDiv(document.getElementById(id.id+"_sizer"));
+    makeResizableDiv(document.getElementById(id.id+"_sizer"),f);
 }
 function adden_scroll(id){
-    id.onmousedown=function(e) {
+    id.onmousedown=function(e){
+    if(scene_scroll){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
         scroll_y=this.scrollTop;
@@ -2012,8 +2017,9 @@ function adden_scroll(id){
 			document.onmousemove=null;
 			document.onmouseup=null;
 		};
-    }
+    }}
     id.ontouchstart=function(e) {
+    if(scene_scroll){
         startmove_x=e.touches[0].clientX;
         startmove_y=e.touches[0].clientY;
         scroll_y=this.scrollTop;
@@ -2037,7 +2043,7 @@ function adden_scroll(id){
             this.ontouchend=null;
             scale_t=Math.max(0,(scale_t+dictat_m));dictat_m=0;delta.innerHTML=scale_t+"n"
         };
-    }
+    }}
 }
 
 
@@ -3925,7 +3931,7 @@ function objSelect(id,r){
     r.appendChild(objFocus);
 }
 var moveSize=true;
-function makeResizableDiv(s){
+function makeResizableDiv(s,f){
     s.onmousedown=dragMouseDown;
     function dragMouseDown(e){
         if(moveSize){
@@ -3970,7 +3976,7 @@ function makeResizableDiv(s){
         s.style.top=(s.offsetTop-original_mouse_y/scale_scene)+"px";
         s.style.left=(s.offsetLeft-original_mouse_x/scale_scene)+"px";
     }
-    function closeDragElement(){saveResize();}
+    function closeDragElement(){if(!f){saveResize();}else{eval(f)}}
     const resizers=s.getElementsByClassName("resizer");
     const minSize=26;
     let original_width=0,original_height=0,original_x=0,original_y=0,original_mouse_x=0,original_mouse_y=0,angle=0,size=0;
@@ -4032,7 +4038,7 @@ function makeResizableDiv(s){
         function stopResize(){
             window.removeEventListener('mousemove',resize);
             moveSize=true;
-            saveResize(size,angle);angle=0;size=0;
+            if(!f){saveResize(size,angle);}else{eval(f)};angle=0;size=0;
         }
         sizer.addEventListener('touchstart',function(e){
             moveSize=false
@@ -4090,7 +4096,7 @@ function makeResizableDiv(s){
         function stopResizeTouch(){
             window.removeEventListener('touchmove',resizeTouch);
             moveSize=true;
-            saveResize(size,angle);angle=0;size=0;
+            if(!f){saveResize(size,angle);}else{eval(f)};angle=0;size=0;
         }
     }
 }
