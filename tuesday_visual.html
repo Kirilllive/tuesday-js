@@ -191,6 +191,7 @@ line{stroke:var(--cl);stroke-dasharray:20;stroke-width:2;animation:dash 4s linea
 }
 .win_head{width:100%; height:36px; display:flex;justify-content:center;align-items:center;}
 #window_zone{height:100vh;width:100%;position:fixed;left:0;top:0;visibility:hidden;transition-duration:0.5s;z-index:10000;}
+#tools_zone{position:fixed;height:100vh;width:100%;left:0;top:0;visibility:hidden;z-index:10000;}
 .add_w{
 	background-color:var(--wn);
 	border-radius:16px;
@@ -299,7 +300,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 .set_title{background-color:var(--cb);cursor:pointer;}
 .input_color{cursor:pointer;border: none;height:100%;width:100%;opacity: 0;}
 .show_color{background-color:var(--cb);border-radius:50%;width:26px;height:26px;}
-#resizers{box-sizing:border-box;width:100px;height:100px;position:absolute;top:100px;left:100px;cursor:move;border: 1px dashed var(--cb);}
+.drag{box-sizing:border-box;width:100px;height:100px;position:absolute;top:100px;left:100px;cursor:move;border: 1px dashed var(--cb);}
 .resizer{width:7px;height:7px;border-radius:50%;background:var(--cw);border: 1px solid var(--cb);position:absolute;z-index:4000;}
 .top-left{left:-5px;top:-5px;cursor:nwse-resize;}
 .top-right{right:-5px;top:-5px;cursor:nesw-resize;}
@@ -368,7 +369,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                     <div id='scene_view' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' align='center' onmouseover='this.tabindex=1' onmouseout='this.tabindex=0'>
                         <div id='screen_preview' style='background-color:var(--cw);background-blend-mode:overlay;transform-origin:0 0;min-width:100%;min-height:100%;padding-top:40px;display:flex;justify-content:center;align-items:center;' onmouseup="window.getSelection().removeAllRanges();">
                             <div id='scene_canvas'><div id='scene_layout'>
-                                <div id='resizers' style='visibility:hidden;'>
+                                <div id='resizers' class='drag' style='visibility:hidden;'>
                                     <div class='resizer size-right'></div>
                                     <div class='resizer top-right'></div>
                                     <div class='resizer size-top'></div>
@@ -600,6 +601,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
         </table>
     </div>
     <!--scene_maker-->
+    <div id='tools_zone' align='center'></div>
 	<div id='window_zone' align='center'></div>
     <div id='add_element' align='center' style='z-index:10001;'></div>
     <div id="toast">
@@ -863,9 +865,8 @@ function creation_block(b){
                 }
                 element+="</div>"
             }else if(story_script[chapter.id][i].hidden_objects){
-                element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>"+plugins_list.hidden_objects.name+":"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";element_m(this.id,plugins_list.hidden_objects.name);' title='Scene edit'></td></tr></tbody></table><div width='100%'>"
-                if(story_script[chapter.id][i].hidden_objects.art&&(typeof story_script[chapter.id][i].hidden_objects.art!=='object'||(story_script[chapter.id][i].hidden_objects.art[languare]&&typeof story_script[chapter.id][i].hidden_objects.art[languare]!=='object'))||story_script[chapter.id][i].hidden_objects.color){element+="<div class='scene_bg' ondblclick='arr_l=story_script."+chapter.id+";arr_n="+i+";scene_edit();' style='background-image:url("+open_file(languare_data(story_script[chapter.id][i].hidden_objects.art))+");background-color:"+story_script[chapter.id][i].hidden_objects.color+";' width='100%'></div>"}
-                
+                element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>"+plugins_list.hidden_objects.name+":"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+"["+i+"];arr_n=\"hidden_objects\";element_m(this.id,plugins_list.hidden_objects.name);' title='Scene edit'></td></tr></tbody></table><div width='100%'>"
+                if(story_script[chapter.id][i].hidden_objects.art&&(typeof story_script[chapter.id][i].hidden_objects.art!=='object'||(story_script[chapter.id][i].hidden_objects.art[languare]&&typeof story_script[chapter.id][i].hidden_objects.art[languare]!=='object'))||story_script[chapter.id][i].hidden_objects.color){element+="<div class='scene_bg' ondblclick='arr_l=story_script."+chapter.id+"["+i+"];arr_n=\"hidden_objects\";hidden_objects_edit();' style='background-image:url("+open_file(languare_data(story_script[chapter.id][i].hidden_objects.art))+");background-color:"+story_script[chapter.id][i].hidden_objects.color+";' width='100%'></div>"}
                 go=(story_script[chapter.id][i].hidden_objects.go_to)?story_script[chapter.id][i].hidden_objects.go_to:'tue_no';
                     if(go&&go!=""&&go!="undefined"){
                     if(story_script[go]){
@@ -874,7 +875,6 @@ function creation_block(b){
                         creaton_line(all+"ho"+d+go+all_blocks);
                     }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].hidden_objects.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td></tr></tbody></table>"}
                 }all++
-                
                 element+="</div>"
             }else{element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene:"+(i+1)+"</p></td><td width='45px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";scene_m(this.id,"+(i+1)+",\""+chapter.id+"\");' title='Scene edit'></td></tr></tbody></table>"}
             if(story_script[chapter.id][i].background_image&&(typeof story_script[chapter.id][i].background_image!=='object'||(story_script[chapter.id][i].background_image[languare]&&typeof story_script[chapter.id][i].background_image[languare]!=='object'))||story_script[chapter.id][i].background_color){element+="<div class='scene_bg' ondblclick='arr_l=story_script."+chapter.id+";arr_n="+i+";scene_edit();' style='background-size:"+((story_script[chapter.id][i].background_size)?story_script[chapter.id][i].background_size:"cover")+";background-image:url("+open_file(languare_data(story_script[chapter.id][i].background_image))+");background-color:"+story_script[chapter.id][i].background_color+";"+((story_script[chapter.id][i].background_align)?"background-position:"+story_script[chapter.id][i].background_align:"")+";' width='100%'></div>"}
@@ -1227,9 +1227,7 @@ html.ontouchstart=function(e){
         startmove_y=e.touches[0].clientY;
         scroll_y=html.scrollTop;
         scroll_x=html.scrollLeft;
-        if (e.touches.length>1){
-            dictat_s=Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2)
-        }
+        if (e.touches.length>1){dictat_s=Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2)}
         html.ontouchmove=function(e){
             html.scrollTop=scroll_y-(e.touches[0].clientY-startmove_y);
             html.scrollLeft=scroll_x-(e.touches[0].clientX-startmove_x);
@@ -1254,10 +1252,7 @@ scene_view.ontouchstart=function(e){
         startmove_y=e.touches[0].clientY;
         scroll_y=scene_view.scrollTop;
         scroll_x=scene_view.scrollLeft;
-        if (e.touches.length>1){
-            dictat_s=Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2)
-																			  
-        }
+        if (e.touches.length>1){dictat_s=Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2)}
         scene_view.ontouchmove=function(e){
             scene_view.scrollTop=scroll_y-(e.touches[0].clientY-startmove_y);
             scene_view.scrollLeft=scroll_x-(e.touches[0].clientX-startmove_x);
@@ -1824,6 +1819,7 @@ function element_m(id,n){
     var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
         +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">'+n+'</td></tr>'
         +((n=='legacy choice')?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="legacy_choice_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>':'')
+        +((n==plugins_list.hidden_objects.name)?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="hidden_objects_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>':'')
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="data_copy(\'scene\');element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_cut"></td><td>Cut</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="duplicat_arr();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="data_copy(\'scene\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copy"></td><td>Copy scene</td></tr></tbody></table></td></tr>'
@@ -1951,6 +1947,102 @@ function option_block(d,g){
     }
     return scene_list+'</optgroup>'
 }
+
+
+
+
+function hidden_objects_edit(){
+    var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr>"
+    +"<td rowspan='3'>"
+    +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' onmouseup='window.getSelection().removeAllRanges();'>"
+    +"<div style='display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;'><div id='ho_room' style='position:relative;background-image:url("+open_file(arr_l[arr_n].art)+");background-size:cover;width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;'>"
+    for(var i=0;i<arr_l[arr_n].objects.length;i++){tool+="<div id='item"+i+"' onclick='objSelect(this.id,\"ho_room\")' style='position:absolute;top:"+arr_l[arr_n].objects[i].position[1]+"px;left:"+arr_l[arr_n].objects[i].position[0]+"px;width:"+arr_l[arr_n].objects[i].size[0]+"px;height:"+arr_l[arr_n].objects[i].size[1]+"px;background-image:url("+open_file(arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;"+((arr_l[arr_n].objects[i].fit)?"background-size:"+arr_l[arr_n].objects[i].fit+";":"")+"'></div>"}
+    tool+="</div></div></div></td>"
+    +"<td style='width:286px;height:40px;background-color:var(--wn);'>info</td>"
+    +"</tr><tr>"
+    +"<td id='ho_content' style='background-color:var(--wn);'>content</td></tr><tr>"
+    +"<td height='40px' style='background-color:var(--wn);' onclick='open_tool();'>close</td></tr></tbody></table>"
+    open_tool(tool);
+    adden_scroll(document.getElementById('ho_preview'));
+    adden_sizer(document.getElementById('ho_room'));
+}
+function open_tool(content){
+    if(content&&tools_zone.style.visibility!="visible"){
+        html.style.overflow='hidden';
+        menu_panel.style.zIndex='20000';
+        tools_zone.innerHTML=content;
+        tools_zone.style.visibility="visible";
+        scroll_block=false;scene_screen=true;scene_scroll=false;
+    }else{
+        tools_zone.style.visibility="hidden";
+        html.style.overflow='scroll';
+        menu_panel.style.zIndex=null;
+        tools_zone.innerHTML="";
+        scroll_block=true;
+    }
+}
+function adden_sizer(id){
+    var r=document.createElement("div");
+    r.style='visibility:hidden;';
+    r.id=id.id+"_sizer";
+    r.className="drag";
+    r.innerHTML="<div class='resizer size-right'></div><div class='resizer top-right'></div><div class='resizer size-top'></div><div class='resizer top-left'></div><div class='resizer size-left'></div><div class='resizer bottom-left'></div><div class='resizer size-bottom'></div><div class='resizer bottom-right'></div><div class='resizer rotate'></div>";
+    id.appendChild(r);
+    makeResizableDiv(document.getElementById(id.id+"_sizer"));
+}
+function adden_scroll(id){
+    id.onmousedown=function(e) {
+        startmove_x=e.clientX;
+        startmove_y=e.clientY;
+        scroll_y=this.scrollTop;
+        scroll_x=this.scrollLeft;
+        this.onmousemove=function(e) {
+            this.scrollTop=scroll_y-(e.clientY-startmove_y);
+            this.scrollLeft=scroll_x-(e.clientX-startmove_x);
+        };
+        this.onmouseup=function (e){
+            startmove_x=null;
+            startmove_y=null;
+            this.onmousemove=null;
+            this.onmouseup=null;
+        };
+		this.onmouseleave=function(){
+			this.onmousemove=null;
+			this.onmouseup=null;
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+    }
+    id.ontouchstart=function(e) {
+        startmove_x=e.touches[0].clientX;
+        startmove_y=e.touches[0].clientY;
+        scroll_y=this.scrollTop;
+        scroll_x=this.scrollLeft;
+        if(e.touches.length>1){
+            dictat_s=Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2)
+        }
+        this.ontouchmove=function(e){
+            scroll_controll.scrollTop=scroll_y-(e.touches[0].clientY-startmove_y);
+            scroll_controll.scrollLeft=scroll_x-(e.touches[0].clientX-startmove_x);
+            if (e.touches.length>1){
+                dictat_m=((Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2))-dictat_s)/1000;
+                scroll_content.style.transform='scale('+Math.max(0,(scale_t+dictat_m))+')';
+                delta.innerHTML=scale_t+dictat_m
+            }
+        };
+        this.ontouchend=function(e){
+            startmove_x=null;
+            startmove_y=null;
+            this.ontouchmove=null;
+            this.ontouchend=null;
+            scale_t=Math.max(0,(scale_t+dictat_m));dictat_m=0;delta.innerHTML=scale_t+"n"
+        };
+    }
+}
+
+
+
+
 function legacy_choice_edit(){
 	var var_if="<table width='100%' id='legacy_choice_edit'><tbody>";
 	for(var i=0;i<arr_l[arr_n].legacy_choice.length-1;i++){
@@ -2671,7 +2763,7 @@ function panel_art(id){
     }
 }
 function art_panel_update(block,i,n){
-    droppFocus();
+    droppFocus(document.getElementById('resizers'));
     arts_ec.innerHTML=""
     var arr_s=story_script[block][i].dialogs[n-1]
     var tue_art=document.getElementsByClassName("tue_art");
@@ -2794,7 +2886,7 @@ function art_panel_edit(block,i,n,b){
     return html;
 }
 function choice_panel_update(block,i,n){
-    droppFocus();
+    droppFocus(document.getElementById('resizers'));
     choice_ec.innerHTML=""
     var arr_s=story_script[block][i].dialogs[n-1].choice
     var tue_choice=document.getElementsByClassName("tue_choice");
@@ -3040,7 +3132,7 @@ let button_name={
     'tue_fullScreen':'Full screen',
 }
 function button_panel_update(){
-    droppFocus();
+    droppFocus(document.getElementById('resizers'));
     interface_buttons_c.innerHTML=""
     var arr_s=story_script.parameters.buttons
     var clear_ui=document.getElementsByClassName("tue_controll");
@@ -3785,14 +3877,14 @@ function csv_export(f){
 }
 var objFocus;
 let arr_e;
-function droppFocus(){
+function droppFocus(r){
     if(objFocus){
-        objFocus.style.width=resizers.style.width;
-        objFocus.style.height=resizers.style.height;
-        objFocus.style.top=resizers.style.top;
-        objFocus.style.left=resizers.style.left;
-        objFocus.style.zIndex=resizers.style.zIndex;
-        objFocus.style.transform=resizers.style.transform;
+        objFocus.style.width=r.style.width;
+        objFocus.style.height=r.style.height;
+        objFocus.style.top=r.style.top;
+        objFocus.style.left=r.style.left;
+        objFocus.style.zIndex=r.style.zIndex;
+        objFocus.style.transform=r.style.transform;
         var j=document.getElementById('b_'+objFocus.id);
         if(j){
             j.style.animation="false";
@@ -3802,19 +3894,20 @@ function droppFocus(){
         resizers.style.transform="";
         scene_layout.appendChild(objFocus);
         objFocus='';
-        resizers.style.visibility="hidden"
+        r.style.visibility="hidden"
     }
 }
-function objSelect(id){
-    droppFocus();
+function objSelect(id,r){
+    if(r){r=document.getElementById(r+"_sizer")}else{r=document.getElementById('resizers')}
+    droppFocus(r);
     objFocus=document.getElementById(id);
-    resizers.style.height=objFocus.offsetHeight+"px"
-    resizers.style.width=objFocus.offsetWidth+"px"
-    resizers.style.top=objFocus.offsetTop+"px";
-    resizers.style.left=objFocus.offsetLeft+"px";
-    resizers.style.visibility="visible"
-    resizers.style.zIndex=objFocus.style.zIndex;
-    resizers.style.transform=objFocus.style.transform;
+    r.style.height=objFocus.offsetHeight+"px"
+    r.style.width=objFocus.offsetWidth+"px"
+    r.style.top=objFocus.offsetTop+"px";
+    r.style.left=objFocus.offsetLeft+"px";
+    r.style.visibility="visible"
+    r.style.zIndex=objFocus.style.zIndex;
+    r.style.transform=objFocus.style.transform;
     objFocus.style.transform="";
     objFocus.style.boxSizing='border-box';
     objFocus.style.width='100%';
@@ -3829,7 +3922,7 @@ function objSelect(id){
         j.style.WebkitAnimation="flash2 2s 1";
         j.style.backgroundColor='var(--cb)'
     }
-    resizers.appendChild(objFocus);
+    r.appendChild(objFocus);
 }
 var moveSize=true;
 function makeResizableDiv(s){
@@ -3878,7 +3971,7 @@ function makeResizableDiv(s){
         s.style.left=(s.offsetLeft-original_mouse_x/scale_scene)+"px";
     }
     function closeDragElement(){saveResize();}
-    const resizers=document.getElementsByClassName("resizer");
+    const resizers=s.getElementsByClassName("resizer");
     const minSize=26;
     let original_width=0,original_height=0,original_x=0,original_y=0,original_mouse_x=0,original_mouse_y=0,angle=0,size=0;
     for (let i=0;i<resizers.length;i++){
