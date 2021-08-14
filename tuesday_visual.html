@@ -1956,7 +1956,7 @@ function hidden_objects_edit(){
     +"<td rowspan='3'>"
     +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' onmouseup='window.getSelection().removeAllRanges();'>"
     +"<div style='display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;'><div id='ho_room' style='position:relative;background-image:url("+open_file(arr_l[arr_n].art)+");background-size:cover;width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);'>"
-    for(var i=0;i<arr_l[arr_n].objects.length;i++){tool+="<div id='item"+i+"' onclick='objSelect(this.id,\"ho_room\")' style='position:absolute;top:"+arr_l[arr_n].objects[i].position[1]+"px;left:"+arr_l[arr_n].objects[i].position[0]+"px;width:"+arr_l[arr_n].objects[i].size[0]+"px;height:"+arr_l[arr_n].objects[i].size[1]+"px;background-image:url("+open_file(arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;"+((arr_l[arr_n].objects[i].fit)?"background-size:"+arr_l[arr_n].objects[i].fit+";":"")+"'></div>"}
+    for(var i=0;i<arr_l[arr_n].objects.length;i++){tool+="<div id='item"+i+"' onmouseup='objSelect(this.id,\"ho_room\")' style='position:absolute;top:"+arr_l[arr_n].objects[i].position[1]+"px;left:"+arr_l[arr_n].objects[i].position[0]+"px;width:"+arr_l[arr_n].objects[i].size[0]+"px;height:"+arr_l[arr_n].objects[i].size[1]+"px;background-image:url("+open_file(arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;"+((arr_l[arr_n].objects[i].fit)?"background-size:"+arr_l[arr_n].objects[i].fit+";":"")+"'></div>"}
     tool+="</div></div></div></td>"
     +"<td style='width:286px;height:40px;background-color:var(--wn);'>info</td>"
     +"</tr><tr>"
@@ -1967,8 +1967,11 @@ function hidden_objects_edit(){
     adden_sizer(document.getElementById('ho_room'),"ho_stopResize();");
 }
 function ho_stopResize() {
-    window.removeEventListener('mousemove', resize);
-    moveSize=true
+    document.onmouseup=null;
+    document.onmousemove=null;
+    document.ontouchend=null;
+    document.ontouchmove=null;
+    droppFocus(document.getElementById("ho_room_sizer"))
 }
 function open_tool(content){
     if(content&&tools_zone.style.visibility!="visible"){
@@ -3897,10 +3900,10 @@ function droppFocus(r){
             j.style.WebkitAnimation="false";
             j.style.backgroundColor='var(--cw)'
         }
-        resizers.style.transform="";
-        scene_layout.appendChild(objFocus);
-        objFocus='';
+        r.style.transform="";
+        r.parentNode.appendChild(objFocus);
         r.style.visibility="hidden"
+        objFocus='';
     }
 }
 function objSelect(id,r){
