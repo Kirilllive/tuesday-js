@@ -1965,7 +1965,7 @@ function hidden_objects_edit(){
 function ho_stopResize() {
     droppFocus(document.getElementById("ho_room_sizer"))
     off_drag();
-    //alert(arr_e.art)
+    alert(arr_e.art+" - "+parseInt(ho_room_sizer.style.top))
 }
 function open_tool(content){
     if(content&&tools_zone.style.visibility!="visible"){
@@ -4026,10 +4026,9 @@ function make_resizable(s,f){
             };
         };
         function stopResize(){
-            if(!f){saveResize(size,angle);}else{eval(f);};
+            if(!scene_scroll){if(!f){saveResize(size,angle);}else{eval(f);}}
             window.removeEventListener('mousemove',resize);
-            moveSize=true;
-            angle=0;size=0;
+            moveSize=true;angle=0;size=0;
         }
         sizer.addEventListener('touchstart',function(e){
             moveSize=false
@@ -4084,10 +4083,9 @@ function make_resizable(s,f){
             };
         };
         function stopResizeTouch(){
-            if(!f){saveResize(size,angle);}else{eval(f)};
+            if(!scene_scroll){if(!f){saveResize(size,angle);}else{eval(f)}};
             window.removeEventListener('touchmove',resizeTouch);
-            moveSize=true;
-            angle=0;size=0;
+            moveSize=true;angle=0;size=0;
         }
     }
 }
