@@ -366,7 +366,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
         <table style="height:100vh;width:100%;">
             <tbody>
                 <tr><td rowspan="3">
-                    <div id='scene_view' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' align='center' onmouseover='this.tabindex=1' onmouseout='this.tabindex=0'>
+                    <div id='scene_view' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' align='center'>
                         <div id='screen_preview' style='background-color:var(--cw);background-blend-mode:overlay;transform-origin:0 0;min-width:100%;min-height:100%;padding-top:40px;display:flex;justify-content:center;align-items:center;' onmouseup="window.getSelection().removeAllRanges();">
                             <div id='scene_canvas'><div id='scene_layout'>
                                 <div id='resizers' class='drag' style='visibility:hidden;'>
@@ -595,7 +595,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
                     </div></td>
                 </tr>
                 <tr>
-                    <td height="40px" align='center' style="background-color:var(--wn);" class='button_menu'><table class='button_menu' width='100%' height="100%" onclick='scen_compres(scen_data[0],scen_data[1],scen_data[2]);scen_edit_update(false);'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td>
+                    <td height="40px" align='center' style="background-color:var(--wn);" class='button_menu'><table class='button_menu' width='100%' height="100%" onclick='saveResize();scen_compres(scen_data[0],scen_data[1],scen_data[2]);scen_edit_update(false);'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td>
                 </tr>
             </tbody>
         </table>
@@ -1947,31 +1947,25 @@ function option_block(d,g){
     }
     return scene_list+'</optgroup>'
 }
-
-
-
-
 function hidden_objects_edit(){
     var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr>"
     +"<td rowspan='3'>"
     +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' onmouseup='window.getSelection().removeAllRanges();'>"
     +"<div style='display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;'><div id='ho_room' style='position:relative;background-image:url("+open_file(arr_l[arr_n].art)+");background-size:cover;width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);'>"
-    for(var i=0;i<arr_l[arr_n].objects.length;i++){tool+="<div id='item"+i+"' onmouseup='objSelect(this.id,\"ho_room\")' style='position:absolute;top:"+arr_l[arr_n].objects[i].position[1]+"px;left:"+arr_l[arr_n].objects[i].position[0]+"px;width:"+arr_l[arr_n].objects[i].size[0]+"px;height:"+arr_l[arr_n].objects[i].size[1]+"px;background-image:url("+open_file(arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;"+((arr_l[arr_n].objects[i].fit)?"background-size:"+arr_l[arr_n].objects[i].fit+";":"")+"'></div>"}
+    for(var i=0;i<arr_l[arr_n].objects.length;i++){tool+="<div id='item"+i+"' onclick='objSelect(this.id,\"ho_room\");arr_e=arr_l[arr_n].objects["+i+"]' style='z-index:"+(1001+i)+";position:absolute;top:"+arr_l[arr_n].objects[i].position[1]+"px;left:"+arr_l[arr_n].objects[i].position[0]+"px;width:"+arr_l[arr_n].objects[i].size[0]+"px;height:"+arr_l[arr_n].objects[i].size[1]+"px;background-image:url("+open_file(arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;"+((arr_l[arr_n].objects[i].fit)?"background-size:"+arr_l[arr_n].objects[i].fit+";":"")+"'></div>"}
     tool+="</div></div></div></td>"
     +"<td style='width:286px;height:40px;background-color:var(--wn);'>info</td>"
     +"</tr><tr>"
     +"<td id='ho_content' style='background-color:var(--wn);'>content</td></tr><tr>"
-    +"<td height='40px' style='background-color:var(--wn);' onclick='open_tool();'>close</td></tr></tbody></table>"
+    +"<td height='40px' style='background-color:var(--wn);' onclick='ho_stopResize();open_tool();'>close</td></tr></tbody></table>"
     open_tool(tool);
     adden_scroll(document.getElementById('ho_preview'));
     adden_sizer(document.getElementById('ho_room'),"ho_stopResize();");
 }
 function ho_stopResize() {
-    document.onmouseup=null;
-    document.onmousemove=null;
-    document.ontouchend=null;
-    document.ontouchmove=null;
     droppFocus(document.getElementById("ho_room_sizer"))
+    off_drag();
+    //alert(arr_e.art)
 }
 function open_tool(content){
     if(content&&tools_zone.style.visibility!="visible"){
@@ -1995,7 +1989,7 @@ function adden_sizer(id,f){
     r.className="drag";
     r.innerHTML="<div class='resizer size-right'></div><div class='resizer top-right'></div><div class='resizer size-top'></div><div class='resizer top-left'></div><div class='resizer size-left'></div><div class='resizer bottom-left'></div><div class='resizer size-bottom'></div><div class='resizer bottom-right'></div><div class='resizer rotate'></div>";
     id.appendChild(r);
-    makeResizableDiv(document.getElementById(id.id+"_sizer"),f);
+    make_resizable(document.getElementById(id.id+"_sizer"),f);
 }
 function adden_scroll(id){
     id.onmousedown=function(e){
@@ -2597,7 +2591,7 @@ function scen_editor(block,i,n){
                 video.style.height="100%";
             }else if(story_script[block][i].dialogs[n-1].video.fit=='position'){
                 video.setAttribute('onclick','objSelect(this.id);arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].video');
-                video.setAttribute('ondblclick','');
+                //video.setAttribute('ondblclick','');
                 video.style.transform='none';
                 if(story_script[block][i].dialogs[n-1].video.size){
                     video.style.width=story_script[block][i].dialogs[n-1].video.size[0];
@@ -3894,6 +3888,7 @@ function droppFocus(r){
         objFocus.style.left=r.style.left;
         objFocus.style.zIndex=r.style.zIndex;
         objFocus.style.transform=r.style.transform;
+        objFocus.style.pointerEvents=null;
         var j=document.getElementById('b_'+objFocus.id);
         if(j){
             j.style.animation="false";
@@ -3902,7 +3897,7 @@ function droppFocus(r){
         }
         r.style.transform="";
         r.parentNode.appendChild(objFocus);
-        r.style.visibility="hidden"
+        r.style.visibility="hidden";
         objFocus='';
     }
 }
@@ -3925,6 +3920,7 @@ function objSelect(id,r){
     objFocus.style.left='0px';
     objFocus.style.bottom='none';
     objFocus.style.right='none';
+    objFocus.style.pointerEvents='none';
     var j=document.getElementById('b_'+id);
     if(j){
         j.style.animation="flash2 2s 1";
@@ -3934,12 +3930,10 @@ function objSelect(id,r){
     r.appendChild(objFocus);
 }
 var moveSize=true;
-function makeResizableDiv(s,f){
+function make_resizable(s,f){
     s.onmousedown=dragMouseDown;
     function dragMouseDown(e){
         if(moveSize){
-            e=e||window.event;
-            e.preventDefault();
             original_x=e.clientX;
             original_y=e.clientY;
             scene_scroll=false
@@ -3948,8 +3942,6 @@ function makeResizableDiv(s,f){
         }
     }
     function elementDrag(e){
-        e=e||window.event;
-        e.preventDefault();
         original_mouse_x=original_x-e.clientX;
         original_mouse_y=original_y-e.clientY;
         original_x=e.clientX;
@@ -3960,8 +3952,6 @@ function makeResizableDiv(s,f){
     s.ontouchstart=dragTouchDown;
     function dragTouchDown(e){
         if(moveSize){
-            e=e||window.event;
-            e.preventDefault();
             original_x=e.touches[0].clientX;
             original_y=e.touches[0].clientY;
             scene_scroll=false
@@ -3970,8 +3960,6 @@ function makeResizableDiv(s,f){
         }
     }
     function elementDragTouch(e){
-        e=e||window.event;
-        e.preventDefault();
         original_mouse_x=original_x-e.touches[0].clientX;
         original_mouse_y=original_y-e.touches[0].clientY;
         original_x=e.touches[0].clientX;
@@ -3979,7 +3967,7 @@ function makeResizableDiv(s,f){
         s.style.top=(s.offsetTop-original_mouse_y/scale_scene)+"px";
         s.style.left=(s.offsetLeft-original_mouse_x/scale_scene)+"px";
     }
-    function closeDragElement(){if(!f){saveResize();}else{eval(f)}}
+    function closeDragElement(){if(!f){saveResize();}else{eval(f)};}
     const resizers=s.getElementsByClassName("resizer");
     const minSize=26;
     let original_width=0,original_height=0,original_x=0,original_y=0,original_mouse_x=0,original_mouse_y=0,angle=0,size=0;
@@ -3988,7 +3976,6 @@ function makeResizableDiv(s,f){
         sizer.addEventListener('mousedown',function(e){
             moveSize=false
             scene_scroll=false
-            e.preventDefault()
             original_width=parseFloat(getComputedStyle(s,null).getPropertyValue('width').replace('px',''));
             original_height=parseFloat(getComputedStyle(s,null).getPropertyValue('height').replace('px',''));
             original_x=parseFloat(getComputedStyle(s,null).getPropertyValue('left').replace('px',''));
@@ -3997,7 +3984,7 @@ function makeResizableDiv(s,f){
             original_mouse_y=e.pageY;
             size=1;
             window.addEventListener('mousemove',resize)
-            screen_preview.addEventListener('mouseup',stopResize)
+            window.addEventListener('mouseup',stopResize)
         })
         function resize(e){
             if(sizer.classList.contains('bottom-right')){
@@ -4039,14 +4026,14 @@ function makeResizableDiv(s,f){
             };
         };
         function stopResize(){
+            if(!f){saveResize(size,angle);}else{eval(f);};
             window.removeEventListener('mousemove',resize);
             moveSize=true;
-            if(!f){saveResize(size,angle);}else{eval(f)};angle=0;size=0;
+            angle=0;size=0;
         }
         sizer.addEventListener('touchstart',function(e){
             moveSize=false
             scene_scroll=false
-            e.preventDefault()
             original_width=parseFloat(getComputedStyle(s,null).getPropertyValue('width').replace('px',''));
             original_height=parseFloat(getComputedStyle(s,null).getPropertyValue('height').replace('px',''));
             original_x=parseFloat(getComputedStyle(s,null).getPropertyValue('left').replace('px',''));
@@ -4055,7 +4042,7 @@ function makeResizableDiv(s,f){
             original_mouse_y=e.touches[0].pageY;
             size=1;
             window.addEventListener('touchmove',resizeTouch)
-            screen_preview.addEventListener('touchend',stopResizeTouch)
+            s.parentNode.addEventListener('touchend',stopResizeTouch)
         })
         function resizeTouch(e){
             if(sizer.classList.contains('bottom-right')){
@@ -4097,9 +4084,10 @@ function makeResizableDiv(s,f){
             };
         };
         function stopResizeTouch(){
+            if(!f){saveResize(size,angle);}else{eval(f)};
             window.removeEventListener('touchmove',resizeTouch);
             moveSize=true;
-            if(!f){saveResize(size,angle);}else{eval(f)};angle=0;size=0;
+            angle=0;size=0;
         }
     }
 }
@@ -4107,12 +4095,12 @@ function saveResize(s,a){
     if(!scene_scroll){
         var layout_width=parseFloat(getComputedStyle(scene_layout,null).getPropertyValue('width').replace('px',''));
         var layout_height=parseFloat(getComputedStyle(scene_layout,null).getPropertyValue('height').replace('px',''));
-        var z=resizers.style.left.replace('px','')
+        var z=resizers.style.left.replace('px','');
         var b=((objFocus.style.paddingTop.replace('px',''))*2)+((objFocus.style.borderTopWidth)?parseFloat(objFocus.style.borderTopWidth):0)+((objFocus.style.borderBottomWidth)?parseFloat(objFocus.style.borderBottomWidth):0);
         var r=((objFocus.style.paddingLeft.replace('px',''))*2)+((objFocus.style.borderRightWidth)?parseFloat(objFocus.style.borderRightWidth):0)+((objFocus.style.borderLeftWidth)?parseFloat(objFocus.style.borderLeftWidth):0);
         arr_e.position[0]=0;arr_e.position[1]=0;arr_e.position[2]=0;arr_e.position[3]=0
         if((layout_width/2)>=z){arr_e.position[0]=(z/layout_width*100).toFixed(2)+'%';}
-        else{ z=parseFloat(getComputedStyle(resizers,null).getPropertyValue('right').replace('px',''));arr_e.position[1]=(z/layout_width*100).toFixed(2)+'%';}
+        else{z=parseFloat(getComputedStyle(resizers,null).getPropertyValue('right').replace('px',''));arr_e.position[1]=(z/layout_width*100).toFixed(2)+'%';}
         z=resizers.style.top.replace('px','')
         if((layout_height/2)>=z){arr_e.position[2]=(z/layout_height*100).toFixed(2)+'%';}
         else{z=parseFloat(getComputedStyle(resizers,null).getPropertyValue('bottom').replace('px',''));arr_e.position[3]=(z/layout_height*100).toFixed(2)+'%';}
@@ -4126,18 +4114,18 @@ function saveResize(s,a){
                 arr_e.size[1]=(resizers.style.height.replace('px','')-b)+'px';
             }
         }
-        objFocus.style.transform=resizers.style.transform;
-        resizers.style.transform="";
         scen_edit_update(true)
-    }
+    }off_drag();state_save();
+}
+function off_drag(){
     document.onmouseup=null;
+    document.onmousedown=null;
     document.onmousemove=null;
     document.ontouchend=null;
     document.ontouchmove=null;
-    scene_scroll=true
-    state_save();
+    scene_scroll=true;
 }
-makeResizableDiv(document.getElementById("resizers"));
+make_resizable(document.getElementById("resizers"));
 function edit_color(n,c){
     var h=((c.indexOf('#')>-1)?true:false)
     var code='<div class="window" style="position:fixed;padding:12px 8px;width:380px;"><div><div class="window_close icon icon_close" onclick="menu_add.style.visibility=\'hidden\';" ></div></div><p>Color</p><hr style="margin-top:10px;">'
