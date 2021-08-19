@@ -737,6 +737,7 @@ var load_files
 img_file.addEventListener('change',loadFiles);
 var load_new=false;
 var wf;
+var tool_update=false;
 function clear_Files(){
     for(var i=0;i<project_files.length;i++){URL.revokeObjectURL(project_files[i][1])}
     project_files=[];
@@ -772,7 +773,7 @@ function new_novel(){
     state_num=0;back_up=[];state_save();
 }
 function update_novel(){
-    if(scene_screen){scen_edit_update(true)}
+    if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}
     else{
         menu_add.style.visibility="hidden";
         story_blocks.innerHTML=""
@@ -864,8 +865,8 @@ function creation_block(b){
                 }
                 element+="</div>"
             }else if(story_script[chapter.id][i].hidden_objects){
-                element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene: "+(i+1)+" "+plugins_list.hidden_objects.name+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+"["+i+"];arr_n=\"hidden_objects\";scen_data=[\""+chapter.id+"\","+i+",0];element_m(this.id,plugins_list.hidden_objects.name);' title='Scene edit'></td></tr></tbody></table><div width='100%'>"
-                if(story_script[chapter.id][i].hidden_objects.art&&(typeof story_script[chapter.id][i].hidden_objects.art!=='object'||(story_script[chapter.id][i].hidden_objects.art[languare]&&typeof story_script[chapter.id][i].hidden_objects.art[languare]!=='object'))||story_script[chapter.id][i].hidden_objects.color){element+="<div class='scene_bg' ondblclick='arr_l=story_script."+chapter.id+"["+i+"];arr_n=\"hidden_objects\";scen_data=[\""+chapter.id+"\","+i+",0];ho_edit();' style='background-image:url("+open_file(languare_data(story_script[chapter.id][i].hidden_objects.art))+");background-color:"+story_script[chapter.id][i].hidden_objects.color+";' width='100%'></div>"}
+                element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>scene: "+(i+1)+" "+plugins_list.hidden_objects.name+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";scen_data=[\""+chapter.id+"\","+i+",0];element_m(this.id,plugins_list.hidden_objects.name);' title='Scene edit'></td></tr></tbody></table><div width='100%'>"
+                if(story_script[chapter.id][i].hidden_objects.art&&(typeof story_script[chapter.id][i].hidden_objects.art!=='object'||(story_script[chapter.id][i].hidden_objects.art[languare]&&typeof story_script[chapter.id][i].hidden_objects.art[languare]!=='object'))||story_script[chapter.id][i].hidden_objects.color){element+="<div class='scene_bg' ondblclick='arr_l=story_script."+chapter.id+";arr_n="+i+";scen_data=[\""+chapter.id+"\","+i+",0];ho_edit();' style='background-image:url("+open_file(languare_data(story_script[chapter.id][i].hidden_objects.art))+");background-color:"+story_script[chapter.id][i].hidden_objects.color+";' width='100%'></div>"}
                 go=(story_script[chapter.id][i].hidden_objects.go_to)?story_script[chapter.id][i].hidden_objects.go_to:'tue_no';
                     if(go&&go!=""&&go!="undefined"){
                     if(story_script[go]){
@@ -1048,16 +1049,15 @@ function data_la(arr,key){
     if(typeof s!=='object'){for(var i=0;i<story_script.parameters.languares.length;i++){arr[key][story_script.parameters.languares[i]]=s;}}else{arr[key]=s}
 }
 function data_only(arr,key){
-if(arr[key]&&arr[key][languare]){
-	var n=arr[key][languare];
-	var a=0;
-	for(var i=0;i<story_script.parameters.languares.length;i++){
-		if(arr[key][story_script.parameters.languares[i]]){
-			if(n.length==0||n==arr[key][story_script.parameters.languares[i]]||arr[key][story_script.parameters.languares[i]].length==0){a++}
-			else{n=arr[key][story_script.parameters.languares[i]]}
-		}else{a++}
-	} if(a==story_script.parameters.languares.length){arr[key]=n}
-}else if(arr[key].length==0){delete arr[key];if(key=='art'){delete arr.art_size}}}
+    if(arr[key]&&arr[key][languare]){
+        var n=arr[key][languare],a=0;
+        for(var i=0;i<story_script.parameters.languares.length;i++){
+            if(arr[key][story_script.parameters.languares[i]]){
+                if(n.length==0||n==arr[key][story_script.parameters.languares[i]]||arr[key][story_script.parameters.languares[i]].length==0){a++}
+                else{n=arr[key][story_script.parameters.languares[i]]}
+            }else{a++}
+        } if(a==story_script.parameters.languares.length){arr[key]=n}
+    }else if(arr[key].length==0){delete arr[key];if(key=='art'){delete arr.art_size}}}
 function creaton_line(id){
     var newLine=document.createElementNS("http://www.w3.org/2000/svg",'line');
     newLine.id=id+"l"
@@ -1329,8 +1329,7 @@ function modal_window(action,content){
         menu_add.style.visibility="hidden";
         window_zone.style.visibility="hidden"
         window_zone.style.backgroundColor='rgba(110,95,165,0)';
-        html.style.overflow='scroll';
-        scroll_block=false;
+        if(!scene_screen){html.style.overflow='scroll';scroll_block=false;}
         window_zone.innerHTML="";
     }else if(action=='open'&&window_zone.style.visibility!="visible"){
         window_zone.style.visibility="visible";
@@ -1538,7 +1537,7 @@ function jsonedit(arr){
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
-    +"<p><textarea id='editJson' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();modal_window(\"close\");toast(\"script updated\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
+    +"<p><textarea id='editJson' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();state_save();modal_window(\"close\");toast(\"script updated\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
     else{var html="<div class='window' style='padding:0px 2px 16px 0px;width:75vw;'>"
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
@@ -1697,7 +1696,7 @@ function file_catalog(id,files,area,preview,arr){
             for(f=0;f<project_files.length;f++){
                 for(t=0;t<files.length;t++){
                     if(project_files[f][0].indexOf(files[t])>-1){
-                        code+='<tr><td class="add_el add_file" title="'+project_files[f][0]+'" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="'+((a.length>1)?a+'.src=\''+project_files[f][1]+'\';':'')+' '+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';'+((preview!=0)?preview+'.style.backgroundImage=\'url('+project_files[f][1]+')\'':'')+';menu_add.style.visibility=\'hidden\';"><table style="height:64px;"><tbody><tr><td width="64px" height="64px" style=\'border-radius:8px;background-image:url(\"'+project_files[f][1]+'\");background-size:cover;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                        code+='<tr><td class="add_el add_file" title="'+project_files[f][0]+'" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="'+((a.length>1)?a+'.src=\''+project_files[f][1]+'\';':'')+' '+arr+'=\''+project_files[f][0]+'\';'+((area.length>1)?area+'.value=\''+project_files[f][0]+'\';':'')+((preview.length>1)?preview+'.style.backgroundImage=\'url('+project_files[f][1]+')\';':'')+'menu_add.style.visibility=\'hidden\';'+((tool_update)?tool_update+';':'')+'"><table style="height:64px;"><tbody><tr><td width="64px" height="64px" style=\'border-radius:8px;background-image:url(\"'+project_files[f][1]+'\");background-size:cover;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                     }
                 }
             }
@@ -1818,7 +1817,7 @@ function element_m(id,n){
     var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
         +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">'+n+'</td></tr>'
         +((n=='legacy choice')?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="legacy_choice_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>':'')
-        +((n==plugins_list.hidden_objects.name)?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="ho_edit(\''+id+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>':'')
+        +((n==plugins_list.hidden_objects.name)?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="ho_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>':'')
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="data_copy(\'scene\');element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_cut"></td><td>Cut</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="duplicat_arr();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="data_copy(\'scene\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copy"></td><td>Copy scene</td></tr></tbody></table></td></tr>'
@@ -1904,7 +1903,8 @@ function scene_add(arr){
 	update_novel();
 }
 function ho_add(arr){
-	story_script[arr].push({"hidden_objects":{}});
+    if(!story_script.parameters.hidden_objects){story_script.parameters.hidden_objects={"label":{"tip":false,"size":["12.5%","90%"],"items":"8"},"label_find":{"del":false}}}
+	story_script[arr].push({"hidden_objects":{"art":"","size":[setup_editor.pvw[0],setup_editor.pvw[1]],"color":"#fff","objects":[]}});
 	arr_l=story_script[arr]
 	arr_n='hidden_objects'
 	update_novel();
@@ -1945,85 +1945,193 @@ function option_block(d,g){
     }
     return scene_list+'</optgroup>'
 }
-function ho_edit(b){
-    data_la(arr_l[arr_n],'art')
-    
-    var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr>"
-    +"<td rowspan='3'>"
-    +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' onmouseup='window.getSelection().removeAllRanges();'>"
-    +"<div id='ho_canvas' style='display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;'><div id='ho_room' style='position:relative;"+((arr_l[arr_n].art)?"background-image:url("+open_file(languare_data(arr_l[arr_n].art))+");":"")+((arr_l[arr_n].color)?"background-color:"+arr_l[arr_n].color+";":"")+";background-size:cover;width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);'></div></div></div></td>"
+function ho_edit(){
+    arr_l=story_script[scen_data[0]][scen_data[1]]
+    if(!arr_l.hidden_objects.art[languare]){data_la(arr_l.hidden_objects,'art')}
+    var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr><td rowspan='3'>"
+    +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();'>"
+    +"<div id='ho_canvas' class='"+setup_editor.fon+"' style='display:grid;justify-content:center;align-items:center;width:"+(arr_l.hidden_objects.size[0]+512)+"px;height:"+(arr_l.hidden_objects.size[1]+512)+"px;background-color:var(--cw);background-blend-mode:overlay;background-size:64px;'><div id='ho_room' style='position:relative;background-repeat:no-repeat;background-position:left top;"+((arr_l.hidden_objects.art)?"background-image:url("+open_file(languare_data(arr_l.hidden_objects.art))+");":"")+((arr_l.hidden_objects.color)?"background-color:"+arr_l.hidden_objects.color+";":"")+";background-size:"+((arr_l.hidden_objects.fit)?arr_l.hidden_objects.fit:"auto")+";width:"+arr_l.hidden_objects.size[0]+"px;height:"+arr_l.hidden_objects.size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);'></div></div></div></td>"
     +"<td style='width:286px;height:40px;background-color:var(--wn);' class='namber' align='center'>"+scen_data[0]+" ( scene: "+scen_data[1]+" "+plugins_list.hidden_objects.name+" )</td></tr><tr>"
     +"<td id='ho_content' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>"
-
-    //Location
-    +"<table onclick='block_open(\"ho_location\");' class='set_title' height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Location</td></tr></tbody></table>"
+    //Scene
+    +"<table onclick='block_open(\"ho_location\");' class='set_title' height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Scene</td></tr></tbody></table>"
     +"<div class='set_panel' id='ho_location' style='width:100%;display:block;'>"
     +"<table style='width:100%;'><tbody>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Art</td>"
-        +"<td style='width:28px;' align='center'><select id='ho_rl' onchange='ho_rf.value=arr_l[arr_n].art[this.value]' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select></td>"
-        +"<td><input id='ho_rf' class='input_text' onchange='var v=document.getElementById(\"ho_rl\");arr_l[arr_n].art[v.value]=this.value;ho_room.style.backgroundImage=\"url(\"+open_file(this.value)+\")\";' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].art[languare]&&arr_l[arr_n].art[languare].length>0)?arr_l[arr_n].art[languare]:'')+"'></td>"
-        +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('ho_rf','img','ho_rf','ho_room','arr_l[arr_n].art[ho_rl.value]')\">"
+        +"<td style='width:28px;' align='center'><select id='ho_rl' onchange='ho_rf.value=arr_l.hidden_objects.art[this.value];ho_room.style.backgroundImage=\"url(\"+open_file(arr_l.hidden_objects.art[this.value])+\")\"' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select></td>"
+        +"<td><input id='ho_rf' class='input_text' onchange='var v=document.getElementById(\"ho_rl\");arr_l.hidden_objects.art[v.value]=this.value;ho_room.style.backgroundImage=\"url(\"+open_file(this.value)+\")\";' type='text' style='width:100%;height:28px' value='"+((arr_l.hidden_objects.art[languare]&&arr_l.hidden_objects.art[languare].length>0)?arr_l.hidden_objects.art[languare]:'')+"'></td>"
+        +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('ho_rf','img','ho_rf','ho_room','arr_l.hidden_objects.art[ho_rl.value]')\">"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Width</td><td style='padding-right:8px;' colspan='3'>"
-        +"<input id='ho_w' class='input_text' onchange='this.value=correct_value(this.value,true);arr_l[arr_n].size[0]=parseInt(this.value);ho_canvas.style.width=(arr_l[arr_n].size[0]+512)+\"px\";ho_room.style.width=arr_l[arr_n].size[0]+\"px\";' type='text' value='"+arr_l[arr_n].size[0]+"' style='width:100%;'>"
+        +"<input id='ho_w' class='input_text' onchange='arr_l.hidden_objects.size[0]=parseInt(correct_value(this.value));ho_size();state_save();' type='text' value='"+arr_l.hidden_objects.size[0]+"' style='width:100%;'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Height</td><td style='padding-right:8px;' colspan='3'>"
-        +"<input id='ho_h' class='input_text' onchange='this.value=correct_value(this.value,true);arr_l[arr_n].size[1]=parseInt(this.value);ho_canvas.style.height=(arr_l[arr_n].size[1]+512)+\"px\";ho_room.style.height=arr_l[arr_n].size[1]+\"px\";' type='text' value='"+arr_l[arr_n].size[1]+"' style='width:100%;'>"
+        +"<input id='ho_h' class='input_text' onchange='arr_l.hidden_objects.size[1]=parseInt(correct_value(this.value));ho_size();state_save();' type='text' value='"+arr_l.hidden_objects.size[1]+"' style='width:100%;'>"
+        +"</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;' colspan='3'>"
+        +"<select onchange='arr_l.hidden_objects.fit=this.value;ho_room.style.backgroundSize=this.value;'>"
+            +"<option "+((arr_l.hidden_objects.fit=='auto')?'selected':'')+" value='auto'>original</option>"
+            +"<option "+((arr_l.hidden_objects.fit=='cover')?'selected':'')+" value='cover'>cover</option>"
+            +"<option "+((arr_l.hidden_objects.fit=='contain')?'selected':'')+" value='contain'>contain</option>"
+            +"<option "+((arr_l.hidden_objects.fit=='100% 100%')?'selected':'')+" value='100% 100%'>fill</option>"
+        +"</select></td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>"
+        +"<input id='ho_h' class='input_text' onchange='arr_l.hidden_objects.className=this.value;' type='text' value='"+((arr_l.hidden_objects.className)?arr_l.hidden_objects.className:"")+"' style='width:100%;'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>"
-        +"<input id='ho_s' class='input_text' onchange='' type='text' value='"+((arr_l[arr_n].style)?arr_l[arr_n].style:"")+"' style='width:100%;'>"
-        +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l[arr_n].style;edit_code('style','Style CSS');'>"
+        +"<input id='ho_s' class='input_text' onchange='arr_l.hidden_objects.style=this.value' type='text' value='"+((arr_l.hidden_objects.style)?arr_l.hidden_objects.style:"")+"' style='width:100%;'>"
+        +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l.hidden_objects;edit_code(\"style\",\"Style CSS\",\"ho_updata()\");'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>JavaScript</td><td style='padding-right:8px;' colspan='2'>"
-        +"<input id='ho_s' class='input_text' onchange='' type='text' value='"+((arr_l[arr_n].js)?arr_l[arr_n].js:"")+"' style='width:100%;'>"
-        +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l[arr_n].js;edit_code('js','JavaScript');'>"
+        +"<input id='ho_j' class='input_text' onchange='arr_l.hidden_objects.js=this.value' type='text' value='"+((arr_l.hidden_objects.js)?arr_l.hidden_objects.js:"")+"' style='width:100%;'>"
+        +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l.hidden_objects;edit_code(\"js\",\"JavaScript\",\"ho_updata()\");'>"
         +"</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Fon color</td><td style='width:40px;' align='center'><div class='show_color' id='ho_cp'></div></td><td style='padding-right:8px;'>"
-        +"<input id='ho_c' class='input_text' onchange='ho_room.style.backgroundColor=this.value;alert(99)' type='text' value='"+((arr_l[arr_n].color)?arr_l[arr_n].color:"")+"' style='width:100%;'>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Color</td><td style='width:40px;' align='center'><div class='show_color' id='ho_cp' "+((arr_l.hidden_objects.color)?'style="background-color:'+arr_l.hidden_objects.color+';"':"")+"></div></td><td style='padding-right:8px;'>"
+        +"<input id='ho_c' class='input_text' onchange='ho_room.style.backgroundColor=this.value;ho_cp.style.backgroundColor=this.value;' type='text' value='"+((arr_l.hidden_objects.color)?arr_l.hidden_objects.color:"")+"' style='width:100%;'>"
         +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_c\",ho_c.value)'>"
+        +"</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Music</td>"
+        +"<td colspan='2'><input id='ho_m' class='input_text' onchange='arr_l.hidden_objects.background_music=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l.hidden_objects.background_music)?arr_l.hidden_objects.background_music:'')+"'></td>"
+        +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('','audio','ho_m','','arr_l.hidden_objects.background_music')\">"
+        +"</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Go to</td><td style='padding-right:8px;' colspan='3'>"
+        +"<select onchange='arr_l.hidden_objects.go_to=this.value;'>"+option_block(arr_l.hidden_objects.go_to,0)+"</select></td></tr>"
         +"</td></tr>"
     +"</tbody></table></div>"
     //label
     +"<table onclick='block_open(\"ho_label\");' class='set_title' height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Labels</td></tr></tbody></table>"
     +"<div class='set_panel' id='ho_label' style='width:100%;display:none;'>label</div>"
-                        
     //items
     +"<table onclick='block_open(\"ho_items\");' class='set_title' height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Items</td></tr></tbody></table>"
     +"<div class='set_panel' id='ho_items' style='width:100%;display:block;'><div id='ho_catalog' style='margin-bottom:12px;'></div>"
-        +"<div style='width:100%;margin-bottom:16px;' align='center'><div id='add_item' class='add_button icon_m icon_add'></div></div>"
+        +"<div style='width:100%;margin-bottom:16px;' align='center'><div id='add_item' class='add_button icon_m icon_add' onclick='ho_new()'></div></div>"
     +"</div>"
-                        
     +"</div></td></tr><tr>"
     +"<td height='40px' style='background-color:var(--wn);' style='background-color:var(--wn);' class='button_menu'><table class='button_menu' width='100%' height='100%' onclick='ho_close();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td></tr></tbody></table>"
-    open_tool(tool);ho_updata();
-    adden_scroll(document.getElementById('ho_preview'));
-    adden_sizer(document.getElementById('ho_room'),"ho_stopResize(angle);");
+    open_tool(tool,"ho_updata()");ho_updata();
+    tool=document.getElementById('ho_preview');
+    adden_scroll(tool);tool.scrollTop=200;tool.scrollLeft=240;
+}
+function ho_size(){
+    ho_canvas.style.width=(parseInt(arr_l.hidden_objects.size[0])+512)+"px";ho_room.style.width=arr_l.hidden_objects.size[0]+"px"
+    ho_canvas.style.height=(parseInt(arr_l.hidden_objects.size[1])+512)+"px";ho_room.style.height=arr_l.hidden_objects.size[1]+"px"
+    ho_w.value=arr_l.hidden_objects.size[0];
+    ho_h.value=arr_l.hidden_objects.size[1];
+}
+function ho_new(){
+    a=story_script[scen_data[0]][scen_data[1]].hidden_objects
+    a.objects.push({"position":[ho_preview.scrollLeft+(ho_preview.clientWidth/2)-320,ho_preview.scrollTop+(ho_preview.clientHeight/2)-320],"size":[128,128],"art":"","fit":"contain","name":""});
+    ho_updata();
+    file_catalog('','img','hois_art'+(a.objects.length-1),'','story_script[scen_data[0]][scen_data[1]].hidden_objects.objects['+(a.objects.length-1)+'].art');
 }
 function ho_updata(){
-    var o="";
-    for(var i=0;i<arr_l[arr_n].objects.length;i++){o+="<div id='item"+i+"' onclick='objSelect(this.id,\"ho_room\");arr_e=arr_l[arr_n].objects["+i+"]' style='z-index:"+(1001+i)+";position:absolute;top:"+arr_l[arr_n].objects[i].position[1]+"px;left:"+arr_l[arr_n].objects[i].position[0]+"px;width:"+arr_l[arr_n].objects[i].size[0]+"px;height:"+arr_l[arr_n].objects[i].size[1]+"px;background-image:url("+open_file(arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;"+((arr_l[arr_n].objects[i].fit)?"background-size:"+arr_l[arr_n].objects[i].fit+";":"")+"'></div>"}
-    ho_room.innerHTML=o;
-}
-function ho_stopResize(a) {
     droppFocus(document.getElementById("ho_room_sizer"))
     off_drag();
+    arr_l=story_script[scen_data[0]][scen_data[1]]
+    ho_size();
+    var e=document.getElementById('ho_room'),c=document.getElementById('ho_catalog'),o='';
+    if(arr_l.hidden_objects.js){ho_j.value=arr_l.hidden_objects.js}
+    if(arr_l.hidden_objects.style){ho_s.value=arr_l.hidden_objects.style}
+    e.innerHTML="";c.innerHTML="";
+    for(var i=0;i<arr_l.hidden_objects.objects.length;i++){
+        if(arr_l.hidden_objects.objects[i].name&&!arr_l.hidden_objects.objects[i].name[languare]){data_la(arr_l.hidden_objects.objects[i],'name')}
+        o=document.createElement("div");
+        o.id="item"+i;
+        o.setAttribute('onclick','objSelect(this.id,\"'+e.id+'\");arr_e=story_script.'+scen_data[0]+'['+scen_data[1]+'].hidden_objects.objects['+i+']');
+        o.classList.add("ho_item");
+        o.style.zIndex=1001+i;
+        o.style.position="absolute";
+        o.style.top=arr_l.hidden_objects.objects[i].position[1]+"px"
+        o.style.left=arr_l.hidden_objects.objects[i].position[0]+"px";
+        o.style.width=arr_l.hidden_objects.objects[i].size[0]+"px";
+        o.style.height=arr_l.hidden_objects.objects[i].size[1]+"px";
+        o.style.backgroundImage="url("+open_file(arr_l.hidden_objects.objects[i].art)+")";
+        o.style.backgroundPosition="center";
+        o.style.backgroundRepeat="no-repeat";
+        o.style.transform='rotate('+arr_l.hidden_objects.objects[i].angle+'deg)';
+        if(arr_l.hidden_objects.objects[i].fit){o.style.backgroundSize=arr_l.hidden_objects.objects[i].fit}
+        e.appendChild(o);
+        o=document.createElement("div");
+        o.innerHTML='<div id="b_item'+i+'" class="ui_buttons dialog" style="margin:8px;"><table style="width:100%" ondblclick="objSelect(\'item'+i+'\',\''+e.id+'\');arr_e=story_script.'+scen_data[0]+'['+scen_data[1]+'].hidden_objects.objects['+i+']"><tbody><tr>'
+            +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+scen_data[0]+'['+scen_data[1]+'].hidden_objects.objects,'+i+',-1);ho_updata();state_save();" height="22px"></td>'
+            +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+scen_data[0]+'['+scen_data[1]+'].hidden_objects.objects,'+i+',1);ho_updata();state_save();"></td><td>&nbsp;</td>'
+            +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.'+scen_data[0]+'['+scen_data[1]+'].hidden_objects.objects;arr_d.splice('+i+',0,JSON.parse(JSON.stringify(arr_d['+i+'])));ho_updata();state_save();"></td>'
+            +'<td width="26px" class="icon icon_del" style="cursor:pointer;" onclick="story_script.'+scen_data[0]+'['+scen_data[1]+'].hidden_objects.objects.splice('+i+',1);ho_updata();state_save();" ></td>'
+            +'</tr><tr><td colspan="5" height="40px" align="center"><div id="ho_ip'+i+'" style="background-image:url('+open_file(arr_l.hidden_objects.objects[i].art)+');background-position:center;background-repeat:no-repeat;background-size:contain;height:100%;width:100%";> </div></td></tr><tr>'
+            +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'ho_is'+i+'\');scen_element.ho_is'+i+'=ho_is'+i+'.style.display;"></td><td colspan="2"></td></tr></tbody></table>'
+            +"<table width='100%' id=ho_is"+i+" style='display:"+((scen_element["ho_is"+i])?scen_element["ho_is"+i]:"none")+";border-top:1px solid var(--cb);margin-top:8px;'><tbody><tr>"
+            +"</tr><tr>"
+            +"<td height='40px' align='right' style='width:40%;padding-right:8px;'>Text</td>"
+            +"<td style='width:28px;' align='center'><select id='ho_tl"+i+"' onchange='ho_t"+i+".value=story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].name[this.value];' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);'>"+project_languares(languare)+"</select></td>"
+            +"<td colspan='2'><input id='ho_t"+i+"' class='input_text' onchange='var v=document.getElementById(\"ho_tl"+i+"\");story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].name[v.value]=this.value;ho_updata();state_save();' type='text' style='width:100%;height:28px;' value='"+((arr_l.hidden_objects.objects[i].name&&arr_l.hidden_objects.objects[i].name[languare])?arr_l.hidden_objects.objects[i].name[languare]:"")+"'></td>"
+            +"</tr><tr>"
+            +"<td height='40px' align='right' style='padding-right:8px;'>Art</td>"
+            +"<td colspan='2'><input id='hois_art"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].art=this.value;ho_updata();state_save();' type='text' style='width:100%;height:28px' value='"+arr_l.hidden_objects.objects[i].art+"'></td>"
+            +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick='file_catalog(\"\",\"img\",\"hois_art"+i+"\",\"\",\"story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].art\");'></td>"
+            +"</td></tr>"
+            +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Left position</td><td style='padding-right:8px;' colspan='3'>"
+            +"<input id='ho_w"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].position[0]=parseInt(correct_value(this.value));ho_updata();state_save();' type='text' value='"+arr_l.hidden_objects.objects[i].position[0]+"' style='width:100%;'>"
+            +"</td></tr>"
+            +"<tr><td height='40px' align='right' style='padding-right:8px;'>Top position</td><td style='padding-right:8px;' colspan='3'>"
+            +"<input id='ho_h"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].position[1]=parseInt(correct_value(this.value));ho_updata();state_save();' type='text' value='"+arr_l.hidden_objects.objects[i].position[1]+"' style='width:100%;'>"
+            +"</td></tr>"
+            +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Width size</td><td style='padding-right:8px;' colspan='3'>"
+            +"<input id='ho_w"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].size[0]=parseInt(correct_value(this.value));ho_updata();state_save();' type='text' value='"+arr_l.hidden_objects.objects[i].size[0]+"' style='width:100%;'>"
+            +"</td></tr>"
+            +"<tr><td height='40px' align='right' style='padding-right:8px;'>Height size</td><td style='padding-right:8px;' colspan='3'>"
+            +"<input id='ho_h"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].size[1]=parseInt(correct_value(this.value));ho_updata();state_save();' type='text' value='"+arr_l.hidden_objects.objects[i].size[1]+"' style='width:100%;'>"
+            +"</td></tr>"
+            +"<tr><td height='40px' align='right' style='padding-right:8px;'>Angle</td><td style='padding-right:8px;' colspan='3'>"
+            +"<input id='ho_a"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].angle=parseInt(correct_value(this.value));ho_updata();state_save();' type='text' value='"+((arr_l.hidden_objects.objects[i].angle)?arr_l.hidden_objects.objects[i].angle:0)+"' style='width:100%;'>"
+            +"</td></tr>"
+            +"<tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;' colspan='3'>"
+            +"<select onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].fit=this.value;ho_updata();state_save();' style='height:28px;width:100%;border-bottom:1px solid var(--cb);background-color: var(--cw);'>"
+                +"<option "+((arr_l.hidden_objects.objects[i].fit=='auto')?'selected':'')+" value='auto'>original</option>"
+                +"<option "+((arr_l.hidden_objects.objects[i].fit=='cover')?'selected':'')+" value='cover'>cover</option>"
+                +"<option "+((arr_l.hidden_objects.objects[i].fit=='contain')?'selected':'')+" value='contain'>contain</option>"
+                +"<option "+((arr_l.hidden_objects.objects[i].fit=='100% 100%')?'selected':'')+" value='100% 100%'>fill</option>"
+            +"</select></td></tr>"
+            +"<tr><td height='40px' align='right' style='padding-right:8px;'>Music</td>"
+            +"<td colspan='2'><input id='ho_m"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].sound=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l.hidden_objects.objects[i].sound)?arr_l.hidden_objects.objects[i].sound:'')+"'></td>"
+            +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('','audio','ho_m"+i+"','','story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].sound')\">"
+            +"</td></tr>"
+            +"<tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>"
+            +"<input id='ho_c"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].className=this.value;' type='text' value='"+((arr_l.hidden_objects.objects[i].className)?arr_l.hidden_objects.objects[i].className:"")+"' style='width:100%;'>"
+            +"</td></tr>"
+            +"<tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>"
+            +"<input id='ho_s"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].style=this.value' type='text' value='"+((arr_l.hidden_objects.objects[i].style)?arr_l.arr_l.hidden_objects.objects[i].style:"")+"' style='width:100%;'>"
+            +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l.hidden_objects;edit_code(\"style\",\"Style CSS\",\"ho_updata()\");'>"
+            +"</td></tr>"
+            +"<tr><td height='40px' align='right' style='padding-right:8px;'>JavaScript</td><td style='padding-right:8px;' colspan='2'>"
+            +"<input id='ho_j"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].hidden_objects.objects["+i+"].js=this.value' type='text' value='"+((arr_l.hidden_objects.objects[i].js)?arr_l.hidden_objects.objects[i].js:"")+"' style='width:100%;'>"
+            +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l.hidden_objects;edit_code(\"js\",\"JavaScript\",\"ho_updata()\");'>"
+            +'</tr></tbody></table></div>'
+        c.appendChild(o);
+    }
+    adden_sizer(e,"ho_stopResize(angle);");
+}
+function ho_stopResize(a){
     arr_e.position=[parseInt(ho_room_sizer.style.left),parseInt(ho_room_sizer.style.top)];
     arr_e.size=[parseInt(ho_room_sizer.style.width),parseInt(ho_room_sizer.style.height)];
-    if(a&&a!=0){a=arr_e.angle=a.toFixed(2);}
+    if(a&&a!=0){arr_e.angle=a.toFixed(2);}
+    off_drag();state_save();ho_updata();
 }
-function ho_close(a) {
+function ho_close(a){
     droppFocus(document.getElementById('ho_room_sizer'));
-    data_only(arr_l[arr_n],'art');
+    data_only(arr_l.hidden_objects,'art');
+    for(var i=0;i<arr_l.hidden_objects.objects.length;i++){if(arr_l.hidden_objects.objects[i].name){data_only(arr_l.hidden_objects.objects[i],'name')}}
     open_tool();update_novel();
 }
-function open_tool(content){
+function open_tool(content,update){
     if(content&&tools_zone.style.visibility!="visible"){
+        if(update){tool_update=update}else{tool_update=false;};
         html.style.overflow='hidden';
         menu_panel.style.zIndex='10010';
         tools_zone.innerHTML=content;
         tools_zone.style.visibility="visible";
         scroll_block=true;scene_screen=true;scene_scroll=true;
     }else{
+        tool_update=false;
         tools_zone.style.visibility="hidden";
         html.style.overflow='scroll';
         menu_panel.style.zIndex=null;
@@ -2032,13 +2140,16 @@ function open_tool(content){
     }
 }
 function adden_sizer(id,f){
-    var r=document.createElement("div");
-    r.style='visibility:hidden;';
-    r.id=id.id+"_sizer";
-    r.className="drag";
-    r.innerHTML="<div class='resizer size-right'></div><div class='resizer top-right'></div><div class='resizer size-top'></div><div class='resizer top-left'></div><div class='resizer size-left'></div><div class='resizer bottom-left'></div><div class='resizer size-bottom'></div><div class='resizer bottom-right'></div><div class='resizer rotate'></div>";
-    id.appendChild(r);
-    make_resizable(document.getElementById(id.id+"_sizer"),f);
+    var r=document.getElementById(id.id+"_sizer");
+    if(!r){
+        r=document.createElement("div");
+        r.style='visibility:hidden;';
+        r.id=id.id+"_sizer";
+        r.className="drag";
+        r.innerHTML="<div class='resizer size-right'></div><div class='resizer top-right'></div><div class='resizer size-top'></div><div class='resizer top-left'></div><div class='resizer size-left'></div><div class='resizer bottom-left'></div><div class='resizer size-bottom'></div><div class='resizer bottom-right'></div><div class='resizer rotate'></div>";
+        id.appendChild(r);
+    }
+    make_resizable(r,f);
 }
 function adden_scroll(id){
     id.onmousedown=function(e){
@@ -2091,10 +2202,6 @@ function adden_scroll(id){
         };
     }}
 }
-
-
-
-
 function legacy_choice_edit(){
 	var var_if="<table width='100%' id='legacy_choice_edit'><tbody>";
 	for(var i=0;i<arr_l[arr_n].legacy_choice.length-1;i++){
@@ -2860,7 +2967,7 @@ function art_panel_add(block,i,n){
 }
 function art_panel_edit(block,i,n,b){
     var arr_s=story_script[block][i].dialogs[n-1]
-    var html='<div id="b_art'+b+'" class="ui_buttons dialog" style="margin:8px;"><table style="width:100%" ondblclick="objSelect(\'art'+b+'\');story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+']"><tbody><tr>'
+    var html='<div id="b_art'+b+'" class="ui_buttons dialog" style="margin:8px;"><table style="width:100%" ondblclick="objSelect(\'art'+b+'\');"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',-1);art_panel_update(\''+block+'\','+i+','+n+');state_save();" height="22px"></td>'
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',1);art_panel_update(\''+block+'\','+i+','+n+');state_save();"></td><td>&nbsp;</td>'
             +'<td width="26px" class="icon_m icon_copu" onclick="var arr_d=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art;arr_d.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));art_panel_update(\''+block+'\','+i+','+n+');state_save();"></td>'
@@ -3272,7 +3379,7 @@ function button_panel_edit(b){
         +'<table id="bpsp'+b+'" width="100%" style="display:'+((scen_element['bpsp'+b])?scen_element['bpsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
             +((arr_s[b].name=='tue_back'||arr_s[b].name=='tue_next')?'':'<td height="40px" align="right" style="width:40%;padding-right:8px;">Function</td><td colspan="3"><select oninput="bt'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value);story_script.parameters.buttons['+b+'].name=this.value;state_save();" style="width:100%;height:28px;background-color: var(--cw);">'+option_block(arr_s[b].name,3)+'</select></select></td></tr>')
         +'<tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Text</td>'
+            +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Text</td>'
             +'<td style="width:28px;" align="center"><select id="bts'+b+'" onchange="btv'+b+'.value=((story_script.parameters.buttons['+b+'].text[this.value].length>0)?story_script.parameters.buttons['+b+'].text[this.value]:\'\');" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);">'+project_languares(languare)+'</select></td>'
             +'<td colspan="2"><input id="btv'+b+'" class="input_text" onchange="story_script.parameters.buttons['+b+'].text[bts'+b+'.value]=this.value;button_panel_update(true);state_save();" type="text" style="width:100%;height:28px;" value="'+((arr_s[b].text[languare])?arr_s[b].text[languare]:'')+'"></td>'
         +'</tr><tr>'
@@ -3927,8 +4034,7 @@ function csv_export(f){
     var uri='data:text/csv;charset=utf-8,'+encodeURIComponent(CSV);
     download_files(n+"."+f,uri)
 }
-var objFocus;
-let arr_e;
+var objFocus,moveSize=true,angle=0,arr_e;
 function droppFocus(r){
     if(objFocus){
         objFocus.style.width=r.style.width;
@@ -3978,7 +4084,6 @@ function objSelect(id,r){
     }
     r.appendChild(objFocus);
 }
-var moveSize=true;
 function make_resizable(s,f){
     s.onmousedown=dragMouseDown;
     function dragMouseDown(e){
@@ -4019,7 +4124,7 @@ function make_resizable(s,f){
     function closeDragElement(){if(!f){saveResize();}else{eval(f)};}
     const resizers=s.getElementsByClassName("resizer");
     const minSize=26;
-    let original_width=0,original_height=0,original_x=0,original_y=0,original_mouse_x=0,original_mouse_y=0,angle=0,size=0;
+    let original_width=0,original_height=0,original_x=0,original_y=0,original_mouse_x=0,original_mouse_y=0,size=0;
     for (let i=0;i<resizers.length;i++){
         const sizer=resizers[i];
         sizer.addEventListener('mousedown',function(e){
@@ -4274,7 +4379,7 @@ function state_back(n){
     state_num+=n
     if(state_num<0){state_num=0}else if(state_num>=back_up.length-1){state_num=back_up.length-1};
     story_script=JSON.parse(back_up[state_num]);
-    if(scene_screen){scen_edit_update(true)}else{update_novel();}
+    if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
 }
 document.addEventListener("DOMContentLoaded", function() {
         var s=document.createElement("script");
