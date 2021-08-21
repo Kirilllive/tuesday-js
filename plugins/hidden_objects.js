@@ -11,6 +11,8 @@ function hidden_objects(){
     if(findobjects<arr_dialog.objects.length&&step<2){step=2}
     var r=Math.round(Math.random()*(step-1));
     room.id="tue_objectsroom";
+    room.className=arr_dialog.className;
+    room.style=arr_dialog.style;
     room.style.width=arr_dialog.size[0]+"px";
     room.style.height=arr_dialog.size[1]+"px";
     room.style.backgroundRepeat="no-repeat";
@@ -22,6 +24,8 @@ function hidden_objects(){
     var sound=(story_json.parameters.hidden_objects.label_find.sound)?story_json.parameters.hidden_objects.label_find.sound:""
     for(var i=0;i<arr_dialog.objects.length;i++){
         var item=document.createElement("div");
+        item.className=arr_dialog.objects[i].className;
+        item.style=arr_dialog.objects[i].style;
         item.style.width=arr_dialog.objects[i].size[0]+"px";
         item.style.height=arr_dialog.objects[i].size[1]+"px";
         item.style.backgroundRepeat="no-repeat";
@@ -33,6 +37,8 @@ function hidden_objects(){
         item.style.top=arr_dialog.objects[i].position[1]+"px";
         item.style.left=arr_dialog.objects[i].position[0]+"px";
         var name=document.createElement("div");
+        if(story_json.parameters.hidden_objects.label.style){name.style=story_json.parameters.hidden_objects.label.style}
+        if(story_json.parameters.hidden_objects.label.className){name.className=story_json.parameters.hidden_objects.label.className}
         if(i==r && z<findobjects){
             s+=step;
             item.setAttribute("onclick",'sound_play("'+((arr_dialog.objects[i].sound)?arr_dialog.objects[i].sound:sound)+'");this.remove();'+((arr_dialog.objects[i].js)?arr_dialog.objects[i].js:'')+';find_item("item'+i+'");');
@@ -50,7 +56,7 @@ function hidden_objects(){
                 name.style.backgroundRepeat="no-repeat";
                 name.style.backgroundPosition=(story_json.parameters.hidden_objects.label.art_align)?story_json.parameters.hidden_objects.label.art_align:"center";
                 if(story_json.parameters.hidden_objects.label.color_text){name.style.color=story_json.parameters.hidden_objects.label.color_text;}
-                if(arr_dialog.objects[i].art_size){name.style.backgroundSize=arr_dialog.objects[i].art_size;}
+                if(story_json.parameters.hidden_objects.label.fit){name.style.backgroundSize=story_json.parameters.hidden_objects.label.fit;}
                 else if(story_json.parameters.hidden_objects.label.art_size){
                     if (typeof story_json.parameters.hidden_objects.label.art_size==='object'){name.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size[0]+" "+story_json.parameters.hidden_objects.label.art_size[1];}
                     else {name.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size;}
@@ -59,7 +65,7 @@ function hidden_objects(){
             }
             r=s+Math.round(Math.random()*(step-1));
             if(!arr_dialog.objects[r]){step=1;r=arr_dialog.objects.length-1;}
-            if(story_json.parameters.hidden_objects.label.style){name.style=story_json.parameters.hidden_objects.label.style;}
+            //if(story_json.parameters.hidden_objects.label.style){name.style=story_json.parameters.hidden_objects.label.style;}
             if(story_json.parameters.hidden_objects.label.color){name.style.backgroundColor=story_json.parameters.hidden_objects.label.color}
             tue_text_view.appendChild(name);
             z++

@@ -132,7 +132,7 @@ function name_block_update(){
     tue_bg_music.id="tue_bg_music";
     tuesday.appendChild(tue_bg_music);
     if(story_json.parameters.launch_story){
-		tue_story=story_json.parameters.launch_story;
+        tue_story=story_json.parameters.launch_story;
 	}else{
 		for(var i=0;i < 2;i++){
 			if(Object.getOwnPropertyNames(story_json)[i] != "parameters"){
