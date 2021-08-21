@@ -227,7 +227,7 @@ function name_block_update(){
         }
     }
 } function creation_scene(){
-    arr_dialog = story_json[tue_story][scene]
+    arr_dialog = story_json[tue_story][scene];
     del_element("tue_html_scene");
     if(arr_dialog.legacy_choice){
         for(var i=0;i < arr_dialog.legacy_choice.length;i++){
@@ -236,55 +236,53 @@ function name_block_update(){
             var choice_v=arr_dialog.legacy_choice[i][2];
             var choice_g=arr_dialog.legacy_choice[i][3];
             if(choice_s == ">" && story_json.parameters.variables[choice_n] > choice_v){
-                go_to(choice_g);
+                if(choice_g!="tue_go"){go_to(choice_g);}else{next_scene();}
                 break;
             } else if(choice_s == "<" && story_json.parameters.variables[choice_n] < choice_v){
-                go_to(choice_g);
+                if(choice_g!="tue_go"){go_to(choice_g);}else{next_scene();}
                 break;
             } else if(choice_s == "=" && story_json.parameters.variables[choice_n] == choice_v){
-                go_to(choice_g);
+                if(choice_g!="tue_go"){go_to(choice_g);}else{next_scene();}
                 break;
             } else if(arr_dialog.legacy_choice[i].go_to){
-                go_to(arr_dialog.legacy_choice[i].go_to);
+                if(arr_dialog.legacy_choice[i].go_to&&arr_dialog.legacy_choice[i].go_to!="tue_go"){go_to(arr_dialog.legacy_choice[i].go_to);}else{next_scene();}
                 break;
-            } else if(i == arr_dialog.legacy_choice.length-1){
-                scene++;
-                dialog=0;
-                creation_scene();
+            } else if(i == arr_dialog.legacy_choice.length-1){next_scene();break;}
+        }
+        function next_scene(){scene++;dialog=0;creation_scene();}
+    } else {
+        tuesday.style.backgroundSize=((!arr_dialog.background_size)?"cover":arr_dialog.background_size);
+        if(arr_dialog.background_class){
+            tuesday.className=arr_dialog.background_class;
+        } else {tuesday.className=""}
+        if(arr_dialog.background_color){
+            tuesday.style.backgroundColor=arr_dialog.background_color;
+        }
+        if(arr_dialog.background_align){tuesday.style.backgroundPosition=arr_dialog.background_align;}
+        if(arr_dialog.background_image){tuesday.style.backgroundImage="url('"+art_data(arr_dialog.background_image)+"')";}
+        if(document.getElementById("tue_home")){
+            if(tue_story == story_json.parameters.launch_story){document.getElementById("tue_home").style.visibility="hidden";}
+            else {document.getElementById("tue_home").style.visibility="visible";}
+        }
+        if (arr_dialog.html){
+            if (arr_dialog.html[languare]){
+                var html=document.createElement("div");
+                html.className='tue_html_scene';
+                html.innerHTML=arr_dialog.html[languare];
+                tuesday.appendChild(html);
+            } else {
+                var html=document.createElement("div");
+                html.className='tue_html_scene';
+                html.innerHTML=arr_dialog.html;
+                tuesday.appendChild(html);
             }
         }
+        if(arr_dialog.background_music){search_music();}
+        if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();} else {del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");tue_text_block.style.visibility='hidden';}
+        tuesday.dispatchEvent(new Event(Object.keys(arr_dialog)[0]));
     }
-    tuesday.style.backgroundSize=((!arr_dialog.background_size)?"cover":arr_dialog.background_size);
-    if(arr_dialog.background_class){
-        tuesday.className=arr_dialog.background_class;
-    } else {tuesday.className=""}
-    if(arr_dialog.background_color){
-        tuesday.style.backgroundColor=arr_dialog.background_color;
-    }
-    if(arr_dialog.background_align){tuesday.style.backgroundPosition=arr_dialog.background_align;}
-    if(arr_dialog.background_image){tuesday.style.backgroundImage="url('"+art_data(arr_dialog.background_image)+"')";}
-	if(document.getElementById("tue_home")){
-		if(tue_story == story_json.parameters.launch_story){document.getElementById("tue_home").style.visibility="hidden";}
-		else {document.getElementById("tue_home").style.visibility="visible";}
-	}
-    if (arr_dialog.html){
-        if (arr_dialog.html[languare]){
-            var html=document.createElement("div");
-            html.className='tue_html_scene';
-            html.innerHTML=arr_dialog.html[languare];
-            tuesday.appendChild(html);
-        } else {
-            var html=document.createElement("div");
-            html.className='tue_html_scene';
-            html.innerHTML=arr_dialog.html;
-            tuesday.appendChild(html);
-        }
-    }
-    if(arr_dialog.background_music){search_music();}
-    if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();} else {del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");tue_text_block.style.visibility='hidden';}
-    tuesday.dispatchEvent(new Event(Object.keys(arr_dialog)[0]));
 } function creation_dialog(){
-        arr_dialog = story_json[tue_story][scene].dialogs[dialog]
+        arr_dialog = story_json[tue_story][scene].dialogs[dialog];
 		if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
 		else {document.getElementById("tue_next").style.visibility="visible";} 
 		if(scene == 0 && dialog == 0 && !arr_dialog.back_to){document.getElementById('tue_back').style.visibility='hidden'}
@@ -612,8 +610,7 @@ function name_block_update(){
         str=str.replace( firstMatch[0],story_json.parameters.variables[firstMatch[1]])
     };
 	dialog_text=str
-}
-function values_button(e){
+} function values_button(e){
     let t=e.matchAll(/<(.*?)>/g);t=Array.from(t);for(var a=0;a<t.length;a++){let o=t[a];e=e.replace(o[0],story_json.parameters.variables[o[1]])}return e
 } function go_story(choice){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
@@ -693,9 +690,9 @@ function values_button(e){
 } function go_to(go){
     del_element("tue_choice");
     del_element("tue_html_dialog");
+    tue_story=go;
     dialog=0;
     scene=0;
-    tue_story=go;
     creation_scene();
 } function del_element(element){
     var del=document.getElementById("tuesday").getElementsByClassName(element);
