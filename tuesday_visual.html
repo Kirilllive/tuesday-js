@@ -1729,13 +1729,17 @@ function add_audio(d){
     if(!story_script.parameters.sounds[n]){story_script.parameters.sounds[n]=d}
     return n
 }
+function add_plugin(p){
+    if(!story_script.parameters.plugins){story_script.parameters.plugins=[]}
+    if(!story_script.parameters.plugins.includes(p)){story_script.parameters.plugins.push(p)}
+}
 function add_element_b(id,arr){
     var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
         +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Add to block \''+arr+'\'</td></tr>'
         +((buf[0]=='scene')?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_n=\''+arr+'\';data_past();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_paste"></td><td>paste scene</td></tr></tbody></table></td></tr>':'')
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scene_add(\''+arr+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>scene</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'legacy_choice_add(\''+arr+'\')':'setup();set_menu(4);')+';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>legacy choice</td></tr></tbody></table></td></tr>'
-        +((story_script.parameters.plugins)?((story_script.parameters.plugins.includes("hidden_objects"))?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="ho_add(\''+arr+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_search"></td><td>'+plugins_list.hidden_objects.name+'</td></tr></tbody></table></td></tr>':''):'')
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="add_plugin(\'hidden_objects\');menu_add.style.visibility=\'hidden\';ho_add(\''+arr+'\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_search"></td><td>'+plugins_list.hidden_objects.name+'</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>cancel</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
 	menu_view(id,code,48)
@@ -1806,7 +1810,7 @@ function element_m(id,n){
     var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
         +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">'+n+'</td></tr>'
         +((n=='legacy choice')?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="legacy_choice_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>':'')
-        +((n==plugins_list.hidden_objects.name)?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="ho_edit();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>':'')
+        +((n==plugins_list.hidden_objects.name)?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="menu_add.style.visibility=\'hidden\';ho_edit();"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_edit2"></td><td>Edit</td></tr></tbody></table></td></tr>':'')
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="data_copy(\'scene\');element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_cut"></td><td>Cut</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="duplicat_arr();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="data_copy(\'scene\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copy"></td><td>Copy scene</td></tr></tbody></table></td></tr>'
@@ -1893,10 +1897,11 @@ function scene_add(arr){
 }
 function ho_add(arr){
     if(!story_script.parameters.hidden_objects){story_script.parameters.hidden_objects={"label":{"tip":false,"size":["12.5%","90%"],"items":"8","art_size": ["90%","auto"]},"label_find":{"del":true}}}
-	story_script[arr].push({"hidden_objects":{"art":"","size":[setup_editor.pvw[0],setup_editor.pvw[1]],"color":"#fff","objects":[]}});
-	arr_l=story_script[arr]
+	story_script[arr].push({"hidden_objects":{"color":"#fff","objects":[]}});
+    scen_data=[arr,story_script[arr].length-1,0];
+    arr_l=story_script[scen_data[0]][scen_data[1]];
 	arr_n='hidden_objects'
-	update_novel();
+	update_novel();ho_edit();
 }
 function legacy_choice_add(arr){
 	story_script[arr].push({"legacy_choice":[["","=",0,""],{"go_to":""}]});
@@ -1935,8 +1940,13 @@ function option_block(d,g){
     return scene_list+'</optgroup>'
 }
 function ho_edit(){
-    arr_l=story_script[scen_data[0]][scen_data[1]]
-    var p=story_script.parameters.hidden_objects
+    arr_l=story_script[scen_data[0]][scen_data[1]];
+    if(!arr_l.hidden_objects.art){tool_update='ho_edit()';file_catalog('','img','','','arr_l.hidden_objects.art');}
+    else if(!arr_l.hidden_objects.size){
+        var image = new Image();
+        image.src = open_file(languare_data(arr_l.hidden_objects.art));
+        image.onload = function(){arr_l.hidden_objects.size=[this.width,this.height];ho_edit();}
+    }else{var p=story_script.parameters.hidden_objects
     if(!arr_l.hidden_objects.art[languare]){data_la(arr_l.hidden_objects,'art')}
     var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr><td rowspan='3'>"
     +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();'>"
@@ -1953,7 +1963,7 @@ function ho_edit(){
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Height</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.hidden_objects.label.size[1]=this.value' type='text' value='"+p.label.size[1]+"' style='width:100%;'>"
         +"</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Height</td><td style='padding-right:8px;' colspan='3'>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Items for search</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='this.value=correct_value(this.value,true);story_script.parameters.hidden_objects.label.items=this.value' type='text' value='"+p.label.items+"' style='width:100%;'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>"
@@ -2099,6 +2109,7 @@ function ho_edit(){
     open_tool(tool,"ho_updata()");ho_updata();
     tool=document.getElementById('ho_preview');
     adden_scroll(tool);tool.scrollTop=200;tool.scrollLeft=240;
+    }
 }
 function ho_size(){
     ho_canvas.style.width=(parseInt(arr_l.hidden_objects.size[0])+512)+"px";ho_room.style.width=arr_l.hidden_objects.size[0]+"px"
@@ -2106,11 +2117,17 @@ function ho_size(){
     ho_w.value=arr_l.hidden_objects.size[0];
     ho_h.value=arr_l.hidden_objects.size[1];
 }
-function ho_new(){
-    a=story_script[scen_data[0]][scen_data[1]].hidden_objects
-    a.objects.push({"position":[ho_preview.scrollLeft+(ho_preview.clientWidth/2)-320,ho_preview.scrollTop+(ho_preview.clientHeight/2)-320],"size":[128,128],"art":"","fit":"contain","name":""});
-    ho_updata();
-    file_catalog('','img','hois_art'+(a.objects.length-1),'','story_script[scen_data[0]][scen_data[1]].hidden_objects.objects['+(a.objects.length-1)+'].art');
+function ho_new(s){
+    if(!s){
+        var a=story_script[scen_data[0]][scen_data[1]].hidden_objects
+        a.objects.push({"position":[ho_preview.scrollLeft+(ho_preview.clientWidth/2)-320,ho_preview.scrollTop+(ho_preview.clientHeight/2)-320],"size":[128,128],"art":"","fit":"contain","name":""});
+        tool_update='ho_new(1)';ho_updata();
+        file_catalog('','img','hois_art'+(a.objects.length-1),'','story_script[scen_data[0]][scen_data[1]].hidden_objects.objects['+(a.objects.length-1)+'].art');
+    }else if(s==1){
+        var a=story_script[scen_data[0]][scen_data[1]].hidden_objects.objects,image = new Image();
+        image.src=open_file(languare_data(a[a.length-1].art));
+        image.onload=function(){a[a.length-1].size=[this.width,this.height];tool_update='ho_updata(0)';ho_updata();}
+    }
 }
 function ho_updata(){
     droppFocus(document.getElementById("ho_room_sizer"))
