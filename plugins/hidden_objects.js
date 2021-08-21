@@ -16,8 +16,8 @@ function hidden_objects(){
     room.style.backgroundRepeat="no-repeat";
     room.style.backgroundPosition="center";
     room.style.backgroundSize="cover";
-    if(arr_dialog.color){view.style.backgroundColor=arr_dialog.color;}
-    room.style.backgroundImage='url("'+arr_dialog.art+'")';
+    if(arr_dialog.color){view.style.backgroundColor=art_data(arr_dialog.color);}
+    room.style.backgroundImage='url("'+art_data(arr_dialog.art)+'")';
     room.style.position="relative"
     var sound=(story_json.parameters.hidden_objects.label_find.sound)?story_json.parameters.hidden_objects.label_find.sound:""
     for(var i=0;i<arr_dialog.objects.length;i++){
@@ -29,6 +29,7 @@ function hidden_objects(){
         item.style.backgroundSize=arr_dialog.objects[i].fit;
         item.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
         item.style.position="absolute";
+        item.style.transform='rotate('+arr_dialog.objects[i].angle+'deg)';
         item.style.top=arr_dialog.objects[i].position[1]+"px";
         item.style.left=arr_dialog.objects[i].position[0]+"px";
         var name=document.createElement("div");
