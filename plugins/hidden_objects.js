@@ -20,7 +20,8 @@ function hidden_objects(){
     room.style.backgroundSize="cover";
     if(arr_dialog.color){view.style.backgroundColor=art_data(arr_dialog.color);}
     room.style.backgroundImage='url("'+art_data(arr_dialog.art)+'")';
-    room.style.position="relative"
+    room.style.position="relative";
+    room.style.overflow="hidden";
     var sound=(story_json.parameters.hidden_objects.label_find.sound)?story_json.parameters.hidden_objects.label_find.sound:""
     for(var i=0;i<arr_dialog.objects.length;i++){
         var item=document.createElement("div");
@@ -65,7 +66,6 @@ function hidden_objects(){
             }
             r=s+Math.round(Math.random()*(step-1));
             if(!arr_dialog.objects[r]){step=1;r=arr_dialog.objects.length-1;}
-            //if(story_json.parameters.hidden_objects.label.style){name.style=story_json.parameters.hidden_objects.label.style;}
             if(story_json.parameters.hidden_objects.label.color){name.style.backgroundColor=story_json.parameters.hidden_objects.label.color}
             tue_text_view.appendChild(name);
             z++
@@ -78,12 +78,8 @@ function hidden_objects(){
     tue_back.style.visibility='hidden';
     view.appendChild(room);
     tuesday.appendChild(view);
-    var rect=tuesday.getBoundingClientRect();
-    if((arr_dialog.size[0]/arr_dialog.size[1])>(rect.width/rect.height)){tue_objectsroom.style.transform='scale('+rect.height/arr_dialog.size[1]+')'}
-    else{tue_objectsroom.style.transform='scale('+rect.width/arr_dialog.size[0]+')'}
+    objectsroom_resize();
     tue_objectsroom.style.transformOrigin="left top";
-    tue_objectsroom.style.marginBottom=arr_dialog.size[1]*-1+"px";
-    tue_objectsroom.style.marginRight=arr_dialog.size[0]*-1+"px";
     if(arr_dialog.background_music){
         if(tue_bg_music.canPlayType("audio/mpeg")){
             if(arr_dialog.background_music.indexOf("blob:")>-1){
@@ -128,6 +124,12 @@ function hidden_objects(){
 		};
     }
 }
+function objectsroom_resize(){
+    var rect=tuesday.getBoundingClientRect();
+    if((arr_dialog.size[0]/arr_dialog.size[1])>(rect.width/rect.height)){tue_objectsroom.style.transform='scale('+rect.height/arr_dialog.size[1]+')'}
+    else{tue_objectsroom.style.transform='scale('+rect.width/arr_dialog.size[0]+')'}
+    tue_objectsroom.style.margin="0px";
+}
 function find_item(id){
     findobjects--
     if(story_json.parameters.hidden_objects.label_find.del){document.getElementById(id).remove();}
@@ -145,3 +147,4 @@ function find_item(id){
     }
 }
 tuesday.addEventListener('hidden_objects',function(event){hidden_objects();});
+window.addEventListener('resize', objectsroom_resize, true);
