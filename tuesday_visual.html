@@ -1897,7 +1897,7 @@ function scene_add(arr){
 }
 function ho_add(arr){
     if(!story_script.parameters.hidden_objects){story_script.parameters.hidden_objects={"label":{"tip":false,"size":["12.5%","90%"],"items":"8","art_size": ["90%","auto"]},"label_find":{"del":true}}}
-	story_script[arr].push({"hidden_objects":{"color":"#fff","objects":[]}});
+	story_script[arr].push({"hidden_objects":{"color":"#fff","fit":"contain","objects":[]}});
     scen_data=[arr,story_script[arr].length-1,0];
     arr_l=story_script[scen_data[0]][scen_data[1]];
 	arr_n='hidden_objects'
