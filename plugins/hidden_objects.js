@@ -42,7 +42,7 @@ function hidden_objects(){
         if(story_json.parameters.hidden_objects.label.className){name.className=story_json.parameters.hidden_objects.label.className}
         if(i==r && z<findobjects){
             s+=step;
-            item.setAttribute("onclick",'sound_play("'+((arr_dialog.objects[i].sound)?arr_dialog.objects[i].sound:sound)+'");this.remove();'+((arr_dialog.objects[i].js)?arr_dialog.objects[i].js:'')+';find_item("item'+i+'");');
+            item.setAttribute("onclick",'sound_play("'+((arr_dialog.objects[i].sound)?arr_dialog.objects[i].sound:sound)+'");'+((story_json.parameters.hidden_objects.label_find.del_item)?'this.remove();':'this.setAttribute(\'onclick\',\'\')')+((arr_dialog.objects[i].js)?arr_dialog.objects[i].js:'')+';find_item("item'+i+'");');
             name.style.width=story_json.parameters.hidden_objects.label.size[0];
             name.style.height=story_json.parameters.hidden_objects.label.size[1];
             name.style.float="left";
@@ -132,7 +132,7 @@ function objectsroom_resize(){
 }
 function find_item(id){
     findobjects--
-    if(story_json.parameters.hidden_objects.label_find.del){document.getElementById(id).remove();}
+    if(story_json.parameters.hidden_objects.label_find.del_label){document.getElementById(id).remove();}
     else {
         id=document.getElementById(id);
         if(story_json.parameters.hidden_objects.label_find.className){id.className=story_json.parameters.hidden_objects.label_find.className}
