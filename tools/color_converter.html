@@ -54,6 +54,7 @@
     padding-left:10px;
 }
 .icon_load{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTQ4LDg1SDI1MkwyMDgsMjI2SDVaTTQ4LDg1TDUsMjI2VjUxTDE4LDM0SDY1bDEzLDE3SDIwOFY4NUg0OFoiLz48L3N2Zz4K")}
+.icon_copy{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTgsNjFMMjksNDBNMzAsNTNWMzlIMTZNMTcsMzFWMTRhNCw0LDAsMCwxLDQtNGg2djRINDVWMTBoNmE0LDQsMCwwLDEsNCw0VjQ4YTQsNCwwLDAsMS00LDRIMzdNMjcsMThWN2g1YTQsNCwwLDAsMSw4LDBoNVYxOEgyN1oiLz48L3N2Zz4K")}
 .icon{background-size:22px 22px;background-repeat:no-repeat;background-position:center;cursor:pointer;}
 .input_slider{appearance:none;height:8px;background: var(--cw);outline:none;border-radius:8px;}
 .input_slider::-moz-range-thumb {-moz-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--cb);cursor:pointer;border:3px solid #fff;}
@@ -90,32 +91,34 @@
                             <td height='40px' style='width:64px;padding-right:8px;'>&nbsp;</td>
                             <td style='width:40px;'>RGB:</td>
                             <td><input id="rgb_color" onchange="color_rgb_parse()" class="input_text" type="text"></td>
+                            <td align="right" style="width:40px;" class="icon icon_copy" onclick="copy('rgb_color');"></td>
                         </tr>
                         <tr>
                             <td align='right' style='padding-right:8px;'>&nbsp;</td>
                             <td>HEX:</td>
                             <td><input id="hex_color" onchange="color_rgb(this.value)" class="input_text" type="text"></td>
+                            <td align="right" style="width:40px;" class="icon icon_copy" onclick="copy('hex_color');"></td>
                         </tr>
                         <tr><td style="border-bottom:1px solid var(--cb);height:40px;" colspan="4"></td></tr>
                         <tr>
                             <td align='right' style='height:40px;padding-right:8px;'>Red</td>
                             <td><input id="text_red" onchange="color_red.value=this.value;color_hex();" class="input_text" type="text"></td>
-                            <td><input class="input_slider input_slider_red" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" style="width:100%;" id="color_red"></td>
+                            <td colspan="2"><input class="input_slider input_slider_red" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" style="width:100%;" id="color_red"></td>
                         </tr>
                         <tr>
                             <td align='right' style='height:40px;padding-right:8px;'>Green</td>
                             <td><input id="text_green" onchange="color_green.value=this.value;color_hex();" class="input_text" type="text"></td>
-                            <td><input class="input_slider input_slider_green" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" style="width:100%;" id="color_green"></td>
+                            <td colspan="2"><input class="input_slider input_slider_green" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" style="width:100%;" id="color_green"></td>
                         </tr>
                         <tr>
                             <td align='right' style='height:40px;padding-right:8px;'>Blue</td>
                             <td><input id="text_blue" onchange="color_blue.value=this.value;color_hex();" class="input_text" type="text"></td>
-                            <td><input class="input_slider input_slider_blue" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" style="width:100%;" id="color_blue"></td>
+                            <td colspan="2"><input class="input_slider input_slider_blue" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" style="width:100%;" id="color_blue"></td>
                         </tr>
                         <tr>
                             <td align='right' style='height:40px;padding-right:8px;'>Alpha</td>
                             <td><input id="text_alpha" onchange="color_alpha.value=this.value;color_hex();" class="input_text" type="text"></td>
-                            <td><input class="input_slider input_slider_progress" oninput="color_hex();" type="range" value="126" min="0" max="1" step="0.01" style="width:100%;" id="color_alpha"></td>
+                            <td colspan="2"><input class="input_slider input_slider_progress" oninput="color_hex();" type="range" value="126" min="0" max="1" step="0.01" style="width:100%;" id="color_alpha"></td>
                         </tr>
                     </tbody>
                 </table><br><br>
@@ -123,22 +126,17 @@
                 <table width="100%" style="margin-top:8px;">
                 <tbody><tr>
                     <td align="right" height="40px" style="width:104px;padding-right:8px;">Art</td>
-                    <td>
-                        <input id="file_name" class="input_text" type="text" style="width:100%;" onclick="img_file.click();"></td>
+                    <td colspan="2"><input id="file_name" class="input_text" type="text" style="width:100%;" onclick="img_file.click();"></td>
                     <td align="right" style="width:40px;" class="icon icon_load" onclick="img_file.click();"></td>
                 </tr><tr>
                     <td align="right" style="padding-right:8px;" height="40px">Width size</td>
-                    <td>
-                        <input id="file_width" class="input_text" onchange="proportion(true);" type="text" style="width:100%;">
-                    </td>
-                    <td align="right" rowspan="2">
-                        <input id="proportion" checked type="checkbox">
-                    </td>
+                    <td><input id="file_width" class="input_text" onchange="proportion(true);" type="text" style="width:100%;"></td>
+                    <td align="right" style="width:40px;" class="icon icon_copy" onclick="copy('file_width');"></td>
+                    <td align="right" rowspan="2"><input id="proportion" checked type="checkbox"></td>
                 </tr><tr>
                     <td align="right" style="padding-right:8px;" height="40px">Height size</td>
-                    <td>
-                        <input id="file_height" class="input_text" onchange="proportion(false);" type="text" style="width:100%;" value="">
-                    </td>
+                    <td><input id="file_height" class="input_text" onchange="proportion(false);" type="text" style="width:100%;" value=""></td>
+                    <td align="right" style="width:40px;" class="icon icon_copy" onclick="copy('file_height');"></td>
                 </tr><tr>
                 </tbody>
                 </table>
@@ -239,6 +237,12 @@ function color_rgb(h) {
     text_blue.value=color_blue.value;
     text_green.value=color_green.value;
     text_alpha.value=1;
+}
+function copy(id) {
+    copyText=document.getElementById(id);
+	copyText.select();
+	copyText.setSelectionRange(0, 99999)
+	document.execCommand("copy");
 }
 </script>
 </body>
