@@ -1,4 +1,4 @@
-var findobjects=0,startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null;
+var findobjects=0,startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null,ho_scale=1;
 function hidden_objects(){
     arr_dialog=story_json[tue_story][scene].hidden_objects
     tue_text_view.innerHTML='';
@@ -10,6 +10,7 @@ function hidden_objects(){
     var room=document.createElement("div"),step=Math.round(arr_dialog.objects.length/findobjects),s=0,z=0;
     if(findobjects<arr_dialog.objects.length&&step<2){step=2}
     var r=Math.round(Math.random()*(step-1));
+    if(arr_dialog.scale){ho_scale=arr_dialog.scale}
     room.id="tue_objectsroom";
     room.className=arr_dialog.className;
     room.style=arr_dialog.style;
@@ -126,8 +127,8 @@ function hidden_objects(){
 }
 function objectsroom_resize(){
     var rect=tuesday.getBoundingClientRect();
-    if((arr_dialog.size[0]/arr_dialog.size[1])>(rect.width/rect.height)){tue_objectsroom.style.transform='scale('+rect.height/arr_dialog.size[1]+')'}
-    else{tue_objectsroom.style.transform='scale('+rect.width/arr_dialog.size[0]+')'}
+    if((arr_dialog.size[0]/arr_dialog.size[1])>(rect.width/rect.height)){tue_objectsroom.style.transform='scale('+(rect.height/arr_dialog.size[1])*ho_scale+')'}
+    else{tue_objectsroom.style.transform='scale('+(rect.width/arr_dialog.size[0])*ho_scale+')'}
     tue_objectsroom.style.marginBottom="-"+(rect.height+arr_dialog.size[1])+"px";
     tue_objectsroom.style.marginRight="-"+(rect.width+arr_dialog.size[0])+"px"
     tue_objectsroom.style.marginTop="0px";
