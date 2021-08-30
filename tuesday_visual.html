@@ -56,7 +56,7 @@ line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4
 @keyframes viwe{from{opacity:0;bottom:64px} to{opacity:1;bottom:64px}}
 @keyframes stop{from{opacity:1;bottom:64px} to{opacity:1;bottom:64px}}
 @keyframes close{from{opacity:1;bottom:64px} to{opacity:0;bottom:-32px}}
-#new_story_block, #scene_controll{
+#new_story_block,#scene_controll,#ho_controll{
 	position:fixed;
 	height:40px;
 	z-index:1000;
@@ -1939,8 +1939,13 @@ function option_block(d,g){
     }
     return scene_list+'</optgroup>'
 }
+var tool_scale=1
+function ho_scale(s){
+    if(!s){ho_canvas.style.transform='scale(1)';tool_scale=1;s=0}
+    else{tool_scale=Math.max(0.25,Math.min(2,tool_scale+s));ho_canvas.style.transform='scale('+tool_scale+')';}
+}
 function ho_edit(){
-    arr_l=story_script[scen_data[0]][scen_data[1]];
+    arr_l=story_script[scen_data[0]][scen_data[1]];tool_scale=1;
     if(!arr_l.hidden_objects.art){tool_update='ho_edit()';scroll_block=true;file_catalog('','img','','','arr_l.hidden_objects.art');}
     else if(!arr_l.hidden_objects.size){
         var image = new Image();
@@ -1950,7 +1955,12 @@ function ho_edit(){
     if(!arr_l.hidden_objects.art[languare]){data_la(arr_l.hidden_objects,'art')}
     var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr><td rowspan='3'>"
     +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();'>"
-    +"<div id='ho_canvas' class='"+setup_editor.fon+"' style='display:grid;justify-content:center;align-items:center;width:"+(arr_l.hidden_objects.size[0]+512)+"px;height:"+(arr_l.hidden_objects.size[1]+512)+"px;background-color:var(--cw);background-blend-mode:overlay;background-size:64px;'><div id='ho_room' style='position:relative;background-repeat:no-repeat;background-position:left top;"+((arr_l.hidden_objects.art)?"background-image:url("+open_file(languare_data(arr_l.hidden_objects.art))+");":"")+((arr_l.hidden_objects.color)?"background-color:"+arr_l.hidden_objects.color+";":"")+";background-size:"+((arr_l.hidden_objects.fit)?arr_l.hidden_objects.fit:"auto")+";width:"+arr_l.hidden_objects.size[0]+"px;height:"+arr_l.hidden_objects.size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);'></div></div></div></td>"
+    +"<div id='ho_canvas' class='"+setup_editor.fon+"' style='transform-origin:left top;display:grid;justify-content:center;align-items:center;width:"+(arr_l.hidden_objects.size[0]+512)+"px;height:"+(arr_l.hidden_objects.size[1]+512)+"px;background-color:var(--cw);background-blend-mode:overlay;background-size:64px;'><div id='ho_room' style='position:relative;background-repeat:no-repeat;background-position:left top;"+((arr_l.hidden_objects.art)?"background-image:url("+open_file(languare_data(arr_l.hidden_objects.art))+");":"")+((arr_l.hidden_objects.color)?"background-color:"+arr_l.hidden_objects.color+";":"")+";background-size:"+((arr_l.hidden_objects.fit)?arr_l.hidden_objects.fit:"auto")+";width:"+arr_l.hidden_objects.size[0]+"px;height:"+arr_l.hidden_objects.size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);'></div></div>"
+    +"<div id='ho_controll' style='right:320px;'><table height='100%'><tbody><tr>"
+        +"<td width='42px' class='icon button_menu icon_equal' onclick='ho_scale(0.05)'></td>"
+        +"<td width='42px' class='icon button_menu icon_scale' onclick='ho_scale()'></td>"
+        +"<td width='42px' class='icon button_menu icon_minus' onclick='ho_scale(-0.05)' style='border-radius:0 20px 20px 0;'></td>"
+    +"</tr></tbody></table></div></div></td>"
     +"<td style='width:286px;height:40px;background-color:var(--wn);' class='namber' align='center'>"+scen_data[0]+" ( scene: "+scen_data[1]+" "+plugins_list.hidden_objects.name+" )</td></tr><tr>"
     +"<td id='ho_content' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>"
     //label
@@ -2118,7 +2128,7 @@ function ho_edit(){
     +"<td height='40px' style='background-color:var(--wn);' style='background-color:var(--wn);' class='button_menu'><table class='button_menu' width='100%' height='100%' onclick='ho_close();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td></tr></tbody></table>"
     open_tool(tool,"ho_updata()");ho_updata();
     tool=document.getElementById('ho_preview');
-    adden_scroll(tool);tool.scrollTop=200;tool.scrollLeft=240;
+    adden_scroll(tool,document.getElementById('ho_canvas'));tool.scrollTop=200;tool.scrollLeft=240;
     }
 }
 function ho_size(){
@@ -2267,7 +2277,7 @@ function adden_sizer(id,f){
     }
     make_resizable(r,f);
 }
-function adden_scroll(id){
+function adden_scroll(id,z){
     id.onmousedown=function(e){
     if(scene_scroll){
         startmove_x=e.clientX;
@@ -2297,16 +2307,13 @@ function adden_scroll(id){
         startmove_y=e.touches[0].clientY;
         scroll_y=this.scrollTop;
         scroll_x=this.scrollLeft;
-        if(e.touches.length>1){
-            dictat_s=Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2)
-        }
+        if (e.touches.length>1){dictat_s=Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2)}
         this.ontouchmove=function(e){
-            scroll_controll.scrollTop=scroll_y-(e.touches[0].clientY-startmove_y);
-            scroll_controll.scrollLeft=scroll_x-(e.touches[0].clientX-startmove_x);
-            if (e.touches.length>1){
+            this.scrollTop=scroll_y-(e.touches[0].clientY-startmove_y);
+            this.scrollLeft=scroll_x-(e.touches[0].clientX-startmove_x);
+            if (z&&e.touches.length>1){
                 dictat_m=((Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2))-dictat_s)/1000;
-                scroll_content.style.transform='scale('+Math.max(0,(scale_t+dictat_m))+')';
-                delta.innerHTML=scale_t+dictat_m
+                z.style.transform='scale('+Math.min(2,Math.max(0.25,(tool_scale+dictat_m)))+')';
             }
         };
         this.ontouchend=function(e){
@@ -2314,7 +2321,7 @@ function adden_scroll(id){
             startmove_y=null;
             this.ontouchmove=null;
             this.ontouchend=null;
-            scale_t=Math.max(0,(scale_t+dictat_m));dictat_m=0;delta.innerHTML=scale_t+"n"
+            tool_scale=Math.min(2,Math.max(0.25,(tool_scale+dictat_m)));dictat_m=0;
         };
     }}
 }
