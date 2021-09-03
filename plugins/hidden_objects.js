@@ -92,20 +92,6 @@ function hidden_objects(){
         tue_bg_music.loop=true;
         tue_bg_music.play();
     }
-    view.ontouchstart=function(e) {
-        startmove_x=e.touches[0].clientX;
-        startmove_y=e.touches[0].clientY;
-        scroll_x=view.scrollTop;
-        scroll_y=view.scrollLeft;
-        document.ontouchmove=function(e) {
-            view.scrollTop=scroll_x-(e.touches[0].clientY-startmove_y);
-            view.scrollLeft=scroll_y-(e.touches[0].clientX-startmove_x);
-        };
-        document.ontouchend=function (e){
-            document.ontouchmove=null;
-            document.ontouchend=null;
-        };
-    }
     view.onmousedown=function(e) {
         startmove_x=e.clientX;
         startmove_y=e.clientY;
