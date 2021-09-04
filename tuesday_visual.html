@@ -2675,7 +2675,7 @@ function edit_choice(){
 function edit_choice_new(){
 	var tbody=document.getElementById('var_choice').getElementsByTagName('tbody')[0];
     var l=copy_arr[arr_n].length;
-    copy_arr[arr_n].push({"go_to":"tue_no","position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]],"color":story_script.parameters.text_panel.color,"color_text":story_script.parameters.text_panel.color_text,"text":"button"});
+    copy_arr[arr_n].push({"go_to":"tue_no","position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]-8],"color":story_script.parameters.text_panel.color,"color_text":story_script.parameters.text_panel.color_text,"text":"button","indent_text":"8px"});
     data_la(copy_arr[arr_n][l],'text')
     var row=document.createElement("tr");
     var td1=document.createElement("td");
@@ -3228,8 +3228,9 @@ function choice_panel_add(block,i,n){
         arr_s.choice[a].position=["50%","0","50%","0"];
         arr_s.choice[a].go_to=story_script.parameters.launch_story;
         arr_s.choice[a].text="button";
+        arr_s.choice[a].indent_text="8px";
     }else{
-        arr_s.choice.push({"go_to":story_script.parameters.launch_story,"position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]],"color":story_script.parameters.text_panel.color,"color_text":story_script.parameters.text_panel.color_text,"text":"choice"});
+        arr_s.choice.push({"go_to":story_script.parameters.launch_story,"position":["50%","0","50%","0"],"size":[0,story_script.parameters.buttons[0].size[1]]-8,"color":story_script.parameters.text_panel.color,"color_text":story_script.parameters.text_panel.color_text,"text":"choice","indent_text":"8px"});
     }
     b=arr_s.choice.length-1;
     choice_panel_update(block,i,n);
