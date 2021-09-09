@@ -2,15 +2,12 @@
 
 # Tuesday JS web visual novel engine 
 is a simple web-based, free and open-source visual novel editor that can be used in a web browser. It is written in JavaScript without using any third party libraries and thus does not require additional software installation. The engine uses standard HTML document elements such as div and img. This allows the use of any media format supported by browsers including vector graphics svg, gif animations and css styles.
-The editor is designed to create interactive fiction, graphic or kinetic novels without knowledge of programming languages. It uses a drag and drop interface for scene editing and to make interfaces. The story script is displayed as a flowchart node with all plot elements and branches. This makes it easier to navigate and helps you create a great story with many plot options.
 There is a version of the editor available as a standalone application for Android devices and desktops. All versions are fully compatible with each other and have the same interface.
 
 は無駄を排した作りの、無償かつオープンソースのビジュアルノベル作成ソフトウェアです。ゲームの制作もプレイもウェブブラウザ上で可能です。JavaScriptで開発したソフトウェアですが、サードパーティ製ライブラリーを一切使用していないので、他のソフトウェアをインストールする手間は不要です。divやimgといった標準HTML文章でお馴染みのタグや要素でゲームのスクリプトを記述し、svg形式のベクターイメージ、gif形式のアニメーション、CSSスタイルシートなど、ブラウザが扱えるファイルなら何でも使用可能です。
-Tuesday JSは、プログラミングの知識が全然無い人でもアドベンチャー・ゲームやノベルゲームを作れるソフトウェアを目標に開発しています。会話場面の編集も、インターフェイスの作成も、ドラッグ・アンド・ドロップで操作でき、物語の進行に関わる要素やストーリーの分岐を樹枝のように描写するフローチャートでスクリプトの全体像を表示するので、分岐や選択肢が沢山ある大作でも全体構造を把握しながら制作できます。
 アンドロイド機器並びにパソコン版WindowsとMac用の単体で動作するダウンロード版もあります。各々のバージョン間には完全な互換性があり、インターフェイスも共通しています。
 
 est un éditeur de roman visuel facile à utiliser. Gratuit et open source il tourne sur n'importe quel navigateur Web. Il est écrit en JavaScript, n'utilise pas de bibliothèques tierces et ne nécessite donc pas d'installation logicièle supplémentaire. Le moteur utilise des éléments HTML standard tels que div et img et permet d'utiliser n'importe quel format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.
-L'éditeur est conçu pour créer des fictions interactives graphiques ou cinétiques sans connaissance particulière des langages de programmation. Il utilise une interface glisser-déposer pour l'édition de scènes et pour créer des interfaces. Le scénario s'affiche sous la forme d'un organigramme composé de tous les éléments et branches de l'intrigue. Cela facilite la navigation et vous aide à créer des histoires avec de nombreuses options d'intrigue.
 Il existe une version de l'éditeur disponible en tant qu'application autonome pour les appareils Android et les ordinateurs de bureau. Toutes les versions sont entièrement compatibles entre elles et partagent la même interface.
 
 Home Page: https://kirilllive.github.io/tuesday-js/
