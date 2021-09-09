@@ -145,6 +145,7 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='ru'><span class="checkmark">RU</span></label></td>
                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='es'><span class="checkmark">ES</span></label></td>
                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='fr'><span class="checkmark">FR</span></label></td>
+                            <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='de'><span class="checkmark">DE</span></label></td>
                         </tr>
                     </tbody>
                 </table>
@@ -248,15 +249,21 @@ background-size:cover;background-repeat:no-repeat;background-position:center;bac
                       <tbody>
                       <tr>
                           <td align='right' style='width:25%;'>Spanish translator:&nbsp;</td>
-                          <td align='left' style='width:25%;'><b><a href="https://twitter.com/matiasdesu" target="_blank">@matiasdesu</a></b></td>
-                          <td align='right' style='width:25%;'>French translation:&nbsp;</td>
+                          <td align='left' style='width:25%;'><b><a href="https://twitter.com/matiasdesu" target="_blank">MatiasDesu</a></b></td>
+                          <td align='right' style='width:25%;'>French translator:&nbsp;</td>
                           <td align='left' style='width:25%;'><b><a href="https://twitter.com/laurentgontier" target="_blank">Laurent Gontier</a></b></td>
                       </tr>
                       <tr>
                           <td align='right' style='width:25%;'>Russian translator:&nbsp;</td>
                           <td align='left' style='width:25%;'><b><a href="https://twitter.com/LolerFox" target="_blank">LolerFox</a></b></td>
-                          <td align='right' style='width:25%;'></td>
-                          <td align='left' style='width:25%;'></td>
+                          <td align='right' style='width:25%;'>German translator:&nbsp;</td>
+                          <td align='left' style='width:25%;'><b>Juvinhel</b></td>
+                      </tr>
+                      <tr>
+                          <td align='right' style='width:25%;'>Japanese translator:&nbsp;</td>
+                          <td align='left' style='width:25%;'><b><a href="https://twitter.com/onigi123" target="_blank">onigi</a></b></td>
+                          <td align='right' style='width:25%;'>English translator:</td>
+                          <td align='left' style='width:25%;'><b>Argosa</b></td>
                       </tr>
                       </tbody>
                   </table>
@@ -307,7 +314,7 @@ let translation = {
     ["title","Tuesday JS движок визуальных новелл"],
     ["description","это простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом, который можно использовать в браузере. Он написан на JavaScript без использования каких-либо сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML-документа, такие как div и img. Это позволяет использовать любой медиаформат поддерживаемый браузерами включая векторную графику svg, gif-анимацию и стили css.</p><br><p>Редактор предназначен для создания интерактивных историй, графических или кинетических новелл, без знания языков программирования. Он использует drag and drop интерфейс для редактирования сцен и создания интерфейсов. Сценарий истории отображается в виде узла блок-схем со всеми элементами и ответвлениями сюжета. Это облегчает навигацию и поможет вам создать историю с множеством вариантов сюжета.</p><br><p>Есть версии редактора доступные для Android устройств и настольных компьютеров. Все версии полностью совместимы друг с другом и имеют одинаковый интерфейс.</p>"],
     ["thanks","Спасибо за вашу помощь!"],
-    ["donut","Буду рад любой поддержке проекта"],
+    ["donut","Вы можете поддержать проект на Patreon!"],
     ["title_1","Визуализация"],
     ["screen_1","Редактор отображает структуру сценария со всеми элементами, такими как параметры диалога и последствия выбора. Это облегчает навигацию и редактирование сценария."],
     ["title_3","JSON"],
@@ -322,21 +329,41 @@ let translation = {
     ["tool_2","<a href='tools/color_converter.html' target='_blank'><b>Конвертер цветов</b></a><br><br>Конвертирование RGB в HEX и наоборот. Вы можете получить цвет непосредственно с изображения. Так же присутствуют дополнительные функции для расчета пропорционального соотношения сторон при изменении размера изображения"],
     ["tool_3","<a href='tools/text_converter.html' target='_blank'><b>Конвертер текста</b></a><br><br>Вы можете конвертировать обычный текст в JSON для Tuesday JS. Конвертер разделит текст рассказа на небольшие части для использования в диалогах."]
 ],"ja":[
-    ["title","Tuesday JS ビジュアルノベル エンジン"],
-    ["description","は、ビジュアルノベルやインタラクティブフィクション、テキストベースの冒険ゲームを作るためのオープンエンジンです。JavaScriptで書かれており、サードベンダーのライブラリは使われていません。プロジェクトは、モバイルアプリやPC プログラムを作るために、Apache Cordovaに書き出される可能性があります。エンジンには、divやimgのようなHTMLドキュメントの標準要素DOMを使用しており、ブラウザによってサポートされている、svgグラフィックやgifやcssスタイルのアニメを含む、任意のメディアフォーマットを使うことができます。<br>Visual editor can be run online in any modern browser, as well as for Android devices and desktops PC"],
-    ["thanks","ユーザーの助けに感謝します。"],
-    ["donut","プロジェクトのあらゆる助けに感謝します。"],
-    ["title_1","可視化"],
-    ["screen_1","エディターは、会話オプションや選択肢のような全ての要素を伴うスクリプトの構造を完全に映し出します。これにより、ナビやスクリプトを編集しやすくします。"],
+    ["title","Tuesday JS ビジュアルノベル・エンジン"],
+    ["description","は無駄を排した作りの、無償かつオープンソースのビジュアルノベル作成ソフトウェアです。ゲームの制作もプレイもウェブブラウザ上で可能です。JavaScriptで開発したソフトウェアですが、サードパーティ製ライブラリーを一切使用していないので、他のソフトウェアをインストールする手間は不要です。divやimgといった標準HTML文章でお馴染みのタグや要素でゲームのスクリプトを記述し、svg形式のベクターイメージ、gif形式のアニメーション、CSSスタイルシートなど、ブラウザが扱えるファイルなら何でも使用可能です。</p><br><p>Tuesday JSは、プログラミングの知識が全然無い人でもアドベンチャー・ゲームやノベルゲームを作れるソフトウェアを目標に開発しています。会話場面の編集も、インターフェイスの作成も、ドラッグ・アンド・ドロップで操作でき、物語の進行に関わる要素やストーリーの分岐を樹枝のように描写するフローチャートでスクリプトの全体像を表示するので、分岐や選択肢が沢山ある大作でも全体構造を把握しながら制作できます。</p><br><p>アンドロイド機器並びにパソコン版WindowsとMac用の単体で動作するダウンロード版もあります。各々のバージョン間には完全な互換性があり、インターフェイスも共通しています。</p>"],
+    ["thanks","いつもありがとうございます！"],
+    ["donut","宜しければ、Patreonで制作を支援していただけると助かります。"],
+    ["title_1","ビジュアライゼーション(制作工程を視覚化)"],
+    ["screen_1","個々の選択肢や、選択の結果起こる結果などと併せてスクリプトの全体像を目で見て分かるように表示します。スクリプトの構造を明確に確認できるので、ナビやスクリプトを編集しやすくします。"],
     ["title_3","JSON"],
-    ["screen_3","すべての要素を含むスクリプトはJSON形式で保存されます。この形式で、ほとんどのプログラミングげんごが使えます。これにより、あなたのスクリプトを、他のエンジンやプラットフォームに移すことができます。<br>エディターにはJSONで作業するための埋め込みツールがあり、スクリプトのすべてのコンテンツや選択した要素を編集することができます。"],
+    ["screen_3","ゲームスクリプトは、全要素をJSON形式で保存します。JSONは、一部を除く全てのプログラム言語で扱えるので、他のゲームエンジンやコンピューターにTuesday JSで作成したスクリプトを移植できます。JSONを編集するツールを内蔵していおり、スクリプト全体をJSONとして編集することも、任意の箇所のみを編集することも可能です。"],
     ["title_4","プレビュー"],
-    ["screen_4","プレビューにより、スクリプトの特定の部分や選択したローカライゼーションでプロジェクトを始めることができます。"],
+    ["screen_4","各々の言語設定で、任意の時点から動作をテストできるプレビュー機能があります。"],
     ["title_2","ローカリゼーション"],
-    ["screen_2","他言語にストーリーをローカリゼーションできる広い可能性。テキストやグラフィックのような、プロジェクトの任意の要素を翻訳できます。プレビュー機能により、選択した言語でプロジェクトを運営することができます。すべてのテキストは、編集や他の版にローカリゼーションしたものを加えることができるよう、table csv fileに書き出されます。"],
-    ["screen_5","ビジュアルエディターはグラフィックもしくはキネティックノベルを、プログラミングの知識なしで作ることができます。<br>必要であれば、JavaScriptやcssを使って、基本機能を拡大することができます。"],
-    ["title_6","シーンエディタ"],
-    ["screen_6","は、すべての要素をその場所に配置できるだけでなく、さまざまな画面でシーンがどのように変化するかを示します。 シーンレイアウトでは、パーセンテージピクセルまたはセンチメートル単位の標準HTML単位を使用して、シーンをさまざまな画面により適切に適合させることができます。"]
+    ["screen_2","Tuesday JSには、翻訳版を制作するための機能も豊富です。ゲームを構成するテキストやグラフィックといった要素一つ一つに翻訳版用ファイルを設定でき、プレビュー機能で用意した翻訳版の動作確認ができます。CSV形式のテーブルデータとして出力できるので、他のテキストエディターで翻訳文章を編集したり追加したりすることもできます。"],
+    ["title_6","シーンエディター"],
+    ["screen_6","機能では、全種類の要素を分類して管理できます。加えて、制作環境と異なる画面環境でゲームを動作させたときの画面構成の変化を確認できます。標準HTML用のパーセント単位でもセンチメートル単位でもレイアウトを指定できるので、環境に合わせた適切な画面構成が作れます。"],
+    ["tool_1","<a href='tuesday_doc.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>Tuesday JSは、単体でjsonファイルの編集に必要な機能を全て具えているので、別個に外部のIDE(総合開発環境)を用意してGUI作成機能を使わなくても大丈夫です。Tuesday JSで使用できる<u style='text-decoration:underline;'><a href='tuesday_doc.html' target='_blank'>Runtime tuesday.jsとJSON</a></u></a>スクリプトの詳細は資料をご覧ください。"],
+    ["tool_2","<a href='tools/color_converter.html' target='_blank'><b>カラーコンバーター</b></a><br><br>RGB形式とHEX形式のカラーコードをエンジン内で相互変換処理でき、画像ファイルから任意の色を抜き出すこともできます。更に、画像の拡大縮小時に縦横比を自動で合わせる機能もあります。"],
+    ["tool_3","<a href='tools/text_converter.html' target='_blank'><b>テキストコンバーター</b></a><br><br>他のテキストエディターで作成したプレーンテキスト形式のファイルをJSON形式に変換するテキストコンバーターを内蔵しています。その際、選択肢として扱いやすいよう、ストーリーの記述を自動的に細部に分割します。"]
+],"de":[
+    ["title","Tuesday JS Visual Novel Engine"],
+    ["description","ist ein einfacher webbasierter, kostenloser, open-source Visual Novel Editor der im Webbrowser verwendet werden kann. Die Engine benutzt Standard HTML Elemente wie div und img. Das erlaubt die Benutzung aller Medien Formate die vom Browser unterstützt werden, einschließlich svg Vektorgrafiken, gif Animationen und css Styles.</p><br><p>Der Editor ist dazu da Abenteuerspiele (interactive fiction) und Visual Novels mit Entscheidungen (graphic visual novels) und ohne Entscheidungen (kinetic visual novels) zu erstellen ohne eine Programmiersprache beherrschen zu müssen. Er besitzt eine Drag & Drop Oberfläche um Szenen zu editieren und das Interface zu erstellen. Das Story Script wird als Ablaufdiagramm dargestellt in dem Geschichtselemente Knoten und Zweige sind. Dies vereinfacht die Navigation und hilft großartige Geschichten mit vielen Optionen zu erstellen.</p><br><p>Den Editor gibt es für Android Geräte und PCs. Alle Versionen sind vollständig miteinander kompatibel und haben dieselbe Oberfläche. </p>"],
+    ["thanks","Danke für deine Hilfe!"],
+    ["donut","Du kannst das Projekt auf Patreon unterschützen!"],
+    ["title_1","Visualisierung"],
+    ["screen_1","Der Editor zeigt eine Struktur des Skripts mit allen Elementen, wie Dialog Optionen und Entscheidungsauswahlen. Das macht es einfacher zu Navigieren und das Skript zu editieren."],
+    ["title_3","JSON"],
+    ["screen_3","Ein Story Skript speichert alle Elemente in eine JSON Struktur. Nahezu jede Programmiersprache kann mit diesem Format arbeiten. Dies erlaubt es dir dein Skript in eine andere Engine oder Plattform zu transferieren. Der Editor hat ein eingebautes Tool um mit JSON zu arbeiten. Das erlaubt es dir den gesamten Inhalt oder nur ein ausgewähltes Element zu bearbeiten."],
+    ["title_4","Vorschau"],
+    ["screen_4","Die Vorschau erlaubt es dir dein Projekt an einem bestimmten Punkt im Skript mit einer ausgewählten Sprache zu starten."],
+    ["title_2","Übersetzung"],
+    ["screen_2","Tuesday JS bietet viele Möglichkeiten Geschichten in andere Sprachen zu transferieren. Du kannst eine Übersetzung für nahezu jedes Element angeben, einschließlich Texten und Grafiken. Die Vorschau Funktion erlaubt es dir das Projekt mit einer bestimmten Sprache auszuführen. Alle Sprachtexte können auch in eine CSV Datei exportiert werden um sie mit einem anderen Editor zu übersetzen."],
+    ["title_6","Szenen Editor"],
+    ["screen_6","Der Szenen Editor Organisiert alle Elemente. Er zeigt auch wie sich die Szene auf verschiedenen Bildschirmen ändert. Im Szenen Layout kann man die Standard HTML Einheiten wie Prozent, Pixel oder Zentimeter benutzen um die Szene an unterschiedliche Bildschirme anzupassen."],
+    ["tool_1","<a href='tuesday_doc.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>Du kannst alle Tuesday JS Funktionen auch ohne des Visuellen Editor verwenden indem du die JSON Date in einer anderen Entwicklungsumgebung bearbeitest. Mehr Informationen zur Runtime und dem JSON Skript erhältst du in der <u style='text-decoration:underline;'><a href='tuesday_doc.html' target='_blank'>Dokumentation</a></u></a>."],
+    ["tool_2","<a href='tools/color_converter.html' target='_blank'><b>Farbkonvertierung</b></a><br><br>Konvertierung von RGB und Hexadezimalen Farbformaten. Du kannst eine Farbe auch direkt aus einem Bild extrahieren. Es gibt zusätzliche Funktionen zum Berechnen von Proportionen beim Ändern der Größe eines Bildes. "],
+    ["tool_3","<a href='tools/text_converter.html' target='_blank'><b>Textkonvertierung</b></a><br><br>Du kannst auch einfachen Text in das JSON Format für Tuesday JS konvertieren. Der Textkonverter trennt die Geschichte in kleine Stücke die in Dialogen verwendet werden können."]
 ],"es":[
     ["title","Tuesday JS motor de novelas visuales"],
     ["description","Tuesday JS es un editor de novelas visuales, sencillo y de código abierto, que puede ser utilizado en navegadores web. Está escrito en JavaScript sin la utilización de ninguna biblioteca de terceros, por lo tanto, no requiere de ninguna instalación de software adicional. El motor utiliza el estándar HTML, por ejemplo, div e img. Eso permite utilizar cualquier formato multimedia soportado por los navegadores, incluidos gráficos vectoriales svg, animaciones gif y estilos css.</p><br><p>El editor está diseñado para crear novelas interactivas, gráficas o cinéticas, sin necesidad de conocer un lenguaje de programación. Utiliza una interfaz de arrastrar y soltar para la edición de escenas y para hacer interfaces. El guión de la historia es mostrado como un diagrama de flujo con todos los elementos de la trama y todas las rutas. Esto facilita la navegación y ayuda a crear una gran historia con muchas tramas posibles.</p><br><p>Hay una versión del editor disponible como aplicación independiente para dispositivos Android y ordenadores. Todas las versiones son totalmente compatibles entre sí y tienen la misma interfaz.</p>"],
@@ -375,14 +402,14 @@ let translation = {
     ["tool_3","<a href='tools/text_converter.html' target='_blank'><b>Conversion de texte</b></a><br><br>Vous pouvez convertir le texte brut de l'histoire en JSON pour Tuesday JS. Le convertisseur de texte divisera le texte de l'histoire en petites parties à utiliser dans les dialogues."]
 ]}
 function getLang() {
-    if (window.location.hash=='#ru'){languare='ru'}
-    else if (window.location.hash=='#ja'){languare='ja'}
+    if (window.location.hash=='#ja'){languare='ja'}
     else if (window.location.hash=='#es'){languare='es'}
     else if (window.location.hash=='#en'){languare='en'}
     else if (window.location.hash=='#fr'){languare='fr'}
+    else if (window.location.hash=='#de'){languare='de'}
     else if (navigator.languages){languare=navigator.languages[0].substring(0,2);}
     else {languare=navigator.languagesubstring(0,2);}
-    if (languare!='ru'&&languare!='en'&&languare!='ja'&&languare!='es'&&languare!='fr'){languare='en'}
+    if (languare!='ru'&&languare!='en'&&languare!='ja'&&languare!='es'&&languare!='fr'&&languare!='de'){languare='en'}
     else {for(var i=0;i<translation[languare].length;i++){window.location.hash=languare;document.getElementById(translation[languare][i][0]).innerHTML=translation[languare][i][1];}}
     for (i=0;i<lang_choise.length;i++){if(lang_choise[i].value==languare){lang_choise[i].checked=true;break;}}
 }

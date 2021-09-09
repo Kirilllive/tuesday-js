@@ -5,9 +5,13 @@ is a simple web-based, free and open-source visual novel editor that can be used
 The editor is designed to create interactive fiction, graphic or kinetic novels without knowledge of programming languages. It uses a drag and drop interface for scene editing and to make interfaces. The story script is displayed as a flowchart node with all plot elements and branches. This makes it easier to navigate and helps you create a great story with many plot options.
 There is a version of the editor available as a standalone application for Android devices and desktops. All versions are fully compatible with each other and have the same interface.
 
-は、ビジュアルノベルやインタラクティブフィクション、テキストベースの冒険ゲームを作るためのオープンエンジンです。JavaScriptで書かれており、サードベンダーのライブラリは使われていません。pc用のモバイルアプリやプログラムを作る際の、Apache Cordovaフレームワークによるサポートがあります。エンジンには、divやimgのようなHTMLドキュメントの標準要素DOMを使用しており、ブラウザによってサポートされている、svgグラフィックやgifやcssスタイルのアニメを含む、任意のメディアフォーマットを使うことができます。
+は無駄を排した作りの、無償かつオープンソースのビジュアルノベル作成ソフトウェアです。ゲームの制作もプレイもウェブブラウザ上で可能です。JavaScriptで開発したソフトウェアですが、サードパーティ製ライブラリーを一切使用していないので、他のソフトウェアをインストールする手間は不要です。divやimgといった標準HTML文章でお馴染みのタグや要素でゲームのスクリプトを記述し、svg形式のベクターイメージ、gif形式のアニメーション、CSSスタイルシートなど、ブラウザが扱えるファイルなら何でも使用可能です。
+Tuesday JSは、プログラミングの知識が全然無い人でもアドベンチャー・ゲームやノベルゲームを作れるソフトウェアを目標に開発しています。会話場面の編集も、インターフェイスの作成も、ドラッグ・アンド・ドロップで操作でき、物語の進行に関わる要素やストーリーの分岐を樹枝のように描写するフローチャートでスクリプトの全体像を表示するので、分岐や選択肢が沢山ある大作でも全体構造を把握しながら制作できます。
+アンドロイド機器並びにパソコン版WindowsとMac用の単体で動作するダウンロード版もあります。各々のバージョン間には完全な互換性があり、インターフェイスも共通しています。
 
-Est un moteur open source gratuit pour créer des romans visuels, des histoires interactives et des jeux d'aventure basés sur du texte. Écrit en JavaScript, il n’utilise aucune bibliothèque tierce. Les projets peuvent être exportés vers Apache Cordova pour créer des applications mobiles ou des programmes PC. Le moteur utilise des éléments de document HTML standard DOM tels que div et img, ce qui permet d'utiliser tout format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.
+est un éditeur de roman visuel facile à utiliser. Gratuit et open source il tourne sur n'importe quel navigateur Web. Il est écrit en JavaScript, n'utilise pas de bibliothèques tierces et ne nécessite donc pas d'installation logicièle supplémentaire. Le moteur utilise des éléments HTML standard tels que div et img et permet d'utiliser n'importe quel format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.
+L'éditeur est conçu pour créer des fictions interactives graphiques ou cinétiques sans connaissance particulière des langages de programmation. Il utilise une interface glisser-déposer pour l'édition de scènes et pour créer des interfaces. Le scénario s'affiche sous la forme d'un organigramme composé de tous les éléments et branches de l'intrigue. Cela facilite la navigation et vous aide à créer des histoires avec de nombreuses options d'intrigue.
+Il existe une version de l'éditeur disponible en tant qu'application autonome pour les appareils Android et les ordinateurs de bureau. Toutes les versions sont entièrement compatibles entre elles et partagent la même interface.
 
 Home Page: https://kirilllive.github.io/tuesday-js/
 
@@ -28,25 +32,44 @@ visual editor for web browser https://kirilllive.github.io/tuesday-js/tuesday_vi
 The editor displays the structure of the script with all elements such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
 
 
-# Visualization
+# Visualization /ビジュアライゼーション
 The visual editor allows you to create graphics or kinetic novels without any programming knowledge. If is necessary, it is possible to expand the basic functionality using JavaScript and css.
+
+個々の選択肢や、選択の結果起こる結果などと併せてスクリプトの全体像を目で見て分かるように表示します。スクリプトの構造を明確に確認できるので、ナビやスクリプトを編集しやすくします。
+
+L'éditeur affiche entièrement la structure du scénario avec tous les éléments tels que les options de dialogue et les conséquences des réponses choisies. La navigation et la modification du scénario en est ainsi facilité.
 
 ![Tuesday JS script structure](screenshots/script_structure.jpg)
 
 
-# Scene editor
+# Scene editor / シーンエディター
 The scene editor can arrange all the elements in their places. It also shows how the scene will change on different screens. 
 In the scene layout you can use standard HTML units in percentage pixels or centimeters to better adapt the scene to different screens.
+
+機能では、全種類の要素を分類して管理できます。加えて、制作環境と異なる画面環境でゲームを動作させたときの画面構成の変化を確認できます。
+標準HTML用のパーセント単位でもセンチメートル単位でもレイアウトを指定できるので、環境に合わせた適切な画面構成が作れます。
+
+Cet éditeur vous permet d'organiser les éléments sur une scène. Il montre également comment la scène va changer sur différents écrans. 
+Dans la mise en page de la scène, vous pouvez utiliser des objets HTML standard dont les dimensions s'expriment en pourcentage de pixels ou en centimètres pour mieux adapter la scène aux différents écrans.
 	
 
 ![Tuesday JS scene editor](screenshots/scene_editor.jpg)
 
 
-# Localization
+# Localization / ローカリゼーション
 Tuesday JS provides ample opportunities for adapting stories into other languages.
 You can set the localized translation for almost any element of your project including text and graphics.
 The preview function allows you to run the project in the selected language.
 All language texts can also be exported to a table csv file for editing or adding localizations in another editor.
+
+Tuesday JSには、翻訳版を制作するための機能も豊富です。
+ゲームを構成するテキストやグラフィックといった要素一つ一つに翻訳版用ファイルを設定でき、プレビュー機能で用意した翻訳版の動作確認ができます。
+CSV形式のテーブルデータとして出力できるので、他のテキストエディターで翻訳文章を編集したり追加したりすることもできます。
+
+De nombreuses possibilités d'adaptation les histoires dans d'autres langues. 
+Vous pouvez définir la traduction de presque tous les éléments de votre projet, tels que le texte et les graphiques. 
+La fonction d'aperçu vous permet d'exécuter le projet dans la langue sélectionnée. 
+Tous les textes peuvent être exportés vers un fichier csv pour édition et ajout de localisations dans un autre éditeur, tel qu'un tableur.
 
 
 ![Tuesday JS localization](screenshots/localization.jpg)
@@ -55,14 +78,23 @@ All language texts can also be exported to a table csv file for editing or addin
 # JSON
 A story script has all the elements stored in a JSON structure. Almost any programming language can work with this format. This allows you to port your script to another engine or platform.
 The editor has a built-in tool to work with JSON. This will allow you to edit the entire contents of the script or just the selected element.
-	
+
+ゲームスクリプトは、全要素をJSON形式で保存します。JSONは、一部を除く全てのプログラム言語で扱えるので、他のゲームエンジンやコンピューターにTuesday JSで作成したスクリプトを移植できます。
+JSONを編集するツールを内蔵していおり、スクリプト全体をJSONとして編集することも、任意の箇所のみを編集することも可能です。
+    
+Tous les éléments du scénario sont stockés dans une structure JSON, un format universel lisible par la quasi totalité des langages de programmation. Vous pouvez ainsi porter votre scénario sur un autre moteur ou une autre plateforme. 
+L'éditeur dispose d'un outil intégré pour travailler la structure JSON qui vous permet de modifier l'intégralité du scénario ou uniquement un élément spécifique.
+
 
 ![Tuesday JS json edit](screenshots/json_edit.jpg)
 
 
-# Preview
+# Preview / プレビュー
 Preview allows you to start a project from a certain point in the script with the selected localization.
 
+各々の言語設定で、任意の時点から動作をテストできるプレビュー機能があります。
+
+L'aperçu vous permet de démarrer un projet à partir de n'importe quel point du scénario et avec la localisation sélectionnée.
 
 
 ![Tuesday JS preview](screenshots/preview.jpg)
