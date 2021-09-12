@@ -65,8 +65,8 @@ function hidden_objects(){
                 }
                 name.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
             }
-            r=s+Math.round(Math.random()*(step-1));
-            if(!arr_dialog.objects[r]){step=1;r=arr_dialog.objects.length-1;}
+            if(step>1){r=s+Math.round(Math.random()*(step-1))}
+            if((arr_dialog.objects.length-s)<(findobjects-z)){r=s;step=1}
             if(story_json.parameters.hidden_objects.label.color){name.style.backgroundColor=story_json.parameters.hidden_objects.label.color}
             tue_text_view.appendChild(name);
             z++

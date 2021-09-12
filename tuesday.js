@@ -163,7 +163,7 @@ function name_block_update(){
         }
     }
 	tuesday.dispatchEvent(new Event('script_executed'));
-    if (localStorage.getItem("tue_auto_data" && story_json.parameters.autosave)){story_json.parameters.variables=JSON.parse(localStorage.getItem("tue_auto_data"));}
+    if(story_json.parameters.autosave && localStorage.getItem("tue_auto_data")){story_json.parameters.variables=JSON.parse(localStorage.getItem("tue_auto_data"));}
 	creation_buttons();
     creation_scene();
 } function creation_buttons(){
