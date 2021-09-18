@@ -3998,8 +3998,7 @@ function apply_setup(){
     if(Object.keys(story_script.parameters.cursors).length==0){delete story_script.parameters.cursors}
     li_n=document.getElementsByClassName("title_lang");
     li_v=document.getElementsByClassName("title_name");
-    story_script.parameters.title={};
-    story_script.parameters.languares=[];
+    story_script.parameters.title={};story_script.parameters.languares=[];languare=li_n[0].value;
     for(i=0;i<li_n.length;i++){story_script.parameters.title[li_n[i].value]=li_v[i].value;story_script.parameters.languares.push(li_n[i].value);}
     data_only(story_script.parameters,'title');
     li_v=document.getElementsByClassName("chec_plugin");
