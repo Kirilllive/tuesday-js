@@ -99,7 +99,7 @@ L'aperçu vous permet de démarrer un projet à partir de n'importe quel point d
 ![Tuesday JS preview](screenshots/preview.jpg)
 
 
-# Android version
+# Warning for Android version
 
 Minimum version of Android 5.1
 
