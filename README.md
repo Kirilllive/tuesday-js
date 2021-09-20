@@ -26,6 +26,8 @@ Twitter: https://twitter.com/TuesdayJS_vn
 
 visual editor for web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
 
+Tutorial for creating visual novels: https://kirilllive.github.io/tuesday-js/tutorial.html
+
 The editor displays the structure of the script with all elements such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
 
 
@@ -97,10 +99,13 @@ L'aperçu vous permet de démarrer un projet à partir de n'importe quel point d
 ![Tuesday JS preview](screenshots/preview.jpg)
 
 
-# Tutorial for Visual Editor
+# Android version
 
-Tutorial for creating visual novels: https://kirilllive.github.io/tuesday-js/tutorial.html
+Minimum version of Android 5.1
 
+If you have problems with files on Android 10 and higher, then you need to specify 'Allow access to manage all files' in the application settings in 'Permissions' section.
+
+![Tuesday JS error access files on Android](https://img.itch.zone/aW1nLzcwMjY4NzYucG5n/original/8TYu95.png)
 
 # Tutorial for RunTime
 
