@@ -4230,7 +4230,7 @@ function make_resizable(s,f){
     }
     function elementDragTouch(e){
         e=e||window.event;
-        e.preventDefault();						  
+        e.preventDefault();
         original_mouse_x=original_x-e.touches[0].clientX;
         original_mouse_y=original_y-e.touches[0].clientY;
         original_x=e.touches[0].clientX;
