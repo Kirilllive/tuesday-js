@@ -74,11 +74,11 @@ function name_block_update(){
     tue_name_block.style.alignItems=((story_json.parameters.name_panel.align)?story_json.parameters.name_panel.align[1]:"center");
     if(tue_name_block.style.width=story_json.parameters.name_panel.size[0]!=0){tue_name_block.style.width=story_json.parameters.name_panel.size[0];}
     tue_name_block.style.height=story_json.parameters.name_panel.size[1];
-    tue_name_block.style.lineHeight=story_json.parameters.name_panel.size[1];
+    tue_name_block.style.lineHeight=story_json.parameters.name_panel.size[1];tue_name_block.style.top="0px"
     if(story_json.parameters.name_panel.position[0]!=0){tue_name_block.style.left=story_json.parameters.name_panel.position[0];}
     if(story_json.parameters.name_panel.position[1]!=0){tue_name_block.style.right=story_json.parameters.name_panel.position[1];}
     if(story_json.parameters.name_panel.position[2]!=0){tue_name_block.style.top=story_json.parameters.name_panel.position[2];}
-    if(story_json.parameters.name_panel.position[3]!=0){tue_name_block.style.bottom=story_json.parameters.name_panel.position[3];}
+    if(story_json.parameters.name_panel.position[3]!=0){tue_name_block.style.bottom=story_json.parameters.name_panel.position[3];}else{tue_name_block.style.top="0px"}
     tue_name_block.style.zIndex=1001;
 } function base_creation(){
     get_lang();
@@ -148,7 +148,10 @@ function name_block_update(){
         tue_id=document.getElementById(tue_id);
         tue_id.style.backgroundRepeat="no-repeat";
         tue_id.style.backgroundPosition="center";
-        if(arr_u.art){tue_id.style.backgroundImage="url('"+art_data(arr_u.art)+"')";}
+        if(arr_u.art){
+            var a=art_data(arr_u.art)
+            if(a.length>0){tue_id.style.backgroundImage="url('"+art_data(arr_u.art)+"')";}
+        }
         if(arr_u.art_size){
             if (arr_u.art_size=='patch'){tue_id.style.backgroundImage='none'}
             if (typeof arr_u.art_size==='object'){tue_id.style.backgroundSize=arr_u.art_size[0]+" "+arr_u.art_size[1];}
