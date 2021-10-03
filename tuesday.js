@@ -261,7 +261,7 @@ function name_block_update(){
         if(arr_dialog.background_color){
             tuesday.style.backgroundColor=arr_dialog.background_color;
         }
-        if(arr_dialog.background_align){tuesday.style.backgroundPosition=arr_dialog.background_align;}
+        tuesday.style.backgroundPosition=((arr_dialog.background_align)?arr_dialog.background_align:"center");
         if(arr_dialog.background_image){tuesday.style.backgroundImage="url('"+art_data(arr_dialog.background_image)+"')";}
         if(document.getElementById("tue_home")){
             if(tue_story == story_json.parameters.launch_story){document.getElementById("tue_home").style.visibility="hidden";}
@@ -414,7 +414,7 @@ function name_block_update(){
                                 old[o].style.width=arr_dialog.art[i].size[0];
                                 old[o].style.height=arr_dialog.art[i].size[1];
                             }
-                            if(arr_dialog.art[i].align){old[o].style.objectPosition=arr_dialog.art[i].align[0]+" "+arr_dialog.art[i].align[1];}
+                            if(arr_dialog.art[i].align){old[o].style.objectPosition=arr_dialog.art[i].align[0]+" "+arr_dialog.art[i].align[1];}else{old[o].style.objectPosition="center"}
                             old[o].style.transform=((arr_dialog.art[i].hotspot)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
                             if(arr_dialog.art[i].position[0]!=0){old[o].style.left=arr_dialog.art[i].position[0];}
                             if(arr_dialog.art[i].position[1]!=0){

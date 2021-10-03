@@ -240,6 +240,27 @@ function copy(id) {
 	copyText.setSelectionRange(0,99999)
 	document.execCommand("copy");
 }
+var drop = {
+    init:function(){
+        if (window.File&&window.FileReader&&window.FileList&&window.Blob) {
+            window.addEventListener("dragover",function(e){
+                e.preventDefault();
+                e.stopPropagation();
+            });
+            window.addEventListener("drop",function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                img.src=window.URL.createObjectURL(e.dataTransfer.files[0])
+                file_name.value=e.dataTransfer.files[0].name;
+                img.onload=function(){
+                    size=[img.width,img.height];
+                    onload_img();
+                }
+            });
+        }
+    },
+};
+window.addEventListener("DOMContentLoaded", drop.init);
 </script>
 </body>
 </html>
