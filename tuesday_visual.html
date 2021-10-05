@@ -779,7 +779,7 @@ function update_novel(){
 }
 function load_story_edit(url){
     var xmlhttp=new XMLHttpRequest();
-    if(scene_screen){scen_edit_update(false)};
+    if(scene_screen){scen_edit_update(false);open_tool()};
     xmlhttp.onreadystatechange=function(){
         if(this.readyState==4&&this.status==200){
             new_novel()
@@ -1429,6 +1429,7 @@ function build_choice(){
 }
 function new_project(){
     scen_editor_apply();
+    open_tool();
     new_novel();
     var html="<div class='window' style='width:360px;'><div class='win_head'>New project<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><br><div style='overflow-x:hidden; overflow-y:auto; width:100%; max-height:60vh;'>"
         +"<p align='left' style=' margin-left:8px;'>Project folder/location</p>"
