@@ -1,5 +1,6 @@
 var findobjects=0,startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null,ho_scale=1;
 function hidden_objects(){
+    clearTimeout(dialog_timeout);
     arr_dialog=story_json[tue_story][scene].hidden_objects
     tue_text_view.innerHTML='';
     tuesday.style.backgroundImage='none'
