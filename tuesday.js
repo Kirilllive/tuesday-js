@@ -438,6 +438,7 @@ function name_block_update(){
             }
             function creation_art(i){
                 var art=document.createElement("img");
+                if(arr_dialog.art[i].className){art.classList=arr_dialog.art[i].className}
                 art.src=art_data(arr_dialog.art[i].url);
                 art.setAttribute("volume",((arr_dialog.art[i].url[languare])?arr_dialog.art[i].url[languare]:arr_dialog.art[i].url));
                 art.classList.add("tue_art")
