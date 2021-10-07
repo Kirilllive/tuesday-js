@@ -1677,7 +1677,7 @@ function file_catalog(id,files,area,preview,arr){
             for(f=0;f<project_files.length;f++){
                 for(t=0;t<files.length;t++){
                     if(project_files[f][0].indexOf(files[t])>-1){
-                        code+='<tr><td class="add_el add_file" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="'+((a.length>1)?a+'.src=\''+project_files[f][1]+'\';':'')+' '+arr+'=\''+project_files[f][0]+'\';'+((area.length>1)?area+'.value=\''+project_files[f][0]+'\';':'')+((preview.length>1)?preview+'.style.backgroundImage=\'url('+project_files[f][1]+')\';':'')+'menu_add.style.visibility=\'hidden\';'+((tool_update)?tool_update+';':'')+'"><table style="height:64px;"><tbody><tr><td width="64px" height="64px" style=\'background-image:url(\"'+project_files[f][1]+'\");background-size:contain;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                        code+='<tr><td class="add_el add_file" title="'+project_files[f][0]+'" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="'+((a.length>1)?a+'.src=\''+project_files[f][1]+'\';':'')+' '+arr+'=\''+project_files[f][0]+'\';'+((area.length>1)?area+'.value=\''+project_files[f][0]+'\';':'')+((preview.length>1)?preview+'.style.backgroundImage=\'url('+project_files[f][1]+')\';':'')+'menu_add.style.visibility=\'hidden\';'+((tool_update)?tool_update+';':'')+'"><table style="height:64px;"><tbody><tr><td width="64px" height="64px" style=\'background-image:url(\"'+project_files[f][1]+'\");background-size:contain;background-repeat:no-repeat;background-position:center;\'></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                     }
                 }
             }
@@ -1686,7 +1686,7 @@ function file_catalog(id,files,area,preview,arr){
             for(f=0;f<project_files.length;f++){
                 for(t=0;t< files.length;t++){
                     if(project_files[f][2].indexOf(files[t])>-1){
-                        code+='<tr><td class="add_el add_file" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="var n='+((id!='files_auio')?'add_audio(\''+project_files[f][0]+'\')':'\''+project_files[f][0]+'\'')+';'+arr+'=n;'+area+'.value=n;menu_add.style.visibility=\'hidden\';'+((preview=='update')?'update_novel();':'')+'"><table style="height:64px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_audio_play"></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                        code+='<tr><td class="add_el add_file" title="'+project_files[f][0]+'" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="var n='+((id!='files_auio')?'add_audio(\''+project_files[f][0]+'\')':'\''+project_files[f][0]+'\'')+';'+arr+'=n;'+area+'.value=n;menu_add.style.visibility=\'hidden\';'+((preview=='update')?'update_novel();':'')+'"><table style="height:64px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_audio_play"></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                     }
                 }
             }
@@ -1695,7 +1695,7 @@ function file_catalog(id,files,area,preview,arr){
             for(f=0;f<project_files.length;f++){
                 for(t=0;t< files.length;t++){
                     if(project_files[f][2].indexOf(files[t])>-1){
-                        code+='<tr><td class="add_el add_file" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="'+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';menu_add.style.visibility=\'hidden\';'+preview+'.innerHTML=preview_video(\''+project_files[f][0]+'\');"><table style="height:64px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_video"></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                        code+='<tr><td class="add_el add_file" title="'+project_files[f][0]+'" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="'+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';menu_add.style.visibility=\'hidden\';'+preview+'.innerHTML=preview_video(\''+project_files[f][0]+'\');"><table style="height:64px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_video"></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                     }
                 }
             }
@@ -1704,7 +1704,7 @@ function file_catalog(id,files,area,preview,arr){
             for(f=0;f<project_files.length;f++){
                 for(t=0;t<files.length;t++){
                     if(project_files[f][0].indexOf(files[t])>-1){
-                        code+='<tr><td class="add_el add_file" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="'+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';menu_add.style.visibility=\'hidden\';"><table style="height:64px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_new"></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
+                        code+='<tr><td class="add_el add_file" title="'+project_files[f][0]+'" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="'+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';menu_add.style.visibility=\'hidden\';"><table style="height:64px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_new"></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'
                     }
                 }
             }
