@@ -320,6 +320,37 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
     border-radius:4px;cursor:pointer;
 }
 .align:checked {background-color:var(--cb);}
+.switch {
+  position:relative;
+  display:inline-block;
+  width:42px;
+  height:24px;
+}
+.switch input{opacity:0;width:0;height:0;}
+.slider{
+  position:absolute;
+  cursor:pointer;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color:var(--cw);
+  transition:.2s;
+  border-radius:12px;
+}
+.slider:before{
+  position:absolute;
+  content:"";
+  height:18px;
+  width:18px;
+  left:3px;
+  bottom:3px;
+  background-color:#fff;
+  transition:.2s;
+  border-radius:12px;
+}
+input:checked+.slider{background-color:var(--cb);}
+input:checked+.slider:before{transform:translateX(18px);}
 </style>
 </head>
 <body onload="world_size();" style='background-color:var(--cw);font-size:12px;'>
@@ -3765,7 +3796,7 @@ function setup(){
     }
     var plugins_show="<table id='plugin' style='width:100%;border-spacing:10px;border-collapse:separate;'>"
     var plugins_name
-    for(i=0;i<Object.keys(plugins_list).length;i++){plugins_name=Object.keys(plugins_list)[i];plugins_show+="<tr><td align='right' style='padding-top:4px;height:40px;'><input id='"+plugins_name+"' type='checkbox' class='chec_plugin checkbox_a' "+((story_script.parameters.plugins.indexOf(plugins_name)>-1)?'checked' :'')+"></td><td align='left' style='width:80px;'>"+plugins_list[plugins_name].name+"</td><td>"+plugins_list[plugins_name].text+"</td></tr>"}
+    for(i=0;i<Object.keys(plugins_list).length;i++){plugins_name=Object.keys(plugins_list)[i];plugins_show+="<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switch'><input type='checkbox' id='"+plugins_name+"' class='chec_plugin switch' "+((story_script.parameters.plugins.indexOf(plugins_name)>-1)?'checked' :'')+"><span class='slider round'></span></label></td><td align='left' style='width:80px;'>"+plugins_list[plugins_name].name+"</td><td>"+plugins_list[plugins_name].text+"</td></tr>"}
     plugins_show+="</table>"
     var thems="<table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody><tr>"
     for(i=0;i<7;i++){thems+="<td align='center'><input class='checkbox_b' type='radio' name='color' style='background-color:"+color_ui[i][0]+";' value='"+i+"' "+((setup_editor.ui==i)?'checked' :'')+"></td>"}
@@ -3789,7 +3820,8 @@ function setup(){
         "<tr><td align='right'>font size </td><td align='left' colspan='2'><input id='font_size' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size:'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>icon </td><td align='left'><input id='icon' class='input_text' value='"+((story_script.parameters.icon)?story_script.parameters.icon :'')+"' type='text'></td><td id='l_icon' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\"img\",\"icon\",0,\"story_script.parameters.icon\")'></td></tr>"+
         "<tr><td height='20px'></td><td></td></tr>"+
-        "<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px;width:60%;'><table style='width:100%'><tbody><tr><td><input id='autosave' type='checkbox' class='checkbox_a' "+((story_script.parameters.autosave)?'checked':'')+"></td><td align='right'>Clear localStorage:</td></tr></tbody></table></td><td onclick=\"localStorage.clear();toast('localStorage clear');\" style='width:40px;cursor:pointer;' title='clear autosave' class='icon icon_del'></td></tr>"+
+        "<tr><td align='right'>autosave </td><td align='left' style='padding-top:4px;width:60%;'><table style='width:100%'><tbody><tr><td><label class='switch'><input type='checkbox' id='autosave' class='switch' "+((story_script.parameters.autosave)?'checked':'')+"><span class='slider round'></span></label>"+
+        "</td><td align='right'>Clear localStorage:</td></tr></tbody></table></td><td onclick=\"localStorage.clear();toast('localStorage clear');\" style='width:40px;cursor:pointer;' title='clear autosave' class='icon icon_del'></td></tr>"+
         "</table></div>"+
         //
         "<div id='blank_3' style='visibility:hidden;' class='set_blank'><table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
@@ -3818,8 +3850,8 @@ function setup(){
         "<tr><td align='right'>Height</td><td align='left' colspan='2'><input id='pv_h' class='input_text' value='"+setup_editor.pvw[1]+"' type='text'></td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style=' margin-left:8px;'>Display script</p><hr><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
-        "<tr><td align='right' style='padding-top:4px;height:40px;'><input id='all_lines' type='checkbox' class='chec_plugin checkbox_a' "+((setup_editor.lines)?'checked' :'')+"></td><td align='left' style='width:80px;'>All Lines </td><td> Show all lines of a block or only a selected block</td></tr>"+
-        "<tr><td align='right' style='padding-top:4px;height:40px;'><input id='ani_lines' type='checkbox' class='chec_plugin checkbox_a' "+((setup_editor.lines_anim)?'checked' :'')+"></td><td align='left' style='width:80px;'>Animation </td><td> Animation of movement of lines to the next block</td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switch'><input type='checkbox' id='all_lines' class='chec_plugin switch' "+((setup_editor.lines)?'checked' :'')+"><span class='slider round'></span></label></td><td align='left' style='width:80px;'>All Lines </td><td> Show all lines of a block or only a selected block</td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switch'><input type='checkbox' id='ani_lines' class='chec_plugin switch' "+((setup_editor.lines_anim)?'checked' :'')+"><span class='slider round'></span></label></td><td align='left' style='width:80px;'>Animation </td><td> Animation of movement of lines to the next block</td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style='margin-left:8px;'>Light them</p><hr><form id='ui_color'>"+thems+
         "</form><br>"+
