@@ -714,9 +714,9 @@ function name_block_update(){
 	 for(var i=scene;i >= 0;i--){
 		if(story_json[tue_story][i].background_music){
 			if(tue_bg_music.canPlayType("audio/mpeg")){
-				if(story_json[tue_story][i].background_music.indexOf("blob:") > -1){
+				if(story_json[tue_story][i].background_music.includes("blob:")){
 					tue_bg_music.src=story_json[tue_story][i].background_music;
-				} else if(story_json[tue_story][i].background_music.indexOf(".mp3") > -1){
+				} else if(story_json[tue_story][i].background_music.includes(".mp3")){
 					tue_bg_music.src=story_json[tue_story][i].background_music;
 				}else{tue_bg_music.src=story_json[tue_story][i].background_music+".mp3";}
             }else{tue_bg_music.src=story_json[tue_story][i].background_music+".ogg";}
@@ -732,9 +732,9 @@ function name_block_update(){
 		audio.preload="auto"
 		audio.id=Object.keys( story_json.parameters.sounds)[i];
 		if(audio.canPlayType("audio/mpeg")){
-			if(story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]].indexOf("blob:") > -1){
+			if(story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]].includes("blob:")){
 				audio.src=story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]];
-			} else if(story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]].indexOf(".mp3") > -1){
+			} else if(story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]].includes(".mp3")){
 				audio.src=story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]];
 			}else{audio.src=story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]]+".mp3";}
 		}else{audio.src=story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]]+".ogg";}

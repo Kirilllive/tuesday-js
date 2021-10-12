@@ -84,9 +84,9 @@ function hidden_objects(){
     tue_objectsroom.style.transformOrigin="left top";
     if(arr_dialog.background_music){
         if(tue_bg_music.canPlayType("audio/mpeg")){
-            if(arr_dialog.background_music.indexOf("blob:")>-1){
+            if(arr_dialog.background_music.includes("blob:")){
                 tue_bg_music.src=arr_dialog.background_music;
-            }else if(arr_dialog.background_music.indexOf(".mp3")>-1){
+            }else if(arr_dialog.background_music.includes(".mp3")){
                 tue_bg_music.src=arr_dialog.background_music;
             }else{tue_bg_music.src=arr_dialog.background_music+".mp3";}
         }else{tue_bg_music.src=arr_dialog.background_music+".ogg";}

@@ -195,7 +195,7 @@ function proportion(w,ratio) {
     ctx.drawImage(img,0,0,size[0],size[1]);
 }
 function correct_value(name){
-    if(name.indexOf("+")>-1||name.indexOf("-")>-1||name.indexOf("*")>-1||name.indexOf("/")>-1){
+    if(name.includes("+")||name.includes("-")||name.includes("*")||name.includes("/")){
         return parseInt(eval(name))
     }else{return parseInt(name)}
 }
