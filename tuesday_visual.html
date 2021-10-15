@@ -771,12 +771,12 @@ function loadFiles(e){
     wf=e.target.files[0].webkitRelativePath.split("/")[0]+"/";
     if(load_new){
         clear_Files();
-        for(var i=0;i<e.target.files.length;i++){project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
+        for(var i=0;i<e.target.files.length;i++){project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3'),'',URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
         project_foler.value=wf;
     }else{
         var jsons=[];clear_Files();
         for(var i=0;i<e.target.files.length;i++){
-            project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);
+            project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3'),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);
             if(e.target.files[i].type=="application/json"){jsons.push([i,e.target.files[i].name])}
         }
         if(jsons.length==1){load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))}
@@ -1704,7 +1704,7 @@ function file_catalog(id,files,area,preview,arr){
         if(id.includes('artt')){a=id.replace("artt","art")}
         else{a=''}
         if(files=='img'){
-            files=['.jpg','.svg','.gif','.jpeg','.png','.webp','.apng','.bmp'];
+            files=['.jpg','.JPG','.svg','.SVG','.gif','.GIF','.jpeg','.JPEG','.png','.PNG','.webp','.WEBP','.apng','.APNG','.aPNG','.bmp','.BMP'];
             for(f=0;f<project_files.length;f++){
                 for(t=0;t<files.length;t++){
                     if(project_files[f][0].includes(files[t])){
