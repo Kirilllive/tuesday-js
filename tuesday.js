@@ -88,6 +88,10 @@ function name_block_update(){
         if(story_json.parameters.title[languare]){document.title=story_json.parameters.title[languare];
         }else{document.title=story_json.parameters.title;}
     }
+    if(story_json.parameters.pixelmode){
+        tuesday.style.imageRendering="pixelated";
+        tuesday.style.fontSmooth="never";
+    }
     tuesday.style.backgroundRepeat="no-repeat";
     tuesday.style.backgroundPosition="center";
     tuesday.style.position="relative";
@@ -682,15 +686,17 @@ function name_block_update(){
     if(story_json.parameters.variables){localStorage.setItem("tue_"+tip+"_data",JSON.stringify( story_json.parameters.variables ));};
     if(tip == "bookmark"){tuesday.dispatchEvent(new Event('save'));}
 } function load_stag(tip){
-    del_element("tue_choice")
-    del_element("tue_html_sc")
-    scene=localStorage.getItem("tue_"+tip+"_scene");
-    dialog=localStorage.getItem("tue_"+tip+"_dialog");
-    tue_story=localStorage.getItem("tue_"+tip+"_story");
-    story_json.parameters.variables=JSON.parse(localStorage.getItem("tue_"+tip+"_data"));
-    creation_scene();
-	search_music();
-    tuesday.dispatchEvent(new Event('load'));
+    if(story_json[localStorage.getItem("tue_"+tip+"_story")]){
+        del_element("tue_choice")
+        del_element("tue_html_sc")
+        scene=localStorage.getItem("tue_"+tip+"_scene");
+        dialog=localStorage.getItem("tue_"+tip+"_dialog");
+        tue_story=localStorage.getItem("tue_"+tip+"_story")
+        story_json.parameters.variables=JSON.parse(localStorage.getItem("tue_"+tip+"_data"));
+        creation_scene();
+        search_music();
+        tuesday.dispatchEvent(new Event('load'));
+    };
 } function go_to(go){
     del_element("tue_choice");
     del_element("tue_html_dialog");
