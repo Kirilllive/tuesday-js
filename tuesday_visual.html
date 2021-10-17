@@ -771,12 +771,12 @@ function loadFiles(e){
     wf=e.target.files[0].webkitRelativePath.split("/")[0]+"/";
     if(load_new){
         clear_Files();
-        for(var i=0;i<e.target.files.length;i++){project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3'),'',URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
+        for(var i=0;i<e.target.files.length;i++){project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
         project_foler.value=wf;
     }else{
         var jsons=[];clear_Files();
         for(var i=0;i<e.target.files.length;i++){
-            project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3'),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);
+            project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);
             if(e.target.files[i].type=="application/json"){jsons.push([i,e.target.files[i].name])}
         }
         if(jsons.length==1){load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))}
