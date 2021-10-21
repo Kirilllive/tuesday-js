@@ -445,7 +445,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                     <td style="background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);"><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>
                         <table onclick="block_open('set_preview');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Preview</td></tr></tbody></table>
                         <div class="set_panel" id="set_preview" style="width:100%;display:block;">
-                        <table style="width:100%;"><tbody>
+                        <table id="set_layout" style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
                                 <select id='ratio_screen' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(false);video_size();' style='width:100%;'>
                                       <option value=true selected>landscape</option>
@@ -453,7 +453,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;'>
-                               <select id='screen_size' oninput='preview_size(false);' style='width:100%;'>
+                               <select id='screen_size' oninput='setup_editor.preview[2]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(true);' style='width:100%;'>
                                     <option value="0" selected>My screen</option>
                                     <option value="-1">Preview size</option>
                                     <option value="1080">1080</option>
@@ -463,14 +463,14 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Screen</td><td style='padding-right:8px;'>
-                               <select oninput='p_width.value=this.value;setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(false);video_size();' style='width:100%;'>
+                               <select id='aspect_ratio' oninput='p_width.value=this.value;setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(false);video_size();' style='width:100%;'>
                                     <option value="100">1:1</option>
-                                    <option value="76" selected>4:3</option>
+                                    <option value="76">4:3</option>
                                     <option value="56">16:9</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Ratio</td><td style='padding-right:8px;'>
-                                <input id='p_width' class='input_slider input_slider_progress' onchange='setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='preview_size(false);video_size();' type="range" value='100' min="50" max="100" style='width:100%;'>
+                                <input id='p_width' class='input_slider input_slider_progress' onchange='aspect_ratio.selectedIndex="-1";setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='preview_size(false);video_size();' type="range" value='100' min="50" max="100" style='width:100%;'>
                             </td></tr>
                         </tbody></table></div>
                         <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Text panel (global)</td></tr></tbody></table>
@@ -1430,7 +1430,7 @@ function toast(message, color){
     x.classList.add("toast_anim");
 }
 function about(){
-    var html="<div class='window' style='padding:24px 16px;width:412px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.74 (Beta)</p><br>"
+    var html="<div class='window' style='padding:24px 16px;width:412px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.76 (Beta)</p><br>"
     +"<table style=' border-spacing:10px;border-collapse:separate; width: 100%;'><tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr><tr>"
     +"<td class='button_menu' style='border-radius:16px;width:25%;height:64px' align='center'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 256 256' style='filter:var(--ft);'><path d='M128,0C57,0 0,57 0,128c0,57 37,104 88,121 6,1 9,-3 9,-6 0,-3-0,-13-0,-24C64,225 56,212 53,204 52,201 45,189 40,186c-4,-2-11,-8-0,-8 10,-0 17,9 20,13 12,19 30,14 37,11 1,-8 4,-14 8,-17-28,-3-58,-14-58,-63 0,-14 5,-25 13,-34-1,-3-6,-16 1,-34 0,0 11,-3 35,13 10,-3 21,-4 32,-4 11,0 22,1 32,4 24,-17 35,-13 35,-13 7,18 3,31 1,34 8,9 13,20 13,34 0,49-30,60-58,63 5,4 9,12 9,24 0,17-0,31-0,35 0,3 2,7 9,6C219,232 256,184 256,128 256,57 199,0 128,0Z' fill='#000' /></svg></a></td>"
     +"<td class='button_menu' style='border-radius:16px;width:25%;height:64px' align='center'><a href='https://kirill-live.itch.io/tuesday-js' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 128 128' style='filter:var(--ft);'><path d='M18,8.6C13,12 2,24 2,27v5.3c0,7 6,12 12,12.6 7,0 12,-5 12.6,-12.4 0,7 5,12.4 12.4,12.4 6.8,0 12,-5 12.2,-12.4 0,7 6,12.4 12.7,12.4h0.1c7,0 12.7,-5.6 12.7,-12.4 0,7 5,12.4 12.2,12.4 7,0 12.4,-6 12.4,-12.4 0,7 6,12.4 12.5,12.4 6,0 12,-6 12,-12V27C126,24 115,12 110,8.6 93,8 81,8 64,8 47,8 23,8 18,9ZM51.1,42.1a14.1,14.1 0 0 1-2.4,3.1c-3,3-6,4-10,4A14.4,14.4 0 0 1 28.5,45.3C27.6,44.3 26.9,43.3 26.2,42.2l-0,0c-0.6,1.1-1.6,2.1-2.5,3a14.4,14.4 0 0 1-10,4.1c-0.47,0-0.96,-0.13-1.36,-0.26-0.55,5.74-0.78,11.23-0.86,15.24l-10e-4,0c-0,2-0,3.7-0,6 0.1,12-1.2,39.1 5.3,45.7 10.1,2.3 28.6,3.4 47.3,3.4h0c18.6,-0 37,-1 47.2,-3.4 6.5,-6.6 5.2,-33.6 5.3,-45.7-0,-2.3-0,-4-0,-6l-9e-4,-0c-0,-4-0.3,-9.5-1,-15-0.4,0-1,0.2-1.3,0.2a14.4,14.4 0 0 1-10,-4.1c-1,-1-2,-2-2.5,-3l0,0c0.6,1-1.3,2-2.3,3a14.4,14.4 0 0 1-10,4c-4,0-7.4,-1.5-10,-4a14,14 0 0 1-2.4,-3 14,14 0 0 1-2.4,3 14.4,14.4 0 0 1-10,4c-0.1,0-0.2,-0-0.4,-0h-0c-0.13,0-0.3,0-0.4,0a14.4,14.4 0 0 1-10,-4.1 14.1,14.1 0 0 1-2.4,-3.1zm-10.3,13.4-9.7e-4,0h0c4.1,0 7.7,0 12.2,5 3.5,-0.3 7.2,-0.5 11,-0.55h0c3.7,-0 7.4,0.2 11,0.5 4.5,-5 8.1,-5 12.25,-5h0l-9.7e-4,-0c1.9,0 9.7,0 15,15.2l5.8,20.8c4.3,15.5-1.3,15.8-8.4,15.8-10.5,-0.4-16.3,-8-16.3,-15.6-5.8,0.9-12.5,1.4-19.3,1.4h-0c-6.7,0-13.5,-0.4-19.3,-1.4 0,7.6-5.8,15.2-16.3,15.6C21.2,107.3 15.5,107 19.9,91.5L25.6,70.7C31,55.5 39,55.5 40.7,55.5ZM64,67.4v0c-0,0-11,10-13,13.7l 7.2,-0.3v6.3c0,0.3 3,0 5.8,0h0c2.9,0.1 5.8,0.2 5.8,-0v-6.3l 7.22,0.3C75,77.6 64,67.4 64,67.4 v-0l-0,9.7e-4z' color='#000'/></svg></a></td>"
@@ -2279,7 +2279,7 @@ function open_tool(content,update){
         menu_panel.style.zIndex='10010';
         tools_zone.innerHTML=content;
         tools_zone.style.visibility="visible";
-        scroll_block=true;scene_screen=true;scene_scroll=true;
+        scroll_block=true;scene_screen=true;scene_scroll=true;tool_scale=1;
     }else{
         tool_update=false;
         tools_zone.style.visibility="hidden";
@@ -2837,7 +2837,10 @@ function scen_edit_update(show){
     arr_p.size[1]=correct_value(n_size_h.value);
     arr_p.color_text=n_color_text.value
     arr_p.color=n_color.value
-    if(show){scen_editor(scen_data[0],scen_data[1],scen_data[2])}else{scen_element={};scen_editor_apply()}
+    if(show){
+        scroll_x=scene_view.scrollTop;
+        scroll_y=scene_view.scrollLeft;
+        scen_editor(scen_data[0],scen_data[1],scen_data[2])}else{scen_element={};scen_editor_apply()}
 }
 var scene_scroll=false;
 function scen_editor(block,i,n){
@@ -2855,12 +2858,10 @@ function scen_editor(block,i,n){
     scen_data=[block,i,n];
     p_width.value=setup_editor.preview[0];
     ratio_screen.selectedIndex=setup_editor.preview[1];
+    if(setup_editor.preview[2]){screen_size.selectedIndex=setup_editor.preview[2];}
     world.style.display="none";
     new_story_block.style.display="none";
     scene_maker.style.display="initial";
-    scroll_block=true;
-    scene_screen=true;
-    scene_scroll=true;
     html.style.overflow="hidden"
     scrnr_title.innerHTML=block+" ( scene: "+(i+1)+" | dialog: "+n+" )";
     preview_size(false);
@@ -2869,6 +2870,13 @@ function scen_editor(block,i,n){
     scene_layout.style.backgroundSize=((!story_script[block][i].background_size)?"cover":story_script[block][i].background_size);
     scene_layout.style.backgroundPosition=((!story_script[block][i].background_align)?"center":story_script[block][i].background_align);
     scene_layout.style.backgroundColor=story_script[block][i].background_color;
+    if(!scene_screen){
+        scene_view.scrollTop=(screen_preview.clientHeight/2)-(scene_view.clientHeight/2);
+        scene_view.scrollLeft=(screen_preview.clientWidth/2)-(scene_view.clientWidth/2);
+    }
+    scroll_block=true;
+    scene_screen=true;
+    scene_scroll=true;
     if(story_script[block][i].dialogs[n-1].video){
         var video=document.getElementById("scen_video");
         if(!video){video=document.createElement("video");}
@@ -3164,10 +3172,10 @@ function art_panel_edit(block,i,n,b){
         +'<td colspan="2" align="right" ><input id="opacity_r" class="input_slider" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=this.value;art_panel_update(\''+block+'\','+i+','+n+');state_save();" oninput="opacity_t.value=this.value;" type="range" value="'+((arr_s.art[b].opacity)?arr_s.art[b].opacity:1)+'" min="0" max="1" step="0.01" style="width:96%;background: var(--cb);"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">HotSpot X</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].hotspot[0]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].hotspot)?arr_s.art[b].hotspot[0]:0)+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].hotspot[0]=((this.value.length>0)?correct_value(this.value):0);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].hotspot)?arr_s.art[b].hotspot[0]:0)+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">HotSpot Y</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].hotspot[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].hotspot)?arr_s.art[b].hotspot[1]:0)+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].hotspot[1]=((this.value.length>0)?correct_value(this.value):0);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].hotspot)?arr_s.art[b].hotspot[1]:0)+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Angle</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].angle=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].angle)?arr_s.art[b].angle:0)+'"></td>'
@@ -3353,10 +3361,10 @@ function choice_panel_edit(block,i,n,b){
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].position[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">HotSpot X</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].hotspot[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].hotspot)?arr_s[b].hotspot[0]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].hotspot[0]=((this.value.length>0)?correct_value(this.value):0);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].hotspot)?arr_s[b].hotspot[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">HotSpot Y</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].hotspot[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].hotspot)?arr_s[b].hotspot[1]:'')+'"></td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].hotspot[1]=((this.value.length>0)?correct_value(this.value):0);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].hotspot)?arr_s[b].hotspot[1]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Angle</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].angle=correct_value(this.value,true);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].angle)?arr_s[b].angle:0)+'"></td>'
@@ -3586,10 +3594,10 @@ function button_panel_edit(b){
             +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[1]=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].position[1]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">HotSpot X</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].hotspot[0]=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].hotspot[0]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].hotspot[0]=((this.value.length>0)?correct_value(this.value):0);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].hotspot[0]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">HotSpot Y</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].hotspot[1]=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].hotspot[1]:'')+'"></td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].hotspot[1]=((this.value.length>0)?correct_value(this.value):0);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].hotspot[1]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Angle</td>'
             +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].angle=correct_value(this.value,true);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].angle:0)+'"></td>'
@@ -3661,6 +3669,9 @@ function button_panel_edit(b){
     return html;
 }
 function preview_size(scale){
+    var rows=document.getElementById('set_layout').getElementsByTagName('tbody')[0].rows
+    if(screen_size.selectedIndex==1){rows[2].style.display='none';rows[3].style.display='none';}
+    else{rows[2].style.display='table-row';rows[3].style.display='table-row';}
     if(screen_size.value==0){
         screen_preview.style.backgroundSize="64px"
         screen_preview.style.width="100%";
@@ -3673,7 +3684,7 @@ function preview_size(scale){
             scene_layout.style.width=p_width.value+"%";
         }
     }else{
-        screen_preview.style.width=(screen_size.value*2.5)+"px";
+        screen_preview.style.width=(screen_size.value*2.5)*scale_scene+"px";
         screen_preview.style.height=screen_preview.style.width;
         if(ratio_screen.selectedIndex==0){
             scene_layout.style.height=(screen_size.selectedIndex==1)?setup_editor.pvw[1]+"px":screen_size.value+"px";
@@ -4080,6 +4091,8 @@ function world_scale(s){
             screen_preview.style.width=(screen_size.value*2.5)+"px";
             screen_preview.style.height=(screen_size.value*2.5)+"px";
             screen_preview.style.backgroundSize="64px";
+            scene_view.scrollTop=((scroll_xs+(scene_view.clientHeight/2))*scale_scene)-(scene_view.clientHeight/2);
+            scene_view.scrollLeft=((scroll_ys+(scene_view.clientWidth/2))*scale_scene)-(scene_view.clientWidth/2);
         }else if(screen_size.value!=0){
             if(s==2){scale_scene=Math.min(2,scale_scene+0.05);scene_canvas.style.transform='scale('+scale_scene+')';}
             else{scale_scene=Math.max(0.25,scale_scene-0.05);scene_canvas.style.transform='scale('+scale_scene+')';}
@@ -4208,11 +4221,11 @@ function objSelect(id,r){
     droppFocus(r);
     objFocus=document.getElementById(id);
     r.style.transform="";
-    r.style.height=objFocus.offsetHeight+"px"
-    r.style.width=objFocus.offsetWidth+"px"
+    r.style.height=objFocus.offsetHeight+"px";
+    r.style.width=objFocus.offsetWidth+"px";
     r.style.top=objFocus.offsetTop+"px";
     r.style.left=objFocus.offsetLeft+"px";
-    r.style.visibility="visible"
+    r.style.visibility="visible";
     r.style.zIndex=objFocus.style.zIndex;
     r.style.transform=objFocus.style.transform;
     objFocus.style.transform="";
