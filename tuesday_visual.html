@@ -3695,7 +3695,7 @@ function preview_size(scale){
         }
     }
     if(scale){
-        world_scale(1);
+        if(screen_size.value==0){world_scale(1);}
         scene_view.scrollTop=(screen_preview.clientHeight/2)-(scene_view.clientHeight/2);
         scene_view.scrollLeft=(screen_preview.clientWidth/2)-(scene_view.clientWidth/2);
     }
