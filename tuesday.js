@@ -643,7 +643,7 @@ function name_block_update(){
 				creation_scene();
 			}
 		}
-        if(story_json.parameters.autosave){save_stag('auto')};
+        if(story_json.parameters.autosave && !story_json[tue_story][scene].dialogs[dialog].no_autosave){save_stag('auto')};
 	} 
 } function back_story(){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
@@ -678,7 +678,7 @@ function name_block_update(){
         if(scene<0){scene=0;dialog=0}
         else{dialog=story_json[tue_story][scene].dialogs.length-1;}
         creation_scene();
-    } if(story_json.parameters.autosave){save_stag('auto')}
+    } if(story_json.parameters.autosave && !story_json[tue_story][scene].dialogs[dialog].no_autosave){save_stag('auto')}
 } function save_stag(tip){
     localStorage.setItem("tue_"+tip+"_scene",scene);
     localStorage.setItem("tue_"+tip+"_dialog",dialog);
