@@ -215,7 +215,7 @@ function name_block_update(){
                 button.style.borderImage="url('"+art_data(story_json.parameters.buttons[i].art)+"') "+story_json.parameters.buttons[i].patch[0]+" "+story_json.parameters.buttons[i].patch[1]+" "+story_json.parameters.buttons[i].patch[2]+" "+story_json.parameters.buttons[i].patch[3]+" stretch stretch";
             } else {button.style.backgroundSize=story_json.parameters.buttons[i].art_size;}
         }
-        button.style.transform=((story_json.parameters.buttons[i].hotspot)?" translate("+story_json.parameters.buttons[i].hotspot[0]+","+story_json.parameters.buttons[i].hotspot[1]+")":"")+((story_json.parameters.buttons[i].angle)?"rotate("+story_json.parameters.buttons[i].angle+"deg)":"")
+        button.style.transform=((story_json.parameters.buttons[i].hotspot&&story_json.parameters.buttons[i].hotspot[0]!=0&&story_json.parameters.buttons[i].hotspot[1]!=0)?" translate("+story_json.parameters.buttons[i].hotspot[0]+","+story_json.parameters.buttons[i].hotspot[1]+")":"")+((story_json.parameters.buttons[i].angle)?"rotate("+story_json.parameters.buttons[i].angle+"deg)":"")
         if(story_json.parameters.buttons[i].position[0] != 0){button.style.left=story_json.parameters.buttons[i].position[0];}
         if(story_json.parameters.buttons[i].position[1] != 0){button.style.right=story_json.parameters.buttons[i].position[1];}
         if(story_json.parameters.buttons[i].position[2] != 0){button.style.top=story_json.parameters.buttons[i].position[2];}
@@ -419,7 +419,7 @@ function name_block_update(){
                                 old[o].style.height=arr_dialog.art[i].size[1];
                             }
                             if(arr_dialog.art[i].align){old[o].style.objectPosition=arr_dialog.art[i].align[0]+" "+arr_dialog.art[i].align[1];}else{old[o].style.objectPosition="center"}
-                            old[o].style.transform=((arr_dialog.art[i].hotspot)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
+                            old[o].style.transform=((arr_dialog.art[i].hotspot&&arr_dialog.art[i].hotspot[0]!=0&&arr_dialog.art[i].hotspot[1]!=0)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
                             if(arr_dialog.art[i].position[0]!=0){old[o].style.left=arr_dialog.art[i].position[0];}
                             if(arr_dialog.art[i].position[1]!=0){
                                 old[o].style.left="calc(100% - "+arr_dialog.art[i].position[1]+" - "+((arr_dialog.art[i].size[0]=='auto')?arr_dialog.art[i].size[1]:arr_dialog.art[i].size[0])+")";
@@ -454,7 +454,7 @@ function name_block_update(){
                     art.style.width=arr_dialog.art[i].size[0];
                     art.style.height=arr_dialog.art[i].size[1];
                 }
-                art.style.transform=((arr_dialog.art[i].hotspot)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
+                art.style.transform=((arr_dialog.art[i].hotspot&&arr_dialog.art[i].hotspot[0]!=0&&arr_dialog.art[i].hotspot[1]!=0)?" translate("+arr_dialog.art[i].hotspot[0]+","+arr_dialog.art[i].hotspot[1]+")":"")+((arr_dialog.art[i].angle)?"rotate("+arr_dialog.art[i].angle+"deg)":"")
                 if(arr_dialog.art[i].align){art.style.objectPosition=arr_dialog.art[i].align[0]+" "+arr_dialog.art[i].align[1];}
                 if(arr_dialog.art[i].position[0]!=0){art.style.left=arr_dialog.art[i].position[0];}
                 if(arr_dialog.art[i].position[1]!=0){art.style.left="calc(100% - "+arr_dialog.art[i].position[1]+" - "+arr_dialog.art[i].size[0]+")";}
@@ -503,7 +503,7 @@ function name_block_update(){
                         choice.style.borderImage="url('"+art_data(arr_dialog.choice[i].art)+"') "+arr_dialog.choice[i].patch[0]+" "+arr_dialog.choice[i].patch[1]+" "+arr_dialog.choice[i].patch[2]+" "+arr_dialog.choice[i].patch[3]+" stretch stretch";
                     } else {choice.style.backgroundSize=arr_dialog.choice[i].art_size;}
                 }
-                choice.style.transform=((arr_dialog.choice[i].hotspot)?" translate("+arr_dialog.choice[i].hotspot[0]+","+arr_dialog.choice[i].hotspot[1]+")":"")+((arr_dialog.choice[i].angle)?"rotate("+arr_dialog.choice[i].angle+"deg)":"")
+                choice.style.transform=((arr_dialog.choice[i].hotspot&&arr_dialog.choice[i].hotspot[0]!=0&&arr_dialog.choice[i].hotspot[1]!=0)?" translate("+arr_dialog.choice[i].hotspot[0]+","+arr_dialog.choice[i].hotspot[1]+")":"")+((arr_dialog.choice[i].angle)?"rotate("+arr_dialog.choice[i].angle+"deg)":"")
                 if(arr_dialog.choice[i].position[0] != 0){choice.style.left=arr_dialog.choice[i].position[0];}
                 if(arr_dialog.choice[i].position[1] != 0){choice.style.right=arr_dialog.choice[i].position[1];}
                 if(arr_dialog.choice[i].position[2] != 0){choice.style.top=arr_dialog.choice[i].position[2];}
