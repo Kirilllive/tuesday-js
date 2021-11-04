@@ -10,13 +10,13 @@ There is a version of the editor available as a standalone application for Andro
 est un éditeur de roman visuel facile à utiliser. Gratuit et open source il tourne sur n'importe quel navigateur Web. Il est écrit en JavaScript, n'utilise pas de bibliothèques tierces et ne nécessite donc pas d'installation logicièle supplémentaire. Le moteur utilise des éléments HTML5 standard tels que div et img et permet d'utiliser n'importe quel format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.
 Il existe une version de l'éditeur disponible en tant qu'application autonome pour les appareils Android et les ordinateurs de bureau. Toutes les versions sont entièrement compatibles entre elles et partagent la même interface.
 
-Home Page: https://kirilllive.github.io/tuesday-js/
+> Home Page: https://kirilllive.github.io/tuesday-js/
 
-Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
+> Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
 
-itch.io: https://kirill-live.itch.io/tuesday-js
+> itch.io: https://kirill-live.itch.io/tuesday-js
 
-Twitter: https://twitter.com/TuesdayJS_vn
+> Twitter: https://twitter.com/TuesdayJS_vn
 
 [![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
 
