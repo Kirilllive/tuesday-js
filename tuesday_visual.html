@@ -662,7 +662,7 @@ function set_ui(t){
     r.style.setProperty('--ft', color_ui[t][7]);
     r.style.setProperty('--tx', color_ui[t][8]);
 }
-var countWords=0,countSymbols=0,reg=/[aA-zZаА-яЯёЁ\u2019\u0027\-]+/g;
+var countWords=0,countSymbols=0,countBytes=0,reg=/[aA-zZаА-яЯёЁ\u2019\u0027\-]+/g;
 var body=document.body,html=document.documentElement;
 var all_blocks=document.getElementsByClassName("story_block");
 var story_lines=document.getElementById("story_lines");
@@ -778,8 +778,9 @@ function loadFiles(e){
         for(var i=0;i<e.target.files.length;i++){project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
         project_foler.value=wf;
     }else{
-        var jsons=[];clear_Files();
+        var jsons=[];clear_Files();countBytes=0;
         for(var i=0;i<e.target.files.length;i++){
+            countBytes+=e.target.files[i].size
             project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);
             if(e.target.files[i].type=="application/json"){jsons.push([i,e.target.files[i].name])}
         }
@@ -2518,7 +2519,7 @@ function dialog_text_edit(){
     var n
 	if(!copy_arr.name){copy_arr.name={}}
     if(story_script.parameters.characters&&story_script.parameters.characters[copy_arr.name]){n=story_script.parameters.characters[copy_arr.name]}
-    if(!copy_arr[arr_n][languare]){data_la(copy_arr,arr_n)};
+    if(typeof copy_arr[arr_n]!=='object'){data_la(copy_arr,arr_n)};if(!copy_arr[arr_n][languare]){copy_arr[arr_n][languare]=""};
 	var html="<div class='window' style='width:90%;max-width:800px;'><div class='win_head'>Dialog text<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[1].en+"</p>"
 	+"<table width='100%'><tbody><tr><td width='80px' align='center'>languare:</td>"
 	+"<td width='40px'><select id='text_la' onchange='"+((n)?"name_text.value=((story_script.parameters.characters[copy_arr.name][this.value])?story_script.parameters.characters[copy_arr.name][this.value]:\"\")":"name_text.value=((copy_arr.name[this.value])?copy_arr.name[this.value]:\"\")")+";dialogtext.value=((copy_arr.text[this.value])?copy_arr.text[this.value]:\"\");text_сhars.innerHTML=dialogtext.value.length;text_words.innerHTML=dialogtext.value.split(reg).length-1' style='height:40px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:0'>"+project_languares(languare)+"</select></td>"
@@ -4212,13 +4213,23 @@ function csv_export(f){
 function project_statist(){
     if(!setup_editor.csv){setup_editor.csv=[decodeURI('%09'),decodeURI('%0D')]}
     var html="<div class='window' style='padding:0px;'><div class='win_head'>Project statistics<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0px;'>"
-        +'<table style="width:312px;border-spacing:10px;border-collapse:separate;"><tbody><tr>'
-        +'<td style="width:80px;height:20px;" align="right">Words '+languare+': </td><td align="left">'+countWords+'</td>'
-        +'<td style="width:80px;height:20px;" align="right">Symbols '+languare+': </td><td align="left">'+countSymbols+'</td></tr>'
-        +'<td style="width:80px;height:20px;" align="right">Blocks: </td><td align="left">'+all_blocks.length+'</td>'
-        +'<td style="width:80px;height:20px;" align="right">Characters: </td><td align="left">'+Object.keys(story_script.parameters.characters).length+'</td></tr>'
+        +'<table style="border-spacing:10px;border-collapse:separate;"><tbody><tr>'
+        +'<td style="width:70px;height:20px;" align="right">Count files: </td><td align="left" style="width:60px;">'+project_files.length+'</td>'
+        +'<td style="width:70px;height:20px;" align="right">Size files: </td><td align="left" style="width:60px;">'+fileSize(countBytes)+'</td></tr>'
+        +'<td style="height:20px;" align="right">Words '+languare+': </td><td align="left">'+countWords+'</td>'
+        +'<td style="height:20px;" align="right">Symbols '+languare+': </td><td align="left">'+countSymbols+'</td></tr>'
+        +'<td style="height:20px;" align="right">Blocks: </td><td align="left">'+all_blocks.length+'</td>'
+        +'<td style="height:20px;" align="right">Characters: </td><td align="left">'+Object.keys(story_script.parameters.characters).length+'</td></tr>'
         +'</tbody></table></div>'
     modal_window("open",html);
+}
+function fileSize(b){
+      if(b>=1073741824){b=(b/1073741824).toFixed(2)+' GB';}
+      else if(b>=1048576){b=(b/1048576).toFixed(2)+' MB';}
+      else if(b>=1024){b=(b/1024).toFixed(2)+' KB';}
+      else if(b>=1){b=b+' bytes';}
+      else {b='0 byte';}
+      return b;
 }
 var objFocus,moveSize=true,angle=0,arr_e;
 function droppFocus(r){
