@@ -681,7 +681,9 @@ let color_ui=[
     ['#beb3af','#dfd9d7','rgba(64,55,51,0.25)','rgb(160,142,136)','rgba(160,142,136,0.5)' ,'#5a4d46','#fff','none','#000'],
     ['#d2c4a5','#fcf1d8','rgba(121,103,63,0.25)','rgb(121,103,63)','rgba(121,103,63,0.5)' ,'#7b6f54','#fff','none','#000'],
     ['#c4cebb','#dfebd5','rgba(109,124,91,0.25)','rgb(109,124,91)','rgba(109,124,91,0.5)' ,'#427e00','#fff','none','#000'],
-    ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#d8d8d8','#383838','invert(85%)','#d8d8d8'],
+    ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#d8d8d8','#383838','invert(85%)','#d8d8d8',"#7f7f7f"],
+    ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#d8d8d8','#26343d','invert(90%)','#ddd',"#647f90"],
+    ['#7f7f7f','#1e111a','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#AEA79F','#411934','invert(85%)','#ddd',"#6B4C61"]
 ]
 let story_script={};
 let line_controll=[];
@@ -3822,8 +3824,8 @@ function setup(){
     var thems="<table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody><tr>"
     for(i=0;i<7;i++){thems+="<td align='center'><input class='checkbox_b' type='radio' name='color' style='background-color:"+color_ui[i][0]+";' value='"+i+"' "+((setup_editor.ui==i)?'checked' :'')+"></td>"}
     thems+="</tr></tbody></table>"
-    thems+="<p align='left' style='margin-left:8px;'>Dark them</p><hr><table style='width:16.5%;border-spacing:10px;border-collapse:separate;'><tbody><tr>"
-    for(i=7;i<color_ui.length;i++){thems+="<td align='center'><input class='checkbox_b' type='radio' name='color' style='background-color:"+color_ui[i][0]+";' value='"+i+"' "+((setup_editor.ui==i)?'checked' :'')+"></td>"}
+    thems+="<p align='left' style='margin-left:8px;'>Dark them</p><hr><table style='width:44.2%;border-spacing:10px;border-collapse:separate;'><tbody><tr>"
+    for(i=7;i<color_ui.length;i++){thems+="<td align='center'><input class='checkbox_b' type='radio' name='color' style='background-color:"+color_ui[i][9]+";' value='"+i+"' "+((setup_editor.ui==i)?'checked' :'')+"></td>"}
     thems+="</tr></tbody></table>"
     var addon_list="<table width='100%' id='var_addon'><tbody>";
     if(story_script.parameters.plugins){for(i=0;i<story_script.parameters.plugins.length;i++){if(!plugins_list[story_script.parameters.plugins[i]]){addon_list+="<tr><td style='padding-right:8px;padding-left:8px;width:calc(100% - 14px);padding-top:10px;'><input class='addon_path input_text' placeholder='path to plugin js file' value='"+story_script.parameters.plugins[i]+"' type='text'></td><td onclick=\"var a=this.closest('tr');a.parentElement.removeChild(a);\" style='width:14px;cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";}}}
