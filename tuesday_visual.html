@@ -4214,7 +4214,7 @@ function csv_export(f){
 }
 function project_statist(){
     if(!setup_editor.csv){setup_editor.csv=[decodeURI('%09'),decodeURI('%0D')]}
-    var html="<div class='window' style='padding:0px;'><div class='win_head'>Project statistics<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0px;'>"
+    var html="<div class='window' style='padding:0px;'><div class='win_head'>Project metadata<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0px;'>"
         +'<table style="border-spacing:10px;border-collapse:separate;"><tbody><tr>'
         +'<td style="width:70px;height:20px;" align="right">Count files: </td><td align="left" style="width:60px;">'+project_files.length+'</td>'
         +'<td style="width:70px;height:20px;" align="right">Size files: </td><td align="left" style="width:60px;">'+fileSize(countBytes)+'</td></tr>'
@@ -4226,9 +4226,9 @@ function project_statist(){
     modal_window("open",html);
 }
 function fileSize(b){
-      if(b>=1073741824){b=(b/1073741824).toFixed(2)+' GB';}
-      else if(b>=1048576){b=(b/1048576).toFixed(2)+' MB';}
-      else if(b>=1024){b=(b/1024).toFixed(2)+' KB';}
+      if(b>=1000000000){b=(b/1000000000).toFixed(2)+' GB';}
+      else if(b>=1000000){b=(b/1000000).toFixed(2)+' MB';}
+      else if(b>=1000){b=(b/1000).toFixed(2)+' KB';}
       else if(b>=1){b=b+' bytes';}
       else {b='0 byte';}
       return b;
