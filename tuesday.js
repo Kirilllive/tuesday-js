@@ -629,10 +629,10 @@ function name_block_update(){
 		} else if(dialog < story_json[tue_story][scene].dialogs.length - 1){
 			dialog++;
 			if(arr_dialog.text){
-				if(arr_dialog.text[languare] == 'skip'){go_story()}
+				if(story_json[tue_story][scene].dialogs[dialog].text[languare] == 'skip'){go_story()}
 				else {creation_dialog();};
 			} else if(arr_dialog.text_add){
-				if(arr_dialog.text_add[languare] == 'skip'){go_story()}
+				if(story_json[tue_story][scene].dialogs[dialog].text_add[languare] == 'skip'){go_story()}
 				else {creation_dialog();};
 			}else{ creation_dialog();}
 		}else{
