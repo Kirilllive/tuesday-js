@@ -11,7 +11,7 @@ window.addEventListener("touchstart",function(event){
 window.addEventListener("touchend",function(event){
 	var endTime = new Date();
 	var timeDiff = endTime - startTime;
-	if(starttouch && timeDiff < 500){
+	if(starttouch && timeDiff < 500  && controll){
 		var end = event.changedTouches.item(0).clientX;
 		if(end > starttouch + 40){
 			back_story()
