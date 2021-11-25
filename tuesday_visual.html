@@ -444,7 +444,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                 </td>
                     <td id='scrnr_title' height="40px" align='center' style="background-color:var(--wn);width:286px;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
                 <tr>
-                    <td style="background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);"><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>
+                    <td style="background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);"><div id='scen_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>
                         <table onclick="block_open('set_preview');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Preview</td></tr></tbody></table>
                         <div class="set_panel" id="set_preview" style="width:100%;display:block;">
                         <table id="set_layout" style="width:100%;"><tbody>
@@ -626,6 +626,9 @@ input:checked+.toggle:before{transform:translateX(14px);}
                         <div class="set_panel" id="choice_e" style="width:100%;display:block;"><div id='choice_ec' style='margin-bottom:12px;'></div>
                             <div style='width:100%;margin-bottom:16px;' align='center'><div id='add_choice' class='add_button icon_m icon_add'></div></div>
                         </div>
+                        
+                        <div id='menu_element' align='center' style='z-index:10040;position:absolute;left:0;top:0;visibility:hidden;width:190px;'></div>
+                        
                     </div></td>
                 </tr>
                 <tr>
@@ -1906,13 +1909,8 @@ function menu_view(id,code,top){
     menu_add=document.getElementById('add_element');
     menu_add.style.visibility='visible';
     menu_add.innerHTML=code;
-    if(!scene_screen){
-        menu_add.style.left=html.scrollLeft+rect.right+"px";
-        menu_add.style.top=html.scrollTop+rect.top-top+"px";
-    }else{
-        menu_add.style.left=html.scrollLeft+rect.right+"px";
-        menu_add.style.top=rect.top-top+"px";
-    }
+    menu_add.style.left=html.scrollLeft+rect.right+"px";
+    menu_add.style.top=html.scrollTop+rect.top-top+"px";
 }
 function data_copy(name){buf[0]=name;buf[1]=JSON.stringify(arr_l[arr_n]);}
 function data_past(){
@@ -2886,6 +2884,7 @@ function scen_editor(block,i,n){
     new_story_block.style.display="none";
     scene_maker.style.display="initial";
     html.style.overflow="hidden"
+    menu_element.style.visibility='hidden';
     scrnr_title.innerHTML=block+" ( scene: "+(i+1)+" | dialog: "+n+" )";
     preview_size(false);
     scene_layout.style.backgroundImage='none';
@@ -3144,14 +3143,18 @@ function panel_m(id,n,block,i,b,el,update){
     if(block==0){a='story_script.parameters.buttons';u=update+'(\''+block+'\','+i+','+n+')'}
     else if(n=="hidden_objects"){a='story_script.'+block+'['+i+'].hidden_objects.'+el;u=update+'()'}
     else{a='story_script.'+block+'['+i+'].dialogs['+(n-1)+'].'+el;u=update+'(\''+block+'\','+i+','+n+')'}
-	var code='<div class="add_w" style="width:220px;transform:translateX(-244px);"><table style="width:100%;"><tbody>'
-        +'<tr><td class="add_el" style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" onclick="var arr_d='+a+';'+a+'.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));'+u+';state_save();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="buf[0]=\''+update+'\';buf[1]=JSON.stringify('+a+'['+b+']);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copy"></td><td>Copy</td></tr></tbody></table></td></tr>'
-        +((update!=buf[0])?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+a+'['+b+']=JSON.parse(buf[1]);'+u+';state_save();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_refrash"></td><td>Replace</td></tr></tbody></table></td></tr><tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="var arr_d='+a+';'+a+'.splice('+(b+1)+',0,JSON.parse(buf[1]));'+u+';state_save();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_paste"></td><td>Paste below</td></tr></tbody></table></td></tr>')
-        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+a+'.splice('+b+',1);'+u+';state_save();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+	var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
+        +'<tr><td class="add_el" style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" onclick="var arr_d='+a+';'+a+'.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));'+u+';state_save();menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="buf[0]=\''+update+'\';buf[1]=JSON.stringify('+a+'['+b+']);menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copy"></td><td>Copy</td></tr></tbody></table></td></tr>'
+        +((update!=buf[0])?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+a+'['+b+']=JSON.parse(buf[1]);'+u+';state_save();menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_refrash"></td><td>Replace</td></tr></tbody></table></td></tr><tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="var arr_d='+a+';'+a+'.splice('+(b+1)+',0,JSON.parse(buf[1]));'+u+';state_save();menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_paste"></td><td>Paste below</td></tr></tbody></table></td></tr>')
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+a+'.splice('+b+',1);'+u+';state_save();menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
-	menu_view(id,code,-24)
+    var rect=document.getElementById(id).getBoundingClientRect();
+    menu_element.style.visibility='visible';
+    menu_element.innerHTML=code;
+    menu_element.style.left=32+"px";
+    menu_element.style.top=scen_setup.scrollTop+rect.top-10+"px";
 }
 function art_panel_edit(block,i,n,b){
     var arr_s=story_script[block][i].dialogs[n-1]
@@ -3160,7 +3163,7 @@ function art_panel_edit(block,i,n,b){
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art,'+b+',1);art_panel_update(\''+block+'\','+i+','+n+');state_save();"></td><td>&nbsp;</td>'
             +'<td width="26px" class="icon_show icon_m" style="cursor:pointer;" onclick="panel_m(\'b_art'+b+'\','+n+',\''+block+'\','+i+','+b+',\'art\',\'art_panel_update\')" ></td>'
     +'</tr><tr><td colspan="5" height="40px" align="center"><div id="artpre'+b+'" style="background-image:url('+((arr_s.art[b].url[languare])?open_file(arr_s.art[b].url[languare]):open_file(arr_s.art[b].url))+');background-position:center;background-repeat:no-repeat;background-size:contain;height:100%;width:100%";> </div></td></tr><tr>'
-    +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'artsp'+b+'\');scen_element.artsp'+b+'=artsp'+b+'.style.display;"></td><td colspan="2"></td></tr></tbody></table>'
+    +'<td class="icon_m icon_more" height="22px" onclick="menu_element.style.visibility=\'hidden\';block_open(\'artsp'+b+'\');scen_element.artsp'+b+'=artsp'+b+'.style.display;"></td><td colspan="2"></td></tr></tbody></table>'
     +'<table width="100%" id=artsp'+b+' style="display:'+((scen_element['artsp'+b])?scen_element['artsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Art</td>'
         +'<td style="width:28px;" align="center"><select id="artl'+b+'" onchange="if(!story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[languare]){data_la(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'],\'url\')} ;artt'+b+'.value=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[this.value];" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);">'+project_languares(languare)+'</select></td>'
@@ -3325,7 +3328,7 @@ function choice_panel_edit(block,i,n,b){
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+', 1);choice_panel_update(\''+block+'\','+i+','+n+');state_save();"></td><td>&nbsp;</td>'
             +'<td width="26px" class="icon_show icon_m" style="cursor:pointer;" onclick="panel_m(\'b_cho'+b+'\','+n+',\''+block+'\','+i+','+b+',\'choice\',\'choice_panel_update\')" ></td>'
     +'</tr><tr><td id="chdbn'+b+'" colspan="4" height="40px" align="center" style="background-image:url('+open_file((arr_s[b].art[languare])?arr_s[b].art[languare]:arr_s[b].art)+');background-position:center;background-repeat:no-repeat;background-size:contain;">'+((arr_s[b].text[languare])?arr_s[b].text[languare]:((arr_s[b].text.length>0)?arr_s[b].text:arr_s[b].go_to))+'</td></tr><tr>'
-    +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
+    +'<td class="icon_m icon_more" height="22px" onclick="menu_element.style.visibility=\'hidden\';block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
     +'<table id="chosp'+b+'" width="100%" style="display:'+((scen_element['chosp'+b])?scen_element['chosp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Go to</td>'
         +'<td colspan="3"><select onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=this.value;state_save();" style="width:100%;height:28px;background-color: var(--cw);" oninput="chdbn'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value)">'+option_block(arr_s[b].go_to,2)+'</select></td>'
@@ -3561,7 +3564,7 @@ function button_panel_edit(b){
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.parameters.buttons,'+b+', 1);button_panel_update();state_save();"></td><td>&nbsp;</td>'
             +'<td width="26px" '+((arr_s[b].name=='tue_back'||arr_s[b].name=='tue_next')?'':'class="icon_show icon_m" style="cursor:pointer;" onclick="panel_m(\'b_'+arr_s[b].name+b+'\',0,0,0,'+b+',\'buttons\',\'button_panel_update\')"')+'></td>'
             +'</tr><tr><td id="bt'+b+'" colspan="5" height="40px" align="center" style="background-image:url('+open_file((arr_s[b].art[languare])?arr_s[b].art[languare]:arr_s[b].art)+');background-position:center;background-repeat:no-repeat;background-size:contain;">'+((arr_s[b].text[languare])?arr_s[b].text[languare]:((arr_s[b].text.length>0)?arr_s[b].text:arr_s[b].name))+'</td></tr><tr>'
-        +'<td height="22px" class="icon_m icon_more" onclick="block_open(\'bpsp'+b+'\');scen_element.bpsp'+b+'=bpsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
+        +'<td height="22px" class="icon_m icon_more" onclick="menu_element.style.visibility=\'hidden\';block_open(\'bpsp'+b+'\');scen_element.bpsp'+b+'=bpsp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
         +'<table id="bpsp'+b+'" width="100%" style="display:'+((scen_element['bpsp'+b])?scen_element['bpsp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
             +((arr_s[b].name=='tue_back'||arr_s[b].name=='tue_next')?'':'<td height="40px" align="right" style="width:40%;padding-right:8px;">Function</td><td colspan="3"><select oninput="bt'+b+'.innerHTML=((button_name[this.value])?button_name[this.value]:this.value);story_script.parameters.buttons['+b+'].name=this.value;state_save();" style="width:100%;height:28px;background-color: var(--cw);">'+option_block(arr_s[b].name,3)+'</select></select></td></tr>')
         +'<tr>'
@@ -3735,6 +3738,7 @@ function preview_size(scale){
     }
 }
 function scen_editor_apply(){
+    menu_element.style.visibility='hidden';
     world.style.display="initial";
     new_story_block.style.display="initial";
     scene_maker.style.display="none";
