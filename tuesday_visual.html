@@ -626,9 +626,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                         <div class="set_panel" id="choice_e" style="width:100%;display:block;"><div id='choice_ec' style='margin-bottom:12px;'></div>
                             <div style='width:100%;margin-bottom:16px;' align='center'><div id='add_choice' class='add_button icon_m icon_add'></div></div>
                         </div>
-                        
                         <div id='menu_element' align='center' style='z-index:10040;position:absolute;left:0;top:0;visibility:hidden;width:190px;'></div>
-                        
                     </div></td>
                 </tr>
                 <tr>
@@ -1838,6 +1836,7 @@ function dialog_m(id,n,block,i){
         +((buf[0]=='dialogs')?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_l[arr_n]=JSON.parse(buf[1]);menu_add.style.visibility=\'hidden\';update_novel();"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_refrash"></td><td>Replace scene</td></tr></tbody></table></td></tr><tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_l.splice(arr_n+1,0,JSON.parse(buf[1]));menu_add.style.visibility=\'hidden\';update_novel();"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_paste"></td><td>Paste '+buf[0]+' below</td></tr></tbody></table></td></tr>':'')
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scen_data[1]='+i+';scen_data[2]='+n+';play_novel(\''+block+'\',true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_play"></td><td>Play</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
 	menu_view(id,code,48)
@@ -1868,6 +1867,7 @@ function scene_m(id,i,block){
         +((buf[0]=='scene')?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_l[arr_n]=JSON.parse(buf[1]);menu_add.style.visibility=\'hidden\';update_novel();"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_refrash"></td><td>Replace scene</td></tr></tbody></table></td></tr> <tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_l.splice(arr_n+1,0,JSON.parse(buf[1]));menu_add.style.visibility=\'hidden\';update_novel();"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_paste"></td><td>Paste '+buf[0]+' below</td></tr></tbody></table></td></tr>':'')
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="jsonedit(true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_json"></td><td>JSON</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="element_del();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scen_data[1]='+(i-1)+';scen_data[2]=1;play_novel(\''+block+'\',true);menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_play"></td><td>Play</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
 	menu_view(id,code,48)
@@ -1999,7 +1999,7 @@ function ho_edit(){
         +"<td width='42px' class='icon button_menu icon_minus' onclick='ho_scale(-0.05)' style='border-radius:0 20px 20px 0;'></td>"
     +"</tr></tbody></table></div></div></td>"
     +"<td style='width:286px;height:40px;background-color:var(--wn);' class='namber' align='center'>"+scen_data[0]+" ( scene: "+scen_data[1]+" "+plugins_list.hidden_objects.name+" )</td></tr><tr>"
-    +"<td id='ho_content' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;'>"
+    +"<td id='ho_content' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div  id='hidden_objects_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>"
     //label
     +"<table onclick='block_open(\"ho_label\");' class='set_title' height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Labels</td></tr></tbody></table>"
     +"<div class='set_panel' id='ho_label' style='width:100%;display:none;'>"
@@ -2161,6 +2161,7 @@ function ho_edit(){
     +"<div class='set_panel' id='ho_items' style='width:100%;display:block;'><div id='ho_catalog' style='margin-bottom:12px;'></div>"
         +"<div style='width:100%;margin-bottom:16px;' align='center'><div id='add_item' class='add_button icon_m icon_add' onclick='ho_new()'></div></div>"
     +"</div>"
+    +"<div id='menu_objects' align='center' style='z-index:10040;position:absolute;left:0;top:0;visibility:hidden;width:190px;'></div>"
     +"</div></td></tr><tr>"
     +"<td height='40px' style='background-color:var(--wn);' style='background-color:var(--wn);' class='button_menu'><table class='button_menu' width='100%' height='100%' onclick='ho_close();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td></tr></tbody></table>"
     open_tool(tool,"ho_update()");ho_update();
@@ -2219,7 +2220,7 @@ function ho_update(){
             +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+scen_data[0]+'['+scen_data[1]+'].hidden_objects.objects,'+i+',1);ho_update();state_save();"></td><td>&nbsp;</td>'
             +'<td width="26px" class="icon_show icon_m" style="cursor:pointer;" onclick="panel_m(\'b_item'+i+'\',\'hidden_objects\',\''+scen_data[0]+'\','+scen_data[1]+','+i+',\'objects\',\'ho_update\')" ></td>'
             +'</tr><tr><td colspan="5" height="40px" align="center"><div id="ho_ip'+i+'" style="background-image:url('+open_file(arr_l.hidden_objects.objects[i].art)+');background-position:center;background-repeat:no-repeat;background-size:contain;height:100%;width:100%";> </div></td></tr><tr>'
-            +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'ho_is'+i+'\');scen_element.ho_is'+i+'=ho_is'+i+'.style.display;"></td><td colspan="2"></td></tr></tbody></table>'
+            +'<td class="icon_m icon_more" height="22px" onclick="block_open(\'ho_is'+i+'\');scen_element.ho_is'+i+'=ho_is'+i+'.style.display;menu_objects.style.visibility=\'hidden\'"></td><td colspan="2"></td></tr></tbody></table>'
             +"<table width='100%' id=ho_is"+i+" style='display:"+((scen_element["ho_is"+i])?scen_element["ho_is"+i]:"none")+";border-top:1px solid var(--cb);margin-top:8px;'><tbody><tr>"
             +"</tr><tr>"
             +"<td height='40px' align='right' style='width:40%;padding-right:8px;'>Name</td>"
@@ -3139,22 +3140,23 @@ function art_panel_add(block,i,n){
     state_save();
 }
 function panel_m(id,n,block,i,b,el,update){
-    var a,u
-    if(block==0){a='story_script.parameters.buttons';u=update+'(\''+block+'\','+i+','+n+')'}
-    else if(n=="hidden_objects"){a='story_script.'+block+'['+i+'].hidden_objects.'+el;u=update+'()'}
-    else{a='story_script.'+block+'['+i+'].dialogs['+(n-1)+'].'+el;u=update+'(\''+block+'\','+i+','+n+')'}
+    var a,u,e,p
+    if(block==0){e=document.getElementById('menu_element');p=document.getElementById('scen_setup');a='story_script.parameters.buttons';u=update+'(\''+block+'\','+i+','+n+')'}
+    else if(n=="hidden_objects"){e=document.getElementById('menu_objects');p=document.getElementById('hidden_objects_setup');a='story_script.'+block+'['+i+'].hidden_objects.'+el;u=update+'()'}
+    else{e=document.getElementById('menu_element');p=document.getElementById('scen_setup');a='story_script.'+block+'['+i+'].dialogs['+(n-1)+'].'+el;u=update+'(\''+block+'\','+i+','+n+')'}
 	var code='<div class="add_w" style="width:220px;"><table style="width:100%;"><tbody>'
-        +'<tr><td class="add_el" style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" onclick="var arr_d='+a+';'+a+'.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));'+u+';state_save();menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="buf[0]=\''+update+'\';buf[1]=JSON.stringify('+a+'['+b+']);menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copy"></td><td>Copy</td></tr></tbody></table></td></tr>'
-        +((update!=buf[0])?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+a+'['+b+']=JSON.parse(buf[1]);'+u+';state_save();menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_refrash"></td><td>Replace</td></tr></tbody></table></td></tr><tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="var arr_d='+a+';'+a+'.splice('+(b+1)+',0,JSON.parse(buf[1]));'+u+';state_save();menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_paste"></td><td>Paste below</td></tr></tbody></table></td></tr>')
-        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+a+'.splice('+b+',1);'+u+';state_save();menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_element.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" onclick="var arr_d='+a+';'+a+'.splice('+b+',0,JSON.parse(JSON.stringify(arr_d['+b+'])));'+u+';state_save();'+e.id+'.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copu"></td><td>Duplicate</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="buf[0]=\''+update+'\';buf[1]=JSON.stringify('+a+'['+b+']);'+a+'.splice('+b+',1);'+u+';state_save();'+e.id+'.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_cut"></td><td>Cut</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="buf[0]=\''+update+'\';buf[1]=JSON.stringify('+a+'['+b+']);'+e.id+'.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_copy"></td><td>Copy</td></tr></tbody></table></td></tr>'
+        +((update!=buf[0])?'':'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+a+'['+b+']=JSON.parse(buf[1]);'+u+';state_save();'+e.id+'.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_refrash"></td><td>Replace</td></tr></tbody></table></td></tr><tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="var arr_d='+a+';'+a+'.splice('+(b+1)+',0,JSON.parse(buf[1]));'+u+';state_save();'+e.id+'.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_paste"></td><td>Paste below</td></tr></tbody></table></td></tr>')
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+a+'.splice('+b+',1);'+u+';state_save();'+e.id+'.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon icon_del"></td><td>Delete</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="'+e.id+'.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
     var rect=document.getElementById(id).getBoundingClientRect();
-    menu_element.style.visibility='visible';
-    menu_element.innerHTML=code;
-    menu_element.style.left=32+"px";
-    menu_element.style.top=scen_setup.scrollTop+rect.top-10+"px";
+    e.style.visibility='visible';
+    e.innerHTML=code;
+    e.style.left=32+"px";
+    e.style.top=p.scrollTop+rect.top-10+"px";
 }
 function art_panel_edit(block,i,n,b){
     var arr_s=story_script[block][i].dialogs[n-1]
