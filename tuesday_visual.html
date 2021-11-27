@@ -1357,20 +1357,19 @@ function modal_window(action,content){
         scroll_block=true;
     }
 }
+var preview=null
 function play_novel(bl,se){
-    var story_preview=JSON.stringify(story_script)
+    if(preview!=null){preview.close();}
+    var story_preview=JSON.stringify(story_script),plugins_code="",plugins_file="",fonts="";
     for(var f=0;f<project_files.length;f++){for(var r=JSON.stringify(story_script).split(project_files[f][0]).length+2;r>0;r--){story_preview=story_preview.replace(project_files[f][0],project_files[f][1])}}
-    var plugins_code=" ";
-    var plugins_file="";
     if(story_script.parameters.plugins){for(var i=0;i<story_script.parameters.plugins.length;i++){
         if(plugins_list[story_script.parameters.plugins[i]]){
             if(plugins_list[story_script.parameters.plugins[i]].code){plugins_code+=plugins_list[story_script.parameters.plugins[i]].code+" "}
         else if(plugins_list[story_script.parameters.plugins[i]].file){plugins_file+="<script type='text/javascript' src='"+open_file(plugins_list[story_script.parameters.plugins[i]].file)+"'><\/script>"}
         }else{plugins_file+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+open_file(plugins_list[story_script.parameters.plugins[i]].file)+"'><\/script>":"<script type='text/javascript' src='"+open_file(story_script.parameters.plugins[i])+"'><\/script>")}
     }}
-    var fonts="";
     if(story_script.parameters.font_files){for(var i=0;i<Object.keys(story_script.parameters.font_files).length;i++){fonts+="@font-face{font-family:"+Object.keys(story_script.parameters.font_files)[i]+";src:url("+open_file(story_script.parameters.font_files[Object.keys(story_script.parameters.font_files)[i]])+");} "}}
-    var preview=window.open("","preview","location=no,scrollbars=no,width="+setup_editor.pvw[0]+",height="+setup_editor.pvw[1]);
+    preview=window.open("","preview","location=no,scrollbars=no,width="+setup_editor.pvw[0]+",height="+setup_editor.pvw[1]);
     preview.document.write("<html><head><title>"+languare_data(story_script.parameters.title)+"</title><style>"+fonts+" "+((story_script.parameters.font)?"*{font-family:"+story_script.parameters.font+";} ":"")+"body{font-size:"+story_script.parameters.font_size+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_preview="+story_preview+";tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'});"+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"');"+((se)?"scene="+scen_data[1]+";dialog="+(scen_data[2]-1)+";creation_scene();":"")+" });" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
 }
 function search_block(){
