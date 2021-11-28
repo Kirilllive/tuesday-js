@@ -722,7 +722,9 @@ function name_block_update(){
 	 for(var i=scene;i >= 0;i--){
 		if(story_json[tue_story][i].background_music){
 			if(tue_bg_music.canPlayType("audio/mpeg")){
-				if(story_json[tue_story][i].background_music.includes("blob:")){
+				if(typeof story_json[tue_story][i].background_music === 'number'){
+					tue_bg_music.src=story_json.base[story_json[tue_story][i].background_music-1]
+				} else if(story_json[tue_story][i].background_music.includes("blob:")){
 					tue_bg_music.src=story_json[tue_story][i].background_music;
 				} else if(story_json[tue_story][i].background_music.includes(".mp3")){
 					tue_bg_music.src=story_json[tue_story][i].background_music;
@@ -740,7 +742,9 @@ function name_block_update(){
 		audio.preload="auto"
 		audio.id=Object.keys( story_json.parameters.sounds)[i];
 		if(audio.canPlayType("audio/mpeg")){
-			if(story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]].includes("blob:")){
+			if(story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]].includes(";base64")){
+				audio.src=story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]];
+			} else if(story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]].includes("blob:")){
 				audio.src=story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]];
 			} else if(story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]].includes(".mp3")){
 				audio.src=story_json.parameters.sounds[ Object.keys( story_json.parameters.sounds )[i]];
