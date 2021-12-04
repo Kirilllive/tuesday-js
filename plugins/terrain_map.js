@@ -37,11 +37,8 @@ function terrain_map(){
         item.style.top=arr_dialog.objects[i].position[1]+"px";
         item.style.left=arr_dialog.objects[i].position[0]+"px";
         var v='';
-
-        
         if (arr_dialog.objects[i].sound){v+="sound_play('"+arr_dialog.objects[i].sound+"');"}
         else if (arr_dialog.sound){v+="sound_play('"+arr_dialog.sound+"');"}
-        
         if (arr_dialog.objects[i].js){v+=arr_dialog.objects[i].js+";"}
         if (arr_dialog.objects[i].go_to){v+="tue_world.remove();"+((arr_dialog.objects[i].go_to=="tue_go")?"scene++;dialog=0;creation_scene();":"go_to('"+arr_dialog.objects[i].go_to+"');")}
         item.setAttribute("onclick",v);
@@ -59,8 +56,7 @@ function terrain_map(){
         document.onmouseup=function(e){
             document.onmousemove=null;
             document.onmouseup=null;
-            arr_dialog.scroll[1]=view.scrollTop;
-            arr_dialog.scroll[0]=view.scrollLeft;
+            if(arr_dialog.scroll){arr_dialog.scroll[1]=view.scrollTop;arr_dialog.scroll[0]=view.scrollLeft;}
         };
         document.onmouseleave=function(){
 			document.onmousemove=null;
@@ -85,8 +81,7 @@ function terrain_map(){
     view.appendChild(map);
     tuesday.appendChild(view);
     worldmap_resize();
-    view.scrollTop=arr_dialog.scroll[1];
-    view.scrollLeft=arr_dialog.scroll[0];
+    if(arr_dialog.scroll){view.scrollTop=arr_dialog.scroll[1];view.scrollLeft=arr_dialog.scroll[0];}
 }
 function worldmap_resize(){
     var rect=tuesday.getBoundingClientRect();
