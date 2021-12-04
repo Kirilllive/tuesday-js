@@ -59,7 +59,7 @@ line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4
 #new_story_block,#scene_controll,#ho_controll{
 	position:fixed;
 	height:40px;
-	z-index:1000;
+	z-index:10000;
 	bottom:32px;
 	right:32px;
     border-radius:20px;
@@ -2013,7 +2013,8 @@ function ho_edit(){
     +"<div id='ho_controll' style='right:320px;'><table height='100%'><tbody><tr>"
         +"<td width='42px' class='icon button_menu icon_equal' onclick='ho_scale(0.05)'></td>"
         +"<td width='42px' class='icon button_menu icon_scale' onclick='ho_scale()'></td>"
-        +"<td width='42px' class='icon button_menu icon_minus' onclick='ho_scale(-0.05)' style='border-radius:0 20px 20px 0;'></td>"
+        +"<td width='42px' class='icon button_menu icon_minus' onclick='ho_scale(-0.05)'></td>"
+        +"<td width='42px' class='icon button_menu icon_play'  onclick='play_novel(scen_data[0],true)' style='border-radius:0 20px 20px 0;'></td>"
     +"</tr></tbody></table></div></div></td>"
     +"<td style='width:286px;height:40px;background-color:var(--wn);' class='namber' align='center'>"+scen_data[0]+" ( scene: "+scen_data[1]+" "+plugins_list[arr_n].name+" )</td></tr><tr>"
     +"<td id='ho_content' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div  id='hidden_objects_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>"
@@ -4337,6 +4338,9 @@ function objSelect(id,r){
     r.appendChild(objFocus);
 }	  
 function make_resizable(s,f){
+    const resizers=s.getElementsByClassName("resizer");
+    const minSize=26;
+    let original_width=0,original_height=0,original_x=0,original_y=0,original_mouse_x=0,original_mouse_y=0,size=0,z_scale=0;
     s.onmousedown=dragMouseDown;
     function dragMouseDown(e){
         if(moveSize){
@@ -4356,8 +4360,9 @@ function make_resizable(s,f){
         original_mouse_y=original_y-e.clientY;
         original_x=e.clientX;
         original_y=e.clientY;
-        s.style.top=(s.offsetTop-original_mouse_y/scale_scene)+"px";
-        s.style.left=(s.offsetLeft-original_mouse_x/scale_scene)+"px";
+        z_scale=(tool_update)?tool_scale:scale_scene;
+        s.style.top=(s.offsetTop-original_mouse_y/z_scale)+"px";
+        s.style.left=(s.offsetLeft-original_mouse_x/z_scale)+"px";
     }
     s.ontouchstart=dragTouchDown;
     function dragTouchDown(e){
@@ -4378,13 +4383,11 @@ function make_resizable(s,f){
         original_mouse_y=original_y-e.touches[0].clientY;
         original_x=e.touches[0].clientX;
         original_y=e.touches[0].clientY;
-        s.style.top=(s.offsetTop-original_mouse_y/scale_scene)+"px";
-        s.style.left=(s.offsetLeft-original_mouse_x/scale_scene)+"px";
+        z_scale=(tool_update)?tool_scale:scale_scene;
+        s.style.top=(s.offsetTop-original_mouse_y/z_scale)+"px";
+        s.style.left=(s.offsetLeft-original_mouse_x/z_scale)+"px";
     }
     function closeDragElement(){if(!f){saveResize();}else{eval(f)};}
-    const resizers=s.getElementsByClassName("resizer");
-    const minSize=26;
-    let original_width=0,original_height=0,original_x=0,original_y=0,original_mouse_x=0,original_mouse_y=0,size=0;
     for (let i=0;i<resizers.length;i++){
         const sizer=resizers[i];
         sizer.addEventListener('mousedown',function(e){
@@ -4397,42 +4400,42 @@ function make_resizable(s,f){
             original_y=parseFloat(getComputedStyle(s,null).getPropertyValue('top').replace('px',''));
             original_mouse_x=e.pageX;
             original_mouse_y=e.pageY;
-            size=1;
+            size=1;z_scale=(tool_update)?tool_scale:scale_scene;
             window.addEventListener('mousemove',resize)
             window.addEventListener('mouseup',stopResize)
         })
         function resize(e){
             if(sizer.classList.contains('bottom-right')){
-                const width=original_width+(e.pageX-original_mouse_x)/scale_scene;
-                const height=original_height+(e.pageY-original_mouse_y)/scale_scene
+                const width=original_width+(e.pageX-original_mouse_x)/z_scale;
+                const height=original_height+(e.pageY-original_mouse_y)/z_scale
                 if(width>minSize){s.style.width=width+'px'}
                 if(height>minSize){s.style.height=height+'px'}
             }else if(sizer.classList.contains('bottom-left')){
-                const height=original_height+(e.pageY-original_mouse_y)/scale_scene
-                const width=original_width-(e.pageX-original_mouse_x)/scale_scene
+                const height=original_height+(e.pageY-original_mouse_y)/z_scale
+                const width=original_width-(e.pageX-original_mouse_x)/z_scale
                 if(height>minSize){s.style.height=height+'px'}
-                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.pageX-original_mouse_x)/scale_scene+'px'}
+                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.pageX-original_mouse_x)/z_scale+'px'}
             }else if(sizer.classList.contains('top-right')){
-                const width=original_width+(e.pageX-original_mouse_x)/scale_scene
-                const height=original_height-(e.pageY-original_mouse_y)/scale_scene
+                const width=original_width+(e.pageX-original_mouse_x)/z_scale
+                const height=original_height-(e.pageY-original_mouse_y)/z_scale
                 if(width>minSize){s.style.width=width+'px'}
-                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.pageY-original_mouse_y)/scale_scene+'px'}
+                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.pageY-original_mouse_y)/z_scale+'px'}
             }else if(sizer.classList.contains('top-left')){
-                const width=original_width-(e.pageX-original_mouse_x)/scale_scene
-                const height=original_height-(e.pageY-original_mouse_y)/scale_scene
-                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.pageX-original_mouse_x)/scale_scene+'px'}
-                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.pageY-original_mouse_y)/scale_scene+'px'}
+                const width=original_width-(e.pageX-original_mouse_x)/z_scale
+                const height=original_height-(e.pageY-original_mouse_y)/z_scale
+                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.pageX-original_mouse_x)/z_scale+'px'}
+                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.pageY-original_mouse_y)/z_scale+'px'}
             }else if(sizer.classList.contains('size-top')){
-                const height=original_height-(e.pageY-original_mouse_y)/scale_scene
-                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.pageY-original_mouse_y)/scale_scene+'px'}
+                const height=original_height-(e.pageY-original_mouse_y)/z_scale
+                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.pageY-original_mouse_y)/z_scale+'px'}
             }else if(sizer.classList.contains('size-bottom')){
-                const height=original_height+(e.pageY-original_mouse_y)/scale_scene
+                const height=original_height+(e.pageY-original_mouse_y)/z_scale
                 if(height>minSize){s.style.height=height+'px'}
             }else if(sizer.classList.contains('size-left')){
-                const width=original_width-(e.pageX-original_mouse_x)/scale_scene
-                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.pageX-original_mouse_x)/scale_scene+'px'}
+                const width=original_width-(e.pageX-original_mouse_x)/z_scale
+                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.pageX-original_mouse_x)/z_scale+'px'}
             }else if(sizer.classList.contains('size-right')){
-                const width=original_width+(e.pageX-original_mouse_x)/scale_scene
+                const width=original_width+(e.pageX-original_mouse_x)/z_scale
                 if(width>minSize){s.style.width=width+'px'}
             }else if (sizer.classList.contains('rotate')) {
                 let b=s.getBoundingClientRect();original_x=b.left+b.width/2;original_y=b.top+b.height/2;
@@ -4461,36 +4464,36 @@ function make_resizable(s,f){
         })
         function resizeTouch(e){
             if(sizer.classList.contains('bottom-right')){
-                const width=original_width+(e.touches[0].pageX-original_mouse_x)/scale_scene;
-                const height=original_height+(e.touches[0].pageY-original_mouse_y)/scale_scene
+                const width=original_width+(e.touches[0].pageX-original_mouse_x)/z_scale;
+                const height=original_height+(e.touches[0].pageY-original_mouse_y)/z_scale
                 if(width>minSize){s.style.width=width+'px'}
                 if(height>minSize){s.style.height=height+'px'}
             }else if(sizer.classList.contains('bottom-left')){
-                const height=original_height+(e.touches[0].pageY-original_mouse_y)/scale_scene
-                const width=original_width-(e.touches[0].pageX-original_mouse_x)/scale_scene
+                const height=original_height+(e.touches[0].pageY-original_mouse_y)/z_scale
+                const width=original_width-(e.touches[0].pageX-original_mouse_x)/z_scale
                 if(height>minSize){s.style.height=height+'px'}
-                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.touches[0].pageX-original_mouse_x)/scale_scene+'px'}
+                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.touches[0].pageX-original_mouse_x)/z_scale+'px'}
             }else if(sizer.classList.contains('top-right')){
-                const width=original_width+(e.touches[0].pageX-original_mouse_x)/scale_scene
-                const height=original_height-(e.touches[0].pageY-original_mouse_y)/scale_scene
+                const width=original_width+(e.touches[0].pageX-original_mouse_x)/z_scale
+                const height=original_height-(e.touches[0].pageY-original_mouse_y)/z_scale
                 if(width>minSize){s.style.width=width+'px'}
-                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.touches[0].pageY-original_mouse_y)/scale_scene+'px'}
+                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.touches[0].pageY-original_mouse_y)/z_scale+'px'}
             }else if(sizer.classList.contains('top-left')){
-                const width=original_width-(e.touches[0].pageX-original_mouse_x)/scale_scene
-                const height=original_height-(e.touches[0].pageY-original_mouse_y)/scale_scene
-                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.touches[0].pageX-original_mouse_x)/scale_scene+'px'}
-                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.touches[0].pageY-original_mouse_y)/scale_scene+'px'}
+                const width=original_width-(e.touches[0].pageX-original_mouse_x)/z_scale
+                const height=original_height-(e.touches[0].pageY-original_mouse_y)/z_scale
+                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.touches[0].pageX-original_mouse_x)/z_scale+'px'}
+                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.touches[0].pageY-original_mouse_y)/z_scale+'px'}
             }else if(sizer.classList.contains('size-top')){
-                const height=original_height-(e.touches[0].pageY-original_mouse_y)/scale_scene
-                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.touches[0].pageY-original_mouse_y)/scale_scene+'px'}
+                const height=original_height-(e.touches[0].pageY-original_mouse_y)/z_scale
+                if(height>minSize){s.style.height=height+'px';s.style.top=original_y+(e.touches[0].pageY-original_mouse_y)/z_scale+'px'}
             }else if(sizer.classList.contains('size-bottom')){
-                const height=original_height+(e.touches[0].pageY-original_mouse_y)/scale_scene
+                const height=original_height+(e.touches[0].pageY-original_mouse_y)/z_scale
                 if(height>minSize){s.style.height=height+'px'}
             }else if(sizer.classList.contains('size-left')){
-                const width=original_width-(e.touches[0].pageX-original_mouse_x)/scale_scene
-                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.touches[0].pageX-original_mouse_x)/scale_scene+'px'}
+                const width=original_width-(e.touches[0].pageX-original_mouse_x)/z_scale
+                if(width>minSize){s.style.width=width+'px';s.style.left=original_x+(e.touches[0].pageX-original_mouse_x)/z_scale+'px'}
             }else if(sizer.classList.contains('size-right')){
-                const width=original_width+(e.touches[0].pageX-original_mouse_x)/scale_scene
+                const width=original_width+(e.touches[0].pageX-original_mouse_x)/z_scale
                 if(width>minSize){s.style.width=width+'px'}
             }else if (sizer.classList.contains('rotate')) {
                 let b=s.getBoundingClientRect();original_x=b.left+b.width/2;original_y=b.top+b.height/2;
