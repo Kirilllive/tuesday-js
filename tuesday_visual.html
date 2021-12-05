@@ -2177,6 +2177,7 @@ function ho_edit(){
         +"<input id='ho_c' class='input_text' onchange='ho_room.style.backgroundColor=this.value;ho_cp.style.backgroundColor=this.value;' type='text' value='"+((arr_l[arr_n].color)?arr_l[arr_n].color:"")+"' style='width:100%;'>"
         +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_c\",ho_c.value)'>"
         +"</td></tr>"
+        +((arr_n=="terrain_map")?"<tr><td height='40px' align='right' style='padding-right:8px;'>Button sound</td><td colspan='2'><input id='ho_b' class='input_text' onchange='arr_l."+arr_n+".sound=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].sound)?arr_l[arr_n].sound:'')+"'></td><td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('','audio','ho_b','','arr_l."+arr_n+".sound')\"></td></tr>":"")
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Music</td>"
         +"<td colspan='2'><input id='ho_m' class='input_text' onchange='arr_l."+arr_n+".background_music=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].background_music)?arr_l[arr_n].background_music:'')+"'></td>"
         +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('files_auio','audio','ho_m',0,'arr_l."+arr_n+".background_music')\">"
