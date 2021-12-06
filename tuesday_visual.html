@@ -3908,7 +3908,7 @@ function setup(){
         "<tr><td align='right'>story launch block </td><td align='left' colspan='2'><select id='launch_story'>"+((block_list)?block_list :'')+"</select></td></tr>"+
         "<tr><td align='right'>working folder </td><td align='left'><input id='project_foler' class='input_text' value='"+((wf)?wf:"")+"' onclick='json_file.value=null;load_new=true;json_file.click();' type='text'></td><td id='l_icon' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='json_file.value=null;load_new=true;json_file.click();'></td></tr>"+
         "<tr><td align='right'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='"+((story_script.parameters.style_file)?story_script.parameters.style_file:'')+"' type='text'></td><td id='l_css' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\".css\",\"style_file\",0,\"story_script.parameters.style_file\")'></td></tr>"+
-        "<tr><td align='right'>screen scale </td><td align='left' colspan='2'><input id='mobile_scale' class='input_text' onchange='this.value=correct_value(this.value,true)' value='"+((story_script.parameters.scale)?story_script.parameters.scale:1)+"' type='text'></td></tr>"+
+        "<tr><td align='right'>mobile scale </td><td align='left' colspan='2'><input id='mobile_scale' class='input_text' onchange='this.value=correct_value(this.value,true)' value='"+((story_script.parameters.scale)?story_script.parameters.scale:1)+"' type='text'></td></tr>"+
         "<tr><td align='right'>dialog speed </td><td align='left' colspan='2'><input id='dialog_speed_s' onchange='this.value=parseInt(correct_value(this.value,true))' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:'')+"' type='text'></td></tr><tr><td align='right'>font family </td><td align='left' colspan='2'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>font size </td><td align='left' colspan='2'><input id='font_size' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size:'')+"' type='text'></td></tr>"+
         "<tr><td align='right'>icon </td><td align='left'><input id='icon' class='input_text' value='"+((story_script.parameters.icon)?story_script.parameters.icon :'')+"' type='text'></td><td id='l_icon' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\"img\",\"icon\",0,\"story_script.parameters.icon\")'></td></tr>"+
@@ -4475,7 +4475,7 @@ function make_resizable(s,f){
             original_y=parseFloat(getComputedStyle(s,null).getPropertyValue('top').replace('px',''));
             original_mouse_x=e.touches[0].pageX;
             original_mouse_y=e.touches[0].pageY;
-            size=1;
+            size=1;z_scale=(tool_update)?tool_scale:scale_scene;
             window.addEventListener('touchmove',resizeTouch)
             s.parentNode.addEventListener('touchend',stopResizeTouch)
         })
