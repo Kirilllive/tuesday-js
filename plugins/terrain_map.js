@@ -36,6 +36,7 @@ function terrain_map(){
         item.style.transform='rotate('+arr_dialog.objects[i].angle+'deg)';
         item.style.top=arr_dialog.objects[i].position[1]+"px";
         item.style.left=arr_dialog.objects[i].position[0]+"px";
+        if(arr_dialog.objects[i].show_if){show_if(arr_dialog.objects[i].show_if,item)}
         var v='';
         if (arr_dialog.objects[i].sound){v+="sound_play('"+arr_dialog.objects[i].sound+"');"}
         else if (arr_dialog.sound){v+="sound_play('"+arr_dialog.sound+"');"}

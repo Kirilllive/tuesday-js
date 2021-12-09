@@ -518,6 +518,7 @@ function name_block_update(){
                 choice.style.justifyContent=((arr_dialog.choice[i].align)?arr_dialog.choice[i].align[0]:"center");
                 choice.style.alignItems=((arr_dialog.choice[i].align)?arr_dialog.choice[i].align[1]:"center");
                 choice.style.zIndex=1001+i;
+                if(arr_dialog.choice[i].show_if){show_if(arr_dialog.choice[i].show_if,choice)}
                 if(arr_dialog.choice[i].text && (typeof arr_dialog.choice[i].text!=='object' || (arr_dialog.choice[i].text[languare] && typeof arr_dialog.choice[i].text[languare]!=='object'))){
                     choice.innerHTML=values_button(art_data(arr_dialog.choice[i].text));
                 }
@@ -800,4 +801,15 @@ function name_block_update(){
     var tue_size=tuesday.getBoundingClientRect();
     if((video.videoWidth/video.videoHeight)>(tue_size.width/tue_size.height)){video.style.height='100%';video.style.width='auto';}
     else{video.style.height='auto';video.style.width='100%';}
+} function show_if(data,element){
+    show=true;
+    for(var v=1;v < data.length;v++){
+        var var_name=data[v][0],var_oper=data[v][1];
+        if(var_oper="="){if(story_json.parameters.variables[var_name] != data[v][2]){show=false; break;}}
+        else if(var_oper=">"){if(story_json.parameters.variables[var_name] <= data[v][2]){show=false; break;}}
+        else if(var_oper="<"){if(story_json.parameters.variables[var_name] >= data[v][2]){show=false; break;}}
+        if(!show){break;}
+    }
+    if(!show && data[0]){element.style.visibility='hidden';}
+    else if(show && !data[0]){element.style.visibility='hidden';}
 }
