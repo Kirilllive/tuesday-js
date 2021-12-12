@@ -805,9 +805,9 @@ function name_block_update(){
     show=true;
     for(var v=1;v < data.length;v++){
         var var_name=data[v][0],var_oper=data[v][1];
-        if(var_oper="="){if(story_json.parameters.variables[var_name] != data[v][2]){show=false; break;}}
-        else if(var_oper=">"){if(story_json.parameters.variables[var_name] <= data[v][2]){show=false; break;}}
-        else if(var_oper="<"){if(story_json.parameters.variables[var_name] >= data[v][2]){show=false; break;}}
+        if(var_oper=="="){if(story_json.parameters.variables[var_name] != data[v][2]){show=false; break;}}
+        else if(var_oper==">"){if(story_json.parameters.variables[var_name] <= data[v][2]){show=false; break;}}
+        else if(var_oper=="<"){if(story_json.parameters.variables[var_name] >= data[v][2]){show=false; break;}}
         if(!show){break;}
     }
     if(!show && data[0]){element.style.visibility='hidden';}
