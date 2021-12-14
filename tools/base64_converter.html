@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html><head>
+<title>Base64 converter</title>
+<style>
+*{	font-family:Arial;
+    font-size:12px;
+	border-collapse:collapse;
+	border:none;
+	margin:0;
+	padding:0;
+	border-spacing:0px;
+	outline:none;}
+.icon_load{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTQ4LDg1SDI1MkwyMDgsMjI2SDVaTTQ4LDg1TDUsMjI2VjUxTDE4LDM0SDY1bDEzLDE3SDIwOFY4NUg0OFoiLz48L3N2Zz4K")}
+.icon_copy{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTgsNjFMMjksNDBNMzAsNTNWMzlIMTZNMTcsMzFWMTRhNCw0LDAsMCwxLDQtNGg2djRINDVWMTBoNmE0LDQsMCwwLDEsNCw0VjQ4YTQsNCwwLDAsMS00LDRIMzdNMjcsMThWN2g1YTQsNCwwLDAsMSw4LDBoNVYxOEgyN1oiLz48L3N2Zz4K")}
+.icon_save{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBmaWxsPSJub25lIiBmaWxsLW9wYWNpdHk9IjAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTIzOCw1MVYyMjhhMTAsMTAsMCwwLDEtMTAsMTBIMjdhMTAsMTAsMCwwLDEtMTAtMTBWMjdBMTAsMTAsMCwwLDEsMjcsMTdIMjAzWk0zOSwyMzhWMTI3YTEwLDEwLDAsMCwxLDEwLTEwSDIwNWExMCwxMCwwLDAsMSwxMCwxMFYyMzhIMzlaTTE3NCw5NUg3OWExMCwxMCwwLDAsMS0xMC0xMFYxN0gxODRWODVBMTAsMTAsMCwwLDEsMTc0LDk1Wk0xNjgsNDJhMTAsMTAsMCwwLDAtMTAtMTBIMTQ0YTEwLDEwLDAsMCwwLTEwLDEwVjcxYTEwLDEwLDAsMCwwLDEwLDEwaDE0YTEwLDEwLDAsMCwwLDEwLTEwVjQyWk02MywxNjJIMTkybTAsNDlINjMiLz48L3N2Zz4K")}
+.icon_clear{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KCTxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik01MywxMTNIMjRMMyw5MlY3M0w3MywzbDQ1LDQ1Wk0yMCw1Nmw0NSw0NU03NCwyOEw0NSw1OE05LDEyM0g2NE0xMjAsMTEyaDZNMTA1LDExMmg2TTcwLDExMkg5NiIvPgo8L3N2Zz4K")}
+.icon{background-size:22px 22px;background-repeat:no-repeat;background-position:center;height:40px;width:40px;}
+textarea{
+    resize:none;width:100vw;height:calc(100vh - 58px);
+    background-color:#efefff;
+    border-top:1px solid #cec8e3;
+}
+button{border-radius:8px;background-color:#efefff;cursor:pointer;margin:8px 0 8px 8px;}
+button:hover{background-color:#cec8e3;}
+</style>
+</head><body>
+<input id="file" type="file" style="display:none;position:fixed;"/>
+<a id="dwonload" style="display:none;position:fixed;"></a>
+    <button type="button" onclick='file.click();' class='icon icon_load' title='Load file' >&nbsp;</button>
+    <button type="button" onclick='dwonload();' class='icon icon_save' title='Save file' >&nbsp;</button>
+    <button type="button" onclick='text.select();document.execCommand("copy");' class='icon icon_copy' title='copy base64' >&nbsp;</button>
+    <button type="button" onclick='text.value=""' class='icon icon_clear' title='clear' >&nbsp;</button>
+<br>
+<textarea id="text"></textarea>
+<script>
+var files=document.getElementById('file')
+file.addEventListener('change',function(){getBase64(files.files[0])});
+function getBase64(file) {
+    var reader=new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload=function(){text.value=reader.result;};
+    reader.onerror=function(error){alert('Error: '+error);};
+}
+function dwonload(){
+    var a=document.getElementById('dwonload');
+    a.setAttribute("href",document.getElementById('text').value);
+    a.setAttribute("download","decoder_file");
+    a.click();
+}
+var drop = {
+    init:function(){
+        if (window.File&&window.FileReader&&window.FileList&&window.Blob) {
+            window.addEventListener("dragover",function(e){
+                e.preventDefault();
+                e.stopPropagation();
+            });
+            window.addEventListener("drop",function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                getBase64(e.dataTransfer.files[0])
+            });
+        }
+    },
+};
+window.addEventListener("DOMContentLoaded", drop.init);
+</script>
+</body></html>
+
