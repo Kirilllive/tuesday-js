@@ -36,6 +36,7 @@ function terrain_map(){
         item.style.transform='rotate('+arr_dialog.objects[i].angle+'deg)';
         item.style.top=arr_dialog.objects[i].position[1]+"px";
         item.style.left=arr_dialog.objects[i].position[0]+"px";
+        if(story_json.parameters.cursors&&story_json.parameters.cursors.choice){item.style.cursor="url("+art_data(story_json.parameters.cursors.choice[0])+") "+story_json.parameters.cursors.choice[1]+" "+story_json.parameters.cursors.choice[2]+",auto";}
         if(arr_dialog.objects[i].show_if){show_if(arr_dialog.objects[i].show_if,item)}
         var v='';
         if (arr_dialog.objects[i].sound){v+="sound_play('"+arr_dialog.objects[i].sound+"');"}
