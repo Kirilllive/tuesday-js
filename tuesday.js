@@ -287,7 +287,7 @@ function name_block_update(){
         if(arr_dialog.background_music&&(tue_bg_music.paused||!tue_bg_music.src.includes(encodeURI(arr_dialog.background_music)))){
             search_music();
         } else if(!arr_dialog.background_music||arr_dialog.background_music==""){tue_bg_music.pause();}
-        if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();} else {del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");tue_text_block.style.visibility='hidden';}
+        if(arr_dialog.dialogs&&arr_dialog.dialogs.length>0){creation_dialog();} else {del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");tue_text_block.style.visibility='hidden';tue_name_block.style.visibility='hidden';}
         tuesday.dispatchEvent(new Event(Object.keys(arr_dialog)[0]));
     }
 } function creation_dialog(){
