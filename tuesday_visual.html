@@ -883,16 +883,14 @@ function creation_block(b){
                         go=story_script[chapter.id][i].legacy_choice[l][3];
                         if(story_script[go]){
                             element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td style=padding:4px;>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td><td colspan='3' align='right'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
-                            line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
-                            creaton_line(all+"l"+l+go+all_blocks)
+                            if(go!=chapter.id){line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);creaton_line(all+"l"+l+go+all_blocks)}
                             all++
                         }else{element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td align='center'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"}
                     }else if(story_script[chapter.id][i].legacy_choice[l].go_to){
                         go=story_script[chapter.id][i].legacy_choice[l].go_to;
                         if(story_script[go]){
                             element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
-                            line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);
-                            creaton_line(all+"l"+l+go+all_blocks)
+                            if(go!=chapter.id){line_controll.push([go,chapter.id,all+"l"+l+go+all_blocks]);creaton_line(all+"l"+l+go+all_blocks)}
                             all++
                         }else{element+="<div id='"+all+"l"+l+go+all_blocks+"' class='choice_b'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;update_novel();'>"+option_block(go,0)+"</select></div>"}
                     }
@@ -905,8 +903,7 @@ function creation_block(b){
                     if(go&&go!=""&&go!="undefined"){
                     if(story_script[go]){
                         element+="<table id='"+all+"ho"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].hidden_objects.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
-                        line_controll.push([go,chapter.id,all+"ho"+d+go+all_blocks]);
-                        creaton_line(all+"ho"+d+go+all_blocks);
+                        if(go!=chapter.id){line_controll.push([go,chapter.id,all+"ho"+d+go+all_blocks]);creaton_line(all+"ho"+d+go+all_blocks);}
                     }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].hidden_objects.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td></tr></tbody></table>"}
                 }all++
                 element+="</div>"
@@ -919,8 +916,7 @@ function creation_block(b){
                         var t=languare_data(story_script[chapter.id][i].terrain_map.objects[c].name);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
                         if(story_script[go]){
                             element+="<table id='"+all+"map"+d+go+all_blocks+c+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].terrain_map.name=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].terrain_map.objects["+c+"].go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
-                            line_controll.push([go,chapter.id,all+"map"+d+go+all_blocks+c]);
-                            creaton_line(all+"map"+d+go+all_blocks+c);
+                            if(go!=chapter.id){line_controll.push([go,chapter.id,all+"map"+d+go+all_blocks+c]);creaton_line(all+"map"+d+go+all_blocks+c);}
                         }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].terrain_map.objects["+c+"].name=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].terrain_map.objects["+c+"].go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon'></td></tr></tbody></table>"}
                     }
                 }all++
@@ -937,8 +933,7 @@ function creation_block(b){
 						element+="<div class='dialog_element'>"
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_back_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
 								+"<table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
-                            line_controll.push([go,chapter.id,all+"b"+d+go+all_blocks]);
-                            creaton_line(all+"b"+d+go+all_blocks)
+                            if(go!=chapter.id){line_controll.push([go,chapter.id,all+"b"+d+go+all_blocks]);creaton_line(all+"b"+d+go+all_blocks)}
                             all++
                         }else{element+="<div class='dialog_element'>"
                             +"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
@@ -951,8 +946,7 @@ function creation_block(b){
                             if(go&&go!=""&&go!="undefined"){
                             if(story_script[go]){
                                 element+="<table id='video_"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].video.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
-                                line_controll.push([go,chapter.id,"video_"+all+"c"+d+go+all_blocks]);
-                                creaton_line("video_"+all+"c"+d+go+all_blocks);
+                                if(go!=chapter.id){line_controll.push([go,chapter.id,"video_"+all+"c"+d+go+all_blocks]);creaton_line("video_"+all+"c"+d+go+all_blocks);}
                             }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].video.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td></tr></tbody></table>"}
                         }all++
                         element+="</div>"
@@ -991,8 +985,7 @@ function creation_block(b){
                                 var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
                                 if(story_script[go]){
                                     element+="<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();'>"+option_block(go,2)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
-                                    line_controll.push([go,chapter.id,all+"c"+d+go+all_blocks]);
-                                    creaton_line(all+"c"+d+go+all_blocks);
+                                    if(go!=chapter.id){line_controll.push([go,chapter.id,all+"c"+d+go+all_blocks]);creaton_line(all+"c"+d+go+all_blocks);}
                                 }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();'>"+option_block(go,2)+"</select></td><td class='button_block icon'></td></tr></tbody></table>"}
                             }else{var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
 								element+="<table style='width:100%;' class='choice_b'><tbody><tr><td class='button_block'></td><td style='padding:4px;'>"+((t=="")?go:t)+"</td><td class='button_block icon'></td></tr></tbody></table>"
@@ -1015,8 +1008,7 @@ function creation_block(b){
                         element+="<div class='dialog_element' align='left'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Timer<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_timer' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='timer';dialog_el(this.id,'Timer',false)\" width='24px' class='icon_m icon_edit' title='Edit timer'></td></tr></tbody></table><table style='width:100%;' id='"+all+"t"+d+go+all_blocks+"' class='"+((go!="tue_go"&&go!="tue_no")?'to_go':'')+" choice_b'><tbody><tr><td style='padding-left:8px;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].timer[0]=(this.value*1000)' value='"+(story_script[chapter.id][i].dialogs[d].timer[0]/1000)+"' type='text'></td><td valign='center'>seconds</td><td style='width:40%;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].timer[1]=this.value;update_novel();'>"+option_block(go,1)+"</select></td>"
                         if(go!="tue_go"&&go!="tue_no"){
                             element+="<td class='button_block icon icon_go' style='cursor:pointer;' onmouseup='go_to_block(\""+go+"\")'></td>"
-                            line_controll.push([go,chapter.id,all+"t"+d+go+all_blocks]);
-                            creaton_line(all+"t"+d+go+all_blocks);
+                            if(go!=chapter.id){line_controll.push([go,chapter.id,all+"t"+d+go+all_blocks]);creaton_line(all+"t"+d+go+all_blocks);}
                         }else{element+="<td class='button_block'></td>"}
                         all++
                         element+="</tr></tbody></table></div>"}
@@ -1031,8 +1023,7 @@ function creation_block(b){
 						element+="<div class='dialog_element'>"
 								+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Go to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='go_to';dialog_el(this.id,'Go to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table>"
 								+"<table id='"+all+"g"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td style='padding:4px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
-                            line_controll.push([go,chapter.id,all+"g"+d+go+all_blocks]);
-                            creaton_line(all+"g"+d+go+all_blocks)
+                            if(go!=chapter.id){line_controll.push([go,chapter.id,all+"g"+d+go+all_blocks]);creaton_line(all+"g"+d+go+all_blocks)}
                             all++
                         }else{element+="<div class='dialog_element'>"
 							+"<table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Go to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='go_to';dialog_el(this.id,'Go to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table><div id='"+all+"g"+d+go+all_blocks+"' class='choice_b'>"
@@ -1138,8 +1129,7 @@ function data_time(){
     return d.getFullYear()+'_'+(dm.length<2?'0'+dm :dm)+'_'+(dd.length<2?'0'+dd :dd)+'_'+(dh.length<2?'0'+dh :dh)+"-"+(di.length<2?'0'+di:di)+"-"+(ds.length<2?'0'+ds:ds)
 }
 function lines(elem){
-    var to_go=document.getElementsByClassName("to_go");
-    for(var x=0;x<to_go.length;x++){
+    for(var x=0;x<line_controll.length;x++){
         var line=document.getElementById(line_controll[x][2]+"l")
         if(setup_editor.lines_anim){line.style.animationPlayState='running';}else{line.style.animationPlayState='paused';}
         if(!setup_editor.lines){if(elem==line_controll[x][1]||elem==line_controll[x][0]){line.style.visibility='visible'}else{line.style.visibility='hidden'}}
