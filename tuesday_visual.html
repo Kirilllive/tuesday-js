@@ -351,6 +351,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 }
 input:checked+.toggle{background-color:var(--cb);}
 input:checked+.toggle:before{transform:translateX(14px);}
+select_go{background-color:var(--cw);border-radius:14px;}
 </style>
 </head>
 <body onload="world_size();" style='background-color:var(--cw);font-size:12px;'>
@@ -708,7 +709,7 @@ let plugins_list={"show_toast":{
     }
 }
 let languares= {"English":"en","Japanese":"ja","French":"fr","Russian":"ru","Spanish":"es","Chinese":"zh","Korean":"ko","Dutch":"nl","Afar":"aa","Abkhazian":"ab","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa,Chewa,Nyanja":"ny","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi,Dhivehi,Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula,Fulah,Pulaar,Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","German":"de","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut,Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda,Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic,Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto,Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Portuguese":"pt","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang,Chuang":"za","Zulu":"zu"}
-let color_bg=['#ffd4d4','#ebd4d4','#ffedd2','#edffca','#cfffd8','#deffff','#FFF','#d3f2ff','#d8e7ff','#d3d1ff','#f0e0ff','#fbddff','#e9e9e9']
+let color_bg=['#ffd4d4','#ebd4d4','#ffedd2','#edffca','#cfffd8','#deffff',false,'#d3f2ff','#d8e7ff','#d3d1ff','#f0e0ff','#fbddff','#e9e9e9']
 let texts={"tutorials":[{
         "en":"Move to the next block based on the values ​​in variables. Variables are created in the 'Settings project' in the 'Variables' section."
         },{
@@ -1011,7 +1012,7 @@ function creation_block(b){
 					element+="<div align='right'><div id='add_d_"+chapter.id+"_"+i+"_"+d+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];scen_data=[\'"+chapter.id+"\',"+i+","+(d+1)+"];add_element_d(this.id,'"+(d+1)+"')\" class='add_button icon_m icon_add' title='Add element to dialog'></div></div></div>"
                 };element+="<div align='right' style='margin-right:4px;'><div id='add_s_"+chapter.id+"_"+i+"' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs;arr_n="+d+";scen_data=[\'"+chapter.id+"\',"+i+","+(d+1)+"];add_element_s(this.id,'"+(i+1)+"')\" class='add_button icon_m icon_add' title='Add element to scene'></div></div>"
             };element+="</div>"
-        };element+="<div align='right' style='margin-right:8px;'><div id='add_b_"+chapter.id+"' onmouseup=\"add_element_b(this.id,\'"+chapter.id+"\')\" class='add_button icon_m icon_add' title='Add element to block'></div></div>"
+        };element+="<div align='right' style='margin-right:8px;'><div id='add_b_"+chapter.id+"' onmouseup=\"add_element_b(this.id,\'"+chapter.id+"\');story_script.blocks['"+chapter.id+"'][2]=((story_script.blocks['"+chapter.id+"'][2]=='none')?'block':'none')\" class='add_button icon_m icon_add' title='Add element to block'></div></div>"
         chapter.innerHTML="<div style='margin:2px;'><table height='100%' width='100%'><tbody><tr><td align='center' style='cursor:pointer;' onmousedown=\"block_open('"+chapter.id+"_content')\" class='button_block icon icon_more'></td><td align='center'>"+((chapter.id.length>17)?chapter.id.slice(0,15)+"...":chapter.id )+"</td><td align='center' style='cursor:pointer;width:48px;' onmouseup=\"edit_block('"+chapter.id+"')\" class='icon_m button_block icon_edit'></td><td align='center' style='cursor:pointer;' onmouseup=\"play_novel('"+chapter.id+"')\" class='icon_m button_block icon_play'></td> <td style='width:8px;'></td> </tr></tbody></table></div><div id='"+chapter.id+"_content' style='display:"+((story_script.blocks[chapter.id])?story_script.blocks[chapter.id][2]:"none" )+";'>"+element+"</div>";
         chapter.className="story_block panel";
 		if(!story_script.blocks[chapter.id]){
@@ -1022,13 +1023,10 @@ function creation_block(b){
 			chapter.style.left=story_script.blocks[chapter.id][0];
 			chapter.style.top=story_script.blocks[chapter.id][1];
 			chapter.style.backgroundColor=story_script.blocks[chapter.id][3];
-		}
-        story_blocks.appendChild(chapter);
+		};story_blocks.appendChild(chapter);
     }
 }
-function languare_data(data){
-    if(data){return ((data[languare])?data[languare]:data);}else{return ""}
-}
+function languare_data(data){if(data){return ((data[languare])?data[languare]:data);}else{return ""}}
 function data_corr(arr,key){
     if(!arr[key][languare]){
         if(typeof arr[key]!=='object'){
@@ -1056,6 +1054,7 @@ function data_only(arr,key){
 function creaton_line(id,go,chapter){
     line_controll.push([go,chapter,id]);
     var newLine=document.createElementNS("http://www.w3.org/2000/svg",'line');
+    if(story_script.blocks[go][3]){newLine.style.stroke=colorLuminance(story_script.blocks[go][3],-0.2);}
     newLine.id=id+"l";
     story_lines.appendChild(newLine);
 }
@@ -1074,7 +1073,7 @@ function save_file(){
 function download_files(n,c){
     var dlAnchorElem=document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href",c);
-    dlAnchorElem.setAttribute("download",n); //data_time()
+    dlAnchorElem.setAttribute("download",n);
     dlAnchorElem.click();
 }
 function data_time(){
@@ -1153,7 +1152,8 @@ function movie_dlock(id){
         }
         document.onmousemove=function(e){moveAt(e);};
         focus_block.onmouseup=function(){
-			story_script.blocks[focus_block.id]=[focus_block.style.left,focus_block.style.top,document.getElementById(focus_block.id+"_content").style.display,focus_block.style.backgroundColor]
+			story_script.blocks[focus_block.id][0]=focus_block.style.left;
+            story_script.blocks[focus_block.id][1]=focus_block.style.top,
             document.onmousemove=null;
             focus_block.onmouseup=null;
             if(window_zone.style.visibility!="visible"){scroll_block=false};
@@ -1399,7 +1399,7 @@ function toast(message, color){
     x.classList.add("toast_anim");
 }
 function about(){
-    var html="<div class='window' style='padding:24px 16px;width:412px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.89 (Beta)</p><br>"
+    var html="<div class='window' style='padding:24px 16px;width:412px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday js visual editor</p><hr><p style=''>Version:0.90 (Beta)</p><br>"
     +"<table style=' border-spacing:10px;border-collapse:separate; width: 100%;'><tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr><tr>"
     +"<td class='button_menu' style='border-radius:16px;width:25%;height:64px' align='center'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 256 256' style='filter:var(--ft);'><path d='M128,0C57,0 0,57 0,128c0,57 37,104 88,121 6,1 9,-3 9,-6 0,-3-0,-13-0,-24C64,225 56,212 53,204 52,201 45,189 40,186c-4,-2-11,-8-0,-8 10,-0 17,9 20,13 12,19 30,14 37,11 1,-8 4,-14 8,-17-28,-3-58,-14-58,-63 0,-14 5,-25 13,-34-1,-3-6,-16 1,-34 0,0 11,-3 35,13 10,-3 21,-4 32,-4 11,0 22,1 32,4 24,-17 35,-13 35,-13 7,18 3,31 1,34 8,9 13,20 13,34 0,49-30,60-58,63 5,4 9,12 9,24 0,17-0,31-0,35 0,3 2,7 9,6C219,232 256,184 256,128 256,57 199,0 128,0Z' fill='#000' /></svg></a></td>"
     +"<td class='button_menu' style='border-radius:16px;width:25%;height:64px' align='center'><a href='https://kirill-live.itch.io/tuesday-js' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 128 128' style='filter:var(--ft);'><path d='M18,8.6C13,12 2,24 2,27v5.3c0,7 6,12 12,12.6 7,0 12,-5 12.6,-12.4 0,7 5,12.4 12.4,12.4 6.8,0 12,-5 12.2,-12.4 0,7 6,12.4 12.7,12.4h0.1c7,0 12.7,-5.6 12.7,-12.4 0,7 5,12.4 12.2,12.4 7,0 12.4,-6 12.4,-12.4 0,7 6,12.4 12.5,12.4 6,0 12,-6 12,-12V27C126,24 115,12 110,8.6 93,8 81,8 64,8 47,8 23,8 18,9ZM51.1,42.1a14.1,14.1 0 0 1-2.4,3.1c-3,3-6,4-10,4A14.4,14.4 0 0 1 28.5,45.3C27.6,44.3 26.9,43.3 26.2,42.2l-0,0c-0.6,1.1-1.6,2.1-2.5,3a14.4,14.4 0 0 1-10,4.1c-0.47,0-0.96,-0.13-1.36,-0.26-0.55,5.74-0.78,11.23-0.86,15.24l-10e-4,0c-0,2-0,3.7-0,6 0.1,12-1.2,39.1 5.3,45.7 10.1,2.3 28.6,3.4 47.3,3.4h0c18.6,-0 37,-1 47.2,-3.4 6.5,-6.6 5.2,-33.6 5.3,-45.7-0,-2.3-0,-4-0,-6l-9e-4,-0c-0,-4-0.3,-9.5-1,-15-0.4,0-1,0.2-1.3,0.2a14.4,14.4 0 0 1-10,-4.1c-1,-1-2,-2-2.5,-3l0,0c0.6,1-1.3,2-2.3,3a14.4,14.4 0 0 1-10,4c-4,0-7.4,-1.5-10,-4a14,14 0 0 1-2.4,-3 14,14 0 0 1-2.4,3 14.4,14.4 0 0 1-10,4c-0.1,0-0.2,-0-0.4,-0h-0c-0.13,0-0.3,0-0.4,0a14.4,14.4 0 0 1-10,-4.1 14.1,14.1 0 0 1-2.4,-3.1zm-10.3,13.4-9.7e-4,0h0c4.1,0 7.7,0 12.2,5 3.5,-0.3 7.2,-0.5 11,-0.55h0c3.7,-0 7.4,0.2 11,0.5 4.5,-5 8.1,-5 12.25,-5h0l-9.7e-4,-0c1.9,0 9.7,0 15,15.2l5.8,20.8c4.3,15.5-1.3,15.8-8.4,15.8-10.5,-0.4-16.3,-8-16.3,-15.6-5.8,0.9-12.5,1.4-19.3,1.4h-0c-6.7,0-13.5,-0.4-19.3,-1.4 0,7.6-5.8,15.2-16.3,15.6C21.2,107.3 15.5,107 19.9,91.5L25.6,70.7C31,55.5 39,55.5 40.7,55.5ZM64,67.4v0c-0,0-11,10-13,13.7l 7.2,-0.3v6.3c0,0.3 3,0 5.8,0h0c2.9,0.1 5.8,0.2 5.8,-0v-6.3l 7.22,0.3C75,77.6 64,67.4 64,67.4 v-0l-0,9.7e-4z' color='#000'/></svg></a></td>"
@@ -1563,7 +1563,7 @@ function new_block(){
 		+"<td align='center'><input style='background-color:"+color_bg[3]+";' class='checkbox_b' type='radio' name='color' value='3'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[4]+";' class='checkbox_b' type='radio' name='color' value='4'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[5]+";' class='checkbox_b' type='radio' name='color' value='5'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[6]+";border:1px solid var(--cw);' class='checkbox_b' type='radio' name='color' value='6'></td>"
+		+"<td align='center'><input style='background-color:transparent;border:1px solid var(--cw);' class='checkbox_b' type='radio' name='color' value='6'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[7]+";' class='checkbox_b' type='radio' name='color' value='7'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[8]+";' class='checkbox_b' type='radio' name='color' value='8'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[9]+";' class='checkbox_b' type='radio' name='color' value='9'></td>"
@@ -1575,7 +1575,7 @@ function new_block(){
 }
 function create_block(){
     if(/^[\w\s]+$/i.test(block_id.value)){
-        var color_chec= document.forms.color_chec;
+        var color_chec=document.forms.color_chec;
         for(i=0;i<color_chec.length;i++){
             if(color_chec[i].checked){
             color_chec=color_bg[color_chec[i].value]
@@ -1603,7 +1603,7 @@ function create_block(){
             toast("block id not entered");
             modal_window('close');
         }
-        story_script.blocks[new_id.id]=[new_id.style.left,new_id.style.top,document.getElementById(new_id.id+"_content").style.display,new_id.style.backgroundColor]
+        story_script.blocks[new_id.id]=[new_id.style.left,new_id.style.top,document.getElementById(new_id.id+"_content").style.display,((typeof color_chec==='object')?false:color_chec)]
         state_save();
     }else{toast('Only <b>latin</b> characters & numbers')}
 }
@@ -1616,7 +1616,7 @@ function edit_block(id){
 		+"<td align='center'><input style='background-color:"+color_bg[3]+";' class='checkbox_b' type='radio' name='color' value='3'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[4]+";' class='checkbox_b' type='radio' name='color' value='4'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[5]+";' class='checkbox_b' type='radio' name='color' value='5'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[6]+";border:1px solid var(--cw);' class='checkbox_b' type='radio' name='color' value='6'></td>"
+		+"<td align='center'><input style='background-color:transparent;border:1px solid var(--cw);' class='checkbox_b' type='radio' name='color' value='6'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[7]+";' class='checkbox_b' type='radio' name='color' value='7'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[8]+";' class='checkbox_b' type='radio' name='color' value='8'></td>"
 		+"<td align='center'><input style='background-color:"+color_bg[9]+";' class='checkbox_b' type='radio' name='color' value='9'></td>"
@@ -1639,7 +1639,7 @@ function delet_block(id){
 }
 function updata_block(old_id){
     if(/^[\w\s]+$/i.test(block_id.value)){
-        var color_chec= document.forms.color_chec;
+        var color_chec=document.forms.color_chec;
         for(i=0;i<color_chec.length;i++){
             if(color_chec[i].checked){
             story_script.blocks[old_id][3]=color_bg[color_chec[i].value]
@@ -1649,14 +1649,14 @@ function updata_block(old_id){
         var new_id=correct_name(block_id.value);
         if(old_id!=new_id&&!story_script[new_id]){
             var story_rename=JSON.stringify(story_script)
-            new_novel();
+            //new_novel();
             story_script=JSON.parse(story_rename.replace(new RegExp('"'+old_id+'"',"g"),'"'+new_id+'"'));
             parse_story();
-            lines();
+            //lines();
             toast("block updated");
         }else if(story_script[new_id]){toast("this name is used by other blocks");}
         modal_window ('close');
-        state_save();
+        update_novel();state_save();
     }else{toast('Only <b>latin</b> characters & numbers')}
 }
 function file_catalog(id,files,area,preview,arr){
@@ -4592,6 +4592,15 @@ function color_rgb(h) {
     text_blue.value=color_blue.value;
     text_green.value=color_green.value;
     text_alpha.value=1;
+}
+function colorLuminance(hex,lum){
+    hex=String(hex).replace(/[^0-9a-f]/gi,'');
+    var rgb="#",c,i;
+    for (i=0;i<3;i++){
+        c=parseInt(hex.substr(i*2,2),16);
+        c=Math.round(Math.min(Math.max(0,c+(c*lum)),255)).toString(16);
+        rgb+=("00"+c).substr(c.length);
+    };return rgb;
 }
 var state_num=0;
 function state_save(){
