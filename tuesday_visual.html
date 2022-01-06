@@ -661,6 +661,19 @@ function set_ui(t){
     r.style.setProperty('--wn', color_ui[t][6]);
     r.style.setProperty('--ft', color_ui[t][7]);
     r.style.setProperty('--tx', color_ui[t][8]);
+    if(story_script.blocks){block_colors();}
+    
+}
+function block_colors(){
+    for(var i=0;i<Object.keys(story_script.blocks).length;i++){
+        for(var c=0;c<color_bg.length;c++){
+            if(setup_editor.ui<7&&story_script.blocks[Object.keys(story_script.blocks)[i]][3]==color_dg[c]){
+                story_script.blocks[Object.keys(story_script.blocks)[i]][3]=color_bg[c];break;
+            } else if(setup_editor.ui>=7&&story_script.blocks[Object.keys(story_script.blocks)[i]][3]==color_bg[c]){
+                story_script.blocks[Object.keys(story_script.blocks)[i]][3]=color_dg[c];break;
+            }
+        }
+    }
 }
 var countWords=0,countSymbols=0,countBytes=0,reg=/[aA-zZаА-яЯёЁ\u2019\u0027\-]+/g;
 var body=document.body,html=document.documentElement;
@@ -709,6 +722,7 @@ let plugins_list={"show_toast":{
 }
 let languares= {"English":"en","Japanese":"ja","French":"fr","Russian":"ru","Spanish":"es","Chinese":"zh","Korean":"ko","Dutch":"nl","Afar":"aa","Abkhazian":"ab","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa,Chewa,Nyanja":"ny","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi,Dhivehi,Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula,Fulah,Pulaar,Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","German":"de","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut,Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda,Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic,Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto,Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Portuguese":"pt","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang,Chuang":"za","Zulu":"zu"}
 let color_bg=['#ffd4d4','#ebd4d4','#ffedd2','#edffca','#cfffd8','#deffff',false,'#d3f2ff','#d8e7ff','#d3d1ff','#f0e0ff','#fbddff','#e9e9e9']
+let color_dg=['#774C4C','#634C4C','#77654A','#657742','#477750','#567777',false,'#4B6A77','#505F77','#4B4977','#685877','#735577','#616161']
 let texts={"tutorials":[{
         "en":"Move to the next block based on the values ​​in variables. Variables are created in the 'Settings project' in the 'Variables' section."
         },{
@@ -830,6 +844,7 @@ function load_story_edit(url){
 			else{
                 toast("json file loading completed");
                 languare=story_script.parameters.languares[0]
+                if(story_script.blocks){block_colors();}
                 parse_story()
                 lines()
                 document.dispatchEvent(new Event('tue_story_open'));
@@ -880,14 +895,14 @@ function creation_block(b){
                     if(story_script[chapter.id][i].legacy_choice[l][0]){
                         go=story_script[chapter.id][i].legacy_choice[l][3];
                         if(story_script[go]){
-                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td><td colspan='3' align='right'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><tr><td>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td></td><td colspan='3' align='right'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             if(go!=chapter.id){creaton_line(all+"l"+l+go+all_blocks,go,chapter.id)}
                             all++
                         }else{element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td>"+story_script[chapter.id][i].legacy_choice[l][0]+" "+story_script[chapter.id][i].legacy_choice[l][1]+" "+story_script[chapter.id][i].legacy_choice[l][2]+"</td><td align='center'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][3]=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"}
                     }else if(story_script[chapter.id][i].legacy_choice[l].go_to){
                         go=story_script[chapter.id][i].legacy_choice[l].go_to;
                         if(story_script[go]){
-                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+="<table id='"+all+"l"+l+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             if(go!=chapter.id){creaton_line(all+"l"+l+go+all_blocks,go,chapter.id)}
                             all++
                         }else{element+="<div id='"+all+"l"+l+go+all_blocks+"' class='choice_b'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"].go_to=this.value;update_novel();'>"+option_block(go,0)+"</select></div>"}
@@ -899,7 +914,7 @@ function creation_block(b){
                 go=(story_script[chapter.id][i].hidden_objects.go_to)?story_script[chapter.id][i].hidden_objects.go_to:'tue_no';
                     if(go&&go!=""&&go!="undefined"){
                     if(story_script[go]){
-                        element+="<table id='"+all+"ho"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].hidden_objects.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
+                        element+="<table id='"+all+"ho"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].hidden_objects.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
                         if(go!=chapter.id){creaton_line(all+"ho"+d+go+all_blocks,go,chapter.id);}
                     }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].hidden_objects.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td></tr></tbody></table>"}
                 };all++;element+="</div>"
@@ -911,7 +926,7 @@ function creation_block(b){
                     if(go&&go!=""&&go!="undefined"){
                         var t=languare_data(story_script[chapter.id][i].terrain_map.objects[c].name);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
                         if(story_script[go]){
-                            element+="<table id='"+all+"map"+d+go+all_blocks+c+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].terrain_map.name=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].terrain_map.objects["+c+"].go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
+                            element+="<table id='"+all+"map"+d+go+all_blocks+c+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].terrain_map.name=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].terrain_map.objects["+c+"].go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
                             if(go!=chapter.id){creaton_line(all+"map"+d+go+all_blocks+c,go,chapter.id);}
                         }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].terrain_map.objects["+c+"].name=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].terrain_map.objects["+c+"].go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon'></td></tr></tbody></table>"}
                     }
@@ -925,7 +940,7 @@ function creation_block(b){
 					if(story_script[chapter.id][i].dialogs[d].back_to){
                         go=story_script[chapter.id][i].dialogs[d].back_to;
                         if(story_script[go]){
-						element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_back_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table><table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+						element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_back_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table><table id='"+all+"b"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             if(go!=chapter.id){creaton_line(all+"b"+d+go+all_blocks,go,chapter.id)}
                             all++
                         }else{element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Back to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='back_to';dialog_el(this.id,'Back to',false)\"  width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table><div id='"+all+"b"+d+go+all_blocks+"' class='choice_b'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].back_to=this.value;update_novel();'>"+option_block(go,0)+"</select></div>";}
@@ -936,7 +951,7 @@ function creation_block(b){
                         go=(story_script[chapter.id][i].dialogs[d].video.go_to)?story_script[chapter.id][i].dialogs[d].video.go_to:'tue_no';
                             if(go&&go!=""&&go!="undefined"){
                             if(story_script[go]){
-                                element+="<table id='video_"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].video.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
+                                element+="<table id='video_"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].video.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
                                 if(go!=chapter.id){creaton_line("video_"+all+"c"+d+go+all_blocks,go,chapter.id);}
                             }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding:0 8px;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].video.go_to=this.value;update_novel();'>"+option_block(go,1)+"</select></td></tr></tbody></table>"}
                         }all++
@@ -970,7 +985,7 @@ function creation_block(b){
                                 if(story_script[chapter.id][i].dialogs[d].choice[c].text){data_corr(story_script[chapter.id][i].dialogs[d].choice[c],'text')}
                                 var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
                                 if(story_script[go]){
-                                    element+="<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();'>"+option_block(go,2)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
+                                    element+="<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();'>"+option_block(go,2)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
                                     if(go!=chapter.id){creaton_line(all+"c"+d+go+all_blocks,go,chapter.id);}
                                 }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();'>"+option_block(go,2)+"</select></td><td class='button_block icon'></td></tr></tbody></table>"}
                             }else{var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
@@ -984,7 +999,7 @@ function creation_block(b){
                         go=story_script[chapter.id][i].dialogs[d].timer[1];
                         element+="<div class='dialog_element' align='left'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'><b>Timer<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_timer' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='timer';dialog_el(this.id,'Timer',false)\" width='24px' class='icon_m icon_edit' title='Edit timer'></td></tr></tbody></table><table style='width:100%;' id='"+all+"t"+d+go+all_blocks+"' class='"+((go!="tue_go"&&go!="tue_no")?'to_go':'')+" choice_b'><tbody><tr><td style='padding-left:8px;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].timer[0]=(this.value*1000)' value='"+(story_script[chapter.id][i].dialogs[d].timer[0]/1000)+"' type='text'></td><td valign='center'>seconds</td><td style='width:40%;'><select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].timer[1]=this.value;update_novel();'>"+option_block(go,1)+"</select></td>"
                         if(go!="tue_go"&&go!="tue_no"){
-                            element+="<td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;":"")+"' onmouseup='go_to_block(\""+go+"\")'></td>"
+                            element+="<td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup='go_to_block(\""+go+"\")'></td>"
                             if(go!=chapter.id){creaton_line(all+"t"+d+go+all_blocks,go,chapter.id);}
                         }else{element+="<td class='button_block'></td>"}
                         all++;element+="</tr></tbody></table></div>"}
@@ -996,7 +1011,7 @@ function creation_block(b){
 					if(story_script[chapter.id][i].dialogs[d].go_to){
                         go=story_script[chapter.id][i].dialogs[d].go_to;
                         if(story_script[go]){
-                            element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Go to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='go_to';dialog_el(this.id,'Go to',false)\" width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table><table id='"+all+"g"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                            element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Go to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='go_to';dialog_el(this.id,'Go to',false)\" width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table><table id='"+all+"g"+d+go+all_blocks+"' class='choice_b to_go' style='width:100%;'><tbody><tr><td><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                             if(go!=chapter.id){creaton_line(all+"g"+d+go+all_blocks,go,chapter.id)}
                             all++
                         }else{element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Go to</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_go_to' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='go_to';dialog_el(this.id,'Go to',false)\" width='24px' class='icon_m icon_edit' title='Сhange next block'></td></tr></tbody></table><div id='"+all+"g"+d+go+all_blocks+"' class='choice_b'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].go_to=this.value;update_novel();'>"+option_block(go,0)+"</select></div>";}
@@ -1053,7 +1068,7 @@ function data_only(arr,key){
 function creaton_line(id,go,chapter){
     line_controll.push([go,chapter,id]);
     var newLine=document.createElementNS("http://www.w3.org/2000/svg",'line');
-    if(story_script.blocks[go][3]){newLine.style.stroke=colorLuminance(story_script.blocks[go][3],-0x222222);}
+    if(story_script.blocks[go][3]){newLine.style.stroke=colorLuminance(story_script.blocks[go][3],((setup_editor.ui<7)?-0x222222:0x444444));}
     newLine.id=id+"l";
     story_lines.appendChild(newLine);
 }
@@ -1557,19 +1572,19 @@ function new_block(){
     menu_add.style.visibility="hidden";
 	var html="<div class='window' style='width:380px;'><div class='win_head'>New story block<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><br>"
 		+"<form id='color_chec' onsubmit='return false;create_block();'><table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input id='block_id' value='block "+(Object.keys(story_script).length-1)+"' class='input_text' type='text'></td></tr></tbody></table><br><p style=':14px;margin-left:12px;' align='left'>color block</p><br><table style='width:100%;border-spacing:4px;border-collapse:separate;'><tbody><tr>"
-		+"<td align='center'><input style='background-color:"+color_bg[0]+";' class='checkbox_b' type='radio' name='color' value='0'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[1]+";' class='checkbox_b' type='radio' name='color' value='1'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[2]+";' class='checkbox_b' type='radio' name='color' value='2'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[3]+";' class='checkbox_b' type='radio' name='color' value='3'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[4]+";' class='checkbox_b' type='radio' name='color' value='4'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[5]+";' class='checkbox_b' type='radio' name='color' value='5'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[0]:color_dg[0])+";' class='checkbox_b' type='radio' name='color' value='0'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[1]:color_dg[1])+";' class='checkbox_b' type='radio' name='color' value='1'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[2]:color_dg[2])+";' class='checkbox_b' type='radio' name='color' value='2'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[3]:color_dg[3])+";' class='checkbox_b' type='radio' name='color' value='3'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[4]:color_dg[4])+";' class='checkbox_b' type='radio' name='color' value='4'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[5]:color_dg[5])+";' class='checkbox_b' type='radio' name='color' value='5'></td>"
 		+"<td align='center'><input style='background-color:transparent;border:1px solid var(--cw);' class='checkbox_b' type='radio' name='color' value='6'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[7]+";' class='checkbox_b' type='radio' name='color' value='7'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[8]+";' class='checkbox_b' type='radio' name='color' value='8'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[9]+";' class='checkbox_b' type='radio' name='color' value='9'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[10]+";' class='checkbox_b' type='radio' name='color' value='10'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[11]+";' class='checkbox_b' type='radio' name='color' value='11'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[12]+";' class='checkbox_b' type='radio' name='color' value='12'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[7]:color_dg[7])+";' class='checkbox_b' type='radio' name='color' value='7'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[8]:color_dg[8])+";' class='checkbox_b' type='radio' name='color' value='8'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[9]:color_dg[9])+";' class='checkbox_b' type='radio' name='color' value='9'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[10]:color_dg[10])+";' class='checkbox_b' type='radio' name='color' value='10'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[11]:color_dg[11])+";' class='checkbox_b' type='radio' name='color' value='11'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[12]:color_dg[12])+";' class='checkbox_b' type='radio' name='color' value='12'></td>"
 		+"</tr></tbody></table></form><br><br><table class='big_button' width='256px' onclick='create_block()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create block</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
@@ -1578,7 +1593,7 @@ function create_block(){
         var color_chec=document.forms.color_chec;
         for(i=0;i<color_chec.length;i++){
             if(color_chec[i].checked){
-            color_chec=color_bg[color_chec[i].value]
+            color_chec=(setup_editor.ui<7)?color_bg[color_chec[i].value]:color_dg[color_chec[i].value]
             break;}
         }
         var new_id=correct_name(block_id.value);
@@ -1610,19 +1625,19 @@ function create_block(){
 function edit_block(id){
 	var html="<div class='window' style='width:360px;'><div class='win_head'>Edit story block<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><br>"
 		+"<form id='color_chec' onsubmit='return false;updata_block(\""+id+"\");'><table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody><tr><td style='width:50px' align='right'>block id </td><td align='left'><input id='block_id' class='input_text' type='text' value="+id+"></td></tr></tbody></table><br><p style=' margin-left:12px;' align='left'>color block</p><br><table style='border-spacing:4px;border-collapse:separate;'><tbody><tr>"
-		+"<td align='center'><input style='background-color:"+color_bg[0]+";' class='checkbox_b' type='radio' name='color' value='0'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[1]+";' class='checkbox_b' type='radio' name='color' value='1'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[2]+";' class='checkbox_b' type='radio' name='color' value='2'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[3]+";' class='checkbox_b' type='radio' name='color' value='3'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[4]+";' class='checkbox_b' type='radio' name='color' value='4'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[5]+";' class='checkbox_b' type='radio' name='color' value='5'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[0]:color_dg[0])+";' class='checkbox_b' type='radio' name='color' value='0'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[1]:color_dg[1])+";' class='checkbox_b' type='radio' name='color' value='1'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[2]:color_dg[2])+";' class='checkbox_b' type='radio' name='color' value='2'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[3]:color_dg[3])+";' class='checkbox_b' type='radio' name='color' value='3'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[4]:color_dg[4])+";' class='checkbox_b' type='radio' name='color' value='4'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[5]:color_dg[5])+";' class='checkbox_b' type='radio' name='color' value='5'></td>"
 		+"<td align='center'><input style='background-color:transparent;border:1px solid var(--cw);' class='checkbox_b' type='radio' name='color' value='6'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[7]+";' class='checkbox_b' type='radio' name='color' value='7'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[8]+";' class='checkbox_b' type='radio' name='color' value='8'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[9]+";' class='checkbox_b' type='radio' name='color' value='9'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[10]+";' class='checkbox_b' type='radio' name='color' value='10'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[11]+";' class='checkbox_b' type='radio' name='color' value='11'></td>"
-		+"<td align='center'><input style='background-color:"+color_bg[12]+";' class='checkbox_b' type='radio' name='color' value='12'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[7]:color_dg[7])+";' class='checkbox_b' type='radio' name='color' value='7'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[8]:color_dg[8])+";' class='checkbox_b' type='radio' name='color' value='8'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[9]:color_dg[9])+";' class='checkbox_b' type='radio' name='color' value='9'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[10]:color_dg[10])+";' class='checkbox_b' type='radio' name='color' value='10'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[11]:color_dg[11])+";' class='checkbox_b' type='radio' name='color' value='11'></td>"
+		+"<td align='center'><input style='background-color:"+((setup_editor.ui<7)?color_bg[12]:color_dg[12])+";' class='checkbox_b' type='radio' name='color' value='12'></td>"
 		+"</tr></tbody></table></form><br><br><table class='big_button' width='256px' onclick='delet_block(\""+id+"\")'><tbody><tr><td width='42px' class='icon icon_del'></td><td align='center'>Delet block</td><td width='42px'></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='updata_block(\""+id+"\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Update block</td><td width='42px'></td></tr></tbody></table> </div>";
     modal_window("open",html);
 }
@@ -1642,7 +1657,7 @@ function updata_block(old_id){
         var color_chec=document.forms.color_chec;
         for(i=0;i<color_chec.length;i++){
             if(color_chec[i].checked){
-            story_script.blocks[old_id][3]=color_bg[color_chec[i].value]
+            story_script.blocks[old_id][3]=(setup_editor.ui<7)?color_bg[color_chec[i].value]:color_dg[color_chec[i].value]
             document.getElementById(old_id).style.backgroundColor=color_bg[color_chec[i].value]
             break;}
         }
@@ -4591,10 +4606,7 @@ function color_rgb(h) {
     text_green.value=color_green.value;
     text_alpha.value=1;
 }
-function colorLuminance(hex,lum){
-    hex=hex.replace('#','');
-    return '#'+((Number(`0x1${hex}`)+lum).toString(16).substr(1).toUpperCase())
-}
+function colorLuminance(hex,lum){if(hex){hex=hex.replace('#','');return '#'+((Number(`0x1${hex}`)+lum).toString(16).substr(1).toUpperCase())}}
 var state_num=0;
 function state_save(){
     if(state_num>0){back_up.splice(0,state_num);state_num=0;}
