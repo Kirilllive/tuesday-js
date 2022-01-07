@@ -694,9 +694,9 @@ let color_ui=[
     ['#beb3af','#dfd9d7','rgba(64,55,51,0.25)','rgb(160,142,136)','rgba(160,142,136,0.5)' ,'#5a4d46','#fff','none','#000'],
     ['#d2c4a5','#fcf1d8','rgba(121,103,63,0.25)','rgb(121,103,63)','rgba(121,103,63,0.5)' ,'#7b6f54','#fff','none','#000'],
     ['#c4cebb','#dfebd5','rgba(109,124,91,0.25)','rgb(109,124,91)','rgba(109,124,91,0.5)' ,'#427e00','#fff','none','#000'],
-    ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#d8d8d8','#383838','invert(85%)','#d8d8d8',"#7f7f7f"],
-    ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#d8d8d8','#26343d','invert(90%)','#ddd',"#647f90"],
-    ['#7f7f7f','#1e111a','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#AEA79F','#411934','invert(85%)','#ddd',"#6B4C61"]
+    ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#383838','invert(85%)','#d8d8d8',"#7f7f7f"],
+    ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#26343d','invert(90%)','#ddd',"#647f90"],
+    ['#7f7f7f','#1e111a','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#411934','invert(85%)','#ddd',"#6B4C61"]
 ]
 let story_script={};
 let line_controll=[];
@@ -1068,7 +1068,7 @@ function data_only(arr,key){
 function creaton_line(id,go,chapter){
     line_controll.push([go,chapter,id]);
     var newLine=document.createElementNS("http://www.w3.org/2000/svg",'line');
-    if(story_script.blocks[go][3]){newLine.style.stroke=colorLuminance(story_script.blocks[go][3],((setup_editor.ui<7)?-0x222222:0x444444));}
+    if(story_script.blocks[go][3]){newLine.style.stroke=(setup_editor.ui<7)? colorLuminance(story_script.blocks[go][3],-0x222222):story_script.blocks[go][3];}
     newLine.id=id+"l";
     story_lines.appendChild(newLine);
 }
