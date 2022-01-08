@@ -1545,7 +1545,7 @@ function jsonedit(arr){
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
-    +"<textarea id='editJson' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);update_novel();state_save();modal_window(\"close\");toast(\"script updated\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
+    +"<textarea id='editJson' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);if(story_script.blocks){block_colors()};update_novel();state_save();modal_window(\"close\");toast(\"script updated\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
     modal_window("open",html);
 }
 function big_languares(s){
