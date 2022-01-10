@@ -812,6 +812,16 @@ function loadFiles(e){
         }else if(jsons.length==0){alert('json file no found')}
     }
 }
+window.addEventListener('load',function(){
+    var dropEvent=function(e){e.stopPropagation();e.preventDefault();return false;};
+    var dragEnter=function(e){e.stopPropagation();e.preventDefault();};
+    var dragOver=function(e){e.stopPropagation();e.preventDefault();};
+    var dragLeave=function(e){e.stopPropagation();e.preventDefault();};
+    window.addEventListener('dragenter',dragEnter,false);
+    window.addEventListener('dragover',dragOver,false);
+    window.addEventListener('dragleave',dragLeave,false);
+    window.addEventListener('drop',dropEvent,false);
+});
 function open_file(name){
     for(var f=0;f<project_files.length;f++){if(project_files[f][0]==name){name=(project_files[f][1]);break;}} return name;
 }
