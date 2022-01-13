@@ -4,7 +4,7 @@
 <title>Tuesday JS web visual editor</title>
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
 <meta charset="UTF-8">
-<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'/>
+<meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'/>
 <style>
 *{
 	font-family:Arial;
@@ -53,9 +53,9 @@ line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4
 	z-index:20000;
 }
 .toast_anim{left:50%;border-radius:32px;animation:viwe 0.25s,stop 2s 0.25s,close 0.5s 2s linear;}
-@keyframes viwe{from{opacity:0;bottom:64px} to{opacity:1;bottom:64px}}
-@keyframes stop{from{opacity:1;bottom:64px} to{opacity:1;bottom:64px}}
-@keyframes close{from{opacity:1;bottom:64px} to{opacity:0;bottom:-32px}}
+@keyframes viwe{from{opacity:0;bottom:64px}to{opacity:1;bottom:64px}}
+@keyframes stop{from{opacity:1;bottom:64px}to{opacity:1;bottom:64px}}
+@keyframes close{from{opacity:1;bottom:64px}to{opacity:0;bottom:-32px}}
 #new_story_block,#scene_controll,#ho_controll{
 	position:fixed;
 	height:40px;
@@ -66,7 +66,7 @@ line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4
     background-color:var(--wn);
     box-shadow:0px 2px 24px var(--cs);
     cursor:pointer;
-    overflow: hidden;
+    overflow:hidden;
 }
 #menu_panel{
 	z-index:1000;
@@ -281,7 +281,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 .chec_bg:checked{background-color:var(--cw);border:2px solid var(--cb);}
 #scene_maker{height:100vh;width:100%;position:fixed;left:0px;top:0px;display:none;}
 #scene_canvas{height:calc(100vh - 40px);width:calc(98vh - 40px);position:relative;}
-@media only screen and (max-width: 120vh){#scene_canvas{height:72vw;width:72vw;}}
+@media only screen and (max-width:120vh){#scene_canvas{height:72vw;width:72vw;}}
 #scene_layout{
     overflow:hidden;
     height:100%;
@@ -355,7 +355,7 @@ select_go{background-color:var(--cw);border-radius:14px;}
 </head>
 <body onload="world_size();" style='background-color:var(--cw);font-size:12px;'>
     <input type="file" id="json_file" style="display:none;position:fixed;" multiple webkitdirectory/>
-	<div id="menu_panel" style='overflow: hidden;'>
+	<div id="menu_panel" style='overflow:hidden;'>
 		<table width="100%" height="100%">
 			<tbody>
 				<tr>
