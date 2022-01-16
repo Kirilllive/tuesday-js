@@ -1,287 +1,406 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Guide to alpha Tuesday JS editor</title>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
-<meta content="#5f5196" name="theme-color" charset="UTF-8">
+<title>Tuesday JS visual novel engine tutorial</title>
 <style>
-body{color:#fff;font-family:Arial;background-color:#9587c8;}
-.leftbor{border-left:2px solid #cec8e3;}
-.textarr{padding-left:4%;padding-top:4%;}
-a:link {color:#fff;}
-a:visited {color:#fff;}
-a:hover {color:#fff;}
-a:active {color:#fff;}
-p{font-size:14px;}
-td{font-size:14px;}
+*{
+	font-family:Arial;
+    font-size:12px;
+	border-collapse:collapse;
+	border:none;
+	margin:0;
+	padding:0;
+	border-spacing:0px;
+	outline:none;
+}
+a{text-decoration: none;}
+#bookmarks{
+    width:220px;
+    height:calc(100vh - 34px);
+    overflow-y:auto;
+    overflow-x:hidden;
+	background-color:#fff;
+}
+#search_bookmarks {
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA0OCA0OCI+CiAgPGNpcmNsZSBmaWxsPSdub25lJyBzdHJva2U9JyNjY2MnIHN0cm9rZS13aWR0aD0nNCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBjeD0iMzIiIGN5PSIxNyIgcj0iMTQiIC8+CiAgPHBhdGggZmlsbD0nbm9uZScgc3Ryb2tlPScjY2NjJyBzdHJva2Utd2lkdGg9JzQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgIGQ9Ik0gNCw0NSAyMiwyNyIvPgo8L3N2Zz4K");
+  background-position:6px 6px;
+  background-size:20px 20px;
+  background-repeat:no-repeat;
+  height:32px;
+  width:220px;
+  padding-left:32px;box-sizing:border-box;
+  border-bottom:1px solid #cec8e3;
+  -webkit-appearance:none;
+}
+.accordion{
+    width:100%;
+    outline:none;
+    cursor:pointer;
+}
+.block:hover{background-color:#cec8e3;}
+.panel{display:none;}
+.element{
+	background-color:#cec8e3;
+	padding:16px;
+	border-radius:16px;
+}
+.block{
+    padding:8px;
+    padding-bottom:10px;
+    cursor: pointer;
+}
+.block_open{
+    background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsNDBIMTAiLz4NCiAgPHBhdGggZmlsbD0ibm9uZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0yNDYsMTMwSDEwIi8+DQogIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjQ2LDIyMEgxMCIvPg0KPC9zdmc+");
+    background-position:right 6px top 9px;
+    background-size:14px 14px;
+    background-repeat:no-repeat;
+}
+.three_1{margin-left:16px;}
+.three_2{margin-left:32px;}
+.three_3{margin-left:48px;}
 #window_zone {height:100vh;width:100%;display:flex;justify-content:center;align-items:center;background-color:rgba(0,0,0,0);position:fixed;left:0;top:0;visibility:hidden;transition-duration:0.5s;}
-.content{max-height:100vh;max-width:100%;}
+.content{max-height:96vh;max-width:96%;height:auto;width:auto;background-size:100% 100%;background-repeat:no-repeat;border-radius:6px;box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.3);}
+.img_t{cursor:pointer;height:auto;width:90%;
+    transition-duration:0.8s;transform:scale(1, 1);
+    box-shadow: 0px 2px 24px rgba(110, 95, 165, 0.3);
+    border-radius:6px;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+}
+.img_t:hover{transition-duration: 0.3s;transform: scale(1.01, 1.01);}
+.leftbor{border-left:1px solid #cec8e3;}
+.textarr{padding-left:4%;padding-top:4%;}
+.head{font-size:16px;}
 </style>
 </head>
-<body>
+<body style="background-color:#fff;">
+<table style="height:100vh;width:100vw;" border="0">
+<tbody>
+<tr>
+<td style="width:220px;height:32px;"><input type="text" id="search_bookmarks" onkeyup="search_bookmarks()" placeholder="search"></td>
+<td style="border-left: 1px solid #cec8e3;" rowspan="3" valign="top">
 
-<table align='center' border="0" cellpadding="10" cellspacing="16" style="width:1080px;">
-	<tbody>
-		<tr>
-			<td align='center' colspan="2" height='64px'>Tutorial for creating visual novels in Tuesday JS editor (alpha version)</td>
-		</tr>
-		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/0.jpg"/></td>
-			<td width='50%' align='left' valign='top' class='leftbor textarr'>Launch the editor in current browser for PC, Chrome, FireFox, Opera, Edge Chromium, Safari or their analogues<br><br><a href="https://kirilllive.github.io/tuesday-js/tuesday_visual.html">On-line GitHub</a><br><br><a href="https://kirill-live.itch.io/tuesday-js">Download itch.io</a><br><br>Warning: Editor does not work in Internet Explorer and Edge browsers.</td>
-		</tr>
-  		<tr>
-			<td align='center' colspan="2" height='64px'>Step 1 : New project</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Create a new project by clicking on the file icon in the upper left corner.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/1.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 2 : Setting up a new project</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/2.jpg"/><br><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/3.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>In the window that appears, specify the working folder with the resources for the project.</td>
-		</tr>
-    	<tr>
-			<td align='center' colspan="2" height='64px'>Step 3 : Available localization</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Indicate the project name and available languages.<br><br>The 1st added language will be set as default language of the novel.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/4.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 4 : Add story block</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/5.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'> Click on <b>"Create Project"</b>, now we can proceed to create a <b>story block</b> by clicking on the <b>"Add story block"</b> button in the lower right corner.<br><br>A story in Tuesday JS is made up of <b>story block</b> that the reader can switch between as they progress through the story, using choices or their consequences.</td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 5 : Setting up a story block</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>We set the block name in Latin letters and the block color as desired.<br><br>The player will not see these names or colors, they are needed for your convenience when navigating through the plot.<br><br>Click <b>"Create Block"</b>.<br><br>The first created <b>story block</b> will be considered the start block by default. if necessary, you can change it in the project settings.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/6.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 6 : Add scene</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/7.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>Open the created <b>story block</b> by clicking on the three dots on the left side<br><br>Click <b>(+)</b> for call the menu of elements<br><br>And add a new scene to the <b>story block</b> in the pop-up menu.</td>
-		</tr><tr>
-			<td align='center' colspan="2" height='64px'>Step 7 : Scene background</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>In the scene options window that appears, set the background image by clicking the folder icon.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/8.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 8</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/9.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>The dialog box that appears displays all matching files from the project's working folder.</td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 9</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Specify images for other languages if necessary, otherwise the image for the rest of the localization will be taken from the default language<br><br>Click <b>“Apply”</b> and you will see the scene appear in the <b>story block</b>.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/10.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 10 : Add Dialog</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/11.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>Now you need to add a dialog element to it. Click the top <b>(+)</b> button and select <b>"Add Dialog"</b>.</td>
-		</tr><tr>
-			<td align='center' colspan="2" height='64px'>Step 11 : Launch scene edit</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>In the item that appears, click the menu button and select <b>"Scene edit"</b>.<br><br>The Tuesday JS story structure is divided into <b>story blocks</b> that contain the story scenes, and inside the scenes there are dialogs with other elements like text, graphics and choices.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/12.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 12 : Main menu</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/13.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>We are now in the scene editor. Since the first created <b>story block</b> is the start one, it is logical to make the main menu in it.<br><br>Under <b>"Buttons & Choices"</b>, click <b>(+)</b></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 13 : Buttons & Choices</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>A button appeared in the layout<br><br>And a panel with its parameters appeared in the right menu.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/14.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 14</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/15.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>For the button, set the <b>"go to"</b> parameter to the value <b>"Next scene"</b><br><br>Which means that when you click on it, the story will continue in the current <b>story block</b>.<br><br>After pressing <b>"Back"</b> button to return to the script.</td>
-		</tr><tr>
-			<td align='center' colspan="2" height='64px'>Step 15 : add dialogue text</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Add another dialog to the scene by clicking in the middle <b>(+)</b> and selecting the <b>"text"</b> element</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/16.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 16 : Text setting</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/17.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>A window with parameters for the dialog will appear. We set phrases for all available languages.<br><br>The text area both in the editor and in the already created novel will not be displayed if no text is specified, so the text must be specified for all translations.<br><br>If the translation texts differ in the number of phrases, then you can write “skip”, then the phrase will be automatically skipped.</td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 17</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Now we can see how the entire interface looks.<br><br>Click the menu of this dialog box and choose <b>"Scene edit"</b>.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/18.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 18 : Interface view</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/46.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>In the section <b>"text panel (global)"</b> we can change the text area.<br><br> In the section <b>"interface buttons (global)"</b> add new buttons for the interface and their appearance.<br><br>It is important that the mark <b>(global)</b> means that the changes will affect the entire story, and not a specific scene.</td>
-		</tr><tr>
-			<td align='center' colspan="2" height='64px'>Step 19 : Add sprite</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Now add the sprite to the scene,<br><br>Find the <b>"Arts"</b> item and press <b>(+)</b></td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/19.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 20</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/20.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>In the window that appears, select the desired sprite from the working folder.</td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 21</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>We place the element in the scene and set its parameters in the same way as with the buttons.<br><br>And do not forget about localization.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/21.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 22 : Duplicate element</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/22.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>We create selection elements for the further development of the story.<br><br>To do this, in the menu of the last dialog item, select the <b>"Duplicate"</b> item, so as not to place the sprites again.</td>
-		</tr><tr>
-			<td align='center' colspan="2" height='64px'>Step 23</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>In copied dialog, select <b>"Scene edit"</b></td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/23.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 24</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/24.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>In the Scene Content section click on <b>"Edit Text"</b> and set a new text for the dialog,</td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 25 : Character name</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>This time we will set the character name in the Settings Name Panel section.<br><br>The name translation is set together with the text.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/25.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 26 : Name panel</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/26.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>Now we can see that the character's name has appeared in the scene,<br><br>Just like in the text panel, the "name panel" does not appear if the name is not specified.<br><br>You can change the appearance and position of this element in the <b>"Name panel (globally)"</b>.</td>
-		</tr><tr>
-			<td align='center' colspan="2" height='64px'>Step 27 : Сhoice</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Then add select buttons in the same way as when creating a menu. In the section <b>"Buttons & Choice"</b>.<br><br>One of the buttons sets the value <b>"go to"</b> to <b>"Next scene"</b>.<br><br>And back to the script.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/28.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 28</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/29.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>In the scene, add another dialog for choice with the value <b>"Next scene"</b></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 29</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Next, we will create a new <b>story block</b> for the development of an alternative story, and add a scene and dialogue with the sprite to it. (Following the same steps of previous paragraphs)</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/31.jpg"/></td>
-		</tr>
-        <tr>
-			<td align='center' colspan="2" height='64px'>Step 30</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/37.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>Return to the scene editor for a dialog with a choice, for the second button set the value <b>"go to"</b> to a new <b>story block</b>.</td>
-		</tr>
-          <tr>
-			<td align='center' colspan="2" height='64px'>Step 31 : Linking plot blocks</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Now we can see the name of the <b>new story block</b> in the <b>"go to"</b> item.<br><br>We select it and return to the script.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/38.jpg"/></td>
-		</tr>
-          <tr>
-			<td align='center' colspan="2" height='64px'>Step 32</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/39.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>Now we can see in the script that one of the choice leads to another <b>story block</b>.</td>
-		</tr>
-          <tr>
-			<td align='center' colspan="2" height='64px'>Step 33 : Preview</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Using the preview, you can check the project with the selected localization.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/40.jpg"/></td>
-		</tr>
-          <tr>
-			<td align='center' colspan="2" height='64px'>Step 34 : Save project</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/49.jpg"/><br><br><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/41.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>Most browsers save files by default in the <b>Download folder</b>, where the project will most likely be placed.<br><br>To reopen the project, you need to move the json file of the project to the working folder.</td>
-		</tr>
-          <tr>
-			<td align='center' colspan="2" height='64px'>Step 35 : Open project</td>
-		</tr>
-  		<tr>
-            <td width='50%' align='left' class='textarr' valign='top'>When opening a project, just point to the folder where the json file is located and Tuesday JS will find it by itself.<br><br>If there are multiple json files in the folder, Tuesday JS will ask which file you want to open.</td>
-			<td width='50%' align='center' class='leftbor'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/42.jpg"/></td>
-		</tr>
-          <tr>
-			<td align='center' colspan="2" height='64px'>Step 36 : Build project</td>
-		</tr>
-  		<tr>
-			<td width='50%' align='center'><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/43.jpg"/><br><img style="cursor:pointer;" onclick="modal_window('open',this.src)" height='415px' width='512px' alt="" src="screenshots/tutorial/44.jpg"/></td>
-			<td width='50%' align='left' class='leftbor textarr' valign='top'>The situation is similar when exporting a project to an html file.<br><br>It will go to the Download folder, and it will need to be manually copied to the working folder to the rest of the history resources.</td>
-		</tr>
-			<td align='center' colspan="2" height='64px'>It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>If you notice something like this, be sure to send me an email: tuesdayjsengine@gmail.com</td>
-		</tr>
-	</tbody>
+<div id="doc_view" style="overflow-y:auto;overflow-x:hidden;height:100vh;width:100%;padding:16px;box-sizing:border-box;"></div>
+
+</td>
+</tr>
+<tr>
+<td>
+<div id="bookmarks">
+    
+    <div class="block" onclick="get_doc('quick_tutorial')">Quick tutorial</div>
+    
+<!--    <div class="accordion"><div class="block block_open">Interface</div></div>-->
+<!--    <div class="panel">-->
+<!--        <div class="block"><span class="three_1">tue_load</span></div>-->
+<!--        <div class="block"><span class="three_1">tue_save</span></div>-->
+<!--        <div class="block"><span class="three_1">tue_home</span></div>-->
+<!--        <div class="block"><span class="three_1">tue_next</span></div>-->
+<!--        <div class="block"><span class="three_1">tue_back</span></div>-->
+<!--        <div class="accordion"><div class="block block_open"><span class="three_1">art</span></div></div>-->
+<!--        <div class="panel">-->
+<!--            <div class="block"><span class="three_2">style</span></div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    
+</div>
+</td>
+</tr>
+<tr>
+<td style="height:1px;">
+</td>
+</tr>
+</tbody>
 </table>
-<div id='window_zone' onclick="modal_window('close')" style="height: 100vh; width:100%;" align='center'></div>
+<div id='window_zone' onclick="modal_window('close')" align='center'></div>
+
+
+<div id="quick_tutorial" style="display:none">
+    <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
+        <tr>
+            <td align='center' colspan="2" height='64px' class="head">Quick guide to quickly create a visual novel Tuesday JS</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 1 : New project</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>For create a new project by clicking on the file icon in the upper left corner.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_load.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 2 : Setting up a new project</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_folder.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the window that appears, specify <b>the working folder</b> with the resources for the project.<br><br><b>Attention!</b><br>to open the project, you also need to specify <b>the working folder</b>, not the JSON file</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 3 : Available localization</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Indicate <b>the project name</b> and available languages.<br><br>For each language, you can immediately specify the translated name<br><br>The 1st added language will be set as default language of the novel.<br>If the player's device does not support any of the specified languages, the game will switch to the first language in this list<br><br>Click on <b>"Create Project"</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_languages.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 4 : Add story block</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_project.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now we can proceed to create a <b>story block</b> by clicking on the <b>"Add story block"</b> button in the lower right corner.<br><br>A story in Tuesday JS is made up of <b>story block</b> that the reader can switch between as they progress through the story, using choices or their consequences.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 5 : Setting up a story block</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>We set the block name in Latin letters and the block color as desired.<br><br>The player will not see these names or colors, they are needed for your convenience when navigating through the plot.<br><br>Click <b>"Create Block"</b>.<br><br>The first created <b>story block</b> will be considered the start block by default. if necessary, you can change it in the project settings.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_block.svg" style="background-image:url('tutorial_img/new_block.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 6 : Add scene</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_scene.svg" style="background-image:url('tutorial_img/new_scene.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Open the created <b>story block</b> by clicking on the three dots on the left side<br><br>Click <b>(+)</b> for call the menu of elements<br><br>And add a new scene to the <b>story block</b> in the pop-up menu.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='64px'>Step 7 : Scene background</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>In the scene options window that appears, set the background image by clicking the folder icon.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/8.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 8</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/9.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>The dialog box that appears displays all matching files from the project's working folder.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 9</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Specify images for other languages if necessary, otherwise the image for the rest of the localization will be taken from the default language<br><br>Click <b>“Apply”</b> and you will see the scene appear in the <b>story block</b>.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/10.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 10 : Add Dialog</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/11.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now you need to add a dialog element to it. Click the top <b>(+)</b> button and select <b>"Add Dialog"</b>.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='64px'>Step 11 : Launch scene edit</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>In the item that appears, click the menu button and select <b>"Scene edit"</b>.<br><br>The Tuesday JS story structure is divided into <b>story blocks</b> that contain the story scenes, and inside the scenes there are dialogs with other elements like text, graphics and choices.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/12.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 12 : Main menu</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/13.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>We are now in the scene editor. Since the first created <b>story block</b> is the start one, it is logical to make the main menu in it.<br><br>Under <b>"Buttons & Choices"</b>, click <b>(+)</b></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 13 : Buttons & Choices</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>A button appeared in the layout<br><br>And a panel with its parameters appeared in the right menu.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/14.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 14</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/15.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>For the button, set the <b>"go to"</b> parameter to the value <b>"Next scene"</b><br><br>Which means that when you click on it, the story will continue in the current <b>story block</b>.<br><br>After pressing <b>"Back"</b> button to return to the script.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='64px'>Step 15 : add dialogue text</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Add another dialog to the scene by clicking in the middle <b>(+)</b> and selecting the <b>"text"</b> element</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/16.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 16 : Text setting</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/17.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>A window with parameters for the dialog will appear. We set phrases for all available languages.<br><br>The text area both in the editor and in the already created novel will not be displayed if no text is specified, so the text must be specified for all translations.<br><br>If the translation texts differ in the number of phrases, then you can write “skip”, then the phrase will be automatically skipped.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 17</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Now we can see how the entire interface looks.<br><br>Click the menu of this dialog box and choose <b>"Scene edit"</b>.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/18.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 18 : Interface view</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/46.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the section <b>"text panel (global)"</b> we can change the text area.<br><br> In the section <b>"interface buttons (global)"</b> add new buttons for the interface and their appearance.<br><br>It is important that the mark <b>(global)</b> means that the changes will affect the entire story, and not a specific scene.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='64px'>Step 19 : Add sprite</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Now add the sprite to the scene,<br><br>Find the <b>"Arts"</b> item and press <b>(+)</b></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/19.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 20</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/20.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the window that appears, select the desired sprite from the working folder.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 21</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>We place the element in the scene and set its parameters in the same way as with the buttons.<br><br>And do not forget about localization.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/21.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 22 : Duplicate element</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/22.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>We create selection elements for the further development of the story.<br><br>To do this, in the menu of the last dialog item, select the <b>"Duplicate"</b> item, so as not to place the sprites again.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='64px'>Step 23</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>In copied dialog, select <b>"Scene edit"</b></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/23.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 24</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/24.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the Scene Content section click on <b>"Edit Text"</b> and set a new text for the dialog,</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 25 : Character name</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>This time we will set the character name in the Settings Name Panel section.<br><br>The name translation is set together with the text.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/25.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 26 : Name panel</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/26.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now we can see that the character's name has appeared in the scene,<br><br>Just like in the text panel, the "name panel" does not appear if the name is not specified.<br><br>You can change the appearance and position of this element in the <b>"Name panel (globally)"</b>.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='64px'>Step 27 : Сhoice</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Then add select buttons in the same way as when creating a menu. In the section <b>"Buttons & Choice"</b>.<br><br>One of the buttons sets the value <b>"go to"</b> to <b>"Next scene"</b>.<br><br>And back to the script.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/28.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 28</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/29.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the scene, add another dialog for choice with the value <b>"Next scene"</b></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 29</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Next, we will create a new <b>story block</b> for the development of an alternative story, and add a scene and dialogue with the sprite to it. (Following the same steps of previous paragraphs)</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/31.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 30</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/37.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Return to the scene editor for a dialog with a choice, for the second button set the value <b>"go to"</b> to a new <b>story block</b>.</td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='64px'>Step 31 : Linking plot blocks</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Now we can see the name of the <b>new story block</b> in the <b>"go to"</b> item.<br><br>We select it and return to the script.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/38.jpg"/></td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='64px'>Step 32</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/39.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now we can see in the script that one of the choice leads to another <b>story block</b>.</td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='64px'>Step 33 : Preview</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Using the preview, you can check the project with the selected localization.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/40.jpg"/></td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='64px'>Step 34 : Save project</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/49.jpg"/><br><br><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/41.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Most browsers save files by default in the <b>Download folder</b>, where the project will most likely be placed.<br><br>To reopen the project, you need to move the json file of the project to the working folder.</td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='64px'>Step 35 : Open project</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>When opening a project, just point to the folder where the json file is located and Tuesday JS will find it by itself.<br><br>If there are multiple json files in the folder, Tuesday JS will ask which file you want to open.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/42.jpg"/></td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='64px'>Step 36 : Build project</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/43.jpg"/><br><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/44.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>The situation is similar when exporting a project to an html file.<br><br>It will go to the Download folder, and it will need to be manually copied to the working folder to the rest of the history resources.</td>
+        </tr>
+            <td align='center' colspan="2" height='64px'>It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>If you notice something like this, be sure to send me an email: tuesdayjsengine@gmail.com</td>
+        </tr>
+    </tbody></table>
+</div>
+
 <script>
-function modal_window(action, i) {
+function get_doc(id){
+    doc_view.innerHTML=document.getElementById(id).innerHTML;window.location.hash=id;
+}
+var textbook=document.getElementById("textbook"),acc=document.getElementsByClassName("accordion");
+for (var i=0;i<acc.length;i++){
+        acc[i].addEventListener("click",function(){
+        var panel=this.nextElementSibling;
+        if(panel.style.display==="block"){panel.style.display="none";}else{panel.style.display="block";}
+    });
+}
+function search_bookmarks() {
+    var filter=document.getElementById("search_bookmarks").value.toUpperCase(),ul,li,a,i,txtValue,bookmarks=document.getElementById("bookmarks");
+    li=bookmarks.getElementsByClassName("block");
+    if(filter.length==0) {
+        var panel=document.getElementsByClassName("panel");
+        for(var i=0;i<panel.length;i++){panel[i].style.display="none";panel[i].className="panel border_t";}
+    }else{
+        var panel=document.getElementsByClassName("panel");
+        for (vari=0;i<panel.length;i++){panel[i].style.display="block";panel[i].className="panel";}
+    }
+    for(i=0;i<li.length;i++){
+        a=li[i];
+        txtValue=a.textContent||a.innerText;
+        if(txtValue.toUpperCase().indexOf(filter)>-1){li[i].style.display="block";}
+        else{li[i].style.display="none";}
+    }
+}
+function modal_window(action,i,b) {
     var window_zone = document.getElementById("window_zone");
     if (action == 'close') {
         window_zone.style.visibility = "hidden"
@@ -300,10 +419,11 @@ function modal_window(action, i) {
         document.body.style.overflow = 'hidden';
         var img = document.createElement("img");
         img.className = "content";
+        img.style.backgroundImage=(b)?b:'';
         img.src = i;
         window_zone.appendChild(img);
     }
 }
+get_doc(window.location.hash.slice(1));
 </script>
-</body>
-</html>
+</body></html>
