@@ -67,7 +67,7 @@ a{text-decoration: none;}
     background-size:100% 100%;
     background-repeat:no-repeat;
 }
-.img_t:hover{transition-duration: 0.3s;transform: scale(1.01, 1.01);}
+.img_t:hover{transition-duration: 0.3s;transform: scale(1.01, 1.01);box-shadow: 0px 2px 18px rgba(110, 95, 165, 0.25);}
 .leftbor{border-left:1px solid #cec8e3;}
 .textarr{padding-left:4%;padding-top:4%;}
 .head{font-size:16px;}
@@ -114,8 +114,6 @@ a{text-decoration: none;}
 </tbody>
 </table>
 <div id='window_zone' onclick="modal_window('close')" align='center'></div>
-
-
 <div id="quick_tutorial" style="display:none">
     <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
         <tr>
@@ -129,249 +127,234 @@ a{text-decoration: none;}
             <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_load.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 2 : Setting up a new project</td>
+            <td align='center' colspan="2" height='128px'>Step 2 : Setting up a new project</td>
         </tr>
         <tr>
             <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_folder.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>In the window that appears, specify <b>the working folder</b> with the resources for the project.<br><br><b>Attention!</b><br>to open the project, you also need to specify <b>the working folder</b>, not the JSON file</td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 3 : Available localization</td>
+            <td align='center' colspan="2" height='128px'>Step 3 : Available localization</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Indicate <b>the project name</b> and available languages.<br><br>For each language, you can immediately specify the translated name<br><br>The 1st added language will be set as default language of the novel.<br>If the player's device does not support any of the specified languages, the game will switch to the first language in this list<br><br>Click on <b>"Create Project"</td>
+            <td width='50%' align='left' class='textarr' valign='top'>Indicate <b>the project name</b> and available languages.<br><br>For each language, you can immediately specify the translated name<br><br>The 1st added language will be set as default language of the novel.<br>If the player's device does not support any of the specified languages, the game will switch to the first language in this list<br><br>After creating a project, you can remove and add translations in the project settings.<br><br>Click on <b>"Create Project"</td>
             <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_languages.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 4 : Add story block</td>
+            <td align='center' colspan="2" height='128px'>Step 4 : Add story block</td>
         </tr>
         <tr>
             <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_project.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>Now we can proceed to create a <b>story block</b> by clicking on the <b>"Add story block"</b> button in the lower right corner.<br><br>A story in Tuesday JS is made up of <b>story block</b> that the reader can switch between as they progress through the story, using choices or their consequences.</td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 5 : Setting up a story block</td>
+            <td align='center' colspan="2" height='128px'>Step 5 : Setting up a story block</td>
         </tr>
         <tr>
             <td width='50%' align='left' class='textarr' valign='top'>We set the block name in Latin letters and the block color as desired.<br><br>The player will not see these names or colors, they are needed for your convenience when navigating through the plot.<br><br>Click <b>"Create Block"</b>.<br><br>The first created <b>story block</b> will be considered the start block by default. if necessary, you can change it in the project settings.</td>
             <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_block.svg" style="background-image:url('tutorial_img/new_block.png');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 6 : Add scene</td>
+            <td align='center' colspan="2" height='128px'>Step 6 : Add scene</td>
         </tr>
         <tr>
             <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_scene.svg" style="background-image:url('tutorial_img/new_scene.png');"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>Open the created <b>story block</b> by clicking on the three dots on the left side<br><br>Click <b>(+)</b> for call the menu of elements<br><br>And add a new scene to the <b>story block</b> in the pop-up menu.</td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Open the created story block by clicking on the three dots on the left side<br><br>Click <b>(+)</b> for call the menu of elements<br><br>And add a new <b>scene</b> element to the story block in the pop-up menu.</td>
         </tr><tr>
-            <td align='center' colspan="2" height='64px'>Step 7 : Scene background</td>
+            <td align='center' colspan="2" height='128px'>Step 7 : Scene background</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>In the scene options window that appears, set the background image by clicking the folder icon.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/8.jpg"/></td>
+            <td width='50%' align='left' class='textarr' valign='top'>In the scene options window that appears, set the <b>background image</b> by clicking the folder icon.<br><br>Here you can also choose your own background for other translations. If you set only one background, it will be automatically applied to all translations. </td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/set_scene.svg" style="background-image:url('tutorial_img/set_scene.png');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 8</td>
+            <td align='center' colspan="2" height='128px'>Step 8</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/9.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>The dialog box that appears displays all matching files from the project's working folder.</td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src" src="tutorial_img/add_bg_scene.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>The dialog box that appears displays all matching files from the project's working folder, in it select the desired file for the background.</td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 9</td>
+            <td align='center' colspan="2" height='128px'>Step 9</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Specify images for other languages if necessary, otherwise the image for the rest of the localization will be taken from the default language<br><br>Click <b>“Apply”</b> and you will see the scene appear in the <b>story block</b>.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/10.jpg"/></td>
+            <td width='50%' align='left' class='textarr' valign='top'>Optionally, you can specify background display options, background color, and background music for this scene.<br><br>Click <b>“Apply”</b> and you will see the scene appear in the <b>story block</b>.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_scene.svg" style="background-image:url('tutorial_img/apply_scene.jpg');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 10 : Add Dialog</td>
+            <td align='center' colspan="2" height='128px'>Step 10 : Add Dialog</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/11.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now you need to add a dialog element to it. Click the top <b>(+)</b> button and select <b>"Add Dialog"</b>.</td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/new_dialog.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now you need to add a dialog element to it. Click the top <b>(+)</b> button and select <b>"Add Dialog"</b>.<br><br>Story blocks consist of scenes containing dialogues with all the elements such as text, graphics, and choices.</td>
         </tr><tr>
-            <td align='center' colspan="2" height='64px'>Step 11 : Launch scene edit</td>
+            <td align='center' colspan="2" height='128px'>Step 11 : Launch scene edit</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>In the item that appears, click the menu button and select <b>"Scene edit"</b>.<br><br>The Tuesday JS story structure is divided into <b>story blocks</b> that contain the story scenes, and inside the scenes there are dialogs with other elements like text, graphics and choices.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/12.jpg"/></td>
+            <td width='50%' align='left' class='textarr' valign='top'>In the item that appears, press <b>the menu button</b> and click <b>Edit Scene</b>.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/scene_menu.jpg');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 12 : Main menu</td>
+            <td align='center' colspan="2" height='128px'>Step 12 : Main menu</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/13.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>We are now in the scene editor. Since the first created <b>story block</b> is the start one, it is logical to make the main menu in it.<br><br>Under <b>"Buttons & Choices"</b>, click <b>(+)</b></td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_choice.svg" style="background-image:url('tutorial_img/scene_editor.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now we are in <b>the scene editor</b>. Since the first created story block automatically becomes the starting one, you can create a main menu in it. The starting block can be changed in the project settings.<br><br>Under <b>"Buttons & Choices"</b>, click <b>(+)</b></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 13 : Buttons & Choices</td>
+            <td align='center' colspan="2" height='128px'>Step 13 : Buttons & Choices</td>
         </tr>
         <tr>
             <td width='50%' align='left' class='textarr' valign='top'>A button appeared in the layout<br><br>And a panel with its parameters appeared in the right menu.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/14.jpg"/></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice.jpg"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 14</td>
+            <td align='center' colspan="2" height='128px'>Step 14</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/15.jpg"/></td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/set_choice.svg" style="background-image:url('tutorial_img/set_choice.jpg');"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>For the button, set the <b>"go to"</b> parameter to the value <b>"Next scene"</b><br><br>Which means that when you click on it, the story will continue in the current <b>story block</b>.<br><br>After pressing <b>"Back"</b> button to return to the script.</td>
         </tr><tr>
-            <td align='center' colspan="2" height='64px'>Step 15 : add dialogue text</td>
+            <td align='center' colspan="2" height='128px'>Step 15 : add dialogue text</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Add another dialog to the scene by clicking in the middle <b>(+)</b> and selecting the <b>"text"</b> element</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/16.jpg"/></td>
+            <td width='50%' align='left' class='textarr' valign='top'>Add another dialog to the scene by clicking <b>(+)</b> and selecting the <b>"text"</b> element</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/new_text.jpg');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 16 : Text setting</td>
+            <td align='center' colspan="2" height='128px'>Step 16 : Text setting</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/17.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>A window with parameters for the dialog will appear. We set phrases for all available languages.<br><br>The text area both in the editor and in the already created novel will not be displayed if no text is specified, so the text must be specified for all translations.<br><br>If the translation texts differ in the number of phrases, then you can write “skip”, then the phrase will be automatically skipped.</td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/text_edit.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>A window will appear with options for the dialog. In it you can install phrases for all available languages.<br><br>The text area both in the editor and in the already created novel will not be displayed if no text is specified, so the text must be specified for all translations.<br><br>If the translation texts differ in the number of phrases, then you can write “skip”, then the phrase will be automatically skipped.<br>if the variable name is used in angle brackets, then the dialog will show the volume from this variable "text &#60var_name> text".</td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 17</td>
+            <td align='center' colspan="2" height='128px'>Step 17</td>
         </tr>
         <tr>
             <td width='50%' align='left' class='textarr' valign='top'>Now we can see how the entire interface looks.<br><br>Click the menu of this dialog box and choose <b>"Scene edit"</b>.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/18.jpg"/></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/scene_menu2.jpg');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 18 : Interface view</td>
+            <td align='center' colspan="2" height='128px'>Step 18 : Interface view</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/46.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the section <b>"text panel (global)"</b> we can change the text area.<br><br> In the section <b>"interface buttons (global)"</b> add new buttons for the interface and their appearance.<br><br>It is important that the mark <b>(global)</b> means that the changes will affect the entire story, and not a specific scene.</td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/scene_editor_text.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the section <b>"Text panel"</b> you can customize the text areas to display the dialogs.<br><br> In the section <b>"interface buttons"</b> add new buttons for the interface and their appearance.<br><br>In addition, in the settings of all elements, you can use raster and vector graphics, as well as CSS styles.</td>
         </tr><tr>
-            <td align='center' colspan="2" height='64px'>Step 19 : Add sprite</td>
+            <td align='center' colspan="2" height='128px'>Step 19 : Add sprite</td>
         </tr>
         <tr>
             <td width='50%' align='left' class='textarr' valign='top'>Now add the sprite to the scene,<br><br>Find the <b>"Arts"</b> item and press <b>(+)</b></td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/19.jpg"/></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_art.svg" style="background-image:url('tutorial_img/scene_editor_text.jpg');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 20</td>
+            <td align='center' colspan="2" height='128px'>Step 20</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/20.jpg"/></td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice_art.jpg"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>In the window that appears, select the desired sprite from the working folder.</td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 21</td>
+            <td align='center' colspan="2" height='128px'>Step 21</td>
         </tr>
         <tr>
             <td width='50%' align='left' class='textarr' valign='top'>We place the element in the scene and set its parameters in the same way as with the buttons.<br><br>And do not forget about localization.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/21.jpg"/></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/set_art.jpg"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 22 : Duplicate element</td>
+            <td align='center' colspan="2" height='128px'>Step 22 : Duplicate element</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/22.jpg"/></td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene.jpg');"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>We create selection elements for the further development of the story.<br><br>To do this, in the menu of the last dialog item, select the <b>"Duplicate"</b> item, so as not to place the sprites again.</td>
         </tr><tr>
-            <td align='center' colspan="2" height='64px'>Step 23</td>
+            <td align='center' colspan="2" height='128px'>Step 23</td>
         </tr>
         <tr>
             <td width='50%' align='left' class='textarr' valign='top'>In copied dialog, select <b>"Scene edit"</b></td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/23.jpg"/></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene2.jpg');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 24</td>
+            <td align='center' colspan="2" height='128px'>Step 24</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/24.jpg"/></td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/scene_editor_text_edit.svg" style="background-image:url('tutorial_img/scene_editor_text_edit.jpg');"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>In the Scene Content section click on <b>"Edit Text"</b> and set a new text for the dialog,</td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 25 : Character name</td>
+            <td align='center' colspan="2" height='128px'>Step 25 : Character name</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>This time we will set the character name in the Settings Name Panel section.<br><br>The name translation is set together with the text.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/25.jpg"/></td>
+            <td width='50%' align='left' class='textarr' valign='top'>This time we will set the character name in the Settings Name Panel section.<br><br>The name translation is set together with the text.<br><br>Tuesday JS remembers all new names, along with translations and parameters, so that you can later select it from a list of characters. The list of characters is edited in the project settings</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/text_edit_add_name.svg" style="background-image:url('tutorial_img/text_edit_add_name.jpg');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 26 : Name panel</td>
+            <td align='center' colspan="2" height='128px'>Step 26 : Name panel</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/26.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now we can see that the character's name has appeared in the scene,<br><br>Just like in the text panel, the "name panel" does not appear if the name is not specified.<br><br>You can change the appearance and position of this element in the <b>"Name panel (globally)"</b>.</td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/name_panel_edit.svg" style="background-image:url('tutorial_img/name_panel_edit.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now we can see that the character's name has appeared in the scene,<br><br>Just like in the text panel, the "name panel" does not appear if the name is not specified.<br><br>You can change the appearance and position of this element in the <b>"Name panel"</b>. You can also use raster and vector graphics, as well as CSS styles in these settings.</td>
         </tr><tr>
-            <td align='center' colspan="2" height='64px'>Step 27 : Сhoice</td>
+            <td align='center' colspan="2" height='128px'>Step 27 : Сhoice</td>
         </tr>
         <tr>
             <td width='50%' align='left' class='textarr' valign='top'>Then add select buttons in the same way as when creating a menu. In the section <b>"Buttons & Choice"</b>.<br><br>One of the buttons sets the value <b>"go to"</b> to <b>"Next scene"</b>.<br><br>And back to the script.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/28.jpg"/></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice_yes_no.jpg"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 28</td>
+            <td align='center' colspan="2" height='128px'>Step 28</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/29.jpg"/></td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/next_scen.svg" style="background-image:url('tutorial_img/next_scen.jpg');"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>In the scene, add another dialog for choice with the value <b>"Next scene"</b></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 29</td>
+            <td align='center' colspan="2" height='128px'>Step 29</td>
         </tr>
         <tr>
             <td width='50%' align='left' class='textarr' valign='top'>Next, we will create a new <b>story block</b> for the development of an alternative story, and add a scene and dialogue with the sprite to it. (Following the same steps of previous paragraphs)</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/31.jpg"/></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/copy_past_scene.svg" style="background-image:url('tutorial_img/copy_past_scene.jpg');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='64px'>Step 30</td>
+            <td align='center' colspan="2" height='128px'>Step 30 : Linking plot blocks</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/37.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>Return to the scene editor for a dialog with a choice, for the second button set the value <b>"go to"</b> to a new <b>story block</b>.</td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/choice_line.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>For the second button, set the value with the name of the new story block.<br><br>Now we see in the script a line leading from the select button to another story block.</td>
         </tr>
           <tr>
-            <td align='center' colspan="2" height='64px'>Step 31 : Linking plot blocks</td>
+            <td align='center' colspan="2" height='128px'>Step 31 : Preview</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Now we can see the name of the <b>new story block</b> in the <b>"go to"</b> item.<br><br>We select it and return to the script.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/38.jpg"/></td>
+            <td width='50%' align='left' class='textarr' valign='top'>To make sure that everything is done correctly, we launch the project using the preview. <br><br> You can start a project with any of the created translations and from any place in the story</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_preview.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
         </tr>
           <tr>
-            <td align='center' colspan="2" height='64px'>Step 32</td>
+            <td align='center' colspan="2" height='128px'>Step 32 : Save project</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/39.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>Now we can see in the script that one of the choice leads to another <b>story block</b>.</td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_save.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Saving a project is handled differently on different platforms.<br><br><b>Browsers</b><br>Most browsers save files by default in the <b>Download folder</b>. To reopen the project, you need to move the json file of the project to the working folder. <br><br><b>Desktop</b><br>Provides a choice in which folder to save the JSON project. <br><br><b>Android</b><br>Saves JSON to the project's <b>Working folder</b>.</td>
         </tr>
           <tr>
-            <td align='center' colspan="2" height='64px'>Step 33 : Preview</td>
+            <td align='center' colspan="2" height='128px'>Step 33 : Open project</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Using the preview, you can check the project with the selected localization.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/40.jpg"/></td>
+            <td width='50%' align='left' class='textarr' valign='top'>To open the project, you need to <b>specify the Working Folder</b> where the json file is located. <b>Not a JSON file</b>, to be specified, it will not be displayed in the list of available files<br><br>If there are multiple JSON files in the folder, Tuesday JS will ask which file you want to open.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_open.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
         </tr>
           <tr>
-            <td align='center' colspan="2" height='64px'>Step 34 : Save project</td>
+            <td align='center' colspan="2" height='128px'>Step 34 : Build project</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/49.jpg"/><br><br><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/41.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>Most browsers save files by default in the <b>Download folder</b>, where the project will most likely be placed.<br><br>To reopen the project, you need to move the json file of the project to the working folder.</td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/build_choice.svg" style="background-image:url('tutorial_img/build_choice.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Click on the <b>"Build"</b> button in the top menu and select the desired option in the window that appears (zip archive is recommended).<br><br>Saving a built project is similar to saving a project, depending on the platform you are using.<br><br>You can publish the resulting zip archive or base64 html on game portals:<br><br><ul><li><a href="https://itch.io/" target='_blank'>itch.io</a></li><li><a href="https://gamejolt.com/" target='_blank'>GameJolt</a></li><li><a href="https://www.kongregate.com/" target='_blank'>Kongregate</a></li><li><a href="https://www.newgrounds.com/" target='_blank'>NewGrounds</a></li></ul></td>
         </tr>
-          <tr>
-            <td align='center' colspan="2" height='64px'>Step 35 : Open project</td>
-        </tr>
-        <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>When opening a project, just point to the folder where the json file is located and Tuesday JS will find it by itself.<br><br>If there are multiple json files in the folder, Tuesday JS will ask which file you want to open.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/42.jpg"/></td>
-        </tr>
-          <tr>
-            <td align='center' colspan="2" height='64px'>Step 36 : Build project</td>
-        </tr>
-        <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/43.jpg"/><br><img class="img_t" onclick="modal_window('open',this.src)" alt="" src="tutorial_img/44.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>The situation is similar when exporting a project to an html file.<br><br>It will go to the Download folder, and it will need to be manually copied to the working folder to the rest of the history resources.</td>
-        </tr>
-            <td align='center' colspan="2" height='64px'>It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>If you notice something like this, be sure to send me an email: tuesdayjsengine@gmail.com</td>
+            <td align='center' colspan="2" height='128px'>It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>If you notice something like this, be sure to send me an email: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
         </tr>
     </tbody></table>
 </div>
-
 <script>
 function get_doc(id){
     doc_view.innerHTML=document.getElementById(id).innerHTML;window.location.hash=id;
