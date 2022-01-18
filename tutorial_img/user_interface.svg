@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 2048 1400">
+<defs><style>
+    path.lines {fill:none;stroke:#f00;stroke-width:3px;}
+    text.texts {fill:#f00;font-size: 32px;font-family:Arial;cursor:pointer;}
+</style></defs>
+    <image width="2048" height="1400" xlink:href="user_interface.png"/>
+    <rect fill="none" x="1360" y="1247" width="285" height="96"/>
+    <rect fill="none" x="872" width="193" height="80"/>
+    <path class="lines" d="M1686,1267V1127"/>
+    <text class="texts" x="1682" y="1112">Metadata</text>
+    <path class="lines" d="M1856,1267v-90"/>
+    <text class="texts" x="1852" y="1162">Scaling</text>
+    <path class="lines" d="M799,524V434"/>
+    <text class="texts" x="796" y="418">Expand / Close block</text>
+    <path class="lines" d="M1160,524V484"/>
+    <text class="texts" x="1156" y="468">Block settings</text>
+    <path class="lines" d="M1266,542h92"/>
+    <text class="texts" x="1368" y="546">Run block preview </text>
+    <path class="lines" d="M1266,612h92"/>
+    <text class="texts" x="1368" y="616">Scene context menu </text>
+    <path class="lines" d="M1266,680h92"/>
+    <text class="texts" x="1368" y="684">Dialog context menu</text>
+    <path class="lines" d="M1266,748h92"/>
+    <text class="texts" x="1368" y="752">Edit dialog element</text>
+    <path class="lines" d="M1266,871h92"/>
+    <text class="texts" x="1368" y="874">Add element to dialog</text>
+    <path class="lines" d="M1266,935h92"/>
+    <text class="texts" x="1368" y="938">Create a new dialog</text>
+    <path class="lines" d="M1266,999h92"/>
+    <text class="texts" x="1368" y="1002">Create new element</text>
+    <path class="lines" d="M42,580V65"/>
+    <text class="texts" x="40" y="618">New project</text>
+    <path class="lines" d="M124,530V65"/>
+    <text class="texts" x="122" y="568">Open project folder</text>
+    <path class="lines" d="M215,480V65"/>
+    <text class="texts" x="214" y="518">Save project</text>
+    <path class="lines" d="M305,430V65"/>
+    <text class="texts" x="304" y="468">Cloud storage</text>
+    <path class="lines" d="M395,380V65"/>
+    <text class="texts" x="392" y="418">Undo</text>
+    <path class="lines" d="M475,330V65"/>
+    <text class="texts" x="474" y="368">Redo</text>
+    <path class="lines" d="M565,280V65"/>
+    <text class="texts" x="562" y="318">Project and Editor options</text>
+    <path class="lines" d="M652,230V65"/>
+    <text class="texts" x="650" y="268">JSON editor</text>
+    <path class="lines" d="M739,180V65"/>
+    <text class="texts" x="736" y="218">Export table with texts</text>
+    <path class="lines" d="M826,130V65"/>
+    <text class="texts" x="824" y="168">About / info</text>
+    <path class="lines" d="M1102,230V65"/>
+    <text class="texts" x="1100" y="268">Choose a language to edit</text>
+    <path class="lines" d="M1189,180V65"/>
+    <text class="texts" x="1186" y="218">Build project</text>
+    <path class="lines" d="M1276,130V65"/>
+    <text class="texts" x="1274" y="168">Run project</text>
+</svg>

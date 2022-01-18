@@ -71,6 +71,8 @@ a{text-decoration: none;}
 .leftbor{border-left:1px solid #cec8e3;}
 .textarr{padding-left:4%;padding-top:4%;}
 .head{font-size:16px;}
+path.lines {fill:none;stroke:#f00;stroke-width:3px;}
+text.texts {fill:#f00;font-size: 32px;font-family:Arial;cursor:pointer;}
 </style>
 </head>
 <body style="background-color:#fff;">
@@ -90,18 +92,26 @@ a{text-decoration: none;}
     
     <div class="block" onclick="get_doc('quick_tutorial')">Quick tutorial</div>
     
-<!--    <div class="accordion"><div class="block block_open">Interface</div></div>-->
-<!--    <div class="panel">-->
-<!--        <div class="block"><span class="three_1">tue_load</span></div>-->
-<!--        <div class="block"><span class="three_1">tue_save</span></div>-->
-<!--        <div class="block"><span class="three_1">tue_home</span></div>-->
-<!--        <div class="block"><span class="three_1">tue_next</span></div>-->
-<!--        <div class="block"><span class="three_1">tue_back</span></div>-->
-<!--        <div class="accordion"><div class="block block_open"><span class="three_1">art</span></div></div>-->
+    <div class="accordion"><div class="block block_open">User interface</div></div>
+    <div class="panel">
+        <div class="block" onclick="get_doc('user_interface')"><span class="three_1">Main interface</span></div>
+        <div class="block"><span class="three_1">New project</span></div>
+        <div class="block"><span class="three_1">Open project folder</span></div>
+        <div class="block"><span class="three_1">Save project</span></div>
+        <div class="block"><span class="three_1">Cloud storage</span></div>
+        <div class="block"><span class="three_1">Project options</span></div>
+        <div class="block"><span class="three_1">Editor options</span></div>
+        <div class="block"><span class="three_1">JSON editor</span></div>
+        <div class="block"><span class="three_1">Export table</span></div>
+        <div class="block"><span class="three_1">language to edit</span></div>
+        <div class="block"><span class="three_1">Build project</span></div>
+        <div class="block"><span class="three_1">Run project</span></div>
+        <div class="block"><span class="three_1">Add story block</span></div>
+        <div class="block"><span class="three_1">Metadata</span></div>
 <!--        <div class="panel">-->
 <!--            <div class="block"><span class="three_2">style</span></div>-->
 <!--        </div>-->
-<!--    </div>-->
+    </div>
 
     
 </div>
@@ -354,6 +364,62 @@ a{text-decoration: none;}
             <td align='center' colspan="2" height='128px'>It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>If you notice something like this, be sure to send me an email: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
         </tr>
     </tbody></table>
+</div>
+<div id="user_interface" style="display:none">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="auto" viewBox="0 0 2048 1400">
+    <image width="2048" height="1400" xlink:href="tutorial_img/user_interface.png"/>
+    <rect fill-opacity="0" x="1360" y="1247" width="285" height="96" onclick="get_doc('add_story_block')" style="cursor:pointer;"/>
+    <rect fill="none" x="872" width="193" height="80"/>
+    <path class="lines" d="M1686,1267V1127"/>
+    <text class="texts" x="1682" y="1112" onclick="get_doc('')">Metadata</text>
+    <path class="lines" d="M1856,1267v-90"/>
+    <text class="texts" x="1852" y="1162" onclick="get_doc('')">Scaling</text>
+    <path class="lines" d="M799,524V434"/>
+    <text class="texts" x="796" y="418" onclick="get_doc('')">Expand / Close block</text>
+    <path class="lines" d="M1160,524V484"/>
+    <text class="texts" x="1156" y="468" onclick="get_doc('')">Block settings</text>
+    <path class="lines" d="M1266,542h92"/>
+    <text class="texts" x="1368" y="546" onclick="get_doc('')">Run block preview </text>
+    <path class="lines" d="M1266,612h92"/>
+    <text class="texts" x="1368" y="616" onclick="get_doc('')">Scene context menu </text>
+    <path class="lines" d="M1266,680h92"/>
+    <text class="texts" x="1368" y="684" onclick="get_doc('')">Dialog context menu</text>
+    <path class="lines" d="M1266,748h92"/>
+    <text class="texts" x="1368" y="752" onclick="get_doc('')">Edit dialog element</text>
+    <path class="lines" d="M1266,871h92"/>
+    <text class="texts" x="1368" y="874" onclick="get_doc('')">Add element to dialog</text>
+    <path class="lines" d="M1266,935h92"/>
+    <text class="texts" x="1368" y="938" onclick="get_doc('')">Create a new dialog</text>
+    <path class="lines" d="M1266,999h92"/>
+    <text class="texts" x="1368" y="1002" onclick="get_doc('')">Create new element</text>
+    <path class="lines" d="M42,580V65"/>
+    <text class="texts" x="40" y="618" onclick="get_doc('')">New project</text>
+    <path class="lines" d="M124,530V65"/>
+    <text class="texts" x="122" y="568" onclick="get_doc('')">Open project folder</text>
+    <path class="lines" d="M215,480V65"/>
+    <text class="texts" x="214" y="518" onclick="get_doc('')">Save project</text>
+    <path class="lines" d="M305,430V65"/>
+    <text class="texts" x="304" y="468" onclick="get_doc('')">Cloud storage</text>
+    <path class="lines" d="M395,380V65"/>
+    <text class="texts" x="392" y="418" onclick="get_doc('')">Undo</text>
+    <path class="lines" d="M475,330V65"/>
+    <text class="texts" x="474" y="368" onclick="get_doc('')">Redo</text>
+    <path class="lines" d="M565,280V65"/>
+    <text class="texts" x="562" y="318" onclick="get_doc('')">Project and Editor options</text>
+    <path class="lines" d="M652,230V65"/>
+    <text class="texts" x="650" y="268" onclick="get_doc('')">JSON editor</text>
+    <path class="lines" d="M739,180V65"/>
+    <text class="texts" x="736" y="218" onclick="get_doc('')">Export table with texts</text>
+    <path class="lines" d="M826,130V65"/>
+    <text class="texts" x="824" y="168" onclick="get_doc('')">About / info</text>
+    <path class="lines" d="M1102,230V65"/>
+    <text class="texts" x="1100" y="268" onclick="get_doc('')">Choose a language to edit</text>
+    <path class="lines" d="M1189,180V65"/>
+    <text class="texts" x="1186" y="218" onclick="get_doc('')">Build project</text>
+    <path class="lines" d="M1276,130V65"/>
+    <text class="texts" x="1274" y="168" onclick="get_doc('')">Run project</text>
+</svg>
+
 </div>
 <script>
 function get_doc(id){
