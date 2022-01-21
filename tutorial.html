@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
 <title>Tuesday JS visual novel engine tutorial</title>
 <style>
 *{
 	font-family:Arial;
-    font-size:12px;
+    font-size:14px;
 	border-collapse:collapse;
 	border:none;
 	margin:0;
@@ -38,6 +38,7 @@ a{text-decoration: none;}
     cursor:pointer;
 }
 .block:hover{background-color:#cec8e3;}
+.link{cursor:pointer;text-decoration:underline;}
 .panel{display:none;}
 .element{
 	background-color:#cec8e3;
@@ -70,9 +71,10 @@ a{text-decoration: none;}
 .img_t:hover{transition-duration: 0.3s;transform: scale(1.01, 1.01);box-shadow: 0px 2px 18px rgba(110, 95, 165, 0.25);}
 .leftbor{border-left:1px solid #cec8e3;}
 .textarr{padding-left:4%;padding-top:4%;}
-.head{font-size:16px;}
+.head{font-size:16px;height:64px;display:flex;align-items:center;justify-content:center;}
 path.lines {fill:none;stroke:#000;stroke-width:2px;}
 text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
+.img_w{height:auto;width:100%;cursor:pointer;}
 </style>
 </head>
 <body style="background-color:#fff;">
@@ -91,29 +93,49 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
 <div id="bookmarks">
     
     <div class="block" onclick="get_doc('quick_tutorial')">Quick tutorial</div>
-    
     <div class="accordion"><div class="block block_open">User interface</div></div>
     <div class="panel">
         <div class="block" onclick="get_doc('user_interface')"><span class="three_1">Main interface</span></div>
-        <div class="block"><span class="three_1">New project</span></div>
+        <div class="block" onclick="get_doc('new_project')"><span class="three_1">New project</span></div>
         <div class="block"><span class="three_1">Open project folder</span></div>
         <div class="block"><span class="three_1">Save project</span></div>
         <div class="block"><span class="three_1">Cloud storage</span></div>
         <div class="block"><span class="three_1">Project options</span></div>
         <div class="block"><span class="three_1">Editor options</span></div>
         <div class="block"><span class="three_1">JSON editor</span></div>
-        <div class="block"><span class="three_1">Export table</span></div>
+        <div class="block" onclick="get_doc('export_csv')"><span class="three_1">Export text to CSV / TSV</span></div>
         <div class="block"><span class="three_1">language to edit</span></div>
         <div class="block"><span class="three_1">Build project</span></div>
         <div class="block"><span class="three_1">Run project</span></div>
         <div class="block"><span class="three_1">Add story block</span></div>
-        <div class="block"><span class="three_1">Metadata</span></div>
-<!--        <div class="panel">-->
-<!--            <div class="block"><span class="three_2">style</span></div>-->
-<!--        </div>-->
+        <div class="block" onclick="get_doc('metadata')"><span class="three_1">Metadata</span></div>
     </div>
-
-    
+    <div class="accordion"><div class="block block_open">Project structure</div></div>
+    <div class="panel">
+        <div class="accordion"><div class="block block_open"><span class="three_1">Settings project</span></div></div>
+        <div class="panel">
+            <div class="block"><span class="three_2">Project</span></div>
+            <div class="block"><span class="three_2">Languages</span></div>
+            <div class="block"><span class="three_2">Characters</span></div>
+            <div class="block"><span class="three_2">Keyboard</span></div>
+            <div class="block"><span class="three_2">Variables</span></div>
+            <div class="block"><span class="three_2">Cursors</span></div>
+            <div class="block"><span class="three_2">Sounds</span></div>
+            <div class="block"><span class="three_2">Add-on</span></div>
+            <div class="block"><span class="three_2">Fonts</span></div>
+        </div>
+        <div class="block"><span class="three_1">Story block</span></div>
+        <div class="block"><span class="three_1">Scene</span></div>
+        <div class="block"><span class="three_1">Dialog</span></div>
+        <div class="accordion"><div class="block block_open"><span class="three_1">Dialog elements</span></div></div>
+        <div class="panel">
+            <div class="block"><span class="three_2">Text</span></div>
+        </div>
+        <div class="block"><span class="three_1">Legacy choice</span></div>
+        <div class="block"><span class="three_1">Terrain map</span></div>
+        <div class="block"><span class="three_1">Hidden object</span></div>
+    </div>
+    <div class="block" onclick="get_doc('editor_options')">Editor Options</div>
 </div>
 </td>
 </tr>
@@ -147,7 +169,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td align='center' colspan="2" height='128px'>Step 3 : Available localization</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Indicate <b>the project name</b> and available languages.<br><br>For each language, you can immediately specify the translated name of the project<br><br>The 1st added language will be set as default language of the novel.<br>If the player's device does not support any of the specified languages, the game will switch to the first language in this list<br><br>After creating a project, you can remove and add translations in the project settings.<br><br>Click on <b>"Create Project"</td>
+            <td width='50%' align='left' class='textarr' valign='top'>Indicate <b>the project name</b> and available languages.<br><br>For each language, you can immediately specify the translated name of the project<br><br>The 1st added language will be set as default language of the novel.<br>If the player's device does not support any of the specified languages, the game will switch to the first language in this list<br><br>After creating a project, you can remove and add translations in the project settings.<br><br>Click on <b>"Create Project"</b>.<br></br>More information in the section "<span class="link" onclick="get_doc('new_project')">New project</span>"</td>
             <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_languages.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
         </tr>
         <tr>
@@ -366,64 +388,77 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </tbody></table>
 </div>
 <div id="user_interface" style="display:none">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="auto" viewBox="0 0 2048 1400">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-height:700px;width:100%;height:auto;" viewBox="0 0 2048 1400">
     <image width="2048" height="1400" xlink:href="tutorial_img/user_interface.png"/>
     <rect fill-opacity="0" x="1360" y="1247" width="285" height="96" onclick="get_doc('add_story_block')" style="cursor:pointer;"/>
     <rect fill="none" x="872" width="193" height="80"/>
-    <path class="lines" d="M1686,1267V1127"/>
-    <text class="texts" x="1682" y="1112" onclick="get_doc('')">Metadata</text>
-    <path class="lines" d="M1856,1267v-90"/>
-    <text class="texts" x="1852" y="1162" onclick="get_doc('')">Scaling</text>
-    <path class="lines" d="M799,524V434"/>
-    <text class="texts" x="796" y="418" onclick="get_doc('')">Expand / Close block</text>
-    <path class="lines" d="M1160,524V484"/>
-    <text class="texts" x="1156" y="468" onclick="get_doc('')">Block settings</text>
-    <path class="lines" d="M1266,542h92"/>
-    <text class="texts" x="1368" y="546" onclick="get_doc('')">Run block preview </text>
-    <path class="lines" d="M1266,612h92"/>
-    <text class="texts" x="1368" y="616" onclick="get_doc('')">Scene context menu </text>
-    <path class="lines" d="M1266,680h92"/>
-    <text class="texts" x="1368" y="684" onclick="get_doc('')">Dialog context menu</text>
-    <path class="lines" d="M1266,748h92"/>
-    <text class="texts" x="1368" y="752" onclick="get_doc('')">Edit dialog element</text>
-    <path class="lines" d="M1266,871h92"/>
-    <text class="texts" x="1368" y="874" onclick="get_doc('')">Add element to dialog</text>
-    <path class="lines" d="M1266,935h92"/>
-    <text class="texts" x="1368" y="938" onclick="get_doc('')">Create a new dialog</text>
-    <path class="lines" d="M1266,999h92"/>
-    <text class="texts" x="1368" y="1002" onclick="get_doc('')">Create new element</text>
-    <path class="lines" d="M42,580V65"/>
-    <text class="texts" x="40" y="618" onclick="get_doc('')">New project</text>
-    <path class="lines" d="M124,530V65"/>
-    <text class="texts" x="122" y="568" onclick="get_doc('')">Open project folder</text>
-    <path class="lines" d="M215,480V65"/>
-    <text class="texts" x="214" y="518" onclick="get_doc('')">Save project</text>
-    <path class="lines" d="M305,430V65"/>
-    <text class="texts" x="304" y="468" onclick="get_doc('')">Cloud storage</text>
-    <path class="lines" d="M395,380V65"/>
-    <text class="texts" x="392" y="418" onclick="get_doc('')">Undo</text>
-    <path class="lines" d="M475,330V65"/>
-    <text class="texts" x="474" y="368" onclick="get_doc('')">Redo</text>
-    <path class="lines" d="M565,280V65"/>
-    <text class="texts" x="562" y="318" onclick="get_doc('')">Project and Editor options</text>
-    <path class="lines" d="M652,230V65"/>
-    <text class="texts" x="650" y="268" onclick="get_doc('')">JSON editor</text>
-    <path class="lines" d="M739,180V65"/>
-    <text class="texts" x="736" y="218" onclick="get_doc('')">Export table with texts</text>
-    <path class="lines" d="M826,130V65"/>
-    <text class="texts" x="824" y="168" onclick="get_doc('')">About / info</text>
-    <path class="lines" d="M1102,230V65"/>
-    <text class="texts" x="1100" y="268" onclick="get_doc('')">Choose a language to edit</text>
-    <path class="lines" d="M1189,180V65"/>
-    <text class="texts" x="1186" y="218" onclick="get_doc('')">Build project</text>
-    <path class="lines" d="M1276,130V65"/>
-    <text class="texts" x="1274" y="168" onclick="get_doc('')">Run project</text>
+    <path class="lines" d="M1686,1267V1127"/><text class="texts" x="1682" y="1112" onclick="get_doc('metadata')">Metadata</text>
+    <path class="lines" d="M1856,1267v-90"/><text class="texts" x="1852" y="1162">Scaling</text>
+    <path class="lines" d="M799,524V434"/><text class="texts" x="796" y="418">Expand / Close block</text>
+    <path class="lines" d="M1160,524V484"/><text class="texts" x="1156" y="468">Block settings</text>
+    <path class="lines" d="M1266,542h92"/><text class="texts" x="1368" y="546">Run block preview </text>
+    <path class="lines" d="M1266,612h92"/><text class="texts" x="1368" y="616">Scene context menu </text>
+    <path class="lines" d="M1266,680h92"/><text class="texts" x="1368" y="684">Dialog context menu</text>
+    <path class="lines" d="M1266,748h92"/><text class="texts" x="1368" y="752">Edit dialog element</text>
+    <path class="lines" d="M1266,871h92"/><text class="texts" x="1368" y="874">Add element to dialog</text>
+    <path class="lines" d="M1266,935h92"/><text class="texts" x="1368" y="938">Create a new dialog</text>
+    <path class="lines" d="M1266,999h92"/><text class="texts" x="1368" y="1002">Create new element</text>
+    <path class="lines" d="M42,580V65"/><text class="texts" x="40" y="618" onclick="get_doc('new_project')">New project</text>
+    <path class="lines" d="M124,530V65"/><text class="texts" x="122" y="568">Open project folder</text>
+    <path class="lines" d="M215,480V65"/><text class="texts" x="214" y="518">Save project</text>
+    <path class="lines" d="M305,430V65"/><text class="texts" x="304" y="468">Cloud storage</text>
+    <path class="lines" d="M395,380V65"/><text class="texts" x="392" y="418">Undo</text>
+    <path class="lines" d="M475,330V65"/><text class="texts" x="474" y="368">Redo</text>
+    <path class="lines" d="M565,280V65"/><text class="texts" x="562" y="318">Project and Editor options</text>
+    <path class="lines" d="M652,230V65"/><text class="texts" x="650" y="268">JSON editor</text>
+    <path class="lines" d="M739,180V65"/><text class="texts" x="736" y="218" onclick="get_doc('export_csv')">Export text to CSV/TSV</text>
+    <path class="lines" d="M826,130V65"/><text class="texts" x="824" y="168">About / info</text>
+    <path class="lines" d="M1102,230V65"/><text class="texts" x="1100" y="268">Choose a language to edit</text>
+    <path class="lines" d="M1189,180V65"/><text class="texts" x="1186" y="218">Build project</text>
+    <path class="lines" d="M1276,130V65"/><text class="texts" x="1274" y="168">Run project</text>
 </svg>
-
+</div>
+<div id="new_project" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Create a new project</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_new_project.png" style="max-height:479px;max-width:427px;"/>
+    </div>
+    <p>Before creating a new project, the initial settings window appears, in which you can specify a working folder with project resources, supported languages and translated names for them.
+    <br><br><b>Project folders</b><br>A folder on your device that should contain files that are supported by browsers and will be used in the project.<br>You can create a project without specifying a working folder if you do not intend to use additional files. For further use, if necessary, you will be prompted to add a folder.<br>In the project settings or in the files directory, you can change or update the working directory at any time.<br>The <b>Browser</b> and <b>Desktop</b> versions of the editor do not use files from the file system, but copy them to the BLOB structure, so changes to files in the working folder are not reflected in the editor, in this case it is recommended to update the folder in the project settings or in the file directory. The <b>Android</b> version works with files directly from the device's file system.
+    <br><br><b>Name project</b><br>The project name and supported languages are specified in one  common section "Name project". The first language in the list will be the default language. It will be applied if the device does not use other languages from this list. You can remove or add new languages and titles in the "Project settings" section of "Languages".<br><br>In the <b>JSON array</b>, the list of languages is stored in <i>parameters.languares</i>, the list of titles is in <i>parameters.title[languares]</i>.
+    <br><br><b>Warning!</b><br>The project is not automatically saved to your device or browser memory, when you need to make a backup copy of the project, use the Save function.</p>
+</div>
+<div id="editor_options" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Editor Options</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_editor_options.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p>To configure the working environment settings, go to <b>Settings project</b> and select <b>Editor</b>. These settings are global and are not directly related to the project settings and are not stored in the project's JSON file.
+    <br><br><b>Devices control</b><br>Specifies the input device as a trackpad or mouse with a wheel.<br>Mouse - uses the wheel to zoom and moves around the scene by holding down the right mouse button.<br>TouchPad - uses gesture controls for scrolling, two-finger scrolling in most cases, recommended for laptops and MacBooks.<br>For the Android version, this option is not available. It uses only touch control, when you connect a mouse, the "Mouse" setting will be used automatically.
+    <br><br><b>Preview window size</b><br>Sets the default size for the preview window (or screen for the Android version). This setting is not used in a project, so it cannot be used to specify the screen size of a project.
+    <br><br><b>Display script</b><br>Options for displaying relationship lines for story blocks to display all lines or only for the selected story block and use animation. This option is recommended for use with a large number of plot blocks or on weak devices.
+    <br><br><b>Light/Dark them</b><br>Selecting a color palette for the editor interface.
+    <br><br><b>Background</b><br>Choosing a background image for all editor screens.
+    <br><br>For browsers, editor settings are stored in local storage called "editor_setup".<br>To <b>reset settings</b> as well as all other data as saves from projects, to do this, go to the "Project" section and click "Clear all saves" after a pop-up notification appears at the bottom of the screen, do not click "Apply" instead click on the cross in the upper right corner of the settings window. It is recommended to use it in case of a local storage error or incorrect editor operation due to third-party interference.
+    </p>
+</div>
+<div id="metadata" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Project metadata</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_project_metadata.png" style="max-height:188px;max-width:361px;"/>
+    </div>
+    <p>Indicator of the amount of data used in the project.<br>The size and number of downloaded files from the working folder (not the size of the files used in the project).<br>The sum of words and characters from all elements (such as texts and choises) in the edited localization. Names of characters and name of project are not included in this number.<br>To determine the scope of the project, additional data is collected on the number of story blocks and characters.<br><br>This data can be useful for determining the cost and scope of translation of the project into other languages and determining the approximate amount of time to read the story.</p>
+</div>
+<div id="export_csv" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Export text to spreadsheet CSV / TSV</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_csv_export.png" style="max-height:332px;max-width:379px;"/>
+    </div>
+    <p>Export all project texts (including titles and character names) from all localizations in CSV or TSV spreadsheet format.<br>You can set your own values for Separated (cell) and delimited (string),default values are standard for CSV format Comma "," for Separated and Newline "\n" for Delimited<br>When exporting to TSV, the delimiter settings are not applied and the standard delimiter values for this format are used: Newline "\n" for Separated and tabulation "\t" for Delimited<br><br>Which format to use <b>CSV or TSV?</b> both formats are supported by almost all spreadsheet editors, and these formats are often used to transfer spreadsheets from one system to another. But not all editors allow you to change the separator values ​​when reading CSV, and by default a comma is used to separate cells, this character is often found in texts, which can spoil the contents of the table. TSV uses more neutral characters for text data by default, so having a comma in text won't break the table's integrity.<br><br>The resulting table is adapted to create translations into different languages, all lines are separated by a plot block, and next to the reaction are the names of the characters who pronounce it.<br>You can upload the resulting spreadsheets to online services such as Google Spreadsheets or use them in office programs such as LibreOffice Calc. </p>
 </div>
 <script>
 function get_doc(id){
-    doc_view.innerHTML=document.getElementById(id).innerHTML;window.location.hash=id;
+    doc_view.innerHTML=document.getElementById(id).innerHTML;window.location.hash=id;doc_view.scrollTo(0,0);
 }
 var textbook=document.getElementById("textbook"),acc=document.getElementsByClassName("accordion");
 for (var i=0;i<acc.length;i++){

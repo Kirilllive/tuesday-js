@@ -696,6 +696,7 @@ let color_ui=[
     ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#383838','invert(85%)','#d8d8d8',"#7f7f7f"],
     ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#26343d','invert(90%)','#ddd',"#647f90"],
     ['#7f7f7f','#1e111a','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#411934','invert(85%)','#ddd',"#6B4C61"]
+    
 ]
 let story_script={};
 let line_controll=[];
@@ -793,8 +794,8 @@ function loadFiles(e){
     load_files=e.target.files
     wf=e.target.files[0].webkitRelativePath.split("/")[0]+"/";
     if(load_new){
-        clear_Files();
-        for(var i=0;i<e.target.files.length;i++){project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
+        clear_Files();countBytes=0;
+        for(var i=0;i<e.target.files.length;i++){countBytes+=e.target.files[i].size;project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
         project_foler.value=wf;
     }else{
         var jsons=[];clear_Files();countBytes=0;
