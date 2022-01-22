@@ -60,7 +60,7 @@ a{text-decoration: none;}
 .three_2{margin-left:32px;}
 .three_3{margin-left:48px;}
 #window_zone {height:100vh;width:100%;display:flex;justify-content:center;align-items:center;background-color:rgba(0,0,0,0);position:fixed;left:0;top:0;visibility:hidden;transition-duration:0.5s;}
-.content{max-height:96vh;max-width:96%;height:auto;width:auto;background-size:100% 100%;background-repeat:no-repeat;border-radius:6px;box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.3);}
+.content{max-height:96vh;max-width:96%;height:auto;width:auto;background-size:100% 100%;background-repeat:no-repeat;border-radius:6px;}
 .img_t{cursor:pointer;height:auto;width:90%;
     transition-duration:0.8s;transform:scale(1, 1);
     box-shadow: 0px 2px 24px rgba(110, 95, 165, 0.3);
@@ -83,25 +83,32 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
 <tr>
 <td style="width:220px;height:32px;"><input type="text" id="search_bookmarks" onkeyup="search_bookmarks()" placeholder="search"></td>
 <td style="border-left: 1px solid #cec8e3;" rowspan="3" valign="top">
-
-<div id="doc_view" style="overflow-y:auto;overflow-x:hidden;height:100vh;width:100%;padding:16px;box-sizing:border-box;"></div>
-
+<div id="doc_view" style="overflow-y:auto;overflow-x:hidden;height:100vh;width:100%;padding:16px 16px 92px 16px;box-sizing:border-box;"></div>
 </td>
 </tr>
 <tr>
 <td>
 <div id="bookmarks">
-    
     <div class="block" onclick="get_doc('quick_tutorial')">Quick tutorial</div>
     <div class="accordion"><div class="block block_open">User interface</div></div>
     <div class="panel">
         <div class="block" onclick="get_doc('user_interface')"><span class="three_1">Main interface</span></div>
         <div class="block" onclick="get_doc('new_project')"><span class="three_1">New project</span></div>
-        <div class="block"><span class="three_1">Open project folder</span></div>
-        <div class="block"><span class="three_1">Save project</span></div>
-        <div class="block"><span class="three_1">Cloud storage</span></div>
-        <div class="block"><span class="three_1">Project options</span></div>
-        <div class="block"><span class="three_1">Editor options</span></div>
+        <div class="block" onclick="get_doc('open_project')"><span class="three_1">Open project</span></div>
+        <div class="block" onclick="get_doc('save_project')"><span class="three_1">Save project</span></div>
+        <div class="accordion"><div class="block block_open"><span class="three_1">Settings project</span></div></div>
+        <div class="panel">
+            <div class="block" onclick="get_doc('settings_project')"><span class="three_2">Project</span></div>
+            <div class="block" onclick="get_doc('settings_languages')"><span class="three_2">Languages</span></div>
+            <div class="block" onclick="get_doc('settings_characters')"><span class="three_2">Characters</span></div>
+            <div class="block" onclick="get_doc('settings_keyboard')"><span class="three_2">Keyboard</span></div>
+            <div class="block" onclick="get_doc('settings_variables')"><span class="three_2">Variables</span></div>
+            <div class="block" onclick="get_doc('settings_cursors')"><span class="three_2">Cursors</span></div>
+            <div class="block" onclick="get_doc('settings_sounds')"><span class="three_2">Sounds</span></div>
+            <div class="block" onclick="get_doc('settings_addon')"><span class="three_2">Add-on</span></div>
+            <div class="block" onclick="get_doc('settings_fonts')"><span class="three_2">Fonts</span></div>
+            <div class="block" onclick="get_doc('editor_options')"><span class="three_2">Editor</span></div>
+        </div>
         <div class="block"><span class="three_1">JSON editor</span></div>
         <div class="block" onclick="get_doc('export_csv')"><span class="three_1">Export text to CSV / TSV</span></div>
         <div class="block"><span class="three_1">language to edit</span></div>
@@ -112,18 +119,6 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </div>
     <div class="accordion"><div class="block block_open">Project structure</div></div>
     <div class="panel">
-        <div class="accordion"><div class="block block_open"><span class="three_1">Settings project</span></div></div>
-        <div class="panel">
-            <div class="block"><span class="three_2">Project</span></div>
-            <div class="block"><span class="three_2">Languages</span></div>
-            <div class="block"><span class="three_2">Characters</span></div>
-            <div class="block"><span class="three_2">Keyboard</span></div>
-            <div class="block"><span class="three_2">Variables</span></div>
-            <div class="block"><span class="three_2">Cursors</span></div>
-            <div class="block"><span class="three_2">Sounds</span></div>
-            <div class="block"><span class="three_2">Add-on</span></div>
-            <div class="block"><span class="three_2">Fonts</span></div>
-        </div>
         <div class="block"><span class="three_1">Story block</span></div>
         <div class="block"><span class="three_1">Scene</span></div>
         <div class="block"><span class="three_1">Dialog</span></div>
@@ -146,10 +141,41 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
 </tbody>
 </table>
 <div id='window_zone' onclick="modal_window('close')" align='center'></div>
+<div id="user_interface" style="display:none">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-height:700px;width:100%;height:auto;" viewBox="0 0 2048 1400">
+    <image width="2048" height="1400" xlink:href="tutorial_img/user_interface.png"/>
+    <rect fill-opacity="0" x="1360" y="1247" width="285" height="96" onclick="get_doc('add_story_block')" style="cursor:pointer;"/>
+    <rect fill="none" x="872" width="193" height="80"/>
+    <path class="lines" d="M1686,1267V1127"/><text class="texts" x="1682" y="1112" onclick="get_doc('metadata')">Metadata</text>
+    <path class="lines" d="M1856,1267v-90"/><text class="texts" x="1852" y="1162">Scaling</text>
+    <path class="lines" d="M799,524V434"/><text class="texts" x="796" y="418">Expand / Close block</text>
+    <path class="lines" d="M1160,524V484"/><text class="texts" x="1156" y="468">Block settings</text>
+    <path class="lines" d="M1266,542h92"/><text class="texts" x="1368" y="546">Run block preview </text>
+    <path class="lines" d="M1266,612h92"/><text class="texts" x="1368" y="616">Scene context menu </text>
+    <path class="lines" d="M1266,680h92"/><text class="texts" x="1368" y="684">Dialog context menu</text>
+    <path class="lines" d="M1266,748h92"/><text class="texts" x="1368" y="752">Edit dialog element</text>
+    <path class="lines" d="M1266,871h92"/><text class="texts" x="1368" y="874">Add element to dialog</text>
+    <path class="lines" d="M1266,935h92"/><text class="texts" x="1368" y="938">Create a new dialog</text>
+    <path class="lines" d="M1266,999h92"/><text class="texts" x="1368" y="1002">Create new element</text>
+    <path class="lines" d="M42,580V65"/><text class="texts" x="40" y="618" onclick="get_doc('new_project')">New project</text>
+    <path class="lines" d="M124,530V65"/><text class="texts" x="122" y="568" onclick="get_doc('open_project')">Open project</text>
+    <path class="lines" d="M215,480V65"/><text class="texts" x="214" y="518" onclick="get_doc('save_project')">Save project</text>
+    <path class="lines" d="M305,430V65"/><text class="texts" x="304" y="468">Cloud storage</text>
+    <path class="lines" d="M395,380V65"/><text class="texts" x="392" y="418">Undo</text>
+    <path class="lines" d="M475,330V65"/><text class="texts" x="474" y="368">Redo</text>
+    <path class="lines" d="M565,280V65"/><text class="texts" x="562" y="318" onclick="get_doc('settings_project')">Settings project and editor</text>
+    <path class="lines" d="M652,230V65"/><text class="texts" x="650" y="268">JSON editor</text>
+    <path class="lines" d="M739,180V65"/><text class="texts" x="736" y="218" onclick="get_doc('export_csv')">Export text to CSV/TSV</text>
+    <path class="lines" d="M826,130V65"/><text class="texts" x="824" y="168">About / info</text>
+    <path class="lines" d="M1102,230V65"/><text class="texts" x="1100" y="268">Choose a language to edit</text>
+    <path class="lines" d="M1189,180V65"/><text class="texts" x="1186" y="218">Build project</text>
+    <path class="lines" d="M1276,130V65"/><text class="texts" x="1274" y="168">Run project</text>
+</svg>
+</div>
 <div id="quick_tutorial" style="display:none">
     <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
         <tr>
-            <td align='center' colspan="2" height='64px' class="head">A quick guide to create a visual novel with Tuesday JS</td>
+            <td align='center' colspan="2" style="text-align:center;"><p class="head">A quick guide to create a visual novel with Tuesday JS</p></td>
         </tr>
         <tr>
             <td align='center' colspan="2" height='64px'>Step 1 : Create a New project</td>
@@ -203,7 +229,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td align='center' colspan="2" height='128px'>Step 8</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src" src="tutorial_img/add_bg_scene.jpg"/></td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/add_bg_scene.jpg"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>The dialog box that appears displays all matching files from the project's working folder, in it select the desired file for the background.</td>
         </tr>
         <tr>
@@ -387,37 +413,6 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         </tr>
     </tbody></table>
 </div>
-<div id="user_interface" style="display:none">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-height:700px;width:100%;height:auto;" viewBox="0 0 2048 1400">
-    <image width="2048" height="1400" xlink:href="tutorial_img/user_interface.png"/>
-    <rect fill-opacity="0" x="1360" y="1247" width="285" height="96" onclick="get_doc('add_story_block')" style="cursor:pointer;"/>
-    <rect fill="none" x="872" width="193" height="80"/>
-    <path class="lines" d="M1686,1267V1127"/><text class="texts" x="1682" y="1112" onclick="get_doc('metadata')">Metadata</text>
-    <path class="lines" d="M1856,1267v-90"/><text class="texts" x="1852" y="1162">Scaling</text>
-    <path class="lines" d="M799,524V434"/><text class="texts" x="796" y="418">Expand / Close block</text>
-    <path class="lines" d="M1160,524V484"/><text class="texts" x="1156" y="468">Block settings</text>
-    <path class="lines" d="M1266,542h92"/><text class="texts" x="1368" y="546">Run block preview </text>
-    <path class="lines" d="M1266,612h92"/><text class="texts" x="1368" y="616">Scene context menu </text>
-    <path class="lines" d="M1266,680h92"/><text class="texts" x="1368" y="684">Dialog context menu</text>
-    <path class="lines" d="M1266,748h92"/><text class="texts" x="1368" y="752">Edit dialog element</text>
-    <path class="lines" d="M1266,871h92"/><text class="texts" x="1368" y="874">Add element to dialog</text>
-    <path class="lines" d="M1266,935h92"/><text class="texts" x="1368" y="938">Create a new dialog</text>
-    <path class="lines" d="M1266,999h92"/><text class="texts" x="1368" y="1002">Create new element</text>
-    <path class="lines" d="M42,580V65"/><text class="texts" x="40" y="618" onclick="get_doc('new_project')">New project</text>
-    <path class="lines" d="M124,530V65"/><text class="texts" x="122" y="568">Open project folder</text>
-    <path class="lines" d="M215,480V65"/><text class="texts" x="214" y="518">Save project</text>
-    <path class="lines" d="M305,430V65"/><text class="texts" x="304" y="468">Cloud storage</text>
-    <path class="lines" d="M395,380V65"/><text class="texts" x="392" y="418">Undo</text>
-    <path class="lines" d="M475,330V65"/><text class="texts" x="474" y="368">Redo</text>
-    <path class="lines" d="M565,280V65"/><text class="texts" x="562" y="318">Project and Editor options</text>
-    <path class="lines" d="M652,230V65"/><text class="texts" x="650" y="268">JSON editor</text>
-    <path class="lines" d="M739,180V65"/><text class="texts" x="736" y="218" onclick="get_doc('export_csv')">Export text to CSV/TSV</text>
-    <path class="lines" d="M826,130V65"/><text class="texts" x="824" y="168">About / info</text>
-    <path class="lines" d="M1102,230V65"/><text class="texts" x="1100" y="268">Choose a language to edit</text>
-    <path class="lines" d="M1189,180V65"/><text class="texts" x="1186" y="218">Build project</text>
-    <path class="lines" d="M1276,130V65"/><text class="texts" x="1274" y="168">Run project</text>
-</svg>
-</div>
 <div id="new_project" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Create a new project</p>
@@ -456,10 +451,102 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </div>
     <p>Export all project texts (including titles and character names) from all localizations in CSV or TSV spreadsheet format.<br>You can set your own values for Separated (cell) and delimited (string),default values are standard for CSV format Comma "," for Separated and Newline "\n" for Delimited<br>When exporting to TSV, the delimiter settings are not applied and the standard delimiter values for this format are used: Newline "\n" for Separated and tabulation "\t" for Delimited<br><br>Which format to use <b>CSV or TSV?</b> both formats are supported by almost all spreadsheet editors, and these formats are often used to transfer spreadsheets from one system to another. But not all editors allow you to change the separator values ​​when reading CSV, and by default a comma is used to separate cells, this character is often found in texts, which can spoil the contents of the table. TSV uses more neutral characters for text data by default, so having a comma in text won't break the table's integrity.<br><br>The resulting table is adapted to create translations into different languages, all lines are separated by a plot block, and next to the reaction are the names of the characters who pronounce it.<br>You can upload the resulting spreadsheets to online services such as Google Spreadsheets or use them in office programs such as LibreOffice Calc. </p>
 </div>
+<div id="open_project" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Open project</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_csv_export.png" style="max-height:495px;max-width:298px;"/>
+    </div>
+    <p>To open a project, you must <b>select the project folder</b> containing the JSON file. You don't need to select the JSON file directly, it's possible that the JSON won't show up in the select box, or it will show up as an inaccessible file. If there are several JSON files in the folder, then after downloading it, you will be prompted to choose which of the found files to open<br><br>The <b>Browser</b> and <b>Desktop</b> versions of the editor do not use files from the file system, but copy them to the BLOB structure, so changes to files in the working folder are not reflected in the editor, in this case it is recommended to update the folder in the project settings or in the file directory. The <b>Android</b> version works with files directly from the device's file system. </p>
+</div>
+<div id="save_project" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Save project</p>
+    </div>
+    <p>When you save a project, you get an array of your project data in JSON format. It does not store the rest of the project files, but only the paths to them, relative to the working folder. Therefore, it is very important to save the resulting json file in the working folder of the project.<br><br><b>Browsers</b> by default use the Download folder to save files from the network, a JSON file can be saved to the same folder, after which it must be transferred to the working folder yourself.<br><br><b>Desktop version</b> when saving a file, it prompts you to select a folder to save.<br><br><b>Android version</b> always save the JSON file only in the working folder on the device.<br><br>When saving a file, its default name is the titles from the default language (first in the list of languages from the project options)</p>
+</div>
+<div id="settings_project" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings Project</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_project.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p>Basic project settings<br><br><b>Story launch block</b><br>Specify the block from which the story will begin. By default, the first created block in the project is automatically added. The first scene of the selected block will not display the main interface, so you can make the main menu
+    <br><br><b>Working folder</b> - adds, updates or replaces the working folder of the project, while the open project does not change, but only the resources used from the working folder are updated
+    <br><br><b>CSS styles file</b> - path to the CSS file in the working folder with style classes. Styles from this file will not be displayed in the editor, but will be visible in the preview.
+    <br><br><b>Mobile scale</b> - Applies only on mobile devices to adjust the display scale of project scens and layouts. It often happens that a project running on desktop displays fonts and images differently than on mobile devices, this setting should solve this problem. The parameter adds to the meta viewport of the HTML page
+    <br><br><b>Dialog speed</b> - the rate at which characters appear in the dialog, in milliseconds. the default is 1 character every 10 milliseconds.
+    <br><br><b>Icon</b> - also known as <b>Favicon</b> in HTML, you can use ICO, PNG, GIF, JPEG and SVG images for the icon from the working folder.
+    <br><br><b>Auto save</b> - Each time you progress through the story, its progress will be automatically saved. <b>Attention</b>: Autosave also includes values from all project variables, which can negatively affect the preview of different projects, in order to avoid this, it is recommended to use "Clear All Saves" or disable this function during project development
+    <br><br><b>Clear all save</b> - In order not to use the same autosave for different projects, which can cause problems, it is recommended to delete old saves.
+    <br><br><b>Pixel mode</b> - Disables anti-aliasing for bitmaps, vectors and partially for fonts, it is recommended to enable this mode if you use low resolution <b>PixelArt</b> in your project.
+    </p>
+</div>
+<div id="settings_languages" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings languages</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_languages.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p>List of languages into which the project has been translated and the translated name of the project, which will be displayed in the header.<br><br>A running project automatically detects the language of the device or browser and displays the appropriate translation. The first language in the list will be the default language. It will be applied if the device does not use other languages from this list. You can remove or add new languages and titles in the "Project settings" section of "Languages".<br><br>Added languages will be displayed in the item settings lists where localization is possible. In the editor, you can globally specify the editing language and run the project with the selected localization.<br><br>If for several localizations you specify a value for only one, and leave the rest empty, then the same value will be applied to all languages.<br><br>When removing or adding a language to a project, its content will not be removed or added completely, changes will occur when editing the element.</p>
+</div>
+<div id="settings_characters" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings characters</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_characters.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p>In order not to enter the name of the characters in each dialogue, all new character names are automatically added to the character catalog along with the settings of the name panel, later when editing the dialogue, you can select the appropriate name from the catalog.<br><br>The character parameter directory is kept separate from the history blocks, and the dialogs themselves override the settings taken directly from the character directory, so any changes in this directory will be automatically applied to the entire project.</p>
+</div>
+<div id="settings_keyboard" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings keyboard</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_keyboard.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p>You can assign the main functionality to the keyboard keys, for this you just need to select the function and press the desired key, the program will automatically determine the code of the pressed key and add it to the parameter.<br><br>This feature is not available in the Android version. GamePad keys cannot be assigned in this setting.</p>
+</div>
+<div id="settings_variables" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings variables</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_variables.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p>List of all variables in the project, here you can add, delete and edit the names and values of variables, the editor automatically determines the type of the variable (string or number). If necessary, the editor will offer to create a new variable if you are using an element for which the use of variable variables is required.
+    <br><br>Variables are used when defining the next block of the story using the "Legacy choice" element or for the conditions for displaying an object in a scene. If you write in the text the name of the variable in angle brackets <b>"text &#60var_name> text"</b>, then when the dialog is displayed, it will be replaced by the value from the specified variable.
+    <br><br><b>Attention</b><br>When changing the name of a variable, the new name will be added only to this list, in the rest of the project the name will remain the same and will need to be changed manually.<br><br>Saving user progress also includes an array of all variables and their values. When loading a save, an array of values from the saved data will be added, which can lead to the loss of actual data when starting the project preview. In the same way, variable data from other projects can get in. To prevent this from happening, it is recommended to use "Clear All Saves" or disable this feature during project development.</p>
+</div>
+<div id="settings_cursors" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings cursors</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_cursors.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p>Browsers limit the maximum cursor size to 128x128 pixels, larger cursor sizes will be ignored. However, you should limit yourself to the size 32×32 for maximum compatibility with operating systems and platforms. Most browsers allow you to use SVG vector graphics for the cursor image.
+    <br><br><b>The Hotspot X / Y</b><br>Values define the hotspot on the cursor image that will be used to determine if the cursor overlaps with other objects. The value is specified in pixels. by default, this is the upper left corner, like a normal cursor.
+    <br><br><b>Main cursor</b> - The main image for the cursor in the project window.
+    <br><br><b>Button cursor</b> - images for hover state on interface buttons.
+    <br><br><b>Choice cursor</b> - images for hover state on interface сhoice.
+    </p>
+</div>
+<div id="settings_sounds" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings sounds</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_sounds.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p>The directory of all sound files used in the project. files are added automatically after they are added to the scene. This list does not include background music files.<br><br>By default the editor uses the mp3 format, but not all browsers support it (due to the license) and instead use the ogg format, if you load the same sound with the same name but in different formats into the project, the engine will detect mp3 support browser and play ogg if necessary<br><br>This list is kept separate from story blocks, when a sound needs to be played, the engine requests a file by name from this list, so you can globally change sound files.</p>
+</div>
+<div id="settings_addon" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings add-on</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_addon.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p>You can add your own js files or third party JavaScript libraries (like jQuery API) to the project. To do this, just specify the path to the file in the working folder use a file from the network, the security system of the device or browser may prevent. Third-party scripts are executed last after RunTime, and if you specify several additional files, then their execution is also determined by the order in this list.<br><br>Some add-ons built into the editor are connected automatically when using their components,With the exception of the "Show Tost" and "Touch Swipe" add-ons, their functionality does not have components in the editor and must be manually enabled in order to use them.<br><br>The use of programming languages other than JavaScript is not intended.</p>
+</div>
+<div id="settings_fonts" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings fonts</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_fonts.png" style="max-height:592px;max-width:571px;"/>
+    </div>
+    <p></p>
+</div>
+
+
 <script>
-function get_doc(id){
-    doc_view.innerHTML=document.getElementById(id).innerHTML;window.location.hash=id;doc_view.scrollTo(0,0);
-}
+function get_doc(id){doc_view.innerHTML=document.getElementById(id).innerHTML;window.location.hash=id;doc_view.scrollTo(0,0);}
 var textbook=document.getElementById("textbook"),acc=document.getElementsByClassName("accordion");
 for (var i=0;i<acc.length;i++){
         acc[i].addEventListener("click",function(){
@@ -486,25 +573,22 @@ function search_bookmarks() {
 }
 function modal_window(action,i,b) {
     var window_zone = document.getElementById("window_zone");
-    if (action == 'close') {
-        window_zone.style.visibility = "hidden"
-        window_zone.style.backgroundColor = 'rgba(0,0,0,0)';
-        document.body.style.overflow = 'scroll';
-        var child = window_zone.lastElementChild;
-        while (child) {
-            window_zone.removeChild(child);
-            child = window_zone.lastElementChild;
-        }
-    } else if (action == 'open') {
-        var name = window.location.hash.replace('#', '');
-        window_zone.style.visibility = "visible";
-        window_zone.scrollTo(0, 0);
-        window_zone.style.backgroundColor = 'rgba(0,0,0,0.5)';
-        document.body.style.overflow = 'hidden';
-        var img = document.createElement("img");
-        img.className = "content";
+    if (action=='close'){
+        window_zone.style.visibility="hidden"
+        window_zone.style.backgroundColor='rgba(255,255,255,0)';
+        document.body.style.overflow='scroll';
+        var child=window_zone.lastElementChild;
+        while (child){window_zone.removeChild(child);child=window_zone.lastElementChild;}
+    } else if(action=='open'){
+        var name=window.location.hash.replace('#','');
+        window_zone.style.visibility="visible";
+        window_zone.scrollTo(0,0);
+        window_zone.style.backgroundColor='rgba(255,255,255,1)';
+        document.body.style.overflow='hidden';
+        var img=document.createElement("img");
+        img.className="content";
         img.style.backgroundImage=(b)?b:'';
-        img.src = i;
+        img.src=i;
         window_zone.appendChild(img);
     }
 }
