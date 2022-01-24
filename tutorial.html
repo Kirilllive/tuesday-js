@@ -109,9 +109,8 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <div class="block" onclick="get_doc('settings_fonts')"><span class="three_2">Fonts</span></div>
             <div class="block" onclick="get_doc('editor_options')"><span class="three_2">Editor</span></div>
         </div>
-        <div class="block"><span class="three_1">JSON editor</span></div>
+        <div class="block" onclick="get_doc('w_json_edit')"><span class="three_1">JSON editor</span></div>
         <div class="block" onclick="get_doc('export_csv')"><span class="three_1">Export text to CSV / TSV</span></div>
-        <div class="block"><span class="three_1">language to edit</span></div>
         <div class="block"><span class="three_1">Build project</span></div>
         <div class="block"><span class="three_1">Run project</span></div>
         <div class="block"><span class="three_1">Add story block</span></div>
@@ -164,7 +163,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <path class="lines" d="M395,380V65"/><text class="texts" x="392" y="418">Undo</text>
     <path class="lines" d="M475,330V65"/><text class="texts" x="474" y="368">Redo</text>
     <path class="lines" d="M565,280V65"/><text class="texts" x="562" y="318" onclick="get_doc('settings_project')">Settings project and editor</text>
-    <path class="lines" d="M652,230V65"/><text class="texts" x="650" y="268">JSON editor</text>
+    <path class="lines" d="M652,230V65"/><text class="texts" x="650" y="268" onclick="get_doc('w_json_edit')">JSON editor</text>
     <path class="lines" d="M739,180V65"/><text class="texts" x="736" y="218" onclick="get_doc('export_csv')">Export text to CSV/TSV</text>
     <path class="lines" d="M826,130V65"/><text class="texts" x="824" y="168">About / info</text>
     <path class="lines" d="M1102,230V65"/><text class="texts" x="1100" y="268">Choose a language to edit</text>
@@ -541,9 +540,15 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p class="head">Settings fonts</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_fonts.png" style="max-height:592px;max-width:571px;"/>
     </div>
-    <p></p>
+    <p>Adding your own fonts to the project, for this you need to specify their path in the working folder and assign a name that will be used when applying the font to text. It is recommended to use the .WOFF format for the font file as the most common for browsers, but you can also use other font formats such as .TTF .OTF .EOT. but their support may not be available on some platforms or browsers. SVG fonts are not supported, they can be added using an external CSS file and set in <span class="link" onclick="get_doc('settings_project')">the project settings</span>.</p>
 </div>
-
+<div id="w_json_edit" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Settings fonts</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_json_edit.png" style="max-height:670px;max-width:821px;"/>
+    </div>
+    <p>Displays the entire JSON structure of the project, where you can also make changes to the project.<br><br> You get the same JSON data structure in a file when you save the project, you can make changes to the resulting file in a suitable third party text editor and upload back to Tuesday JS.<br>More information about the project structure and the use of RuneTime is described in the documentation here: <a href="https://kirilllive.github.io/tuesday-js/tuesday_doc.html" target="_blank">https://kirilllive.github.io/tuesday-js/tuesday_doc.html</a><br><br>If the changes made are not used by the editor, then they will not be removed or changed, so you can add your parameters to the project.<br><br>You can also view the JSON content for only the selected history item. Also, this function will be useful when transferring a large amount of data from different projects, browser protection does not allow you to work directly with the buffer exchange, you can open the element that you want to transfer to another project in a JSON editor, copy its contents, then also open a similar element in the editor JSON in another project and paste the content from the previous one into it.</p>
+</div>
 
 <script>
 function get_doc(id){doc_view.innerHTML=document.getElementById(id).innerHTML;window.location.hash=id;doc_view.scrollTo(0,0);}
