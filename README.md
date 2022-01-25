@@ -18,7 +18,7 @@ Il existe une version de l'éditeur disponible en tant qu'application autonome p
 
 > Twitter: https://twitter.com/TuesdayJS_vn
 
-[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
+[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/tuesday_js)
 
 # Visual editor
 
@@ -229,4 +229,4 @@ documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
 
 The goal of Tuesday JS is to make project development no more difficult than working in an office program to make presentations, and does not require special skills from the user.
 
-[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
+[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/tuesday_js)
