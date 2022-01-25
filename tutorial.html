@@ -74,7 +74,10 @@ a{text-decoration: none;}
 .head{font-size:16px;height:64px;display:flex;align-items:center;justify-content:center;}
 path.lines {fill:none;stroke:#000;stroke-width:2px;}
 text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
-.img_w{height:auto;width:100%;cursor:pointer;}
+.img_w{height:auto;width:100%;cursor:pointer;
+    border-radius:6px;
+    background-size:100% 100%;
+    background-repeat:no-repeat;}
 </style>
 </head>
 <body style="background-color:#fff;">
@@ -111,9 +114,9 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         </div>
         <div class="block" onclick="get_doc('w_json_edit')"><span class="three_1">JSON editor</span></div>
         <div class="block" onclick="get_doc('export_csv')"><span class="three_1">Export text to CSV / TSV</span></div>
-        <div class="block"><span class="three_1">Build project</span></div>
-        <div class="block"><span class="three_1">Run project</span></div>
-        <div class="block"><span class="three_1">Add story block</span></div>
+        <div class="block" onclick="get_doc('w_build')"><span class="three_1">Build project</span></div>
+        <div class="block" onclick="get_doc('run')"><span class="three_1">Run project</span></div>
+        <div class="block" onclick="get_doc('add_story_block')"><span class="three_1">Add story block</span></div>
         <div class="block" onclick="get_doc('metadata')"><span class="three_1">Metadata</span></div>
     </div>
     <div class="accordion"><div class="block block_open">Project structure</div></div>
@@ -167,9 +170,31 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <path class="lines" d="M739,180V65"/><text class="texts" x="736" y="218" onclick="get_doc('export_csv')">Export text to CSV/TSV</text>
     <path class="lines" d="M826,130V65"/><text class="texts" x="824" y="168">About / info</text>
     <path class="lines" d="M1102,230V65"/><text class="texts" x="1100" y="268">Choose a language to edit</text>
-    <path class="lines" d="M1189,180V65"/><text class="texts" x="1186" y="218">Build project</text>
-    <path class="lines" d="M1276,130V65"/><text class="texts" x="1274" y="168">Run project</text>
+    <path class="lines" d="M1189,180V65"/><text class="texts" x="1186" y="218" onclick="get_doc('w_build')">Build project</text>
+    <path class="lines" d="M1276,130V65"/><text class="texts" x="1274" y="168" onclick="get_doc('run')">Run project</text>
 </svg>
+</div>
+<div id="add_story_block" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Add story block</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_new_block.png" style="max-height:351px;max-width:447px;"/>
+    </div>
+    <p></p>
+</div>
+<div id="w_build" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Build project</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_build.png" style="max-height:423px;max-width:499px;"/>
+    </div>
+    <p></p>
+</div>
+<div id="run" style="display:none">
+    <div style="width:100%;text-align: center;" ><p class="head">Run project</p>
+        <img class="img_w" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="max-height:466px;max-width:681px;background-image:url('tutorial_img/scene_editor_text.jpg');"/>
+        <br><br>
+        <img class="img_w" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="max-height:466px;max-width:681px;background-image:url('tutorial_img/scene_menu.jpg');"/>
+    </div>
+    <br><br><p>The Android version has additional functionality, can scale and change the orientation of the project. so that you can check the project both at the original screen resolution of the device and at the one specified in the preview settings. Each time the mobile version is launched, an assembly of the preview.html project is created in the working folder. and at the end of the preview automatically deletes it</p>
 </div>
 <div id="quick_tutorial" style="display:none">
     <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
