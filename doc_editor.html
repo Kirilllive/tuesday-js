@@ -13,7 +13,7 @@
 	border-spacing:0px;
 	outline:none;
 }
-a{text-decoration: none;}
+a{color:#000;}
 #bookmarks{
     width:220px;
     height:calc(100vh - 34px);
@@ -179,22 +179,18 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p class="head">Add story block</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_new_block.png" style="max-height:351px;max-width:447px;"/>
     </div>
-    <p></p>
+    <p>The story in "Tuesday JS" consists of story blocks that contain scenes and dialogues of a certain part of the story. With blocks, you separate parts of the plot to create a non-linear narrative.
+    <br><br>The first created story block in the project is automatically added as the starting block from which the project will be launched. You can specify another start block in <a href="doc_editor.html#settings_project" target='_blank'>the project settings</a>, the main interface will not be displayed in the specified block (in the first scene), so you can make the main menu or start screen.
+    <br><br>The block name is indicated only in Latin letters and without the use of special characters. this name will not be displayed in the project, but will be used in the project structure, in fact, you set the name (key) for the data array, which will contain all subsequent data of this part of the story.
+    <br><br>For ease of navigation, you can set the color of the block. this color will be used by all elements that will refer to this block (selection buttons, lines, etc.)
+    <br><br>In the future, you can change the name and color of the block by clicking on the edit button in the header of the selected block.</p>
 </div>
 <div id="w_build" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Build project</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_build.png" style="max-height:423px;max-width:499px;"/>
     </div>
-    <p></p>
-</div>
-<div id="run" style="display:none">
-    <div style="width:100%;text-align: center;" ><p class="head">Run project</p>
-        <img class="img_w" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="max-height:466px;max-width:681px;background-image:url('tutorial_img/scene_editor_text.jpg');"/>
-        <br><br>
-        <img class="img_w" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="max-height:466px;max-width:681px;background-image:url('tutorial_img/scene_menu.jpg');"/>
-    </div>
-    <br><br><p>The Android version has additional functionality, can scale and change the orientation of the project. so that you can check the project both at the original screen resolution of the device and at the one specified in the preview settings. Each time the mobile version is launched, an assembly of the preview.html project is created in the working folder. and at the end of the preview automatically deletes it</p>
+    <p>Building the final project into an executable file. All build options include an HTML file with an embedded RunTime and a JSON array of the project with all dialogs and options.</p>
 </div>
 <div id="quick_tutorial" style="display:none">
     <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
@@ -436,8 +432,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td align='center' colspan="2" height='128px'>It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>If you notice something like this, be sure to send me an email: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
         </tr>
     </tbody></table>
-</div>
-<div id="new_project" style="display:none">
+</div><div id="new_project" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Create a new project</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_new_project.png" style="max-height:479px;max-width:427px;"/>
@@ -446,8 +441,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br><b>Project folders</b><br>A folder on your device that should contain files that are supported by browsers and will be used in the project.<br>You can create a project without specifying a working folder if you do not intend to use additional files. For further use, if necessary, you will be prompted to add a folder.<br>In the project settings or in the files directory, you can change or update the working directory at any time.<br>The <b>Browser</b> and <b>Desktop</b> versions of the editor do not use files from the file system, but copy them to the BLOB structure, so changes to files in the working folder are not reflected in the editor, in this case it is recommended to update the folder in the project settings or in the file directory. The <b>Android</b> version works with files directly from the device's file system.
     <br><br><b>Name project</b><br>The project name and supported languages are specified in one  common section "Name project". The first language in the list will be the default language. It will be applied if the device does not use other languages from this list. You can remove or add new languages and titles in the "Project settings" section of "Languages".<br><br>In the <b>JSON array</b>, the list of languages is stored in <i>parameters.languares</i>, the list of titles is in <i>parameters.title[languares]</i>.
     <br><br><b>Warning!</b><br>The project is not automatically saved to your device or browser memory, when you need to make a backup copy of the project, use the Save function.</p>
-</div>
-<div id="editor_options" style="display:none">
+</div><div id="editor_options" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Editor Options</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_editor_options.png" style="max-height:592px;max-width:571px;"/>
@@ -460,35 +454,30 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br><b>Background</b><br>Choosing a background image for all editor screens.
     <br><br>For browsers, editor settings are stored in local storage called "editor_setup".<br>To <b>reset settings</b> as well as all other data as saves from projects, to do this, go to the "Project" section and click "Clear all saves" after a pop-up notification appears at the bottom of the screen, do not click "Apply" instead click on the cross in the upper right corner of the settings window. It is recommended to use it in case of a local storage error or incorrect editor operation due to third-party interference.
     </p>
-</div>
-<div id="metadata" style="display:none">
+</div><div id="metadata" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Project metadata</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_project_metadata.png" style="max-height:188px;max-width:361px;"/>
     </div>
     <p>Indicator of the amount of data used in the project.<br>The size and number of downloaded files from the working folder (not the size of the files used in the project).<br>The sum of words and characters from all elements (such as texts and choises) in the edited localization. Names of characters and name of project are not included in this number.<br>To determine the scope of the project, additional data is collected on the number of story blocks and characters.<br><br>This data can be useful for determining the cost and scope of translation of the project into other languages and determining the approximate amount of time to read the story.</p>
-</div>
-<div id="export_csv" style="display:none">
+</div><div id="export_csv" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Export text to spreadsheet CSV / TSV</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_csv_export.png" style="max-height:332px;max-width:379px;"/>
     </div>
     <p>Export all project texts (including titles and character names) from all localizations in CSV or TSV spreadsheet format.<br>You can set your own values for Separated (cell) and delimited (string),default values are standard for CSV format Comma "," for Separated and Newline "\n" for Delimited<br>When exporting to TSV, the delimiter settings are not applied and the standard delimiter values for this format are used: Newline "\n" for Separated and tabulation "\t" for Delimited<br><br>Which format to use <b>CSV or TSV?</b> both formats are supported by almost all spreadsheet editors, and these formats are often used to transfer spreadsheets from one system to another. But not all editors allow you to change the separator values ​​when reading CSV, and by default a comma is used to separate cells, this character is often found in texts, which can spoil the contents of the table. TSV uses more neutral characters for text data by default, so having a comma in text won't break the table's integrity.<br><br>The resulting table is adapted to create translations into different languages, all lines are separated by a plot block, and next to the reaction are the names of the characters who pronounce it.<br>You can upload the resulting spreadsheets to online services such as Google Spreadsheets or use them in office programs such as LibreOffice Calc. </p>
-</div>
-<div id="open_project" style="display:none">
+</div><div id="open_project" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Open project</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_csv_export.png" style="max-height:495px;max-width:298px;"/>
     </div>
     <p>To open a project, you must <b>select the project folder</b> containing the JSON file. You don't need to select the JSON file directly, it's possible that the JSON won't show up in the select box, or it will show up as an inaccessible file. If there are several JSON files in the folder, then after downloading it, you will be prompted to choose which of the found files to open<br><br>The <b>Browser</b> and <b>Desktop</b> versions of the editor do not use files from the file system, but copy them to the BLOB structure, so changes to files in the working folder are not reflected in the editor, in this case it is recommended to update the folder in the project settings or in the file directory. The <b>Android</b> version works with files directly from the device's file system. </p>
-</div>
-<div id="save_project" style="display:none">
+</div><div id="save_project" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Save project</p>
     </div>
     <p>When you save a project, you get an array of your project data in JSON format. It does not store the rest of the project files, but only the paths to them, relative to the working folder. Therefore, it is very important to save the resulting json file in the working folder of the project.<br><br><b>Browsers</b> by default use the Download folder to save files from the network, a JSON file can be saved to the same folder, after which it must be transferred to the working folder yourself.<br><br><b>Desktop version</b> when saving a file, it prompts you to select a folder to save.<br><br><b>Android version</b> always save the JSON file only in the working folder on the device.<br><br>When saving a file, its default name is the titles from the default language (first in the list of languages from the project options)</p>
-</div>
-<div id="settings_project" style="display:none">
+</div><div id="settings_project" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings Project</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_project.png" style="max-height:592px;max-width:571px;"/>
@@ -503,29 +492,25 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br><b>Clear all save</b> - In order not to use the same autosave for different projects, which can cause problems, it is recommended to delete old saves.
     <br><br><b>Pixel mode</b> - Disables anti-aliasing for bitmaps, vectors and partially for fonts, it is recommended to enable this mode if you use low resolution <b>PixelArt</b> in your project.
     </p>
-</div>
-<div id="settings_languages" style="display:none">
+</div><div id="settings_languages" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings languages</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_languages.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>List of languages into which the project has been translated and the translated name of the project, which will be displayed in the header.<br><br>A running project automatically detects the language of the device or browser and displays the appropriate translation. The first language in the list will be the default language. It will be applied if the device does not use other languages from this list. You can remove or add new languages and titles in the "Project settings" section of "Languages".<br><br>Added languages will be displayed in the item settings lists where localization is possible. In the editor, you can globally specify the editing language and run the project with the selected localization.<br><br>If for several localizations you specify a value for only one, and leave the rest empty, then the same value will be applied to all languages.<br><br>When removing or adding a language to a project, its content will not be removed or added completely, changes will occur when editing the element.</p>
-</div>
-<div id="settings_characters" style="display:none">
+</div><div id="settings_characters" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings characters</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_characters.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>In order not to enter the name of the characters in each dialogue, all new character names are automatically added to the character catalog along with the settings of the name panel, later when editing the dialogue, you can select the appropriate name from the catalog.<br><br>The character parameter directory is kept separate from the history blocks, and the dialogs themselves override the settings taken directly from the character directory, so any changes in this directory will be automatically applied to the entire project.</p>
-</div>
-<div id="settings_keyboard" style="display:none">
+</div><div id="settings_keyboard" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings keyboard</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_keyboard.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>You can assign the main functionality to the keyboard keys, for this you just need to select the function and press the desired key, the program will automatically determine the code of the pressed key and add it to the parameter.<br><br>This feature is not available in the Android version. GamePad keys cannot be assigned in this setting.</p>
-</div>
-<div id="settings_variables" style="display:none">
+</div><div id="settings_variables" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings variables</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_variables.png" style="max-height:592px;max-width:571px;"/>
@@ -533,8 +518,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p>List of all variables in the project, here you can add, delete and edit the names and values of variables, the editor automatically determines the type of the variable (string or number). If necessary, the editor will offer to create a new variable if you are using an element for which the use of variable variables is required.
     <br><br>Variables are used when defining the next block of the story using the "Legacy choice" element or for the conditions for displaying an object in a scene. If you write in the text the name of the variable in angle brackets <b>"text &#60var_name> text"</b>, then when the dialog is displayed, it will be replaced by the value from the specified variable.
     <br><br><b>Attention</b><br>When changing the name of a variable, the new name will be added only to this list, in the rest of the project the name will remain the same and will need to be changed manually.<br><br>Saving user progress also includes an array of all variables and their values. When loading a save, an array of values from the saved data will be added, which can lead to the loss of actual data when starting the project preview. In the same way, variable data from other projects can get in. To prevent this from happening, it is recommended to use "Clear All Saves" or disable this feature during project development.</p>
-</div>
-<div id="settings_cursors" style="display:none">
+</div><div id="settings_cursors" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings cursors</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_cursors.png" style="max-height:592px;max-width:571px;"/>
@@ -545,34 +529,38 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br><b>Button cursor</b> - images for hover state on interface buttons.
     <br><br><b>Choice cursor</b> - images for hover state on interface сhoice.
     </p>
-</div>
-<div id="settings_sounds" style="display:none">
+</div><div id="settings_sounds" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings sounds</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_sounds.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>The directory of all sound files used in the project. files are added automatically after they are added to the scene. This list does not include background music files.<br><br>By default the editor uses the mp3 format, but not all browsers support it (due to the license) and instead use the ogg format, if you load the same sound with the same name but in different formats into the project, the engine will detect mp3 support browser and play ogg if necessary<br><br>This list is kept separate from story blocks, when a sound needs to be played, the engine requests a file by name from this list, so you can globally change sound files.</p>
-</div>
-<div id="settings_addon" style="display:none">
+</div><div id="settings_addon" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings add-on</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_addon.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>You can add your own js files or third party JavaScript libraries (like jQuery API) to the project. To do this, just specify the path to the file in the working folder use a file from the network, the security system of the device or browser may prevent. Third-party scripts are executed last after RunTime, and if you specify several additional files, then their execution is also determined by the order in this list.<br><br>Some add-ons built into the editor are connected automatically when using their components,With the exception of the "Show Tost" and "Touch Swipe" add-ons, their functionality does not have components in the editor and must be manually enabled in order to use them.<br><br>The use of programming languages other than JavaScript is not intended.</p>
-</div>
-<div id="settings_fonts" style="display:none">
+</div><div id="settings_fonts" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings fonts</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_fonts.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>Adding your own fonts to the project, for this you need to specify their path in the working folder and assign a name that will be used when applying the font to text. It is recommended to use the .WOFF format for the font file as the most common for browsers, but you can also use other font formats such as .TTF .OTF .EOT. but their support may not be available on some platforms or browsers. SVG fonts are not supported, they can be added using an external CSS file and set in <span class="link" onclick="get_doc('settings_project')">the project settings</span>.</p>
-</div>
-<div id="w_json_edit" style="display:none">
+</div><div id="w_json_edit" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Settings fonts</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_json_edit.png" style="max-height:670px;max-width:821px;"/>
     </div>
     <p>Displays the entire JSON structure of the project, where you can also make changes to the project.<br><br> You get the same JSON data structure in a file when you save the project, you can make changes to the resulting file in a suitable third party text editor and upload back to Tuesday JS.<br>More information about the project structure and the use of RuneTime is described in the documentation here: <a href="https://kirilllive.github.io/tuesday-js/tuesday_doc.html" target="_blank">https://kirilllive.github.io/tuesday-js/tuesday_doc.html</a><br><br>If the changes made are not used by the editor, then they will not be removed or changed, so you can add your parameters to the project.<br><br>You can also view the JSON content for only the selected history item. Also, this function will be useful when transferring a large amount of data from different projects, browser protection does not allow you to work directly with the buffer exchange, you can open the element that you want to transfer to another project in a JSON editor, copy its contents, then also open a similar element in the editor JSON in another project and paste the content from the previous one into it.</p>
+</div><div id="run" style="display:none">
+    <div style="width:100%;text-align: center;" ><p class="head">Run project</p>
+        <img class="img_w" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/b_play_scene.svg" style="max-height:466px;max-width:681px;background-image:url('tutorial_img/scene_menu.jpg');"/>
+    </div>
+    <br><br><p>Starts the project with the selected translation, you can also start the project from a specific location.
+    <br><br>If you create a project for a certain screen size, then you can set the desired size of the preview window in the project settings menu in the "<a href="doc_editor.html#editor_options" target='_blank'>editor</a>" section. After that, the preview window will use this default window size every time it is launched.
+    <br><br>Preview uses the same save store for all projects, so the save of one project can be applied to another, which can cause problems, to avoid this, it is recommended to clear the store in <a href="doc_editor.html#settings_project" target='_blank'>the project settings</a> or turn off autosave during development.
+    <br><br>The Android version has additional functionality, can scale and change the orientation of the project. so that you can check the project both at the original screen resolution of the device and at the one specified in the preview settings. Each time the mobile version is launched, an assembly of the preview.html project is created in the working folder. and at the end of the preview automatically deletes it</p>
 </div>
 
 <script>
