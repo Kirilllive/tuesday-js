@@ -24,7 +24,7 @@ Il existe une version de l'éditeur disponible en tant qu'application autonome p
 
 visual editor for web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
 
-Tutorial for creating visual novels: https://kirilllive.github.io/tuesday-js/tutorial.html#quick_tutorial
+Tutorial for creating visual novels: https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial
 
 The editor displays the structure of the script with all elements such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
 
@@ -220,7 +220,7 @@ Index.html file with id = 'tuesday' elements to display the novel
 
 More information about RunTime and JSON script  you can be found in
 
-documentation: https://kirilllive.github.io/tuesday-js/tuesday_doc.html
+documentation: https://kirilllive.github.io/tuesday-js/doc_runetime.html
 
 
 
