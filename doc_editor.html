@@ -174,6 +174,17 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <path class="lines" d="M1276,130V65"/><text class="texts" x="1274" y="168" onclick="get_doc('run')">Run project</text>
 </svg>
 </div>
+<div id="w_build" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Build project</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_build.png" style="max-height:423px;max-width:499px;"/>
+    </div>
+    <p>Building the final project into an executable file. All build options include an HTML file with an embedded RunTime and a JSON array of the project with all dialogs and options.
+    <br><br><b>Html file</b> - The fastest build option, only the index.html file will be created, without adding files from the working folder, only the paths to the files relative to the working folder will be indicated.<br>The resulting file can be launched in the browser even without additional files, if you add it to the working folder and run, the files specified in the project will be used.<br>It is recommended to use if the project does not use additional files.
+    <br><br><b>Zip file</b> - Creates an uncompressed archive with the index.html file (to start the project) and other files used in the project, if the file from the working folder is not specified in the project, then it will not be added to the archive. You can publish the resulting ZIP archive to most browser game distribution services.<br>It is recommended to be used by default, and this option is suitable for most use cases and distribution of the project. To create a ZIP archive, <a href="https://stuk.github.io/jszip/" target='_blank'>JSZip</a> is used, which has good compatibility with various systems. .
+    <br><br><b>Base64</b> - Only index.html is created with all the data in one file. All files used in the project from the working folder are encoded in Base64 format and added to the generated index.html, if the file from the working folder is not specified in the project, then it will not be added to index.html.<br><b>Important!</b> when encoding files in Base64, the data size increases by about 25%. Some browsers may have problems using HTML over 30MB. Therefore, this export is not recommended for large projects with a lot of data. 
+    </p>
+</div>
 <div id="add_story_block" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Add story block</p>
@@ -184,13 +195,6 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br>The block name is indicated only in Latin letters and without the use of special characters. this name will not be displayed in the project, but will be used in the project structure, in fact, you set the name (key) for the data array, which will contain all subsequent data of this part of the story.
     <br><br>For ease of navigation, you can set the color of the block. this color will be used by all elements that will refer to this block (selection buttons, lines, etc.)
     <br><br>In the future, you can change the name and color of the block by clicking on the edit button in the header of the selected block.</p>
-</div>
-<div id="w_build" style="display:none">
-    <div style="width:100%;text-align: center;" >
-    <p class="head">Build project</p>
-    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_build.png" style="max-height:423px;max-width:499px;"/>
-    </div>
-    <p>Building the final project into an executable file. All build options include an HTML file with an embedded RunTime and a JSON array of the project with all dialogs and options.</p>
 </div>
 <div id="quick_tutorial" style="display:none">
     <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
