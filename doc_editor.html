@@ -179,14 +179,21 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p class="head">Dialog</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/dialog.png" style="max-height:788px;max-width:877px;"/>
     </div>
-    <p></p>
+    <p>The dialog defines all other elements that will be displayed in the project, such as dialog text, character images, select buttons, additional sounds, and more. To edit the layout, it is recommended to use the "Scene Editor" with the Drag end Drop visual interface, it can be called in the context menu of the dialog or when adding the "art" element. Options and elements in a dialog are used only in that dialog and are not carried over to the next dialog.</p>
 </div>
 <div id="scene_edit" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Scene</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/scene_edit.png" style="max-height:497px;max-width:707px;"/>
     </div>
-    <p></p>
+    <p>The scene is part of the story block, which sets the basic parameters for subsequent dialogues, such as background image, color, and music.
+    <br><br><b>Image</b> - File for the background image that will be displayed in all subsequent dialogue of this scene (analogue of background-image in css). You can set a separate file for each translation, if you specify only one file and leave the rest empty, that single file will be used for all translations.
+    <br><br><b>Music</b> - Specifies a file for background music, the selected music will be looped, if you specify the same file in several scenes in a row, then the music will not be interrupted or restarted when switching to a scene. If you leave the parameter empty, then the previously started music will be stopped. Playback cannot be affected by the "Play Sound" and "Stop Sound" dialog items, the sounds they control play in parallel with the background music.
+    <br><br><b>Color</b> - Scene background color (analogue of background-color in css).
+    <br><br><b>Size</b> - Options for filling a window or screen with a background image (analogue of background-size in css).
+    <br><br><b>Position</b> - property sets the starting position of a background image  to align it in the scene relative to the size of the window or screen (analogue of background-position in css). For example, by specifying the lower right corner, the image will be stretched relative to this corner, and at any size, the lower right corner of the image will be visible.
+    <br><br><b>Class</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional scene parameters that are not provided by the main functionality, like filters or gradients.
+    </p>
 </div>
 <div id="story_blocks" style="display:none">
     <div style="width:100%;text-align: center;" >
