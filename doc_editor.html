@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
-<title>Tuesday JS visual novel engine tutorial</title>
+<title>Tuesday JS visual novel engine Tutorial / Documentation / Lessons</title>
 <style>
 *{
 	font-family:Arial;
@@ -121,9 +121,9 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </div>
     <div class="accordion"><div class="block block_open">Project structure</div></div>
     <div class="panel">
-        <div class="block"><span class="three_1">Story block</span></div>
-        <div class="block"><span class="three_1">Scene</span></div>
-        <div class="block"><span class="three_1">Dialog</span></div>
+        <div class="block" onclick="get_doc('story_blocks')"><span class="three_1">Story block</span></div>
+        <div class="block" onclick="get_doc('scene_edit')"><span class="three_1">Scene</span></div>
+        <div class="block" onclick="get_doc('dialog')"><span class="three_1">Dialog</span></div>
         <div class="accordion"><div class="block block_open"><span class="three_1">Dialog elements</span></div></div>
         <div class="panel">
             <div class="block"><span class="three_2">Text</span></div>
@@ -173,6 +173,27 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <path class="lines" d="M1189,180V65"/><text class="texts" x="1186" y="218" onclick="get_doc('w_build')">Build project</text>
     <path class="lines" d="M1276,130V65"/><text class="texts" x="1274" y="168" onclick="get_doc('run')">Run project</text>
 </svg>
+</div>
+<div id="dialog" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/dialog.png" style="max-height:788px;max-width:877px;"/>
+    </div>
+    <p></p>
+</div>
+<div id="scene_edit" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Scene</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/scene_edit.png" style="max-height:497px;max-width:707px;"/>
+    </div>
+    <p></p>
+</div>
+<div id="story_blocks" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Story block</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/story_blocks.png" style="max-height:318px;max-width:937px;"/>
+    </div>
+    <p>The script structure is divided into various elements. The main element is a "block" that is part of a narrative or a storyline, and their sequence will be determined by the user's choices. Blocks consist of scenes with a set of graphic and sound elements. And already inside the scene, a sequence of dialogues and other elements.</p>
 </div>
 <div id="w_build" style="display:none">
     <div style="width:100%;text-align: center;" >
