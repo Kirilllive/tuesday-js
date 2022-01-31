@@ -2252,9 +2252,8 @@ function ho_update(){
             +"</td></tr>"
             +"<tr><td height='40px' align='right' style='padding-right:8px;'>JavaScript</td><td style='padding-right:8px;' colspan='2'><input id='ho_j"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].js=this.value' type='text' value='"+((arr_l[arr_n].objects[i].js)?arr_l[arr_n].objects[i].js:"")+"' style='width:100%;'></td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l."+arr_n+".objects["+i+"];edit_code(\"js\",\"JavaScript\",\"ho_update()\");'>"
             +"</tr><tr>"
-            +"<td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Show</td>"
-            +"</tr><tr>"
-            +"<td colspan='4'>"+show_if+"</td></tr></tbody></table></div>"
+            +((arr_n=="terrain_map")?"<td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Show</td></tr><tr><td colspan='4'>"+show_if+"</td></tr>":"")
+            +"</tbody></table></div>"
         c.appendChild(o);
     }
     adden_sizer(e,"ho_stopResize(angle);");

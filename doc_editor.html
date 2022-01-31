@@ -128,9 +128,9 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <div class="panel">
             <div class="block"><span class="three_2">Text</span></div>
         </div>
-        <div class="block"><span class="three_1">Legacy choice</span></div>
-        <div class="block"><span class="three_1">Terrain map</span></div>
-        <div class="block"><span class="three_1">Hidden object</span></div>
+        <div class="block" onclick="get_doc('legacy_choice')"><span class="three_1">Legacy choice</span></div>
+        <div class="block" onclick="get_doc('terrain_map')"><span class="three_1">Terrain map</span></div>
+        <div class="block" onclick="get_doc('hidden_object')"><span class="three_1">Hidden object</span></div>
     </div>
     <div class="block" onclick="get_doc('editor_options')">Editor Options</div>
 </div>
@@ -174,6 +174,27 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <path class="lines" d="M1276,130V65"/><text class="texts" x="1274" y="168" onclick="get_doc('run')">Run project</text>
 </svg>
 </div>
+<div id="legacy_choice" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Legacy choice</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/legacy_choice.png" style="max-height:311px;max-width:727px;"/>
+    </div>
+    <p>This is a logical element that determines the next story block based on the values in the variables. it will not be visible to the user.<br><br>As you progress through the story, you can specify in dialogs or on the selection buttons what changes to make to the variables that you created in the project settings. And then use the obtained values in the Legacy selection to draw a conclusion or decision for the further development of the story.<br><br><div style="width:100%;text-align: center;"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_legacy_choice.png" style="max-height:396px;max-width:579px;"/></div><br><br>You can set up multiple value checks and their order will be determined by this "if eles" list, with the last "else" value always present, which is triggered if none of the above comparisons matched.<br><br>This element is most often used to create tests to test knowledge or to determine the ending of a story.</p>
+</div>
+<div id="terrain_map" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Terrain map</p>
+    <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/map_screen.jpg" style="max-height:466px;max-width:682px;"/>
+    </div>
+    <p></p>
+</div>
+<div id="hidden_object" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Hidden object</p>
+    <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/ho_screen.jpg" style="max-height:466px;max-width:682px;"/>
+    </div>
+    <p></p>
+</div>
 <div id="dialog" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Dialog</p>
@@ -184,7 +205,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
 <div id="scene_edit" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Scene</p>
-    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/scene_edit.png" style="max-height:497px;max-width:707px;"/>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/scene_edit.jpg" style="max-height:497px;max-width:707px;"/>
     </div>
     <p>The scene is part of the story block, which sets the basic parameters for subsequent dialogues, such as background image, color, and music.
     <br><br><b>Image</b> - File for the background image that will be displayed in all subsequent dialogue of this scene (analogue of background-image in css). You can set a separate file for each translation, if you specify only one file and leave the rest empty, that single file will be used for all translations.
