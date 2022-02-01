@@ -186,14 +186,102 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p class="head">Terrain map</p>
     <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/map_screen.jpg" style="max-height:466px;max-width:682px;"/>
     </div>
-    <p></p>
+    <br><br><p>The scene view is intended to display game space maps or other navigation. To use it, you need to select a new image for the map from the working folder and place markers on it that will lead to another plot block or continue the current one. Map scene with all elements will be automatically scaled to the size of the screen or project window, and scrolling functionality will be added. </p>
+    <br><br><table style="width:100%;"><tbody><tr>
+        <td style="width:50%;padding-bottom:64px;">
+        <br><br>Individual settings for displaying a scene with a map in a project.
+        <br><br><b>Art</b> - Specifies a file from the working folder for the map background image, you can set an individual image for each localization. By default, all languages will be set to the image selected when creating the scene.
+        <br><br><b>Width / Height</b> - Map dimensions, by default, the dimensions of the image that was selected when creating the scene are used. Resizing does not affect the scaling of the scene, if you want to increase the size of the map, it is recommended to use the "Scale" option
+        <br><br><b>Start scroll X / Y</b> - Sets the initial scroll position when the map is first launched, later the scene remembers the last map scroll position so that the user can continue from the same place.
+        <br><br><b>Size</b> - Options for filling the scene with a map background image.
+        <br><br><b>Scale</b> - Specifies the scale of the map so that it can be enlarged or reduced in proportion to its size and the size of the project window.
+        <br><br><b>Color</b> - Scene background color.
+        <br><br><b>Button sound</b> - The default sound for keyboards, if the marker has its own sound, then this file will not be played.
+        <br><br><b>Music</b> - Specifies the file for the background music, the selected music will be looped, if the file is the same as the background music of the previous scene, the music will not be interrupted or restarted when switching to the card.
+        <br><br><b>Class name</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
+        <br><br><b>Style CSS</b> - Sets individual CSS style options for the map. It allows you to use additional options that are not provided by the main functionality, such as filters or gradients.
+        </td>
+        <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/map_scene.png" style="max-height:521px;max-width:286px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
+    </tr><tr>
+        <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/map_item.png" style="max-height:708px;max-width:270px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
+        <td style="width:50%;padding-bottom:64px;">
+        <br><br>Markers for the map are created in the "items" section, before creation you will be prompted to select an image for the marker, this image will be used by default for all languages.
+        <br><br><b>Name</b> - Adds a text caption for the marker.
+        <br><br><b>Go to</b> - Sets the transition to another story block
+        <br><br><b>Art</b> - An image for the marker selected from the working folder.
+        <br><br><b>Left / Top position</b> - Marker location coordinates on the map in pixels
+        <br><br><b>Width / Height size</b> - Marker sizes, by default, the size of the image that was selected when creating the marker is used.
+        <br><br><b>Angle</b> - Angle or rotation of marker image
+        <br><br><b>Size</b> - Options for filling the scene with a marker image.
+        <br><br><b>Sound</b> - A file from the working folder with the sound that will be played when you click on this marker.
+        <br><br><b>Class name</b> - For the marker, you can specify the style class from the css file specified in the project settings. It allows you to use additional options.
+        <br><br><b>Style CSS</b> - Sets individual CSS style options for the marker. Allows you to use additional options
+        <br><br><b>JavaScript</b> - Executes JavaScript after the marker is clicked
+        <br><br><b>Show</b> - Conditions based on variable values under which the marker will be hidden or shown
+        </td>
+    </tr></tbody></table>
 </div>
 <div id="hidden_object" style="display:none">
     <div style="width:100%;text-align: center;" >
     <p class="head">Hidden object</p>
     <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/ho_screen.jpg" style="max-height:466px;max-width:682px;"/>
     </div>
-    <p></p>
+    <br><br><p>Scene with game mechanics "hidden object" also called "hidden picture" or "hidden object puzzle adventure". The player's task is to find all the items from the list on the playing field.
+    <br><br>This game scene displays a list of items for search in a text panel from the main interface. You can specify the number of items to search in the "Labels" scene parameters section, if there are fewer items in the scene than specified in the parameter, then the random entry of the item into the list is not applied, if more is specified, then the list will be determined randomly each time. The more elements in the scene, the more diverse the list will be created.</p>
+    <br><br><table style="width:100%;"><tbody><tr>
+        <td style="width:50%;padding-bottom:64px;">
+        <br><br>Settings for displaying item label in the search list
+        <br><br><b>Width / Height</b> - item label dimensions in text panel
+        <br><br><b>Items for search</b> - Number of items in the search list, if there are fewer items in the scene than specified in the parameter, then the random entry of the item into the list is not applied, if more is specified, then the list will be determined randomly each time.
+        <br><br><b>Style CSS</b> - Sets individual CSS style options for the item label. It allows you to use additional options that are not provided by the main functionality, such as filters or gradients.
+        <br><br><b>Removable label</b> - Removes the label of the found element from the search list
+        <br><br><b>Removable item</b> - Removes the found item from the search list from the playing field
+        <br><br><b>Default color label</b> - The background color of the item label of an element not yet found
+        <br><br><b>Find color label</b> - Found item label background color
+        <br><br><b>Tip label</b> - item label appearance (text only, image only, text with image)
+        <br><br><b>Align text</b> - Align text with element name inside item label
+        <br><br><b>Default color text</b> - The text color of an element not yet found
+        <br><br><b>Find color text</b> - Found item text color
+        <br><br><b>Width / Height art</b> - Item label sizes in the search item list
+        <br><br><b>Fill art</b> - Item label image filling options.
+        <br><br><b>Align art</b> - Image alignment inside item label.
+        <br><br><b>Sound</b> - The default sound to play when an item from the list has been found, if the item has its own sound, then this file will not be played.
+        <br><br><b>Default class name</b> - The style class from the css file specified in the project settings for the label of the not yet found element.
+        <br><br><b>Find class name</b> - Style class from the css file specified in the project settings for the label of the found element.
+        <br><br><b>
+        </td>
+        <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/ho_labels.png" style="max-height:932px;max-width:286px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
+    </tr><tr>
+        <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/ho_scene.png" style="max-height:480px;max-width:286px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
+        <td style="width:50%;padding-bottom:64px;">
+        <br><br>Individual settings for displaying a scene.
+        <br><br><b>Art</b> - Specifies a file from the working folder for the playing field  background image, you can set an individual image for each localization. By default, all languages will be set to the image selected when creating the scene.
+        <br><br><b>Width / Height</b> - the dimensions of the playing field, by default, the dimensions of the image that was selected when creating the scene are used. Resizing does not affect the scaling of the scene, if you want to increase the size of the scene, it is recommended to use the "Scale" option
+        <br><br><b>Size</b> - Options for filling the scene with a map background image.
+        <br><br><b>Scale</b> - Specifies the scale of the playing field so that it can be enlarged or reduced in proportion to its size and the size of the project window.
+        <br><br><b>Color</b> - Scene background color.
+        <br><br><b>Music</b> - Specifies the file for the background music, the selected music will be looped, if the file is the same as the background music of the previous scene, the music will not be interrupted or restarted when switching to the card.
+        <br><br><b>Go to</b> - Specifies the next block or dialog that the player will move to after all items in the list have been found.
+        <br><br><b>Class name</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
+        <br><br><b>Style CSS</b> - Sets individual CSS style options for the playing field. It allows you to use additional options that are not provided by the main functionality, such as filters or gradients.
+        <br><br><b>JavaScript</b> - Executes JavaScript at the beginning of the game scene
+        </td>
+    </tr><tr>
+        <td style="width:50%;padding-bottom:64px;">
+        <br><br>Placement of an object on the playing field.
+        <br><br><b>Name</b> - Adds a text caption for the item. which will be displayed in the list of items to search.
+        <br><br><b>Art</b> - An image for the item selected from the working folder.
+        <br><br><b>Left / Top position</b> - Item location coordinates on the map in pixels
+        <br><br><b>Width / Height size</b> - Item sizes, by default, the size of the image that was selected when creating the item is used.
+        <br><br><b>Angle</b> - Angle or rotation of item image
+        <br><br><b>Size</b> - Options for displaying the image of the item.
+        <br><br><b>Sound</b> - A file from the working folder with a sound that will be played when this item is clicked, if it is in the search list.
+        <br><br><b>Class name</b> - For the item, you can specify the style class from the css file specified in the project settings. It allows you to use additional options.
+        <br><br><b>Style CSS</b> - Sets individual CSS style options for the item. Allows you to use additional options
+        <br><br><b>JavaScript</b> - Executes JavaScript after the item is clicked
+        </td>
+        <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/ho_item.png" style="max-height:581px;max-width:270px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
+    </tr></tbody></table>
 </div>
 <div id="dialog" style="display:none">
     <div style="width:100%;text-align: center;" >
