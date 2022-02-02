@@ -126,7 +126,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <div class="block" onclick="get_doc('dialog')"><span class="three_1">Dialog</span></div>
         <div class="accordion"><div class="block block_open"><span class="three_1">Dialog elements</span></div></div>
         <div class="panel">
-            <div class="block"><span class="three_2">Text</span></div>
+            <div class="block" onclick="get_doc('dialog_text')"><span class="three_2">Text</span></div>
         </div>
         <div class="block" onclick="get_doc('legacy_choice')"><span class="three_1">Legacy choice</span></div>
         <div class="block" onclick="get_doc('terrain_map')"><span class="three_1">Terrain map</span></div>
@@ -173,6 +173,13 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <path class="lines" d="M1189,180V65"/><text class="texts" x="1186" y="218" onclick="get_doc('w_build')">Build project</text>
     <path class="lines" d="M1276,130V65"/><text class="texts" x="1274" y="168" onclick="get_doc('run')">Run project</text>
 </svg>
+</div>
+<div id="dialog_text" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog text</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_text_edit.png" style="max-height:620px;max-width:867px;"/>
+    </div>
+    <p></p>
 </div>
 <div id="legacy_choice" style="display:none">
     <div style="width:100%;text-align: center;" >
