@@ -133,6 +133,14 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <div class="block" onclick="get_doc('hidden_object')"><span class="three_1">Hidden object</span></div>
     </div>
     <div class="block" onclick="get_doc('editor_options')">Editor Options</div>
+    
+    
+    <div class="accordion"><div class="block block_open">Lessons</div></div>
+    <div class="panel">
+        <div class="block" onclick="get_doc('unlocked_content')"><span class="three_1">Make hidden content</span></div>
+    </div>
+    
+    
 </div>
 </td>
 </tr>
@@ -178,6 +186,73 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <div style="width:100%;text-align: center;" >
     <p class="head">Dialog text</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_text_edit.png" style="max-height:620px;max-width:867px;"/>
+    </div>
+    <p></p>
+</div>
+<div id="unlocked_content" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
+        <tr>
+            <td align='center' colspan="2" style="text-align:center;"><p class="head">Make unlocked or hidden content</p></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 1</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Often there is a need to add unlocked content that becomes available to the player as it progresses or for certain actions. To implement this functionality, you can use additional variables and conditions for displaying the element ("show" parameter). You can assign changes to the values of variables on clicking on a select button or on going to a specific dialog, with "show" you assign conditions for displaying an element based on the values in the values of the variables.<br><br> First, let's go to <b>the project settings</b> for creating variables. </td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_project_settings.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 2</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_var.svg" style="background-image:url('tutorial_img/new_var.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the window "the project settings" go to the tab "Variables"<br><br> Click on the plus (+) and a variable named variable1 will be created in the window, rename it Level and set the default value to 0.<br><br>The value of this variable will be used to unlock the content.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 3</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Let's create a button with a choice, and add to one of the buttons the modification "set" the "Level" variable to the value "1". In the future, this will be used as a condition for displaying the object, if the "Level" value is greater than 0, then it will be displayed.<br><br>In this case, clicking on the button with the modifier unblocks the content<br><br> In both buttons, set "Go To" option to "Next Scene", the next scene will contain content to unlock.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/choise_modification_var.svg" style="background-image:url('tutorial_img/choise_modification_var.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 4</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/choise_stor_block.svg" style="background-image:url('tutorial_img/choise_stor_block.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Let's create a new scene or dialog in which we will create two more select buttons<br><br>The first one will repeat the dialogue with the unlock offer by restarting the plot block. To do this, in the “go” we set the name of the same block.<br><br>The second button will lead to blocked content, so we specify "go to" as "next scene".</td>
+        </tr>
+            <td align='center' colspan="2" height='128px'>Step 5</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Finds the "Show" parameter for the button leading to unlocked content, sets the conditions for its display if the value of the "Level" variable is greater than 0.<br><br>Now if the user clicks "No", the modifier variable will not be used and the value in the variable "level" will remain at 0, which means that this button will be displayed in the scene.</td>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/choise_showifh.svg" style="background-image:url('tutorial_img/choise_showifh.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 6</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/choise_showifv.svg" style="background-image:url('tutorial_img/choise_showifv.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Finds the "Show" option for another select button and sets the conditions for it to be displayed if the value of the "Level" variable is greater than 0. as we showed in the modifier for the "Yes" button<br><br>Thus, if the content has already been unlocked, then the offer to repeat the request will not appear, but in its place there will be a button to show cool content.</td>
+        </tr>
+            <td align='center' colspan="2" height='128px'>Step 7</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Let's create a new scene where we will display previously locked content, but also make it locked again when the project is restarted.<br>To do this, add the "variables" element to the scene.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_set_var.svg" style="background-image:url('tutorial_img/add_set_var.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 8</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/w_edit_set_var.png"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>By clicking on (+) we will add the modifier "Lvevl" and set it to "set" and the value 0, as we set earlier the conditions for displaying hidden content, the value in the variable Lvevl is 1 .</td>
+        </tr>
+        <tr>
+            <td align='left' colspan="2" height='128px'>In this way, we create conditions for displaying a button that sees hidden content in which the user needs to perform the necessary actions in order to access it. You can use this to reveal hidden answer options to navigate through hidden scenes or unlock art in the gallery.<br>This example shows how the Show option and variables work in general. You can use these options in other ways as well.<br>You don't have to create a variable for every object, you can use one variable for multiple elements and only change the value in the variable itself.<br><br>Download the source code for this example here <a href="example/example_unlocked_content.zip" target='_blank'>example_unlocked_content.zip</a></td>
+        </tr>
+    </tbody></table>
     </div>
     <p></p>
 </div>
