@@ -464,6 +464,7 @@ function name_block_update(){
                 if(arr_dialog.art[i].position[3]!=0){art.style.top="calc(100% - "+arr_dialog.art[i].position[3]+" - "+arr_dialog.art[i].size[1]+")";}
                 art.setAttribute("draggable","false");
                 art.style.zIndex=i;
+                if(arr_dialog.art[i].show_if){show_if(arr_dialog.art[i].show_if,art)}
                 tuesday.appendChild(art);
             }
         } else {del_element("tue_art");}
