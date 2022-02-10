@@ -92,7 +92,12 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
 <tr>
 <td>
 <div id="bookmarks">
-    <div class="block" onclick="get_doc('quick_tutorial')">Quick tutorial</div>
+    <div class="accordion"><div class="block block_open">Quick tutorial</div></div>
+    <div class="panel">
+        <div class="block" onclick="get_doc('quick_tutorial')"><span class="three_1">English</span></div>
+        <div class="block" onclick="get_doc('quick_tutorial_ja')"><span class="three_1">Japanese</span></div>
+    </div>
+        
     <div class="accordion"><div class="block block_open">User interface</div></div>
     <div class="panel">
         <div class="block" onclick="get_doc('user_interface')"><span class="three_1">Main interface</span></div>
@@ -655,7 +660,248 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/build_choice.svg" style="background-image:url('tutorial_img/build_choice.jpg');"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>Click on the <b>"Build"</b> button in the top menu and select the desired option in the window that appears (zip archive is recommended).<br><br>Saving a built project is similar to saving a project, depending on the platform you are using.<br><br>You can publish the resulting zip archive or base64 html on game portals:<br><br><ul><li><a href="https://itch.io/" target='_blank'>itch.io</a></li><li><a href="https://gamejolt.com/" target='_blank'>GameJolt</a></li><li><a href="https://www.kongregate.com/" target='_blank'>Kongregate</a></li><li><a href="https://www.newgrounds.com/" target='_blank'>NewGrounds</a></li></ul></td>
         </tr>
-            <td align='center' colspan="2" height='128px'>It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>If you notice something like this, be sure to send me an email: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
+            <td align='center' colspan="2" height='128px'><!--It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>-->If you notice something like this, be sure to send me an email: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
+        </tr>
+    </tbody></table>
+</div><div id="quick_tutorial_ja" style="display:none">
+    <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
+        <tr>
+            <td align='center' colspan="2" style="text-align:center;"><p class="head">Tuesday JSでビジュアルノベルを作ってみよう(入門者用クイックガイド)</p><p><a href="https://twitter.com/onigi123" target='_blank'>Translation and adaptation by Onigi</a></p></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>その1 新規プロジェクトを作成してみよう</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>新しくゲーム制作プロジェクトを作成します。画面左上の書類(ファイル)型アイコンを押してください。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_load.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その2 新規プロジェクトの設定</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_folder.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>設定ウィンドウで、ゲーム制作に使用するリソース(画像ファイルや音楽ファイルなど)が入った作業フォルダーを指定します。<br><br><span style="color:#f00;">プロジェクトを作成した段階では、コンピューターにもブラウザーにもデータが保存されていません。</span>〈Save〉機能を手動で操作して保存(バックアップ)する必要があります(《その32 プロジェクトの保存〉参照)。保存せずにTuesday JSを終了したりブラウザーを更新したりすると作業中のデータが消えてしまいます。<br><br>また、保存済みのプロジェクトから作業を再開する際は、JSONファイルではなく、プロジェクトに使用している作業フォルダーを指定してください。Tuesday JSはプロジェクトをJSON形式ファイルとして保存しますが、このファイルには画像や音声のファイルの位置を作業フォルダーを起点にした相対パスとして記録しているだけで、リソースデータそのものは格納していません。JSONファイルが作業フォルダー以外にあるとリソースファイルの位置を認識できなくなるので、JSONファイルはいつも作業フォルダーに配置しておいてください。
+</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その3 対応言語の設定</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>プロジェクトの名称とゲームの対応言語を設定します。<br><br>プロジェクトの名称は言語ごとに設定してください。重複していると正しく表示されません。<br><br>一列目の言語はゲームの標準言語になります。ゲームを起動したデバイスがいずれの言語にも対応していない場合、ゲームは標準言語で起動します。<br><br>対応言語は「Setting project(プロジェクトの設定)」から後から変更できます。<br><br>入力が終わったら【Create Project(プロジェクト作成)】を選択してください。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_languages.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その4 ストーリー・ブロックを配置してみよう</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_project.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>では〈ストーリー・ブロック〉を設置してみましょう。右下の【Add story block(ストーリー・ブロックを追加)】を押してください。<br><br>Tuesday JSでは、無数のストーリー・ブロックを連結させながらゲームの物語を組み立てていきます。プレイヤーの様々な操作(選択肢など)に応じて、あるブロックから他のブロックへと処理を切り替えることでゲームが進行する仕組みです。</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その5 ストーリー・ブロックの設定</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>ストーリー・ブロックの名称と色を決めましょう。ラテン語アルファベットのみ対応しています。<br><br>名称と色は制作者が全体構造を把握するための目印で、プレイヤーからは見えません。<br><br>では、【Create Block(ブロック作成)】を押してください。<br><br>初めて作成したストーリー・ブロックは、ゲームの起動直後に処理するプロックになります。最初に処理するブロックは【project setting(プロジェクトの設定」から変更できます。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_block.svg" style="background-image:url('tutorial_img/new_block.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その6 シーンの追加</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_scene.svg" style="background-image:url('tutorial_img/new_scene.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>左側の【・・・】から作成したストーリー・ブロックを展開してみましょう。<br><br>(+)ボタンを押すと要素(elements)追加メニューが開きます。<br><br>ここから〈シーン(Scene)〉要素を追加してみましょう。</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>その7 シーンの背景</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>シーン設定ウィンドウです。フォルダー・アイコンで背景画像(Background image)を指定してみましょう。<br><br>背景画像は言語ごとに設定できます。一枚だけ設定していれば、言語に関わらず同じ背景になります。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/set_scene.svg" style="background-image:url('tutorial_img/set_scene.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その8</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/add_bg_scene.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>ダイアログボックスが開きます。適合する形式のファイルが全て並ぶので、背景にする画像ファイルを選びましょう。</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その9</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>背景色やBGMを設定してみるのもいいですね。<br><br>【Apply(設定を適応)】を押すと、ストーリー・ブロックにシーンが加わっているはずです。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_scene.svg" style="background-image:url('tutorial_img/apply_scene.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その10 ダイアログを埋め込もう</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/new_dialog.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>シーンには〈ダイアログ(Diealog)〉が必要です。ダイアログとは台詞、地の文、選択肢、システムメッセージや、その挙動に関する設定の総称です。上部の(+)を押して【Add Dialog(ダイアログの追加)】を選択してください。<br><br>ストーリー・ブロックはシーンを埋め込んで作っていきます。そしてシーンはダイアログが集まって成立し、ダイアログはテキストや画像や選択肢といった要素が合わさって成立する入れ子構造になっていきます。</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>その11 シーンの編集画面の起動</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>追加したダイアログのメニューボタン(三本線)を押して、【Scene Edit(シーンの編集)】を選択します。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/scene_menu.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その12 シーン編集画面を見てみよう</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_choice.svg" style="background-image:url('tutorial_img/scene_editor.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>これが〈Scene Editor(シーン編集画面)〉です。設定を変更しない限り、最初に作成したストーリー・ブロックはゲーム起動直後に処理するブロックなので、メインメニューとしての機能を追加してみましょう。<br><br>【Buttons & Choices(ボタンと選択肢)】タブの下にある(+)ボタンを押してください。</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その13 ボタンと選択肢</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>レイアウト画面にボタンが出現しましたね。ボタンのパラメーターを操作する設定パネルも右側に表示されています。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その14</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/set_choice.svg" style="background-image:url('tutorial_img/set_choice.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>作ったボタンの【Go to(進行先)】パラメーターを〈Next scene(次のシーンへ)〉に設定しましょう。<br><br>これは［プレイヤーがボタンを押すと、現在のストーリー・ブロック内にある次の処理を実行する］という意味になります。<br><br>設定が終わったら【Back(戻る)」を押して前の画面に戻りましょう。</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>その15 ダイアログにテキストを設定</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>今作ったボタンとは別にもう一つダイアログを追加し、(+)ボタンから「テキスト(文章)」要素を追加してください。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/new_text.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その16 テキストの設定</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/text_edit.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>テキストの設定ウィンドウです。ここで表示する文章を言語別に追加していきます。<br><br>テキスト欄が空白の場合、作成画面でもゲームでもテキスト欄は表示されません(処理上無視されます)。複数言語に対応させる場合は、テキストを入力し忘れた言語がないよう気を付けてください。<br><br>&#60skip>とだけ表記したそのダイアログはゲームで省略されます。言語ごとにテキストの表示回数が異なる場合、使用してみてください。<br><br>「text &#60var_name> text」という風に変数名を&#60>で囲んで記述すると、その値がテキストとして表れます。(例:今日は林檎100 g&#60変数名> 円です。)</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その17</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>ダイアログ編集画面は基本的に今のような感じです。<br><br>たった今作成したダイアログのメニューを開き【Scene edit(シーンの編集)】を選択してください。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/scene_menu2.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その18 インターフェイス設定画面</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/scene_editor_text.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>〈Text panel(テキストパネル)〉では、テキスト表示欄の見た目や配置を編集します。<br><br>〈interface buttons(インターフェイス用ボタン)〉は、インターフェイス用ボタンの追加とその見た目を設定します。<br><br>なおインターフェイス設定では、ラスター形式の画像とベクター形式の画像が両方使用できます。更にCSS Styleの書式で設定を記述することもできます。</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>その19 スプライトの追加</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>では、シーンにスプライト画像を追加してみましょう。<br><br>【Arts(画像類)】タブの(+)ボタンを押してください。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_art.svg" style="background-image:url('tutorial_img/scene_editor_text.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その20</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice_art.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>ウィンドウが開くので、スプライトとして使う任意の画像を作業フォルダーから指定してください。</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その21</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>配置方法やパラメーターの入力は、ボタン配置で学んだやり方と同じです。<br><br>ゲームを複数の言語に対応させる場合は、忘れずに言語別に設定してください。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/set_art.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その22 要素の複製</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>選択(Selection)要素を作ってゲームを更に進行させましょう。<br><br>またスプライトを設定するのは手間ですから、ダイアログのメニューから【複製(Duplicate)】を選択してコピーし、これを選択肢として作り替えることにしましょう。</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>その 23</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>コピーして作ったダイアログから、【Scene edit(シーンの編集)】を選択してください。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene2.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その 24</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/scene_editor_text_edit.svg" style="background-image:url('tutorial_img/scene_editor_text_edit.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Scene Content欄から【Text edit(テキスト編集)】を選択してテキストを変更しましょう。</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その 25 キャラクター名について</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>今回は〈キャラクターネーム(Character name)〉を設定して、テキストが人物の台詞であることを示します。<br><br>キャラクターネームもテキストと同じで言語別に翻訳して入力してください。<br><br>新規に設定したキャラクターネームは言語別の名称とパラメーター類を含めTuesday JSが記録するので、二回目からは一覧から選択するだけで済みます。作成したキャラクターはプロジェクトの設定から編集できます。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/text_edit_add_name.svg" style="background-image:url('tutorial_img/text_edit_add_name.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その26 ネームパネル</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/name_panel_edit.svg" style="background-image:url('tutorial_img/name_panel_edit.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>キャラクターネームがシーンの画面に表示されましたね。<br><br>テキスト欄と同様、キャラクターネーム欄もテキストが何も入力されていないと表示されません。<br><br>キャラクターネーム欄の見た目と配置は変更できます。画像(ラスター形式、ベクター形式共に対応)や、CSSスタイルシートの書式も利用できます。</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>その27 選択肢</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>〈Choice(選択肢)〉として使うボタンを用意しましょう。メニューボタンの作成と同じように【Buttons & Choice(ボタンと選択肢)】から選択肢用ボタンを二つ配置します。<br><br>そのうち一つの〈go to(進行先)〉は〈Next scene(次のシーンへ)〉にしてください。<br><br>ストーリー・ブロックの編集画面に戻ります。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice_yes_no.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その28</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/next_scen.svg" style="background-image:url('tutorial_img/next_scen.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>〈Next scene(次のシーンへ)〉に設定したボタンを押したときの進行先になるダイアログを作成しておきます。</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その29</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>では、先ほどの選択肢で分岐した展開も作りましょう。今までに覚えた手順でストーリー・ブロックを新しく作り、その中にシーンを追加し、そこにスプライトを付きのダイアログを組み込んでください。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/copy_past_scene.svg" style="background-image:url('tutorial_img/copy_past_scene.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>その30 ストーリー・ブロックの接続</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/choice_line.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>その27で作成した選択肢用ボタンのうち、二つ目のボタンの〈Go to(進行先)〉の値を新しく作ったストーリー・ブロックの名称にしてください。<br><br>選択肢ボタンと指定したストーリー・ブロックの間に接続を示す線が表示されましたね。</td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>その31 動作テスト</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>不備なく動作するか調べるため、【動作テスト(preview)】機能で動作を確かめてみましょう。<br><br>動作テストは任意の言語設定で任意の地点から開始できます。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_preview.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>その32 プロジェクトの保存</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_save.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>プロジェクトを記録したJSONファイルの保存先は環境によって異なります。<br><br><b>Tuesday JS</b>をブラウザーで動作させている場合<br>特に設定を変更していない場合、プロジェクトを記録したJSONファイルはダウンロードフォルダーに保存されます。次回、作業を再開する前にJSONファイルを作業フォルダーに移動させてから読み込んでください。<br><br>保存してローカル環境で動作させている場合<br>保存先を指定するウィンドウが開くので、作業フォルダーに保存してください。<br><br><b>Android OS</b>のデバイスに保存して動作させている場合<br>作業フォルダ―に保存されます。</td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>その33 プロジェクトを開く</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>プロジェクトを開くときは、保存したJSONファイルを移動させた作業フォルダーを指定してください。JSONファイルそのものを指定するのではありません。JSONファイルは読み込みファイル一覧に表示されませんが、正常なので心配しないでください。<br><br>作業フォルダーにJSONファイルが二つ以上あれば、どのJSONファイルを読み込むか選ぶよう指示が出ます。</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_open.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>その34 プロジェクトをゲームソフトとして出力</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/build_choice.svg" style="background-image:url('tutorial_img/build_choice.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>画面上部の【Build(構築)】ボタンを押すと、どの形式でゲームを出力するか選択肢が出ます。推奨はZip形式です。<br><br>完成したプロジェクトの出力先はプロジェクトの保存と同様、動作環境で異なります。<br><br>ゲームを公開するときはこのzipファイルをゲーム公開サイト(game portals)などにアップロードしてください。base64.htmlに変換して公開することもできます。<br><br>ゲーム公開サイトの一例です。<br><br><ul><li><a href="https://itch.io/" target='_blank'>itch.io</a></li><li><a href="https://gamejolt.com/" target='_blank'>GameJolt</a></li><li><a href="https://www.kongregate.com/" target='_blank'>Kongregate</a></li><li><a href="https://www.newgrounds.com/" target='_blank'>NewGrounds</a></li></ul><br><br>(以上のサイトを利用するときは英語版を用意したほうがいいでしょう)</td>
+        </tr>
+            <td align='center' colspan="2" height='128px'><!--Tuesday JSは開発中のソフトウェアなので、正常に動作しない部分もあると思います。<br>-->不具合に遭遇したときは報告をお願いします。<a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
         </tr>
     </tbody></table>
 </div><div id="new_project" style="display:none">
