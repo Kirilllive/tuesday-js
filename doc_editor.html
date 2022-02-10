@@ -680,8 +680,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         </tr>
         <tr>
             <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_folder.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>設定ウィンドウで、ゲーム制作に使用するリソース(画像ファイルや音楽ファイルなど)が入った作業フォルダーを指定します。<br><br><span style="color:#f00;">プロジェクトを作成した段階では、コンピューターにもブラウザーにもデータが保存されていません。</span>〈Save〉機能を手動で操作して保存(バックアップ)する必要があります(《その32 プロジェクトの保存〉参照)。保存せずにTuesday JSを終了したりブラウザーを更新したりすると作業中のデータが消えてしまいます。<br><br>また、保存済みのプロジェクトから作業を再開する際は、JSONファイルではなく、プロジェクトに使用している作業フォルダーを指定してください。Tuesday JSはプロジェクトをJSON形式ファイルとして保存しますが、このファイルには画像や音声のファイルの位置を作業フォルダーを起点にした相対パスとして記録しているだけで、リソースデータそのものは格納していません。JSONファイルが作業フォルダー以外にあるとリソースファイルの位置を認識できなくなるので、JSONファイルはいつも作業フォルダーに配置しておいてください。
-</td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>設定ウィンドウで、ゲーム制作に使用するリソース(画像ファイルや音楽ファイルなど)が入った作業フォルダーを指定します。<br><br><span style="color:#f00;">プロジェクトを作成した段階では、コンピューターにもブラウザーにもデータが保存されていません。</span>〈Save〉機能を手動で操作して保存(バックアップ)する必要があります(《その32 プロジェクトの保存〉参照)。保存せずにTuesday JSを終了したりブラウザーを更新したりすると作業中のデータが消えてしまいます。<br><br>保存済みのプロジェクトから作業を再開する際は、JSONファイルではなく、プロジェクトに使用している作業フォルダーを指定してください。Tuesday JSはプロジェクトをJSONファイルとして保存しますが、このファイルには作業フォルダーを基点にした画像や音声のファイルの相対パスの情報があるだけで、リソース自体は保存していません。JSONファイルは、作業フォルダー以外にあるとリソースを認識できなくなるので、常に作業フォルダーに配置しておいてください。</td>
         </tr>
         <tr>
             <td align='center' colspan="2" height='128px'>その3 対応言語の設定</td>

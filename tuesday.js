@@ -122,10 +122,15 @@ function name_block_update(){
     tue_text_block.style.borderSpacing=0;
     tue_text_view=document.getElementById("tue_text_view");
     tue_text_view.style.boxSizing="border-box";
-    tue_text_view.style.padding=story_json.parameters.text_panel.indent_text;
+    tue_text_block.style.padding=story_json.parameters.text_panel.indent_text;
     tue_text_view.style.fontSize=story_json.parameters.text_panel.size_text;
     tue_text_view.style.fontFamily=((story_json.parameters.text_panel.font_family)?story_json.parameters.text_panel.font_family:story_json.parameters.font);
 	tue_text_view.style.height="100%";
+    if(story_json.parameters.text_panel.scroll){
+        tue_text_view.style.height=tue_text_view.offsetHeight;
+        tue_text_view.style.position="relative";
+        tue_text_view.style.overflowY="hidden";
+    }
     if(story_json.parameters.name_panel){
         if(story_json.parameters.name_panel.className){tue_name_block.className=story_json.parameters.name_panel.className;}
         if(story_json.parameters.name_panel.style){tue_name_block.style=story_json.parameters.name_panel.style;}
@@ -712,7 +717,8 @@ function name_block_update(){
 } function anim_text(){
     if(dialog_speed == 0){tue_text_view.innerHTML=dialog_text.replace(new RegExp("\n","g"),"<br>");}
     else if(dialog_speed != 0 && dialog_letter < dialog_text.length){dialog_timeout=setTimeout(add_letter,dialog_speed);}
-	else if(dialog_letter == dialog_text.length){tue_text_view.innerHTML=dialog_text.replace(new RegExp("\n","g"),"<br>");tuesday.dispatchEvent(new Event('dialog_end'));}
+	else if(dialog_letter == dialog_text.length){tue_text_view.innerHTML=dialog_text.replace(new RegExp("\n","g"),"<br>")+((story_json.parameters.text_panel.end_text_cursor&&story_json.parameters.text_panel.end_text_cursor[0])?'&nbsp<img src="'+story_json.parameters.text_panel.end_text_cursor[0]+'" style="width:'+((story_json.parameters.text_panel.end_text_cursor[1])?story_json.parameters.text_panel.end_text_cursor[1]:'auto')+';height:'+((story_json.parameters.text_panel.end_text_cursor[2])?story_json.parameters.text_panel.end_text_cursor[2]:'auto')+';position:absolute;'+((story_json.parameters.text_panel.end_text_cursor[3])?story_json.parameters.text_panel.end_text_cursor[3]:'')+'">':'');tuesday.dispatchEvent(new Event('dialog_end'));}
+    if(story_json.parameters.text_panel.scroll){tue_text_view.scrollTop=tue_text_view.scrollHeight;}
 } function add_letter(){
     tue_text_view.innerHTML=dialog_text.slice(0,dialog_letter).replace(new RegExp("\n","g"),"<br>");
     dialog_letter++;
