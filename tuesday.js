@@ -125,7 +125,8 @@ function name_block_update(){
     tue_text_block.style.padding=story_json.parameters.text_panel.indent_text;
     tue_text_view.style.fontSize=story_json.parameters.text_panel.size_text;
     tue_text_view.style.fontFamily=((story_json.parameters.text_panel.font_family)?story_json.parameters.text_panel.font_family:story_json.parameters.font);
-	tue_text_view.style.height="100%";
+    tue_text_view.style.whiteSpace="pre-wrap";
+    tue_text_view.style.height="100%";
     if(story_json.parameters.text_panel.scroll){
         tue_text_view.style.height=tue_text_view.offsetHeight;
         tue_text_view.style.position="relative";
