@@ -96,6 +96,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <div class="panel">
         <div class="block" onclick="get_doc('quick_tutorial')"><span class="three_1">English</span></div>
         <div class="block" onclick="get_doc('quick_tutorial_ja')"><span class="three_1">Japanese</span></div>
+        <div class="block" onclick="get_doc('quick_tutorial_ru')"><span class="three_1">Russian</span></div>
     </div>
         
     <div class="accordion"><div class="block block_open">User interface</div></div>
@@ -138,14 +139,10 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <div class="block" onclick="get_doc('hidden_object')"><span class="three_1">Hidden object</span></div>
     </div>
     <div class="block" onclick="get_doc('editor_options')">Editor Options</div>
-    
-    
     <div class="accordion"><div class="block block_open">Lessons</div></div>
     <div class="panel">
         <div class="block" onclick="get_doc('unlocked_content')"><span class="three_1">Make hidden content</span></div>
     </div>
-    
-    
 </div>
 </td>
 </tr>
@@ -423,7 +420,247 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br>For ease of navigation, you can set the color of the block. this color will be used by all elements that will refer to this block (selection buttons, lines, etc.)
     <br><br>In the future, you can change the name and color of the block by clicking on the edit button in the header of the selected block.</p>
 </div>
-<div id="quick_tutorial" style="display:none">
+<div id="quick_tutorial_ru" style="display:none">
+    <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
+        <tr>
+            <td align='center' colspan="2" style="text-align:center;"><p class="head">Краткое руководство по созданию визуальной новеллы с помощью Tuesday JS</p><p><a href="https://twitter.com/LolerFox" target='_blank'>Translation and adaptation by LolerFox</a></p></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Шаг 1: Создайте новый проект</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Создайте новый проект, нажав на значок файла в левом верхнем углу.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_load.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 2: Процесс создания нового проекта</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_folder.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>В появившемся окне укажите рабочую папку с ресурсами проекта.<br><br><b>Внимание!</b><br>Проект не сохраняется автоматически в памяти вашего устройства или браузера, если вам нужно сделать резервную копию проекта, используйте функцию Сохранения (Шаг 32: Сохранение проекта).<br><br>Чтобы открыть проект, вам необходимо указать рабочую папку, а не файл JSON<br><br>JSON не содержит файлов проекта из рабочей папки, только пути к ним относительно рабочей папки. Поэтому важно, чтобы JSON проекта находился в рабочей папке проекта.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 3: Локализация</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Укажите <b>название проекта</b> и доступные языки.<br><br>Для каждого языка вы можете сразу указать переведенное название проекта.<br><br>1-й добавленный язык будет установлен в качестве языка по умолчанию.<br>Если устройство игрока не поддерживает ни один из указанных языков, игра переключится на первый язык в этом списке.<br><br>После создания проекта вы можете удалять и добавлять локализации в настройках проекта.<br><br>Нажмите на кнопку "Create Project".</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_languages.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 4: Добавьте сюжетный блок</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_project.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Теперь мы можем приступить к созданию сюжетного блока, нажав на кнопку <b>"Add story block"</b> в правом нижнем углу.<br><br>История в Tuesday JS состоит из сюжетных блоков, читатель может переключаться между блоками по мере прохождения истории, используя варианты выбора или их последствия.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 5: Настройка сюжетного блока</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Задайте название блока латинскими буквами и цвет блока по желанию.<br><br>Игрок не увидит это название или цвет, они нужны для вашего удобства при навигации по сюжету.<br><br>Нажмите <b>"Create Block"</b>.<br><br>Первый созданный блок сюжета по умолчанию будет считаться начальным блоком. При необходимости вы можете изменить его в настройках проекта.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_block.svg" style="background-image:url('tutorial_img/new_block.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 6: Добавление сцены</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_scene.svg" style="background-image:url('tutorial_img/new_scene.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Откройте созданный блок истории, нажав на три точки с левой стороны.<br><br>Нажмите <b>(+)</b> для вызова меню элементов.<br><br>И добавьте из появившемся меню элемент <b>scene</b>.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Шаг 7: Фон сцены</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>В появившемся окне "Settings scene" установите фоновое изображение, щелкнув на значок папки.<br><br>Здесь вы также можете выбрать альтернативные фоны для других локализаций.<br><br>Если вы установите только один фон, он будет автоматически применен ко всем локализациям.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/set_scene.svg" style="background-image:url('tutorial_img/set_scene.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 8</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/add_bg_scene.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>В появившемся диалоговом окне отображаются все соответствующие файлы из рабочей папки проекта, в нем выберите нужный файл для фона.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 9</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>При желании вы можете указать параметры отображения фона, цвет фона и фоновую музыку для этой сцены.<br><br>Нажмите <b>“Apply”</b>, и вы увидите, как сцена появится в сюжетном блоке.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_scene.svg" style="background-image:url('tutorial_img/apply_scene.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 10: Добавление диалоговога</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/new_dialog.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Теперь вам нужно добавить в него элемент диалога. Нажмите кнопку <b>(+)</b> и выберите <b>"Add Dialog"</b>.<br><br>Сюжетные блоки состоят из сцен, содержащих диалоги со всеми элементами, такими как текст, графика и варианты выбора.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Шаг 11: Запуск редактирования сцены</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Нажмите кнопку "Меню сцены" и выберите пункт <b>Edit Scene</b>.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/scene_menu.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 12: Главное меню</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_choice.svg" style="background-image:url('tutorial_img/scene_editor.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Теперь мы находимся в редакторе сцен. Поскольку первый созданный сюжетный блок автоматически становится начальным, вы можете создать в нем главное меню. Стартовый блок можно изменить в настройках проекта.<br><br>В разделе <b>"Buttons & Choices"</b> нажмите <b>(+)</b>.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 13: Кнопки и варианты выбора</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>В макете появилась кнопка.<br><br>И в правом меню появилась панель с его настройками.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 14</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/set_choice.svg" style="background-image:url('tutorial_img/set_choice.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'><br><br>Для кнопки установите параметр <b>"go to"</b>, значение <b>"Next scene"</b>.<br><br>Это означает, что когда вы нажмете на нее, история продолжится в текущем сюжетном блоке.<br><br>После, нажамите кнопку <b>"Back"</b> и вернитесь к сюжетным блокам.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Шаг 15: Добавление текста диалога</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Добавьте еще один диалог в сцену, нажав <b>(+)</b> и выбрав элемент <b>"text"</b>.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/new_text.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 16: Настройка текста</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/text_edit.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Появится окно с настройками диалога. В нем вы можете задать фразы для всех доступных локализаций.<br><br>Текстовая область не будет отображаться, если текст не указан.<br><br>Если тексты перевода отличаются количеством фраз, то вы можете написать “skip" тогда фраза будет автоматически пропущена.<br><br>Если имя переменной написать в угловых скобках, то в диалоговом окне будет показано значение из этой переменной "текст &#60var_name> текст".</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 17</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Теперь мы можем посмотерть, как выглядит весь интерфейс.<br><br>Перейдите в меню этого диалогового окна и выберите <b>"Scene edit"</b>.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/scene_menu2.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 18: Создание интерфейса</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/scene_editor_text.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>В разделе <b>"Text panel"</b> вы можете настроить внешний вид и функцианал текстовой области.<br><br>В разделе <b>"interface buttons"</b> добавьте новые кнопки интерфейса и настройте их внешний вид.<br><br>Кроме того, в настройках всех элементов можно использовать растровую и векторную графику, а также стили CSS.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Шаг 19: Добавление спрайта</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Теперь добавьте спрайт на сцену,<br><br>Найдите пункт <b>"Arts"</b> и нажмите <b>(+)</b>.
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_art.svg" style="background-image:url('tutorial_img/scene_editor_text.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 20</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice_art.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>В появившемся окне выберите нужный спрайт из рабочей папки.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 21</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Располагаем спрайт в сцене и задаем его параметры аналогично как с кнопками.<br><br>И не забывайте о локализации.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/set_art.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 22: Дублирование элементов</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Создание дубликат выбранной сцены для более быстрого создания истории.<br><br>Для этого в контекстном меню последнего диалога, выберите пункт <b>"Duplicate"</b>, чтобы не создавать все элементы заново.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Шаг 23</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>В контексном меню скопированной сцены выберите <b>"Scene edit"</b>.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene2.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 24</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/scene_editor_text_edit.svg" style="background-image:url('tutorial_img/scene_editor_text_edit.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>В разделе "Scene Content" нажмите <b>"Edit Text"</b> и задайте новый текст для диалога.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 25: Имя персонажа</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Теперь мы задать имя персонажа в разделе "Name Panel".<br><br>Локализация имени устанавливается вместе с текстом.<br><br>Tuesday JS запоминает все новые имена вместе со всеми вариантами перевода и другими параметрами, чтобы в дальнейшем вы могли выбрать их из списка персонажей. Список персонажей редактируется в настройках проекта.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/text_edit_add_name.svg" style="background-image:url('tutorial_img/text_edit_add_name.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 26: Панель имен</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/name_panel_edit.svg" style="background-image:url('tutorial_img/name_panel_edit.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Теперь мы видим, что имя персонажа появилось в сцене,<br><br>Как и с текстовой панелью, <b>"Name panel"</b> не отображается, если имя не указано.<br><br>Вы можете изменить внешний вид и положение этого элемента в разделе <b>"Name panel"</b>. В этих настройках вы также можете использовать растровую и векторную графику, а также стили CSS.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Шаг 27: Выбор</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Затем добавьте кнопки выбора таким же образом, как и при создании меню. В разделе <b>"Buttons & Choice"</b>.<br><br>На одну из кнопок устанавливаем значение <b>"go to"</b> на <b>"Next scene"</b>.<br><br>И возвращаемся к сценарию.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice_yes_no.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 28</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/next_scen.svg" style="background-image:url('tutorial_img/next_scen.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Добавьте в сцену еще один диалог для кнопки выбора со значением <b>"Next scene"</b>.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 29</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Далее создадим новый сюжетный блок для создания альтернативной истории и добавим в него сцену и диалог со спрайтом. (Следуя тем же шагам, что и в предыдущих пунктах)</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/copy_past_scene.svg" style="background-image:url('tutorial_img/copy_past_scene.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 30: Связь между сюжетными блоками</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/choice_line.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Для второй кнопки установите значение с названием нового сюжетного блока.<br><br>Теперь мы видим в сценарии линию, ведущую от кнопки выбора к другому сюжетному блоку.</td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 31: Предварительный просмотр</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Чтобы убедиться, что все сделано правильно, запускаем проект используюя предварительный просмотр.<br><br>Вы можете запустить проект с любого из созданных локализаций и с любого места истории.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_preview.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 32: Сохрание проекта</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_save.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Сохранение проекта работает по-разному на разных платформах.<br><br><b>Браузеры:</b><br>Большинство браузеров сохраняют файлы по умолчанию в папку загрузки. Чтобы повторно открыть проект, вам необходимо переместить созданный файл JSON проекта в рабочую папку.<br><br><b>Компьютер:</b><br>Предоставляет выбор, в какой папке сохранить JSON проекта.<br><br><b>Андроид:</b><br>Сохраняет JSON в рабочую папку проекта.</td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 33: Открытие проекта</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Чтобы открыть проект, вам необходимо <b>выбрать Рабочую папку</b>, в которой находится файл JSON. Не файл JSON, он не будет отображаться в списке доступных файлов.<br><br>Если в папке несколько файлов JSON, Tuesday JS спросит, какой файл вы хотите открыть.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_open.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>Шаг 34: Сборка проекта</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/build_choice.svg" style="background-image:url('tutorial_img/build_choice.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Нажмите на кнопку <b>"Build"</b> в верхнем меню и выберите нужный вариант в появившемся окне (рекомендуется использовать zip-архив).<br><br>Сохранение собранного проекта аналогично сохранению проекта, в зависимости от используемой платформы.<br><br>Вы можете опубликовать полученный zip-архив или base64 на многих игровых порталах как:<br><br><ul><li><a href="https://itch.io/" target='_blank'>itch.io</a></li><li><a href="https://gamejolt.com/" target='_blank'>GameJolt</a></li><li><a href="https://www.kongregate.com/" target='_blank'>Kongregate</a></li><li><a href="https://www.newgrounds.com/" target='_blank'>NewGrounds</a></li></ul></td>
+        </tr>
+            <td align='center' colspan="2" height='128px'>Если у вас возникли проблемы, обязательно сообщите об этом по адресу: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
+        </tr>
+    </tbody></table>
+</div><div id="quick_tutorial" style="display:none">
     <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
         <tr>
             <td align='center' colspan="2" style="text-align:center;"><p class="head">A quick guide to create a visual novel with Tuesday JS</p></td>
@@ -473,7 +710,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td align='center' colspan="2" height='128px'>Step 7 : Scene background</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>In the scene options window that appears, set the <b>background image</b> by clicking the folder icon.<br><br>Here you can also choose your own background for other translations. If you set only one background, it will be automatically applied to all translations. </td>
+            <td width='50%' align='left' class='textarr' valign='top'>In "Settings scene" window that appears, set the <b>background image</b> by clicking the folder icon.<br><br>Here you can also choose your own background for other translations. If you set only one background, it will be automatically applied to all translations. </td>
             <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/set_scene.svg" style="background-image:url('tutorial_img/set_scene.png');"/></td>
         </tr>
         <tr>
@@ -545,11 +782,11 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/scene_menu2.jpg');"/></td>
         </tr>
         <tr>
-            <td align='center' colspan="2" height='128px'>Step 18 : Interface view</td>
+            <td align='center' colspan="2" height='128px'>Step 18 : Creating a user interface</td>
         </tr>
         <tr>
             <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/scene_editor_text.jpg"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the section <b>"Text panel"</b> you can customize the text areas to display the dialogs.<br><br> In the section <b>"interface buttons"</b> add new buttons for the interface and their appearance.<br><br>In addition, in the settings of all elements, you can use raster and vector graphics, as well as CSS styles.</td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the section <b>"Text panel"</b> you can customize the appearance and functionality of the text area.<br><br> In the section <b>"interface buttons"</b> add new buttons for the interface and their appearance.<br><br>In addition, in the settings of all elements, you can use raster and vector graphics, as well as CSS styles.</td>
         </tr><tr>
             <td align='center' colspan="2" height='128px'>Step 19 : Add sprite</td>
         </tr>
@@ -568,7 +805,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td align='center' colspan="2" height='128px'>Step 21</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>We place the element in the scene and set its parameters in the same way as with the buttons.<br><br>And do not forget about localization.</td>
+            <td width='50%' align='left' class='textarr' valign='top'>Positioning the sprite in the scene in the scene and set its parameters in the same way as with the buttons.<br><br>And do not forget about localization.</td>
             <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/set_art.jpg"/></td>
         </tr>
         <tr>
@@ -576,12 +813,12 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         </tr>
         <tr>
             <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene.jpg');"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>We create selection elements for the further development of the story.<br><br>To do this, in the menu of the last dialog item, select the <b>"Duplicate"</b> item, so as not to place the sprites again.</td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Create a duplicate of the selected scene.<br><br>To do this, in the context menu of the last dialog, select the <b>"Duplicate"</b> item so as not to create all the elements again.</td>
         </tr><tr>
             <td align='center' colspan="2" height='128px'>Step 23</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>In copied dialog, select <b>"Scene edit"</b></td>
+            <td width='50%' align='left' class='textarr' valign='top'>From the context menu of the copied scene, select <b>"Scene edit"</b></td>
             <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene2.jpg');"/></td>
         </tr>
         <tr>
@@ -660,7 +897,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/build_choice.svg" style="background-image:url('tutorial_img/build_choice.jpg');"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>Click on the <b>"Build"</b> button in the top menu and select the desired option in the window that appears (zip archive is recommended).<br><br>Saving a built project is similar to saving a project, depending on the platform you are using.<br><br>You can publish the resulting zip archive or base64 html on game portals:<br><br><ul><li><a href="https://itch.io/" target='_blank'>itch.io</a></li><li><a href="https://gamejolt.com/" target='_blank'>GameJolt</a></li><li><a href="https://www.kongregate.com/" target='_blank'>Kongregate</a></li><li><a href="https://www.newgrounds.com/" target='_blank'>NewGrounds</a></li></ul></td>
         </tr>
-            <td align='center' colspan="2" height='128px'><!--It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>-->If you notice something like this, be sure to send me an email: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
+            <td align='center' colspan="2" height='128px'><!--It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>-->If you have any problems, be sure to report it to email: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
         </tr>
     </tbody></table>
 </div><div id="quick_tutorial_ja" style="display:none">

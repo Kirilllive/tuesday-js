@@ -523,7 +523,7 @@ select_go{background-color:var(--cw);border-radius:14px;}
                                 <input id='indent_text' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Console mode</td><td style='padding-right:8px;' colspan='3'>
-                                <select id="console_mode" oninput="if(this.selectedIndex!=0){story_script.parameters.text_panel.scroll=true}else{delete story_script.parameters.text_panel.scroll}">
+                                <select id="console_mode" oninput="if(this.selectedIndex!=0){story_script.parameters.text_panel.scroll=true}else{delete story_script.parameters.text_panel.scroll};scen_edit_update(true)">
                                     <option>Off</option>
                                     <option>Text autoscroll</option>
                                 </select>
@@ -3001,6 +3001,13 @@ function scen_editor(block,i,n){
             tue_text_view.style.fontFamily=((arr_t.font_family)?arr_t.font_family:story_script.parameters.font);
             tue_text_view.style.height="100%";
             tue_text_view.style.whiteSpace="pre-wrap";
+            
+            if(story_script.parameters.text_panel.scroll){
+                tue_text_view.style.height=arr_t.size[1];
+                tue_text_view.style.position="relative";
+                tue_text_view.style.overflowY="hidden";
+            }
+            
             tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text).replace(new RegExp("\n","g"),"<br>")+((story_script.parameters.text_panel.end_text_cursor&&story_script.parameters.text_panel.end_text_cursor[0])?'&nbsp<img src="'+open_file(story_script.parameters.text_panel.end_text_cursor[0])+'" style="width:'+((story_script.parameters.text_panel.end_text_cursor[1])?story_script.parameters.text_panel.end_text_cursor[1]:'auto')+';height:'+((story_script.parameters.text_panel.end_text_cursor[2])?story_script.parameters.text_panel.end_text_cursor[2]:'auto')+';position:absolute;'+((story_script.parameters.text_panel.end_text_cursor[3])?story_script.parameters.text_panel.end_text_cursor[3]:'')+'">':'');
             if(story_script[block][i].dialogs[n-1].name&&arr_p){
                 if(arr_p.className){tue_name_block.className=arr_p.className;}else{tue_name_block.className=""};
