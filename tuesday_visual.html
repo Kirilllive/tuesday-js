@@ -2970,7 +2970,7 @@ function scen_editor(block,i,n){
         
     }else if(document.getElementById("scen_video")){scen_video.style.display="none";}
     if(story_script[block][i].dialogs[n-1]){
-        if(story_script[block][i].dialogs[n-1].text&&(typeof story_script[block][i].dialogs[n-1].text!=='object'||(story_script[block][i].dialogs[n-1].text[languare]&&typeof story_script[block][i].dialogs[n-1].text[languare]!=='object'))){
+        if((story_script[block][i].dialogs[n-1].text&&(typeof story_script[block][i].dialogs[n-1].text!=='object'||(story_script[block][i].dialogs[n-1].text[languare]&&typeof story_script[block][i].dialogs[n-1].text[languare]!=='object')))||(story_script[block][i].dialogs[n-1].text_add&&(typeof story_script[block][i].dialogs[n-1].text_add!=='object'||(story_script[block][i].dialogs[n-1].text_add[languare]&&typeof story_script[block][i].dialogs[n-1].text_add[languare]!=='object')))){
             if(arr_t.style){tue_text_block.style=arr_t.style;}else{tue_text_block.style=null};
             tue_text_block.style.visibility='visible';
             tue_text_element.style.position="relative";
@@ -3001,14 +3001,13 @@ function scen_editor(block,i,n){
             tue_text_view.style.fontFamily=((arr_t.font_family)?arr_t.font_family:story_script.parameters.font);
             tue_text_view.style.height="100%";
             tue_text_view.style.whiteSpace="pre-wrap";
-            
             if(story_script.parameters.text_panel.scroll){
                 tue_text_view.style.height=arr_t.size[1];
                 tue_text_view.style.position="relative";
                 tue_text_view.style.overflowY="hidden";
             }
-            
-            tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text).replace(new RegExp("\n","g"),"<br>")+((story_script.parameters.text_panel.end_text_cursor&&story_script.parameters.text_panel.end_text_cursor[0])?'&nbsp<img src="'+open_file(story_script.parameters.text_panel.end_text_cursor[0])+'" style="width:'+((story_script.parameters.text_panel.end_text_cursor[1])?story_script.parameters.text_panel.end_text_cursor[1]:'auto')+';height:'+((story_script.parameters.text_panel.end_text_cursor[2])?story_script.parameters.text_panel.end_text_cursor[2]:'auto')+';position:absolute;'+((story_script.parameters.text_panel.end_text_cursor[3])?story_script.parameters.text_panel.end_text_cursor[3]:'')+'">':'');
+            if(story_script[block][i].dialogs[n-1].text){tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text).replace(new RegExp("\n","g"),"<br>")+((story_script.parameters.text_panel.end_text_cursor&&story_script.parameters.text_panel.end_text_cursor[0])?'&nbsp<img src="'+open_file(story_script.parameters.text_panel.end_text_cursor[0])+'" style="width:'+((story_script.parameters.text_panel.end_text_cursor[1])?story_script.parameters.text_panel.end_text_cursor[1]:'auto')+';height:'+((story_script.parameters.text_panel.end_text_cursor[2])?story_script.parameters.text_panel.end_text_cursor[2]:'auto')+';position:absolute;'+((story_script.parameters.text_panel.end_text_cursor[3])?story_script.parameters.text_panel.end_text_cursor[3]:'')+'">':'');}
+            else {tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text_add).replace(new RegExp("\n","g"),"<br>")+((story_script.parameters.text_panel.end_text_cursor&&story_script.parameters.text_panel.end_text_cursor[0])?'&nbsp<img src="'+open_file(story_script.parameters.text_panel.end_text_cursor[0])+'" style="width:'+((story_script.parameters.text_panel.end_text_cursor[1])?story_script.parameters.text_panel.end_text_cursor[1]:'auto')+';height:'+((story_script.parameters.text_panel.end_text_cursor[2])?story_script.parameters.text_panel.end_text_cursor[2]:'auto')+';position:absolute;'+((story_script.parameters.text_panel.end_text_cursor[3])?story_script.parameters.text_panel.end_text_cursor[3]:'')+'">':'');}
             if(story_script[block][i].dialogs[n-1].name&&arr_p){
                 if(arr_p.className){tue_name_block.className=arr_p.className;}else{tue_name_block.className=""};
                 if(arr_p.style){tue_name_block.style=arr_p.style;}else if(story_script.parameters.characters[story_script[block][i].dialogs[n-1].name] && story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].style){tue_name_block.style=story_script.parameters.characters[story_script[block][i].dialogs[n-1].name].style}else{tue_name_block.style=null};
