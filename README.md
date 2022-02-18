@@ -97,6 +97,15 @@ L'aperçu vous permet de démarrer un projet à partir de n'importe quel point d
 ![Tuesday JS preview](screenshots/preview.jpg)
 
 
+# ASCII art / アスキーアート (AA)
+The engine is adapted to use ASCII graphics. With its help, you can diversify the texts with images and patterns made up of text characters.
+
+Tuesday JSエンジンはアスキーアート(AA)を適切に表示できます。テキストで様々な絵や模様を作ることができます。
+
+
+![Tuesday JS preview](screenshots/ascii_art.jpg)
+
+
 # Warning for Android version
 
 Minimum version of Android 5.1
