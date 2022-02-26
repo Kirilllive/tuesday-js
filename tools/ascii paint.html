@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
+<title>ASCII Art Paint</title>
+<style>
+*{
+	font-family:Arial;
+    font-size:12px;
+	border-collapse:collapse;
+	border:none;
+	margin:0;
+	padding:0;
+	border-spacing:0px;
+	outline:none;
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	outline:none;
+}
+:root {
+  --cw:#efefff;
+  --cb:#cec8e3;
+  --cs:rgba(110,95,165,0.25);
+  --cm:rgba(110,95,165,0.5);
+  --wn:#fff;
+}
+body{height:100vh;width:100vw;}
+.icon{background-size:22px 22px;background-repeat:no-repeat;background-position:center;}
+.icon_new{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M223,52V249H35V6H176ZM223,53H176V6'/%3e%3c/svg%3e")}
+.icon_load{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M48,85H252L208,226H5ZM48,85L5,226V51L18,34H65l13,17H208V85H48Z'/%3e%3c/svg%3e")}
+.icon_save{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M238,51V228a10,10,0,0,1-10,10H27a10,10,0,0,1-10-10V27A10,10,0,0,1,27,17H203ZM39,238V127a10,10,0,0,1,10-10H205a10,10,0,0,1,10,10V238H39ZM174,95H79a10,10,0,0,1-10-10V17H184V85A10,10,0,0,1,174,95ZM168,42a10,10,0,0,0-10-10H144a10,10,0,0,0-10,10V71a10,10,0,0,0,10,10h14a10,10,0,0,0,10-10V42ZM63,162H192m0,49H63'/%3e%3c/svg%3e")}
+.icon_equal{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M47,127h161M128,208V47'/%3e%3c/svg%3e")}
+.icon_minus{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M47,127h161'/%3e%3c/svg%3e")}
+.icon_copy{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M8,61L29,40M30,53V39H16M17,31V14a4,4,0,0,1,4-4h6v4H45V10h6a4,4,0,0,1,4,4V48a4,4,0,0,1-4,4H37M27,18V7h5a4,4,0,0,1,8,0h5V18H27Z'/%3e%3c/svg%3e")}
+.icon_about{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cg fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' %3e%3cpath d='M106,104h22v86M106,192h42'/%3e%3ccircle fill='none' cx='128' cy='64' r='6'/%3e%3ccircle cx='128' cy='128' r='120'/%3e%3c/g%3e%3c/svg%3e")}
+.icon_edit{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' d='M164,37l53,53-131,131L33,169ZM225,16L238,29a28,28,0,0,1,0,40l-20,20L164,37,185,16A28,28,0,0,1,225,16ZM59,195L190,64M9,245h0l73-22L32,173Z'/%3e%3c/svg%3e")}
+.icon_clear{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 128 128'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='6' stroke-linejoin='round' d='M53,113H24L3,92V73L73,3l45,45ZM20,56l45,45M74,28L45,58M9,123H64M120,112h6M105,112h6M70,112H96'/%3e%3c/svg%3e")}
+.icon_undo{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M17,29L5,17,17,5M6,17H37c11.322,0,20,6.678,20,18S48.322,53,37,53H17'/%3e%3c/svg%3e")}
+.icon_fill{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M22,3L54,35M55,42s6,10,6,14a6,6,0,0,1-12,0C49,52,55,42,55,42ZM29,10L54,35,29,60a7,7,0,0,1-10,0L4,45A7,7,0,0,1,4,35ZM52,35H19'/%3e%3c/svg%3e")}
+.icon_cursor{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M61,51L51,61,30,40,18,52,3,4,51,19,40,30Z'/%3e%3c/svg%3e")}
+.icon_close{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3ccircle fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' cx='128' cy='128' r='120'/%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M71,184L184,70M184,184L71,70'/%3e%3c/svg%3e")}
+.icon_replaces{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M4,42l7-7,7,7M60,22l-7,7-7-7M30,56C20,56,11,46,11,36M33,8C44,8,53,17,53,28M38,58L47,38,56,58M9,27L26,6M27,27L10,6M41,51H53'/%3e%3c/svg%3e")}
+.icon_pipette{transform:scaleX(-1);background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M31,13L14,30M29,20L54,45v5l4,4-3,3-4-4H46L21,28m-3-3L8,15C6,13,5,8,7,6s6.852-1.1,9,1L26,17'/%3e%3c/svg%3e")}
+.icon_edit2{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='10' stroke-linejoin='round' d='M150.5,44.71h60.03a20,20,0,0,1,20,20V227.63a20,20,0,0,1-20,20H46.47a20,20,0,0,1-20-20V64.71a20,20,0,0,1,20-20H107M105.13,9.37h46.74V160.99H105.13V9.37ZM129.07,160.99V9.37M127.369,204.31h2.279l22.222-43.32H105.147Z'/%3e%3c/svg%3e")}
+.icon_ok{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cg fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' %3e%3ccircle cx='128' cy='128' r='120'/%3e%3cpath d='M194,82l-86,86L61,124'/%3e%3c/g%3e%3c/svg%3e")}
+#asciiscreen {
+    position:relative;
+    box-shadow:0px 2px 24px var(--cs);
+}
+.add_lines{
+    position:absolute;
+    border-radius:16px;
+    background:#fff;
+    box-shadow:0px 2px 24px var(--cs);
+}
+#asciicanvas td{
+    text-align:center;
+    height:14px;
+    width:8px;
+    font-size: 12px;
+    border-style:solid;
+    border-width:1px;
+    border-color:rgba(240,240,240,0.8);
+    background-color:rgba(255,255,255,0.8);
+    font-family:Lucida Console,monospace;
+}
+#asciicanvas td:hover{background-color:var(--cb);}
+#menu_panel{
+	top:0;
+	left:0;
+	background-color:var(--wn);
+	box-shadow:0px 2px 24px var(--cs);
+	border-radius:0 0 16px 0;
+	position:fixed;
+	height:40px;
+    overflow:hidden;
+}
+#tool_panel{
+	top:50%;
+	left:20px;
+    transform:translateY(-50%);
+	background-color:var(--wn);
+	box-shadow:0px 2px 24px var(--cs);
+	border-radius:16px;
+	position:fixed;
+	width:40px;
+}
+.button_menu{background-position:center;cursor:pointer;width:40px;height:40px;}
+.button_menu:hover{background-color:var(--cw);}
+#tool_zone{
+    position:fixed;
+    left:76px;top:50vh;
+    z-index:10020;
+    transform:translateY(-50%);
+    justify-content:center;align-items:center;
+}
+#window_zone{
+    height:100vh;width:100%;
+    position:fixed;
+    left:0;top:0;
+    background-color:var(--cm);
+    transition-duration:0.5s;z-index:10020;
+    justify-content:center;align-items:center;
+}
+.window_close{position:absolute;right:0px;top:0px;height:40px;width:40px;cursor:pointer;}
+.window_title{position:absolute;right:50%;top:0px;height:40px;transform:translateX(50%);display:grid;justify-content:center;align-items:center;}
+.window{
+    position:relative;
+	background-color: var(--wn) !important;
+	border-radius:16px;
+	box-shadow:0px 2px 24px var(--cs);
+    padding:2px 8px 24px 8px;
+}
+#toast{
+	position:fixed;
+	opacity:0;
+	bottom:-10%;
+	transform:translateX(-50%);
+	padding:0px 32px;
+	height:40px;
+	min-width:128px;
+	box-shadow:0px 2px 24px var(--cs);
+	z-index:20000;
+    background-color:var(--wn);
+    display:grid;justify-content:center;align-items:center;
+}
+.toast_anim{left:50%;border-radius:32px;animation:viwe 0.25s,stop 2s 0.25s,close 0.5s 2s linear;}
+@keyframes viwe{from{opacity:0;bottom:64px}to{opacity:1;bottom:64px}}
+@keyframes stop{from{opacity:1;bottom:64px}to{opacity:1;bottom:64px}}
+@keyframes close{from{opacity:1;bottom:64px}to{opacity:0;bottom:-32px}}
+.symbol{
+    height:32px;
+    width:32px;
+    display:grid;justify-content:center;align-items:center;
+    float:left;
+}
+.symbol:hover{background-color:var(--cw);}
+.edittext{
+    font-family:monospace;
+    height:calc(100% - 40px);width:100%;
+    resize:none;white-space: pre;
+    padding:8px;box-sizing:border-box;
+    border-top:1px solid var(--cb);
+    border-bottom:1px solid var(--cb);
+	-webkit-touch-callout:text;
+	-webkit-user-select:text;
+	-khtml-user-select:text;
+	-moz-user-select:text;
+	-ms-user-select:text;
+	user-select:text;
+}
+.button{
+    background-size:20px 20px;
+    background-repeat:no-repeat;
+    width:128px;height:36px;
+    border-radius:20px;cursor:pointer;
+    background-color:var(--cw);display:grid;justify-content:center;align-items:center;
+    background-position:left 9px center;
+}
+.button:hover{background-color:var(--cb);}
+.symbol_select {
+    cursor: pointer;
+    position: relative;
+    height:32px;
+    width:32px;
+    float:left;
+}
+.symbol_select input {
+  position: absolute;
+  display:none;
+  cursor: pointer;
+}
+.symbol_select span {
+    position: absolute;
+    display:grid;justify-content:center;align-items:center;
+    top:0;left:0;
+    height:100%;width:100%;
+}
+.symbol_select:hover input ~ span{background-color: var(--cw);}
+.symbol_select input:checked ~ span{background-color: var(--cb);}
+.input_text{
+	border:0;
+	font-family:Arial;
+	font-size:12px;
+	-webkit-appearance:none;
+	border-bottom:1px solid var(--cb);
+	background-color:transparent;
+	cursor:text;
+	height:28px;
+	width:100%;
+	-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
+}
+
+</style>
+</head>
+<body onload="new_canvas(60,30);">
+<a id="get_file" style="display:none;position:fixed;"></a>
+<input id="file" type="file" style="display:none;position:fixed;"/>
+<textarea id="copytext" style="position:fixed;height:1px;width:1px;left:-10px;top:-10px;"></textarea>
+<table style="height:100vh;width:100vw;">
+<tbody>
+<tr><td rowspan="3">
+<div id="viewport" style="height:100vh;width:calc(100vw - 256px);box-sizing:border-box;overflow:auto;background-color:var(--cw);">
+    <div id="asciiview" style="transform-origin:left top;display:grid;justify-content:center;align-items:center;min-width:100vw;min-height:100vh;">
+    <div id="asciiscreen">
+        <table class="add_lines" style="left:-80px;top:50%;transform:translateY(-50%);width:64px;height:32px;"><tbody>
+            <tr><td onclick="add_cells(1,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td>
+                <td onclick="del_cells(1,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td></tr>
+        </tbody></table>
+        <table class="add_lines" style="left:50%;top:-80px;transform:translateX(-50%);width:32px;height:64px;"><tbody>
+            <tr><td onclick="add_cells(2,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td></tr>
+            <tr><td onclick="del_cells(2,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td></tr>
+        </tbody></table>
+        <table class="add_lines" style="right:-80px;bottom:50%;transform:translateY(50%);width:64px;height:32px;"><tbody>
+            <tr><td onclick="del_cells(3,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td>
+                <td onclick="add_cells(3,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td></tr>
+        </tbody></table>
+        <table class="add_lines" style="right:50%;bottom:-80px;transform:translateX(50%);width:32px;height:64px;"><tbody>
+            <tr><td onclick="del_cells(4,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td></tr>
+            <tr><td onclick="add_cells(4,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td></tr>
+        </tbody></table>
+        <table id="asciicanvas">
+        <tbody>
+        </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+</td><td style="height:40px;"> </td></tr>
+<tr><td style="height:calc(100vh - 80px);">
+    <div id="right_menu" style="height:calc(100vh - 80px);width:256px;overflow-y: scroll;">
+        <div id="symbols_view" style="display:inline-block;"></div>
+        <div class="button icon_edit" style="margin:14px;width:calc(100% - 28px);" onclick="modal_window(true,'palette_edit');getallChar()">Edit symbol palette</div>
+    </div>
+</td></tr><tr><td style="height:40px;"> </td></tr>
+</tbody></table>
+<table id="menu_panel">
+    <tbody>
+        <tr>
+            <td title='New txt file' onclick='new_canvas(60,30);' class='icon button_menu icon_new'></td>
+            <td title='Load txt file' onclick='file.click();' class='icon button_menu icon_load'></td>
+            <td title='Save txt file' onclick='save_art(true);' class='icon button_menu icon_save'></td>
+            <td title='Undo' onclick='state_back(1);' class='icon button_menu icon_undo'></td>
+            <td title='Redo' onclick='state_back(-1);' class='icon button_menu icon_undo' style='transform:scaleX(-1);'></td>
+            <td title='About ASCII Art paint' onclick="modal_window(true,'about');" class='icon button_menu icon_about'></td>
+            <td title='Text input' onclick="modal_window(true,'text_edit');save_art(false)" class='icon button_menu icon_edit2'></td>
+            <td style='border-radius:0 0 16px 0;' title='Copy text' onclick="save_art(false);toast('Copied to clipboard');" class='icon button_menu icon_copy'></td>
+        </tr>
+    </tbody>
+</table>
+<table id="tool_panel">
+    <tbody>
+        <tr><td title='Cursor' onclick='select_tool(0);' class='tools icon button_menu icon_cursor' style="border-radius:16px 16px 0 0;"></td></tr>
+        <tr><td title='pencil' onclick="select_tool(1);" class='tools icon button_menu icon_edit' style="background-color:var(--cb);"></td></tr>
+        <tr><td title='Eraser' onclick="select_tool(2);" class='tools icon button_menu icon_clear'></td></tr>
+        <tr><td title='Fill' onclick="select_tool(3);" class='tools icon button_menu icon_fill'></td></tr>
+        <tr><td title='Pipette' onclick="select_tool(4);" class='tools icon button_menu icon_pipette'></td></tr>
+<!--        <tr><td title='Character replaces' onclick="select_tool(5);modal_tool(true,'replaces')" class='tools icon button_menu icon_replaces'></td></tr>-->
+        <tr><td id="active_brush" align='center' valign='center' class="tools icon" style="border-radius:0 0 16px 16px; width:40px;height:40px;border-top:1px solid var(--cb);"></td></tr>
+    </tbody>
+</table>
+<div id='window_zone' style="display:none"></div>
+<div id='tool_zone' style="display:none"></div>
+<div id="toast"></div>
+<div id='about' style="display:none"><div class='window' style='padding:24px 16px;width:412px;'>
+    <div><div class='window_close icon icon_close' onclick='modal_window(false)'></div></div>
+    <div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><br><br>
+        <table style='border-spacing:10px;border-collapse:separate; width: 100%;'>
+            <tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr>
+            <tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr>
+        </table><br><br><p>Thanks for the help from users</p><hr><br>
+        <table width='100%' align='center'><tbody><tr>
+            <td width='25%' align='center'><a href='https://twitter.com/laurentgontier' target='_blank'>Laurent Gontier</a></td>
+            <td width='25%' align='center'>Argosa</td>
+            <td width='25%' align='center'>Marcus Bell</td>
+            <td width='25%' align='center'>Arne Krause</td>
+        </tr></tbody></table><br><br>
+        <p><a href='https://www.patreon.com/tuesday_js' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><rect width='1000' height='200' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p><br>
+        <p><a href='https://paypal.me/KiriIILive' target='_blank'><svg width='128' version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 124 33'><path fill='#3c66b5' d='M46.2,6.7h-6.8c-0.4,0-0.8,0.3-0.9,0.8l-2.7,17.5c-0.0,0.3,0.2,0.6,0.5,0.6 h3.2c0.4,0,0.8-0.3,0.9-0.8l0.7-4.7c0.0-0.4,0.4-0.8,0.9-0.8h2.1c4.5,0,7.1-2.1,7.7-6.5 c0.3-1.8,0.0-3.3-0.8-4.4C50.2,7.3,48.5,6.7,46.2,6.7z M47,13.1c-0.3,2.4-2.2,2.4-4.0,2.4 h-1.0l0.7-4.5c0.0-0.2,0.2-0.4,0.5-0.4h0.4c1.2,0,2.4,0,3.0,0.7C47.0,11.6,47.1,12.2,47,13.1zM66.6,13.0h-3.2c-0.2,0-0.5,0.2-0.5,0.4l-0.1,0.9l-0.2-0.3 c-0.7-1.0-2.2-1.3-3.8-1.3c-3.6,0-6.7,2.7-7.3,6.5c-0.3,1.9,0.1,3.7,1.2,5.0 c0.9,1.1,2.4,1.6,4.1,1.6c2.9,0,4.5-1.8,4.5-1.8l-0.1,0.9c-0.0,0.3,0.2,0.6,0.5,0.6h2.9 c0.4,0,0.8-0.3,0.9-0.8l1.7-11.2C67.2,13.3,67.0,13.0,66.6,13.0z M62.0,19.4 c-0.3,1.8-1.8,3.1-3.6,3.1c-0.9,0-1.7-0.3-2.1-0.8c-0.4-0.5-0.6-1.3-0.5-2.3 c0.2-1.8,1.8-3.1,3.6-3.1c0.9,0,1.6,0.3,2.1,0.8C62.0,17.7,62.2,18.5,62.0,19.4zM84.0,13.0h-3.2c-0.3,0-0.6,0.1-0.7,0.4l-4.5,6.6l-1.9-6.4 c-0.1-0.4-0.4-0.6-0.9-0.6h-3.2c-0.3,0-0.6,0.3-0.5,0.7l3.6,10.6l-3.4,4.8 c-0.2,0.3,0.0,0.9,0.4,0.9h3.2c0.3,0,0.6-0.1,0.7-0.4L84.5,13.9C84.8,13.5,84.5,13.0,84.0,13.0z'/><path fill='#179BD7' d='M94.9,6.7h-6.8c-0.4,0-0.8,0.3-0.9,0.8l-2.7,17.5c-0.0,0.3,0.2,0.6,0.5,0.6 h3.5c0.3,0,0.6-0.2,0.6-0.5l0.7-4.9c0.0-0.4,0.4-0.8,0.9-0.8h2.1c4.5,0,7.1-2.1,7.7-6.5 c0.3-1.8,0.0-3.3-0.8-4.4C99.0,7.3,97.2,6.7,94.9,6.7z M95.7,13.1c-0.3,2.4-2.2,2.4-4.0,2.4 h-1.0l0.7-4.5c0.0-0.2,0.2-0.4,0.5-0.4h0.4c1.2,0,2.4,0,3.0,0.7 C95.8,11.6,95.9,12.2,95.7,13.1zM115.4,13.0h-3.2c-0.2,0-0.5,0.2-0.5,0.4l-0.1,0.9l-0.2-0.3 c-0.7-1.0-2.2-1.3-3.8-1.3c-3.6,0-6.7,2.7-7.3,6.5c-0.3,1.9,0.1,3.7,1.2,5.0 c1,1.1,2.4,1.6,4.1,1.6c2.9,0,4.5-1.8,4.5-1.8l-0.1,0.9c-0.0,0.3,0.2,0.6,0.5,0.6h2.9 c0.4,0,0.8-0.3,0.9-0.8l1.7-11.2C116.0,13.3,115.7,13.0,115.4,13.0z M110.8,19.4 c-0.3,1.8-1.8,3.1-3.6,3.1c-0.9,0-1.7-0.3-2.1-0.8c-0.4-0.5-0.6-1.3-0.5-2.3 c0.2-1.8,1.8-3.1,3.6-3.1c0.9,0,1.6,0.3,2.1,0.8C110.8,17.7,111.0,18.5,110.8,19.4zM119.2,7.2l-2.8,17.8c-0.0,0.3,0.2,0.6,0.5,0.6h2.8c0.4,0,0.8-0.3,0.9-0.8 l2.7-17.5c0.0-0.3-0.2-0.6-0.5-0.6h-3.1C119.5,6.7,119.3,6.9,119.2,7.2z'/><path fill='#3c66b5' d='M7.2,29.1l0.5-3.3l-1.1-0.0H1.0L4.9,1.2C4.9,1.2,4.9,1.1,5.0,1.1 c0.0-0.0,0.1-0.0,0.2-0.0h9.3c3.1,0,5.2,0.6,6.3,1.9c0.5,0.6,0.8,1.2,1.0,1.9 c0.1,0.7,0.1,1.5,0.0,2.6l-0.0,0.0v0.6l0.5,0.2c0.4,0.2,0.7,0.5,1.0,0.8 c0.4,0.5,0.7,1.1,0.8,1.9c0.1,0.7,0.0,1.7-0.1,2.8c-0.2,1.2-0.6,2.3-1.1,3.1 c-0.4,0.8-1.0,1.4-1.8,2c-0.6,0.4-1.5,0.8-2.4,1.1c-0.9,0.2-1.9,0.3-3.0,0.3h-0.7 c-0.5,0-1.0,0.1-1.4,0.5c-0.3,0.3-0.6,0.8-0.7,1.3l-0.0,0.2l-0.9,5.8l-0.0,0.2 c-0.0,0.0-0.0,0.1-0.0,0.1c-0.0,0.0-0.0,0.0-0.0,0.0H7.2z'/><path fill='#179BD7' d='M23.048,7.667L23.048,7.667L23.048,7.667c-0.028,0.179-0.06,0.362-0.096,0.55 c-1.237,6.351-5.469,8.545-10.874,8.545H9.326c-0.661,0-1.218,0.48-1.321,1.132l0,0l0,0L6.596,26.83l-0.399,2.533 c-0.067,0.428,0.263,0.814,0.695,0.814h4.881c0.578,0,1.069-0.42,1.16-0.99l0.048-0.248l0.919-5.832l0.059-0.32 c0.09-0.572,0.582-0.992,1.16-0.992h0.73c4.729,0,8.431-1.92,9.513-7.476c0.452-2.321,0.218-4.259-0.978-5.622 C24.022,8.286,23.573,7.945,23.048,7.667z'/><path fill='#334c7c' d='M21.754,7.151c-0.189-0.055-0.384-0.105-0.584-0.15c-0.201-0.044-0.407-0.083-0.619-0.117 c-0.742-0.12-1.555-0.177-2.426-0.177h-7.352c-0.181,0-0.353,0.041-0.507,0.115C9.927,6.985,9.675,7.306,9.614,7.699L8.05,17.605 l-0.045,0.289c0.103-0.652,0.66-1.132,1.321-1.132h2.752c5.405,0,9.637-2.195,10.874-8.545c0.037-0.188,0.068-0.371,0.096-0.55 c-0.313-0.166-0.652-0.308-1.017-0.429C21.941,7.208,21.848,7.179,21.754,7.151z'/><path fill='#3c66b5' d='M9.614,7.699c0.061-0.393,0.313-0.714,0.652-0.876c0.155-0.074,0.326-0.115,0.507-0.115h7.352 c0.871,0,1.684,0.057,2.426,0.177c0.212,0.034,0.418,0.073,0.619,0.117c0.2,0.045,0.395,0.095,0.584,0.15 c0.094,0.028,0.187,0.057,0.278,0.086c0.365,0.121,0.704,0.264,1.017,0.429c0.368-2.347-0.003-3.945-1.272-5.392 C20.378,0.682,17.853,0,14.622,0h-9.38c-0.66,0-1.223,0.48-1.325,1.133L0.01,25.898c-0.077,0.49,0.301,0.932,0.795,0.932h5.791 l1.454-9.225L9.614,7.699z'/></svg></a></p>
+    </div>
+</div></div>
+<div id='text_edit' style="display:none">
+    <div class='window' align='center' style='padding-top:40px;height:calc(100vh - 128px);width:calc(100vw - 128px);'>
+        <div class="window_title">Text input</div>
+        <div class='window_close icon icon_close' onclick='modal_window(false)'></div>
+        <textarea class="edittext"></textarea>
+        <div class="button icon_ok" style="margin:14px;" onclick="db=window_zone.getElementsByClassName('edittext')[0].value.split('\n');buildWorld();modal_window(false);state_save();">Apply</div>
+    </div>
+</div>
+<div id='palette_edit' style="display:none">
+    <div class='window' align='center' style='padding: 40px 8px 16px 8px;width:calc(100vw - 128px);'>
+        <div class='window_close icon icon_close' onclick='modal_window(false)'></div>
+        <div class="window_title">Edit symbol palette</div>
+        <table style="width:100%;"><tbody><tr>
+        <td><input type="text" class="input_text palette_simbols"></td>
+        <td style="width:128px;" rowspan="3" valign="top">
+        <table style="border-collapse: collapse; width: 100%; margin-top:40px;" border="1"><tbody><tr>
+        <td colspan="2" align="center">Character range</td></tr>
+        <tr><td style="width:32px;padding-right:10px;" align="right">from</td>
+        <td><input type="text" class="input_text range"></td></tr>
+        <tr><td align="right" style="padding-right:10px;">to</td>
+        <td><input type="text" class="input_text range"></td></tr>
+        <tr><td colspan="2"><div class="button" style="margin:14px;" onclick="palette=window_zone.getElementsByClassName('palette_simbols')[0].value;range_font=[parseInt(window_zone.getElementsByClassName('range')[0].value),parseInt(window_zone.getElementsByClassName('range')[1].value)];getallChar();">Update</div></td>
+        </tr></tbody></table></td></tr>
+        <tr><td><div class="all_simbols" style="height:calc(100vh - 256px);width:100%;overflow:auto;border-bottom:1px solid var(--cb);"></div></td></tr></tbody></table>
+        <div class="button icon_ok" style="margin-top:16px;" onclick="applyChar();modal_window(false);">Apply</div>
+    </div>
+</div>
+<div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
+<script>
+var range_font=[0,13313],palette="█▓▒░ $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_=+~<>i!lI;:,\"^`'.";
+var db=[[],[],[],[],[],[],[],[]],tool=0,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone");
+window.addEventListener('mousedown',function(){if(tool==0||tool==3){mouseclick=true;}})
+window.addEventListener('mouseup',function(){mouseclick=false;})
+asciicanvas.addEventListener('mouseup',function(){if(tool!=2){state_save()};})
+var startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null;
+viewport.addEventListener('mousedown',function(e){
+    if(tool==2){
+        startmove_x=e.clientX;startmove_y=e.clientY;scroll_x=viewport.scrollTop;scroll_y=viewport.scrollLeft;
+        viewport.onmousemove=function(e){viewport.scrollTop=scroll_x-(e.clientY-startmove_y);viewport.scrollLeft=scroll_y-(e.clientX-startmove_x);};
+        viewport.onmouseup=function (e){startmove_x=null;startmove_y=null;viewport.onmousemove=null;viewport.onmouseup=null;};
+        viewport.onmouseleave=function(){viewport.onmousemove=null;viewport.onmouseup=null;document.onmousemove=null;document.onmouseup=null;};
+    }
+})
+file.addEventListener('change',loadFiles);
+function new_canvas(w,h){db=[];for(y=0;y<h;y++){db.push([]);for(x=0;x<w;x++){db[y]+=" "};};buildWorld();asciiview.scrollIntoView({block:"center",inline:"center"});back_up=[];state_save();}
+function modal_window(open,id){if(!open){window_zone.style.display="none";window_zone.innerHTML=""}else if(open){modal_tool(false);window_zone.style.display="grid";window_zone.innerHTML=document.getElementById(id).innerHTML;}}
+function modal_tool(open,id){
+    if(!open){tool_zone.style.display="none"}
+    else if(open){tool_zone.style.display="grid";tool_zone.innerHTML=document.getElementById(id).innerHTML;}}
+function toast(message){var toast=document.getElementById("toast");toast.classList.remove("toast_anim");toast.innerHTML=message;void toast.offsetParent;toast.classList.add("toast_anim");}
+function select_tool(n){
+    var e,tools_ele=document.getElementsByClassName('tools')
+    if(n==0||n==5){tool=2}
+    else if(n==1){tool=0}
+    else if(n==2){tool=3}
+    else if(n==3){tool=1}
+    else if(n==4){tool=4}
+    for (e=0;e<tools_ele.length;e++){if(e!=n){tools_ele[e].style.backgroundColor="";}else{tools_ele[e].style.backgroundColor="var(--cb)";}}
+    modal_tool(false)
+}
+function add_cells(u,s){
+    var x,y,w=0,h=0,a;db=[];
+    tr=canvas.getElementsByTagName('tr');
+    if(u==4||u==2){h=s;for(a=0;a<h;a++){db.push([]);}if(u==4){h=0}}else if(u==3||u==1){w=s}
+    for(y=0;y<tr.length;y++){
+        td=tr[y].getElementsByTagName('td');
+        db.push([])
+        if(u==1){for(a=0;a<w;a++){db[y+h]+=" "}}
+        for(x=0;x<td.length;x++){db[y+h]+=td[x].textContent};
+        if(u==3){for(a=0;a<w;a++){db[y+h]+=" "}}
+    };buildWorld();state_save();
+}
+function del_cells(u,s){
+    var x,y,l=0,r=0,t=0,b=0;db=[];
+    tr=canvas.getElementsByTagName('tr');
+    if(u==1){l=s}else if(u==2){t=s}else if(u==3){r=s}else if(u==4){b=s}
+    for(y=0;y<tr.length-b-t;y++){
+        db.push([])
+        td=tr[t+y].getElementsByTagName('td');
+        for(x=l;x<td.length-r;x++){db[y]+=td[x].textContent};
+    };buildWorld();state_save();
+}
+function buildWorld(){
+    var x,y,w=0;
+    canvas.innerHTML="";
+    for(y=0;y<db.length;y++){if(w<db[y].length){w=db[y].length}}
+    for(y=0;y<db.length;y++){
+        tr=document.createElement("tr");
+        for(x=0;x<w;x++){
+            td=document.createElement("td");
+            td.setAttribute("onmouseenter","if(mouseclick){if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML='';}}")
+            td.setAttribute("onmousedown","if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML='';}else if(tool==1){fill("+x+","+y+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}")
+            if(db[y][x]&&db[y][x]!=" "){td.innerHTML=db[y][x]}else{td.innerHTML=" "}
+            tr.appendChild(td);
+        }
+        canvas.appendChild(tr);
+    }
+    var rect=frame.getBoundingClientRect();
+    asciiview.style.height=rect.height+512+"px"
+    asciiview.style.width=rect.width+512+"px"
+    //replaces(" ",".")
+}
+window.addEventListener("DOMContentLoaded", function(){
+    if (window.File&&window.FileReader&&window.FileList&&window.Blob) {
+        window.addEventListener("dragover",function(e){e.preventDefault();e.stopPropagation();});
+        window.addEventListener("drop",function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            if(e.dataTransfer.files[0].type.includes("image")){
+                frame.style.backgroundImage="url('"+URL.createObjectURL(e.dataTransfer.files[0])+"')";
+                frame.style.backgroundSize="contain";
+                frame.style.backgroundPosition="center";
+                frame.style.backgroundRepeat="no-repeat";
+            }
+            else{
+                var xmlhttp=new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function(){if(this.readyState==4&&(this.status === 200 || this.status == 0)){db=this.responseText.split("\n");buildWorld();asciiview.scrollIntoView({block: "center",inline: "center"});back_up=[];state_save();toast(e.dataTransfer.files[0].name+' file is open')}}
+                xmlhttp.open("GET",URL.createObjectURL(e.dataTransfer.files[0]),true);
+                xmlhttp.send();
+                xmlhttp.onerror=function(){if(this.status==0){}}
+            };
+        });
+    }
+});
+function loadFiles(e){
+    if(e.target.files[0].type.includes("image")){
+        frame.style.backgroundImage="url('"+URL.createObjectURL(e.target.files[0])+"')";
+        frame.style.backgroundSize="contain";
+        frame.style.backgroundPosition="center";
+        frame.style.backgroundRepeat="no-repeat";
+    }
+    else{
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){if(this.readyState==4&&(this.status === 200 || this.status == 0)){db=this.responseText.split("\n");buildWorld();asciiview.scrollIntoView({block: "center",inline: "center"});back_up=[];state_save();toast(e.target.files[0].name+' file is open')}}
+        xmlhttp.open("GET",URL.createObjectURL(e.target.files[0]),true);
+        xmlhttp.send();
+        xmlhttp.onerror=function(){if(this.status==0){}}
+    };
+}
+function getallChar(){
+    var div,s,t,p,e=window_zone.getElementsByClassName('all_simbols')[0],r=window_zone.getElementsByClassName('palette_simbols')[0];
+    r.value=palette;
+    window_zone.getElementsByClassName('range')[0].value=range_font[0];
+    window_zone.getElementsByClassName('range')[1].value=range_font[1];
+    e.innerHTML="";
+    for (var c=range_font[0];c<range_font[1];c++){ //13313
+        s=String.fromCharCode(c)
+        p=false;for(t=0;t<palette.length;t++){if(palette[t]==s){p=true;break}}
+        label=document.createElement("label");
+        label.innerHTML="<input type='checkbox' onchange='addChar(this.checked,\""+s+"\");' "+((p)?"checked":"")+"><span>"+s+"</span>"
+        label.classList.add("symbol_select");
+        e.appendChild(label);
+    }
+    
+}
+function addChar(d,c){
+    var r=window_zone.getElementsByClassName('palette_simbols')[0];
+    if(d){r.value+=c}else{r.value=r.value.replace(new RegExp(c,'g'),"")}
+}
+function applyChar(){
+    range_font=[window_zone.getElementsByClassName('range')[0].value,window_zone.getElementsByClassName('range')[1].value];
+    palette=window_zone.getElementsByClassName('palette_simbols')[0].value;
+    createPalette();localStorage.setItem("range_font",JSON.stringify(range_font));
+}
+function createPalette(){
+    var div,s;
+    symbols_view.innerHTML=""
+    for (var c=0;c<palette.length;c++){
+        div=document.createElement("div");
+        s=palette[c]
+        div.innerHTML=s
+        div.classList.add("symbol");
+        div.setAttribute("onclick","brush='"+s+"';active_brush.innerHTML=brush;select_symbol("+c+")");
+        if(brush==s){div.style.backgroundColor="var(--cb)";}
+        symbols_view.appendChild(div);
+    }
+}
+function select_symbol(n){
+    var e,symbol_ele=document.getElementsByClassName('symbol')
+    for (e=0;e<symbol_ele.length;e++){if(e!=n){symbol_ele[e].style.backgroundColor="";}else{symbol_ele[e].style.backgroundColor="var(--cb)";}}
+}
+function save_art(c){
+    var text="";
+    tr=canvas.getElementsByTagName('tr');
+    for(y=0;y<tr.length;y++){
+        td=tr[y].getElementsByTagName('td');
+        for(x=0;x<td.length;x++){text+=td[x].textContent};
+        if(y<tr.length-1){text+="\n";}
+    }
+    if(c){
+        var a=document.getElementById("get_file");
+        a.setAttribute("href","data:text/json;charset=utf-8,"+encodeURIComponent(text));
+        a.setAttribute("download","hello.txt");
+        a.click();
+    } else if(window_zone.style.display=="grid"){
+        state_save();window_zone.getElementsByClassName('edittext')[0].value=text;
+    }else{
+        copytext.value=text;
+    	copytext.select();
+    	copytext.setSelectionRange(0,99999)
+    	document.execCommand("copy");
+    }
+}
+function fill(x,y,b){
+    tr=canvas.getElementsByTagName('tr');
+    td=tr[0].getElementsByTagName('td').length-1;
+    var ec=canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x];
+    var el=(canvas.getElementsByTagName('tr')[y])?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x-1]:false;
+    var er=(canvas.getElementsByTagName('tr')[y])?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x+1]:false;
+    var et=(canvas.getElementsByTagName('tr')[y-1])?canvas.getElementsByTagName('tr')[y-1].getElementsByTagName('td')[x]:false;
+    var eb=(canvas.getElementsByTagName('tr')[y+1])?canvas.getElementsByTagName('tr')[y+1].getElementsByTagName('td')[x]:false;
+    if(ec.textContent==b){ec.innerHTML=brush;}
+    if(et&&et.textContent==b){et.innerHTML=brush;if(y-1>0){fill(x,y-1,b)}}
+    if(eb&&eb.textContent==b){eb.innerHTML=brush;if(y+1<tr.length-1){fill(x,y+1,b)}}
+    if(er&&er.textContent==b){er.innerHTML=brush;if(x+1<td){fill(x+1,y,b)}}
+    if(el&&el.textContent==b){el.innerHTML=brush;if(x-1>0){fill(x-1,y,b)}}
+}
+function replaces(o,n){
+    tr=canvas.getElementsByTagName('tr');
+    for(y=0;y<tr.length;y++){
+        td=tr[y].getElementsByTagName('td');
+        for(x=0;x<td.length;x++){if(td[x].textContent==o){td[x].innerHTML=n}};
+    }
+}
+function state_save(){
+    frame=document.getElementById('asciicanvas')
+    if(state_num>0){back_up.splice(0,state_num);state_num=0;}
+    var text="";
+    tr=canvas.getElementsByTagName('tr');
+    for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){text+=td[x].textContent};if(y<tr.length-1){text+="\n";};}
+    back_up.unshift(text);
+    if(back_up.length>100){back_up.pop();}
+}
+function state_save(){
+    frame=document.getElementById('asciicanvas')
+    if(state_num>0){back_up.splice(0,state_num);state_num=0;}
+    var text="";
+    tr=canvas.getElementsByTagName('tr');
+    for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){text+=td[x].textContent};if(y<tr.length-1){text+="\n";};}
+    back_up.unshift(text);
+    if(back_up.length>100){back_up.pop();}
+}
+function state_back(n){state_num+=n;if(state_num<0){state_num=0}else if(state_num>=back_up.length-1){state_num=back_up.length-1};db=back_up[state_num].split("\n");buildWorld();}
+document.addEventListener('DOMContentLoaded',function(){createPalette();active_brush.innerHTML=brush;if(localStorage.getItem("range_font")){range_font=JSON.parse(localStorage.getItem("range_font"))}})
+</script>
+</body></html>
