@@ -51,6 +51,7 @@ line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4
 	min-width:128px;
 	box-shadow:0px 2px 24px var(--cs);
 	z-index:20000;
+    display:grid;justify-content:center;align-items:center;
 }
 .toast_anim{left:50%;border-radius:32px;animation:viwe 0.25s,stop 2s 0.25s,close 0.5s 2s linear;}
 @keyframes viwe{from{opacity:0;bottom:64px}to{opacity:1;bottom:64px}}
@@ -359,19 +360,19 @@ select_go{background-color:var(--cw);border-radius:14px;}
 		<table width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td align='center' title='New project' onclick='json_file.value=null;load_files=[];new_project();menu_add.style.visibility="hidden";' class='icon button_menu icon_new'></td>
-                    <td align='center' title='Load project folder ' onclick='json_file.value=null;load_new=false;json_file.click();menu_add.style.visibility="hidden";' class='icon button_menu icon_load'></td>
-					<td align='center' title='Save JSON script project' onclick='save_file();menu_add.style.visibility="hidden";' class='icon button_menu icon_save'></td>
-                    <td align='center' title='Undo' onclick='state_back(1);' class='icon button_menu icon_undo'></td>
-                    <td align='center' title='Redo' onclick='state_back(-1);' class='icon button_menu icon_undo' style='transform:scaleX(-1);'></td>
-                    <td align='center' title='Settings project' onclick='setup();menu_add.style.visibility="hidden";' class='icon button_menu icon_setup'></td>
-                    <td align='center' title='Edit json text' onclick='jsonedit();menu_add.style.visibility="hidden";' class='icon button_menu icon_json'></td>
-                    <td align='center' title='Export text to spreadsheet' onclick='text_export();menu_add.style.visibility="hidden";' class='icon button_menu icon_csv'></td>
-                    <td align='center' title='About visual editor' onclick='about();menu_add.style.visibility="hidden";' class='icon button_menu icon_about'></td>
-                    <td align='center' style='width:88px;'><input type="text" id="search_block" class="search" onkeyup="search_block()" placeholder="search block"></td>
-                    <td align='center' style='width:40px;'><select id='language_view' style='height:40px;border-right:1px solid var(--cb);border-bottom:0;'><option value='en'>EN</option></select></td>
-					<td align='center' title='Build project' onclick='build_choice();menu_add.style.visibility="hidden";' class='icon button_menu icon_build'></td>
-					<td align='center' style='border-radius:0 0 16px 0;' title='Run preview Project' onclick='play_novel();menu_add.style.visibility="hidden";' class='icon button_menu icon_play'></td>
+					<td title='New project' onclick='json_file.value=null;load_files=[];new_project();menu_add.style.visibility="hidden";' class='icon button_menu icon_new'></td>
+                    <td title='Load project folder ' onclick='json_file.value=null;load_new=false;json_file.click();menu_add.style.visibility="hidden";' class='icon button_menu icon_load'></td>
+					<td title='Save JSON script project' onclick='save_file();menu_add.style.visibility="hidden";' class='icon button_menu icon_save'></td>
+                    <td title='Undo' onclick='state_back(1);' class='icon button_menu icon_undo'></td>
+                    <td title='Redo' onclick='state_back(-1);' class='icon button_menu icon_undo' style='transform:scaleX(-1);'></td>
+                    <td title='Settings project' onclick='setup();menu_add.style.visibility="hidden";' class='icon button_menu icon_setup'></td>
+                    <td title='Edit json text' onclick='jsonedit();menu_add.style.visibility="hidden";' class='icon button_menu icon_json'></td>
+                    <td title='Export text to spreadsheet' onclick='text_export();menu_add.style.visibility="hidden";' class='icon button_menu icon_csv'></td>
+                    <td title='About visual editor' onclick='about();menu_add.style.visibility="hidden";' class='icon button_menu icon_about'></td>
+                    <td style='width:88px;'><input type="text" id="search_block" class="search" onkeyup="search_block()" placeholder="search block"></td>
+                    <td style='width:40px;'><select id='language_view' style='height:40px;border-right:1px solid var(--cb);border-bottom:0;'><option value='en'>EN</option></select></td>
+					<td title='Build project' onclick='build_choice();menu_add.style.visibility="hidden";' class='icon button_menu icon_build'></td>
+					<td style='border-radius:0 0 16px 0;' title='Run preview Project' onclick='play_novel();menu_add.style.visibility="hidden";' class='icon button_menu icon_play'></td>
 				</tr>
 			</tbody>
 		</table>
@@ -665,17 +666,7 @@ select_go{background-color:var(--cw);border-radius:14px;}
     <div id='tools_zone' align='center'></div>
 	<div id='window_zone' align='center'></div>
     <div id='add_element' align='center' style='z-index:10030;'></div>
-    <div id="toast">
-        <table border="0" height="100%" width="100%">
-            <tbody>
-                <tr>
-                    <td align="center" valign="center" >
-                        <div id="toast_message"></div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <div id="toast"></div>
 <script>
 function set_ui(t){
     var r=document.querySelector(':root');
@@ -1445,7 +1436,7 @@ function toast(message, color){
     var x=document.getElementById("toast");
     if(color){x.style.backgroundColor=color}else{x.style.backgroundColor='var(--wn)'}
     x.classList.remove("toast_anim");
-    toast_message.innerHTML=message
+    x.innerHTML=message
     void x.offsetParent;
     x.classList.add("toast_anim");
 }
@@ -1997,7 +1988,7 @@ function ho_edit(){
         +"<td width='42px' class='icon button_menu icon_play'  onclick='play_novel(scen_data[0],true)' style='border-radius:0 20px 20px 0;'></td>"
     +"</tr></tbody></table></div></div></td>"
     +"<td style='width:286px;height:40px;background-color:var(--wn);' class='namber' align='center'>"+scen_data[0]+" ( scene: "+scen_data[1]+" "+plugins_list[arr_n].name+" )</td></tr><tr>"
-    +"<td id='ho_content' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div  id='hidden_objects_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>"
+    +"<td id='ho_content' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div id='hidden_objects_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>"
     //label
     if(arr_n=="hidden_objects"){
     tool+="<table onclick='block_open(\"ho_label\");' class='set_title' height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Labels</td></tr></tbody></table>"
@@ -4674,10 +4665,10 @@ function state_back(n){
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
 }
 document.addEventListener("DOMContentLoaded",function(){
-        var s=document.createElement("script");
-        s.type="text/javascript";
-        s.src="https://tuesday.wantasoul.com/js/tue_cloud.js";
-        document.body.appendChild(s);}
+    var s=document.createElement("script");
+    s.type="text/javascript";
+    s.src="https://tuesday.wantasoul.com/js/tue_cloud.js";
+    document.body.appendChild(s);}
 );
 </script>
 </body>
