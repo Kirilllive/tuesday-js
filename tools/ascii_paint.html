@@ -21,11 +21,11 @@
 	outline:none;
 }
 :root {
-  --cw:#efefff;
-  --cb:#cec8e3;
-  --cs:rgba(110,95,165,0.25);
-  --cm:rgba(110,95,165,0.5);
-  --wn:#fff;
+    --cw:#efefff;
+    --cb:#cec8e3;
+    --cs:rgba(110,95,165,0.25);
+    --cm:rgba(110,95,165,0.5);
+    --wn:#fff;
 }
 body{height:100vh;width:100vw;}
 .icon{background-size:22px 22px;background-repeat:no-repeat;background-position:center;}
@@ -46,7 +46,16 @@ body{height:100vh;width:100vw;}
 .icon_pipette{transform:scaleX(-1);background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M31,13L14,30M29,20L54,45v5l4,4-3,3-4-4H46L21,28m-3-3L8,15C6,13,5,8,7,6s6.852-1.1,9,1L26,17'/%3e%3c/svg%3e")}
 .icon_edit2{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='10' stroke-linejoin='round' d='M150.5,44.71h60.03a20,20,0,0,1,20,20V227.63a20,20,0,0,1-20,20H46.47a20,20,0,0,1-20-20V64.71a20,20,0,0,1,20-20H107M105.13,9.37h46.74V160.99H105.13V9.37ZM129.07,160.99V9.37M127.369,204.31h2.279l22.222-43.32H105.147Z'/%3e%3c/svg%3e")}
 .icon_ok{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cg fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' %3e%3ccircle cx='128' cy='128' r='120'/%3e%3cpath d='M194,82l-86,86L61,124'/%3e%3c/g%3e%3c/svg%3e")}
-#asciiscreen {
+.show{content:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M25.266,39.378A9.989,9.989,0,1,1,39.378,25.266m2.584,5.975C41.981,31.493,42,31.744,42,32A10,10,0,0,1,32,42c-0.256,0-.507-0.019-0.759-0.038M2,32S12,16,32,16a35.006,35.006,0,0,1,13.84,2.8m5.585,2.974A37.4,37.4,0,0,1,62,32M8.8,55.84l45.41-45.41'/%3e%3c/svg%3e");-webkit-appearance:none;-moz-appearance:none;appearance:none;}
+.show:checked {content:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cg fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round'%3e%3ccircle cx='32' cy='32' r='10'/%3e%3cpath d='M2,32S12,16,32,16,62,32,62,32'/%3e%3c/g%3e%3c/svg%3e");}
+.icon_del{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M194,62V230H63V62M47,45H210M108,23h39V45H108V23ZM128,62V213M92,62V213M164,62V213'/%3e%3c/svg%3e")}
+.icon_size{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' d='M56,41V56H41M8,41V56H23M56,23V8H41M8,23V8H23M21,21H43V43H21V21Z'/%3e%3c/svg%3e")}
+.icon_equal{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M47,127h161M128,208V47'/%3e%3c/svg%3e")}
+.icon_minus{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M47,127h161'/%3e%3c/svg%3e")}
+.icon_scale{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3ccircle fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' cx='128' cy='128' r='92'/%3e%3c/svg%3e")}
+.icon_diag{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' d='M47,47L4,4M47,32V47H32M62,32V62H32'/%3e%3c/svg%3e")}
+.button_s{height:22px;width:22px;background-size:22px 22px;background-repeat:no-repeat;background-position:center;cursor:pointer;}
+#asciiscreen{
     position:relative;
     box-shadow:0px 2px 24px var(--cs);
 }
@@ -161,19 +170,19 @@ body{height:100vh;width:100vw;}
     background-position:left 9px center;
 }
 .button:hover{background-color:var(--cb);}
-.symbol_select {
+.symbol_select{
     cursor: pointer;
     position: relative;
     height:32px;
     width:32px;
     float:left;
 }
-.symbol_select input {
-  position: absolute;
-  display:none;
-  cursor: pointer;
+.symbol_select input{
+    position: absolute;
+    display:none;
+    cursor: pointer;
 }
-.symbol_select span {
+.symbol_select span{
     position: absolute;
     display:grid;justify-content:center;align-items:center;
     top:0;left:0;
@@ -193,10 +202,27 @@ body{height:100vh;width:100vw;}
 	width:100%;
 	-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
 }
-
+#scene_controll{
+	position:fixed;
+	height:40px;
+	z-index:10000;
+	bottom:32px;
+	right:288px;
+    border-radius:20px;
+    background-color:var(--wn);
+    box-shadow:0px 2px 24px var(--cs);
+    cursor:pointer;
+}
+.align{
+    -webkit-appearance:none;-moz-appearance:none;appearance:none;
+    height:32px;width:32px;
+    border-radius:4px;cursor:pointer;
+}
+.align:checked{background-color:var(--cb);}
 </style>
 </head>
 <body onload="new_canvas(60,30);">
+<canvas id="preview" style="display:none;"></canvas>
 <a id="get_file" style="display:none;position:fixed;"></a>
 <input id="file" type="file" style="display:none;position:fixed;"/>
 <textarea id="copytext" style="position:fixed;height:1px;width:1px;left:-10px;top:-10px;"></textarea>
@@ -231,11 +257,54 @@ body{height:100vh;width:100vw;}
 </div>
 </td><td style="height:40px;"> </td></tr>
 <tr><td style="height:calc(100vh - 80px);">
-    <div id="right_menu" style="height:calc(100vh - 80px);width:256px;overflow-y: scroll;">
+    <div id="right_menu" style="height:calc(100vh - 80px);width:256px;overflow-y:scroll;">
         <div id="symbols_view" style="display:inline-block;"></div>
-        <div class="button icon_edit" style="margin:14px;width:calc(100% - 28px);" onclick="modal_window(true,'palette_edit');getallChar()">Edit symbol palette</div>
+        <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="modal_window(true,'palette_edit');getallChar()">Edit symbol palette</div>
+        <div id="img_preview" style="display:none;width:100%;text-align:center;border-top:1px solid var(--cb);"><br>
+            <img style="width:90%;height:auto;border-radius:8px;text-align:center;cursor:pointer;" onclick="file.click();"><br>
+            <table style="margin:14px;width:calc(100% - 28px);">
+            <tbody>
+                <tr>
+                    <td style="width:33%;" align="center"><input id="img_show" title="Show / Hide image" class="button_s show" checked onchange="frame.style.backgroundSize=(this.checked)?'100% 100%':'0% 0%'" type="checkbox"></td>
+                    <td style="" align="center"><div title="original image size" class="button_s icon_size" onclick="original_size();"></div></td>
+                    <td style="width:33%;" align="center"><div title="Delete image" class="button_s icon_del" onclick="delete_img();"></div></td>
+                </tr>
+            </tbody>
+            </table>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="img_to_ascii();">image to ascii</div>
+        </div>
+        <div style="width:100%;text-align:center; border-top:1px solid var(--cb);">
+            <table style="margin:14px;width:calc(100% - 28px);">
+            <tbody>
+                <tr><td align="center" colspan='2'>
+                    <form id="align">
+                    <table style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td align="right"><input type="radio" name="align" class="icon icon_diag align" style="transform:scaleX(-1) scaleY(-1);"></td>
+                                <td align="left"> <input type="radio" name="align" class="icon icon_diag align" style="transform:scaleY(-1);"></td>
+                            </tr><tr>
+                                <td align="right"><input type="radio" name="align" class="icon icon_diag align" style="transform:scaleX(-1);"></td>
+                                <td align="left"> <input type="radio" name="align" class="icon icon_diag align" checked></td>
+                            </tr>
+                       </tbody>
+                    </table>
+                    </form>
+                </td></tr>
+                <tr>
+                    <td style="padding-right:10px;width:33%;" align="right">Width</td>
+                    <td style="" align="center"><input type="text" id="canvasWidth" onchange="this.value=correct_value(this.value);" class="input_text palette_simbols"></td>
+                </tr>
+                <tr>
+                    <td style="padding-right:10px;" align="right">Height</td>
+                    <td style="" align="center"><input type="text" id="canvasHeight" onchange="this.value=correct_value(this.value);" class="input_text palette_simbols"></td>
+                </tr>
+            </tbody>
+            </table>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="resize_canvs();">Resize canvas</div>
+        </div>
     </div>
-</td></tr><tr><td style="height:40px;"> </td></tr>
+</td></tr><tr><td id="metadata" style="height:40px;" align="center"></td></tr>
 </tbody></table>
 <table id="menu_panel">
     <tbody>
@@ -262,6 +331,17 @@ body{height:100vh;width:100vw;}
         <tr><td id="active_brush" align='center' valign='center' class="tools icon" style="border-radius:0 0 16px 16px; width:40px;height:40px;border-top:1px solid var(--cb);"></td></tr>
     </tbody>
 </table>
+<div id="scene_controll">
+    <table height="100%">
+    <tbody>
+        <tr>
+            <td width="42px" class="icon button_menu icon_equal" onclick="canvas_scale(2)" style="border-radius:20px 0 0 20px;"></td>
+            <td width="42px" class="icon button_menu icon_scale" onclick="canvas_scale(false)"></td>
+            <td width="42px" class="icon button_menu icon_minus" onclick="canvas_scale(1)" style="border-radius:0 20px 20px 0;"></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
 <div id='window_zone' style="display:none"></div>
 <div id='tool_zone' style="display:none"></div>
 <div id="toast"></div>
@@ -311,10 +391,11 @@ body{height:100vh;width:100vw;}
 </div>
 <div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
 <script>
-var range_font=[0,13313],palette="█▓▒░ $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_=+~<>i!lI;:,\"^`'.";
-var db=[[],[],[],[],[],[],[],[]],tool=0,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone");
+var range_font=[0,13313],palette="██▓▒░@#$^%()\"/|<=>_-.'";
+var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone");
 window.addEventListener('mousedown',function(){if(tool==0||tool==3){mouseclick=true;}})
 window.addEventListener('mouseup',function(){mouseclick=false;})
+window.addEventListener('keypress',function(e){var n=String.fromCharCode(e.charCode);brush=n;active_brush.innerHTML=brush;})
 asciicanvas.addEventListener('mouseup',function(){if(tool!=2){state_save()};})
 var startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null;
 viewport.addEventListener('mousedown',function(e){
@@ -326,6 +407,11 @@ viewport.addEventListener('mousedown',function(e){
     }
 })
 file.addEventListener('change',loadFiles);
+function canvas_scale(s){
+    if(s==2){scale=Math.min(2,scale+0.05);asciiscreen.style.transform='scale('+scale+')';}
+    else if(s==1){scale=Math.max(0.25,scale-0.05);asciiscreen.style.transform='scale('+scale+')';}
+    else{scale=1;asciiscreen.style.transform='scale(1)';}
+}
 function new_canvas(w,h){db=[];for(y=0;y<h;y++){db.push([]);for(x=0;x<w;x++){db[y]+=" "};};buildWorld();asciiview.scrollIntoView({block:"center",inline:"center"});back_up=[];state_save();}
 function modal_window(open,id){if(!open){window_zone.style.display="none";window_zone.innerHTML=""}else if(open){modal_tool(false);window_zone.style.display="grid";window_zone.innerHTML=document.getElementById(id).innerHTML;}}
 function modal_tool(open,id){
@@ -391,12 +477,8 @@ window.addEventListener("DOMContentLoaded", function(){
             e.preventDefault();
             e.stopPropagation();
             if(e.dataTransfer.files[0].type.includes("image")){
-                frame.style.backgroundImage="url('"+URL.createObjectURL(e.dataTransfer.files[0])+"')";
-                frame.style.backgroundSize="contain";
-                frame.style.backgroundPosition="center";
-                frame.style.backgroundRepeat="no-repeat";
-            }
-            else{
+                img=e.dataTransfer.files[0];show_img();
+            }else{
                 var xmlhttp=new XMLHttpRequest();
                 xmlhttp.onreadystatechange=function(){if(this.readyState==4&&(this.status === 200 || this.status == 0)){db=this.responseText.split("\n");buildWorld();asciiview.scrollIntoView({block: "center",inline: "center"});back_up=[];state_save();toast(e.dataTransfer.files[0].name+' file is open')}}
                 xmlhttp.open("GET",URL.createObjectURL(e.dataTransfer.files[0]),true);
@@ -408,12 +490,8 @@ window.addEventListener("DOMContentLoaded", function(){
 });
 function loadFiles(e){
     if(e.target.files[0].type.includes("image")){
-        frame.style.backgroundImage="url('"+URL.createObjectURL(e.target.files[0])+"')";
-        frame.style.backgroundSize="contain";
-        frame.style.backgroundPosition="center";
-        frame.style.backgroundRepeat="no-repeat";
-    }
-    else{
+        img=e.target.files[0];show_img();
+    }else{
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.onreadystatechange=function(){if(this.readyState==4&&(this.status === 200 || this.status == 0)){db=this.responseText.split("\n");buildWorld();asciiview.scrollIntoView({block: "center",inline: "center"});back_up=[];state_save();toast(e.target.files[0].name+' file is open')}}
         xmlhttp.open("GET",URL.createObjectURL(e.target.files[0]),true);
@@ -435,7 +513,20 @@ function getallChar(){
         label.classList.add("symbol_select");
         e.appendChild(label);
     }
-    
+}
+function show_img(){
+    const img_preview=document.getElementById('img_preview');
+    frame.style.backgroundImage="url('"+URL.createObjectURL(img)+"')";
+    frame.style.backgroundSize="100% 100%";
+    frame.style.backgroundPosition="center";
+    frame.style.backgroundRepeat="no-repeat";
+    img_preview.style.display="block";
+    img_preview.getElementsByTagName('img')[0].src=URL.createObjectURL(img);
+    img_show.checked=true;
+}
+function delete_img(){
+    img_preview.style.display="none";
+    frame.style.backgroundImage="none";
 }
 function addChar(d,c){
     var r=window_zone.getElementsByClassName('palette_simbols')[0];
@@ -444,6 +535,7 @@ function addChar(d,c){
 function applyChar(){
     range_font=[window_zone.getElementsByClassName('range')[0].value,window_zone.getElementsByClassName('range')[1].value];
     palette=window_zone.getElementsByClassName('palette_simbols')[0].value;
+    localStorage.setItem("palette",palette);
     createPalette();localStorage.setItem("range_font",JSON.stringify(range_font));
 }
 function createPalette(){
@@ -460,8 +552,8 @@ function createPalette(){
     }
 }
 function select_symbol(n){
-    var e,symbol_ele=document.getElementsByClassName('symbol')
-    for (e=0;e<symbol_ele.length;e++){if(e!=n){symbol_ele[e].style.backgroundColor="";}else{symbol_ele[e].style.backgroundColor="var(--cb)";}}
+    var symbol_ele=document.getElementsByClassName('symbol')
+    for (var e=0;e<symbol_ele.length;e++){if(e!=n){symbol_ele[e].style.backgroundColor="";}else{symbol_ele[e].style.backgroundColor="var(--cb)";}}
 }
 function save_art(c){
     var text="";
@@ -501,30 +593,88 @@ function fill(x,y,b){
 }
 function replaces(o,n){
     tr=canvas.getElementsByTagName('tr');
-    for(y=0;y<tr.length;y++){
-        td=tr[y].getElementsByTagName('td');
-        for(x=0;x<td.length;x++){if(td[x].textContent==o){td[x].innerHTML=n}};
+    for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){if(td[x].textContent==o){td[x].innerHTML=n}};}
+}
+function resize_canvs(){
+    var forms=document.forms.align;
+    var sw,sh
+    if(forms[0].checked){sh=2;sw=1}
+    else if(forms[1].checked){sh=2;sw=3}
+    else if(forms[2].checked){sh=4;sw=1}
+    else {sh=4;sw=3}
+    var w=Math.floor(canvasWidth.value),h=Math.floor(canvasHeight.value);
+    if(tr.length<h){add_cells(sh,h-tr.length)}
+    else{del_cells(sh,tr.length-h)}
+    if(td.length<w){add_cells(sw,w-td.length)}
+    else{del_cells(sw,td.length-w)}
+}
+function original_size(){
+    const reader=new FileReader();
+    reader.onload=function(l){
+        const image=new Image();
+        image.onload=function(){
+            var h=Math.floor(image.height/14),w=Math.floor(image.width/8);
+            if(tr.length<h){add_cells(4,h-tr.length)}
+            else{del_cells(4,tr.length-h)}
+            if(td.length<w){add_cells(3,w-td.length)}
+            else{del_cells(3,td.length-w)}
+        };image.src = l.target.result;
+    };reader.readAsDataURL(img);
+}
+function img_to_ascii(){
+    const preview=document.getElementById("preview"),context=preview.getContext("2d");
+    const reader=new FileReader();
+    reader.onload=function(l){
+        const image=new Image();
+        image.onload=function(){
+            var tr=canvas.getElementsByTagName('tr');
+            const w=tr[0].getElementsByTagName('td').length,h=tr.length;
+            preview.width=w;preview.height=h;context.drawImage(image,0,0,w,h);
+            const grayScales=convertToGrayScales(context,w,h);
+            drawAscii(grayScales,w);
+        };image.src=l.target.result;
+    };reader.readAsDataURL(img);
+};
+const toGrayScale=(r,g,b)=>0.21*r+0.72*g+0.07*b;
+const convertToGrayScales=(context, width, height)=>{
+    const imageData=context.getImageData(0,0,width,height);
+    const grayScales=[];
+    for (let i=0;i<imageData.data.length;i+=4){
+        const r=imageData.data[i],g=imageData.data[i+1],b=imageData.data[i+2];
+        const grayScale=toGrayScale(r,g,b);
+        imageData.data[i]=imageData.data[i+1]=imageData.data[i+2]=grayScale;
+        grayScales.push(grayScale);
     }
-}
+    context.putImageData(imageData,0,0);
+    return grayScales;
+};
+const getCharacterForGrayScale=grayScale=>palette[Math.ceil((palette.length-1)*grayScale/255)];
+const drawAscii=function(grayScales,width){
+    const ascii=grayScales.reduce((asciiImage,grayScale,index)=>{
+        let nextChars=getCharacterForGrayScale(grayScale);
+        if((index+1)%width===0){nextChars+='\n';}
+        return asciiImage+nextChars;
+    }, '');
+    db=ascii.split("\n");db.splice(-1,1);buildWorld();state_save();
+};
 function state_save(){
     frame=document.getElementById('asciicanvas')
     if(state_num>0){back_up.splice(0,state_num);state_num=0;}
     var text="";
     tr=canvas.getElementsByTagName('tr');
     for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){text+=td[x].textContent};if(y<tr.length-1){text+="\n";};}
+    canvasWidth.value=td.length
+    canvasHeight.value=tr.length
+    metadata.innerHTML="Cells: "+td.length*tr.length
     back_up.unshift(text);
     if(back_up.length>100){back_up.pop();}
 }
-function state_save(){
-    frame=document.getElementById('asciicanvas')
-    if(state_num>0){back_up.splice(0,state_num);state_num=0;}
-    var text="";
-    tr=canvas.getElementsByTagName('tr');
-    for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){text+=td[x].textContent};if(y<tr.length-1){text+="\n";};}
-    back_up.unshift(text);
-    if(back_up.length>100){back_up.pop();}
+function correct_value(name){
+    if(name.includes("+")||name.includes("-")||name.includes("*")||name.includes("/")){
+        return parseInt(eval(name))
+    }else{return parseInt(name)}
 }
 function state_back(n){state_num+=n;if(state_num<0){state_num=0}else if(state_num>=back_up.length-1){state_num=back_up.length-1};db=back_up[state_num].split("\n");buildWorld();}
-document.addEventListener('DOMContentLoaded',function(){createPalette();active_brush.innerHTML=brush;if(localStorage.getItem("range_font")){range_font=JSON.parse(localStorage.getItem("range_font"))}})
+document.addEventListener('DOMContentLoaded',function(){createPalette();active_brush.innerHTML=brush;if(localStorage.getItem("range_font")){range_font=JSON.parse(localStorage.getItem("range_font"))};if(localStorage.getItem("palette")){palette=localStorage.getItem("palette");createPalette();}})
 </script>
 </body></html>
