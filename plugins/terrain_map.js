@@ -42,7 +42,11 @@ function terrain_map(){
         if (arr_dialog.objects[i].sound){v+="sound_play('"+arr_dialog.objects[i].sound+"');"}
         else if (arr_dialog.sound){v+="sound_play('"+arr_dialog.sound+"');"}
         if (arr_dialog.objects[i].js){v+=arr_dialog.objects[i].js+";"}
-        if (arr_dialog.objects[i].go_to){v+="tue_world.remove();"+((arr_dialog.objects[i].go_to=="tue_go")?"scene++;dialog=0;creation_scene();":"go_to('"+arr_dialog.objects[i].go_to+"');")}
+        if (arr_dialog.objects[i].go_to){
+            if (arr_dialog.objects[i].text_from){v+="tue_story='"+arr_dialog.objects[i].go_to+"';scene=0;dialog=0;creation_dialog();"}
+            else {v+="tue_world.remove();"+((arr_dialog.objects[i].go_to=="tue_go")?"scene++;dialog=0;creation_scene();":"go_to('"+arr_dialog.objects[i].go_to+"');")}
+            
+        }
         item.setAttribute("onclick",v);
         map.appendChild(item);
     }
