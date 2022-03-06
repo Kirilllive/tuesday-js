@@ -210,9 +210,14 @@ line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4
 	height:40px;
 	border-left:1px solid var(--cb);
 	border-right:1px solid var(--cb);
-	width:88px;
 	padding-left:8px;
     -webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
+}
+@media screen and (max-width: 620px) {
+    .small_menu{display:none;}
+}
+@media screen and (max-height: 620px) {
+    .small_menu{display:auto;}
 }
 .add_button{height:28px;width:28px;}
 .input_text_b{
@@ -367,8 +372,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                     <td title='Settings project' onclick='setup();menu_add.style.visibility="hidden";' class='icon button_menu icon_setup'></td>
                     <td title='Edit json text' onclick='jsonedit();menu_add.style.visibility="hidden";' class='icon button_menu icon_json'></td>
                     <td title='Export text to spreadsheet' onclick='text_export();menu_add.style.visibility="hidden";' class='icon button_menu icon_csv'></td>
-                    <td title='About visual editor' onclick='about();menu_add.style.visibility="hidden";' class='icon button_menu icon_about'></td>
-                    <td style='width:88px;'><input type="text" id="search_block" class="search" onkeyup="search_block()" placeholder="search block"></td>
+                    <td title='About visual editor' onclick='about();menu_add.style.visibility="hidden";' class='icon button_menu icon_about small_menu'></td>
+                    <td style='width:88px;' class="small_menu"><input type="text" id="search_block" class="search" onkeyup="search_block()" placeholder="search block"></td>
                     <td style='width:40px;'><select id='language_view' style='height:40px;border-right:1px solid var(--cb);border-bottom:0;'><option value='en'>EN</option></select></td>
 					<td title='Build project' onclick='build_choice();menu_add.style.visibility="hidden";' class='icon button_menu icon_build'></td>
 					<td style='border-radius:0 0 16px 0;' title='Run preview Project' onclick='play_novel();menu_add.style.visibility="hidden";' class='icon button_menu icon_play'></td>
