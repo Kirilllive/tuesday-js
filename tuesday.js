@@ -241,6 +241,7 @@ function name_block_update(){
         }
     }
 } function creation_scene(){
+    if(document.getElementById('tue_world')){document.getElementById('tue_world').remove();}
     arr_dialog = story_json[tue_story][scene];
     del_element("tue_html_scene");
     if(arr_dialog.legacy_choice){
