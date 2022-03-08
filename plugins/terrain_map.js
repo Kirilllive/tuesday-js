@@ -7,6 +7,7 @@ function terrain_map(){
     var view=document.createElement("div");
     view.id='tue_world';
     view.style='height:100%;width:100%;overflow:auto;';
+    view.className="tue_html_scene";
     var map=document.createElement("div");
     if(arr_dialog.scale){wmap.scale=arr_dialog.scale}
     map.id="tue_map";
@@ -45,7 +46,6 @@ function terrain_map(){
         if (arr_dialog.objects[i].go_to){
             if (arr_dialog.objects[i].text_from){v+="tue_story='"+arr_dialog.objects[i].go_to+"';scene=0;dialog=0;creation_dialog();"}
             else {v+="tue_world.remove();"+((arr_dialog.objects[i].go_to=="tue_go")?"scene++;dialog=0;creation_scene();":"go_to('"+arr_dialog.objects[i].go_to+"');")}
-            
         }
         item.setAttribute("onclick",v);
         map.appendChild(item);
