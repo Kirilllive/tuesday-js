@@ -488,10 +488,13 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Height size</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='size_h' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" value='25%' style='width:100%;'>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='indent_text' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" style='width:100%;'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>
+                                <input id='style' class='input_text' onchange='scen_edit_update(true)' type="text" value='' style='width:100%;'>
+                            </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.text_panel;edit_code('style','Style CSS');">
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Text</td>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='color_t_s'></div></td><td style='padding-right:8px;'>
+                                <input id='color_t' class='input_text' onchange='color_t_s.style.backgroundColor=this.value;scen_edit_update(true);' type="text" style='width:100%;'>
+                            </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("color_t",color_t.value)'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color text</td><td style='width:40px;' align='center'><div class='show_color' id='color_text_s'></div></td><td style='padding-right:8px;'>
                                 <input id='color_text' class='input_text' onchange='color_text_s.style.backgroundColor=this.value;scen_edit_update(true);' type="text" style='width:100%;'>
@@ -503,16 +506,11 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Font family</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='font_family' class='input_text' onchange='scen_edit_update(true)' type="text" value='20px' style='width:100%;'>
                             </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='className' class='input_text' onchange='scen_edit_update(true)' type="text" value='100' style='width:100%;'>
+                            </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Dialog speed</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='dialog_speed' class='input_text' onchange='this.value=correct_value(this.value,true);scen_edit_update(true)' type="text" style='width:100%;'>
-                            </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Console mode</td><td style='padding-right:8px;' colspan='3'>
-                                <select id="console_mode" oninput="if(this.selectedIndex!=0){story_script.parameters.text_panel.scroll=true}else{delete story_script.parameters.text_panel.scroll};scen_edit_update(true)">
-                                    <option>Off</option>
-                                    <option>Text autoscroll</option>
-                                </select>
-                            </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Top position</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='position_t' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" value='0' style='width:100%;'>
@@ -526,18 +524,14 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Right position</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='position_r' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Style</td>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='indent_text' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" style='width:100%;'>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>
-                                <input id='style' class='input_text' onchange='scen_edit_update(true)' type="text" value='' style='width:100%;'>
-                            </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.text_panel;edit_code('style','Style CSS');">
-                            </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='className' class='input_text' onchange='scen_edit_update(true)' type="text" value='100' style='width:100%;'>
-                            </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='color_t_s'></div></td><td style='padding-right:8px;'>
-                                <input id='color_t' class='input_text' onchange='color_t_s.style.backgroundColor=this.value;scen_edit_update(true);' type="text" style='width:100%;'>
-                            </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("color_t",color_t.value)'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Console mode</td><td style='padding-right:8px;' colspan='3'>
+                                <select id="console_mode" oninput="if(this.selectedIndex!=0){story_script.parameters.text_panel.scroll=true}else{delete story_script.parameters.text_panel.scroll};scen_edit_update(true)">
+                                    <option>Off</option>
+                                    <option>Text autoscroll</option>
+                                </select>
                             </td></tr>
                                 <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">End text cursor</td>
                             </tr>
@@ -569,10 +563,13 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Height size</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_size_h' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" value='48px' style='width:100%;'>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_indent_text' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" style='width:100%;'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>
+                                <input id='n_style' class='input_text' onchange='scen_edit_update(true)' type="text" style='width:100%;'>
+                            </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.name_panel;edit_code('style','Style CSS');">
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Text</td>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_s'></div></td><td style='padding-right:8px;'>
+                                <input id='n_color' class='input_text' onchange='n_color_s.style.backgroundColor=this.value;scen_edit_update(true);' type="text" style='width:100%;'>
+                            </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("n_color",n_color.value)'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color text</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_text_s'></div></td><td style='padding-right:8px;'>
                                 <input id='n_color_text' class='input_text' onchange='n_color_text_s.style.backgroundColor=this.value;scen_edit_update(true);' type="text" style='width:100%;'>
@@ -601,7 +598,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 </tr></tbody></table>
                                 </td>
                             </tr><tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_className' class='input_text' onchange='scen_edit_update(true)' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Top position</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_position_t' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" value='0' style='width:100%;'>
@@ -615,18 +613,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Right position</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_position_r' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" value='0' style='width:100%;'>
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Style</td>
-                            </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>
-                                <input id='n_style' class='input_text' onchange='scen_edit_update(true)' type="text" style='width:100%;'>
-                            </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.name_panel;edit_code('style','Style CSS');">
-                            </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>
-                                <input id='n_className' class='input_text' onchange='scen_edit_update(true)' type="text" style='width:100%;'>
-                            </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Color panel</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_s'></div></td><td style='padding-right:8px;'>
-                                <input id='n_color' class='input_text' onchange='n_color_s.style.backgroundColor=this.value;scen_edit_update(true);' type="text" style='width:100%;'>
-                            </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("n_color",n_color.value)'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
+                                <input id='n_indent_text' class='input_text' onchange='this.value=correct_value(this.value);scen_edit_update(true)' type="text" style='width:100%;'>
                             </td></tr>
                                 <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Panel image</td>
                             </tr>
@@ -3239,8 +3227,6 @@ function art_panel_edit(block,i,n,b){
         +'</tr></tbody></table>'
         +'</td>'
     +'</tr><tr>'
-        +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>'
-    +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[2]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].position[2]+'"></td>'
     +'</tr><tr>'
@@ -3252,6 +3238,10 @@ function art_panel_edit(block,i,n,b){
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Right position</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].position[1]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].position[1]+'"></td>'
+    +'</tr><tr>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Opacity</td>'
+        +'<td ><input id="opacity_t" class="input_text" onchange="opacity_r.value=correct_value(this.value,true);story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].opacity)?arr_s.art[b].opacity:1)+'"></td>'
+        +'<td colspan="2" align="right" ><input id="opacity_r" class="input_slider" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=this.value;art_panel_update(\''+block+'\','+i+','+n+');state_save();" oninput="opacity_t.value=this.value;" type="range" value="'+((arr_s.art[b].opacity)?arr_s.art[b].opacity:1)+'" min="0" max="1" step="0.01" style="width:96%;background: var(--cb);"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">HotSpot X</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].hotspot[0]=((this.value.length>0)?correct_value(this.value):0);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].hotspot)?arr_s.art[b].hotspot[0]:0)+'"></td>'
@@ -3267,12 +3257,6 @@ function art_panel_edit(block,i,n,b){
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Speed transform</td>'
         +'<td colspan="3"><select onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].speed=this.value;state_save();" style="width:100%;height:28px;background-color: var(--cw);"><option value="ease" '+((arr_s.art[b].speed=='ease')?'selected':'')+'>ease</option><option value="linear" '+((arr_s.art[b].speed=='linear')?'selected':'')+'>linear</option><option value="ease-in" '+((arr_s.art[b].speed=='ease-in')?'selected':'')+'>ease-in</option><option value="ease-out" '+((arr_s.art[b].speed=='ease-out')?'selected':'')+'>ease-out</option><option value="ease-in-out" '+((arr_s.art[b].speed=='ease-in-out')?'selected':'')+'>ease-in-out</option></select></td>'
-    +'</tr><tr>'
-        +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Style</td>'
-    +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Opacity</td>'
-        +'<td ><input id="opacity_t" class="input_text" onchange="opacity_r.value=correct_value(this.value,true);story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].opacity)?arr_s.art[b].opacity:1)+'"></td>'
-        +'<td colspan="2" align="right" ><input id="opacity_r" class="input_slider" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].opacity=this.value;art_panel_update(\''+block+'\','+i+','+n+');state_save();" oninput="opacity_t.value=this.value;" type="range" value="'+((arr_s.art[b].opacity)?arr_s.art[b].opacity:1)+'" min="0" max="1" step="0.01" style="width:96%;background: var(--cb);"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Style CSS</td>'
         +'<td colspan="2"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].style=this.value;art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px;" value="'+((arr_s.art[b].style)?arr_s.art[b].style:'')+'"></td>'
@@ -3395,34 +3379,6 @@ function choice_panel_edit(block,i,n,b){
         +'<td height="40px" align="right" style="padding-right:8px;">Indent text</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].indent_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].indent_text)?arr_s[b].indent_text:'')+'"></td>'
     +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Width size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[0]:'')+'"></td>'
-    +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Height size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[1]:'')+'"></td>'
-    +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
-        +'<td style="width:28px;" align="center"><select id="сsl'+b+'" onchange="сst'+b+'.value=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);">'+project_languares(languare)+'</select></td>'
-        +'<td><input id="сst'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound[сsl'+b+'.value]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].sound[languare]&&arr_s[b].sound[languare].length>0)?arr_s[b].sound[languare]:'')+'"></td>'
-        +'<td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="file_catalog(\'сst'+b+'\',\'audio\',\'сst'+b+'\',\'update\',\'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound[сsl'+b+'.value]\');"></td>'
-    +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">JavaScript</td>'
-        +'<td colspan="2"><input id="сjs'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].js=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].js)?arr_s[b].js:'')+'"></td>'
-        +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];edit_code(\'js\',\'JavaScript\');"></td>'
-    +'</tr><tr>'
-        +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Text</td>'
-    +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Color text</td>'
-        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+arr_s[b].color_text+';"></div></td>'
-        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color_text)?arr_s[b].color_text:'')+'"></td>'
-        +'<td height="40px" align="right" style="width:30px;" class="icon icon_color" onclick="arr_l=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];arr_n=[\'color_text\',\''+block+'\','+i+','+n+'];edit_color(\'choice\',\''+arr_s[b].color_text+'\');"></td>'
-    +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Font size</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size_text)?arr_s[b].size_text:'')+'"></td>'
-    +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Font family</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].font_family=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].font_family)?arr_s[b].font_family:'')+'"></td>'
-    +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Align text</td>'
         +'<td colspan="3" align="center">'
         +'<table style="background-color:var(--cw);border-radius:4px;"><tbody><tr>'
@@ -3440,7 +3396,34 @@ function choice_panel_edit(block,i,n,b){
         +'</tr></tbody></table>'
         +'</td>'
     +'</tr><tr>'
-        +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Style CSS</td>'
+        +'<td colspan="2"><input class="input_text"  onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].style=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].style)?arr_s[b].style:'')+'"></td>'
+        +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];edit_code(\'style\',\'Style CSS\');"></td>'
+    +'</tr><tr>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Width size</td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[0]:'')+'"></td>'
+    +'</tr><tr>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Height size</td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[1]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[1]:'')+'"></td>'
+    +'</tr><tr>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Color</td>'
+        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+arr_s[b].color+';"></div></td>'
+        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color)?arr_s[b].color:'')+'"></td>'
+        +'<td height="40px" align="right" style="width:30px;" class="icon icon_color" onclick="arr_l=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];arr_n=[\'color\',\''+block+'\','+i+','+n+'];edit_color(\'choice\',\''+arr_s[b].color+'\');"></td>'
+    +'</tr><tr>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Color text</td>'
+        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+arr_s[b].color_text+';"></div></td>'
+        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color_text=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color_text)?arr_s[b].color_text:'')+'"></td>'
+        +'<td height="40px" align="right" style="width:30px;" class="icon icon_color" onclick="arr_l=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];arr_n=[\'color_text\',\''+block+'\','+i+','+n+'];edit_color(\'choice\',\''+arr_s[b].color_text+'\');"></td>'
+    +'</tr><tr>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Font size</td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size_text)?arr_s[b].size_text:'')+'"></td>'
+    +'</tr><tr>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Font family</td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].font_family=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].font_family)?arr_s[b].font_family:'')+'"></td>'
+    +'</tr><tr>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
+        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].className=this.value;state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].className)?arr_s[b].className:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].position[2]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].position[2]:'')+'"></td>'
@@ -3463,19 +3446,14 @@ function choice_panel_edit(block,i,n,b){
         +'<td height="40px" align="right" style="padding-right:8px;">Angle</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].angle=correct_value(this.value,true);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].angle)?arr_s[b].angle:0)+'"></td>'
     +'</tr><tr>'
-        +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Style</td>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
+        +'<td style="width:28px;" align="center"><select id="сsl'+b+'" onchange="сst'+b+'.value=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);">'+project_languares(languare)+'</select></td>'
+        +'<td><input id="сst'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound[сsl'+b+'.value]=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].sound[languare]&&arr_s[b].sound[languare].length>0)?arr_s[b].sound[languare]:'')+'"></td>'
+        +'<td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="file_catalog(\'сst'+b+'\',\'audio\',\'сst'+b+'\',\'update\',\'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].sound[сsl'+b+'.value]\');"></td>'
     +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Style CSS</td>'
-        +'<td colspan="2"><input class="input_text"  onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].style=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].style)?arr_s[b].style:'')+'"></td>'
-        +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];edit_code(\'style\',\'Style CSS\');"></td>'
-    +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
-        +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].className=this.value;state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].className)?arr_s[b].className:'')+'"></td>'
-    +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Color</td>'
-        +'<td style="width:28px;" align="center"><div class="show_color" style="background-color:'+arr_s[b].color+';"></div></td>'
-        +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].color=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color)?arr_s[b].color:'')+'"></td>'
-        +'<td height="40px" align="right" style="width:30px;" class="icon icon_color" onclick="arr_l=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];arr_n=[\'color\',\''+block+'\','+i+','+n+'];edit_color(\'choice\',\''+arr_s[b].color+'\');"></td>'
+        +'<td height="40px" align="right" style="padding-right:8px;">JavaScript</td>'
+        +'<td colspan="2"><input id="сjs'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].js=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].js)?arr_s[b].js:'')+'"></td>'
+        +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'];edit_code(\'js\',\'JavaScript\');"></td>'
     +'</tr><tr>'
         +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Art</td>'
     +'</tr><tr>'
@@ -3637,37 +3615,6 @@ function button_panel_edit(b){
             +'<td style="width:28px;" align="center"><select id="bts'+b+'" onchange="btv'+b+'.value=((story_script.parameters.buttons['+b+'].text[this.value].length>0)?story_script.parameters.buttons['+b+'].text[this.value]:\'\');" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);">'+project_languares(languare)+'</select></td>'
             +'<td colspan="2"><input id="btv'+b+'" class="input_text" onchange="story_script.parameters.buttons['+b+'].text[bts'+b+'.value]=this.value;button_panel_update(true);state_save();" type="text" style="width:100%;height:28px;" value="'+((arr_s[b].text[languare])?arr_s[b].text[languare]:'')+'"></td>'
         +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Width size</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[0]=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[0]:'')+'"></td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Height size</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[1]=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[1]:'')+'"></td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Indent text</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].indent_text=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].indent_text)?arr_s[b].indent_text:'')+'"></td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
-            +'<td style="width:28px;" align="center"><select id="bpsl'+b+'" onchange="bpst'+b+'.value=story_script.parameters.buttons['+b+'].sound[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);">'+project_languares(languare)+'</select></td>'
-            +'<td><input id="bpst'+b+'" class="input_text" onchange="story_script.parameters.buttons['+b+'].sound[bpsl'+b+'.value]=this.value;button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].sound[languare]&&arr_s[b].sound[languare].length>0)?arr_s[b].sound[languare]:'')+'"></td>'
-            +'<td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="file_catalog(\'bpst'+b+'\',\'audio\',\'bpst'+b+'\',false,\'story_script.parameters.buttons['+b+'].sound[bpsl'+b+'.value]\')"></td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">JavaScript</td>'
-            +'<td colspan="2"><input id="bjs'+b+'" class="input_text" onchange="story_script.parameters.buttons['+b+'].js=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].js)?arr_s[b].js:'')+'"></td>'
-            +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.buttons['+b+'];edit_code(\'js\',\'JavaScript\');state_save();"></td>'
-        +'</tr><tr>'
-            +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Text</td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Color text</td>'
-            +'<td style="width:28px;" align="center"><div class="show_color" '+((arr_s[b].color_text)?'style="background-color:'+arr_s[b].color_text+';"':"")+'></div></td>'
-            +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].color_text=this.value;button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color_text)?arr_s[b].color_text:'')+'"></td>'
-            +'<td height="40px" align="right" style="width:30px;" class="icon icon_color" onclick="arr_l=story_script.parameters.buttons['+b+'];arr_n=\'color_text\';edit_color(\'button\',\''+arr_s[b].color_text+'\');"></td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Font size</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size_text=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size_text)?arr_s[b].size_text:'')+'"></td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Font family</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].font_family=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].font_family)?arr_s[b].font_family:'')+'"></td>'
-        +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Align text</td>'
             +'<td colspan="3" align="center">'
             +'<table style="background-color:var(--cw);border-radius:4px;"><tbody><tr>'
@@ -3685,7 +3632,34 @@ function button_panel_edit(b){
             +'</tr></tbody></table>'
             +'</td>'
         +'</tr><tr>'
-            +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Style CSS</td>'
+            +'<td colspan="2"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=this.value;button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].style)?arr_s[b].style:'')+'"></td>'
+            +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.buttons['+b+'];edit_code(\'style\',\'Style CSS\');"></td>'
+        +'</tr><tr>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Width size</td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[0]=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[0]:'')+'"></td>'
+        +'</tr><tr>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Height size</td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[1]=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[1]:'')+'"></td>'
+        +'</tr><tr>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Color</td>'
+            +'<td style="width:28px;" align="center"><div class="show_color" '+((arr_s[b].color)?'style="background-color:'+arr_s[b].color+';"':"")+'></div></td>'
+            +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].color=this.value;button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color)?arr_s[b].color:'')+'"></td>'
+            +'<td height="40px" align="right" style="width:30px;" class="icon icon_color" onclick="arr_l=story_script.parameters.buttons['+b+'];arr_n=\'color\';edit_color(\'button\',\''+arr_s[b].color+'\');"></td>'
+        +'</tr><tr>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Color text</td>'
+            +'<td style="width:28px;" align="center"><div class="show_color" '+((arr_s[b].color_text)?'style="background-color:'+arr_s[b].color_text+';"':"")+'></div></td>'
+            +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].color_text=this.value;button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color_text)?arr_s[b].color_text:'')+'"></td>'
+            +'<td height="40px" align="right" style="width:30px;" class="icon icon_color" onclick="arr_l=story_script.parameters.buttons['+b+'];arr_n=\'color_text\';edit_color(\'button\',\''+arr_s[b].color_text+'\');"></td>'
+        +'</tr><tr>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Font size</td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size_text=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size_text)?arr_s[b].size_text:'')+'"></td>'
+        +'</tr><tr>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Font family</td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].font_family=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].font_family)?arr_s[b].font_family:'')+'"></td>'
+        +'</tr><tr>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].className=this.value;state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].className)?arr_s[b].className:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Top position</td>'
             +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].position[2]=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].position[2]:'')+'"></td>'
@@ -3708,21 +3682,8 @@ function button_panel_edit(b){
             +'<td height="40px" align="right" style="padding-right:8px;">Angle</td>'
             +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].angle=correct_value(this.value,true);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].position)?arr_s[b].angle:0)+'"></td>'
         +'</tr><tr>'
-            +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Style</td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Style CSS</td>'
-            +'<td colspan="2"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].style=this.value;button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].style)?arr_s[b].style:'')+'"></td>'
-            +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.buttons['+b+'];edit_code(\'style\',\'Style CSS\');"></td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Class Name</td>'
-            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].className=this.value;state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].className)?arr_s[b].className:'')+'"></td>'
-        +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Color</td>'
-            +'<td style="width:28px;" align="center"><div class="show_color" '+((arr_s[b].color)?'style="background-color:'+arr_s[b].color+';"':"")+'></div></td>'
-            +'<td style="padding-right:8px;"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].color=this.value;button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].color)?arr_s[b].color:'')+'"></td>'
-            +'<td height="40px" align="right" style="width:30px;" class="icon icon_color" onclick="arr_l=story_script.parameters.buttons['+b+'];arr_n=\'color\';edit_color(\'button\',\''+arr_s[b].color+'\');"></td>'
-        +'</tr><tr>'
-            +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Art</td>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Indent text</td>'
+            +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].indent_text=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].indent_text)?arr_s[b].indent_text:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Art</td>'
             +'<td style="width:28px;" align="center"><select id="bpal'+b+'" onchange="bpat'+b+'.value=story_script.parameters.buttons['+b+'].art[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);">'+project_languares(languare)+'</select></td>'
@@ -3775,7 +3736,16 @@ function button_panel_edit(b){
                 +'<td height="40px" align="right" style="padding-right:8px;">Bottom border</td>'
                 +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].patch[2]=parseInt(correct_value(this.value,true));button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].art_size)?arr_s[b].patch[2]:'')+'"></td>'
         }
-        html+='</tbody></table></div>'
+        html+='</tr><tr>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Sound</td>'
+            +'<td style="width:28px;" align="center"><select id="bpsl'+b+'" onchange="bpst'+b+'.value=story_script.parameters.buttons['+b+'].sound[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);">'+project_languares(languare)+'</select></td>'
+            +'<td><input id="bpst'+b+'" class="input_text" onchange="story_script.parameters.buttons['+b+'].sound[bpsl'+b+'.value]=this.value;button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].sound[languare]&&arr_s[b].sound[languare].length>0)?arr_s[b].sound[languare]:'')+'"></td>'
+            +'<td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="file_catalog(\'bpst'+b+'\',\'audio\',\'bpst'+b+'\',false,\'story_script.parameters.buttons['+b+'].sound[bpsl'+b+'.value]\')"></td>'
+        +'</tr><tr>'
+            +'<td height="40px" align="right" style="padding-right:8px;">JavaScript</td>'
+            +'<td colspan="2"><input id="bjs'+b+'" class="input_text" onchange="story_script.parameters.buttons['+b+'].js=this.value;button_panel_update();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].js)?arr_s[b].js:'')+'"></td>'
+            +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.buttons['+b+'];edit_code(\'js\',\'JavaScript\');state_save();"></td>'
+        +'</tr></tbody></table></div>'
     return html;
 }
 function preview_size(scale){
