@@ -392,7 +392,7 @@ body{height:100vh;width:100vw;}
 <div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
 <script>
 var range_font=[0,13313],palette="██▓▒░@#$^%()\"/|<=>_-.'";
-var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone");
+var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0];
 window.addEventListener('mousedown',function(){if(tool==0||tool==3){mouseclick=true;}})
 window.addEventListener('mouseup',function(){mouseclick=false;})
 window.addEventListener('keypress',function(e){var n=String.fromCharCode(e.charCode);brush=n;active_brush.innerHTML=brush;})
@@ -457,9 +457,9 @@ function buildWorld(){
     for(y=0;y<db.length;y++){
         tr=document.createElement("tr");
         for(x=0;x<w;x++){
-            td=document.createElement("td");
-            td.setAttribute("onmouseenter","if(mouseclick){if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML='';}}")
-            td.setAttribute("onmousedown","if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML='';}else if(tool==1){fill("+x+","+y+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}")
+            td=document.createElement("td"); //selected[2]="+x+";selected[3]="+y+";select_arr();
+            td.setAttribute("onmouseenter","if(mouseclick){if(tool==0){  this.innerHTML=brush;  }else if(tool==3){this.innerHTML='';}}")
+            td.setAttribute("onmousedown","selected[0]="+x+";selected[1]="+y+";if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML='';}else if(tool==1){fill("+x+","+y+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}")
             if(db[y][x]&&db[y][x]!=" "){td.innerHTML=db[y][x]}else{td.innerHTML=" "}
             tr.appendChild(td);
         }
@@ -469,6 +469,18 @@ function buildWorld(){
     asciiview.style.height=rect.height+512+"px"
     asciiview.style.width=rect.width+512+"px"
     //replaces(" ",".")
+}
+function select_arr(){
+    metadata.innerHTML=selected;
+    for(var y=0;y<tr.length;y++){
+        td=tr[y].getElementsByTagName('td');
+        for(var x=0;x<td.length;x++){
+            if((y>selected[1]-1&&y<selected[3]+1)||(y>selected[3]-1&&y<selected[1]+1)){
+                if((x>selected[0]-1&&x<selected[2]+1)||(x>selected[2]-1&&x<selected[0]+1)){td[x].style.backgroundColor="var(--cw)"}
+                else{td[x].style.backgroundColor=""}}
+            else{td[x].style.backgroundColor=""}
+        };
+    };
 }
 window.addEventListener("DOMContentLoaded", function(){
     if (window.File&&window.FileReader&&window.FileList&&window.Blob) {
