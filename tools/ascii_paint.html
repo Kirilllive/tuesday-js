@@ -54,6 +54,7 @@ body{height:100vh;width:100vw;}
 .icon_scale{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3ccircle fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' cx='128' cy='128' r='92'/%3e%3c/svg%3e")}
 .icon_diag{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' d='M47,47L4,4M47,32V47H32M62,32V62H32'/%3e%3c/svg%3e")}
 .icon_selected{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M47,5h7v7M5,12V5h7m0,49H5V47M54,33v7m0-21v7M40,54H33M33,5h7M19,5h7m0,49H19M5,40V33m0-7V19M54,47v7H47m7,7V54h7'/%3e%3c/svg%3e")}
+.icon_replaces{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M47,9L57,19,47,29M17,36L7,46,17,56M56,46H8M8,19H56'/%3e%3c/svg%3e")}
 .button_s{height:22px;width:22px;background-size:22px 22px;background-repeat:no-repeat;background-position:center;cursor:pointer;}
 #asciiscreen{
     position:relative;
@@ -281,11 +282,11 @@ body{height:100vh;width:100vw;}
                     <table style="width:100%;">
                         <tbody>
                             <tr>
-                                <td align="right"><input type="radio" name="align" class="icon icon_diag align" style="transform:scaleX(-1) scaleY(-1);"></td>
-                                <td align="left"> <input type="radio" name="align" class="icon icon_diag align" style="transform:scaleY(-1);"></td>
+                                <td align="right"><input type="radio" name="align" class="icon icon_diag align button_menu" style="transform:scaleX(-1) scaleY(-1);"></td>
+                                <td align="left"> <input type="radio" name="align" class="icon icon_diag align button_menu" style="transform:scaleY(-1);"></td>
                             </tr><tr>
-                                <td align="right"><input type="radio" name="align" class="icon icon_diag align" style="transform:scaleX(-1);"></td>
-                                <td align="left"> <input type="radio" name="align" class="icon icon_diag align" checked></td>
+                                <td align="right"><input type="radio" name="align" class="icon icon_diag align button_menu" style="transform:scaleX(-1);"></td>
+                                <td align="left"> <input type="radio" name="align" class="icon icon_diag align button_menu" checked></td>
                             </tr>
                        </tbody>
                     </table>
@@ -307,10 +308,10 @@ body{height:100vh;width:100vw;}
             <table style="margin:14px;width:calc(100% - 28px);">
             <tbody>
                 <tr>
-                    <td align="center" width="64px">Replace</td>
-                    <td><input type="text" id="replaces_what" style="text-align:center;" class="input_text palette_simbols"></td>
-                    <td align="center" width="48px">with</td>
-                    <td><input type="text" id="replaces_than" style="text-align:center;" class="input_text palette_simbols"></td>
+                    <td style="padding-right:10px;" align="right">Replace</td>
+                    <td style="padding-right:10px;"><input type="text" id="replaces_what" style="text-align:center;" oninput="this.value=this.value.charAt(0)" class="input_text palette_simbols"></td>
+                    <td align="center" class="icon_replaces icon align button_menu" style="cursor:pointer;" onclick="var a=[replaces_what.value,replaces_than.value];replaces_what.value=a[1];replaces_than.value=a[0]"></td>
+                    <td style="padding-left:10px;"><input type="text" id="replaces_than" style="text-align:center;" oninput="this.value=this.value.charAt(0)" class="input_text palette_simbols"></td>
                 </tr>
             </tbody>
             </table>
@@ -405,7 +406,7 @@ body{height:100vh;width:100vw;}
 <div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
 <script>
 var range_font=[0,13313],palette="██▓▒░@#$^%()\"/|<=>_-.'";
-var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0];
+var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0],cells;
 window.addEventListener('mousedown',function(){if(tool==0||tool==3||tool==5){mouseclick=true;}})
 window.addEventListener('mouseup',function(){mouseclick=false;})
 window.addEventListener('keypress',function(e){var n=String.fromCharCode(e.charCode);brush=n;active_brush.innerHTML=brush;})
@@ -467,8 +468,8 @@ function buildWorld(){
         tr=document.createElement("tr");
         for(x=0;x<w;x++){
             td=document.createElement("td");
-            td.setAttribute("onmouseenter","if(mouseclick){if(tool==5){selected[2]="+x+";selected[3]="+y+";select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML='';}}")
-            td.setAttribute("onmousedown","if(tool==5){selected=["+x+","+y+","+x+","+y+"];select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML='';}else if(tool==1){fill("+x+","+y+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}")
+            td.setAttribute("onmouseenter","metadata.innerHTML='Cells:'+cells+' X:"+x+" Y:"+y+"';if(mouseclick){if(tool==5){selected[2]="+x+";selected[3]="+y+";select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}}")
+            td.setAttribute("onmousedown","if(tool==5){selected=["+x+","+y+","+x+","+y+"];select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}else if(tool==1){start_fill("+x+","+y+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}")
             if(db[y][x]&&db[y][x]!=" "){td.innerHTML=db[y][x]}else{td.innerHTML=" "}
             tr.appendChild(td);
         }
@@ -477,14 +478,13 @@ function buildWorld(){
     var rect=frame.getBoundingClientRect();
     asciiview.style.height=rect.height+512+"px"
     asciiview.style.width=rect.width+512+"px"
-    //replaces(" ",".")
 }
 function select_arr(){
-    metadata.innerHTML=selected;
+    if(selected[1]!=selected[3]||selected[0]!=selected[2]){metadata.innerHTML+=" Size:"+(selected[2]-selected[0])+"X"+(selected[3]-selected[1])}
     for(var y=0;y<tr.length;y++){
         td=tr[y].getElementsByTagName('td');
         for(var x=0;x<td.length;x++){
-            if((selected[1]!=selected[3]&&selected[0]!=selected[2])&&((y>selected[1]-1&&y<selected[3]+1)||(y>selected[3]-1&&y<selected[1]+1))){
+            if((selected[1]!=selected[3]||selected[0]!=selected[2])&&((y>selected[1]-1&&y<selected[3]+1)||(y>selected[3]-1&&y<selected[1]+1))){
                 if((x>selected[0]-1&&x<selected[2]+1)||(x>selected[2]-1&&x<selected[0]+1)){td[x].style.backgroundColor="var(--cw)"}
                 else{td[x].style.backgroundColor=""}}
             else{td[x].style.backgroundColor=""}
@@ -599,19 +599,27 @@ function save_art(c){
     	document.execCommand("copy");
     }
 }
-function fill(x,y,b){
+var x1,x2,y1,y2;
+function start_fill(x,y,b){
     tr=canvas.getElementsByTagName('tr');
-    td=tr[0].getElementsByTagName('td').length-1;
+    var se=(selected[1]!=selected[3]&&selected[0]!=selected[2])?true:false;
+    if(se){
+        if(selected[0]>selected[2]){x1=selected[2];x2=selected[0]}else{x1=selected[0];x2=selected[2];}
+        if(selected[1]>selected[3]){y1=selected[3];y2=selected[1]}else{y1=selected[1];y2=selected[3];}
+        if((x1<=x&&x<=x2)&&(y1<=y&&y<=y2)){fill(x,y,b);}
+    }else{x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length-1;fill(x,y,b);}
+}
+function fill(x,y,b){
     var ec=canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x];
     var el=(canvas.getElementsByTagName('tr')[y])?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x-1]:false;
     var er=(canvas.getElementsByTagName('tr')[y])?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x+1]:false;
     var et=(canvas.getElementsByTagName('tr')[y-1])?canvas.getElementsByTagName('tr')[y-1].getElementsByTagName('td')[x]:false;
     var eb=(canvas.getElementsByTagName('tr')[y+1])?canvas.getElementsByTagName('tr')[y+1].getElementsByTagName('td')[x]:false;
     if(ec.textContent==b){ec.innerHTML=brush;}
-    if(et&&et.textContent==b){et.innerHTML=brush;if(y-1>0){fill(x,y-1,b)}}
-    if(eb&&eb.textContent==b){eb.innerHTML=brush;if(y+1<tr.length-1){fill(x,y+1,b)}}
-    if(er&&er.textContent==b){er.innerHTML=brush;if(x+1<td){fill(x+1,y,b)}}
-    if(el&&el.textContent==b){el.innerHTML=brush;if(x-1>0){fill(x-1,y,b)}}
+    if(et&&et.textContent==b){et.innerHTML=brush;if(y-1>y1){fill(x,y-1,b)}}
+    if(eb&&eb.textContent==b){eb.innerHTML=brush;if(y+1<y2){fill(x,y+1,b)}}
+    if(er&&er.textContent==b){er.innerHTML=brush;if(x+1<x2){fill(x+1,y,b)}}
+    if(el&&el.textContent==b){el.innerHTML=brush;if(x-1>x1){fill(x-1,y,b)}}
 }
 function replaces(o,n){
     tr=canvas.getElementsByTagName('tr');
@@ -687,7 +695,8 @@ function state_save(){
     for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){text+=td[x].textContent};if(y<tr.length-1){text+="\n";};}
     canvasWidth.value=td.length
     canvasHeight.value=tr.length
-    metadata.innerHTML="Cells: "+td.length*tr.length
+    cells=td.length*tr.length
+    metadata.innerHTML="Cells:"+cells;
     back_up.unshift(text);
     if(back_up.length>100){back_up.pop();}
 }
