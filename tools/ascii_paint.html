@@ -304,7 +304,7 @@ body{height:100vh;width:100vw;}
             </table>
             <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="resize_canvs();">Resize canvas</div>
         </div>
-        <div style="width:100%;text-align:center; border-top:1px solid var(--cb);">
+        <div style="width:100%;text-align:center;border-top:1px solid var(--cb);">
             <table style="margin:14px;width:calc(100% - 28px);">
             <tbody>
                 <tr>
@@ -318,7 +318,22 @@ body{height:100vh;width:100vw;}
             <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="replaces(replaces_what.value,replaces_than.value)">Replace symbols</div>
         </div>
     </div>
-</td></tr><tr><td id="metadata" style="height:40px;" align="center"></td></tr>
+</td></tr><tr><td style="height:40px;border-top:1px solid var(--cb);" align="center">
+<table style="width:256px;">
+    <tbody>
+        <tr>
+        <td align="right" style="padding-right:4px;width:32px;">Cells</td>
+        <td id="cells" align="left" style="width:40px;"></td>
+        <td align="right" style="padding-right:4px;width:16px;">X</td>
+        <td id="cur_x" align="left" style="width:24px;"></td>
+        <td align="right" style="padding-right:4px;width:16px;">Y</td>
+        <td id="cur_y" align="left" style="width:24px;"></td>
+        <td align="right" style="padding-right:4px;width:32px;">Size</td>
+        <td id="arr_size" align="left" style="width:72px;"></td>
+        </tr>
+    </tbody>
+</table>
+</td></tr>
 </tbody></table>
 <table id="menu_panel">
     <tbody>
@@ -406,7 +421,7 @@ body{height:100vh;width:100vw;}
 <div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
 <script>
 var range_font=[0,13313],palette="██▓▒░@#$^%()\"/|<=>_-.'";
-var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0],cells;
+var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0];
 window.addEventListener('mousedown',function(){if(tool==0||tool==3||tool==5){mouseclick=true;}})
 window.addEventListener('mouseup',function(){mouseclick=false;})
 window.addEventListener('keypress',function(e){var n=String.fromCharCode(e.charCode);brush=n;active_brush.innerHTML=brush;})
@@ -463,13 +478,19 @@ function del_cells(u,s){
 function buildWorld(){
     var x,y,w=0;
     canvas.innerHTML="";
+    var se=(selected[1]!=selected[3]&&selected[0]!=selected[2])?true:false;
+    if(se){
+        if(selected[0]>selected[2]){x1=selected[2];x2=selected[0]}else{x1=selected[0];x2=selected[2];}
+        if(selected[1]>selected[3]){y1=selected[3];y2=selected[1]}else{y1=selected[1];y2=selected[3];}
+    }
     for(y=0;y<db.length;y++){if(w<db[y].length){w=db[y].length}}
     for(y=0;y<db.length;y++){
         tr=document.createElement("tr");
         for(x=0;x<w;x++){
             td=document.createElement("td");
-            td.setAttribute("onmouseenter","metadata.innerHTML='Cells:'+cells+' X:"+x+" Y:"+y+"';if(mouseclick){if(tool==5){selected[2]="+x+";selected[3]="+y+";select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}}")
+            td.setAttribute("onmouseenter","cur_x.innerHTML="+x+";cur_y.innerHTML="+y+";if(mouseclick){if(tool==5){selected[2]="+x+";selected[3]="+y+";select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}}")
             td.setAttribute("onmousedown","if(tool==5){selected=["+x+","+y+","+x+","+y+"];select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}else if(tool==1){start_fill("+x+","+y+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}")
+            if(se&&(x1<=x&&x<=x2)&&(y1<=y&&y<=y2)){td.style.backgroundColor="var(--cw)"}
             if(db[y][x]&&db[y][x]!=" "){td.innerHTML=db[y][x]}else{td.innerHTML=" "}
             tr.appendChild(td);
         }
@@ -480,7 +501,7 @@ function buildWorld(){
     asciiview.style.width=rect.width+512+"px"
 }
 function select_arr(){
-    if(selected[1]!=selected[3]||selected[0]!=selected[2]){metadata.innerHTML+=" Size:"+(selected[2]-selected[0])+"X"+(selected[3]-selected[1])}
+    if(selected[1]!=selected[3]||selected[0]!=selected[2]){arr_size.innerHTML=Math.abs(selected[2]-selected[0])+" X "+Math.abs(selected[3]-selected[1])}
     for(var y=0;y<tr.length;y++){
         td=tr[y].getElementsByTagName('td');
         for(var x=0;x<td.length;x++){
@@ -491,7 +512,7 @@ function select_arr(){
         };
     };
 }
-
+//function select_update(){}
 window.addEventListener("DOMContentLoaded", function(){
     if (window.File&&window.FileReader&&window.FileList&&window.Blob) {
         window.addEventListener("dragover",function(e){e.preventDefault();e.stopPropagation();});
@@ -695,8 +716,8 @@ function state_save(){
     for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){text+=td[x].textContent};if(y<tr.length-1){text+="\n";};}
     canvasWidth.value=td.length
     canvasHeight.value=tr.length
-    cells=td.length*tr.length
-    metadata.innerHTML="Cells:"+cells;
+    cells.innerHTML=td.length*tr.length
+    arr_size.innerHTML=td.length+" X "+tr.length
     back_up.unshift(text);
     if(back_up.length>100){back_up.pop();}
 }
