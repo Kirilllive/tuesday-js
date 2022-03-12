@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html><head><meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
 <title>ASCII Art Paint</title>
 <style>
@@ -59,6 +59,7 @@ body{height:100vh;width:100vw;}
 #asciiscreen{
     position:relative;
     box-shadow:0px 2px 24px var(--cs);
+    image-rendering:pixelated;
 }
 .add_lines{
     position:absolute;
@@ -220,6 +221,13 @@ body{height:100vh;width:100vw;}
     border-radius:4px;cursor:pointer;
 }
 .align:checked{background-color:var(--cb);}
+#context_menu{
+    background-color:var(--wn);
+    box-shadow:0px 2px 24px var(--cs);
+    border-radius:8px;
+}
+#context_menu td{height:28px;padding-left:10px;}
+#context_menu td:hover{background-color:var(--cw);}
 </style>
 </head>
 <body onload="new_canvas(60,30);">
@@ -253,6 +261,15 @@ body{height:100vh;width:100vw;}
         <tbody>
         </tbody>
         </table>
+        <table id='context_menu' style='position:absolute;left:0;top:0;visibility:hidden;width:92px;'>
+            <tbody>
+            <tr><td onmousedown="save_art(false)">Copy</td></tr>
+            <tr><td onmousedown="paste_data(targetcell[0],targetcell[1],true)">Paste</td></tr>
+            <tr><td onmousedown="delete_data()">Delete</td></tr>
+            <tr><td onmousedown="save_art(false);delete_data()">Cut</td></tr>
+            <tr><td onmousedown="crop_cells()">Crop</td></tr>
+            </tbody>
+        </table>
     </div>
     </div>
 </div>
@@ -262,7 +279,7 @@ body{height:100vh;width:100vw;}
         <div id="symbols_view" style="display:inline-block;"></div>
         <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="modal_window(true,'palette_edit');getallChar()">Edit symbol palette</div>
         <div id="img_preview" style="display:none;width:100%;text-align:center;border-top:1px solid var(--cb);"><br>
-            <img style="width:90%;height:auto;border-radius:8px;text-align:center;cursor:pointer;" onclick="file.click();"><br>
+            <img style="width:90%;height:auto;border-radius:8px;text-align:center;cursor:pointer;image-rendering:pixelated;" onclick="file.click();"><br>
             <table style="margin:14px;width:calc(100% - 28px);">
             <tbody>
                 <tr>
@@ -302,7 +319,7 @@ body{height:100vh;width:100vw;}
                 </tr>
             </tbody>
             </table>
-            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="resize_canvs();">Resize canvas</div>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="resize_canvas();">Resize canvas</div>
         </div>
         <div style="width:100%;text-align:center;border-top:1px solid var(--cb);">
             <table style="margin:14px;width:calc(100% - 28px);">
@@ -421,11 +438,22 @@ body{height:100vh;width:100vw;}
 <div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
 <script>
 var range_font=[0,13313],palette="██▓▒░@#$^%()\"/|<=>_-.'";
-var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0];
-window.addEventListener('mousedown',function(){if(tool==0||tool==3||tool==5){mouseclick=true;}})
+var se,x1,x2,y1,y2;
+var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0],targetcell=[0,0],copydb="";
+var contextmenushow=false,doc;
+if(asciicanvas.addEventListener){asciicanvas.addEventListener('contextmenu',function(e){menu_right(e);e.preventDefault();},false);}
+else{asciicanvas.attachEvent('oncontextmenu',function(){window.event.returnValue=false;});}
+function menu_right(e){
+    contextmenushow=true;
+    doc=asciiscreen.getBoundingClientRect();
+    context_menu.style.visibility='visible';
+    context_menu.style.left=(e.clientX+asciiscreen.scrollLeft-doc.left)/scale+"px";
+    context_menu.style.top=(e.clientY+asciiscreen.scrollTop-doc.top)/scale+"px";
+}
+window.addEventListener('mousedown',function(){if(tool==0||tool==3||tool==5){mouseclick=true;}if(contextmenushow){contextmenushow=false;context_menu.style.visibility='hidden';mouseclick=false;}})
 window.addEventListener('mouseup',function(){mouseclick=false;})
-window.addEventListener('keypress',function(e){var n=String.fromCharCode(e.charCode);brush=n;active_brush.innerHTML=brush;})
-asciicanvas.addEventListener('mouseup',function(){if(tool!=2){state_save()};})
+window.addEventListener('keypress',function(e){var n=String.fromCharCode(e.charCode);brush=n;active_brush.innerHTML=brush;})//if(tool==0){canvas.getElementsByTagName('tr')[targetcell[1]].getElementsByTagName('td')[targetcell[0]].innerHTML=brush;}
+asciicanvas.addEventListener('mouseup',function(){if(tool!=2&&tool!=5){state_save()};})
 var startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null;
 viewport.addEventListener('mousedown',function(e){
     if(tool==2){
@@ -437,9 +465,10 @@ viewport.addEventListener('mousedown',function(e){
 })
 file.addEventListener('change',loadFiles);
 function canvas_scale(s){
-    if(s==2){scale=Math.min(2,scale+0.05);asciiscreen.style.transform='scale('+scale+')';}
-    else if(s==1){scale=Math.max(0.25,scale-0.05);asciiscreen.style.transform='scale('+scale+')';}
+    if(s==2){scale=Math.min(2,scale+0.05);}
+    else if(s==1){scale=Math.max(0.25,scale-0.05);}
     else{scale=1;asciiscreen.style.transform='scale(1)';}
+    asciiscreen.style.transform='scale('+scale+')';
 }
 function new_canvas(w,h){db=[];for(y=0;y<h;y++){db.push([]);for(x=0;x<w;x++){db[y]+=" "};};buildWorld();asciiview.scrollIntoView({block:"center",inline:"center"});back_up=[];state_save();}
 function modal_window(open,id){if(!open){window_zone.style.display="none";window_zone.innerHTML=""}else if(open){modal_tool(false);window_zone.style.display="grid";window_zone.innerHTML=document.getElementById(id).innerHTML;}}
@@ -465,6 +494,12 @@ function add_cells(u,s){
         if(u==3){for(a=0;a<w;a++){db[y+h]+=" "}}
     };buildWorld();state_save();
 }
+function crop_cells(){
+    get_selected();
+    del_cells(3,td.length-x2-1);del_cells(4,tr.length-y2-1);
+    del_cells(1,x1);del_cells(2,y1);
+    selected=[0,0,0,0];
+}
 function del_cells(u,s){
     var x,y,l=0,r=0,t=0,b=0;db=[];
     tr=canvas.getElementsByTagName('tr');
@@ -478,23 +513,19 @@ function del_cells(u,s){
 function buildWorld(){
     var x,y,w=0;
     canvas.innerHTML="";
-    var se=(selected[1]!=selected[3]&&selected[0]!=selected[2])?true:false;
-    if(se){
-        if(selected[0]>selected[2]){x1=selected[2];x2=selected[0]}else{x1=selected[0];x2=selected[2];}
-        if(selected[1]>selected[3]){y1=selected[3];y2=selected[1]}else{y1=selected[1];y2=selected[3];}
-    }
+    get_selected();
     for(y=0;y<db.length;y++){if(w<db[y].length){w=db[y].length}}
     for(y=0;y<db.length;y++){
         tr=document.createElement("tr");
         for(x=0;x<w;x++){
             td=document.createElement("td");
-            td.setAttribute("onmouseenter","cur_x.innerHTML="+x+";cur_y.innerHTML="+y+";if(mouseclick){if(tool==5){selected[2]="+x+";selected[3]="+y+";select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}}")
-            td.setAttribute("onmousedown","if(tool==5){selected=["+x+","+y+","+x+","+y+"];select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}else if(tool==1){start_fill("+x+","+y+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}")
+            td.setAttribute("onmouseenter","if(event.which!=3&&!contextmenushow){targetcell=["+x+","+y+"];cur_x.innerHTML="+x+";cur_y.innerHTML="+y+";if(mouseclick){if(tool==5){selected[2]="+x+";selected[3]="+y+";select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}}}")
+            td.setAttribute("onmousedown","if(event.which!=3&&!contextmenushow){if(tool==5){selected=["+x+","+y+","+x+","+y+"];select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}else if(tool==1){start_fill("+x+","+y+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}}")
+            td.setAttribute("oncontextmenu","targetcell=["+x+","+y+"]")
             if(se&&(x1<=x&&x<=x2)&&(y1<=y&&y<=y2)){td.style.backgroundColor="var(--cw)"}
             if(db[y][x]&&db[y][x]!=" "){td.innerHTML=db[y][x]}else{td.innerHTML=" "}
             tr.appendChild(td);
-        }
-        canvas.appendChild(tr);
+        }canvas.appendChild(tr);
     }
     var rect=frame.getBoundingClientRect();
     asciiview.style.height=rect.height+512+"px"
@@ -502,6 +533,7 @@ function buildWorld(){
 }
 function select_arr(){
     if(selected[1]!=selected[3]||selected[0]!=selected[2]){arr_size.innerHTML=Math.abs(selected[2]-selected[0])+" X "+Math.abs(selected[3]-selected[1])}
+    tr=canvas.getElementsByTagName('tr');
     for(var y=0;y<tr.length;y++){
         td=tr[y].getElementsByTagName('td');
         for(var x=0;x<td.length;x++){
@@ -512,7 +544,6 @@ function select_arr(){
         };
     };
 }
-//function select_update(){}
 window.addEventListener("DOMContentLoaded", function(){
     if (window.File&&window.FileReader&&window.FileList&&window.Blob) {
         window.addEventListener("dragover",function(e){e.preventDefault();e.stopPropagation();});
@@ -567,14 +598,8 @@ function show_img(){
     img_preview.getElementsByTagName('img')[0].src=URL.createObjectURL(img);
     img_show.checked=true;
 }
-function delete_img(){
-    img_preview.style.display="none";
-    frame.style.backgroundImage="none";
-}
-function addChar(d,c){
-    var r=window_zone.getElementsByClassName('palette_simbols')[0];
-    if(d){r.value+=c}else{r.value=r.value.replace(new RegExp(c,'g'),"")}
-}
+function delete_img(){img_preview.style.display="none";frame.style.backgroundImage="none";}
+function addChar(d,c){var r=window_zone.getElementsByClassName('palette_simbols')[0];if(d){r.value+=c}else{r.value=r.value.replace(new RegExp(c,'g'),"")}}
 function applyChar(){
     range_font=[window_zone.getElementsByClassName('range')[0].value,window_zone.getElementsByClassName('range')[1].value];
     palette=window_zone.getElementsByClassName('palette_simbols')[0].value;
@@ -598,13 +623,21 @@ function select_symbol(n){
     var symbol_ele=document.getElementsByClassName('symbol')
     for (var e=0;e<symbol_ele.length;e++){if(e!=n){symbol_ele[e].style.backgroundColor="";}else{symbol_ele[e].style.backgroundColor="var(--cb)";}}
 }
+function get_selected(){
+    se=(selected[1]!=selected[3]&&selected[0]!=selected[2])?true:false;
+    if(se){
+        if(selected[0]>selected[2]){x1=selected[2];x2=selected[0]}else{x1=selected[0];x2=selected[2];}
+        if(selected[1]>selected[3]){y1=selected[3];y2=selected[1]}else{y1=selected[1];y2=selected[3];}
+    } return se;
+}
 function save_art(c){
     var text="";
     tr=canvas.getElementsByTagName('tr');
-    for(y=0;y<tr.length;y++){
+    if(!get_selected()){x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length;}else{x2++;y2++;}
+    for(y=y1;y<y2;y++){
         td=tr[y].getElementsByTagName('td');
-        for(x=0;x<td.length;x++){text+=td[x].textContent};
-        if(y<tr.length-1){text+="\n";}
+        for(x=x1;x<x2+1;x++){if(td[x]){text+=td[x].textContent}};
+        if(y<y2-1){text+="\n";}
     }
     if(c){
         var a=document.getElementById("get_file");
@@ -614,21 +647,38 @@ function save_art(c){
     } else if(window_zone.style.display=="grid"){
         state_save();window_zone.getElementsByClassName('edittext')[0].value=text;
     }else{
+        copydb=text.split("\n");
         copytext.value=text;
     	copytext.select();
     	copytext.setSelectionRange(0,99999)
     	document.execCommand("copy");
     }
 }
-var x1,x2,y1,y2;
+function paste_data(cx,cy,a){
+    var x,y,w=copydb[0].length,h=copydb.length;
+    tr=canvas.getElementsByTagName('tr');
+    get_selected();
+    if(se&&(x1<=cx&&cx<=x2)&&(y1<=cy&&cy<=y2)){if(w>(x2-x1)){w=(x2-x1)+1};if(h>(y2-y1)){h=(y2-y1)+1}cx=x1;cy=y1;}
+    for(y=0;y<h;y++){
+        td=tr[y+cy].getElementsByTagName('td');
+        for(x=0;x<w;x++){if(td.length>(x+cx)){if(a && copydb[y][x]!=" "){td[x+cx].innerHTML=copydb[y][x]}else if(!a){td[x+cx].innerHTML=copydb[y][x]}}}
+    }state_save();
+}
+function delete_data(){
+    get_selected();
+    if(se&&(x1<=targetcell[0]&&targetcell[0]<=x2)&&(y1<=targetcell[1]&&targetcell[1]<=y2)){
+        tr=canvas.getElementsByTagName('tr');
+        for(y=y1;y<y2+1;y++){
+            td=tr[y].getElementsByTagName('td');
+            for(x=x1;x<x2+1;x++){if(td.length>(x)){td[x].innerHTML=" ";}}
+        }state_save();
+    }
+}
 function start_fill(x,y,b){
     tr=canvas.getElementsByTagName('tr');
-    var se=(selected[1]!=selected[3]&&selected[0]!=selected[2])?true:false;
-    if(se){
-        if(selected[0]>selected[2]){x1=selected[2];x2=selected[0]}else{x1=selected[0];x2=selected[2];}
-        if(selected[1]>selected[3]){y1=selected[3];y2=selected[1]}else{y1=selected[1];y2=selected[3];}
-        if((x1<=x&&x<=x2)&&(y1<=y&&y<=y2)){fill(x,y,b);}
-    }else{x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length-1;fill(x,y,b);}
+    get_selected();
+    if(se&&(x1<=x&&x<=x2)&&(y1<=y&&y<=y2)){fill(x,y,b);}
+    else{x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length-1;fill(x,y,b);}
 }
 function fill(x,y,b){
     var ec=canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x];
@@ -646,7 +696,7 @@ function replaces(o,n){
     tr=canvas.getElementsByTagName('tr');
     for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){if(td[x].textContent==o){td[x].innerHTML=n}};}
 }
-function resize_canvs(){
+function resize_canvas(){
     var forms=document.forms.align;
     var sw,sh
     if(forms[0].checked){sh=2;sw=1}
@@ -721,11 +771,7 @@ function state_save(){
     back_up.unshift(text);
     if(back_up.length>100){back_up.pop();}
 }
-function correct_value(name){
-    if(name.includes("+")||name.includes("-")||name.includes("*")||name.includes("/")){
-        return parseInt(eval(name))
-    }else{return parseInt(name)}
-}
+function correct_value(name){if(name.includes("+")||name.includes("-")||name.includes("*")||name.includes("/")){return parseInt(eval(name))}else{return parseInt(name)}}
 function state_back(n){state_num+=n;if(state_num<0){state_num=0}else if(state_num>=back_up.length-1){state_num=back_up.length-1};db=back_up[state_num].split("\n");buildWorld();}
 document.addEventListener('DOMContentLoaded',function(){createPalette();active_brush.innerHTML=brush;if(localStorage.getItem("range_font")){range_font=JSON.parse(localStorage.getItem("range_font"))};if(localStorage.getItem("palette")){palette=localStorage.getItem("palette");createPalette();}})
 </script>
