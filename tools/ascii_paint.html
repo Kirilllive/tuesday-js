@@ -31,7 +31,9 @@
     --tx:#000;
     --ac:rgba(255,255,255,0.8);
     --at:rgba(240,240,240,0.8);
+    --bh:#efefff;
 }
+.cls-2 {stroke:#000;stroke-width: 8px;}
 body{height:100vh;width:100vw;}
 .icon{background-size:22px 22px;background-repeat:no-repeat;background-position:center;}
 .icon_new{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M223,52V249H35V6H176ZM223,53H176V6'/%3e%3c/svg%3e")}
@@ -60,6 +62,7 @@ body{height:100vh;width:100vw;}
 .icon_selected{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M47,5h7v7M5,12V5h7m0,49H5V47M54,33v7m0-21v7M40,54H33M33,5h7M19,5h7m0,49H19M5,40V33m0-7V19M54,47v7H47m7,7V54h7'/%3e%3c/svg%3e")}
 .icon_replaces{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M47,9L57,19,47,29M17,36L7,46,17,56M56,46H8M8,19H56'/%3e%3c/svg%3e")}
 .button_s{filter:var(--ft);height:22px;width:22px;background-size:22px 22px;background-repeat:no-repeat;background-position:center;cursor:pointer;}
+.icon_them{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3ccircle fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' cx='128' cy='128' r='120'/%3e%3cpath fill='%23000' stroke='%23000' stroke-width='16' stroke-linejoin='round' d='M128,215.175V38.825A88.18,88.18,0,0,1,128,215.175Z'/%3e%3c/svg%3e")}
 #asciiscreen{
     position:relative;
     box-shadow:0px 2px 24px var(--cs);
@@ -104,7 +107,7 @@ body{height:100vh;width:100vw;}
 	width:40px;
 }
 .button_menu{background-position:center;cursor:pointer;width:40px;height:40px;}
-.button_menu:hover{background-color:var(--cw);}
+.button_menu:hover{background-color:var(--bh);}
 #tool_zone{
     position:fixed;
     left:76px;top:50vh;
@@ -367,7 +370,8 @@ body{height:100vh;width:100vw;}
             <td title='Redo' onclick='state_back(-1);' class='icon button_menu icon_undo' style='transform:scaleX(-1);'></td>
             <td title='About ASCII Art paint' onclick="modal_window(true,'about');" class='icon button_menu icon_about'></td>
             <td title='Text input' onclick="modal_window(true,'text_edit');save_art(false)" class='icon button_menu icon_edit2'></td>
-            <td style='border-radius:0 0 16px 0;' title='Copy text' onclick="save_art(false);toast('Copied to clipboard');" class='icon button_menu icon_copy'></td>
+            <td title='Copy text' onclick="save_art(false);toast('Copied to clipboard');" class='icon button_menu icon_copy'></td>
+            <td title='light dark theme' onclick="if(!localStorage.getItem('them')){localStorage.setItem('them','1');set_ui(1);}else{localStorage.removeItem('them');set_ui(0);}" class='icon button_menu icon_them' style='border-radius:0 0 16px 0;'></td>
         </tr>
     </tbody>
 </table>
@@ -469,22 +473,24 @@ viewport.addEventListener('mousedown',function(e){
     }
 })
 let color_ui=[
-    ['#cec8e3','#efefff','rgba(110,95,165,0.25)','rgba(110,95,165,0.5)','#fff','none','#000','rgba(255,255,255,0.8)','rgba(240,240,240,0.8)'],
-    ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.5)','#26343d','invert(90%)','#ddd','rgba(0,0,0,0.75)','rgba(25,25,25,0.7)']
+    ['#cec8e3','#efefff','rgba(110,95,165,0.25)','rgba(110,95,165,0.5)','#fff','none','#000','rgba(255,255,255,0.8)','rgba(240,240,240,0.8)','#efefff'],
+    ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.5)','#26343d','invert(90%)','#ddd','rgba(0,0,0,0.75)','rgba(25,25,25,0.7)','#b5a49b']
 ]
 function set_ui(t){
     var r=document.querySelector(':root');
-    r.style.setProperty('--cb', color_ui[t][0]);
-    r.style.setProperty('--cw', color_ui[t][1]);
-    r.style.setProperty('--cs', color_ui[t][2]);
-    r.style.setProperty('--cm', color_ui[t][3]);
-    r.style.setProperty('--wn', color_ui[t][4]);
-    r.style.setProperty('--ft', color_ui[t][5]);
-    r.style.setProperty('--tx', color_ui[t][6]);
-    r.style.setProperty('--ac', color_ui[t][7]);
-    r.style.setProperty('--at', color_ui[t][8]);
+    r.style.setProperty('--cb',color_ui[t][0]);
+    r.style.setProperty('--cw',color_ui[t][1]);
+    r.style.setProperty('--cs',color_ui[t][2]);
+    r.style.setProperty('--cm',color_ui[t][3]);
+    r.style.setProperty('--wn',color_ui[t][4]);
+    r.style.setProperty('--ft',color_ui[t][5]);
+    r.style.setProperty('--tx',color_ui[t][6]);
+    r.style.setProperty('--ac',color_ui[t][7]);
+    r.style.setProperty('--at',color_ui[t][8]);
+    r.style.setProperty('--bh',color_ui[t][9]);
 }
-//set_ui(1);
+if(localStorage.getItem("them")){set_ui(1)}
+
 file.addEventListener('change',loadFiles);
 function canvas_scale(s){
     if(s==2){scale=Math.min(2,scale+0.05);}
