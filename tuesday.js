@@ -313,12 +313,14 @@ function name_block_update(){
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="visible";}
 		}
         if(arr_dialog.text && arr_dialog.text!='' && arr_dialog.text[languare]!=''){
+            tue_text_view.innerHTML="";
             tue_text_block.style.visibility='visible';
             values_in_text(false);
             clearTimeout(dialog_timeout);
             anim_text();
             if(arr_dialog.text.className){ tue_text_block.className=arr_dialog.text.className}
         } else if(arr_dialog.text_add && arr_dialog.text_add!='' && arr_dialog.text_add[languare]!=''){
+            tue_text_view.innerHTML="";
 			tue_text_block.style.visibility='visible';
 			values_in_text(true);
             clearTimeout(dialog_timeout);
