@@ -1926,7 +1926,7 @@ function data_past(){
     update_novel();state_save();
 }
 function scene_add(arr){
-	story_script[arr].push({"background_image":"","background_music":"","dialogs":[]});
+	story_script[arr].push({"background_image":"","background_music":"","dialogs":[{}]});
 	arr_l=story_script[arr]
 	arr_n=story_script[arr].length-1
 	scene_edit();
