@@ -11,6 +11,7 @@
 	margin:0;
 	padding:0;
 	border-spacing:0px;
+	outline:none;
 	-webkit-touch-callout:none;
 	-webkit-user-select:none;
 	-khtml-user-select:none;
@@ -273,8 +274,9 @@ body{height:100vh;width:100vw;}
             <tr><td onmousedown="save_art(false)" style="border-radius:8px 8px 0 0;">Copy</td></tr>
             <tr><td onmousedown="paste_data(targetcell[0],targetcell[1],true)">Paste</td></tr>
             <tr><td onmousedown="delete_data()">Delete</td></tr>
-            <tr><td onmousedown="save_art(false);delete_data()">Cut</td></tr>
             <tr><td onmousedown="crop_cells()" style="border-radius:0 0 8px 8px;">Crop</td></tr>
+            <tr><td onmousedown="save_art(false);delete_data()">Cut</td></tr>
+            <tr><td onmousedown="modal_window(true,'text_edit');save_art(false)" style="border-radius:0 0 8px 8px;">Text</td></tr>
             </tbody>
         </table>
     </div>
@@ -421,7 +423,7 @@ body{height:100vh;width:100vw;}
         <div class="window_title">Text input</div>
         <div class='window_close icon icon_close' onclick='modal_window(false)'></div>
         <textarea class="edittext"></textarea>
-        <div class="button" style="margin:14px;" onclick="db=window_zone.getElementsByClassName('edittext')[0].value.split('\n');buildWorld();modal_window(false);state_save();">Apply</div>
+        <div class="button" style="margin:14px;" onclick="text_apply();">Apply</div>
     </div>
 </div>
 <div id='palette_edit' style="display:none">
@@ -445,7 +447,7 @@ body{height:100vh;width:100vw;}
 </div>
 <div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
 <script>
-var range_font=[0,13313],palette="██▓▒░@#$^%()\"/|<=>_-.'";
+var range_font=[0,13313],palette="██▓▒░☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼`⌂ÇæÆ¢£¥₧ƒªº¿⌐¬½¼¡«»│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙⋅√ⁿ²■";//"██▓▒░@#$^%()\"/|<=>_-.'";
 var se,x1,x2,y1,y2;
 var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0],targetcell=[0,0],copydb="";
 var contextmenushow=false,doc;
@@ -537,6 +539,13 @@ function del_cells(u,s){
         for(x=l;x<td.length-r;x++){db[y]+=td[x].textContent};
     };buildWorld();state_save();
 }
+function text_apply(){
+    if(selected[1]!=selected[3]||selected[0]!=selected[2]){
+        var dbs=window_zone.getElementsByClassName('edittext')[0].value.split('\n');
+        for(var y=selected[1];y<selected[3]+1;y++){if(dbs[y-selected[1]]){db[y]=db[y].substr(0,selected[0])+dbs[y-selected[1]].substr(0,selected[2]-selected[0]+1)+db[y].substr(selected[2],db[y].length)}}
+    }else{db=window_zone.getElementsByClassName('edittext')[0].value.split('\n');}
+    buildWorld();modal_window(false);state_save();
+}
 function buildWorld(){
     var x,y,w=0;
     canvas.innerHTML="";
@@ -626,7 +635,7 @@ function show_img(){
     img_show.checked=true;
 }
 function delete_img(){img_preview.style.display="none";frame.style.backgroundImage="none";}
-function addChar(d,c){var r=window_zone.getElementsByClassName('palette_simbols')[0];if(d){r.value+=c}else{r.value=r.value.replace(new RegExp(c,'g'),"")}}
+function addChar(d,c){var r=window_zone.getElementsByClassName('palette_simbols')[0];if(d){var i=r.selectionStart;r.value=r.value.substring(0, i)+c+r.value.substring(i);r.selectionStart=i+1;}else{r.value=r.value.replace(new RegExp(c,'g'),"")}}
 function applyChar(){
     range_font=[window_zone.getElementsByClassName('range')[0].value,window_zone.getElementsByClassName('range')[1].value];
     palette=window_zone.getElementsByClassName('palette_simbols')[0].value;

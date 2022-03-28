@@ -1745,9 +1745,8 @@ function file_catalog(id,files,area,preview,arr){
             for(f=0;f<project_files.length;f++){for(t=0;t<files.length;t++){if(project_files[f][0].includes(files[t])){code+='<tr><td class="add_el add_file" title="'+project_files[f][0]+'" style="height:64px;padding:4px;border-bottom:1px solid var(--cb);" onclick="'+arr+'=\''+project_files[f][0]+'\';'+area+'.value=\''+project_files[f][0]+'\';menu_add.style.visibility=\'hidden\';"><table style="height:64px;"><tbody><tr><td width="40px" height="40px" class="icon_m icon_new"></td><td style="padding:0px 8px;word-break:break-all;">'+project_files[f][0]+'</td></tr></tbody></table></td></tr>'}}}
         };code+='</tbody></table></div></td></tr><tr><td colspan="5" style="border-radius:0 0 16px 16px;height:16px;"></td></tr></tbody></table></div>'
     }
-    menu_file=document.getElementById('add_element');
-    menu_file.innerHTML=code
-    menu_file.style.visibility='visible';
+    menu_add.innerHTML=code
+    menu_add.style.visibility='visible';
 }
 function add_audio(d){
     if(!story_script.parameters.sounds){story_script.parameters.sounds={};}
@@ -2587,9 +2586,8 @@ function dialog_char(){
         code+='<tr><td class="add_el add_file" title="'+((p)?p:'no translation ( '+Object.keys(story_script.parameters.characters)[t]+' )')+'" style="height:42px;padding:4px;border-bottom:1px solid var(--cb);" onclick="copy_arr.name=\''+Object.keys(story_script.parameters.characters)[t]+'\';dialog_char_update();menu_add.style.visibility=\'hidden\';"><table style="height:42px;"><tbody><tr><td class="icon icon_char" width="42px"></td><td style="padding:0px 8px;">'+((p)?p:'no translation ( '+Object.keys(story_script.parameters.characters)[t]+' )')+'</td></tr></tbody></table></td></tr>'
     }
     code+='</tbody></table></div></td></tr><tr><td colspan="5" style="border-radius:0 0 16px 16px;height:16px;"></td></tr></tbody></table></div>'
-    menu_file=document.getElementById('add_element');
-    menu_file.innerHTML=code
-    menu_file.style.visibility='visible';
+    menu_add.innerHTML=code
+    menu_add.style.visibility='visible';
 }
 function dialog_char_update(){
     var arr_s=story_script.parameters.characters[copy_arr.name]
@@ -2894,11 +2892,12 @@ function scen_edit_update(show){
         scroll_y=scene_view.scrollLeft;
         scen_editor(scen_data[0],scen_data[1],scen_data[2])}else{scen_element={};scen_editor_apply()}
 }
-var scene_scroll=false;
+var scene_scroll=false,script_scroll=[];
 function scen_editor(block,i,n){
     var arr_s=story_script[block][i].dialogs[n-1]
     var arr_t=story_script.parameters.text_panel
     var arr_p=story_script.parameters.name_panel
+    script_scroll=[html.scrollLeft,html.scrollTop]
     if(scen_data[2]<n){
         if(i>=story_script[block].length-1){i=story_script[block].length-1;}
         if(!arr_s){i+=1;n=1;}
@@ -3817,7 +3816,9 @@ function scen_editor_apply(){
     scene_maker.style.display="none";
     scroll_block=false;
     scene_screen=false;
-    html.style.overflow="auto"
+    html.style.overflow="auto";
+    html.scrollLeft=script_scroll[0];
+    html.scrollTop=script_scroll[1];
     update_novel();
 }
 function variables_set_edit(){
@@ -4488,7 +4489,7 @@ function make_resizable(s,f){
                 if(width>minSize){s.style.width=width+'px'}
             }else if(sizer.classList.contains('rotate')) {
                 let b=s.getBoundingClientRect();original_x=b.left+b.width/2;original_y=b.top+b.height/2;
-                angle=Math.atan2(e.pageX-original_x,-(e.pageY-original_y))*(180/Math.PI);
+                angle=Math.atan2((e.pageX-html.scrollLeft)-original_x,-((e.pageY-html.scrollTop)-original_y))*(180/Math.PI);
                 s.style.transform='rotate('+angle+'deg)';
             };
         };
@@ -4546,7 +4547,7 @@ function make_resizable(s,f){
                 if(width>minSize){s.style.width=width+'px'}
             }else if(sizer.classList.contains('rotate')) {
                 let b=s.getBoundingClientRect();original_x=b.left+b.width/2;original_y=b.top+b.height/2;
-                angle=Math.atan2(e.touches[0].pageX-original_x,-(e.touches[0].pageY-original_y))*(180/Math.PI);
+                angle=Math.atan2((e.touches[0].pageX-html.scrollLeft)-original_x,-((e.touches[0].pageY-html.scrollTop)-original_y))*(180/Math.PI);
                 s.style.transform='rotate('+angle+'deg)';
             };
         };
@@ -4624,9 +4625,8 @@ function edit_color(n,c){
         +'<td><input id="text_alpha" onchange="this.value=correct_value(this.value,true);color_alpha.value=this.value;color_hex();" class="input_text" type="text"></td>'
         +'<td><input class="input_slider input_slider_progress" oninput="color_hex();" type="range" value="126" min="0" max="1" step="0.01" style="width:100%;" id="color_alpha"></td>'
     +'</tr></tbody></table></form><br><table class="big_button" width="256px" onclick="apply_color(\''+n+'\');menu_add.style.visibility=\'hidden\';"><tbody><tr><td width="42px" class="icon icon_ok"></td><td align="center">Apply</td><td width="42px"></td></tr></tbody></table></div>'
-    menu_file=document.getElementById('add_element');
-    menu_file.innerHTML=code
-    menu_file.style.visibility='visible';
+    menu_add.innerHTML=code
+    menu_add.style.visibility='visible';
     if(c.includes('#')){color_rgb(c);}else{color_rgb_parse()}
 }
 function apply_color(n){
