@@ -541,8 +541,8 @@ function del_cells(u,s){
 }
 function text_apply(){
     if(selected[1]!=selected[3]||selected[0]!=selected[2]){
-        var dbs=window_zone.getElementsByClassName('edittext')[0].value.split('\n');
-        for(var y=selected[1];y<selected[3]+1;y++){if(dbs[y-selected[1]]){db[y]=db[y].substr(0,selected[0])+dbs[y-selected[1]].substr(0,selected[2]-selected[0]+1)+db[y].substr(selected[2],db[y].length)}}
+        var dbs=window_zone.getElementsByClassName('edittext')[0].value.split('\n'),s=selected[2]-selected[0]+1;
+        for(var y=selected[1];y<selected[3]+1;y++){if(dbs[y-selected[1]]){db[y]=db[y].substr(0,selected[0])+dbs[y-selected[1]].substr(0,s).padEnd(s,' ')+db[y].substr(selected[2]+1,db[y].length)}}
     }else{db=window_zone.getElementsByClassName('edittext')[0].value.split('\n');}
     buildWorld();modal_window(false);state_save();
 }
@@ -669,7 +669,7 @@ function get_selected(){
 function save_art(c){
     var text="";
     tr=canvas.getElementsByTagName('tr');
-    if(!get_selected()){x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length;}else{x2++;y2++;}
+    if(!get_selected()){x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length;}else{y2++;}
     for(y=y1;y<y2;y++){
         td=tr[y].getElementsByTagName('td');
         for(x=x1;x<x2+1;x++){if(td[x]){text+=td[x].textContent}};
