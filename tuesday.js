@@ -557,12 +557,12 @@ function name_block_update(){
                     else if (g == "tue_load_autosave"){choice.setAttribute("onclick",v+"load_stag('auto');"+add_sound());}
                     else if (g == "load"||g == "tue_load"){choice.setAttribute("onclick",v+"load_stag('bookmark');"+add_sound());}
                     else if (g == "tue_save"){choice.setAttribute("onclick",v+"save_stag('bookmark');"+add_sound());}
-                    else if (g == "tue_no"||g == ""){choice.setAttribute("onclick",v)}
-                    else if (g == "tue_fullScreen"){choice.setAttribute("onclick",v+"full_screen();");}
-                    else if (g == "tue_home"){choice.setAttribute("onclick",v+'go_to("'+story_json.parameters.launch_story+'");');}
-                    else if (g == "tue_back"){choice.setAttribute("onclick",v+"back_story();");}
-                    else if (g == "tue_next"){choice.setAttribute("onclick",v+"go_story();");}
-                    else if (g != 8&&arr_dialog.choice[i].text_from){choice.setAttribute("onclick",v+"tue_story='"+arr_dialog.choice[i].go_to+"';scene=0;dialog=0;creation_dialog();");}
+                    else if (g == "tue_no"||g == ""){choice.setAttribute("onclick",v+add_sound())}
+                    else if (g == "tue_fullScreen"){choice.setAttribute("onclick",v+"full_screen();"+add_sound());}
+                    else if (g == "tue_home"){choice.setAttribute("onclick",v+'go_to("'+story_json.parameters.launch_story+'");'+add_sound());}
+                    else if (g == "tue_back"){choice.setAttribute("onclick",v+"back_story();"+add_sound());}
+                    else if (g == "tue_next"){choice.setAttribute("onclick",v+"go_story();"+add_sound());}
+                    else if (g != 8&&arr_dialog.choice[i].text_from){choice.setAttribute("onclick",v+"tue_story='"+arr_dialog.choice[i].go_to+"';scene=0;dialog=0;creation_dialog();"+add_sound());}
                     else if (g != 8){choice.setAttribute("onclick",v+"go_to('"+g+"');"+add_sound())}
                 } else {choice.setAttribute("onclick",v+"go_story(true);del_element('tue_choice');"+add_sound());}
                 tuesday.appendChild(choice);
