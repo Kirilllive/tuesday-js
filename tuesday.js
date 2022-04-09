@@ -193,6 +193,7 @@ function name_block_update(){
             button.innerHTML=values_button(art_data(story_json.parameters.buttons[i].text))
             button.style.padding=story_json.parameters.buttons[i].indent_text;
             button.style.display="flex";
+            button.style.whiteSpace="pre-wrap";
             button.style.justifyContent=((story_json.parameters.buttons[i].align)?story_json.parameters.buttons[i].align[0]:"center");
             button.style.alignItems=((story_json.parameters.buttons[i].align)?story_json.parameters.buttons[i].align[1]:"center");
             button.style.color=story_json.parameters.buttons[i].color_text;
@@ -299,12 +300,9 @@ function name_block_update(){
     }
 } function creation_dialog(){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog];
-		if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
-		else if(controll){document.getElementById("tue_next").style.visibility="visible";}
-		if(scene == 0 && dialog == 0 && !arr_dialog.back_to){document.getElementById('tue_back').style.visibility='hidden'}
-		else if(controll){document.getElementById("tue_back").style.visibility="visible";}
-		if(arr_dialog.controll == 'hidden' || arr_dialog.controll == 'hidden_here'){
-            if (arr_dialog.controll != 'hidden_here') {controll=false;}
+		if(arr_dialog.controll == 'hidden' || arr_dialog.controll == 'hidden_here' || (tue_story == story_json.parameters.launch_story && !arr_dialog.text && dialog==0 && scene==0)){
+            if (dialog==0 && scene==0){controll=true;}
+            else if (arr_dialog.controll != 'hidden_here') {controll=false;}
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="hidden";}
 		} else if(arr_dialog.controll == 'visible' || controll==true) {
@@ -312,6 +310,10 @@ function name_block_update(){
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="visible";}
 		}
+        if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
+		else if(controll){document.getElementById("tue_next").style.visibility="visible";}
+		if(scene == 0 && dialog == 0 && !arr_dialog.back_to){document.getElementById('tue_back').style.visibility='hidden'}
+		else if(controll){document.getElementById("tue_back").style.visibility="visible";}
         if(arr_dialog.text && arr_dialog.text!='' && arr_dialog.text[languare]!=''){
             tue_text_view.innerHTML="";
             tue_text_block.style.visibility='visible';
@@ -492,6 +494,7 @@ function name_block_update(){
                 choice.classList.add("tue_choice");
                 choice.style.position="absolute";
                 choice.style.backgroundColor=arr_dialog.choice[i].color;
+                choice.style.whiteSpace="pre-wrap";
                 choice.style.backgroundRepeat="no-repeat";
                 choice.style.backgroundPosition=((arr_dialog.choice[i].art_align)?arr_dialog.choice[i].art_align[0]+" "+arr_dialog.choice[i].art_align[1]:"center");
                 if(story_json.parameters.cursors&&story_json.parameters.cursors.choice){choice.style.cursor="url("+art_data(story_json.parameters.cursors.choice[0])+") "+story_json.parameters.cursors.choice[1]+" "+story_json.parameters.cursors.choice[2]+",auto";}

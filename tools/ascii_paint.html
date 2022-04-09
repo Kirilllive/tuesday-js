@@ -32,6 +32,7 @@
     --ac:rgba(255,255,255,0.8);
     --at:rgba(240,240,240,0.8);
     --bh:#efefff;
+    --font:Arial;
 }
 .cls-2 {stroke:#000;stroke-width: 8px;}
 body{height:100vh;width:100vw;}
@@ -83,7 +84,7 @@ body{height:100vh;width:100vw;}
     border-width:1px;
     border-color:var(--at);
     background-color:var(--ac);
-    font-family:Lucida Console,monospace;
+    font-family:var(--font),monospace;
 }
 #asciicanvas td:hover{background-color:var(--cb);}
 #menu_panel{
@@ -154,6 +155,7 @@ body{height:100vh;width:100vw;}
     width:32px;
     display:grid;justify-content:center;align-items:center;
     float:left;
+    font-family:var(--font),monospace;
 }
 .symbol:hover{background-color:var(--cw);}
 .edittext{
@@ -236,6 +238,10 @@ body{height:100vh;width:100vw;}
 }
 #context_menu td{height:28px;padding-left:10px;}
 #context_menu td:hover{background-color:var(--cw);}
+input[type=range]{appearance:none;height:8px;background:var(--cw);outline:none;border-radius:8px;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cb);cursor:pointer;border:3px solid var(--wn);}
+input[type=range]::-moz-range-thumb{-moz-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--cb);cursor:pointer;border:3px solid var(--wn);}
+input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;background: var(--cb);outline:none;border-radius:8px;}
 </style>
 </head>
 <body onload="new_canvas(60,30);">
@@ -284,16 +290,24 @@ body{height:100vh;width:100vw;}
 </div>
 </td><td style="height:40px;background-color:var(--wn);"> </td></tr>
 <tr><td style="height:calc(100vh - 80px);">
-    <div id="right_menu" style="height:calc(100vh - 80px);width:256px;overflow-y:scroll;background-color:var(--wn);">
+    <div id="right_menu" style="height:calc(100vh - 80px);width:256px;overflow-y:scroll;background-color:var(--wn);text-align:center;">
+        <select id="fonts" class="input_text" style="width:calc(100% - 28px);margin-bottom:16px;" oninput='root_style.style.setProperty("--font",this.value);'>
+            <option value="Arial">Arial</option>
+            <option value="Lucida Console" selected>Lucida Console</option>
+        </select>
         <div id="symbols_view" style="display:inline-block;"></div>
         <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="modal_window(true,'palette_edit');getallChar()">Edit symbol palette</div>
         <div id="img_preview" style="display:none;width:100%;text-align:center;border-top:1px solid var(--cb);"><br>
-            <img style="width:90%;height:auto;border-radius:8px;text-align:center;cursor:pointer;image-rendering:pixelated;" onclick="file.click();"><br>
+            <img id="img_icon" style="width:90%;height:auto;border-radius:8px;text-align:center;cursor:pointer;image-rendering:pixelated;" onclick="file.click();"><br>
+            <div style="text-align:left;width:calc(100% - 28px);margin:14px 0 0 14px;">Brightness</div>
+            <input type="range" id="brightness" oninput="img_icon.style.filter='contrast('+contrast.value+'%) brightness('+this.value+'%)'" name="vol" min="0" max="500" value="100" step='1' style="margin:14px;width:calc(100% - 28px);">
+            <div style="text-align:left;width:calc(100% - 28px);margin-left:14px;">Contrast</div>
+            <input type="range" id="contrast" oninput="img_icon.style.filter='contrast('+this.value+'%) brightness('+brightness.value+'%)'" name="vol" min="0" max="500" value="100" step='1' style="margin:14px;width:calc(100% - 28px);">
             <table style="margin:14px;width:calc(100% - 28px);">
             <tbody>
                 <tr>
                     <td style="width:33%;" align="center"><input id="img_show" title="Show / Hide image" class="button_s show" checked onchange="frame.style.backgroundSize=(this.checked)?'100% 100%':'0% 0%'" type="checkbox"></td>
-                    <td style="" align="center"><div title="original image size" class="button_s icon_size" onclick="original_size();"></div></td>
+                    <td align="center"><div title="original image size" class="button_s icon_size" onclick="original_size();"></div></td>
                     <td style="width:33%;" align="center"><div title="Delete image" class="button_s icon_del" onclick="delete_img();"></div></td>
                 </tr>
             </tbody>
@@ -434,6 +448,9 @@ body{height:100vh;width:100vw;}
         <td><input type="text" class="input_text palette_simbols"></td>
         <td style="width:128px;" rowspan="3" valign="top">
         <table style="border-collapse: collapse; width: 100%; margin-top:40px;" border="1"><tbody><tr>
+        <td colspan="2" align="center">
+        <select id="fonts_palette" class="input_text" style="padding:0 10px;margin-bottom:16px;" oninput='root_style.style.setProperty("--font",this.value);'></select>
+        </td></tr>
         <td colspan="2" align="center">Character range</td></tr>
         <tr><td style="width:32px;padding-right:10px;" align="right">from</td>
         <td><input type="text" class="input_text range"></td></tr>
@@ -449,7 +466,7 @@ body{height:100vh;width:100vw;}
 <script>
 var range_font=[0,13313],palette="██▓▒░☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼`⌂ÇæÆ¢£¥₧ƒªº¿⌐¬½¼¡«»│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙⋅√ⁿ²■";//"██▓▒░@#$^%()\"/|<=>_-.'";
 var se,x1,x2,y1,y2;
-var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0],targetcell=[0,0],copydb="";
+var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0],targetcell=[0,0],copydb="",root_style=document.querySelector(':root');
 var contextmenushow=false,doc;
 if(asciicanvas.addEventListener){asciicanvas.addEventListener('contextmenu',function(e){menu_right(e);e.preventDefault();},false);}
 else{asciicanvas.attachEvent('oncontextmenu',function(){window.event.returnValue=false;});}
@@ -478,20 +495,18 @@ let color_ui=[
     ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.5)','#26343d','invert(90%)','#ddd','rgba(0,0,0,0.75)','rgba(25,25,25,0.7)','#b5a49b']
 ]
 function set_ui(t){
-    var r=document.querySelector(':root');
-    r.style.setProperty('--cb',color_ui[t][0]);
-    r.style.setProperty('--cw',color_ui[t][1]);
-    r.style.setProperty('--cs',color_ui[t][2]);
-    r.style.setProperty('--cm',color_ui[t][3]);
-    r.style.setProperty('--wn',color_ui[t][4]);
-    r.style.setProperty('--ft',color_ui[t][5]);
-    r.style.setProperty('--tx',color_ui[t][6]);
-    r.style.setProperty('--ac',color_ui[t][7]);
-    r.style.setProperty('--at',color_ui[t][8]);
-    r.style.setProperty('--bh',color_ui[t][9]);
+    root_style.style.setProperty('--cb',color_ui[t][0]);
+    root_style.style.setProperty('--cw',color_ui[t][1]);
+    root_style.style.setProperty('--cs',color_ui[t][2]);
+    root_style.style.setProperty('--cm',color_ui[t][3]);
+    root_style.style.setProperty('--wn',color_ui[t][4]);
+    root_style.style.setProperty('--ft',color_ui[t][5]);
+    root_style.style.setProperty('--tx',color_ui[t][6]);
+    root_style.style.setProperty('--ac',color_ui[t][7]);
+    root_style.style.setProperty('--at',color_ui[t][8]);
+    root_style.style.setProperty('--bh',color_ui[t][9]);
 }
 if(localStorage.getItem("them")){set_ui(1)}
-
 file.addEventListener('change',loadFiles);
 function canvas_scale(s){
     if(s==2){scale=Math.min(2,scale+0.05);}
@@ -581,13 +596,19 @@ function select_arr(){
     };
 }
 window.addEventListener("DOMContentLoaded", function(){
-    if (window.File&&window.FileReader&&window.FileList&&window.Blob) {
+    if (window.File&&window.FileReader&&window.FileList&&window.Blob){
         window.addEventListener("dragover",function(e){e.preventDefault();e.stopPropagation();});
         window.addEventListener("drop",function(e){
             e.preventDefault();
             e.stopPropagation();
             if(e.dataTransfer.files[0].type.includes("image")){
                 img=e.dataTransfer.files[0];show_img();
+            }else if(e.dataTransfer.files[0].name.includes(".ttf")||e.dataTransfer.files[0].name.includes(".woff2")||e.dataTransfer.files[0].name.includes(".woff")){
+                var n=e.dataTransfer.files[0].name.split('.',1);
+                root_style.style.setProperty("--font",n);
+                let font = new FontFace(n, "url("+URL.createObjectURL(e.dataTransfer.files[0])+")");
+                font.load().then(function(loadedFont){document.fonts.add(loadedFont);}).catch(function(error){});
+                add_font(n);
             }else{
                 var xmlhttp=new XMLHttpRequest();
                 xmlhttp.onreadystatechange=function(){if(this.readyState==4&&(this.status === 200 || this.status == 0)){db=this.responseText.split("\n");buildWorld();asciiview.scrollIntoView({block: "center",inline: "center"});back_up=[];state_save();toast(e.dataTransfer.files[0].name+' file is open')}}
@@ -597,10 +618,17 @@ window.addEventListener("DOMContentLoaded", function(){
             };
         });
     }
+    fonts.selectedIndex=0;
 });
 function loadFiles(e){
     if(e.target.files[0].type.includes("image")){
         img=e.target.files[0];show_img();
+    }else if(e.target.files[0].name.includes(".ttf")||e.target.files[0].name.includes(".woff2")||e.target.files[0].name.includes(".woff")){
+        var n=e.target.files[0].name.split('.',1);
+        root_style.style.setProperty("--font",n);
+        let font = new FontFace(n, "url("+URL.createObjectURL(e.target.files[0])+")");
+        font.load().then(function(loadedFont){document.fonts.add(loadedFont);}).catch(function(error){});
+        add_font(n);
     }else{
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.onreadystatechange=function(){if(this.readyState==4&&(this.status === 200 || this.status == 0)){db=this.responseText.split("\n");buildWorld();asciiview.scrollIntoView({block: "center",inline: "center"});back_up=[];state_save();selected=[0,0,0,0];select_arr();toast(e.target.files[0].name+' file is open')}}
@@ -609,17 +637,26 @@ function loadFiles(e){
         xmlhttp.onerror=function(){if(this.status==0){}}
     };
 }
+function add_font(n){
+    var o=document.createElement('option');
+    o.value=n;
+    o.innerHTML=n;
+    fonts.appendChild(o);
+    fonts.selectedIndex=fonts.options.length-1
+}
 function getallChar(){
     var div,s,t,p,e=window_zone.getElementsByClassName('all_simbols')[0],r=window_zone.getElementsByClassName('palette_simbols')[0];
     r.value=palette;
     window_zone.getElementsByClassName('range')[0].value=range_font[0];
     window_zone.getElementsByClassName('range')[1].value=range_font[1];
+    fonts_palette.innerHTML=fonts.innerHTML;
+    fonts_palette.selectedIndex = fonts.selectedIndex;
     e.innerHTML="";
-    for (var c=range_font[0];c<range_font[1];c++){ //13313
+    for (var c=range_font[0];c<range_font[1];c++){
         s=String.fromCharCode(c)
         p=false;for(t=0;t<palette.length;t++){if(palette[t]==s){p=true;break}}
         label=document.createElement("label");
-        label.innerHTML="<input type='checkbox' onchange='addChar(this.checked,\""+s+"\");' "+((p)?"checked":"")+"><span>"+s+"</span>"
+        label.innerHTML="<input type='checkbox' onchange='addChar(this.checked,\""+s+"\");' "+((p)?"checked":"")+"><span class='symbol'>"+s+"</span>"
         label.classList.add("symbol_select");
         e.appendChild(label);
     }
@@ -633,6 +670,9 @@ function show_img(){
     img_preview.style.display="block";
     img_preview.getElementsByTagName('img')[0].src=URL.createObjectURL(img);
     img_show.checked=true;
+    img_icon.style.filter="contrast(100%) brightness(100%)";
+    brightness.value=100;
+    contrast.value=100;
 }
 function delete_img(){img_preview.style.display="none";frame.style.backgroundImage="none";}
 function addChar(d,c){var r=window_zone.getElementsByClassName('palette_simbols')[0];if(d){var i=r.selectionStart;r.value=r.value.substring(0, i)+c+r.value.substring(i);r.selectionStart=i+1;}else{r.value=r.value.replace(new RegExp(c,'g'),"")}}
@@ -641,6 +681,7 @@ function applyChar(){
     palette=window_zone.getElementsByClassName('palette_simbols')[0].value;
     localStorage.setItem("palette",palette);
     createPalette();localStorage.setItem("range_font",JSON.stringify(range_font));
+    fonts.selectedIndex=fonts_palette.selectedIndex;
 }
 function createPalette(){
     var div,s;
@@ -766,7 +807,8 @@ function img_to_ascii(){
         image.onload=function(){
             var tr=canvas.getElementsByTagName('tr');
             const w=tr[0].getElementsByTagName('td').length,h=tr.length;
-            preview.width=w;preview.height=h;context.drawImage(image,0,0,w,h);
+            img_icon.style.filter='contrast('+contrast.value+'%) brightness('+brightness.value+'%)'
+            preview.width=w;preview.height=h;context.filter=img_icon.style.filter;context.drawImage(image,0,0,w,h);
             const grayScales=convertToGrayScales(context,w,h);
             drawAscii(grayScales,w);
         };image.src=l.target.result;
