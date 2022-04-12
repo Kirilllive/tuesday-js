@@ -579,7 +579,7 @@ function modal_window(action, i) {
     var window_zone = document.getElementById("window_zone");
     if (action == 'close') {
         window_zone.style.visibility = "hidden"
-        window_zone.style.backgroundColor = 'rgba(110,95,165,0)';
+        window_zone.style.backgroundColor = null;
         document.body.style.overflow = 'scroll';
         var child = window_zone.lastElementChild;
         while (child) {
@@ -587,7 +587,6 @@ function modal_window(action, i) {
             child = window_zone.lastElementChild;
         }
     } else if (action == 'open') {
-        var name = window.location.hash.replace('#', '');
         window_zone.style.visibility = "visible";
         window_zone.scrollTo(0, 0);
         window_zone.style.backgroundColor = 'rgba(110,95,165,0.75)';
