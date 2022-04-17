@@ -34,6 +34,7 @@
     --bh:#efefff;
     --font:Arial;
 }
+option{color:#000;}
 .cls-2 {stroke:#000;stroke-width: 8px;}
 body{height:100vh;width:100vw;}
 .icon{background-size:22px 22px;background-repeat:no-repeat;background-position:center;}
@@ -296,10 +297,15 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
             <option value="Lucida Console" selected>Lucida Console</option>
         </select>
         <div id="symbols_view" style="display:inline-block;"></div>
-        <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="modal_window(true,'palette_edit');getallChar()">Edit symbol palette</div>
+        <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="modal_window(true,'palette_edit');edit_p=false;getallChar()">Edit symbol palette</div>
         <div id="img_preview" style="display:none;width:100%;text-align:center;border-top:1px solid var(--cb);"><br>
-            <img id="img_icon" style="width:90%;height:auto;border-radius:8px;text-align:center;cursor:pointer;image-rendering:pixelated;" onclick="file.click();"><br>
-            <div style="text-align:left;width:calc(100% - 28px);margin:14px 0 0 14px;">Brightness</div>
+            <img id="img_icon" style="background-color:var(--cw);width:90%;height:auto;border-radius:8px;text-align:center;cursor:pointer;image-rendering:pixelated;" onclick="file.click();"><br>
+            <div style="text-align:left;width:calc(100% - 28px);margin:14px 0 0 14px;">Palette</div>
+            <div style="margin:0 14px 14px 14px;display:grid;grid-template-columns: auto 32px;width:calc(100% - 28px);">
+                <input type="text" id="art_palette" style="width:100%;font-family:var(--font),monospace;" class="input_text palette_simbols" onchange="localStorage.setItem('art_palette',this.value);">
+                <div class="button_s icon_edit2" style="background-position:right;width:32px;" onclick="modal_window(true,'palette_edit');edit_p=true;getallChar()"></div>
+            </div>
+            <div style="text-align:left;width:calc(100% - 28px);margin-left:14px;">Brightness</div>
             <input type="range" id="brightness" oninput="img_icon.style.filter='contrast('+contrast.value+'%) brightness('+this.value+'%)'" name="vol" min="0" max="500" value="100" step='1' style="margin:14px;width:calc(100% - 28px);">
             <div style="text-align:left;width:calc(100% - 28px);margin-left:14px;">Contrast</div>
             <input type="range" id="contrast" oninput="img_icon.style.filter='contrast('+this.value+'%) brightness('+brightness.value+'%)'" name="vol" min="0" max="500" value="100" step='1' style="margin:14px;width:calc(100% - 28px);">
@@ -445,7 +451,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
         <div class='window_close icon icon_close' onclick='modal_window(false)'></div>
         <div class="window_title">Edit symbol palette</div>
         <table style="width:100%;"><tbody><tr>
-        <td><input type="text" class="input_text palette_simbols"></td>
+        <td><input type="text" class="input_text palette_simbols" style="font-family:var(--font),monospace;"></td>
         <td style="width:128px;" rowspan="3" valign="top">
         <table style="border-collapse: collapse; width: 100%; margin-top:40px;" border="1"><tbody><tr>
         <td colspan="2" align="center">
@@ -456,15 +462,15 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
         <td><input type="text" class="input_text range"></td></tr>
         <tr><td align="right" style="padding-right:10px;">to</td>
         <td><input type="text" class="input_text range"></td></tr>
-        <tr><td colspan="2"><div class="button" style="margin:14px;" onclick="palette=window_zone.getElementsByClassName('palette_simbols')[0].value;range_font=[parseInt(window_zone.getElementsByClassName('range')[0].value),parseInt(window_zone.getElementsByClassName('range')[1].value)];getallChar();">Update</div></td>
+        <tr><td colspan="2"><div class="button" style="margin:14px;" onclick="if(edit_p){art_palette.value=window_zone.getElementsByClassName('palette_simbols')[0].value}else{palette=window_zone.getElementsByClassName('palette_simbols')[0].value}range_font=[parseInt(window_zone.getElementsByClassName('range')[0].value),parseInt(window_zone.getElementsByClassName('range')[1].value)];getallChar();">Update</div></td>
         </tr></tbody></table></td></tr>
         <tr><td><div class="all_simbols" style="height:calc(100vh - 256px);width:100%;overflow:auto;border-bottom:1px solid var(--cb);"></div></td></tr></tbody></table>
-        <div class="button" style="margin-top:16px;" onclick="applyChar();modal_window(false);">Apply</div>
+        <div id="palette_apply" class="button" style="margin-top:16px;" onclick="applyChar();modal_window(false);">Apply</div>
     </div>
 </div>
 <div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
 <script>
-var range_font=[0,13313],palette="██▓▒░☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼`⌂ÇæÆ¢£¥₧ƒªº¿⌐¬½¼¡«»│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙⋅√ⁿ²■";//"██▓▒░@#$^%()\"/|<=>_-.'";
+var range_font=[0,13313],edit_p=false,palette="██▓▒░☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼`⌂ÇæÆ¢£¥₧ƒªº¿⌐¬½¼¡«»│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙⋅√ⁿ²■";
 var se,x1,x2,y1,y2;
 var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0],targetcell=[0,0],copydb="",root_style=document.querySelector(':root');
 var contextmenushow=false,doc;
@@ -645,16 +651,17 @@ function add_font(n){
     fonts.selectedIndex=fonts.options.length-1
 }
 function getallChar(){
-    var div,s,t,p,e=window_zone.getElementsByClassName('all_simbols')[0],r=window_zone.getElementsByClassName('palette_simbols')[0];
-    r.value=palette;
+    var div,s,t,p,e=window_zone.getElementsByClassName('all_simbols')[0],r=window_zone.getElementsByClassName('palette_simbols')[0],f=edit_p?art_palette.value:palette;
+    r.value=f;
     window_zone.getElementsByClassName('range')[0].value=range_font[0];
     window_zone.getElementsByClassName('range')[1].value=range_font[1];
     fonts_palette.innerHTML=fonts.innerHTML;
-    fonts_palette.selectedIndex = fonts.selectedIndex;
+    fonts_palette.selectedIndex=fonts.selectedIndex;
     e.innerHTML="";
+    palette_apply.setAttribute("onclick","applyChar();modal_window(false);");
     for (var c=range_font[0];c<range_font[1];c++){
         s=String.fromCharCode(c)
-        p=false;for(t=0;t<palette.length;t++){if(palette[t]==s){p=true;break}}
+        p=false;for(t=0;t<f.length;t++){if(f[t]==s){p=true;break}}
         label=document.createElement("label");
         label.innerHTML="<input type='checkbox' onchange='addChar(this.checked,\""+s+"\");' "+((p)?"checked":"")+"><span class='symbol'>"+s+"</span>"
         label.classList.add("symbol_select");
@@ -671,17 +678,25 @@ function show_img(){
     img_preview.getElementsByTagName('img')[0].src=URL.createObjectURL(img);
     img_show.checked=true;
     img_icon.style.filter="contrast(100%) brightness(100%)";
+    if(localStorage.getItem("art_palette")){art_palette.value=localStorage.getItem("art_palette");}else{art_palette.value="$#&?=+-. ";}
     brightness.value=100;
     contrast.value=100;
 }
 function delete_img(){img_preview.style.display="none";frame.style.backgroundImage="none";}
 function addChar(d,c){var r=window_zone.getElementsByClassName('palette_simbols')[0];if(d){var i=r.selectionStart;r.value=r.value.substring(0, i)+c+r.value.substring(i);r.selectionStart=i+1;}else{r.value=r.value.replace(new RegExp(c,'g'),"")}}
 function applyChar(){
-    range_font=[window_zone.getElementsByClassName('range')[0].value,window_zone.getElementsByClassName('range')[1].value];
-    palette=window_zone.getElementsByClassName('palette_simbols')[0].value;
-    localStorage.setItem("palette",palette);
-    createPalette();localStorage.setItem("range_font",JSON.stringify(range_font));
-    fonts.selectedIndex=fonts_palette.selectedIndex;
+    if(edit_p){
+        var w=window_zone.getElementsByClassName('palette_simbols')[0].value;
+        art_palette.value=w;
+        localStorage.setItem('art_palette',w);
+    }else{
+        range_font=[window_zone.getElementsByClassName('range')[0].value,window_zone.getElementsByClassName('range')[1].value];
+        palette=window_zone.getElementsByClassName('palette_simbols')[0].value;
+        localStorage.setItem("palette",palette);
+        createPalette();localStorage.setItem("range_font",JSON.stringify(range_font));
+        fonts.selectedIndex=fonts_palette.selectedIndex;
+    
+    }
 }
 function createPalette(){
     var div,s;
@@ -808,7 +823,13 @@ function img_to_ascii(){
             var tr=canvas.getElementsByTagName('tr');
             const w=tr[0].getElementsByTagName('td').length,h=tr.length;
             img_icon.style.filter='contrast('+contrast.value+'%) brightness('+brightness.value+'%)'
-            preview.width=w;preview.height=h;context.filter=img_icon.style.filter;context.drawImage(image,0,0,w,h);
+            preview.width=w;preview.height=h;
+            context.filter=img_icon.style.filter;
+            context.beginPath();
+            context.rect(0,0,w,h);
+            context.fillStyle="#fff";
+            context.fill();
+            context.drawImage(image,0,0,w,h);
             const grayScales=convertToGrayScales(context,w,h);
             drawAscii(grayScales,w);
         };image.src=l.target.result;
@@ -827,7 +848,7 @@ const convertToGrayScales=(context, width, height)=>{
     context.putImageData(imageData,0,0);
     return grayScales;
 };
-const getCharacterForGrayScale=grayScale=>palette[Math.ceil((palette.length-1)*grayScale/255)];
+const getCharacterForGrayScale=grayScale=>art_palette.value[Math.ceil((art_palette.value.length-1)*grayScale/255)];
 const drawAscii=function(grayScales,width){
     const ascii=grayScales.reduce((asciiImage,grayScale,index)=>{
         let nextChars=getCharacterForGrayScale(grayScale);
