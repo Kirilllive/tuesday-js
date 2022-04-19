@@ -426,7 +426,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
     <div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><br><br>
         <table style='border-spacing:10px;border-collapse:separate; width: 100%;'>
             <tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr>
-            <tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>https://kirilllive.github.io/tuesday-js</a></td></tr>
+            <tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://github.com/Kirilllive/ASCII_Art_Paint' target='_blank'>https://github.com/Kirilllive/ASCII_Art_Paint</a></td></tr>
         </table><br><br><p>Thanks for the help from users</p><hr><br>
         <table width='100%' align='center'><tbody><tr>
             <td width='25%' align='center'><a href='https://twitter.com/laurentgontier' target='_blank'>Laurent Gontier</a></td>
@@ -453,7 +453,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
         <table style="width:100%;"><tbody><tr>
         <td><input type="text" class="input_text palette_simbols" style="font-family:var(--font),monospace;"></td>
         <td style="width:128px;" rowspan="3" valign="top">
-        <table style="border-collapse: collapse; width: 100%; margin-top:40px;" border="1"><tbody><tr>
+        <table style="border-collapse: collapse; width: 100%; margin-top:40px;"><tbody><tr>
         <td colspan="2" align="center">
         <select id="fonts_palette" class="input_text" style="padding:0 10px;margin-bottom:16px;" oninput='root_style.style.setProperty("--font",this.value);'></select>
         </td></tr>
@@ -774,15 +774,15 @@ function start_fill(x,y,b){
 }
 function fill(x,y,b){
     var ec=canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x];
-    var el=(canvas.getElementsByTagName('tr')[y])?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x-1]:false;
-    var er=(canvas.getElementsByTagName('tr')[y])?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x+1]:false;
-    var et=(canvas.getElementsByTagName('tr')[y-1])?canvas.getElementsByTagName('tr')[y-1].getElementsByTagName('td')[x]:false;
-    var eb=(canvas.getElementsByTagName('tr')[y+1])?canvas.getElementsByTagName('tr')[y+1].getElementsByTagName('td')[x]:false;
+    var el=(canvas.getElementsByTagName('tr')[y]&&x-1>=x1)?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x-1]:false;
+    var er=(canvas.getElementsByTagName('tr')[y]&&x+1<=x2)?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x+1]:false;
+    var et=(canvas.getElementsByTagName('tr')[y-1]&&y-1>=y1)?canvas.getElementsByTagName('tr')[y-1].getElementsByTagName('td')[x]:false;
+    var eb=(canvas.getElementsByTagName('tr')[y+1]&&y+1<=y2)?canvas.getElementsByTagName('tr')[y+1].getElementsByTagName('td')[x]:false;
     if(ec.textContent==b){ec.innerHTML=brush;}
-    if(et&&et.textContent==b){et.innerHTML=brush;if(y-1>y1){fill(x,y-1,b)}}
-    if(eb&&eb.textContent==b){eb.innerHTML=brush;if(y+1<y2){fill(x,y+1,b)}}
-    if(er&&er.textContent==b){er.innerHTML=brush;if(x+1<x2){fill(x+1,y,b)}}
-    if(el&&el.textContent==b){el.innerHTML=brush;if(x-1>x1){fill(x-1,y,b)}}
+    if(et&&et.textContent==b){et.innerHTML=brush;if(y-1>=y1){fill(x,y-1,b)}}
+    if(eb&&eb.textContent==b){eb.innerHTML=brush;if(y+1<=y2){fill(x,y+1,b)}}
+    if(er&&er.textContent==b){er.innerHTML=brush;if(x+1<=x2){fill(x+1,y,b)}}
+    if(el&&el.textContent==b){el.innerHTML=brush;if(x-1>=x1){fill(x-1,y,b)}}
 }
 function replaces(o,n){
     tr=canvas.getElementsByTagName('tr');
