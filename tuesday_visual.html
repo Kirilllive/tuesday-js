@@ -1912,16 +1912,11 @@ function menu_view(id,code,top){
 }
 function data_copy(name){buf[0]=name;buf[1]=JSON.stringify(arr_l[arr_n]);}
 function data_past(){
-    if(buf[0]=='dialogs'){
-        arr_l[arr_n].dialogs.splice(arr_l[arr_n].dialogs.length,0,JSON.parse(buf[1]));
-    }else if(buf[0]=='scene'){
-        story_script[arr_n].push(JSON.parse(buf[1]));
-    }else if(buf[0]==arr_n){
-        arr_l[arr_n]=JSON.parse(buf[1]);
-    }else{
-        arr_l[arr_n][buf[0]]=JSON.parse(buf[1]);
-    }
-    update_novel();state_save();
+    if(buf[0]=='dialogs'){arr_l[arr_n].dialogs.splice(arr_l[arr_n].dialogs.length,0,JSON.parse(buf[1]));
+    }else if(buf[0]=='scene'){story_script[arr_n].push(JSON.parse(buf[1]));
+    }else if(buf[0]==arr_n){arr_l[arr_n]=JSON.parse(buf[1]);
+    }else{arr_l[arr_n][buf[0]]=JSON.parse(buf[1]);
+    }update_novel();state_save();
 }
 function scene_add(arr){
 	story_script[arr].push({"background_image":"","background_music":"","dialogs":[{}]});
@@ -2287,8 +2282,7 @@ function ho_update(){
             +((arr_n=="terrain_map")?"<td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Show</td></tr><tr><td colspan='4'>"+show_if+"</td></tr>":"")
             +"</tbody></table></div>"
         c.appendChild(o);
-    }
-    adden_sizer(e,"ho_stopResize(angle);");
+    }adden_sizer(e,"ho_stopResize(angle);");
 }
 function ho_stopResize(a){
     var b=((objFocus.style.paddingTop.replace('px',''))*2)+((objFocus.style.borderTopWidth)?parseFloat(objFocus.style.borderTopWidth):0)+((objFocus.style.borderBottomWidth)?parseFloat(objFocus.style.borderBottomWidth):0);
@@ -2331,8 +2325,7 @@ function adden_sizer(id,f){
         r.className="drag";
         r.innerHTML="<div class='resizer size-right'></div><div class='resizer top-right'></div><div class='resizer size-top'></div><div class='resizer top-left'></div><div class='resizer size-left'></div><div class='resizer bottom-left'></div><div class='resizer size-bottom'></div><div class='resizer bottom-right'></div><div class='resizer rotate'></div>";
         id.appendChild(r);
-    }
-    make_resizable(r,f);
+    }make_resizable(r,f);
 }
 function adden_scroll(id,z){
     id.onmousedown=function(e){
