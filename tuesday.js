@@ -17,6 +17,7 @@ var tue_fullScreen=false;
 var arr_dialog;
 var timers;
 var controll=true;
+var ruby_rt=[];
 document.oncontextmenu = cmenu; function cmenu(){return false;}
 window.onmousedown = window.onselectstart = function(){return false;};
 document.addEventListener('keydown',function(event){
@@ -632,11 +633,24 @@ function name_block_update(){
     matchAll=Array.from(matchAll);
     for(var i=0;i < matchAll.length;i++){
         let firstMatch=matchAll[i];
-        str=str.replace( firstMatch[0],story_json.parameters.variables[firstMatch[1]])
-    };
-	dialog_text=str
+        if(firstMatch[1].includes("=")){
+            var t=firstMatch[1].split('=')[0];
+            ruby_rt.push([t,ruby(firstMatch[1])]);
+            str=str.replace(firstMatch[0],t)
+        }
+        else{str=str.replace(firstMatch[0],story_json.parameters.variables[firstMatch[1]])}
+    };dialog_text=str;
 } function values_button(e){
-    let t=e.matchAll(/<(.*?)>/g);t=Array.from(t);for(var a=0;a<t.length;a++){let o=t[a];e=e.replace(o[0],story_json.parameters.variables[o[1]])}return e
+    let t=e.matchAll(/<(.*?)>/g);
+    t=Array.from(t);
+    for(var a=0;a<t.length;a++){
+        let o=t[a];
+        if(o[1].includes("=")){e=e.replace(o[0],ruby(o[1]))}
+        else{e=e.replace(o[0],story_json.parameters.variables[o[1]])}
+    }
+    return e
+} function ruby(n){
+    var r=n.split('=');return "<ruby>"+r[0]+"<rt>"+r[1]+"</rt></ruby>"
 } function go_story(choice){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 	if(!arr_dialog.choice || choice){
@@ -723,12 +737,17 @@ function name_block_update(){
     var len=del.length;
     for(var i=0;i < len;i++){del[0].parentNode.removeChild(del[0]);}
 } function anim_text(){
-    if(dialog_speed == 0){tue_text_view.innerHTML=dialog_text.replace(new RegExp("\n","g"),"<br>");}
-    else if(dialog_speed != 0 && dialog_letter < dialog_text.length){dialog_timeout=setTimeout(add_letter,dialog_speed);}
-	else if(dialog_letter == dialog_text.length){tue_text_view.innerHTML=dialog_text.replace(new RegExp("\n","g"),"<br>")+((story_json.parameters.text_panel.end_text_cursor&&story_json.parameters.text_panel.end_text_cursor[0])?'&nbsp<img src="'+story_json.parameters.text_panel.end_text_cursor[0]+'" style="width:'+((story_json.parameters.text_panel.end_text_cursor[1])?story_json.parameters.text_panel.end_text_cursor[1]:'auto')+';height:'+((story_json.parameters.text_panel.end_text_cursor[2])?story_json.parameters.text_panel.end_text_cursor[2]:'auto')+';position:absolute;'+((story_json.parameters.text_panel.end_text_cursor[3])?story_json.parameters.text_panel.end_text_cursor[3]:'')+'">':'');tuesday.dispatchEvent(new Event('dialog_end'));}
+    if(dialog_speed == 0){
+        for(var i=0;i < ruby_rt.length;i++){dialog_text=dialog_text.replace(new RegExp(ruby_rt[i][0],"g"),ruby_rt[i][1]);}
+        tue_text_view.innerHTML=dialog_text.replace(new RegExp("\n","g"),"<br>");
+    } else if(dialog_speed != 0 && dialog_letter <= dialog_text.length){
+        dialog_timeout=setTimeout(add_letter,dialog_speed);
+    } else if(dialog_letter >= dialog_text.length){tue_text_view.innerHTML+=((story_json.parameters.text_panel.end_text_cursor&&story_json.parameters.text_panel.end_text_cursor[0])?'&nbsp<img src="'+story_json.parameters.text_panel.end_text_cursor[0]+'" style="width:'+((story_json.parameters.text_panel.end_text_cursor[1])?story_json.parameters.text_panel.end_text_cursor[1]:'auto')+';height:'+((story_json.parameters.text_panel.end_text_cursor[2])?story_json.parameters.text_panel.end_text_cursor[2]:'auto')+';position:absolute;'+((story_json.parameters.text_panel.end_text_cursor[3])?story_json.parameters.text_panel.end_text_cursor[3]:'')+'">':'');tuesday.dispatchEvent(new Event('dialog_end'));}
     if(story_json.parameters.text_panel.scroll){tue_text_view.scrollTop=tue_text_view.scrollHeight;}
 } function add_letter(){
-    tue_text_view.innerHTML=dialog_text.slice(0,dialog_letter).replace(new RegExp("\n","g"),"<br>");
+    var t=dialog_text.slice(0,dialog_letter).replace(new RegExp("\n","g"),"<br>")
+    for(var i=0;i < ruby_rt.length;i++){t=t.replace(new RegExp(ruby_rt[i][0],"g"),ruby_rt[i][1]);}
+    tue_text_view.innerHTML=t;
     dialog_letter++;
     anim_text();
 } function search_music(){
