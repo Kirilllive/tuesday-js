@@ -143,6 +143,17 @@ body {
     .disart{width:0%;}
     .distex{width:100%;}
 }
+#tools{
+    width:100%;
+    row-gap:64px;
+    display:grid;
+    column-gap:8px;
+    max-width:1920px;
+    align-items:start;
+    justify-content:center;
+    grid-template-columns: 33% 33% 33%;
+}
+#tools table{width:100%;max-width:320px;}
 </style>
 </head>
 <body>
@@ -161,6 +172,7 @@ body {
                                 <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='ru'><span class="checkmark">RU</span></label></td>
                                 <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='ja'><span class="checkmark">JA</span></label></td>
                                 <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='zh'><span class="checkmark">ZH</span></label></td>
+                                <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='ko'><span class="checkmark">KO</span></label></td>
                             </tr>
                         </tbody>
                     </table>
@@ -368,32 +380,41 @@ body {
                             <td align="center"><img onclick="modal_window('open',this.src)" src='screenshots/ascii_art.jpg' class='screen' alt="JSON editor tool" title="JSON editor tool"></td>
                         </tr>
                         <tr>
-                            <td colspan='2' height='80px'></td>
+                            <td colspan='2' height='256px'></td>
                         </tr>
                     </tbody>
                 </table>
-                <table style="max-width:1920px; border-spacing:16px; border-collapse:separate;width:100%;">
-                    <tbody>
-                        <tr>
-                            <td colspan="4" align="center" style="height:128px;"><b>Tools</b></td>
-                        </tr>
-                        <tr>
-                            <td valign="bottom" align="center" style="width:25%;"><a href='doc_runetime.html' target='_blank'><img src='screenshots/json_edit.jpg' class='screen' style="max-width:315px;width:100%;height:auto;"></a></td>
-                            <td valign="bottom" align="center" style="width:25%;"><a href='tools/color_converter.html' target='_blank'><img src='screenshots/color_converter.jpg' class='screen' style="max-width:315px;width:100%;height:auto;"></a></td>
-                            <td valign="bottom" align="center" style="width:25%;"><a href='tools/text_converter.html' target='_blank'><img src='screenshots/text_converter.jpg' class='screen' style="max-width:315px;width:100%;height:auto;"></a></td>
-                            <td valign="bottom" align="center" style="width:25%;"><a href='tools/base64_converter.html' target='_blank'><img src='screenshots/base_converter.jpg' class='screen' style="max-width:315px;width:100%;height:auto;"></a></td>
-                        </tr>
-                        <tr>
-                            <td valign="top" id="tool_1"><a href='doc_runetime.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>You can use all Tuesday JS functions without using the visual editor in other ide to edit json file. More information about RunTime and JSON script options in <u style='text-decoration:underline;'><a href='doc_runetime.html' target='_blank'>the documentation</a></u></a>.</td>
-                            <td valign="top" id="tool_2"><a href='tools/color_converter.html' target='_blank'><b>Color converter</b></a><br><br>Conversion of RGB to HEX color formats and vice versa. You can also get a color directly from an image. There are additional functions for calculating the proportional aspect ratio when resizing the image.</td>
-                            <td valign="top" id="tool_3"><a href='tools/text_converter.html' target='_blank'><b>Text converter</b></a><br><br>You are able to convert plain story text to JSON for Tuesday.JS. The text converter will split story text into small parts for use in dialogues.</td>
-                            <td valign="top" id="tool_4"><a href='tools/base64_converter.html' target='_blank'><b>Base64 converter</b></a><br><br>is a group of binary-to-text encoding schemes that represent binary data in an ASCII string. This data can then be added to the body of the document instead of the file address.</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" align="center" style="height:56px;"><b></b></td>
-                        </tr>
-                    </tbody>
-                </table>
+                
+                
+                
+                <div id="tools">
+
+                    <a href='doc_runetime.html' target='_blank'><table style="width:100%;"><tbody>
+                    <tr><td><img src='screenshots/json_edit.jpg' class='screen' style="width:100%;height:auto;"></td></tr>
+                    <tr><td id="tool_1" style="padding-top:16px;"><b>Runtime tuesday.js</b><br><br>You can use all Tuesday JS functions without using the visual editor in other ide to edit json file. More information about RunTime and JSON script options in <u style='text-decoration:underline;'>the documentation</u></td></tr>
+                    </tbody></table></a>
+
+                    <a href='tools/color_converter.html' target='_blank'><table style="width:100%;"><tbody>
+                    <tr><td><img src='screenshots/color_converter.jpg' class='screen' style="width:100%;height:auto;"></td></tr>
+                    <tr><td id="tool_2" style="padding-top:16px;"><b>Color converter</b><br><br>Conversion of RGB to HEX color formats and vice versa. You can also get a color directly from an image. There are additional functions for calculating the proportional aspect ratio when resizing the image.</td></tr>
+                    </tbody></table></a>
+                    
+                    <a href='tools/text_converter.html' target='_blank'><table style="width:100%;"><tbody>
+                    <tr><td><img src='screenshots/text_converter.jpg' class='screen' style="width:100%;height:auto;"></td></tr>
+                    <tr><td id="tool_3" style="padding-top:16px;"><b>Text converter</b><br><br>You are able to convert plain story text to JSON for Tuesday.JS. The text converter will split story text into small parts for use in dialogues.</td></tr>
+                    </tbody></table></a>
+
+                    <a href='tools/base64_converter.html' target='_blank'><table style="width:100%;"><tbody>
+                    <tr><td><img src='screenshots/base_converter.jpg' class='screen' style="width:100%;height:auto;"></td></tr>
+                    <tr><td id="tool_4" style="padding-top:16px;"><b>Base64 converter</b><br><br>is a group of binary-to-text encoding schemes that represent binary data in an ASCII string. This data can then be added to the body of the document instead of the file address.</td></tr>
+                    </tbody></table></a>
+                    
+                    <a href='tools/ascii_paint.html' target='_blank'><table style="width:100%;"><tbody>
+                    <tr><td><img src='screenshots/ascii_art_paint.jpg' class='screen' style="width:100%;height:auto;"></td></tr>
+                    <tr><td id="tool_5" style="padding-top:16px;"><b>Ascii Art Paint</b><br><br>An ASCII graphics editor that combines a graphics editor and an image to text converter.</td></tr>
+                    </tbody></table></a>
+                    
+                </div>
         </tr>
         </td>
         <tr>
@@ -425,7 +446,7 @@ body {
                                     <tr>
                                         <td width="25%" align='center'><a href='https://twitter.com/laurentgontier' target='_blank'>Laurent Gontier</a></td>
                                         <td width="25%" align='center'>Argosa</td>
-                                        <td width="25%" align='center'>Marcus Bell</td>
+                                        <td width="25%" align='center'><a href="https://twitter.com/onigi123" target="_blank">Onigi</a></td>
                                         <td width="25%" align='center'>Arne Krause</td>
                                     </tr>
                                 </tbody>
@@ -617,10 +638,11 @@ let translation = {
         ["screen_6", "Позволяет расположить все элементы по своим местам. Он также показывает, как будет выглядеть сцена на разных экранах. В макете сцены вы можете использовать стандартные параметры  HTML как проценты, пиксели или сантиметры, чтобы лучше адаптировать сцену к различным экранам."],
         ["title_5", "ASCII-графика"],
         ["screen_5", "Движок адаптирован для использования ASCII-графики. С ее помощью вы сможете разнообразить тексты изображениями и узорами составленых из текстовых символов."],
-        ["tool_1", "<a href='doc_runetime.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>Вы можете использовать все функции Tuesday JS без использования визуального редактора в другой ide для редактирование файла json. Дополнительная информация о Runtime и JSON-сценарии в <u style='text-decoration:underline;'><a href='doc_runetime.html' target='_blank'>документации</a></u></a>."],
-        ["tool_2", "<a href='tools/color_converter.html' target='_blank'><b>Конвертер цветов</b></a><br><br>Конвертирование RGB в HEX и наоборот. Вы можете получить цвет непосредственно с изображения. Так же присутствуют дополнительные функции для расчета пропорционального соотношения сторон при изменении размера изображения"],
-        ["tool_3", "<a href='tools/text_converter.html' target='_blank'><b>Конвертер текста</b></a><br><br>Вы можете конвертировать обычный текст в JSON для Tuesday JS. Конвертер разделит текст рассказа на небольшие части для использования в диалогах."],
-        ["tool_4", "<a href='tools/base64_converter.html' target='_blank'><b>Конвертер base64</b></a><br><br>Группа схем кодирования двоичного кода в текст, которые представляют двоичные данные в строку ASCII. Затем эти данные могут быть добавлены в текст документа вместо адреса файла."]
+        ["tool_1", "<b>Runtime tuesday.js</b></a><br><br>Вы можете использовать все функции Tuesday JS без использования визуального редактора в другой ide для редактирование файла json. Дополнительная информация о Runtime и JSON-сценарии в <u style='text-decoration:underline;'>документации</u>."],
+        ["tool_2", "<b>Конвертер цветов</b></a><br><br>Конвертирование RGB в HEX и наоборот. Вы можете получить цвет непосредственно с изображения. Так же присутствуют дополнительные функции для расчета пропорционального соотношения сторон при изменении размера изображения"],
+        ["tool_3", "<b>Конвертер текста</b></a><br><br>Вы можете конвертировать обычный текст в JSON для Tuesday JS. Конвертер разделит текст рассказа на небольшие части для использования в диалогах."],
+        ["tool_4", "<b>Конвертер base64</b></a><br><br>Группа схем кодирования двоичного кода в текст, которые представляют двоичные данные в строку ASCII. Затем эти данные могут быть добавлены в текст документа вместо адреса файла."],
+        ["tool_5","<b>Ascii Art Paint</b><br><br>Графический редактор ASCII, который сочетает в себе графический редактор и преобразователь изображения в текст."]
     ],
     "ja": [
         ["title", "Tuesday JS ビジュアルノベル・エンジン"],
@@ -639,9 +661,9 @@ let translation = {
         ["screen_5", "Tuesday JSエンジンはアスキーアート(AA)を適切に表示できます。テキストで様々な絵や模様を作ることができます。"],
         ["title_6", "シーンエディター"],
         ["screen_6", "機能では、全種類の要素を分類して管理できます。加えて、制作環境と異なる画面環境でゲームを動作させたときの画面構成の変化を確認できます。標準HTML用のパーセント単位でもセンチメートル単位でもレイアウトを指定できるので、環境に合わせた適切な画面構成が作れます。"],
-        ["tool_1", "<a href='doc_runetime.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>Tuesday JSは、単体でjsonファイルの編集に必要な機能を全て具えているので、別個に外部のIDE(総合開発環境)を用意してGUI作成機能を使わなくても大丈夫です。Tuesday JSで使用できる<u style='text-decoration:underline;'><a href='doc_runetime.html' target='_blank'>Runtime tuesday.jsとJSON</a></u></a>スクリプトの詳細は資料をご覧ください。"],
-        ["tool_2", "<a href='tools/color_converter.html' target='_blank'><b>カラーコンバーター</b></a><br><br>RGB形式とHEX形式のカラーコードをエンジン内で相互変換処理でき、画像ファイルから任意の色を抜き出すこともできます。更に、画像の拡大縮小時に縦横比を自動で合わせる機能もあります。"],
-        ["tool_3", "<a href='tools/text_converter.html' target='_blank'><b>テキストコンバーター</b></a><br><br>他のテキストエディターで作成したプレーンテキスト形式のファイルをJSON形式に変換するテキストコンバーターを内蔵しています。その際、選択肢として扱いやすいよう、ストーリーの記述を自動的に細部に分割します。"]
+        ["tool_1", "<b>Runtime tuesday.js</b></a><br><br>Tuesday JSは、単体でjsonファイルの編集に必要な機能を全て具えているので、別個に外部のIDE(総合開発環境)を用意してGUI作成機能を使わなくても大丈夫です。Tuesday JSで使用できる<u style='text-decoration:underline;'>Runtime tuesday.jsとJSON</u>スクリプトの詳細は資料をご覧ください。"],
+        ["tool_2", "<b>カラーコンバーター</b></a><br><br>RGB形式とHEX形式のカラーコードをエンジン内で相互変換処理でき、画像ファイルから任意の色を抜き出すこともできます。更に、画像の拡大縮小時に縦横比を自動で合わせる機能もあります。"],
+        ["tool_3", "<b>テキストコンバーター</b></a><br><br>他のテキストエディターで作成したプレーンテキスト形式のファイルをJSON形式に変換するテキストコンバーターを内蔵しています。その際、選択肢として扱いやすいよう、ストーリーの記述を自動的に細部に分割します。"]
     ],
     "de": [
         ["title", "Tuesday JS Visual Novel Engine"],
@@ -656,13 +678,11 @@ let translation = {
         ["screen_4", "Die Vorschau erlaubt es dir dein Projekt an einem bestimmten Punkt im Skript mit einer ausgewählten Sprache zu starten."],
         ["title_2", "Übersetzung"],
         ["screen_2", "Tuesday JS bietet viele Möglichkeiten Geschichten in andere Sprachen zu transferieren. Du kannst eine Übersetzung für nahezu jedes Element angeben, einschließlich Texten und Grafiken. Die Vorschau Funktion erlaubt es dir das Projekt mit einer bestimmten Sprache auszuführen. Alle Sprachtexte können auch in eine CSV Datei exportiert werden um sie mit einem anderen Editor zu übersetzen."],
-        ["title_5", "ASCII-Kunst"],
-        //["screen_5", "."],
         ["title_6", "Szenen Editor"],
         ["screen_6", "Der Szenen Editor Organisiert alle Elemente. Er zeigt auch wie sich die Szene auf verschiedenen Bildschirmen ändert. Im Szenen Layout kann man die Standard HTML Einheiten wie Prozent, Pixel oder Zentimeter benutzen um die Szene an unterschiedliche Bildschirme anzupassen."],
-        ["tool_1", "<a href='doc_runetime.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>Du kannst alle Tuesday JS Funktionen auch ohne des Visuellen Editor verwenden indem du die JSON Date in einer anderen Entwicklungsumgebung bearbeitest. Mehr Informationen zur Runtime und dem JSON Skript erhältst du in der <u style='text-decoration:underline;'><a href='doc_runetime.html' target='_blank'>Dokumentation</a></u></a>."],
-        ["tool_2", "<a href='tools/color_converter.html' target='_blank'><b>Farbkonvertierung</b></a><br><br>Konvertierung von RGB und Hexadezimalen Farbformaten. Du kannst eine Farbe auch direkt aus einem Bild extrahieren. Es gibt zusätzliche Funktionen zum Berechnen von Proportionen beim Ändern der Größe eines Bildes. "],
-        ["tool_3", "<a href='tools/text_converter.html' target='_blank'><b>Textkonvertierung</b></a><br><br>Du kannst auch einfachen Text in das JSON Format für Tuesday JS konvertieren. Der Textkonverter trennt die Geschichte in kleine Stücke die in Dialogen verwendet werden können."]
+        ["tool_1", "<b>Runtime tuesday.js</b></a><br><br>Du kannst alle Tuesday JS Funktionen auch ohne des Visuellen Editor verwenden indem du die JSON Date in einer anderen Entwicklungsumgebung bearbeitest. Mehr Informationen zur Runtime und dem JSON Skript erhältst du in der <u style='text-decoration:underline;'>Dokumentation</u>."],
+        ["tool_2", "<b>Farbkonvertierung</b></a><br><br>Konvertierung von RGB und Hexadezimalen Farbformaten. Du kannst eine Farbe auch direkt aus einem Bild extrahieren. Es gibt zusätzliche Funktionen zum Berechnen von Proportionen beim Ändern der Größe eines Bildes. "],
+        ["tool_3", "<b>Textkonvertierung</b></a><br><br>Du kannst auch einfachen Text in das JSON Format für Tuesday JS konvertieren. Der Textkonverter trennt die Geschichte in kleine Stücke die in Dialogen verwendet werden können."]
     ],
     "es": [
         ["title", "Tuesday JS motor de novelas visuales"],
@@ -677,13 +697,11 @@ let translation = {
         ["screen_4", "La función de vista previa te permite iniciar tu proyecto desde cierto punto en el script y con la localización seleccionada."],
         ["title_2", "Localización"],
         ["screen_2", "Amplias oportunidades para localizar historias a otros lenguajes. Puedes seleccionar traducciones para prácticamente todos los elementos de tu proyecto, ya sean textos o gráficos. La función de vista previa te permite probar tu proyecto en el lenguaje seleccionado. Todos los textos pueden ser exportados a un archivo csv para editarlo y añadir las localizaciones en otro editor."],
-        ["title_5", "Arte ASCII"],
-        //["screen_5", "."],
         ["title_6", "Editor de escenas"],
         ["screen_6", "El editor de escenas permite ordenar todos los elementos en su lugar. También muestra cómo cambiará la escena en las diferentes pantallas. En la disposición de escenas puedes utilizar las unidades de medida estándar de HTML, porcentajes, píxeles o centímetros, para adaptar mejor la escena a las diferentes pantallas."],
-        ["tool_1", "<a href='doc_runetime.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>Puedes utilizar todas las funciones de Tuesday JS sin la necesidad de usar el editor visual, utilizando otro entorno para editar archivos json. Puedes encontrar más información sobre RunTime y las opciones de scripts JSON en la <u style='text-decoration:underline;'><a href='doc_runetime.html' target='_blank'>documentación</a></u></a>."],
-        ["tool_2", "<a href='tools/color_converter.html' target='_blank'><b>Conversor de colores</b></a><br><br>Conversor de formatos de color RGB a HEX y viceversa. También puedes extraer un color directamente de una imagen. Hay disponibles funciones adicionales para calcular la relación de aspecto proporcional al cambiar el tamaño de la imagen."],
-        ["tool_3", "<a href='tools/text_converter.html' target='_blank'><b>Conversor de texto</b></a><br><br>Puedes convertir texto plano al formato JSON para Tuesday JS. El conversor de texto dividirá el texto de la historia en pequeñas partes para su uso en diálogos."]
+        ["tool_1", "<b>Runtime tuesday.js</b></a><br><br>Puedes utilizar todas las funciones de Tuesday JS sin la necesidad de usar el editor visual, utilizando otro entorno para editar archivos json. Puedes encontrar más información sobre RunTime y las opciones de scripts JSON en la <u style='text-decoration:underline;'>documentación</u>."],
+        ["tool_2", "<b>Conversor de colores</b></a><br><br>Conversor de formatos de color RGB a HEX y viceversa. También puedes extraer un color directamente de una imagen. Hay disponibles funciones adicionales para calcular la relación de aspecto proporcional al cambiar el tamaño de la imagen."],
+        ["tool_3", "<b>Conversor de texto</b></a><br><br>Puedes convertir texto plano al formato JSON para Tuesday JS. El conversor de texto dividirá el texto de la historia en pequeñas partes para su uso en diálogos."]
     ],
     "fr": [
         ["title", "Tuesday JS moteur de roman visuel"],
@@ -698,79 +716,56 @@ let translation = {
         ["screen_4", "L'aperçu vous permet de démarrer un projet à partir de n'importe quel point du scénario et avec la localisation sélectionnée."],
         ["title_2", "Localisation"],
         ["screen_2", "De nombreuses possibilités d'adaptation les histoires dans d'autres langues. Vous pouvez définir la traduction de presque tous les éléments de votre projet, tels que le texte et les graphiques. La fonction d'aperçu vous permet d'exécuter le projet dans la langue sélectionnée. Tous les textes peuvent être exportés vers un fichier csv pour édition et ajout de localisations dans un autre éditeur, tel qu'un tableur."],
-        ["title_5", "Art ASCII"],
-        //["screen_5", "."],
         ["title_6", "Éditeur de scène"],
         ["screen_6", "Cet éditeur vous permet d'organiser les éléments sur une scène. Il montre également comment la scène va changer sur différents écrans. Dans la mise en page de la scène, vous pouvez utiliser des objets HTML standard dont les dimensions s'expriment en pourcentage de pixels ou en centimètres pour mieux adapter la scène aux différents écrans."],
-        ["tool_1", "<a href='tuesday_doc.html' target='_blank'><b>Runtime tuesday.js</b></a><br><br>Vous pouvez utiliser toutes les fonctions de Tuesday JS sans utiliser l'éditeur visuel d'un autre EDI pour éditer le fichier json. Plus   d'informations sur les options de script RunTime et JSON dans la <u style='text-decoration:underline;'><a href='tuesday_doc.html' target='_blank'>documentation</a></u></a>."],
-        ["tool_2", "<a href='tools/color_converter.html' target='_blank'><b>Conversion des couleurs</b></a><br><br>la conversion des formats de couleurs RVB en HEX et vice versa. Vous pouvez également prélever une couleur directement dans une image.Il existe des fonctions supplémentaires pour calculer le rapport de proportions lors du redimensionnement de l'image"],
-        ["tool_3", "<a href='tools/text_converter.html' target='_blank'><b>Conversion de texte</b></a><br><br>Vous pouvez convertir le texte brut de l'histoire en JSON pour Tuesday JS. Le convertisseur de texte divisera le texte de l'histoire en petites parties à utiliser dans les dialogues."]
+        ["tool_1", "<b>Runtime tuesday.js</b></a><br><br>Vous pouvez utiliser toutes les fonctions de Tuesday JS sans utiliser l'éditeur visuel d'un autre EDI pour éditer le fichier json. Plus   d'informations sur les options de script RunTime et JSON dans la <u style='text-decoration:underline;'>documentation</u>."],
+        ["tool_2", "<b>Conversion des couleurs</b></a><br><br>la conversion des formats de couleurs RVB en HEX et vice versa. Vous pouvez également prélever une couleur directement dans une image.Il existe des fonctions supplémentaires pour calculer le rapport de proportions lors du redimensionnement de l'image"],
+        ["tool_3", "<b>Conversion de texte</b></a><br><br>Vous pouvez convertir le texte brut de l'histoire en JSON pour Tuesday JS. Le convertisseur de texte divisera le texte de l'histoire en petites parties à utiliser dans les dialogues."]
     ],
     "zh": [
         ["title", "Tuesday JS 视觉小说引擎"],
         ["description", "是一个免费的开源引擎，用于创建视觉小说，互动故事和基于文本的冒险游戏。 使用JavaScript编写，无需使用任何第三方库。 可以将项目导出到Apache Cordova，以创建移动应用程序或PC程序。 该引擎使用标准HTML文档元素DOM（例如div和img），从而允许使用浏览器支持的任何媒体格式，包括矢量图形svg，gif动画和CSS样式。</p><br><p> 该编辑器结合了拖放工具以创建场景和界面，以及以流程图节点形式显示的可视场景编辑器，该编辑器显示了所有情节元素和故事的分支。 这样可以更轻松地浏览脚本，并有助于创建具有许多绘图选项的大型</p>"],
-        //["title_1", "Визуализация"],
         ["screen_1", "与大多数类似编辑器的主要区别在于，脚本结构通过包含所有对话框、选项和其他绘图元素的块进行图形显示。为了获得最好的清晰度，可以根据情节的情绪或这样一幅图像中角色的各个分支来为区块分配 colored颜色 ，这对于从事游戏开发的编剧来说很重要。"],
-        //["title_6", "Редактор сцен"],
         ["screen_6", "场景编辑器不仅可以将所有元素安排在各自的位置，还可以显示场景在不同屏幕上的变化。在它上，您可以实时更改屏幕大小、纵横比和方向，在编辑场景时不会分心，并且可以快速进行更改。在场景布局中，可以使用以百分比像素或厘米为单位的标准HTML单位，以便更好地使场景适应不同的屏幕。"],
-        //["title_2", "Локализация"],
         ["screen_2", "该环境提供了一个将你的故事本地化为其他语言的充分机会，你可以为几乎任何元素设置翻译，无论是文本还是图像，这样你就可以用另一种语言充分表达你的想法，不仅是用文字，还可以通过位置动作。为了便于翻译，您可以以CSVElectron 表格格式导出所有文本(将来我还计划将翻译文本导入回)。"],
-        
+    ],
+    "ko": [
+        ["title", "Tuesday JS 웹 비주얼 노벨 노블 엔진"],
+        ["description", "튜즈데이JS(TuesdayJS)는 웹 브라우저에서 사용할 수 있는 간단한 웹 기반의 무료 오픈 소스 비주얼 노벨 노블 엔진이다. 타사 라이브러리를 사용하지 않고 자바스크립트(JavaScript)로 작성되어 별도의 추가 소프트웨어 설치가 필요없다. 엔진은 div 및 img와 같은 표준 HTML 문서 요소를 사용, 이를 통해 벡터 그래픽 svg, gif 애니메이션 및 CSS 스타일을 포함하여 브라우저에서 지원하는 모든 미디어 형식을 사용할 수 있다.</p><br><p>편집기는 프로그래밍 언어에 대한 지식 없이도 인터랙티브 픽션, 비주얼 노벨(Visual Novel) 또는 키네틱 노블(Kinetic Novel)을 만들 수 있도록 설계됐다. 장면 편집 및 인터페이스를 만들기 위해 드래그 &amp; 드롭 인터페이스를 사용하며, 스토리 스크립트는 모든 플롯 요소를 비롯해 분기 순서도 노드로 표시됩니다. 쉬운 탐색과 탐색이 다양한 플롯 옵션으로 멋진 스토리를 만드는 데 도움이 되도록 설계했다.</p><br><p>안드로이드(Android) 장치 및 데스크탑용 애플리케이션으로 사용할 수 있는 편집기 버전이 있으며, 모든 버전은 서로 완벽하게 호환되며 동일한 인터페이스로 구성됐다</p>"],
+        ["title_1", "비주얼라이제이션"],
+        ["screen_1", "편집기는 대화 옵션 및 선택 결과와 같은 모든 요소와 함께 스크립트의 구조를 표시해 쉽게 탐색하고 편집할 수 있다."],
+        ["title_3", "JSON"],
+        ["screen_3", "스토리 스크립트에는 JSON 구조에 저장된 모든 요소가 있다. 거의 모든 프로그래밍 언어가 이 형식으로 작동할 수 있기 때문에, 이를 통해 스크립트를 다른 엔진이나 플랫폼으로 쉽게 이식할 수 있다.&nbsp;&nbsp;편집기에는 JSON 작업을 위한 도구가 내장돼 있어 스크립트의 전체 내용을 편집하거나 선택한 요소만 편집 가능하다."],
+        ["title_4", "프리뷰"],
+        ["screen_4", "미리보기를 사용하면 선택한 현지화로 스크립트의 특정 지점에서 프로젝트를 시작할 수 있다."],
+        ["title_2", "로컬라이제이션"],
+        ["screen_2", "튜즈데이JS(TuesdayJS)는 스토리를 다른 언어로 현지화하기 위한 광범위한 적응 기능을 제공한다.<br>텍스트 및 그래픽을 포함하여 프로젝트의 거의 모든 요소에 대해 현지화된 번역을 설정할 수 있다. 미리보기 기능을 사용하면 선택한 언어로 프로젝트를 실행할 수 있고, 다른 편집기에서 현지화를 편집하거나 추가하기 위해 모든 언어 텍스트를 csv 파일로 추출할 수 있다."],
+        ["title_6", "씬 에디터"],
+        ["screen_6", "씬 에디터(장면 편집기)는 모든 요소를 ​​제자리에 정렬할 수 있다. 다른 화면에서는 장면이 어떻게 변하는지 보여주며, 씬 레이아웃에서 백분율 픽셀 또는 센티미터 단위의 표준 HTML 단위를 사용하여 씬을 다른 화면에 더 잘 적응하도록 할 수 있다."],
     ]
 }
-function getLang() {
-    if (window.location.hash == '#ja') {
-        languare = 'ja'
-    } else if (window.location.hash == '#ru') {
-        languare = 'ru'
-    } else if (window.location.hash == '#es') {
-        languare = 'es'
-    } else if (window.location.hash == '#en') {
-        languare = 'en'
-    } else if (window.location.hash == '#fr') {
-        languare = 'fr'
-    } else if (window.location.hash == '#de') {
-        languare = 'de'
-    } else if (window.location.hash == '#zh') {
-        languare = 'zh'
-    } else if (navigator.languages) {
-        languare = navigator.languages[0].substring(0, 2);
-    } else {
-        languare = navigator.languagesubstring(0, 2);
-    }
-    if (languare != 'ru' && languare != 'en' && languare != 'ja' && languare != 'es' && languare != 'fr' && languare != 'de' && languare != 'zh') {
-        languare = 'en'
-    } else {
-        for (var i = 0; i < translation[languare].length; i++) {
-            window.location.hash = languare;
-            document.getElementById(translation[languare][i][0]).innerHTML = translation[languare][i][1];
-        }
-    }
-    for (i = 0; i < lang_choise.length; i++) {
-        if (lang_choise[i].value == languare) {
-            lang_choise[i].checked = true;
-            break;
-        }
-    }
+function getLang(){
+    if (translation[window.location.hash.slice(1,3)]){
+        languare=window.location.hash.slice(1,3)
+        for(var i=0;i<translation[languare].length;i++){document.getElementById(translation[languare][i][0]).innerHTML=translation[languare][i][1];}
+    }else{languare='en'}
+    for(i=0;i<lang_choise.length;i++){if(lang_choise[i].value==languare){lang_choise[i].checked=true;break;}}
 }
-var lang_choise = document.forms.lang
-lang_choise.onchange = function(e) {
-    for (i = 0; i < lang_choise.length; i++) {
-        if (lang_choise[i].checked) {
-            if (lang_choise[i].value == 'en') {
-                window.location.hash = 'en';
+var lang_choise=document.forms.lang
+lang_choise.onchange=function(e){
+    for(i=0;i<lang_choise.length;i++){
+        if(lang_choise[i].checked){
+            if(lang_choise[i].value=='en'){
+                window.location.hash='en';
                 location.reload();
-            } else {
-                languare = lang_choise[i].value;
-                window.location.hash = languare;
+            }else{
+                languare=lang_choise[i].value;
+                window.location.hash=languare;
                 getLang();
-            }
-            break;
+            }break;
         }
     }
-};
-getLang();
-
+};getLang();
 </script>
 </body>
 </html>

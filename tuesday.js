@@ -628,7 +628,7 @@ function name_block_update(){
 		str=dialog_text
 		str+=(arr_dialog.text_add[languare])?arr_dialog.text_add[languare]:arr_dialog.text_add;
 	}
-    let regexp=/<(.*?)>/g;
+    let regexp=/<(.*?)>/g;ruby_rt=[];
     let matchAll=str.matchAll(regexp);
     matchAll=Array.from(matchAll);
     for(var i=0;i < matchAll.length;i++){
