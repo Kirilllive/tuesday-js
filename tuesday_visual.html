@@ -355,6 +355,7 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 }
 input:checked+.toggle{background-color:var(--cb);}
 input:checked+.toggle:before{transform:translateX(14px);}
+.offselect{height:100%;width:100%;position:absolute;left:0;top:0;}
 </style>
 </head>
 <body onload="world_size();" style='background-color:var(--cw);font-size:12px;'>
@@ -402,10 +403,12 @@ input:checked+.toggle:before{transform:translateX(14px);}
     <div id='scene_maker'>
         <table style="height:100vh;width:100%;">
             <tbody>
-                <tr><td rowspan="3">
+                <tr><td rowspan="3" style="position:relative;">
+                    <div class="offselect" onclick='if(objFocus){scene_scroll=false;saveResize()};'></div>
                     <div id='scene_view' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;' align='center' onmouseover='this.tabindex=1' onmouseout='this.tabindex=0'>
                         <div id='screen_preview' style='background-color:var(--cw);background-blend-mode:overlay;transform-origin:0 0;min-width:100%;min-height:100%;padding-top:40px;display:flex;justify-content:center;align-items:center;' onmouseup="window.getSelection().removeAllRanges();">
-                            <div id='scene_canvas'><div id='scene_layout'>
+                            <div id='scene_canvas'><div class="offselect" onclick='if(objFocus){scene_scroll=false;saveResize()};'></div>
+                            <div id='scene_layout'><div class="offselect" onclick='if(objFocus){scene_scroll=false;saveResize()};'></div>
                                 <div id='resizers' class='drag' style='visibility:hidden;'>
                                     <div class='resizer size-right'></div>
                                     <div class='resizer top-right'></div>
@@ -452,13 +455,13 @@ input:checked+.toggle:before{transform:translateX(14px);}
                         <div class="set_panel" id="set_preview" style="width:100%;display:block;">
                         <table id="set_layout" style="width:100%;"><tbody>
                             <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Orientation</td><td style='padding-right:8px;'>
-                                <select id='ratio_screen' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(false);video_size();' style='width:100%;'>
+                                <select id='ratio_screen' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));if(objFocus){scene_scroll=false;saveResize()};preview_size(false);video_size();' style='width:100%;'>
                                       <option value=true selected>landscape</option>
                                       <option value=false>Portrait</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;'>
-                               <select id='screen_size' oninput='setup_editor.preview[2]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(true);' style='width:100%;'>
+                               <select id='screen_size' oninput='setup_editor.preview[2]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));if(objFocus){scene_scroll=false;saveResize()};preview_size(true);' style='width:100%;'>
                                     <option value="0" selected>Default screen</option>
                                     <option value="-1">Preview size</option>
                                     <option value="1080">1080</option>
@@ -468,14 +471,14 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Screen</td><td style='padding-right:8px;'>
-                               <select id='aspect_ratio' oninput='p_width.value=this.value;setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));preview_size(false);video_size();' style='width:100%;'>
+                               <select id='aspect_ratio' oninput='p_width.value=this.value;setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));if(objFocus){scene_scroll=false;saveResize()};preview_size(false);video_size();' style='width:100%;'>
                                     <option value="100">1:1</option>
                                     <option value="76">4:3</option>
                                     <option value="56">16:9</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Ratio</td><td style='padding-right:8px;'>
-                                <input id='p_width' class='input_slider input_slider_progress' onchange='aspect_ratio.selectedIndex="-1";setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='preview_size(false);video_size();' type="range" value='100' min="50" max="100" style='width:100%;'>
+                                <input id='p_width' class='input_slider input_slider_progress' onchange='aspect_ratio.selectedIndex="-1";setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='if(objFocus){scene_scroll=false;saveResize();}preview_size(false);video_size();' type="range" value='100' min="50" max="100" style='width:100%;'>
                             </td></tr>
                         </tbody></table></div>
                         <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Text panel</td></tr></tbody></table>

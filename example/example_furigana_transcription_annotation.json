@@ -1,0 +1,186 @@
+{
+	"parameters": {
+		"text_panel": {
+			"size": [
+				"95%",
+				"25%"
+			],
+			"color": "#efefff",
+			"color_text": "#000",
+			"indent_text": "32px ",
+			"indent_bottom": "32px",
+			"size_text": "20px",
+			"style": "border-radius:16px;",
+			"dialog_speed": "10",
+			"art": {
+				"en": ""
+			},
+			"className": "",
+			"position": [
+				"0",
+				"0",
+				"0"
+			],
+			"font_family": "Arial"
+		},
+		"name_panel": {
+			"size": [
+				"222px",
+				"48px"
+			],
+			"position": [
+				"0",
+				"0",
+				"-48px",
+				"0"
+			],
+			"indent_text": "8px",
+			"size_text": "18px",
+			"color_text": "#000",
+			"align": [
+				"flex-start",
+				"center"
+			],
+			"art": {
+				"en": ""
+			},
+			"className": "",
+			"font_family": "",
+			"color": ""
+		},
+		"title": {
+			"en": "new novel"
+		},
+		"launch_story": "block_1",
+		"key": {
+			"next": "",
+			"back": "",
+			"save": "",
+			"load": "",
+			"full_screen": "",
+			"launch_story": "",
+			"load_autosave": ""
+		},
+		"languares": [
+			"en"
+		],
+		"buttons": [
+			{
+				"name": "tue_back",
+				"style": "border-radius:26px;",
+				"position": [
+					"-36.82%",
+					0,
+					0,
+					"25.03%"
+				],
+				"size": [
+					"38px",
+					"38px"
+				],
+				"color": "",
+				"color_text": "#000",
+				"size_text": "28px",
+				"text": {
+					"en": "<"
+				},
+				"art": {
+					"en": ""
+				},
+				"sound": {
+					"en": ""
+				},
+				"hotspot": [
+					"0%",
+					"0%"
+				]
+			},
+			{
+				"name": "tue_next",
+				"style": "border-radius:26px;",
+				"position": [
+					0,
+					"-20.93%",
+					0,
+					"13.40%"
+				],
+				"size": [
+					"38px",
+					"38px"
+				],
+				"color": "",
+				"color_text": "#000",
+				"size_text": "28px",
+				"text": {
+					"en": ">"
+				},
+				"art": {
+					"en": ""
+				},
+				"sound": {
+					"en": ""
+				},
+				"hotspot": [
+					"0%",
+					"0%"
+				]
+			}
+		],
+		"style_file": "",
+		"autosave": false,
+		"font": "Arial",
+		"font_size": "18px",
+		"variables": {},
+		"sounds": {},
+		"characters": {}
+	},
+	"blocks": {
+		"block_1": [
+			"588px",
+			"352px",
+			"block",
+			false
+		]
+	},
+	"block_1": [
+		{
+			"dialogs": [
+				{
+					"text": "Tuesday JSなら、<読=よ> み<仮名=がな>を<付=つ>けるのも<簡単=かんたん>だよ！",
+					"choice": [
+						{
+							"go_to": "block_1",
+							"position": [
+								"31.73%",
+								0,
+								"26.70%",
+								0
+							],
+							"size": [
+								"251px",
+								"87px"
+							],
+							"color": "#efefff",
+							"color_text": "#000",
+							"text": {
+								"en": "<10=month>< / =><13=day>< / =><2021 =year>  < 12=hour>< : =><30=minute>"
+							},
+							"indent_text": "8px",
+							"art": {
+								"en": ""
+							},
+							"sound": {
+								"en": ""
+							},
+							"hotspot": [
+								"0%",
+								"0%"
+							],
+							"size_text": "22px"
+						}
+					]
+				}
+			]
+		}
+	]
+}
