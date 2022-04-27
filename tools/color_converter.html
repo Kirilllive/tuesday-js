@@ -86,14 +86,19 @@
                             <td colspan="4" align="center" style="width:420px;height:128px;"><div id="box_color" style="width:92px;height:92px;border-radius:50%;border:1px solid var(--cb);"></div></td>
                         </tr>
                         <tr>
+                            <td height='40px' align='right' style='padding-right:8px;'>HEX:</td>
+                            <td colspan="2"><input id="hex_color" onchange="color_rgb(this.value);color_hsl(color_red.value,color_green.value,color_blue.value);" class="input_text" type="text"></td>
+                            <td align="right" style="width:40px;" class="icon icon_copy" onclick="copy('hex_color');"></td>
+                        </tr>
+                        <tr>
                             <td height='40px' align='right' style='width:64px;padding-right:8px;'>RGB:</td>
                             <td colspan="2"><input id="rgb_color" onchange="color_rgb_parse()" class="input_text" type="text"></td>
                             <td align="right" style="width:40px;" class="icon icon_copy" onclick="copy('rgb_color');"></td>
                         </tr>
                         <tr>
-                            <td align='right' style='padding-right:8px;'>HEX:</td>
-                            <td colspan="2"><input id="hex_color" onchange="color_rgb(this.value)" class="input_text" type="text"></td>
-                            <td align="right" style="width:40px;" class="icon icon_copy" onclick="copy('hex_color');"></td>
+                            <td height='40px' align='right' style='padding-right:8px;'>HSL:</td>
+                            <td colspan="2"><input id="hsl_color" onchange="color_hsl_parse(this.value)" class="input_text" type="text"></td>
+                            <td align="right" style="width:40px;" class="icon icon_copy" onclick="copy('hsl_color');"></td>
                         </tr>
                         <tr><td style="border-bottom:1px solid var(--cb);height:64px;" align="center" colspan="4">
                             <div class="button" style="height:32px;width:138px;" align="center" onclick="bg_color.style.backgroundColor=hex_color.value">Apply to background</div>
@@ -205,6 +210,7 @@ function color_rgb_parse() {
     color_green.value=matches[1].split(",")[1];
     if(matches[1].split(",")[3]){color_alpha.value=matches[1].split(",")[3]}else{color_alpha.value=1};
     color_hex();
+    color_hsl(color_red.value,color_green.value,color_blue.value);
 }
 function color_hex(r,g,b) {
     r=parseInt(color_red.value).toString(16);r=r.length<2?"0"+r:r
@@ -218,6 +224,7 @@ function color_hex(r,g,b) {
     text_green.value=color_green.value;
     text_alpha.value=color_alpha.value;
     box_color.style.backgroundColor=rgb_color.value
+    color_hsl(color_red.value,color_green.value,color_blue.value);
 }
 function color_rgb(h) {
     if(h.length==4){h="#"+h.slice(1,2)+h.slice(1,2)+h.slice(2,3)+h.slice(2,3)+h.slice(3,4)+h.slice(3,4)}
@@ -258,6 +265,46 @@ var drop = {
         }
     },
 };
+function color_hsl_parse(n){
+    var regExp=/\(([^)]+)\)/;
+    var matches=regExp.exec(n);
+    box_color.style.backgroundColor=n
+    var h=parseInt(matches[1].split(",")[0]);
+    var s=parseInt(matches[1].split(",")[1]);
+    var l=parseInt(matches[1].split(",")[2]);
+    var t=(matches[1].split(",")[3])?matches[1].split(",")[3]:false
+    l=l/100;
+    const a=s*Math.min(l,1 - l)/100;
+    const f=function(n){
+        const k=(n+h/30)%12;
+        const color=l-a*Math.max(Math.min(k-3,9-k,1),-1);
+        return Math.round(255*color);
+    };
+    var c=[f(0),f(8),f(4)]
+    color_red.value=c[0];
+    color_blue.value=c[2];
+    color_green.value=c[1];
+    if(t){color_alpha.value=t;rgb_color.value="rgba("+c[0]+","+c[1]+","+c[2]+","+t+")";}
+    else{color_alpha.value=1;rgb_color.value="rgb("+c[0]+","+c[1]+","+c[2]+")";}
+    text_alpha.value=color_alpha.value;
+    hex_color.value="#"+c[0].toString(16).padStart(2,'0')+c[1].toString(16).padStart(2,'0')+c[2].toString(16).padStart(2,'0');
+}
+function color_hsl(r,g,b){
+    r/=255,g/=255,b/=255;
+    var v=Math.max(r,g,b),c=Math.min(r,g,b);
+    var h,s,l=(v+c)/2;
+    if(v==c){h=s=0;}else{
+        var d=v-c;
+        s=l>0.5?d/(2-v-c):d/(v+c);
+        switch(v){
+            case r:h=(g-b)/d+(g<b?6:0);break;
+            case g:h=(b-r)/d+2;break;
+            case b:h=(r-g)/d+4;break;
+        }h/=6;
+    }
+    if(color_alpha.value!=1){hsl_color.value="hsla("+Math.floor(h * 360)+","+ Math.floor(s * 100)+"%,"+Math.floor(l * 100)+"%,"+color_alpha.value+")";}
+    else{hsl_color.value="hsl("+Math.floor(h * 360)+","+ Math.floor(s * 100)+"%,"+Math.floor(l * 100)+"%)";}
+}
 window.addEventListener("DOMContentLoaded", drop.init);
 </script>
 </body>
