@@ -34,6 +34,7 @@
     --bh:#efefff;
     --font:Arial;
 }
+hr{border-top:1px solid var(--cb);margin:4px 0px;}
 option{color:#000;}
 .cls-2 {stroke:#000;stroke-width: 8px;}
 body{height:100vh;width:100vw;}
@@ -440,7 +441,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
 <div id="toast"></div>
 <div id='about' style="display:none"><div class='window' style='padding:24px 16px;width:412px;'>
     <div><div class='window_close icon icon_close' onclick='modal_window(false)'></div></div>
-    <div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><br><br>
+    <div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><p style=''>Release: 4</p><br><br>
         <table style='border-spacing:10px;border-collapse:separate; width: 100%;'>
             <tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr>
             <tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://github.com/Kirilllive/ASCII_Art_Paint' target='_blank'>https://github.com/Kirilllive/ASCII_Art_Paint</a></td></tr>
@@ -612,8 +613,8 @@ function select_arr(){
         for(var x=0;x<td.length;x++){
             if((selected[1]!=selected[3]||selected[0]!=selected[2])&&((y>selected[1]-1&&y<selected[3]+1)||(y>selected[3]-1&&y<selected[1]+1))){
                 if((x>selected[0]-1&&x<selected[2]+1)||(x>selected[2]-1&&x<selected[0]+1)){td[x].style.backgroundColor="var(--cw)"}
-                else{td[x].style.backgroundColor=""}}
-            else{td[x].style.backgroundColor=""}
+                else{td[x].style.backgroundColor=""}
+            }else{td[x].style.backgroundColor=""}
         };
     };
 }
@@ -736,7 +737,7 @@ function get_selected(){
     if(se){
         if(selected[0]>selected[2]){x1=selected[2];x2=selected[0]}else{x1=selected[0];x2=selected[2];}
         if(selected[1]>selected[3]){y1=selected[3];y2=selected[1]}else{y1=selected[1];y2=selected[3];}
-    } return se;
+    }return se;
 }
 function save_art(c){
     var text="";
@@ -752,7 +753,7 @@ function save_art(c){
         a.setAttribute("href","data:text/json;charset=utf-8,"+encodeURIComponent(text));
         a.setAttribute("download","text_art.txt");
         a.click();
-    } else if(window_zone.style.display=="grid"){
+    }else if(window_zone.style.display=="grid"){
         state_save();window_zone.getElementsByClassName('edittext')[0].value=text;
     }else{
         copydb=text.split("\n");
