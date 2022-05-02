@@ -745,11 +745,15 @@ let translation = {
     ]
 }
 function getLang(){
-    if (translation[window.location.hash.slice(1,3)]){
-        languare=window.location.hash.slice(1,3)
-        for(var i=0;i<translation[languare].length;i++){document.getElementById(translation[languare][i][0]).innerHTML=translation[languare][i][1];}
+    if (window.location.hash.length!=0 && translation[window.location.hash.slice(1,3)]){
+        languare=window.location.hash.slice(1,3);textupdate()
+    }else if(window.location.hash.length==0 && translation[navigator.languages[0].substring(0,2)]){
+        languare=navigator.languages[0].substring(0,2);textupdate()
     }else{languare='en'}
     for(i=0;i<lang_choise.length;i++){if(lang_choise[i].value==languare){lang_choise[i].checked=true;break;}}
+}
+function textupdate(){
+    for(var i=0;i<translation[languare].length;i++){document.getElementById(translation[languare][i][0]).innerHTML=translation[languare][i][1];}
 }
 var lang_choise=document.forms.lang
 lang_choise.onchange=function(e){

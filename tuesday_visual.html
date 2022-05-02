@@ -2892,7 +2892,7 @@ function values_in_text(e){
     let t=Array.from(e.matchAll(/<(.*?)>/g));
     for(var a=0;a<t.length;a++){
         let r,o=t[a];
-        if(o[1].includes("=")){r=o[1].split('=');e=e.replace(o[0],"<ruby>"+r[0]+"<rt>"+r[1]+"</rt></ruby>")}
+        if(o[1].includes("=")){r=o[1].split('=');e=e.replace(o[0],"<ruby style='color:inherit;'>"+r[0]+"<rt style='color:inherit;'>"+r[1]+"</rt></ruby>")}
         else{e=e.replace(o[0],story_script.parameters.variables[o[1]])}
     }return e
 }
