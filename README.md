@@ -1,4 +1,4 @@
-![Tuesday js visual novels engine](https://img.itch.zone/aW1nLzU1MDg0NTkuanBn/original/mYr%2BBb.jpg)
+![Tuesday js visual novels engine](https://repository-images.githubusercontent.com/233020914/1b3240ff-9db8-4163-92ba-f86e81d10967)
 
 # Tuesday JS web visual novel engine 
 is a simple web-based, free and open-source visual novel editor that can be used in a web browser. It is written in JavaScript without using any third party libraries and thus does not require additional software installation. The engine uses standard HTML5 document elements such as div and img. This allows the use of any media format supported by browsers including vector graphics svg, gif animations and css styles.

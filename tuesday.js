@@ -76,10 +76,10 @@ function name_block_update(){
     if(tue_name_block.style.width=story_json.parameters.name_panel.size[0]!=0){tue_name_block.style.width=story_json.parameters.name_panel.size[0];}
     tue_name_block.style.height=story_json.parameters.name_panel.size[1];
     tue_name_block.style.lineHeight=story_json.parameters.name_panel.size[1];tue_name_block.style.top="0px"
-    if(story_json.parameters.name_panel.position[0]!=0){tue_name_block.style.left=story_json.parameters.name_panel.position[0];}
-    if(story_json.parameters.name_panel.position[1]!=0){tue_name_block.style.right=story_json.parameters.name_panel.position[1];}
-    if(story_json.parameters.name_panel.position[2]!=0){tue_name_block.style.top=story_json.parameters.name_panel.position[2];}
-    if(story_json.parameters.name_panel.position[3]!=0){tue_name_block.style.bottom=story_json.parameters.name_panel.position[3];}
+    tue_name_block.style.left=(story_json.parameters.name_panel.position[0]==""||story_json.parameters.name_panel.position[0]=="0")?null:story_json.parameters.name_panel.position[0];
+    tue_name_block.style.right=(story_json.parameters.name_panel.position[1]==""||story_json.parameters.name_panel.position[1]=="0")?null:story_json.parameters.name_panel.position[1];
+    tue_name_block.style.top=(story_json.parameters.name_panel.position[2]==""||story_json.parameters.name_panel.position[2]=="0")?null:story_json.parameters.name_panel.position[2];
+    tue_name_block.style.bottom=(story_json.parameters.name_panel.position[3]==""||story_json.parameters.name_panel.position[3]=="0")?null:story_json.parameters.name_panel.position[3];
     tue_name_block.style.zIndex=1001;
 } function base_creation(){
     get_lang();
@@ -110,15 +110,22 @@ function name_block_update(){
 		tue_text_block.style.height=story_json.parameters.text_panel.size[1];
 	}
 	if(story_json.parameters.text_panel.position){
-		tue_text_block.style.left=(story_json.parameters.text_panel.position[0] != 0)?story_json.parameters.text_panel.position[0]:"0";
-		tue_text_block.style.right=(story_json.parameters.text_panel.position[1] != 0)?story_json.parameters.text_panel.position[1]:"0";
-		if(story_json.parameters.text_panel.position[2] != 0){tue_text_block.style.top=story_json.parameters.text_panel.position[2];}
-		if(story_json.parameters.text_panel.position[3] != 0){tue_text_block.style.bottom=story_json.parameters.text_panel.position[3];}
+         if((!story_json.parameters.text_panel.position[0]||story_json.parameters.text_panel.position[0]=="0")&&(!story_json.parameters.text_panel.position[1]||story_json.parameters.text_panel.position[1]=="0")){
+            tue_text_block.style.marginLeft="auto";
+            tue_text_block.style.marginRight="auto";
+            tue_text_block.style.left=0;
+            tue_text_block.style.right=0;
+        }else{
+            tue_text_block.style.left=(story_json.parameters.text_panel.position[0]!="0")?story_json.parameters.text_panel.position[0]:null;
+            tue_text_block.style.right=(story_json.parameters.text_panel.position[1]!="0")?story_json.parameters.text_panel.position[1]:null;
+            tue_text_block.style.margin=null;
+        }
+        tue_text_block.style.top=(story_json.parameters.text_panel.position[2]!="0")?story_json.parameters.text_panel.position[2]:null;
 	}else{
-		tue_text_block.style.left="0";
-		tue_text_block.style.right="0";
+        tue_text_block.style.left=0;
+        tue_text_block.style.right=0;
 	}
-	if(story_json.parameters.text_panel.indent_bottom){tue_text_block.style.bottom=story_json.parameters.text_panel.indent_bottom;}
+    tue_text_block.style.bottom=(story_json.parameters.text_panel.indent_bottom!="0")?story_json.parameters.text_panel.indent_bottom:null;
     tue_text_block.style.zIndex=1000;
     tue_text_block.style.borderSpacing=0;
     tue_text_view=document.getElementById("tue_text_view");
@@ -159,7 +166,7 @@ function name_block_update(){
     function bg_art(arr_u,tue_id){
         tue_id=document.getElementById(tue_id);
         tue_id.style.backgroundRepeat="no-repeat";
-        tue_id.style.backgroundPosition="center";
+        tue_id.style.backgroundPosition=((arr_u.art_align)?arr_u.art_align[0]+" "+arr_u.art_align[1]:"center");
         if(arr_u.art){
             var a=art_data(arr_u.art)
             if(a.length>0){tue_id.style.backgroundImage="url('"+art_data(arr_u.art)+"')";}
@@ -341,7 +348,7 @@ function name_block_update(){
                 if(arr_dialog.name.className){ tue_name_block.className=arr_dialog.name.className}
             } else if(story_json.parameters.characters){
 				if(story_json.parameters.characters[arr_dialog.name]){
-                    if(story_json.parameters.characters[arr_dialog.name].style){tue_name_block.style=story_json.parameters.characters[arr_dialog.name].style;name_block_update();} else if(story_json.parameters.name_panel.style){tue_name_block.style=story_json.parameters.name_panel.style;name_block_update();}
+                    if(story_json.parameters.characters[arr_dialog.name].style){tue_name_block.style=story_json.parameters.characters[arr_dialog.name].style;name_block_update();}
                     tue_name_block.innerHTML=story_json.parameters.characters[arr_dialog.name][languare]
                     tue_name_block.style.backgroundColor=story_json.parameters.characters[arr_dialog.name].color;
                     tue_name_block.style.color=story_json.parameters.characters[arr_dialog.name].color_text;

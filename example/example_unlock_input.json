@@ -1,0 +1,142 @@
+{
+	"parameters": {
+		"text_panel": {
+			"size": [
+				"95%",
+				"25%"
+			],
+			"position": [],
+			"color": "#efefff",
+			"color_text": "#000",
+			"indent_text": "8px",
+			"indent_bottom": "32px",
+			"size_text": "20px",
+			"style": "border-radius:16px;",
+			"dialog_speed": "10",
+			"art": {
+				"en": ""
+			}
+		},
+		"name_panel": {
+			"size": [
+				"222px",
+				"48px"
+			],
+			"position": [
+				"0",
+				"0",
+				"-48px",
+				"0"
+			],
+			"indent_text": "8px",
+			"size_text": "18px",
+			"color_text": "#000",
+			"align": [
+				"flex-start",
+				"center"
+			],
+			"art": {
+				"en": ""
+			}
+		},
+		"title": {
+			"en": "new novel"
+		},
+		"launch_story": "block_1",
+		"key": {
+			"next": "",
+			"back": "",
+			"save": "",
+			"load": "",
+			"full_screen": "",
+			"launch_story": "",
+			"load_autosave": ""
+		},
+		"languares": [
+			"en"
+		],
+		"buttons": [
+			{
+				"name": "tue_back",
+				"style": "border-radius:26px;",
+				"position": [
+					"2.5%",
+					"0",
+					"0",
+					"32px"
+				],
+				"size": [
+					"38px",
+					"38px"
+				],
+				"color": "",
+				"color_text": "#000",
+				"size_text": "28px",
+				"text": "<",
+				"art": {
+					"en": ""
+				},
+				"sound": {
+					"en": ""
+				},
+				"hotspot": [
+					"0%",
+					"0%"
+				]
+			},
+			{
+				"name": "tue_next",
+				"style": "border-radius:26px;",
+				"position": [
+					"0",
+					"2.5%",
+					"0",
+					"32px"
+				],
+				"size": [
+					"38px",
+					"38px"
+				],
+				"color": "",
+				"color_text": "#000",
+				"size_text": "28px",
+				"text": ">",
+				"art": {
+					"en": ""
+				},
+				"sound": {
+					"en": ""
+				},
+				"hotspot": [
+					"0%",
+					"0%"
+				]
+			}
+		],
+		"style_file": "",
+		"autosave": false,
+		"font": "Arial",
+		"font_size": "18px",
+		"plugins": [],
+		"variables": {},
+		"characters": {}
+	},
+	"blocks": {
+		"block_1": [
+			"86px",
+			"96px",
+			"block",
+			false
+		]
+	},
+	"block_1": [
+		{
+			"dialogs": [
+				{
+					"html": "<p style='color:#000;'>hello</p>\n<input type='text' value='hello'>",
+					"js": "window.onmousedown=window.onselectstart(()=>{return true;});"
+				}
+			]
+		}
+	]
+}
