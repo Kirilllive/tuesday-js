@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html><head>
+<title>localizer tool</title>
+<style>
+    *{
+        font-family:Arial;
+        font-size:13px;
+        border-collapse:collapse;
+        border:none;
+        margin:0;
+        padding:0;
+        border-spacing:0px;
+        outline:none;
+        -webkit-touch-callout:none;
+        -webkit-user-select:none;
+        -khtml-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+        outline:none;
+    }
+    input,select{
+        border:0;
+        font-family:Arial;
+        font-size:13px;
+        -webkit-appearance:none;
+        background-color:transparent;
+        cursor:text;
+        height:28px;
+        width:100%;
+        -webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
+    }
+    .button{
+        background-size:20px 20px;
+        background-repeat:no-repeat;
+        width:138px;height:36px;
+        margin:14px;
+        border-radius:20px;cursor:pointer;
+        background-color:#efefff;display:grid;justify-content:center;align-items:center;
+        background-position:left 9px center;
+    }
+    .button:hover{background-color:#e1dcef;}
+    .icon{background-size:16px 16px;background-repeat:no-repeat;background-position:10px center;}
+    .icon_b{background-size:20px 20px;background-repeat:no-repeat;background-position:8px center;}
+    .icon_del{cursor:pointer;background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M194,62V230H63V62M47,45H210M108,23h39V45H108V23ZM128,62V213M92,62V213M164,62V213'/%3e%3c/svg%3e")}
+    .icon_load{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='18' stroke-linejoin='round' d='M48,85H252L208,226H5ZM48,85L5,226V51L18,34H65l13,17H208V85H48Z'/%3e%3c/svg%3e")}
+    .icon_save{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='16' stroke-linejoin='round' d='M238,51V228a10,10,0,0,1-10,10H27a10,10,0,0,1-10-10V27A10,10,0,0,1,27,17H203ZM52,238V144a10,10,0,0,1,10-10H194a10,10,0,0,1,10,10V238H39ZM174,95H79a10,10,0,0,1-10-10V17H184V85A10,10,0,0,1,174,95Z'/%3e%3crect x='140' y='44' width='15' height='24' fill='none' stroke='%23000' stroke-width='16' stroke-linejoin='round'/%3e%3c/svg%3e")}
+    .icon_add{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3ccircle fill='none' stroke='%23000' stroke-width='18' stroke-linejoin='round' cx='128' cy='128' r='120'/%3e%3cpath fill='none' stroke='%23000' stroke-width='18' stroke-linejoin='round' d='M47,128h161M128,208V47'/%3e%3c/svg%3e")}
+    .icon_replace{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='4' stroke-linejoin='round' d='M4,42l7-7,7,7M60,22l-7,7-7-7M30,56C20,56,11,46,11,36M33,8C44,8,53,17,53,28M38,58L47,38,56,58M9,27L26,6M27,27L10,6M41,51H53'/%3e%3c/svg%3e")}
+    .icon_sort{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='6' stroke-linejoin='round' d='M3,8H60 M3,32H40 M21,56H4'/%3e%3c/svg%3e")}
+    tbody td{padding:4px;border-left:1px solid #e1dcef;}
+    tbody tr:nth-child(odd){background-color:#efefff;}
+    tbody tr:nth-child(even){background-color:#fff;}
+    tbody tr:hover td{background-color:#e1dcef;}
+    tbody .no_text:nth-child(odd){background-color: #ffebeb;}
+    tbody .no_text:nth-child(even){background-color: #fff5f5;}
+</style>
+</head><body>
+<div style="display:none;position:fixed;">
+<input id="file" type="file"/>
+<a id="get_file"></a>
+</div>
+<div style="display:flex;float:left;width:100%;background-color:#fff;position:fixed;left:0;top:0;">
+<div class="button icon icon_load" onclick="file.click();">Load</div>
+<div class="button"><select id="language" class="input_text" style="width:128px;text-align:center;" oninput="allTexts(this.value);"><optgroup><option value="en">EN - English</option><option value="ja">JA - Japanese</option><option value="fr">FR - French</option><option value="ru">RU - Russian</option><option value="es">ES - Spanish</option><option value="zh">ZH - Chinese</option><option value="ko">KO - Korean</option><option value="nl">NL - Dutch</option></optgroup><optgroup><option value="aa">AA - Afar</option><option value="ab">AB - Abkhazian</option><option value="af">AF - Afrikaans</option><option value="ak">AK - Akan</option><option value="sq">SQ - Albanian</option><option value="am">AM - Amharic</option><option value="ar">AR - Arabic</option><option value="an">AN - Aragonese</option><option value="hy">HY - Armenian</option><option value="as">AS - Assamese</option><option value="av">AV - Avaric</option><option value="ae">AE - Avestan</option><option value="ay">AY - Aymara</option><option value="az">AZ - Azerbaijani</option><option value="bm">BM - Bambara</option><option value="ba">BA - Bashkir</option><option value="eu">EU - Basque</option><option value="be">BE - Belarusian</option><option value="bn">BN - Bengali (Bangla)</option><option value="bh">BH - Bihari</option><option value="bi">BI - Bislama</option><option value="bs">BS - Bosnian</option><option value="br">BR - Breton</option><option value="bg">BG - Bulgarian</option><option value="my">MY - Burmese</option><option value="ca">CA - Catalan</option><option value="ch">CH - Chamorro</option><option value="ce">CE - Chechen</option><option value="ny">NY - Chichewa,Chewa,Nyanja</option><option value="zh-Hans">ZH-HANS - Chinese (Simplified)</option><option value="zh-Hant">ZH-HANT - Chinese (Traditional)</option><option value="cv">CV - Chuvash</option><option value="kw">KW - Cornish</option><option value="co">CO - Corsican</option><option value="cr">CR - Cree</option><option value="hr">HR - Croatian</option><option value="cs">CS - Czech</option><option value="da">DA - Danish</option><option value="dv">DV - Divehi,Dhivehi,Maldivian</option><option value="dz">DZ - Dzongkha</option><option value="eo">EO - Esperanto</option><option value="et">ET - Estonian</option><option value="ee">EE - Ewe</option><option value="fo">FO - Faroese</option><option value="fj">FJ - Fijian</option><option value="fi">FI - Finnish</option><option value="ff">FF - Fula,Fulah,Pulaar,Pular</option><option value="gl">GL - Galician</option><option value="gd">GD - Gaelic (Scottish)</option><option value="gv">GV - Gaelic (Manx)</option><option value="ka">KA - Georgian</option><option value="de">DE - German</option><option value="el">EL - Greek</option><option value="kl">KL - Greenlandic</option><option value="gn">GN - Guarani</option><option value="gu">GU - Gujarati</option><option value="ht">HT - Haitian Creole</option><option value="ha">HA - Hausa</option><option value="he">HE - Hebrew</option><option value="hz">HZ - Herero</option><option value="hi">HI - Hindi</option><option value="ho">HO - Hiri Motu</option><option value="hu">HU - Hungarian</option><option value="is">IS - Icelandic</option><option value="io">IO - Ido</option><option value="ig">IG - Igbo</option><option value="id">ID - Indonesian</option><option value="ia">IA - Interlingua</option><option value="ie">IE - Interlingue</option><option value="iu">IU - Inuktitut</option><option value="ik">IK - Inupiak</option><option value="ga">GA - Irish</option><option value="it">IT - Italian</option><option value="jv">JV - Javanese</option><option value="kl">KL - Kalaallisut,Greenlandic</option><option value="kn">KN - Kannada</option><option value="kr">KR - Kanuri</option><option value="ks">KS - Kashmiri</option><option value="kk">KK - Kazakh</option><option value="km">KM - Khmer</option><option value="ki">KI - Kikuyu</option><option value="rw">RW - Kinyarwanda (Rwanda)</option><option value="rn">RN - Kirundi</option><option value="ky">KY - Kyrgyz</option><option value="kv">KV - Komi</option><option value="kg">KG - Kongo</option><option value="ku">KU - Kurdish</option><option value="kj">KJ - Kwanyama</option><option value="lo">LO - Lao</option><option value="la">LA - Latin</option><option value="lv">LV - Latvian (Lettish)</option><option value="li">LI - Limburgish ( Limburger)</option><option value="ln">LN - Lingala</option><option value="lt">LT - Lithuanian</option><option value="lu">LU - Luga-Katanga</option><option value="lg">LG - Luganda,Ganda</option><option value="lb">LB - Luxembourgish</option><option value="gv">GV - Manx</option><option value="mk">MK - Macedonian</option><option value="mg">MG - Malagasy</option><option value="ms">MS - Malay</option><option value="ml">ML - Malayalam</option><option value="mt">MT - Maltese</option><option value="mi">MI - Maori</option><option value="mr">MR - Marathi</option><option value="mh">MH - Marshallese</option><option value="mo">MO - Moldavian</option><option value="mn">MN - Mongolian</option><option value="na">NA - Nauru</option><option value="nv">NV - Navajo</option><option value="ng">NG - Ndonga</option><option value="nd">ND - Northern Ndebele</option><option value="ne">NE - Nepali</option><option value="no">NO - Norwegian</option><option value="nb">NB - Norwegian bokmål</option><option value="nn">NN - Norwegian nynorsk</option><option value="ii">II - Nuosu</option><option value="oc">OC - Occitan</option><option value="oj">OJ - Ojibwe</option><option value="cu">CU - Old Church Slavonic,Old Bulgarian</option><option value="or">OR - Oriya</option><option value="om">OM - Oromo (Afaan Oromo)</option><option value="os">OS - Ossetian</option><option value="pi">PI - Pāli</option><option value="ps">PS - Pashto,Pushto</option><option value="fa">FA - Persian (Farsi)</option><option value="pl">PL - Polish</option><option value="pt">PT - Portuguese</option><option value="pa">PA - Punjabi (Eastern)</option><option value="qu">QU - Quechua</option><option value="rm">RM - Romansh</option><option value="ro">RO - Romanian</option><option value="se">SE - Sami</option><option value="sm">SM - Samoan</option><option value="sg">SG - Sango</option><option value="sa">SA - Sanskrit</option><option value="sr">SR - Serbian</option><option value="sh">SH - Serbo-Croatian</option><option value="st">ST - Sesotho</option><option value="tn">TN - Setswana</option><option value="sn">SN - Shona</option><option value="ii">II - Sichuan Yi</option><option value="sd">SD - Sindhi</option><option value="si">SI - Sinhalese</option><option value="ss">SS - Siswati</option><option value="sk">SK - Slovak</option><option value="sl">SL - Slovenian</option><option value="so">SO - Somali</option><option value="nr">NR - Southern Ndebele</option><option value="su">SU - Sundanese</option><option value="sw">SW - Swahili (Kiswahili)</option><option value="ss">SS - Swati</option><option value="sv">SV - Swedish</option><option value="tl">TL - Tagalog</option><option value="ty">TY - Tahitian</option><option value="tg">TG - Tajik</option><option value="ta">TA - Tamil</option><option value="tt">TT - Tatar</option><option value="te">TE - Telugu</option><option value="th">TH - Thai</option><option value="bo">BO - Tibetan</option><option value="ti">TI - Tigrinya</option><option value="to">TO - Tonga</option><option value="ts">TS - Tsonga</option><option value="tr">TR - Turkish</option><option value="tk">TK - Turkmen</option><option value="tw">TW - Twi</option><option value="ug">UG - Uyghur</option><option value="ur">UR - Urdu</option><option value="uz">UZ - Uzbek</option><option value="ve">VE - Venda</option><option value="vi">VI - Vietnamese</option><option value="vo">VO - Volapük</option><option value="wa">WA - Wallon</option><option value="cy">CY - Welsh</option><option value="wo">WO - Wolof</option><option value="fy">FY - Western Frisian</option><option value="xh">XH - Xhosa</option><option value="yi">YI - Yiddish</option><option value="yo">YO - Yoruba</option><option value="za">ZA - Zhuang,Chuang</option><option value="zu">ZU - Zulu</option></optgroup></select></div>
+<div class="button icon icon_sort"  onclick="sort(JSON.parse(JSON.stringify(lakit)));allTexts(language.value)">Sort</div>
+<div class="button icon icon_replace" onclick="file.click();">Replace</div>
+<div class="button icon icon_save" onclick="save_lakit();">Save</div>
+</div>
+<table id="all_texts" style="border-collapse:collapse;width:100%;margin-top:60px;" border="0">
+    <thead><tr>
+        <td style="width:48px;height:28px;"></td>
+        <td style="width:calc(50% - 48px);">original</td>
+        <td style="width:calc(50% - 36px);">translation</td>
+        <td style="width:36px;"></td>
+    </tr></thead>
+    <tbody></tbody>
+</table>
+<div class="button icon icon_add" style="margin: 32px auto;" onclick="lakit.push(['',{'ru':'','ja':''}]);allTexts(language.value)">Add string</div>
+<script>
+lakit=[];file_name="";
+var a=document.getElementById("get_file");
+document.addEventListener("DOMContentLoaded",allTexts(language.value))
+function allTexts(la){
+    var tab=document.getElementById('all_texts').getElementsByTagName('tbody')[0];
+    tab.innerHTML="";
+    for(var i=0;i<lakit.length;i++){
+        var row=document.createElement("tr"),td1=document.createElement("td"),td2=document.createElement("td"),td3=document.createElement("td"),td4=document.createElement("td"),imp=document.createElement("input");
+        td1.innerHTML=i;td1.style="text-align:right;padding-right:10px;";
+        imp.value=lakit[i][0];
+        imp.type='text'
+        imp.setAttribute("onchange","lakit["+i+"][0]=this.value")
+        td2.appendChild(imp);
+        imp=document.createElement("input");
+        imp.value=lakit[i][1][la]?lakit[i][1][la]:"";
+        imp.type='text';
+        imp.setAttribute("onchange","lakit["+i+"][1]['"+la+"']=this.value");
+        td3.appendChild(imp);
+        td4.className="icon_b icon_del";
+        td4.setAttribute("onclick","lakit.splice("+i+",1);allTexts(language.value)");
+        if(!lakit[i][1][la]){row.className="no_text";}
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+        row.appendChild(td4);
+        tab.appendChild(row);
+    }
+} function save_lakit(){
+    a.setAttribute("href","data:text/html;charset=utf-8,"+encodeURIComponent(JSON.stringify(lakit,null,'\t')));
+    a.setAttribute("download","tuesday_visual_lakit.json");
+    a.click();
+}
+file.addEventListener('change',loadFiles);
+function loadFiles(e){
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){if(this.readyState==4&&(this.status===200||this.status==0)){
+        if(e.target.files[0].name.includes(".json")){
+            lakit=JSON.parse(this.responseText)
+            allTexts(language.value)
+        }else {
+            file_name=e.target.files[0].name;convert(this.responseText)
+        };
+    }};
+    xmlhttp.open("GET",URL.createObjectURL(e.target.files[0]),true);
+    xmlhttp.send();
+    xmlhttp.onerror=function(){if(this.status==0){alert('error');}}
+} function convert(t){
+for(var c=0;c<lakit.length;c++){if(lakit[c][1][language.value].length>0){t=t.replace(new RegExp(lakit[c][0],"g"),lakit[c][1][language.value])}}
+    a.setAttribute("href","data:text/html;charset=utf-8,"+encodeURIComponent(t));
+    a.setAttribute("download",language.value+"_"+file_name);
+    a.click();
+}
+function sort(f){
+    var d=f,s=0,p=0,a=d.length;lakit=[];
+    for(var x=0;x<a;x++){
+        for(var i=0;i<d.length;i++){if(d[i][0].length>s){p=i;s=d[i][0].length}}
+        lakit.push(JSON.parse(JSON.stringify(d[p])));
+        d.splice(p,1);s=0;p=0;
+    }
+}
+</script>
+</body></html>

@@ -321,7 +321,8 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
                 </tr>
             </tbody>
             </table>
-            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="img_to_ascii();">image to ascii</div>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="img_to_ascii(0);">image to ASCII</div>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="img_to_ascii(1);">image to Braille</div>
         </div>
         <div style="width:100%;text-align:center; border-top:1px solid var(--cb);">
             <table style="margin:14px;width:calc(100% - 28px);">
@@ -344,7 +345,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
                 <tr>
                     <td style="padding-right:10px;width:33%;" align="right">Width</td>
                     <td style="" align="center"><input type="text" id="canvasWidth" onchange="this.value=correct_value(this.value);if(canvasProportion.checked){canvasHeight.value=Math.round(tr.length*(this.value/td.length))}" class="input_text palette_simbols"></td>
-                    <td rowspan="2"><input id="canvasProportion" class="proportion" type="checkbox"></td>
+                    <td rowspan="2"><input id="canvasProportion" class="proportion" type="checkbox" checked></td>
                 </tr>
                 <tr>
                     <td style="padding-right:10px;" align="right">Height</td>
@@ -373,7 +374,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
                 <tr>
                     <td style="padding-right:10px;width:33%;" align="right">Width</td>
                     <td style="" align="center"><input type="text" id="imgWidth" onchange="this.value=correct_value(this.value);if(imgProportion.checked){imgHeight.value=Math.round((tr.length*14)*(this.value/(td.length*8)))}" class="input_text palette_simbols"></td>
-                    <td rowspan="2"><input id="imgProportion" class="proportion" type="checkbox"></td>
+                    <td rowspan="2"><input id="imgProportion" class="proportion" type="checkbox" checked></td>
                 </tr>
                 <tr>
                     <td style="padding-right:10px;" align="right">Height</td>
@@ -381,7 +382,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
                 </tr>
             </tbody>
             </table>
-            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="save_png()">Save image/png</div>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="save_png()">Save image png</div>
         </div>
     </div>
 </td></tr><tr><td style="height:40px;border-top:1px solid var(--cb);background-color:var(--wn);" align="center">
@@ -443,7 +444,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
 <div id="toast"></div>
 <div id='about' style="display:none"><div class='window' style='padding:24px 16px;width:412px;'>
     <div><div class='window_close icon icon_close' onclick='modal_window(false)'></div></div>
-    <div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><p style=''>Release: 6</p><br><br>
+    <div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><p style=''>Release: 7</p><br><br>
         <table style='border-spacing:10px;border-collapse:separate; width: 100%;'>
             <tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr>
             <tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://github.com/Kirilllive/ASCII_Art_Paint' target='_blank'>https://github.com/Kirilllive/ASCII_Art_Paint</a></td></tr>
@@ -488,7 +489,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
         <div id="palette_apply" class="button" style="margin-top:16px;" onclick="applyChar();modal_window(false);">Apply</div>
     </div>
 </div>
-<div id="cursor_text" style="position:fixed;background-color:var(--ac);padding:4px;">ppp</div>
+<div id="cursor_text" style="position:fixed;background-color:var(--ac);padding:4px 6px;border-radius:6px;display:none;"></div>
 <div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
 <script>
 var range_font=[0,13313],edit_p=false,palette="██▓▒░☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼`⌂ÇæÆ¢£¥₧ƒªº¿⌐¬½¼¡«»│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙⋅√ⁿ²■";
@@ -836,15 +837,16 @@ function original_size(){
         };image.src = l.target.result;
     };reader.readAsDataURL(img);
 }
-function img_to_ascii(){
+function img_to_ascii(r){
     const preview=document.getElementById("preview"),context=preview.getContext("2d");
     const reader=new FileReader();
     reader.onload=function(l){
         const image=new Image();
         image.onload=function(){
             var tr=canvas.getElementsByTagName('tr');
-            const w=tr[0].getElementsByTagName('td').length,h=tr.length;
+            let w=tr[0].getElementsByTagName('td').length,h=tr.length;
             img_icon.style.filter='contrast('+contrast.value+'%) brightness('+brightness.value+'%)'
+            if(r==1){w=w*2;h=h*4}
             preview.width=w;preview.height=h;
             context.filter=img_icon.style.filter;
             context.beginPath();
@@ -853,7 +855,8 @@ function img_to_ascii(){
             context.fill();
             context.drawImage(image,0,0,w,h);
             const grayScales=convertToGrayScales(context,w,h);
-            drawAscii(grayScales,w);
+            if(r==1){drawBraille(w,h)}else{drawAscii(grayScales,w)}
+            
         };image.src=l.target.result;
     };reader.readAsDataURL(img);
 };
@@ -879,6 +882,29 @@ const drawAscii=function(grayScales,width){
     }, '');
     db=ascii.split("\n");db.splice(-1,1);buildWorld();state_save();
 };
+function drawBraille(w,h){
+    const preview=document.getElementById("preview"),context=preview.getContext("2d");let t="";
+    for (let i=0;i<(h/4);i++){
+        for (let b=0;b<(w/2);b++){
+            let c="";
+            c+=context.getImageData(b*2,i*4,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2,i*4+1,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2,i*4+2,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2,i*4+3,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2+1,i*4,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2+1,i*4+1,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2+1,i*4+2,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2+1,i*4+3,1,1).data[0]>128?0:1;
+            function grad(){var g=0;
+                g+=context.getImageData(b*2,i*4+1,1,1).data[0];
+                g+=context.getImageData(b*2,i*4+2,1,1).data[0];
+                g+=context.getImageData(b*2+1,i*4+1,1,1).data[0];
+                g+=context.getImageData(b*2+1,i*4+2,1,1).data[0];
+                g/=4;return "⣿⣟⣫⡮⢕⠕⠌⠂"[Math.ceil(7*g/255)];}
+            "11111111"==c?t+=grad():"00000000"==c?t+=grad():"01000000"==c?t+="⠂":"10000000"==c?t+="⠁":"11000000"==c?t+="⠃":"00100000"==c?t+="⠄":"10100000"==c?t+="⠅":"01100000"==c?t+="⠆":"11100000"==c?t+="⠇":"00001000"==c?t+="⠈":"10001000"==c?t+="⠉":"01001000"==c?t+="⠊":"11001000"==c?t+="⠋":"00101000"==c?t+="⠌":"10101000"==c?t+="⠍":"01101000"==c?t+="⠎":"11101000"==c?t+="⠏":"00000100"==c?t+="⠐":"10000100"==c?t+="⠑":"01000100"==c?t+="⠒":"11000100"==c?t+="⠓":"11100110"==c?t+="⠷":"01100110"==c?t+="⠶":"01011100"==c?t+="⡚":"11011100"==c?t+="⡛":"11111110"==c?t+="⡿":"01111110"==c?t+="⡾":"01000011"==c?t+="⢢":"11000011"==c?t+="⢣":"11110001"==c?t+="⣇":"01110001"==c?t+="⣆":"01011011"==c?t+="⣪":"11011011"==c?t+="⣫":"10011011"==c?t+="⣩":"00011011"==c?t+="⣨":"01110011"==c?t+="⣦":"11110011"==c?t+="⣧":"10110011"==c?t+="⣥":"00110011"==c?t+="⣤":"11010011"==c?t+="⣣":"01010011"==c?t+="⣢":"10010011"==c?t+="⣡":"00010011"==c?t+="⣠":"11111101"==c?t+="⣟":"01111101"==c?t+="⣞":"10111101"==c?t+="⣝":"00111101"==c?t+="⣜":"11011101"==c?t+="⣛":"01111111"==c?t+="⣾":"01011101"==c?t+="⣚":"10011101"==c?t+="⣙":"10111111"==c?t+="⣽":"00111111"==c?t+="⣼":"00011101"==c?t+="⣘":"11110101"==c?t+="⣗":"11011111"==c?t+="⣻":"01011111"==c?t+="⣺":"01110101"==c?t+="⣖":"10110101"==c?t+="⣕":"10011111"==c?t+="⣹":"00011111"==c?t+="⣸":"00110101"==c?t+="⣔":"11010101"==c?t+="⣓":"11110111"==c?t+="⣷":"01110111"==c?t+="⣶":"01010101"==c?t+="⣒":"10010101"==c?t+="⣑":"10110111"==c?t+="⣵":"00110111"==c?t+="⣴":"00010101"==c?t+="⣐":"11111001"==c?t+="⣏":"11010111"==c?t+="⣳":"01010111"==c?t+="⣲":"01111001"==c?t+="⣎":"10111001"==c?t+="⣍":"10010111"==c?t+="⣱":"00010111"==c?t+="⣰":"00111001"==c?t+="⣌":"11011001"==c?t+="⣋":"11111011"==c?t+="⣯":"01111011"==c?t+="⣮":"01011001"==c?t+="⣊":"10011001"==c?t+="⣉":"10111011"==c?t+="⣭":"00111011"==c?t+="⣬":"00011001"==c?t+="⣈":"00100011"==c?t+="⢤":"00000001"==c?t+="⢀":"00001110"==c?t+="⠸":"00111100"==c?t+="⡜":"00100100"==c?t+="⠔":"10100100"==c?t+="⠕":"01100100"==c?t+="⠖":"11100100"==c?t+="⠗":"00001100"==c?t+="⠘":"10001100"==c?t+="⠙":"01001100"==c?t+="⠚":"11001100"==c?t+="⠛":"00101100"==c?t+="⠜":"10101100"==c?t+="⠝":"01101100"==c?t+="⠞":"11101100"==c?t+="⠟":"00000010"==c?t+="⠠":"10000010"==c?t+="⠡":"01000010"==c?t+="⠢":"11000010"==c?t+="⠣":"00100010"==c?t+="⠤":"10100010"==c?t+="⠥":"01100010"==c?t+="⠦":"11100010"==c?t+="⠧":"00001010"==c?t+="⠨":"10001010"==c?t+="⠩":"01001010"==c?t+="⠪":"11001010"==c?t+="⠫":"00101010"==c?t+="⠬":"10101010"==c?t+="⠭":"01101010"==c?t+="⠮":"11101010"==c?t+="⠯":"00000110"==c?t+="⠰":"10000110"==c?t+="⠱":"01000110"==c?t+="⠲":"11000110"==c?t+="⠳":"00100110"==c?t+="⠴":"10100110"==c?t+="⠵":"10011100"==c?t+="⡙":"10111110"==c?t+="⡽":"10000011"==c?t+="⢡":"10110001"==c?t+="⣅":"00110001"==c?t+="⣄":"01010001"==c?t+="⣂":"11010001"==c?t+="⣃":"10010001"==c?t+="⣁":"00010001"==c?t+="⣀":"11101111"==c?t+="⢿":"10101111"==c?t+="⢽":"01101111"==c?t+="⢾":"00101111"==c?t+="⢼":"01001111"==c?t+="⢺":"11001111"==c?t+="⢻":"10001111"==c?t+="⢹":"00001111"==c?t+="⢸":"11100111"==c?t+="⢷":"01100111"==c?t+="⢶":"10100111"==c?t+="⢵":"00100111"==c?t+="⢴":"11000111"==c?t+="⢳":"01000111"==c?t+="⢲":"10000111"==c?t+="⢱":"00000111"==c?t+="⢰":"11101011"==c?t+="⢯":"01101011"==c?t+="⢮":"10101011"==c?t+="⢭":"00101011"==c?t+="⢬":"11001011"==c?t+="⢫":"01001011"==c?t+="⢪":"10001011"==c?t+="⢩":"00001011"==c?t+="⢨":"11100011"==c?t+="⢧":"01100011"==c?t+="⢦":"10100011"==c?t+="⢥":"10000001"==c?t+="⢁":"10111100"==c?t+="⡝":"10001110"==c?t+="⠹":"01001110"==c?t+="⠺":"11001110"==c?t+="⠻":"00101110"==c?t+="⠼":"10101110"==c?t+="⠽":"01101110"==c?t+="⠾":"11101110"==c?t+="⠿":"00010000"==c?t+="⡀":"10010000"==c?t+="⡁":"01010000"==c?t+="⡂":"11010000"==c?t+="⡃":"00110000"==c?t+="⡄":"10110000"==c?t+="⡅":"01110000"==c?t+="⡆":"11110000"==c?t+="⡇":"00011000"==c?t+="⡈":"10011000"==c?t+="⡉":"01011000"==c?t+="⡊":"11011000"==c?t+="⡋":"00111000"==c?t+="⡌":"10111000"==c?t+="⡍":"01111000"==c?t+="⡎":"11111000"==c?t+="⡏":"00010100"==c?t+="⡐":"10010100"==c?t+="⡑":"01010100"==c?t+="⡒":"11010100"==c?t+="⡓":"00110100"==c?t+="⡔":"10110100"==c?t+="⡕":"01110100"==c?t+="⡖":"11110100"==c?t+="⡗":"00011100"==c?t+="⡘":"00111110"==c?t+="⡼":"00000011"==c?t+="⢠":"11101101"==c?t+="⢟":"11011110"==c?t+="⡻":"01011110"==c?t+="⡺":"01101101"==c?t+="⢞":"10101101"==c?t+="⢝":"10011110"==c?t+="⡹":"00011110"==c?t+="⡸":"00101101"==c?t+="⢜":"11001101"==c?t+="⢛":"11110110"==c?t+="⡷":"01110110"==c?t+="⡶":"01001101"==c?t+="⢚":"10001101"==c?t+="⢙":"10110110"==c?t+="⡵":"00110110"==c?t+="⡴":"00001101"==c?t+="⢘":"11100101"==c?t+="⢗":"11010110"==c?t+="⡳":"01010110"==c?t+="⡲":"01100101"==c?t+="⢖":"10100101"==c?t+="⢕":"10010110"==c?t+="⡱":"00010110"==c?t+="⡰":"00100101"==c?t+="⢔":"11000101"==c?t+="⢓":"11111010"==c?t+="⡯":"01111010"==c?t+="⡮":"01000101"==c?t+="⢒":"10000101"==c?t+="⢑":"10111010"==c?t+="⡭":"00111010"==c?t+="⡬":"00000101"==c?t+="⢐":"11101001"==c?t+="⢏":"11011010"==c?t+="⡫":"01011010"==c?t+="⡪":"01101001"==c?t+="⢎":"10101001"==c?t+="⢍":"10011010"==c?t+="⡩":"00011010"==c?t+="⡨":"00101001"==c?t+="⢌":"11001001"==c?t+="⢋":"11110010"==c?t+="⡧":"01110010"==c?t+="⡦":"01001001"==c?t+="⢊":"10001001"==c?t+="⢉":"10110010"==c?t+="⡥":"00110010"==c?t+="⡤":"00001001"==c?t+="⢈":"11100001"==c?t+="⢇":"11010010"==c?t+="⡣":"01010010"==c?t+="⡢":"01100001"==c?t+="⢆":"10100001"==c?t+="⢅":"10010010"==c?t+="⡡":"00010010"==c?t+="⡠":"00100001"==c?t+="⢄":"11000001"==c?t+="⢃":"11111100"==c?t+="⡟":"01111100"==c?t+="⡞":"01000001"==c?t+="⢂":t+=" "
+        }t+='\n'
+    }db=t.split("\n");db.splice(-1,1);buildWorld();state_save();
+}
 function state_save(){
     frame=document.getElementById('asciicanvas')
     if(state_num>0){back_up.splice(0,state_num);state_num=0;}

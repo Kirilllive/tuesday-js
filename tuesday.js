@@ -172,7 +172,7 @@ function name_block_update(){
         art=(art)?art:arr_u.art;
         if(art){
             var a=art_data(art);
-            if(a.length>0){tue_id.style.backgroundImage="url('"+art_data(art)+"')";}
+            if(a.length>0){tue_id.style.backgroundImage="url('"+a+"')";}
         }
         if(arr_u.art_size){
             if (arr_u.art_size=='patch'){tue_id.style.backgroundImage='none'}
@@ -339,7 +339,6 @@ function name_block_update(){
         if(arr_dialog.color_text){tue_text_view.style.color=arr_dialog.color_text;}
 		else if(story_json.parameters.text_panel.color_text){tue_text_view.style.color=story_json.parameters.text_panel.color_text;}
         if(arr_dialog.name){
-            
             bg_art(story_json.parameters.name_panel,'tue_name_block',(story_json.parameters.characters[arr_dialog.name].art)?story_json.parameters.characters[arr_dialog.name].art:false);
             if(arr_dialog.name[languare]){
                 tue_name_block.innerHTML=arr_dialog.name[languare]
