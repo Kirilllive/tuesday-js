@@ -505,7 +505,7 @@ function name_block_update(){
                 choice.style.backgroundRepeat="no-repeat";
                 choice.style.backgroundPosition=((arr_dialog.choice[i].art_align)?arr_dialog.choice[i].art_align[0]+" "+arr_dialog.choice[i].art_align[1]:"center");
                 if(story_json.parameters.cursors&&story_json.parameters.cursors.choice){choice.style.cursor="url("+art_data(story_json.parameters.cursors.choice[0])+") "+story_json.parameters.cursors.choice[1]+" "+story_json.parameters.cursors.choice[2]+",auto";}
-                if(arr_dialog.choice[i].art){choice.style.backgroundImage="url('"+art_data(arr_dialog.choice[i].art)+"')";}
+                if(arr_dialog.choice[i].art&&art_data(arr_dialog.choice[i].art).length>0){choice.style.backgroundImage="url('"+art_data(arr_dialog.choice[i].art)+"')";}
 				if(arr_dialog.choice[i].size){
 					if(arr_dialog.choice[i].size[0] != 0){
 						choice.style.width=arr_dialog.choice[i].size[0];}
