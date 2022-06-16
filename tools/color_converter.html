@@ -48,19 +48,22 @@
 .icon_load{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M48,85H252L208,226H5ZM48,85L5,226V51L18,34H65l13,17H208V85H48Z'/%3e%3c/svg%3e")}
 .icon_copy{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M8,61L29,40M30,53V39H16M17,31V14a4,4,0,0,1,4-4h6v4H45V10h6a4,4,0,0,1,4,4V48a4,4,0,0,1-4,4H37M27,18V7h5a4,4,0,0,1,8,0h5V18H27Z'/%3e%3c/svg%3e")}
 .icon{background-size:22px 22px;background-repeat:no-repeat;background-position:center;cursor:pointer;}
-.input_slider{appearance:none;height:8px;background:var(--cw);outline:none;border-radius:8px;}
+.input_slider{appearance:none;height:8px;background:var(--cw);outline:none;border-radius:8px;width:calc(100% - 40px);}
 .input_slider::-webkit-slider-thumb {-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cb);cursor:pointer;border:3px solid #fff;}
 .input_slider_red{-webkit-appearance:none;height:8px;background:#f88;;outline:none;border-radius:8px;}
 .input_slider_green{-webkit-appearance:none;height:8px;background:#8f8;outline:none;border-radius:8px;}
 .input_slider_blue{-webkit-appearance:none;height:8px;background:#aaf;outline:none;border-radius:8px;}
+.input_slider_grey{-webkit-appearance:none;height:8px;background:#ccc;outline:none;border-radius:8px;}
 .input_slider::-moz-range-thumb {-moz-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--cb);cursor:pointer;border:3px solid #fff;}
 .input_slider_progress::-moz-range-progress {-moz-appearance:none;height:8px;background: var(--cb);outline:none;border-radius:8px;}
 .input_slider_red::-moz-range-progress {-moz-appearance:none;height:8px;background:#f88;outline:none;border-radius:8px;}
 .input_slider_green::-moz-range-progress {-moz-appearance:none;height:8px;background:#8f8;outline:none;border-radius:8px;}
 .input_slider_blue::-moz-range-progress {-moz-appearance:none;height:8px;background:#aaf;outline:none;border-radius:8px;}
+.input_slider_grey::-moz-range-progress {-moz-appearance:none;height:8px;background:#ccc;outline:none;border-radius:8px;}
 .input_slider_red::-moz-range-track{appearance:none;height:8px;background:#fee;;outline:none;border-radius:8px;}
 .input_slider_green::-moz-range-track{appearance:none;height:8px;background:#efe;outline:none;border-radius:8px;}
 .input_slider_blue::-moz-range-track{appearance:none;height:8px;background:#eef;outline:none;border-radius:8px;}
+.input_slider_grey::-moz-range-track{appearance:none;height:8px;background:#eee;outline:none;border-radius:8px;}
 #proportion{content:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 512'%3e%3cg fill='none' fill-opacity='0' stroke='%23000' stroke-width='8' stroke-linejoin='round'%3e%3cpath d='M128,188a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V200A12,12,0,0,1,128,188Z'/%3e%3cpath d='M128,268a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V280A12,12,0,0,1,128,268Z'/%3e%3cpath d='M128,283V232'/%3e%3c/g%3e%3c/svg%3e");background:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;}
 #proportion:checked{content:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 512'%3e%3cg fill='none' fill-opacity='0' stroke='%23000' stroke-width='8' stroke-linejoin='round'%3e%3cpath d='M128,355.5V398a30,30,0,0,1-30,30H-6M-6,85H98a30,30,0,0,1,30,30v42.5'/%3e%3cpath d='M128,188a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V200A12,12,0,0,1,128,188Z'/%3e%3cpath d='M128,268a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V280A12,12,0,0,1,128,268Z'/%3e%3cpath d='M128,283V232'/%3e%3c/g%3e%3c/svg%3e");}
 .button{border-radius:16px;background-color:var(--cw);cursor:pointer;display:grid;justify-items:center;align-items:center;}
@@ -104,29 +107,39 @@
                             <div class="button" style="height:32px;width:138px;" align="center" onclick="bg_color.style.backgroundColor=hex_color.value">Apply to background</div>
                         </td></tr>
                         <tr>
+                            <td align='right' style='height:40px;padding-right:8px;'>Saturation</td>
+                            <td style='width:40px;'><input id="text_satu" onchange="this.value=correct_value(this.value);color_satu.value=this.value;show_hsl(false,text_satu.value,this.value);" class="input_text" type="text"></td>
+                            <td colspan="2"><input class="input_slider input_slider_progress" oninput="show_hsl(false,this.value,text_ligh.value);text_satu.value=this.value" type="range" value="50" min="0" max="100" step="1" id="color_satu"></td>
+                        </tr>
+                        <tr>
+                            <td align='right' style='height:40px;padding-right:8px;'>Lightness</td>
+                            <td><input id="text_ligh" onchange="this.value=correct_value(this.value);color_ligh.value=this.value;show_hsl(false,text_satu.value,this.value);" class="input_text" type="text"></td>
+                            <td colspan="2"><input class="input_slider input_slider_grey" oninput="show_hsl(false,text_satu.value,this.value);text_ligh.value=this.value" type="range" value="50" min="0" max="100" step="1" id="color_ligh"></td>
+                        </tr>
+                        <tr>
                             <td align='right' style='height:40px;padding-right:8px;'>Red</td>
                             <td style='width:40px;'><input id="text_red" onchange="this.value=correct_value(this.value);color_red.value=this.value;color_hex();" class="input_text" type="text"></td>
-                            <td colspan="2"><input class="input_slider input_slider_red" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" style="width:100%;" id="color_red"></td>
+                            <td colspan="2"><input class="input_slider input_slider_red" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" id="color_red"></td>
                         </tr>
                         <tr>
                             <td align='right' style='height:40px;padding-right:8px;'>Green</td>
                             <td><input id="text_green" onchange="this.value=correct_value(this.value);color_green.value=this.value;color_hex();" class="input_text" type="text"></td>
-                            <td colspan="2"><input class="input_slider input_slider_green" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" style="width:100%;" id="color_green"></td>
+                            <td colspan="2"><input class="input_slider input_slider_green" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" id="color_green"></td>
                         </tr>
                         <tr>
                             <td align='right' style='height:40px;padding-right:8px;'>Blue</td>
                             <td><input id="text_blue" onchange="this.value=correct_value(this.value);color_blue.value=this.value;color_hex();" class="input_text" type="text"></td>
-                            <td colspan="2"><input class="input_slider input_slider_blue" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" style="width:100%;" id="color_blue"></td>
+                            <td colspan="2"><input class="input_slider input_slider_blue" oninput="color_hex();" type="range" value="126" min="0" max="255" step="1" id="color_blue"></td>
                         </tr>
                         <tr>
                             <td align='right' style='height:40px;padding-right:8px;'>Alpha</td>
                             <td><input id="text_alpha" onchange="this.value=correct_value(this.value);color_alpha.value=this.value;color_hex();" class="input_text" type="text"></td>
-                            <td colspan="2"><input class="input_slider input_slider_progress" oninput="color_hex();" type="range" value="126" min="0" max="1" step="0.01" style="width:100%;" id="color_alpha"></td>
+                            <td colspan="2"><input class="input_slider input_slider_progress" oninput="color_hex();" type="range" value="126" min="0" max="1" step="0.01" id="color_alpha"></td>
                         </tr>
                     </tbody>
                 </table><br><br>
                 <div class="label">Images</div>
-                <table width="100%" style="margin-top:8px;">
+                <table width="100%" style="margin:8px 0px 64px 0px;">
                 <tbody><tr>
                     <td align="right" height="40px" style="width:64px;padding-right:8px;">Art</td>
                     <td colspan="2"><input id="file_name" class="input_text" type="text" style="width:100%;" onclick="img_file.click();"></td>
@@ -210,7 +223,6 @@ function color_rgb_parse() {
     color_green.value=matches[1].split(",")[1];
     if(matches[1].split(",")[3]){color_alpha.value=matches[1].split(",")[3]}else{color_alpha.value=1};
     color_hex();
-    color_hsl(color_red.value,color_green.value,color_blue.value);
 }
 function color_hex(r,g,b) {
     r=parseInt(color_red.value).toString(16);r=r.length<2?"0"+r:r
@@ -274,7 +286,7 @@ function color_hsl_parse(n){
     var l=parseInt(matches[1].split(",")[2]);
     var t=(matches[1].split(",")[3])?matches[1].split(",")[3]:false
     l=l/100;
-    const a=s*Math.min(l,1 - l)/100;
+    const a=s*Math.min(l,1-l)/100;
     const f=function(n){
         const k=(n+h/30)%12;
         const color=l-a*Math.max(Math.min(k-3,9-k,1),-1);
@@ -302,8 +314,23 @@ function color_hsl(r,g,b){
             case b:h=(r-g)/d+4;break;
         }h/=6;
     }
-    if(color_alpha.value!=1){hsl_color.value="hsla("+Math.floor(h * 360)+","+ Math.floor(s * 100)+"%,"+Math.floor(l * 100)+"%,"+color_alpha.value+")";}
-    else{hsl_color.value="hsl("+Math.floor(h * 360)+","+ Math.floor(s * 100)+"%,"+Math.floor(l * 100)+"%)";}
+    s=Math.floor(s*100)
+    l=Math.floor(l*100)
+    text_satu.value=s
+    color_satu.value=s
+    text_ligh.value=l
+    color_ligh.value=l
+    show_hsl(Math.floor(h*360),s,l,1)
+}
+function show_hsl(h,s,l,n){
+    if(!h){
+        var regExp=/\(([^)]+)\)/;
+        var matches=regExp.exec(hsl_color.value);
+        h=parseInt(matches[1].split(",")[0]);
+    }
+    if(color_alpha.value!=1){hsl_color.value="hsla("+h+","+s+"%,"+l+"%,"+color_alpha.value+")";}
+    else{hsl_color.value="hsl("+h+","+s+"%,"+l+"%)";}
+    if(!n){color_hsl_parse(hsl_color.value)}
 }
 window.addEventListener("DOMContentLoaded", drop.init);
 </script>
