@@ -34,10 +34,23 @@
         background-size:20px 20px;
         background-repeat:no-repeat;
         width:138px;height:36px;
+        min-width:100px;
         margin:14px;
         border-radius:20px;cursor:pointer;
         background-color:#efefff;display:grid;justify-content:center;align-items:center;
         background-position:left 9px center;
+    }
+    #search{
+        background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 48 48'%3e %3ccircle fill='none' stroke='%23ccc' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' cx='32' cy='17' r='14' /%3e %3cpath fill='none' stroke='%23ccc' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' d='M 4,45 22,27'/%3e%3c/svg%3e");
+        background-position:6px 6px;
+        background-size:20px 20px;
+        background-repeat:no-repeat;
+        height:36px;
+        width:220px;
+        margin:14px;
+        padding-left:32px;box-sizing:border-box;
+        border-bottom:1px solid #cec8e3;
+        -webkit-appearance:none;
     }
     .button:hover{background-color:#e1dcef;}
     .icon{background-size:16px 16px;background-repeat:no-repeat;background-position:10px center;}
@@ -54,6 +67,8 @@
     tbody tr:hover td{background-color:#e1dcef;}
     tbody .no_text:nth-child(odd){background-color: #ffebeb;}
     tbody .no_text:nth-child(even){background-color: #fff5f5;}
+    tbody .no_found:nth-child(odd){background-color: #d6beae;}
+    tbody .no_found:nth-child(even){background-color: #e4d4c9;}
 </style>
 </head><body>
 <div style="display:none;position:fixed;">
@@ -63,6 +78,7 @@
 <div style="display:flex;float:left;width:100%;background-color:#fff;position:fixed;left:0;top:0;">
 <div class="button icon icon_load" onclick="file.click();">Load</div>
 <div class="button"><select id="language" class="input_text" style="width:128px;text-align:center;" oninput="allTexts(this.value);"><optgroup><option value="en">EN - English</option><option value="ja">JA - Japanese</option><option value="fr">FR - French</option><option value="ru">RU - Russian</option><option value="es">ES - Spanish</option><option value="zh">ZH - Chinese</option><option value="ko">KO - Korean</option><option value="nl">NL - Dutch</option></optgroup><optgroup><option value="aa">AA - Afar</option><option value="ab">AB - Abkhazian</option><option value="af">AF - Afrikaans</option><option value="ak">AK - Akan</option><option value="sq">SQ - Albanian</option><option value="am">AM - Amharic</option><option value="ar">AR - Arabic</option><option value="an">AN - Aragonese</option><option value="hy">HY - Armenian</option><option value="as">AS - Assamese</option><option value="av">AV - Avaric</option><option value="ae">AE - Avestan</option><option value="ay">AY - Aymara</option><option value="az">AZ - Azerbaijani</option><option value="bm">BM - Bambara</option><option value="ba">BA - Bashkir</option><option value="eu">EU - Basque</option><option value="be">BE - Belarusian</option><option value="bn">BN - Bengali (Bangla)</option><option value="bh">BH - Bihari</option><option value="bi">BI - Bislama</option><option value="bs">BS - Bosnian</option><option value="br">BR - Breton</option><option value="bg">BG - Bulgarian</option><option value="my">MY - Burmese</option><option value="ca">CA - Catalan</option><option value="ch">CH - Chamorro</option><option value="ce">CE - Chechen</option><option value="ny">NY - Chichewa,Chewa,Nyanja</option><option value="zh-Hans">ZH-HANS - Chinese (Simplified)</option><option value="zh-Hant">ZH-HANT - Chinese (Traditional)</option><option value="cv">CV - Chuvash</option><option value="kw">KW - Cornish</option><option value="co">CO - Corsican</option><option value="cr">CR - Cree</option><option value="hr">HR - Croatian</option><option value="cs">CS - Czech</option><option value="da">DA - Danish</option><option value="dv">DV - Divehi,Dhivehi,Maldivian</option><option value="dz">DZ - Dzongkha</option><option value="eo">EO - Esperanto</option><option value="et">ET - Estonian</option><option value="ee">EE - Ewe</option><option value="fo">FO - Faroese</option><option value="fj">FJ - Fijian</option><option value="fi">FI - Finnish</option><option value="ff">FF - Fula,Fulah,Pulaar,Pular</option><option value="gl">GL - Galician</option><option value="gd">GD - Gaelic (Scottish)</option><option value="gv">GV - Gaelic (Manx)</option><option value="ka">KA - Georgian</option><option value="de">DE - German</option><option value="el">EL - Greek</option><option value="kl">KL - Greenlandic</option><option value="gn">GN - Guarani</option><option value="gu">GU - Gujarati</option><option value="ht">HT - Haitian Creole</option><option value="ha">HA - Hausa</option><option value="he">HE - Hebrew</option><option value="hz">HZ - Herero</option><option value="hi">HI - Hindi</option><option value="ho">HO - Hiri Motu</option><option value="hu">HU - Hungarian</option><option value="is">IS - Icelandic</option><option value="io">IO - Ido</option><option value="ig">IG - Igbo</option><option value="id">ID - Indonesian</option><option value="ia">IA - Interlingua</option><option value="ie">IE - Interlingue</option><option value="iu">IU - Inuktitut</option><option value="ik">IK - Inupiak</option><option value="ga">GA - Irish</option><option value="it">IT - Italian</option><option value="jv">JV - Javanese</option><option value="kl">KL - Kalaallisut,Greenlandic</option><option value="kn">KN - Kannada</option><option value="kr">KR - Kanuri</option><option value="ks">KS - Kashmiri</option><option value="kk">KK - Kazakh</option><option value="km">KM - Khmer</option><option value="ki">KI - Kikuyu</option><option value="rw">RW - Kinyarwanda (Rwanda)</option><option value="rn">RN - Kirundi</option><option value="ky">KY - Kyrgyz</option><option value="kv">KV - Komi</option><option value="kg">KG - Kongo</option><option value="ku">KU - Kurdish</option><option value="kj">KJ - Kwanyama</option><option value="lo">LO - Lao</option><option value="la">LA - Latin</option><option value="lv">LV - Latvian (Lettish)</option><option value="li">LI - Limburgish ( Limburger)</option><option value="ln">LN - Lingala</option><option value="lt">LT - Lithuanian</option><option value="lu">LU - Luga-Katanga</option><option value="lg">LG - Luganda,Ganda</option><option value="lb">LB - Luxembourgish</option><option value="gv">GV - Manx</option><option value="mk">MK - Macedonian</option><option value="mg">MG - Malagasy</option><option value="ms">MS - Malay</option><option value="ml">ML - Malayalam</option><option value="mt">MT - Maltese</option><option value="mi">MI - Maori</option><option value="mr">MR - Marathi</option><option value="mh">MH - Marshallese</option><option value="mo">MO - Moldavian</option><option value="mn">MN - Mongolian</option><option value="na">NA - Nauru</option><option value="nv">NV - Navajo</option><option value="ng">NG - Ndonga</option><option value="nd">ND - Northern Ndebele</option><option value="ne">NE - Nepali</option><option value="no">NO - Norwegian</option><option value="nb">NB - Norwegian bokmål</option><option value="nn">NN - Norwegian nynorsk</option><option value="ii">II - Nuosu</option><option value="oc">OC - Occitan</option><option value="oj">OJ - Ojibwe</option><option value="cu">CU - Old Church Slavonic,Old Bulgarian</option><option value="or">OR - Oriya</option><option value="om">OM - Oromo (Afaan Oromo)</option><option value="os">OS - Ossetian</option><option value="pi">PI - Pāli</option><option value="ps">PS - Pashto,Pushto</option><option value="fa">FA - Persian (Farsi)</option><option value="pl">PL - Polish</option><option value="pt">PT - Portuguese</option><option value="pa">PA - Punjabi (Eastern)</option><option value="qu">QU - Quechua</option><option value="rm">RM - Romansh</option><option value="ro">RO - Romanian</option><option value="se">SE - Sami</option><option value="sm">SM - Samoan</option><option value="sg">SG - Sango</option><option value="sa">SA - Sanskrit</option><option value="sr">SR - Serbian</option><option value="sh">SH - Serbo-Croatian</option><option value="st">ST - Sesotho</option><option value="tn">TN - Setswana</option><option value="sn">SN - Shona</option><option value="ii">II - Sichuan Yi</option><option value="sd">SD - Sindhi</option><option value="si">SI - Sinhalese</option><option value="ss">SS - Siswati</option><option value="sk">SK - Slovak</option><option value="sl">SL - Slovenian</option><option value="so">SO - Somali</option><option value="nr">NR - Southern Ndebele</option><option value="su">SU - Sundanese</option><option value="sw">SW - Swahili (Kiswahili)</option><option value="ss">SS - Swati</option><option value="sv">SV - Swedish</option><option value="tl">TL - Tagalog</option><option value="ty">TY - Tahitian</option><option value="tg">TG - Tajik</option><option value="ta">TA - Tamil</option><option value="tt">TT - Tatar</option><option value="te">TE - Telugu</option><option value="th">TH - Thai</option><option value="bo">BO - Tibetan</option><option value="ti">TI - Tigrinya</option><option value="to">TO - Tonga</option><option value="ts">TS - Tsonga</option><option value="tr">TR - Turkish</option><option value="tk">TK - Turkmen</option><option value="tw">TW - Twi</option><option value="ug">UG - Uyghur</option><option value="ur">UR - Urdu</option><option value="uz">UZ - Uzbek</option><option value="ve">VE - Venda</option><option value="vi">VI - Vietnamese</option><option value="vo">VO - Volapük</option><option value="wa">WA - Wallon</option><option value="cy">CY - Welsh</option><option value="wo">WO - Wolof</option><option value="fy">FY - Western Frisian</option><option value="xh">XH - Xhosa</option><option value="yi">YI - Yiddish</option><option value="yo">YO - Yoruba</option><option value="za">ZA - Zhuang,Chuang</option><option value="zu">ZU - Zulu</option></optgroup></select></div>
+<input type="text" id="search" oninput="search_text(this.value.toUpperCase())" placeholder="search">
 <div class="button icon icon_sort"  onclick="sort(JSON.parse(JSON.stringify(lakit)));allTexts(language.value)">Sort</div>
 <div class="button icon icon_replace" onclick="file.click();">Replace</div>
 <div class="button icon icon_save" onclick="save_lakit();">Save</div>
@@ -71,8 +87,8 @@
     <thead><tr>
         <td style="width:48px;height:28px;"></td>
         <td style="width:calc(50% - 48px);">original</td>
-        <td style="width:calc(50% - 36px);">translation</td>
-        <td style="width:36px;"></td>
+        <td style="width:calc(50% - 64px);">translation</td>
+        <td style="width:64px;"></td>
     </tr></thead>
     <tbody></tbody>
 </table>
@@ -125,7 +141,14 @@ function loadFiles(e){
     xmlhttp.send();
     xmlhttp.onerror=function(){if(this.status==0){alert('error');}}
 } function convert(t){
-for(var c=0;c<lakit.length;c++){if(lakit[c][1][language.value].length>0){t=t.replace(new RegExp(lakit[c][0],"g"),lakit[c][1][language.value])}}
+    var tab=document.getElementById('all_texts').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    for(var c=0;c<lakit.length;c++){
+        if(lakit[c][1][language.value].length>0 && t.includes(lakit[c][0])){
+            t=t.replace(new RegExp(lakit[c][0],"g"),lakit[c][1][language.value])
+            tab[c].className="";
+        } else {tab[c].className="no_found";}
+        
+    }
     a.setAttribute("href","data:text/html;charset=utf-8,"+encodeURIComponent(t));
     a.setAttribute("download",language.value+"_"+file_name);
     a.click();
@@ -137,6 +160,15 @@ function sort(f){
         lakit.push(JSON.parse(JSON.stringify(d[p])));
         d.splice(p,1);s=0;p=0;
     }
+}
+function search_text(txt) {
+    var txt1,txt2,i,li=document.getElementById('all_texts').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    for(i=0;i<li.length;i++){
+        txt1=li[i].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value
+        txt2=li[i].getElementsByTagName('td')[2].getElementsByTagName('input')[0].value
+        if(txt1.toUpperCase().includes(txt)||txt2.toUpperCase().includes(txt)){li[i].style.display="table-row";}
+        else{li[i].style.display="none";}
+     }
 }
 </script>
 </body></html>
