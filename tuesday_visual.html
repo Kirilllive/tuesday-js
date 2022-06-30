@@ -382,7 +382,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                     <td title='Edit json text' onclick='jsonedit();menu_add.style.visibility="hidden";' class='icon button_menu icon_json'></td>
                     <td title='Export text to spreadsheet' onclick='text_export();menu_add.style.visibility="hidden";' class='icon button_menu icon_csv'></td>
                     <td title='About visual editor' onclick='about();menu_add.style.visibility="hidden";' class='icon button_menu icon_about small_menu'></td>
-                    <td style='width:88px;' class="small_menu"><input type="text" id="search_block" class="search" onkeyup="search_block()" placeholder="search block"></td>
+                    <td style='width:88px;' class="small_menu"><input type="text" id="search_block" class="search" onkeyup="search_block()" placeholder="Search block"></td>
                     <td style='width:40px;'><select id='language_view' style='height:40px;border-right:1px solid var(--cb);border-bottom:0;'><option value='en'>EN</option></select></td>
 					<td title='Build project' onclick='build_choice();menu_add.style.visibility="hidden";' class='icon button_menu icon_build'></td>
 					<td title='Run preview Project' style='border-radius:0 0 16px 0;' onclick='play_novel();menu_add.style.visibility="hidden";' class='icon button_menu icon_play'></td>
@@ -1585,7 +1585,7 @@ function jsonedit(arr){
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
     +"<td align='center'>JSON edit</td>"
-    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='search text'></td>"
+    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
@@ -1594,7 +1594,7 @@ function jsonedit(arr){
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
     +"<td align='center'>JSON edit</td>"
-    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='search text'></td>"
+    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
@@ -2704,7 +2704,7 @@ function edit_html(){
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
     +"<td align='center'>HTML code edit</td>"
-    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='search text'></td>"
+    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editHtml\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
@@ -2716,7 +2716,7 @@ function edit_code(vol,n){
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
     +"<td align='center'>"+n+" code edit</td>"
-    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='search text'></td>"
+    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editcode\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
