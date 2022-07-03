@@ -68,7 +68,7 @@ function name_block_update(){
     tue_name_block.style.position="absolute";
     tue_name_block.id="tue_name_block";
     tue_name_block.style.padding=story_json.parameters.name_panel.indent_text;
-    tue_name_block.style.fontSize=story_json.parameters.name_panel.size_text;
+    tue_name_block.style.fontSize=(story_json.parameters.name_panel.size_text)?story_json.parameters.name_panel.size_text:story_json.parameters.font_size;
     tue_name_block.style.fontFamily=((story_json.parameters.name_panel.font_family)?story_json.parameters.name_panel.font_family:story_json.parameters.font);
     tue_name_block.style.display="flex";
     tue_name_block.style.justifyContent=(story_json.parameters.name_panel.align)?story_json.parameters.name_panel.align[0]:"center";
@@ -130,7 +130,7 @@ function name_block_update(){
     tue_text_view=document.getElementById("tue_text_view");
     tue_text_view.style.boxSizing="border-box";
     tue_text_view.style.padding=story_json.parameters.text_panel.indent_text;
-    tue_text_view.style.fontSize=story_json.parameters.text_panel.size_text;
+    tue_text_view.style.fontSize=(story_json.parameters.text_panel.size_text)?story_json.parameters.text_panel.size_text:story_json.parameters.font_size;
     tue_text_view.style.fontFamily=((story_json.parameters.text_panel.font_family)?story_json.parameters.text_panel.font_family:story_json.parameters.font);
     tue_text_view.style.whiteSpace="pre-wrap";
     tue_text_view.style.height="100%";
@@ -203,7 +203,7 @@ function name_block_update(){
             button.style.justifyContent=((story_json.parameters.buttons[i].align)?story_json.parameters.buttons[i].align[0]:"center");
             button.style.alignItems=((story_json.parameters.buttons[i].align)?story_json.parameters.buttons[i].align[1]:"center");
             button.style.color=story_json.parameters.buttons[i].color_text;
-            button.style.fontSize=story_json.parameters.buttons[i].size_text;
+            button.style.fontSize=(story_json.parameters.buttons[i].size_text)?story_json.parameters.buttons[i].size_text:story_json.parameters.font_size;
             button.style.fontFamily=((story_json.parameters.buttons[i].font_family)?story_json.parameters.buttons[i].font_family:story_json.parameters.font);
         }
         button.style.zIndex=2000+i;
@@ -532,7 +532,7 @@ function name_block_update(){
                 if(arr_dialog.choice[i].position[3] != 0){choice.style.bottom=arr_dialog.choice[i].position[3];}
                 choice.style.color=arr_dialog.choice[i].color_text;
                 choice.style.padding=arr_dialog.choice[i].indent_text;
-                choice.style.fontSize=arr_dialog.choice[i].size_text;
+                choice.style.fontSize=(arr_dialog.choice[i].size_text)?arr_dialog.choice[i].size_text:story_json.parameters.font_size;
                 choice.style.fontFamily=((arr_dialog.choice[i].font_family)?arr_dialog.choice[i].font_family:story_json.parameters.font);
                 choice.style.display="flex";
                 choice.style.justifyContent=((arr_dialog.choice[i].align)?arr_dialog.choice[i].align[0]:"center");
