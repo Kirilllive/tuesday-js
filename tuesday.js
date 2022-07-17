@@ -725,7 +725,7 @@ function name_block_update(){
 } function load_stag(tip){
     if(story_json[localStorage.getItem("tue_"+tip+"_story")]){
         del_element("tue_choice")
-        del_element("tue_html_sc")
+        del_element("tue_html_scene")
         scene=localStorage.getItem("tue_"+tip+"_scene");
         dialog=localStorage.getItem("tue_"+tip+"_dialog");
         tue_story=localStorage.getItem("tue_"+tip+"_story")

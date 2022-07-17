@@ -106,6 +106,13 @@ Tuesday JSエンジンはアスキーアート(AA)を適切に表示できます
 ![Tuesday JS preview](screenshots/ascii_art.jpg)
 
 
+# Translate tool
+The built-in translation editing tool allows you to quickly add a new translation and edit all the texts in your project without leaving the editor. In addition, it displays the number of completed translations for each language.
+
+
+![Tuesday JS preview](screenshots/translate_tool.jpg)
+
+
 # Warning for Android version
 
 Minimum version of Android 5.1

@@ -101,6 +101,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <div class="accordion"><div class="block block_open">Quick tutorial</div></div>
     <div class="panel">
         <div class="block" onclick="get_doc('quick_tutorial')"><span class="three_1">English</span></div>
+        <div class="block" onclick="get_doc('quick_tutorial_es')"><span class="three_1">Spanish</span></div>
         <div class="block" onclick="get_doc('quick_tutorial_ja')"><span class="three_1">Japanese</span></div>
         <div class="block" onclick="get_doc('quick_tutorial_ru')"><span class="three_1">Russian</span></div>
     </div>
@@ -905,6 +906,249 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td width='50%' align='left' class='leftbor textarr' valign='top'>Click on the <b>"Build"</b> button in the top menu and select the desired option in the window that appears (zip archive is recommended).<br><br>Saving a built project is similar to saving a project, depending on the platform you are using.<br><br>You can publish the resulting zip archive or base64 html on game portals:<br><br><ul><li><a href="https://itch.io/" target='_blank'>itch.io</a></li><li><a href="https://gamejolt.com/" target='_blank'>GameJolt</a></li><li><a href="https://www.kongregate.com/" target='_blank'>Kongregate</a></li><li><a href="https://www.newgrounds.com/" target='_blank'>NewGrounds</a></li></ul></td>
         </tr>
             <td align='center' colspan="2" height='128px'><!--It is important to understand that Tuesday JS is still under development and some things may not work correctly.<br>-->If you have any problems, be sure to report it to email: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a></td>
+        </tr>
+    </tbody></table>
+</div><div id="quick_tutorial_es" style="display:none">
+    <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
+        <tr>
+            <td align='center' colspan="2" style="text-align:center;"><p class="head">Una guía rápida para crear una novela visual con Tuesday JS</p><br><p>I'm Suki, a translator (English-Spanish) from Ecuador, if you need help with translation for your project just contact me sending a message: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a>.</p><p>( <a href="https://twitter.com/Suki_Novels" target='_blank'>Twitter<a> | <a href="https://suki-novels.itch.io/" target='_blank'>itch.io<a> )</a></p><br></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Paso 1: Crear un Nuevo Proyecto</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Crea un nuevo proyecto dando clic en el icono de archivo en la esquina superior izquierda.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_load.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 2: Ajustar un nuevo proyecto</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_folder.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>En la ventana que aparece, <b>especifica la carpeta de trabajo</b> con los recursos para el proyecto.<br><br><b>¡Atención!</b><br>El proyecto <b>no es automáticamente guardado</b> en tu dispositivo o memoria del navegador, cuando necesites realizar una copia de seguridad del proyecto, usa la Función Guardar (Paso 32: Guardar Proyecto)<br><br>Para abrir el proyecto, también necesitas especificar la carpeta de trabajo, no el archivo JSON.<br>El JSON no contiene los archivos del proyecto de la carpeta de trabajo, solo las rutas para lo relacionado con la carpeta de trabajo. Por lo tanto, es importante que los proyectos de JSON estén localizados en carpetas de trabajo del proyecto.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 3: Seleccionar Idiomas Disponibles</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Muestra el nombre del proyecto y los idiomas disponibles.<br><br>Para cada idioma, inmediatamente puedes especificar el nombre traducido del proyecto.<br><br>El primer idioma agregado será ajustado como lengua por defecto de la novela.<br>Si el dispositivo del jugador no tiene soporte en alguno de los idiomas especificados, el juego lo cambiará al primer lenguaje en esta lista.<br><br>Después de crear un proyecto, puedes remover y agregar traducciones en los ajustes del proyecto.<br><br>Clic en <b>"Create Project"</b>.<br><br></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_languages.svg" style="background-image:url('tutorial_img/new_project.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 4: Agregar un bloque de historia</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_project.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Ahora podemos proceder a crear un <b>bloque de historia</b> dando clic en el botón <b>"Add story block"</b> en la esquina inferior derecha.<br><br>Una historia en Tuesday es construida a través de bloques que el lector puede cambiar entre estos, como su progreso a través de la misma, usando las elecciones o sus consecuencias.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 5: Ajustar un Bloque de Historia</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Ajustamos el nombre del bloque en letras latinas y el color del bloque deseado.<br><br>El jugador no verá los nombres o colores, estos son requeridos para su conveniencia cuando navegues a traves de la trama del juego.<br><br>Click en <b>"Create Block"</b><br><br>El primer bloque de historia creado será considerado el bloque de inicio por defecto, de ser necesario, puedes cambiarlo en los ajustes del proyecto.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_block.svg" style="background-image:url('tutorial_img/new_block.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 6: Agregar escena</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_scene.svg" style="background-image:url('tutorial_img/new_scene.png');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Abre el bloque de historia creado dando click en los tres puntos del lado izquierdo.<br><br>Clic en <b>(+)</b> para abrir el menu de elementos.<br><br>Y agrega un nuevo elemento a la escena del bloque de historia en el menú emergente.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Paso 7: Colocar escena de Fondo</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>En la ventana de opciones de la escena que aparece, ajusta la <b>imagen de fondo</b> dando clic en el icono de la carpeta.<br><br>Aquí puedes escoger tu propio fondo para otras traducciones. Si ajustas solo un fondo, automáticamente será aplicado para todos los idiomas.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/set_scene.svg" style="background-image:url('tutorial_img/set_scene.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 8</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/add_bg_scene.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>El cuadro de diálogo que aparece muestra todos los archivos correspondientes desde la carpeta de trabajo del proyecto, en él seleccione el archivo deseado para el fondo.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 9</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>De manera opcional, puedes especificar las opciones de visualización, color de fondo, y musica de fondo para esta escena.<br><br>Clic en <b>“Apply”</b> y verás que la escena aparece en la historia de bloque.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_scene.svg" style="background-image:url('tutorial_img/apply_scene.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 10: Agregar Diálogo</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/new_dialog.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Ahora necesitas agregar un elemento de diálogo en él.<br><br>Clic en el boton superior <b>(+)</b> y selecciona <b>"Add Dialog"</b>.<br><br>Los bloques de historia consisten en escenas que contienen diálogos, con todos los elementos como texto, gráficas y elecciones."</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Paso 11: Iniciar la escena de edición</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>En el elemento que aparece, presiona <b>el botón del menú</b> y hacer clic en <b>"Edit Scene"</b></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/scene_menu.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 12: Menu Principal</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_choice.svg" style="background-image:url('tutorial_img/scene_editor.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Ahora estamos en <b>el editor de escena</b>. Desde el primer bloque de historia creado, automáticamente se convierte en el primero que inicia, puedes crear un menu principal en él. El bloque de inicio puede ser cambiado en los ajustes del proyecto.<br><br>Abajo de <b>"Buttons & Choices"</b>, clic en <b>(+)</b></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 13: Botones & Elecciones</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Un botón apareció en de escena.<br><br>Y un panel con sus parámetros aparecieron en el menú de la derecha.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 14</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/set_choice.svg" style="background-image:url('tutorial_img/set_choice.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Para el botón, colocar el <b>"go to"</b> parámetro al valor <b>"Next scene"</b><br><br>Lo cual significa que cuando das clic en él, la historia continuará en el bloque de historia actual.<br><br>Después presionar el botón <b>"Back"</b>, para volver al guión.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Paso 15: Agregar diálogo de texto</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Agrega otro diálogo a la escena dando clic en <b>(+)</b> y seleccionando el elemento <b>"text"</b>.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/new_text.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 16: Ajustar el texto.</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/text_edit.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Una ventana aparecerá con opciones para el diálogo. En él puedes instalar frases para todos los lenguajes disponibles.<br><br>El área de texto en el editor y en la ya creada novela no se mostrará si el texto no es especificado, así que el texto debe ser especficado para todas las traducciones.<br><br>Si la traducción del texto difiere en el numero de frases, entonces tu puedes escribir “skip”, entonces la frase será automáticamente omitida.<br><br>Si el nombre de la variable es usado en corchetes, entonces el diálogo mostrará el volumen de su variable "text &#60var_name> text".</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 17</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Ahora que podemos ver como luce toda la interfaz.<br><br>Clic en el menú de este cuadro de diálogo y escoge <b>"Scene edit"</b></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/scene_menu2.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 18: Vista de la Interfaz</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/scene_editor_text.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>En la sección <b>"Text panel"</b> puedes personalizar las areas de texto para mostrar los diálogos.<br><br>En la sección <b>"interface buttons"</b> agrega nuevos botones para la interfaz y su apariencia.<br><br>En adición, en los ajustes de todos los lementos, tu puedes usar imagenes rasterizadas (imágenes en pixeles) y gráficos vectorizados, así también estilos CSS.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Paso 19: Agregar Personajes (Srpites)</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Ahora agrega la imagen del personaje a la escena,<br><br>Encuentra el elemento de <b>"Arts"</b> y presiona <b>(+)</b></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/add_art.svg" style="background-image:url('tutorial_img/scene_editor_text.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 20</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice_art.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>En la ventana que aparece, selecciona el sprite (imagen del personaje) deseado de la carpeta de trabajo.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 21</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>"Colocamos el elemento en la escena y ajusta sus parámetros en la misma manera como con los botones.<br><br>Y no te olvides acerca de la localización."</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/set_art.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 22: Duplicar elementos</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Cree duplicados de elementos seleccionados para un mayor desarrollo de la trama.<br><br>Para hacer esto, en el menú del último elemento del diálogo, selecciona el <b>"Duplicate"</b> elemento, así para no colocar los sprites de nuevo.</td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Paso 23</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>En el diálogo copiado, selecciona <b>"Scene edit"</b></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_dialog.svg" style="background-image:url('tutorial_img/duplicate_scene2.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 24</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/scene_editor_text_edit.svg" style="background-image:url('tutorial_img/scene_editor_text_edit.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>En la Sección de Contenido de la Escena dar clic en <b>"Edit Text"</b> y establece un nuevo texto para el diálogo.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 25: Nombre del Personaje</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Esta vez vamos a establecer el nombre del personaje en la seccion del Panel de Nombres de la Configuración.<br><br>La traducción del nombre es establecida junto al texto.<br><br>Tuesday JS recuerda todos los nuevos nombres, junto con las traducciones y los parámetros, así que puedes seleccionarlo de una lista de personajes más tarde. La lista de personajes es editada en los ajustes del proyecto.<br><br></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/text_edit_add_name.svg" style="background-image:url('tutorial_img/text_edit_add_name.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 26: Nombrar el panel</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/name_panel_edit.svg" style="background-image:url('tutorial_img/name_panel_edit.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Ahora que podemos ver el nombre del personaje que ha aparecido en la escena,<br><br>Tal como en el panel de texto, el "name panel" no aparece si el nombre no es especificado.<br><br>Puedes cambiar la apariencia y la posición de este elemento en el <b>"Name panel"</b>. Tu puedes usar también gráficos rasterizados (imágenes pixeladas) y gráficos vectorizados, así también estilos CSS en estas configuraciones.<br><br></td>
+        </tr><tr>
+            <td align='center' colspan="2" height='128px'>Paso 27: Elección</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Luego agregas los botones de selección en la misma manera cuando creas un menú. En la sección <b>"Buttons & Choice"</b>.<br><br>Uno de los botones establece el valor <b>"go to"</b> a "<b>"Next scene"</b>.<br><br>Y regresa al guión.<br><br></td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/choice_yes_no.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 28</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/next_scen.svg" style="background-image:url('tutorial_img/next_scen.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>En la escena, agrega otro diálogo para la elección con el valor <b>"Next scene"</b>.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 29</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Luego, vamos a crear un nuevo bloque de historia para el desarrollo de una historia alternativa, y agrega una escena y diálogo con el sprite en él.<br><br>(Siguiendo los mismos pasos de los párrafos previos)</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/copy_past_scene.svg" style="background-image:url('tutorial_img/copy_past_scene.jpg');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Paso 30: Vinculando los bloques de la trama</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/choice_line.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Para el segundo botón, establece el valor con el nombre de un nuevo bloque de historia.<br><br>Ahora podemos ver en el guion una linea dirigiéndose desde el botón seleccionado a otro bloque de historia.</td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>Paso 31: Vista previa</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Para asegurarse que todo esté hecho correctamente, ejecutamos el proyecto usando la vista previa.<br><br>Puedes iniciar un proyecto con cualquiera de las traducciones creadas y desde cualquier lugar en la historia.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_preview.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>Paso 32: Guardar proyecto</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_save.svg" style="background-image:url('tutorial_img/choice_line.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Guardar un proyecto es entregado diferentemente en distintas plataformas.<br><br><b>Navegadores</b><br>La mayoría de los navegadores guardan archivos por defecto en la carpeta de Descargas. Para abrirla de nuevo el proyecto, necesitas mover el archivo json del proyecto a la carpeta de trabajo.<br><br><b>Escritorio</b><br>Provee una elección en cuál carpeta para guardar el proyecto JSON.<br><br><b>Android</b><br>Guarda JSON a la carpeta de trabajo del proyecto.</td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>Paso 33: Abrir proyecto</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Para abrir el proyecto, necesitas especificar la Carpeta de Trabajo donde se encuentra localizado el archivo json. Sin un archivo JSON especificado, no será mostrado en la lista de archivos disponibles.<br><br>Si hay múltiples archivos JSON en la carpeta, Tuesdat JS te preguntará que archivo quieres abrir.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/icon_open.svg" style="background-image:url('tutorial_img/main_screen.png');"/></td>
+        </tr>
+          <tr>
+            <td align='center' colspan="2" height='128px'>Paso 34: Construir el Proyecto</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/build_choice.svg" style="background-image:url('tutorial_img/build_choice.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Clic en el botón <b>"Build"</b> de la parte superior del menú y selecciona la opción deseada en la ventana que aparece (archivo zip es recomendado).<br><br>Guardar un proyecto construido es similar a guardar un proyecto, dependiendo de la plataforma que estés usando.<br><br>Puedes publicar el archivo zip resultante o base64 html en portales de juegos:<br><br><ul><li><a href="https://itch.io/" target='_blank'>itch.io</a></li><li><a href="https://gamejolt.com/" target='_blank'>GameJolt</a></li><li><a href="https://www.kongregate.com/" target='_blank'>Kongregate</a></li><li><a href="https://www.newgrounds.com/" target='_blank'>NewGrounds</a></li></ul></td>
+        </tr>
+            <td align='center' colspan="2" height='280px'>Si encuentras algunas de estas cosas, asegúrese de enviarme un correo: <a href="mailto:tuesdayjsengine@gmail.com" target='_blank'>tuesdayjsengine@gmail.com</a><br>
+            <br><div style="max-width:640px;text-align:left;"><p>I'm Suki, a translator (English-Spanish) from Ecuador, who loves playing games , specially Visual Novels, if you need help with translation for your project just contact me sending a message: <a href="mailto:sukinovels@gmail.com" target='_blank'>sukinovels@gmail.com</a>  | <a href="https://twitter.com/Suki_Novels" target='_blank'>Twitter<a>.</p><br>
+            <p>I will be happy to help you, and I hope you enjoy a lot this fantastic tool (Tuesday JS) to create Visual Novels, and motivate to Spanish developers in the creation and development of VNs with this amazing tool.</p></div>
+            </td>
         </tr>
     </tbody></table>
 </div><div id="quick_tutorial_ja" style="display:none">
