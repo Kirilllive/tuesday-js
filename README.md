@@ -97,6 +97,15 @@ L'aperçu vous permet de démarrer un projet à partir de n'importe quel point d
 ![Tuesday JS preview](screenshots/preview.jpg)
 
 
+# Translate tool / 内蔵翻訳支援ツール
+The built-in translation editing tool allows you to quickly add a new translation and edit all the texts in your project without leaving the editor. In addition, it displays the number of completed translations for each language.
+
+Tuesday JSが内蔵する翻訳支援ツールなら、他の言語版用の翻訳文を、プロジェクトで使用している元のテキストを対訳表のように参照しながら追加していけるので、別のテキストエディターを起動する手間が省けます。また、翻訳の進捗率を言語ごとに確認できます。
+
+
+![Tuesday JS preview](screenshots/translate_tool.jpg)
+
+
 # ASCII art / アスキーアート (AA)
 The engine is adapted to use ASCII graphics. With its help, you can diversify the texts with images and patterns made up of text characters.
 
@@ -104,13 +113,6 @@ Tuesday JSエンジンはアスキーアート(AA)を適切に表示できます
 
 
 ![Tuesday JS preview](screenshots/ascii_art.jpg)
-
-
-# Translate tool
-The built-in translation editing tool allows you to quickly add a new translation and edit all the texts in your project without leaving the editor. In addition, it displays the number of completed translations for each language.
-
-
-![Tuesday JS preview](screenshots/translate_tool.jpg)
 
 
 # Warning for Android version
