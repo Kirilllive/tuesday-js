@@ -18,7 +18,7 @@ Il existe une version de l'éditeur disponible en tant qu'application autonome p
 
 > Twitter: https://twitter.com/TuesdayJS_vn
 
-[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/tuesday_street)
+[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
 
 # Visual editor
 
@@ -251,4 +251,4 @@ The goal of Tuesday JS is to make project development no more difficult than wor
 [Japanes translation and adaptation by Onigi](https://twitter.com/onigi123)
 
 
-[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/tuesday_street)
+[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
