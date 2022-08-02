@@ -7,8 +7,8 @@ There is a version of the editor available as a standalone application for Andro
 は無駄を排した作りの、無償かつオープンソースのビジュアルノベル作成ソフトウェアです。ゲームの制作もプレイもウェブブラウザ上で可能です。JavaScriptで開発したソフトウェアですが、サードパーティ製ライブラリーを一切使用していないので、他のソフトウェアをインストールする手間は不要です。divやimgといった標準HTML5文章でお馴染みのタグや要素でゲームのスクリプトを記述し、svg形式のベクターイメージ、gif形式のアニメーション、CSSスタイルシートなど、ブラウザが扱えるファイルなら何でも使用可能です。
 アンドロイド機器並びにパソコン版WindowsとMac用の単体で動作するダウンロード版もあります。各々のバージョン間には完全な互換性があり、インターフェイスも共通しています。
 
-est un éditeur de roman visuel facile à utiliser. Gratuit et open source il tourne sur n'importe quel navigateur Web. Il est écrit en JavaScript, n'utilise pas de bibliothèques tierces et ne nécessite donc pas d'installation logicièle supplémentaire. Le moteur utilise des éléments HTML5 standard tels que div et img et permet d'utiliser n'importe quel format multimédia pris en charge par les navigateurs, y compris les graphiques vectoriels svg, les animations gif et les styles css.
-Il existe une version de l'éditeur disponible en tant qu'application autonome pour les appareils Android et les ordinateurs de bureau. Toutes les versions sont entièrement compatibles entre elles et partagent la même interface.
+Простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом, который можно использовать в браузере. Он написан на JavaScript без использования каких-либо сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML5 документа, такие как div и img. Это позволяет использовать любой медиаформат поддерживаемый браузерами включая векторную графику svg, gif-анимацию и стили css.
+Есть версии редактора доступные для Android устройств и настольных компьютеров. Все версии полностью совместимы друг с другом и имеют одинаковый интерфейс.
 
 > Home Page: https://kirilllive.github.io/tuesday-js/
 
@@ -34,7 +34,8 @@ The visual editor allows you to create graphics or kinetic novels without any pr
 
 個々の選択肢や、選択の結果起こる結果などと併せてスクリプトの全体像を目で見て分かるように表示します。スクリプトの構造を簡単に把握でき、編集もしやすくなっています。
 
-L'éditeur affiche entièrement la structure du scénario avec tous les éléments tels que les options de dialogue et les conséquences des réponses choisies. La navigation et la modification du scénario en est ainsi facilité.
+Редактор отображает структуру сценария со всеми элементами, такими как параметры диалога и последствия выбора. Это облегчает навигацию и редактирование сценария.
+
 
 ![Tuesday JS script structure](screenshots/script_structure.jpg)
 
@@ -46,9 +47,9 @@ In the scene layout you can use standard HTML units in percentage pixels or cent
 機能では、全種類の要素を分類して管理できます。加えて、制作環境と異なる画面環境でゲームを動作させたときの画面構成の変化を確認できます。
 標準HTML用のパーセント単位でもセンチメートル単位でもレイアウトを指定できるので、環境に合わせた適切な画面構成が作れます。
 
-Cet éditeur vous permet d'organiser les éléments sur une scène. Il montre également comment la scène va changer sur différents écrans. 
-Dans la mise en page de la scène, vous pouvez utiliser des objets HTML standard dont les dimensions s'expriment en pourcentage de pixels ou en centimètres pour mieux adapter la scène aux différents écrans.
-	
+Позволяет расположить все элементы по своим местам. Он также показывает, как будет выглядеть сцена на разных экранах. 
+В макете сцены вы можете использовать стандартные параметры HTML как проценты, пиксели или сантиметры, чтобы лучше адаптировать сцену к различным экранам.	
+
 
 ![Tuesday JS scene editor](screenshots/scene_editor.jpg)
 
@@ -63,10 +64,10 @@ Tuesday JSには、翻訳版を制作するための機能も豊富です。
 ゲームを構成するテキストやグラフィックといった要素一つ一つに翻訳版用ファイルを設定でき、プレビュー機能で用意した翻訳版の動作確認ができます。
 CSV形式のテーブルデータとして出力できるので、他のテキストエディターで翻訳文章を編集したり追加したりすることもできます。
 
-De nombreuses possibilités d'adaptation les histoires dans d'autres langues. 
-Vous pouvez définir la traduction de presque tous les éléments de votre projet, tels que le texte et les graphiques. 
-La fonction d'aperçu vous permet d'exécuter le projet dans la langue sélectionnée. 
-Tous les textes peuvent être exportés vers un fichier csv pour édition et ajout de localisations dans un autre éditeur, tel qu'un tableur.
+Tuesday JS предоставляет обширные возможности для адаптации историй на другие языки. 
+Вы можете локализировать перевод практически любого элемента проекта, включая текст и графику. 
+Функция предварительного просмотра позволяет запускать проект на выбранном языке. 
+Все тексты могут быть экспортированы в файл csv таблицы для редактирования или добавления локализаций в другом редакторе.
 
 
 ![Tuesday JS localization](screenshots/localization.jpg)
@@ -79,8 +80,8 @@ The editor has a built-in tool to work with JSON. This will allow you to edit th
 ゲームスクリプトは、全要素をJSON形式で保存します。JSONは、一部を除く全てのプログラム言語で扱えるので、他のゲームエンジンやコンピューターにTuesday JSで作成したスクリプトを移植できます。
 JSONを編集するツールを内蔵していおり、スクリプト全体をJSONとして編集することも、任意の箇所のみを編集することも可能です。
     
-Tous les éléments du scénario sont stockés dans une structure JSON, un format universel lisible par la quasi totalité des langages de programmation. Vous pouvez ainsi porter votre scénario sur un autre moteur ou une autre plateforme. 
-L'éditeur dispose d'un outil intégré pour travailler la structure JSON qui vous permet de modifier l'intégralité du scénario ou uniquement un élément spécifique.
+Сценарий истории сохраняется в структуре JSON. Практически любой язык программирования может работать с этим форматом что позволяет вам перенести ваш сценарий на другой движок или платформу. 
+Редактор имеет встроенный инструмент для работы с JSON это позволит вам отредактировать все содержимое истории или только выбранный элемент.
 
 
 ![Tuesday JS json edit](screenshots/json_edit.jpg)
@@ -91,7 +92,7 @@ Preview allows you to start a project from a certain point in the script with th
 
 各々の言語設定で、任意の時点から動作をテストできるプレビュー機能があります。
 
-L'aperçu vous permet de démarrer un projet à partir de n'importe quel point du scénario et avec la localisation sélectionnée.
+Предварительный просмотр позволяет запустить проект с определенной точки в сценарии с выбранной локализацией.
 
 
 ![Tuesday JS preview](screenshots/preview.jpg)
@@ -102,6 +103,8 @@ The built-in translation editing tool allows you to quickly add a new translatio
 
 Tuesday JSが内蔵する翻訳支援ツールなら、他の言語版用の翻訳文を、プロジェクトで使用している元のテキストを対訳表のように参照しながら追加していけるので、別のテキストエディターを起動する手間が省けます。また、翻訳の進捗率を言語ごとに確認できます。
 
+Встроенный инструмент редактирования перевода позволяет быстро добавлять новый перевод и отредактировать все тексты в вашем проекте, не выходя из редактора. Кроме того, он отображает количество выполненного переводова для каждого языка.
+
 
 ![Tuesday JS preview](screenshots/translate_tool.jpg)
 
@@ -110,6 +113,8 @@ Tuesday JSが内蔵する翻訳支援ツールなら、他の言語版用の翻�
 The engine is adapted to use ASCII graphics. With its help, you can diversify the texts with images and patterns made up of text characters.
 
 Tuesday JSエンジンはアスキーアート(AA)を適切に表示できます。テキストで様々な絵や模様を作ることができます。
+
+Движок адаптирован для использования ASCII-графики. С ее помощью вы сможете разнообразить тексты изображениями и узорами составленых из текстовых символов.
 
 
 ![Tuesday JS preview](screenshots/ascii_art.jpg)
