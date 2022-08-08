@@ -10,6 +10,10 @@ There is a version of the editor available as a standalone application for Andro
 Простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом, который можно использовать в браузере. Он написан на JavaScript без использования каких-либо сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML5 документа, такие как div и img. Это позволяет использовать любой медиаформат поддерживаемый браузерами включая векторную графику svg, gif-анимацию и стили css.
 Есть версии редактора доступные для Android устройств и настольных компьютеров. Все версии полностью совместимы друг с другом и имеют одинаковый интерфейс.
 
+
+> Run the visual editor in a web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
+
+
 > Home Page: https://kirilllive.github.io/tuesday-js/
 
 > Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
@@ -20,19 +24,23 @@ There is a version of the editor available as a standalone application for Andro
 
 [![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
 
-# Visual editor
-
-Visual editor for web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
-
-The editor displays the structure of the script with all elements such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
-
-> [A quick tutorial to create a visual novel ](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial)
-> [Una guía rápida para crear una novela visual](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_es)
-> [Tuesday JSでビジュアルノベルを作ってみよう](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ja)
-> [Краткое руководство по созданию визуальной новеллы](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ru)
 
 
-# Visualization /ビジュアライゼーション
+
+# Tutorials for Visual editor
+
+
+> EN  - [A quick tutorial to create a visual novel ](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial)
+
+> JA  - [Tuesday JSでビジュアルノベルを作ってみよう](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ja)
+
+> ES  - [Una guía rápida para crear una novela visual](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_es)
+
+> RU - [Краткое руководство по созданию визуальной новеллы](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ru)
+
+
+
+# Visualization /ビジュアライゼーション / Визуализация
 The visual editor allows you to create graphics or kinetic novels without any programming knowledge. If is necessary, it is possible to expand the basic functionality using JavaScript and css.
 
 個々の選択肢や、選択の結果起こる結果などと併せてスクリプトの全体像を目で見て分かるように表示します。スクリプトの構造を簡単に把握でき、編集もしやすくなっています。
@@ -43,7 +51,7 @@ The visual editor allows you to create graphics or kinetic novels without any pr
 ![Tuesday JS script structure](screenshots/script_structure.jpg)
 
 
-# Scene editor / シーンエディター
+# Scene editor / シーンエディター / Редактор сцен
 The scene editor can arrange all the elements in their places. It also shows how the scene will change on different screens. 
 In the scene layout you can use standard HTML units in percentage pixels or centimeters to better adapt the scene to different screens.
 
@@ -57,7 +65,7 @@ In the scene layout you can use standard HTML units in percentage pixels or cent
 ![Tuesday JS scene editor](screenshots/scene_editor.jpg)
 
 
-# Localization / ローカリゼーション
+# Localization / ローカリゼーション / Локализация
 Tuesday JS provides ample opportunities for adapting stories into other languages.
 You can set the localized translation for almost any element of your project including text and graphics.
 The preview function allows you to run the project in the selected language.
@@ -90,7 +98,8 @@ JSONを編集するツールを内蔵していおり、スクリプト全体をJ
 ![Tuesday JS json edit](screenshots/json_edit.jpg)
 
 
-# Preview / プレビュー
+# Preview / プレビュー / Предварительный просмотр
+
 Preview allows you to start a project from a certain point in the script with the selected localization.
 
 各々の言語設定で、任意の時点から動作をテストできるプレビュー機能があります。
@@ -101,7 +110,7 @@ Preview allows you to start a project from a certain point in the script with th
 ![Tuesday JS preview](screenshots/preview.jpg)
 
 
-# Translate tool / 内蔵翻訳支援ツール
+# Translate tool / 内蔵翻訳支援ツール / нструмент для перевода
 The built-in translation editing tool allows you to quickly add a new translation and edit all the texts in your project without leaving the editor. In addition, it displays the number of completed translations for each language.
 
 Tuesday JSが内蔵する翻訳支援ツールなら、他の言語版用の翻訳文を、プロジェクトで使用している元のテキストを対訳表のように参照しながら追加していけるので、別のテキストエディターを起動する手間が省けます。また、翻訳の進捗率を言語ごとに確認できます。
@@ -112,7 +121,8 @@ Tuesday JSが内蔵する翻訳支援ツールなら、他の言語版用の翻�
 ![Tuesday JS preview](screenshots/translate_tool.jpg)
 
 
-# ASCII art / アスキーアート (AA)
+# ASCII art / アスキーアート (AA) / ASCII-графика
+
 The engine is adapted to use ASCII graphics. With its help, you can diversify the texts with images and patterns made up of text characters.
 
 Tuesday JSエンジンはアスキーアート(AA)を適切に表示できます。テキストで様々な絵や模様を作ることができます。
@@ -121,6 +131,7 @@ Tuesday JSエンジンはアスキーアート(AA)を適切に表示できます
 
 
 ![Tuesday JS preview](screenshots/ascii_art.jpg)
+
 
 
 # Warning for Android version
