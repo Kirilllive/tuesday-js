@@ -22,11 +22,14 @@ There is a version of the editor available as a standalone application for Andro
 
 # Visual editor
 
-visual editor for web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
-
-Tutorial for creating visual novels: https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial
+Visual editor for web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
 
 The editor displays the structure of the script with all elements such as dialog options and selection consequences. This makes it easier to navigate and edit the script.
+
+> [A quick tutorial to create a visual novel ](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial)
+> [Una guía rápida para crear una novela visual](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_es)
+> [Tuesday JSでビジュアルノベルを作ってみよう](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ja)
+> [Краткое руководство по созданию визуальной новеллы](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ru)
 
 
 # Visualization /ビジュアライゼーション
@@ -127,6 +130,7 @@ Minimum version of Android 5.1
 If you have problems with files on Android 10 and higher, then you need to specify 'Allow access to manage all files' in the application settings in 'Permissions' section.
 
 ![Tuesday JS error access files on Android](https://img.itch.zone/aW1nLzcwMjY4NzYucG5n/original/8TYu95.png)
+
 
 # Tutorial for RunTime
 
