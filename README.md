@@ -40,7 +40,7 @@ There is a version of the editor available as a standalone application for Andro
 
 
 
-# Visualization /ビジュアライゼーション / Визуализация
+# Visualization /ビジュアライゼーション
 The visual editor allows you to create graphics or kinetic novels without any programming knowledge. If is necessary, it is possible to expand the basic functionality using JavaScript and css.
 
 個々の選択肢や、選択の結果起こる結果などと併せてスクリプトの全体像を目で見て分かるように表示します。スクリプトの構造を簡単に把握でき、編集もしやすくなっています。
@@ -51,7 +51,7 @@ The visual editor allows you to create graphics or kinetic novels without any pr
 ![Tuesday JS script structure](screenshots/script_structure.jpg)
 
 
-# Scene editor / シーンエディター / Редактор сцен
+# Scene editor / シーンエディター
 The scene editor can arrange all the elements in their places. It also shows how the scene will change on different screens. 
 In the scene layout you can use standard HTML units in percentage pixels or centimeters to better adapt the scene to different screens.
 
@@ -65,7 +65,7 @@ In the scene layout you can use standard HTML units in percentage pixels or cent
 ![Tuesday JS scene editor](screenshots/scene_editor.jpg)
 
 
-# Localization / ローカリゼーション / Локализация
+# Localization / ローカリゼーション
 Tuesday JS provides ample opportunities for adapting stories into other languages.
 You can set the localized translation for almost any element of your project including text and graphics.
 The preview function allows you to run the project in the selected language.
@@ -98,7 +98,7 @@ JSONを編集するツールを内蔵していおり、スクリプト全体をJ
 ![Tuesday JS json edit](screenshots/json_edit.jpg)
 
 
-# Preview / プレビュー / Предварительный просмотр
+# Preview / プレビュー
 
 Preview allows you to start a project from a certain point in the script with the selected localization.
 
@@ -110,7 +110,7 @@ Preview allows you to start a project from a certain point in the script with th
 ![Tuesday JS preview](screenshots/preview.jpg)
 
 
-# Translate tool / 内蔵翻訳支援ツール / нструмент для перевода
+# Translate tool / 内蔵翻訳支援ツール
 The built-in translation editing tool allows you to quickly add a new translation and edit all the texts in your project without leaving the editor. In addition, it displays the number of completed translations for each language.
 
 Tuesday JSが内蔵する翻訳支援ツールなら、他の言語版用の翻訳文を、プロジェクトで使用している元のテキストを対訳表のように参照しながら追加していけるので、別のテキストエディターを起動する手間が省けます。また、翻訳の進捗率を言語ごとに確認できます。
@@ -121,7 +121,7 @@ Tuesday JSが内蔵する翻訳支援ツールなら、他の言語版用の翻�
 ![Tuesday JS preview](screenshots/translate_tool.jpg)
 
 
-# ASCII art / アスキーアート (AA) / ASCII-графика
+# ASCII art / アスキーアート (AA)
 
 The engine is adapted to use ASCII graphics. With its help, you can diversify the texts with images and patterns made up of text characters.
 

@@ -165,7 +165,23 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <div class="block" onclick="get_doc('dialog')"><span class="three_1">Dialog</span></div>
         <div class="accordion"><div class="block block_open"><span class="three_1">Dialog elements</span></div></div>
         <div class="panel">
+            <div class="block" onclick="get_doc('dialog_back_to')"><span class="three_2">Back to</span></div>
+            <div class="block" onclick="get_doc('dialog_art')"><span class="three_2">Art</span></div>
             <div class="block" onclick="get_doc('dialog_text')"><span class="three_2">Text</span></div>
+            <div class="block" onclick="get_doc('dialog_text_add')"><span class="three_2">Text add</span></div>
+            <div class="block" onclick="get_doc('dialog_choice')"><span class="three_2">Choice</span></div>
+            <div class="block" onclick="get_doc('dialog_video')"><span class="three_2">Video</span></div>
+            <div class="block" onclick="get_doc('dialog_stop_sound')"><span class="three_2">Stop sound</span></div>
+            <div class="block" onclick="get_doc('dialog_play_sound')"><span class="three_2">Play sound</span></div>
+            <div class="block" onclick="get_doc('dialog_timer')"><span class="three_2">Timer</span></div>
+            <div class="block" onclick="get_doc('dialog_variables')"><span class="three_2">Variables</span></div>
+            <div class="block" onclick="get_doc('dialog_go_to')"><span class="three_2">Go to</span></div>
+            <div class="block" onclick="get_doc('dialog_ID_event')"><span class="three_2">ID event</span></div>
+            <div class="block" onclick="get_doc('dialog_hide_interface')"><span class="three_2">Hide interface</span></div>
+            <div class="block" onclick="get_doc('dialog_no_autosave')"><span class="three_2">No autosave</span></div>
+            <div class="block" onclick="get_doc('dialog_HTML_code')"><span class="three_2">HTML code</span></div>
+            <div class="block" onclick="get_doc('dialog_JavaScript')"><span class="three_2">JavaScript code</span></div>
+            <div class="block" onclick="get_doc('dialog_toast')"><span class="three_2">Toast</span></div>
         </div>
         <div class="block" onclick="get_doc('legacy_choice')"><span class="three_1">Legacy choice</span></div>
         <div class="block" onclick="get_doc('terrain_map')"><span class="three_1">Terrain map</span></div>
@@ -228,6 +244,197 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br>If the number of phrases in the dialogs of different translations differ from each other, then you can write <b>"skip"</b>, then the phrase will be automatically skipped in the selected localization.
     <br><br>To add transcription, furigana, additional anatation and texts, you can use  <b>&#60 簡単 = かんたん ></b> what will be displayed as <ruby> 簡単 <rt style="font-size:10px">かんたん</rt></ruby></b>.
 </div>
+
+<div id="dialog_toast" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog toast</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_toast.png" style="max-height:307px;max-width:579px;"/>
+    </div>
+    <p>Not recommended for use</p><br>
+    <p>Element for the plugin of the same name, it will not appear in the elements menu until this plugin is enabled in the project settings</p>
+    <p>In it you can write a short message for Pop-up notification, at the top of the window</p><br>
+    <div style="width:100%;text-align: center;" ><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_toast.png" style="max-height:auto;max-width:317px;"/></div>
+    <p>For the correct display of the element, you must specify its appearance in css file for the element "#toast" </p>
+</div>
+
+<div id="dialog_JavaScript" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">JavaScript code</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_JavaScript.png" style="max-height:670px;max-width:821px;"/>
+    </div>
+    <p>You can set JavaScript to execute after the scene or dialog is rendered. В этом случае используются стандартные браузерные JavaScript APIs.</p>
+    <p>All of Tuesday's components are in the document element ID "tuesday".<br><br><i><b>document.getElementById("tuesday");</b></i><br><br>Or in a global variable in RunTime "tuesday" so you can access elements using code<br><br><i><b>var element = tuesday.children;</b></i><br><br></p>
+    <p>All elements have default classes by which you can access them.</p><br>
+    <ul>
+      <li><b>tue_art</b> - Images</li>
+      <li><b>tue_choice</b> - Choice buttons and other "choice" elements</li>
+      <li><b>tue_controll</b> - Interface buttons</li>
+      <li><b>tue_html_scene</b> - html component</li>
+    </ul>
+    <br><p>Some elements have their own id.</p><br>
+    <ul>
+      <li><b>tue_video</b> - Video playback element</li>
+      <li><b>tue_bg_music</b> - background music playback element</li>
+      <li><b>tue_text_view</b> - Element for displaying text in the text panel</li>
+      <li><b>tue_text_block</b> - Text panel element</li>
+      <li><b>tue_name_block</b> - Named panel element</li>
+    </ul>
+</div>
+<div id="dialog_HTML_code" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">HTML code</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_HTML_code.png" style="max-height:670px;max-width:821px;"/>
+    </div>
+
+</div>
+<div id="dialog_no_autosave" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">No autosave</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_no_autosave.png" style="max-height:auto;max-width:317px;"/>
+    </div>
+    <p>Autosaves will be ignored in dialog or scene. the player will not be able to continue their progress from the specified location, only before or after "No autosave"</p>
+    <p>This feature may be needed to avoid spoiling the player's progress with non-story scenes such as menu screens or gallery screens.</p>
+</div>
+<div id="dialog_hide_interface" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Hide interface</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_hide_interface.png" style="max-height:auto;max-width:317px;"/>
+    </div>
+    <p>Specifies to hide or show interface buttons in the scene. You can choose to hide buttons only in a specific dialog, or you can specify the dialog where you want to hide the buttons and then the dialog where you want to bring back interface buttons.</p>
+    <p>This function can be used to hide interface buttons in galleries, videos, or other screens that are not part of the story.</p>
+    <br>
+    <p>Warning! if you specify to hide the interface from a specific location, then if the user uses "autosave", the interface can still be shown. it is recommended to disable "autosave" in dialogs without interface.</p>
+</div>
+<div id="dialog_ID_event" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">ID event</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_ID_event.png" style="max-height:auto;max-width:317px;"/>
+    </div>
+    <p>An element intended for external use in JavaScript. It sends a signal that can be tracked using a JavaScript event handling method. <br><br><i><b>tuesday.addEventListener( "you_event", function(event) { alert("event starting") } );</b></i></p>
+    <br>
+    <p>This way you can link Tuesday JS project to your JavaScript code. so that it can react to the moments of the story that you define.</p>
+</div>
+<div id="dialog_go_to" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Go to</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_go_to_go_back.png" style="max-height:341px;max-width:824px;"/>
+    </div>
+    <p>Specifies the block the player will move to after the current dialogue.</p>
+</div>
+<div id="dialog_variables" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog variables</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_variables.png" style="max-height:374px;max-width:547px;"/><br>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_variables.png" style="max-height:auto;max-width:317px;"/>
+    </div>
+
+</div>
+<div id="dialog_play_sound" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog play sound</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_play_sound.png" style="max-height:auto;max-width:317px;"/>
+    </div>
+    <p>Specifies the sound file to be played in the dialog. this sound does not loop and will not stop until the recording ends or is interrupted by the <a href="#" onclick="get_doc('dialog_stop_sound')">"Dialog stop sound"</a> element</p>
+</div>
+<div id="dialog_stop_sound" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog stop sound</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_stop_sound.png" style="max-height:auto;max-width:317px;"/>
+    </div>
+    <p>Stops the sound triggered by <a href="#" onclick="get_doc('dialog_play_sound')">"Dialog Sound Play"</a>" element.</p>
+</div>
+<div id="dialog_choice" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog choice</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_choice.png" style="max-height:297px;max-width:635px;"/><br>
+    </div>
+    <br><br><p>The scene view is intended to display game space maps or other navigation. To use it, you need to select a new image for the map from the working folder and place markers on it that will lead to another plot block or continue the current one. Map scene with all elements will be automatically scaled to the size of the screen or project window, and scrolling functionality will be added. </p>
+    <br><br><div style="width:100%;text-align: center;" >
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/choice_yes_no.jpg" style="max-height:466px;max-width:682px;"/>
+    </div>
+    <br><br><p>The scene view is intended to display game space maps or other navigation. To use it, you need to select a new image for the map from the working folder and place markers on it that will lead to another plot block or continue the current one. Map scene with all elements will be automatically scaled to the size of the screen or project window, and scrolling functionality will be added. </p>
+    <br><br><br><br><table style="width:100%;"><tbody><tr>
+        <td style="width:50%;padding-bottom:64px;" valign="top">
+        <br><br>Individual settings for displaying a scene with a map in a project.
+        <br><br><b>Art</b> - Specifies a file from the working folder for the map background image, you can set an individual image for each localization. By default, all languages will be set to the image selected when creating the scene.
+        <br><br><b>Width / Height</b> - Map dimensions, by default, the dimensions of the image that was selected when creating the scene are used. Resizing does not affect the scaling of the scene, if you want to increase the size of the map, it is recommended to use the "Scale" option
+        <br><br><b>Start scroll X / Y</b> - Sets the initial scroll position when the map is first launched, later the scene remembers the last map scroll position so that the user can continue from the same place.
+        <br><br><b>Size</b> - Options for filling the scene with a map background image.
+        <br><br><b>Scale</b> - Specifies the scale of the map so that it can be enlarged or reduced in proportion to its size and the size of the project window.
+        <br><br><b>Color</b> - Scene background color.
+        <br><br><b>Button sound</b> - The default sound for keyboards, if the marker has its own sound, then this file will not be played.
+        <br><br><b>Music</b> - Specifies the file for the background music, the selected music will be looped, if the file is the same as the background music of the previous scene, the music will not be interrupted or restarted when switching to the card.
+        <br><br><b>Class name</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
+        <br><br><b>Style CSS</b> - Sets individual CSS style options for the map. It allows you to use additional options that are not provided by the main functionality, such as filters or gradients.
+        </td>
+        <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/p_choice.png" style="max-height:1697px;max-width:286px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
+    </tr></tbody></table>
+</div>
+<div id="dialog_text_add" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog text add</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_text_edit.png" style="max-height:620px;max-width:867px;"/>
+    </div>
+    <p>Identical to <a href="#" onclick="get_doc('dialog_text')">"text"</a> element, but does not erase the previous text, but adds new text to the existing one</p><br>
+    <p>Warning! The two elements "text" and "add text" cannot be in the same dialog box.</p>
+</div>
+<div id="dialog_art" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog art</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/set_art.jpg" style="max-height:466px;max-width:682px;"/>
+    </div>
+    <br><br><p>The scene view is intended to display game space maps or other navigation. To use it, you need to select a new image for the map from the working folder and place markers on it that will lead to another plot block or continue the current one. Map scene with all elements will be automatically scaled to the size of the screen or project window, and scrolling functionality will be added. </p>
+    <br><br><table style="width:100%;"><tbody><tr>
+        <td style="width:50%;padding-bottom:64px;" valign="top">
+        <br><br>Individual settings for displaying a scene with a map in a project.
+        <br><br><b>Art</b> - Specifies a file from the working folder for the map background image, you can set an individual image for each localization. By default, all languages will be set to the image selected when creating the scene.
+        <br><br><b>Width / Height</b> - Map dimensions, by default, the dimensions of the image that was selected when creating the scene are used. Resizing does not affect the scaling of the scene, if you want to increase the size of the map, it is recommended to use the "Scale" option
+        <br><br><b>Start scroll X / Y</b> - Sets the initial scroll position when the map is first launched, later the scene remembers the last map scroll position so that the user can continue from the same place.
+        <br><br><b>Size</b> - Options for filling the scene with a map background image.
+        <br><br><b>Scale</b> - Specifies the scale of the map so that it can be enlarged or reduced in proportion to its size and the size of the project window.
+        <br><br><b>Color</b> - Scene background color.
+        <br><br><b>Button sound</b> - The default sound for keyboards, if the marker has its own sound, then this file will not be played.
+        <br><br><b>Music</b> - Specifies the file for the background music, the selected music will be looped, if the file is the same as the background music of the previous scene, the music will not be interrupted or restarted when switching to the card.
+        <br><br><b>Class name</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
+        <br><br><b>Style CSS</b> - Sets individual CSS style options for the map. It allows you to use additional options that are not provided by the main functionality, such as filters or gradients.
+        </td>
+        <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/p_art.png" style="max-height:1033px;max-width:286px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
+    </tr></tbody></table>
+</div>
+<div id="dialog_back_to" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog back to</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_go_to_go_back.png" style="max-height:341px;max-width:824px;"/>
+    </div>
+    <p>Specifies the previous block for the current dialog. The player will switch to it if they move backwards in the story.</p>
+</div>
+<div id="dialog_timer" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog timer</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_timer.png" style="max-height:auto;max-width:317px;"/>
+    </div>
+    <p>This element will allow you to perform a given action after a certain amount of time specified in seconds.</p>
+    <p>The available actions are similar to those available in the  <a href="#" onclick="get_doc('dialog_choice')">"choice"</a> element. you can specify the story block switching or transition to the next dialog.</p>
+    <p>You can use this element for quick time events or for automatic scene switching.</p>
+</div>
+<div id="dialog_video" style="display:none">
+    <div style="width:100%;text-align: center;" >
+    <p class="head">Dialog video</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_video.png" style="max-height:auto;max-width:317px;"/>
+    </div>
+    <p>An element that allows you to play a video clip in any browser-accessible format, including .mp4 and .m4a.</p>
+    <p>You can set basic playback options such as audio volume, autoplay and loop. In addition, you can specify a video fragment to play by specifying the start and end time. Set the action as a transition to another block or dialog at the end of the video or at the end of its fragment.</p>
+    <br><div style="width:100%;text-align: center;" ><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_video.png" style="max-height:509px;max-width:707px;"/></div>
+    <p>the "size" option will allow you to align the video to the dimensions of the scene, or specify its specific coordinates and size in the scene using the scene editor.</p><br>
+    <p>Warning! many browsers block audio playback until user activity, so there may be a situation where the video starts, but there is no sound. Try not to play the video before the user's first click in the project.</p><br>
+    <p>An example demonstrating how the video element works <a href="example/example_interactive_movie.zip" target='_blank'>example_interactive_movie.zip</a></p>
+</div>
+
+
+
+
+
+
 <div id="unlocked_content" style="display:none">
     <div style="width:100%;text-align: center;" >
     <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
