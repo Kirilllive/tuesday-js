@@ -4364,12 +4364,12 @@ function project_statist(){
     if(!setup_editor.csv){setup_editor.csv=[decodeURI('%09'),decodeURI('%0D')]}
     var html="<div class='window' style='padding:0px;'><div class='win_head'>Project metadata<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0px;'>"
         +'<table style="border-spacing:10px;border-collapse:separate;"><tbody><tr>'
-        +'<td style="width:100px;height:20px;" align="right">Count files: </td><td align="left" style="width:60px;">'+project_files.length+'</td>'
-        +'<td style="width:100px;height:20px;" align="right">Size files: </td><td align="left" style="width:60px;">'+fileSize(countBytes)+'</td></tr>'
-        +'<td style="height:20px;" align="right">Words '+languare+': </td><td align="left">'+countWords+'</td>'
-        +'<td style="height:20px;" align="right">Symbols '+languare+': </td><td align="left">'+countSymbols+'</td></tr>'
-        +'<td style="height:20px;" align="right">Blocks: </td><td align="left">'+all_blocks.length+'</td>'
-        +'<td style="height:20px;" align="right">Characters: </td><td align="left">'+Object.keys(story_script.parameters.characters).length+'</td></tr>'
+        +'<td style="white-space:nowrap;min-width:100px;height:20px;" align="right">Count files: </td><td align="left" style="width:60px;">'+project_files.length+'</td>'
+        +'<td style="white-space:nowrap;min-width:100px;height:20px;" align="right">Size files: </td><td align="left" style="width:60px;">'+fileSize(countBytes)+'</td></tr>'
+        +'<td style="white-space:nowrap;height:20px;" align="right">Words '+languare+': </td><td align="left">'+countWords+'</td>'
+        +'<td style="white-space:nowrap;height:20px;" align="right">Symbols '+languare+': </td><td align="left">'+countSymbols+'</td></tr>'
+        +'<td style="white-space:nowrap;height:20px;" align="right">Blocks: </td><td align="left">'+all_blocks.length+'</td>'
+        +'<td style="white-space:nowrap;height:20px;" align="right">Characters: </td><td align="left">'+Object.keys(story_script.parameters.characters).length+'</td></tr>'
         +'</tbody></table></div>'
     modal_window("open",html);
 }
