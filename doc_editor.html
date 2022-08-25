@@ -1,10 +1,10 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
 <title>Tuesday JS visual novel engine Tutorial / Documentation / Lessons</title>
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
 <meta content="#5f5196" name="theme-color" charset="UTF-8">
-<meta name="description" content="simple web-based free and open source visual novel editor, it can be used in web browser. The engine uses standard HTML elements DOM this allows the use any media format supported by browsers, including vector graphics svg, gif animations and css styles.">
+<meta name="description" content="simple web-based free and open source visual novel editor, it can be used in web browser. The engine uses standard HTML elements DOM this allows the use any media format supported by browsers, including vector graphics svg, gif animations and CSS styles.">
 <meta name="keywords" content="Editor, Maker, Interactive Fiction, Visual Novel, Fairy Tale, Kinetic Novel, Open Source,">
 <meta name='viewport' content='width=device-width, initial-scale=1'/>
 <meta name="author" content="Kirill Live">
@@ -27,6 +27,10 @@ a{color:#000;}
     overflow-x:hidden;
 	background-color:#fff;
 }
+a:link {color: #8d7fbd;}
+a:visited{color: #8d7fbd;}
+a:hover{color: #cec8e3;}
+a:active{color: #cec8e3;}
 #search_bookmarks {
   background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 48 48'%3e %3ccircle fill='none' stroke='%23ccc' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' cx='32' cy='17' r='14' /%3e %3cpath fill='none' stroke='%23ccc' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' d='M 4,45 22,27'/%3e%3c/svg%3e");
   background-position:6px 6px;
@@ -114,10 +118,6 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p><a href='https://boosty.to/kirill_live' target='_blank'><svg width='145' height='40' viewBox='0 0 145 40' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><defs><linearGradient x1='61.5370404%' y1='13%' x2='34%' y2='129%' id='line'><stop stop-color='#EF7829' offset='0%'/><stop stop-color='#F0692A' offset='28%'/><stop stop-color='#F15E2C' offset='63%'/><stop stop-color='#F15A2C' offset='100%'/></linearGradient></defs><path id='boosty' d='M138.1,13.1 L132.0,22.6 L131.3,13.1 L122.5,13.1 C123.3,10.3 124.0,8.1 124.0,8.1 L124.3,7 L117.6,7 L117.3,8.1 L115.8,13.1 L108.6,13.1 C102.7,13.1 99.4,14.8 98.0,18 C97.2,15 94.6,13.1 90.5,13.1 C87.2,13.1 84.1,14.3 81.6,16.5 C80.4,14.4 78.1,13.1 74.8,13.1 C71.2,13.1 67.9,14.5 65.4,16.9 C64.3,14.6 61.8,13.1 58.3,13.1 C57.1,13.1 55.9,13.3 54.8,13.6 L55.3,11.7 C55.4,11.7 55.4,11.7 55.4,11.6 L56.7,7 L50.0,7 L45.7,21.7 C45.6,22 45.5,22.3 45.4,22.6 C45.2,23.2 45.1,23.9 45.0,24.6 C44.5,28.7 46.3,31.8 51.3,32 C51.8,32 52.3,32.1 52.8,32.1 C56.2,32 59.6,30.7 62.1,28.3 C63.1,30.6 65.5,32.1 69.2,32.1 C72.5,32 75.6,30.8 78.1,28.7 C79.2,30.8 81.5,32.1 85.0,32.1 L101.9,32.1 C107.1,32.1 110.0,31 111.6,28.8 C111.6,30.9 112.8,32.1 115.9,32.1 C118.4,32.1 121.7,31.5 126.3,30.4 L119.6,39.9 L126.4,39.9 L144.8,13.1 L138.1,13.1 Z M58.9,22.6 C58.3,24.7 56.2,26.5 54.4,26.5 C52.5,26.5 51.5,24.7 52.1,22.6 C52.8,20.4 54.8,18.7 56.6,18.7 C58.5,18.7 59.5,20.4 58.9,22.6 Z M75.4,22.6 C74.7,24.7 72.7,26.5 70.9,26.5 C69.0,26.5 68.0,24.7 68.6,22.6 C69.3,20.4 71.3,18.7 73.2,18.7 C75.0,18.7 76.0,20.4 75.4,22.6 Z M84.4,22.6 C85.0,20.4 87.1,18.7 88.9,18.7 C90.7,18.7 91.8,20.4 91.1,22.6 C90.5,24.7 88.5,26.4 86.7,26.5 L86.6,26.5 C84.8,26.4 83.8,24.7 84.4,22.6 Z M106.1,25.8 C105.7,26.6 103.1,26.5 102.4,26.5 L95.9,26.5 C96.8,25.3 97.4,24 97.8,22.6 C97.9,22.4 97.9,22.3 98.0,22.2 C98.7,23.2 100.2,24.1 103.1,24.6 C105.8,25.2 106.3,25 106.1,25.8 Z M112.7,23.7 C112.2,21.4 109.7,20.6 106.2,20.2 C104.7,20 103.9,19.9 104.1,19.3 C104.2,18.8 105.0,18.7 106.5,18.7 L114.2,18.7 L112.7,23.7 Z M119.4,23.7 C119.4,23.7 120.1,21.4 120.9,18.7 L125.2,18.7 L125.9,25.8 C118.8,27.3 118.7,26.9 119.4,23.7 L119.4,23.7 Z' fill='#242B2C' fill-rule='nonzero'/><path d='M1.0,23.8 L7.8,0 L18.2,0 L16.1,7.4 C16.0,7.4 16.0,7.4 16.0,7.5 L10.5,27.1 L15.6,27.1 C13.5,32.5 11.8,36.8 10.6,40 C1.1,39.8 -1.5,32.9 0.7,24.7 L1.0,23.8 Z M10.6,40 L23.2,21.6 L17.8,21.6 L22.5,9.8 C30.4,10.6 34.1,17 31.9,24.7 C29.6,33 20.1,40 10.8,40 L10.6,40 Z' fill='url(#line)'/></svg></a></p><br>
     </div>
 </div>
-
-
-
-
 </div>
 </td>
 </tr>
@@ -234,7 +234,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
 </svg>
 </div>
 <div id="dialog_text" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog text</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_text_edit.png" style="max-height:620px;max-width:867px;"/>
     </div>
@@ -244,21 +244,19 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br>If the number of phrases in the dialogs of different translations differ from each other, then you can write <b>"skip"</b>, then the phrase will be automatically skipped in the selected localization.
     <br><br>To add transcription, furigana, additional anatation and texts, you can use  <b>&#60 簡単 = かんたん ></b> what will be displayed as <ruby> 簡単 <rt style="font-size:10px">かんたん</rt></ruby></b>.
 </div>
-
 <div id="dialog_toast" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog toast</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_toast.png" style="max-height:307px;max-width:579px;"/>
     </div>
     <p>Not recommended for use</p><br>
     <p>Element for the plugin of the same name, it will not appear in the elements menu until this plugin is enabled in the project settings</p>
     <p>In it you can write a short message for Pop-up notification, at the top of the window</p><br>
-    <div style="width:100%;text-align: center;" ><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_toast.png" style="max-height:auto;max-width:317px;"/></div>
-    <p>For the correct display of the element, you must specify its appearance in css file for the element "#toast" </p>
+    <div style="width:100%;text-align: center;"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_toast.png" style="max-height:auto;max-width:317px;"/></div>
+    <p>For the correct display of the element, you must specify its appearance in <a href="#" onclick="get_doc('settings_project')">CSS file</a> for the element "#toast" </p>
 </div>
-
 <div id="dialog_JavaScript" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">JavaScript code</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_JavaScript.png" style="max-height:670px;max-width:821px;"/>
     </div>
@@ -281,14 +279,16 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </ul>
 </div>
 <div id="dialog_HTML_code" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">HTML code</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_HTML_code.png" style="max-height:670px;max-width:821px;"/>
     </div>
-
+    <p>You can add your own HTML markup to the scene and add any element from the HTML.</p>
+    <p>The HTML layer will be displayed above the text panel inside the "Tuesday" element under the id "tue_html_dialog".</p>
+    <p>This element can use classes from the <a href="#" onclick="get_doc('settings_project')">CSS file</a> included in the project (they will not be displayed in the editor, but will be visible in the preview) and using the JS files</p>
 </div>
 <div id="dialog_no_autosave" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">No autosave</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_no_autosave.png" style="max-height:auto;max-width:317px;"/>
     </div>
@@ -296,7 +296,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p>This feature may be needed to avoid spoiling the player's progress with non-story scenes such as menu screens or gallery screens.</p>
 </div>
 <div id="dialog_hide_interface" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Hide interface</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_hide_interface.png" style="max-height:auto;max-width:317px;"/>
     </div>
@@ -306,7 +306,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p>Warning! if you specify to hide the interface from a specific location, then if the user uses "autosave", the interface can still be shown. it is recommended to disable "autosave" in dialogs without interface.</p>
 </div>
 <div id="dialog_ID_event" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">ID event</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_ID_event.png" style="max-height:auto;max-width:317px;"/>
     </div>
@@ -315,63 +315,78 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p>This way you can link Tuesday JS project to your JavaScript code. so that it can react to the moments of the story that you define.</p>
 </div>
 <div id="dialog_go_to" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Go to</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_go_to_go_back.png" style="max-height:341px;max-width:824px;"/>
     </div>
     <p>Specifies the block the player will move to after the current dialogue.</p>
 </div>
 <div id="dialog_variables" style="display:none">
-    <div style="width:100%;text-align: center;" >
-    <p class="head">Dialog variables</p>
-    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_variables.png" style="max-height:374px;max-width:547px;"/><br>
-    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_variables.png" style="max-height:auto;max-width:317px;"/>
+    <div style="width:100%;text-align: center;"><p class="head">Dialog variables</p><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_variables.png" style="max-height:374px;max-width:547px;"/></div><br>
+    <p>When the dialog is displayed, you can make changes to the values of the variables. you can use two basic operations such as add (add) and change (set), both operations work on both numbers and text.</p>
+    <div style="width:100%;text-align: center;"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_variables.png" style="max-height:auto;max-width:317px;"/></div>
+    <p>Changes to variables happen before the text is displayed, if you use the displayed value of the variable in the text <b><a href="doc_editor.html#dialog_text" target='_blank'>&#60var_name></a></b> then the changed value will be shown.</p>
     </div>
-
+    <p></p>
 </div>
 <div id="dialog_play_sound" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog play sound</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_play_sound.png" style="max-height:auto;max-width:317px;"/>
     </div>
     <p>Specifies the sound file to be played in the dialog. this sound does not loop and will not stop until the recording ends or is interrupted by the <a href="#" onclick="get_doc('dialog_stop_sound')">"Dialog stop sound"</a> element</p>
 </div>
 <div id="dialog_stop_sound" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog stop sound</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_stop_sound.png" style="max-height:auto;max-width:317px;"/>
     </div>
     <p>Stops the sound triggered by <a href="#" onclick="get_doc('dialog_play_sound')">"Dialog Sound Play"</a>" element.</p>
 </div>
 <div id="dialog_choice" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog choice</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_choice.png" style="max-height:297px;max-width:635px;"/><br>
     </div>
-    <br><br><p>The scene view is intended to display game space maps or other navigation. To use it, you need to select a new image for the map from the working folder and place markers on it that will lead to another plot block or continue the current one. Map scene with all elements will be automatically scaled to the size of the screen or project window, and scrolling functionality will be added. </p>
-    <br><br><div style="width:100%;text-align: center;" >
+    <br><br><p>An element designed to control the plot by the user, with its help he can move through the plot blocks and control the sequence of the plot.</p>
+    <br><br><p>It can also be part of a decoration or an interactive object. in it you can write text, display images and values from variables</p>
+    <br><br><div style="width:100%;text-align: center;">
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/choice_yes_no.jpg" style="max-height:466px;max-width:682px;"/>
     </div>
-    <br><br><p>The scene view is intended to display game space maps or other navigation. To use it, you need to select a new image for the map from the working folder and place markers on it that will lead to another plot block or continue the current one. Map scene with all elements will be automatically scaled to the size of the screen or project window, and scrolling functionality will be added. </p>
+    <br><br><p>By default, the button is displayed in the middle of the scene. the appearance of each new button is automatically copied from the already created ones.</p>
+    <br><br><p>To arrange the selection buttons in the scene, the Scene Editor is used, which also displays their appearance and size. To quickly add a choice element, you can use the settings window in the Story block.</p>
     <br><br><br><br><table style="width:100%;"><tbody><tr>
         <td style="width:50%;padding-bottom:64px;" valign="top">
-        <br><br>Individual settings for displaying a scene with a map in a project.
-        <br><br><b>Art</b> - Specifies a file from the working folder for the map background image, you can set an individual image for each localization. By default, all languages will be set to the image selected when creating the scene.
-        <br><br><b>Width / Height</b> - Map dimensions, by default, the dimensions of the image that was selected when creating the scene are used. Resizing does not affect the scaling of the scene, if you want to increase the size of the map, it is recommended to use the "Scale" option
-        <br><br><b>Start scroll X / Y</b> - Sets the initial scroll position when the map is first launched, later the scene remembers the last map scroll position so that the user can continue from the same place.
-        <br><br><b>Size</b> - Options for filling the scene with a map background image.
-        <br><br><b>Scale</b> - Specifies the scale of the map so that it can be enlarged or reduced in proportion to its size and the size of the project window.
-        <br><br><b>Color</b> - Scene background color.
-        <br><br><b>Button sound</b> - The default sound for keyboards, if the marker has its own sound, then this file will not be played.
-        <br><br><b>Music</b> - Specifies the file for the background music, the selected music will be looped, if the file is the same as the background music of the previous scene, the music will not be interrupted or restarted when switching to the card.
-        <br><br><b>Class name</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
-        <br><br><b>Style CSS</b> - Sets individual CSS style options for the map. It allows you to use additional options that are not provided by the main functionality, such as filters or gradients.
+        <br><br>Individual settings for choice
+        <br><br><b>Go to</b> - Specifies the block of story that the user navigates to, or a system function.
+        <br><br><b>Only text from</b> - Alternative to "Go to". Specifies the block from which only the dialog will be used
+        <br><br><b>Text</b> - button text You can specify individual text for each localization.
+        <br><br><b>Indent text</b> - An indent for text within an element. You can use percentages (%) of pixels (px) and other CSS units and specify only certain padding for each side, just like the standard CSS text padding feature.
+        <br><br><b>Width / Height</b> - Artistic dimensions, default dimensions are 100% relative to "Choice" element. You can use percentages (%) of pixels (px) and other CSS units.
+        <br><br><b>Sound</b> - The sound that will be played when this element is clicked.
+        <br><br><b>JavaScript</b> - You can specify JavaScript to be executed when the element is clicked.
+        <br><br><b>Font size</b> - The font size for the button text. You can use percentages (%) of pixels (px) and other CSS units.
+        <br><br><b>Font family</b> - The name of the font for the text, you can specify the font from the default ones in the browser or <a href="#" onclick="get_doc('settings_fonts')">from those connected to the project</a>
+        <br><br><b>Align text</b> - text alignment side inside "Choice" element
+        <br><br><b>Position Top / Left / Bottom / Right</b> - coordinates the location of the object relative to the side of the scene. if "Time transform" is used, all values will be translated to the Top / Left position. You can use percentages (%) of pixels (px) and other CSS units.
+        <br><br><b>OffSet X / Y</b> - The offset coordinates of the object's display point relative to itself.
+        <br><br><b>Angle</b> - Values for the angle of inclination or rotation of the object.
+        <br><br><b>Style CSS</b> - You can give an object a unique CSS style
+        <br><br><b>Class Name</b> - You can specify the class from an external <a href="#" onclick="get_doc('settings_project')">CSS file</a> included with the project or for use in JavaScript.
+        <br><br><b>Color</b> - The color for the element's background.
+        <br><br><b>Art</b> - Specifies a file from the working folder for the art, you can set an individual image for each localization. By default, all languages will be set to the image selected when creating the scene.
+        <br><br><b>Size</b> - Image fill options inside the "Choice" element
+        <br><br><b>Width / Height</b> - Dimensions for the image inside the element, the default dimensions are 100% in relation to the "Select" element. You can use percentages (%) of pixels (px) and other CSS units.
+        <br><br><b>Align art</b> - Image alignment side inside "Choice" element
+        <br><br><b>Position Top / Left / Bottom / Right</b> - coordinates the location of the object relative to the side of the scene. if "Time transform" is used, all values will be translated to the Top / Left position. You can use percentages (%) of pixels (px) and other CSS units.
+        <br><br><b>Variables</b> - You can make changes to the values of variables when you click on an element. you can use two basic operations such as add (add) and change (set), both operations work on both numbers and text.
+        <br><br><b>Display conditions</b> - additional setting of conditions for showing or hiding an object in scene relative to the values in the variables. <a href="#" onclick="get_doc('unlocked_content')">Lessons: Make hidden content</a>
         </td>
         <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/p_choice.png" style="max-height:1697px;max-width:286px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
     </tr></tbody></table>
 </div>
 <div id="dialog_text_add" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog text add</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_text_edit.png" style="max-height:620px;max-width:867px;"/>
     </div>
@@ -379,37 +394,41 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p>Warning! The two elements "text" and "add text" cannot be in the same dialog box.</p>
 </div>
 <div id="dialog_art" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog art</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/set_art.jpg" style="max-height:466px;max-width:682px;"/>
     </div>
-    <br><br><p>The scene view is intended to display game space maps or other navigation. To use it, you need to select a new image for the map from the working folder and place markers on it that will lead to another plot block or continue the current one. Map scene with all elements will be automatically scaled to the size of the screen or project window, and scrolling functionality will be added. </p>
+    <br><br><p>The "Art" element adds additional images to the scene at specified coordinates and sizes. for this, any graphic formats supported by the browser can be used, such as jpg, png, gif, svg and many others.</p>
+    <p>The scene editor is used to add and edit Art elements. after adding and selecting an image from the working folder in the "Art" section, the image settings panel will appear.</p>
+    <p>If you change images using drag and drop, then the coordinate and size parameters will be in percentage of the same scene value</p>
     <br><br><table style="width:100%;"><tbody><tr>
         <td style="width:50%;padding-bottom:64px;" valign="top">
-        <br><br>Individual settings for displaying a scene with a map in a project.
-        <br><br><b>Art</b> - Specifies a file from the working folder for the map background image, you can set an individual image for each localization. By default, all languages will be set to the image selected when creating the scene.
-        <br><br><b>Width / Height</b> - Map dimensions, by default, the dimensions of the image that was selected when creating the scene are used. Resizing does not affect the scaling of the scene, if you want to increase the size of the map, it is recommended to use the "Scale" option
-        <br><br><b>Start scroll X / Y</b> - Sets the initial scroll position when the map is first launched, later the scene remembers the last map scroll position so that the user can continue from the same place.
-        <br><br><b>Size</b> - Options for filling the scene with a map background image.
-        <br><br><b>Scale</b> - Specifies the scale of the map so that it can be enlarged or reduced in proportion to its size and the size of the project window.
-        <br><br><b>Color</b> - Scene background color.
-        <br><br><b>Button sound</b> - The default sound for keyboards, if the marker has its own sound, then this file will not be played.
-        <br><br><b>Music</b> - Specifies the file for the background music, the selected music will be looped, if the file is the same as the background music of the previous scene, the music will not be interrupted or restarted when switching to the card.
-        <br><br><b>Class name</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
-        <br><br><b>Style CSS</b> - Sets individual CSS style options for the map. It allows you to use additional options that are not provided by the main functionality, such as filters or gradients.
+        <br><br>Individual settings for art
+        <br><br><b>Art</b> - Specifies a file from the working folder for the art, you can set an individual image for each localization. By default, all languages will be set to the image selected when creating the scene.
+        <br><br><b>Width / Height</b> - Artistic dimensions, default dimensions are 33% relative to the scene. You can use percentages (%) of pixels (px) and other CSS units.
+        <br><br><b>Align art</b> - Image alignment side inside "Art" element
+        <br><br><b>Position Top / Left / Bottom / Right</b> - coordinates the location of the object relative to the side of the scene. if "Time transform" is used, all values will be translated to the Top / Left position. You can use percentages (%) of pixels (px) and other CSS units.
+        <br><br><b>OffSet X / Y</b> - The offset coordinates of the object's display point relative to itself.
+        <br><br><b>Angle</b> - Values for the angle of inclination or rotation of the object.
+        <br><br><b>Time transform</b> - If the value is greater than 0, then the animation function will be activated, the scene dialogs will be used as keyframes for the same objects (using the same file). by specifying the same files in several successive dialogs, you can set the time for their smooth transition from one state to another. for a smooth conversion, take into account all the parameters of the same images, including CSS styles.
+        <br><br><b>Speed transform</b> - Animation styles that determine how the object's acceleration and deceleration will be used during the transformation.
+        <br><br><b>Opacity</b> - Object transparency value
+        <br><br><b>Style CSS</b> - You can give an object a unique CSS style
+        <br><br><b>Class Name</b> - You can specify the class from an external <a href="#" onclick="get_doc('settings_project')">CSS file</a> included with the project or for use in JavaScript.
+        <br><br><b>Display conditions</b> - additional setting of conditions for showing or hiding an object in scene relative to the values in the variables. <a href="#" onclick="get_doc('unlocked_content')">Lessons: Make hidden content</a>
         </td>
         <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/p_art.png" style="max-height:1033px;max-width:286px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
     </tr></tbody></table>
 </div>
 <div id="dialog_back_to" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog back to</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_go_to_go_back.png" style="max-height:341px;max-width:824px;"/>
     </div>
     <p>Specifies the previous block for the current dialog. The player will switch to it if they move backwards in the story.</p>
 </div>
 <div id="dialog_timer" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog timer</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_timer.png" style="max-height:auto;max-width:317px;"/>
     </div>
@@ -418,25 +437,19 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p>You can use this element for quick time events or for automatic scene switching.</p>
 </div>
 <div id="dialog_video" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog video</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_video.png" style="max-height:auto;max-width:317px;"/>
     </div>
     <p>An element that allows you to play a video clip in any browser-accessible format, including .mp4 and .m4a.</p>
     <p>You can set basic playback options such as audio volume, autoplay and loop. In addition, you can specify a video fragment to play by specifying the start and end time. Set the action as a transition to another block or dialog at the end of the video or at the end of its fragment.</p>
-    <br><div style="width:100%;text-align: center;" ><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_video.png" style="max-height:509px;max-width:707px;"/></div>
+    <br><div style="width:100%;text-align: center;"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_video.png" style="max-height:509px;max-width:707px;"/></div>
     <p>the "size" option will allow you to align the video to the dimensions of the scene, or specify its specific coordinates and size in the scene using the scene editor.</p><br>
     <p>Warning! many browsers block audio playback until user activity, so there may be a situation where the video starts, but there is no sound. Try not to play the video before the user's first click in the project.</p><br>
     <p>An example demonstrating how the video element works <a href="example/example_interactive_movie.zip" target='_blank'>example_interactive_movie.zip</a></p>
 </div>
-
-
-
-
-
-
 <div id="unlocked_content" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
         <tr>
             <td align='center' colspan="2" style="text-align:center;"><p class="head">Make unlocked or hidden content</p></td>
@@ -503,14 +516,14 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p></p>
 </div>
 <div id="legacy_choice" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Legacy choice</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/legacy_choice.png" style="max-height:311px;max-width:727px;"/>
     </div>
     <p>This is a logical element that determines the next story block based on the values in the variables. it will not be visible to the user.<br><br>As you progress through the story, you can specify in dialogs or on the selection buttons what changes to make to the variables that you created in the project settings. And then use the obtained values in the Legacy selection to draw a conclusion or decision for the further development of the story.<br><br><div style="width:100%;text-align: center;"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_legacy_choice.png" style="max-height:396px;max-width:579px;"/></div><br><br>You can set up multiple value checks and their order will be determined by this "if eles" list, with the last "else" value always present, which is triggered if none of the above comparisons matched.<br><br>This element is most often used to create tests to test knowledge or to determine the ending of a story.</p>
 </div>
 <div id="terrain_map" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Terrain map</p>
     <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/map_screen.jpg" style="max-height:466px;max-width:682px;"/>
     </div>
@@ -526,7 +539,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <br><br><b>Color</b> - Scene background color.
         <br><br><b>Button sound</b> - The default sound for keyboards, if the marker has its own sound, then this file will not be played.
         <br><br><b>Music</b> - Specifies the file for the background music, the selected music will be looped, if the file is the same as the background music of the previous scene, the music will not be interrupted or restarted when switching to the card.
-        <br><br><b>Class name</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
+        <br><br><b>Class name</b> - For the scene, you can specify the style class from the <a href="#" onclick="get_doc('settings_project')">CSS file</a> specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
         <br><br><b>Style CSS</b> - Sets individual CSS style options for the map. It allows you to use additional options that are not provided by the main functionality, such as filters or gradients.
         </td>
         <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/map_scene.png" style="max-height:521px;max-width:286px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
@@ -542,7 +555,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <br><br><b>Angle</b> - Angle or rotation of marker image
         <br><br><b>Size</b> - Options for filling the scene with a marker image.
         <br><br><b>Sound</b> - A file from the working folder with the sound that will be played when you click on this marker.
-        <br><br><b>Class name</b> - For the marker, you can specify the style class from the css file specified in the project settings. It allows you to use additional options.
+        <br><br><b>Class name</b> - For the marker, you can specify the style class from the <a href="#" onclick="get_doc('settings_project')">CSS file</a> specified in the project settings. It allows you to use additional options.
         <br><br><b>Style CSS</b> - Sets individual CSS style options for the marker. Allows you to use additional options
         <br><br><b>JavaScript</b> - Executes JavaScript after the marker is clicked
         <br><br><b>Show</b> - Conditions based on variable values under which the marker will be hidden or shown
@@ -550,7 +563,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </tr></tbody></table>
 </div>
 <div id="hidden_object" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Hidden object</p>
     <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/ho_screen.jpg" style="max-height:466px;max-width:682px;"/>
     </div>
@@ -574,8 +587,8 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <br><br><b>Fill art</b> - Item label image filling options.
         <br><br><b>Align art</b> - Image alignment inside item label.
         <br><br><b>Sound</b> - The default sound to play when an item from the list has been found, if the item has its own sound, then this file will not be played.
-        <br><br><b>Default class name</b> - The style class from the css file specified in the project settings for the label of the not yet found element.
-        <br><br><b>Find class name</b> - Style class from the css file specified in the project settings for the label of the found element.
+        <br><br><b>Default class name</b> - The style class from the <a href="#" onclick="get_doc('settings_project')">CSS file</a> specified in the project settings for the label of the not yet found element.
+        <br><br><b>Find class name</b> - Style class from the <a href="#" onclick="get_doc('settings_project')">CSS file</a> specified in the project settings for the label of the found element.
         <br><br><b>
         </td>
         <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/ho_labels.png" style="max-height:932px;max-width:286px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
@@ -590,7 +603,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <br><br><b>Color</b> - Scene background color.
         <br><br><b>Music</b> - Specifies the file for the background music, the selected music will be looped, if the file is the same as the background music of the previous scene, the music will not be interrupted or restarted when switching to the card.
         <br><br><b>Go to</b> - Specifies the next block or dialog that the player will move to after all items in the list have been found.
-        <br><br><b>Class name</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
+        <br><br><b>Class name</b> - For the scene, you can specify the style class from the <a href="#" onclick="get_doc('settings_project')">CSS file</a> specified in the project settings. It allows you to use additional options for the map that are not provided by the main functionality, such as filters or gradients.
         <br><br><b>Style CSS</b> - Sets individual CSS style options for the playing field. It allows you to use additional options that are not provided by the main functionality, such as filters or gradients.
         <br><br><b>JavaScript</b> - Executes JavaScript at the beginning of the game scene
         </td>
@@ -604,7 +617,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <br><br><b>Angle</b> - Angle or rotation of item image
         <br><br><b>Size</b> - Options for displaying the image of the item.
         <br><br><b>Sound</b> - A file from the working folder with a sound that will be played when this item is clicked, if it is in the search list.
-        <br><br><b>Class name</b> - For the item, you can specify the style class from the css file specified in the project settings. It allows you to use additional options.
+        <br><br><b>Class name</b> - For the item, you can specify the style class from the <a href="#" onclick="get_doc('settings_project')">CSS file</a> specified in the project settings. It allows you to use additional options.
         <br><br><b>Style CSS</b> - Sets individual CSS style options for the item. Allows you to use additional options
         <br><br><b>JavaScript</b> - Executes JavaScript after the item is clicked
         </td>
@@ -612,35 +625,35 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </tr></tbody></table>
 </div>
 <div id="dialog" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Dialog</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/dialog.png" style="max-height:788px;max-width:877px;"/>
     </div>
     <p>The dialog defines all other elements that will be displayed in the project, such as dialog text, character images, select buttons, additional sounds, and more. To edit the layout, it is recommended to use the "Scene Editor" with the Drag end Drop visual interface, it can be called in the context menu of the dialog or when adding the "art" element. Options and elements in a dialog are used only in that dialog and are not carried over to the next dialog.</p>
 </div>
 <div id="scene_edit" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Scene</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/scene_edit.jpg" style="max-height:497px;max-width:707px;"/>
     </div>
     <p>The scene is part of the story block, which sets the basic parameters for subsequent dialogues, such as background image, color, and music.
-    <br><br><b>Image</b> - File for the background image that will be displayed in all subsequent dialogue of this scene (analogue of background-image in css). You can set a separate file for each translation, if you specify only one file and leave the rest empty, that single file will be used for all translations.
+    <br><br><b>Image</b> - File for the background image that will be displayed in all subsequent dialogue of this scene (analogue of background-image in CSS). You can set a separate file for each translation, if you specify only one file and leave the rest empty, that single file will be used for all translations. For this, any graphic formats supported by the browser can be used, such as jpg, png, gif, svg and many others
     <br><br><b>Music</b> - Specifies a file for background music, the selected music will be looped, if you specify the same file in several scenes in a row, then the music will not be interrupted or restarted when switching to a scene. If you leave the parameter empty, then the previously started music will be stopped. Playback cannot be affected by the "Play Sound" and "Stop Sound" dialog items, the sounds they control play in parallel with the background music.
-    <br><br><b>Color</b> - Scene background color (analogue of background-color in css).
-    <br><br><b>Size</b> - Options for filling a window or screen with a background image (analogue of background-size in css).
-    <br><br><b>Position</b> - property sets the starting position of a background image  to align it in the scene relative to the size of the window or screen (analogue of background-position in css). For example, by specifying the lower right corner, the image will be stretched relative to this corner, and at any size, the lower right corner of the image will be visible.
-    <br><br><b>Class</b> - For the scene, you can specify the style class from the css file specified in the project settings. It allows you to use additional scene parameters that are not provided by the main functionality, like filters or gradients.
+    <br><br><b>Color</b> - Scene background color (analogue of background-color in CSS).
+    <br><br><b>Size</b> - Options for filling a window or screen with a background image (analogue of background-size in CSS).
+    <br><br><b>Position</b> - property sets the starting position of a background image  to align it in the scene relative to the size of the window or screen (analogue of background-position in CSS). For example, by specifying the lower right corner, the image will be stretched relative to this corner, and at any size, the lower right corner of the image will be visible.
+    <br><br><b>Class</b> - For the scene, you can specify the style class from the <a href="#" onclick="get_doc('settings_project')">CSS file</a> specified in the project settings. It allows you to use additional scene parameters that are not provided by the main functionality, like filters or gradients.
     </p>
 </div>
 <div id="story_blocks" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Story block</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/story_blocks.png" style="max-height:318px;max-width:937px;"/>
     </div>
     <p>The script structure is divided into various elements. The main element is a "block" that is part of a narrative or a storyline, and their sequence will be determined by the user's choices. Blocks consist of scenes with a set of graphic and sound elements. And already inside the scene, a sequence of dialogues and other elements.</p>
 </div>
 <div id="w_build" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Build project</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_build.png" style="max-height:423px;max-width:499px;"/>
     </div>
@@ -651,7 +664,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </p>
 </div>
 <div id="add_story_block" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Add story block</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_new_block.png" style="max-height:351px;max-width:447px;"/>
     </div>
@@ -1625,7 +1638,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         </tr>
     </tbody></table>
 </div><div id="new_project" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Create a new project</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_new_project.png" style="max-height:479px;max-width:427px;"/>
     </div>
@@ -1634,7 +1647,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br><b>Name project</b><br>The project name and supported languages are specified in one  common section "Name project". The first language in the list will be the default language. It will be applied if the device does not use other languages from this list. You can remove or add new languages and titles in the "Project settings" section of "Languages".<br><br>In the <b>JSON array</b>, the list of languages is stored in <i>parameters.languares</i>, the list of titles is in <i>parameters.title[languares]</i>.
     <br><br><b>Warning!</b><br>The project is not automatically saved to your device or browser memory, when you need to make a backup copy of the project, use the Save function.</p>
 </div><div id="editor_options" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Editor Options</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_editor_options.png" style="max-height:592px;max-width:571px;"/>
     </div>
@@ -1647,30 +1660,30 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br>For browsers, editor settings are stored in local storage called "editor_setup".<br>To <b>reset settings</b> as well as all other data as saves from projects, to do this, go to the "Project" section and click "Clear all saves" after a pop-up notification appears at the bottom of the screen, do not click "Apply" instead click on the cross in the upper right corner of the settings window. It is recommended to use it in case of a local storage error or incorrect editor operation due to third-party interference.
     </p>
 </div><div id="metadata" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Project metadata</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_project_metadata.png" style="max-height:188px;max-width:361px;"/>
     </div>
     <p>Indicator of the amount of data used in the project.<br>The size and number of downloaded files from the working folder (not the size of the files used in the project).<br>The sum of words and characters from all elements (such as texts and choises) in the edited localization. Names of characters and name of project are not included in this number.<br>To determine the scope of the project, additional data is collected on the number of story blocks and characters.<br><br>This data can be useful for determining the cost and scope of translation of the project into other languages and determining the approximate amount of time to read the story.</p>
 </div><div id="export_csv" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Export text to spreadsheet CSV / TSV</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_csv_export.png" style="max-height:332px;max-width:379px;"/>
     </div>
     <p>Export all project texts (including titles and character names) from all localizations in CSV or TSV spreadsheet format.<br>You can set your own values for Separated (cell) and delimited (string),default values are standard for CSV format Comma "," for Separated and Newline "\n" for Delimited<br>When exporting to TSV, the delimiter settings are not applied and the standard delimiter values for this format are used: Newline "\n" for Separated and tabulation "\t" for Delimited<br><br>Which format to use <b>CSV or TSV?</b> both formats are supported by almost all spreadsheet editors, and these formats are often used to transfer spreadsheets from one system to another. But not all editors allow you to change the separator values ​​when reading CSV, and by default a comma is used to separate cells, this character is often found in texts, which can spoil the contents of the table. TSV uses more neutral characters for text data by default, so having a comma in text won't break the table's integrity.<br><br>The resulting table is adapted to create translations into different languages, all lines are separated by a plot block, and next to the reaction are the names of the characters who pronounce it.<br>You can upload the resulting spreadsheets to online services such as Google Spreadsheets or use them in office programs such as LibreOffice Calc. </p>
 </div><div id="open_project" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Open project</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_csv_export.png" style="max-height:495px;max-width:298px;"/>
     </div>
     <p>To open a project, you must <b>select the project folder</b> containing the JSON file. You don't need to select the JSON file directly, it's possible that the JSON won't show up in the select box, or it will show up as an inaccessible file. If there are several JSON files in the folder, then after downloading it, you will be prompted to choose which of the found files to open<br><br>The <b>Browser</b> and <b>Desktop</b> versions of the editor do not use files from the file system, but copy them to the BLOB structure, so changes to files in the working folder are not reflected in the editor, in this case it is recommended to update the folder in the project settings or in the file directory. The <b>Android</b> version works with files directly from the device's file system. </p>
 </div><div id="save_project" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Save project</p>
     </div>
     <p>When you save a project, you get an array of your project data in JSON format. It does not store the rest of the project files, but only the paths to them, relative to the working folder. Therefore, it is very important to save the resulting json file in the working folder of the project.<br><br><b>Browsers</b> by default use the Download folder to save files from the network, a JSON file can be saved to the same folder, after which it must be transferred to the working folder yourself.<br><br><b>Desktop version</b> when saving a file, it prompts you to select a folder to save.<br><br><b>Android version</b> always save the JSON file only in the working folder on the device.<br><br>When saving a file, its default name is the titles from the default language (first in the list of languages from the project options)</p>
 </div><div id="settings_project" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings Project</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_project.png" style="max-height:592px;max-width:571px;"/>
     </div>
@@ -1685,25 +1698,25 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br><b>Pixel mode</b> - Disables anti-aliasing for bitmaps, vectors and partially for fonts, it is recommended to enable this mode if you use low resolution <b>PixelArt</b> in your project.
     </p>
 </div><div id="settings_languages" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings languages</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_languages.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>List of languages into which the project has been translated and the translated name of the project, which will be displayed in the header.<br><br>A running project automatically detects the language of the device or browser and displays the appropriate translation. The first language in the list will be the default language. It will be applied if the device does not use other languages from this list. You can remove or add new languages and titles in the "Project settings" section of "Languages".<br><br>Added languages will be displayed in the item settings lists where localization is possible. In the editor, you can globally specify the editing language and run the project with the selected localization.<br><br>If for several localizations you specify a value for only one, and leave the rest empty, then the same value will be applied to all languages.<br><br>When removing or adding a language to a project, its content will not be removed or added completely, changes will occur when editing the element.</p>
 </div><div id="settings_characters" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings characters</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_characters.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>In order not to enter the name of the characters in each dialogue, all new character names are automatically added to the character catalog along with the settings of the name panel, later when editing the dialogue, you can select the appropriate name from the catalog.<br><br>The character parameter directory is kept separate from the history blocks, and the dialogs themselves override the settings taken directly from the character directory, so any changes in this directory will be automatically applied to the entire project.</p>
 </div><div id="settings_keyboard" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings keyboard</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_keyboard.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>You can assign the main functionality to the keyboard keys, for this you just need to select the function and press the desired key, the program will automatically determine the code of the pressed key and add it to the parameter.<br><br>This feature is not available in the Android version. GamePad keys cannot be assigned in this setting.</p>
 </div><div id="settings_variables" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings variables</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_variables.png" style="max-height:592px;max-width:571px;"/>
     </div>
@@ -1711,7 +1724,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br>Variables are used when defining the next block of the story using the "Legacy choice" element or for the conditions for displaying an object in a scene. If you write in the text the name of the variable in angle brackets <b>"text &#60var_name> text"</b>, then when the dialog is displayed, it will be replaced by the value from the specified variable.
     <br><br><b>Attention</b><br>When changing the name of a variable, the new name will be added only to this list, in the rest of the project the name will remain the same and will need to be changed manually.<br><br>Saving user progress also includes an array of all variables and their values. When loading a save, an array of values from the saved data will be added, which can lead to the loss of actual data when starting the project preview. In the same way, variable data from other projects can get in. To prevent this from happening, it is recommended to use "Clear All Saves" or disable this feature during project development.</p>
 </div><div id="settings_cursors" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings cursors</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_cursors.png" style="max-height:592px;max-width:571px;"/>
     </div>
@@ -1722,31 +1735,31 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br><b>Choice cursor</b> - images for hover state on interface сhoice.
     </p>
 </div><div id="settings_sounds" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings sounds</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_sounds.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>The directory of all sound files used in the project. files are added automatically after they are added to the scene. This list does not include background music files.<br><br>By default the editor uses the mp3 format, but not all browsers support it (due to the license) and instead use the ogg format, if you load the same sound with the same name but in different formats into the project, the engine will detect mp3 support browser and play ogg if necessary<br><br>This list is kept separate from story blocks, when a sound needs to be played, the engine requests a file by name from this list, so you can globally change sound files.</p>
 </div><div id="settings_addon" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings add-on</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_addon.png" style="max-height:592px;max-width:571px;"/>
     </div>
     <p>You can add your own js files or third party JavaScript libraries (like jQuery API) to the project. To do this, just specify the path to the file in the working folder use a file from the network, the security system of the device or browser may prevent. Third-party scripts are executed last after RunTime, and if you specify several additional files, then their execution is also determined by the order in this list.<br><br>Some add-ons built into the editor are connected automatically when using their components,With the exception of the "Show Tost" and "Touch Swipe" add-ons, their functionality does not have components in the editor and must be manually enabled in order to use them.<br><br>The use of programming languages other than JavaScript is not intended.</p>
 </div><div id="settings_fonts" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings fonts</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/settings_fonts.png" style="max-height:592px;max-width:571px;"/>
     </div>
-    <p>Adding your own fonts to the project, for this you need to specify their path in the working folder and assign a name that will be used when applying the font to text. It is recommended to use the .WOFF format for the font file as the most common for browsers, but you can also use other font formats such as .TTF .OTF .EOT. but their support may not be available on some platforms or browsers. SVG fonts are not supported, they can be added using an external CSS file and set in <span class="link" onclick="get_doc('settings_project')">the project settings</span>.</p>
+    <p>Adding your own fonts to the project, for this you need to specify their path in the working folder and assign a name that will be used when applying the font to text. It is recommended to use the .WOFF format for the font file as the most common for browsers, but you can also use other font formats such as .TTF .OTF .EOT. but their support may not be available on some platforms or browsers. SVG fonts are not supported, they can be added using an external <a href="#" onclick="get_doc('settings_project')">CSS file</a> and set in <span class="link" onclick="get_doc('settings_project')">the project settings</span>.</p>
 </div><div id="w_json_edit" style="display:none">
-    <div style="width:100%;text-align: center;" >
+    <div style="width:100%;text-align: center;">
     <p class="head">Settings fonts</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_json_edit.png" style="max-height:670px;max-width:821px;"/>
     </div>
     <p>Displays the entire JSON structure of the project, where you can also make changes to the project.<br><br> You get the same JSON data structure in a file when you save the project, you can make changes to the resulting file in a suitable third party text editor and upload back to Tuesday JS.<br>More information about the project structure and the use of RuneTime is described in the documentation here: <a href="https://kirilllive.github.io/tuesday-js/tuesday_doc.html" target="_blank">https://kirilllive.github.io/tuesday-js/tuesday_doc.html</a><br><br>If the changes made are not used by the editor, then they will not be removed or changed, so you can add your parameters to the project.<br><br>You can also view the JSON content for only the selected history item. Also, this function will be useful when transferring a large amount of data from different projects, browser protection does not allow you to work directly with the buffer exchange, you can open the element that you want to transfer to another project in a JSON editor, copy its contents, then also open a similar element in the editor JSON in another project and paste the content from the previous one into it.</p>
 </div><div id="run" style="display:none">
-    <div style="width:100%;text-align: center;" ><p class="head">Run project</p>
+    <div style="width:100%;text-align: center;"><p class="head">Run project</p>
         <img class="img_w" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/b_play_scene.svg" style="max-height:466px;max-width:681px;background-image:url('tutorial_img/scene_menu.jpg');"/>
     </div>
     <br><br><p>Starts the project with the selected translation, you can also start the project from a specific location.
