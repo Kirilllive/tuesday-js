@@ -13,6 +13,7 @@ var dialog_letter=0;
 var dialog_timeout;
 var tue_story;
 var tue_bg_music;
+var tue_set_audio=1;
 var tue_fullScreen=false;
 var arr_dialog;
 var timers;
@@ -29,6 +30,7 @@ document.addEventListener('keydown',function(event){
     else if(k == story_json.parameters.key.load){load_stag('bookmark');}
     else if(k == story_json.parameters.key.autosave){load_stag('auto');}
     else if(k == story_json.parameters.key.full_screen){full_screen();}
+    else if(k == story_json.parameters.key.fast_rewind){fast_rewind();}
 });
 function get_lang(){
     if(navigator.languages != undefined){languare=navigator.languages[0].substring(0,2);}
@@ -82,6 +84,7 @@ function name_block_update(){
     tue_name_block.style.zIndex=1001;
 } function base_creation(){
     get_lang();
+    if(localStorage.getItem("tue_set_audio")){tue_set_audio=JSON.parse(localStorage.getItem("tue_set_audio"));}
 	if(story_json.parameters.style_file){add_style(story_json.parameters.style_file)}
     dialog_speed=story_json.parameters.text_panel.dialog_speed;
     if(story_json.parameters.title){
@@ -192,7 +195,7 @@ function name_block_update(){
         var v='';
         if(story_json.parameters.buttons[i].sound){v+=(story_json.parameters.buttons[i].sound)?get_sound(story_json.parameters.buttons[i].sound):((story_json.parameters.buttons[i].sound_stop)?";"+get_stop_sound(story_json.parameters.buttons[i].sound_stop):"")+";"}
         if(story_json.parameters.buttons[i].js){v+=story_json.parameters.buttons[i].js}
-        button.setAttribute("onclick",v+";")
+        button.setAttribute("onclick",v+";"+((story_json.parameters.buttons[i].name=="tue_audio")?"set_audio(this,story_json.parameters.buttons["+i+"])":""))
         if(story_json.parameters.buttons[i].className){button.className=story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style=story_json.parameters.buttons[i].style;}
         if(story_json.parameters.buttons[i].text && (typeof story_json.parameters.buttons[i].text!=='object' || (story_json.parameters.buttons[i].text[languare] && typeof story_json.parameters.buttons[i].text[languare]!=='object'))){
@@ -241,6 +244,7 @@ function name_block_update(){
     if(document.getElementById('tue_home')){document.getElementById('tue_home').addEventListener('click',function(){go_to(story_json.parameters.launch_story)});}
     if(document.getElementById('tue_save')){document.getElementById('tue_save').addEventListener('click',function(){save_stag('bookmark')});}
     if(document.getElementById('tue_load')){document.getElementById('tue_load').addEventListener('click',function(){load_stag('bookmark')});}
+    if(document.getElementById('tue_fastRewind')){document.getElementById('tue_fastRewind').addEventListener('click',function(){fast_rewind()});}
     if(document.getElementById('tue_fullScreen')){document.getElementById('tue_fullScreen').addEventListener('click',function(){full_screen()});}
     if(story_json.parameters.languares.length>1){
         for(var i=0;i<story_json.parameters.languares.length;i++){
@@ -488,7 +492,8 @@ function name_block_update(){
         } else {del_element("tue_art");}
         var button_ui=document.getElementsByClassName("tue_controll");
         for(i=0;i<button_ui.length;i++){
-            if(story_json.parameters.buttons[i].text && art_data(story_json.parameters.buttons[i].text).length>0){
+            if(story_json.parameters.buttons[i].name="tue_audio"){show_audio(button_ui[i],story_json.parameters.buttons[i]);}
+            else if(story_json.parameters.buttons[i].text && art_data(story_json.parameters.buttons[i].text).length>0){
                 button_ui[i].innerHTML=values_button(art_data(story_json.parameters.buttons[i].text))
             }
         }
@@ -542,6 +547,7 @@ function name_block_update(){
                 if(arr_dialog.choice[i].text && (typeof arr_dialog.choice[i].text!=='object' || (arr_dialog.choice[i].text[languare] && typeof arr_dialog.choice[i].text[languare]!=='object'))){
                     choice.innerHTML=values_button(art_data(arr_dialog.choice[i].text));
                 }
+                if(arr_dialog.choice[i].go_to=="tue_audio"){show_audio(choice,arr_dialog.choice[i]);}
 				var v='';
 				if(arr_dialog.choice[i].variables){
 					for(var g=0;g < arr_dialog.choice[i].variables.length;g++){
@@ -572,6 +578,8 @@ function name_block_update(){
                     else if (g == "tue_save"){choice.setAttribute("onclick",v+"save_stag('bookmark');"+add_sound());}
                     else if (g == "tue_no"||g == ""){choice.setAttribute("onclick",v+add_sound())}
                     else if (g == "tue_fullScreen"){choice.setAttribute("onclick",v+"full_screen();"+add_sound());}
+                    else if (g == "tue_fastRewind"){choice.setAttribute("onclick",v+"fast_rewind();"+add_sound());}
+                    else if (g == "tue_audio"){choice.setAttribute("onclick",v+"set_audio(this, story_json['"+tue_story+"']["+scene+"].dialogs["+dialog+"].choice["+i+"] );"+add_sound());}
                     else if (g == "tue_home"){choice.setAttribute("onclick",v+'go_to("'+story_json.parameters.launch_story+'");'+add_sound());}
                     else if (g == "tue_back"){choice.setAttribute("onclick",v+"back_story();"+add_sound());}
                     else if (g == "tue_next"){choice.setAttribute("onclick",v+"go_story();"+add_sound());}
@@ -615,12 +623,16 @@ function name_block_update(){
             tuesday.dispatchEvent(new Event( arr_dialog.event ));
         }
 		if(arr_dialog.sound_stop){
-			var s=arr_dialog.sound_stop;
-			sound_stop((s[languare])?s[languare]:s);
+  			var s=(arr_dialog.sound_stop[languare])?arr_dialog.sound_stop[languare]:arr_dialog.sound_stop;
+            if(typeof s=='object'){
+                for(var i=0;i<s.length;i++){sound_stop(s[i])}
+            }else{sound_stop((s[languare])?s[languare]:s)}
 		}
-		if(arr_dialog.sound){
-			var s=arr_dialog.sound;
-			sound_play((s[languare])?s[languare]:s )
+		if(arr_dialog.sound&&tue_set_audio<2){
+			var s=(arr_dialog.sound[languare])?arr_dialog.sound[languare]:arr_dialog.sound;
+            if(typeof s=='object'){
+                for(var i=0;i<s.length;i++){sound_play(s[i])}
+            }else{sound_play((s[languare])?s[languare]:s)}
 		}
         if(arr_dialog.js){eval(arr_dialog.js)}
         clearTimeout(timers);
@@ -772,7 +784,7 @@ function name_block_update(){
 				}else{tue_bg_music.src=story_json[tue_story][i].background_music+".mp3";}
             }else{tue_bg_music.src=story_json[tue_story][i].background_music+".ogg";}
 			tue_bg_music.loop=true;
-			tue_bg_music.play();
+			if(tue_set_audio==0){tue_bg_music.play();}
 			break;
 		}
 	}
@@ -795,7 +807,7 @@ function name_block_update(){
 		i++;
 	}
 } function get_sound(src){
-	return(src[languare])?"sound_play('"+src[languare]+"');":"sound_play('"+src+"');" ;	
+	return "if(tue_set_audio<2){"+((src[languare])?"sound_play('"+src[languare]+"');":"sound_play('"+src+"');")+"}" ;
 } function get_stop_sound(src){
 	return(src[languare])?"sound_stop('"+src[languare]+"');":"sound_stop('"+src+"');" ;	
 } function sound_play(id){
@@ -852,4 +864,25 @@ function name_block_update(){
     }
     if(!show && data[0]){element.style.visibility='hidden';}
     else if(show && !data[0]){element.style.visibility='hidden';}
+}
+function fast_rewind(){
+    timers=setTimeout(function(){go_story(true);if(dialog<story_json[tue_story][scene].dialogs.length){fast_rewind()}},350)
+}
+function set_audio(el,arr){
+    tue_set_audio=tue_set_audio>1?0:tue_set_audio+1;
+    localStorage.setItem("tue_set_audio",tue_set_audio);
+    if(tue_set_audio==0){
+        tue_bg_music.play();
+    }else if(tue_set_audio>0){
+        tue_bg_music.pause();
+    }
+    if(tue_set_audio==2){
+        var a=tuesday.getElementsByTagName('audio');for(let i=0;i<a.length;i++){a[i].pause();}
+    }
+    show_audio(el,arr);
+}
+function show_audio(el,arr){
+    var n=(tue_set_audio!=0)?tue_set_audio:"";
+    if(arr["text"+n]&&art_data(arr["text"+n]).length>0){el.innerHTML=values_button(art_data(arr["text"+n]))}
+    if(arr["art"+n]&&art_data(arr["art"+n]).length>0){el.style.backgroundImage="url('"+art_data(arr["art"+n])+"')"}
 }
