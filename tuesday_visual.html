@@ -4030,11 +4030,11 @@ function scen_compres(block,i,n){
             data_only(arr_s.choice[a],'art');
             data_only(arr_s.choice[a],'text');
             data_only(arr_s.choice[a],'sound');
-            if(arr_s.choice.name!='tue_audio'){
-                delete story_script.parameters.buttons[a].text1
-                delete story_script.parameters.buttons[a].text2
-                delete story_script.parameters.buttons[a].art1
-                delete story_script.parameters.buttons[a].art2
+            if(arr_s.choice.go_to!='tue_audio'){
+                delete arr_s.choice[a].text1
+                delete arr_s.choice[a].text2
+                delete arr_s.choice[a].art1
+                delete arr_s.choice[a].art2
             }
         }}
     }
