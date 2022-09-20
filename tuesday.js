@@ -13,7 +13,7 @@ var dialog_letter=0;
 var dialog_timeout;
 var tue_story;
 var tue_bg_music;
-var tue_set_audio=1;
+var tue_set_audio=0;
 var tue_fullScreen=false;
 var arr_dialog;
 var timers;
