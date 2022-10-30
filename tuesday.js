@@ -195,7 +195,7 @@ function name_block_update(){
         var v='';
         if(story_json.parameters.buttons[i].sound){v+=(story_json.parameters.buttons[i].sound)?get_sound(story_json.parameters.buttons[i].sound):((story_json.parameters.buttons[i].sound_stop)?";"+get_stop_sound(story_json.parameters.buttons[i].sound_stop):"")+";"}
         if(story_json.parameters.buttons[i].js){v+=story_json.parameters.buttons[i].js}
-        button.setAttribute("onclick",v+";"+((story_json.parameters.buttons[i].name=="tue_audio")?"set_audio(this,story_json.parameters.buttons["+i+"])":""))
+        button.setAttribute("onclick",v+";"+((story_json.parameters.buttons[i].name=="tue_audio")?"set_audio(this,story_json.parameters.buttons["+i+"]);":"")+((story_json[story_json.parameters.buttons[i].name])?"go_to('"+story_json.parameters.buttons[i].name+"');":""))
         if(story_json.parameters.buttons[i].className){button.className=story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style=story_json.parameters.buttons[i].style;}
         if(story_json.parameters.buttons[i].text && (typeof story_json.parameters.buttons[i].text!=='object' || (story_json.parameters.buttons[i].text[languare] && typeof story_json.parameters.buttons[i].text[languare]!=='object'))){
@@ -210,7 +210,7 @@ function name_block_update(){
             button.style.fontFamily=((story_json.parameters.buttons[i].font_family)?story_json.parameters.buttons[i].font_family:story_json.parameters.font);
         }
         button.style.zIndex=2000+i;
-        button.id=story_json.parameters.buttons[i].name;
+        if(story_json.parameters.buttons[i].name!="none"&&!story_json[story_json.parameters.buttons[i].name]){button.id=story_json.parameters.buttons[i].name};
         button.classList.add("tue_controll");
         button.style.position="absolute";
         button.style.width=story_json.parameters.buttons[i].size[0];
@@ -246,6 +246,7 @@ function name_block_update(){
     if(document.getElementById('tue_load')){document.getElementById('tue_load').addEventListener('click',function(){load_stag('bookmark')});}
     if(document.getElementById('tue_fastRewind')){document.getElementById('tue_fastRewind').addEventListener('click',function(){fast_rewind()});}
     if(document.getElementById('tue_fullScreen')){document.getElementById('tue_fullScreen').addEventListener('click',function(){full_screen()});}
+    if(document.getElementById('tue_load_autosave')){document.getElementById('tue_load_autosave').addEventListener('click',function(){load_stag('auto')});}
     if(story_json.parameters.languares.length>1){
         for(var i=0;i<story_json.parameters.languares.length;i++){
             if(document.getElementById('tue_'+story_json.parameters.languares[i])){ document.getElementById('tue_'+story_json.parameters.languares[i]).setAttribute("onclick","languare ='"+story_json.parameters.languares[i]+"'");}
@@ -432,6 +433,10 @@ function name_block_update(){
                     src=false;
                     for(o=0;o<old.length;o++){
                         if(arr_dialog.art[i].url==old[o].getAttribute('volume')||arr_dialog.art[i].url[languare]==old[o].getAttribute('volume')){
+                            if(arr_dialog.art[i].style&&arr_dialog.art[i].style.length>0){
+                                old[o].style="user-select:text;"+arr_dialog.art[i].style;
+                                old[o].style.position="absolute";
+                            }
                             if(arr_dialog.art[i].move&&arr_dialog.art[i].move!=0){
                                 old[o].style.transitionDuration=arr_dialog.art[i].move+"s";
                                 if(arr_dialog.art[i].speed&&arr_dialog.art[i].speed!=''){old[o].style.transitionTimingFunction=arr_dialog.art[i].speed;} else {old[o].style.transitionTimingFunction=null}
@@ -469,8 +474,8 @@ function name_block_update(){
                 if(arr_dialog.art[i].className){art.classList=arr_dialog.art[i].className}
                 art.src=art_data(arr_dialog.art[i].url);
                 art.setAttribute("volume",((arr_dialog.art[i].url[languare])?arr_dialog.art[i].url[languare]:arr_dialog.art[i].url));
-                art.classList.add("tue_art")
-                art.style="user-select:text;"+((arr_dialog.art[i].style)?arr_dialog.art[i].style:"")
+                art.classList.add("tue_art");
+                art.style="user-select:text;"+((arr_dialog.art[i].style)?arr_dialog.art[i].style:"");
                 art.style.position="absolute";
                 if(arr_dialog.art[i].fit)art.style.objectFit=arr_dialog.art[i].fit;
                 if(arr_dialog.art[i].opacity){art.style.opacity=arr_dialog.art[i].opacity;} else {art.style.opacity=null}

@@ -188,6 +188,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <div class="block" onclick="get_doc('hidden_object')"><span class="three_1">Hidden object</span></div>
     </div>
     <div class="block" onclick="get_doc('editor_options')">Editor Options</div>
+    <div class="block" onclick="get_doc('android')">Android Version</div>
     <div class="accordion"><div class="block block_open">Lessons</div></div>
     <div class="panel">
         <div class="block" onclick="get_doc('unlocked_content')"><span class="three_1">Make hidden content</span></div>
@@ -1766,6 +1767,25 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br>If you create a project for a certain screen size, then you can set the desired size of the preview window in the project settings menu in the "<a href="doc_editor.html#editor_options" target='_blank'>editor</a>" section. After that, the preview window will use this default window size every time it is launched.
     <br><br>Preview uses the same save store for all projects, so the save of one project can be applied to another, which can cause problems, to avoid this, it is recommended to clear the store in <a href="doc_editor.html#settings_project" target='_blank'>the project settings</a> or turn off autosave during development.
     <br><br>The Android version has additional functionality, can scale and change the orientation of the project. so that you can check the project both at the original screen resolution of the device and at the one specified in the preview settings. Each time the mobile version is launched, an assembly of the preview.html project is created in the working folder. and at the end of the preview automatically deletes it</p>
+</div>
+
+<div id="android" style="display:none">
+    <div style="width:100%;text-align: center;">
+    <p class="head">Android Version</p>
+    <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/mobile.jpg" style="max-height:auto;width:100%;max-width:800px;"/>
+    </div>
+    <p>The mobile version of the editor is fully compatible with other versions and has almost the same functionality.</p>
+    <br><br><p><b>Differences</b></p><br>
+    <p>- You cannot assign actions to keyboard keys.</p>
+    <p>- You cannot assign images to the mouse cursor.</p>
+    <p>- You can open the project by pointing to the JSON file (not folder like in other versions).</p>
+    <p>- Preview works as a standalone app, and has additional features such as screen rotation and screen resolution change.</p>
+    <br><br><p><b>Restrictions</b></p><br>
+    <p>- Minimum version of Android 5.1</p>
+    <p>- Recommended Samsung and HUAWEI devices</p>
+    <p>- Do not recommend Google Pixel and devices with <b><u>original</u></b> OS Android 10 and higher</p>
+    <br><p>If you have problems accessing the file system on Android 10 and above, then try to open access in the application or system settings.</p>
+    <br><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/android_settings.png" style="max-height:auto;width:100%;max-width:800px;"/>
 </div>
 
 <script>

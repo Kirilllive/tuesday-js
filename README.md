@@ -140,7 +140,7 @@ Minimum version of Android 5.1
 
 If you have problems with files on Android 10 and higher, then you need to specify 'Allow access to manage all files' in the application settings in 'Permissions' section.
 
-![Tuesday JS error access files on Android](https://img.itch.zone/aW1nLzcwMjY4NzYucG5n/original/8TYu95.png)
+![Tuesday JS error access files on Android](tutorial_img/android_settings.png)
 
 
 # Tutorial for RunTime
