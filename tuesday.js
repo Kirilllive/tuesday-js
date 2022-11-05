@@ -891,3 +891,8 @@ function show_audio(el,arr){
     if(arr["text"+n]&&art_data(arr["text"+n]).length>0){el.innerHTML=values_button(art_data(arr["text"+n]))}
     if(arr["art"+n]&&art_data(arr["art"+n]).length>0){el.style.backgroundImage="url('"+art_data(arr["art"+n])+"')"}
 }
+tuesday.addEventListener('mousedown',autoplaysound)
+function autoplaysound(){
+    if(tue_set_audio==0){tue_bg_music.play();}
+    tuesday.removeEventListener('mousedown',autoplaysound);
+}

@@ -71,7 +71,7 @@ function terrain_map(){
             arr_dialog.scroll[0]=view.scrollLeft;
 		};
     }
-    if(arr_dialog.background_music){
+    if(tue_set_audio==0&&arr_dialog.background_music&&!tue_bg_music.src.includes(encodeURI(arr_dialog.background_music))){
         if(tue_bg_music.canPlayType("audio/mpeg")){
             if(arr_dialog.background_music.includes("blob:")){
                 tue_bg_music.src=arr_dialog.background_music;
@@ -81,7 +81,8 @@ function terrain_map(){
         }else{tue_bg_music.src=arr_dialog.background_music+".ogg";}
         tue_bg_music.loop=true;
         tue_bg_music.play();
-    }
+    } else if(!arr_dialog.background_music||arr_dialog.background_music==""){tue_bg_music.pause();
+    } else if(tue_set_audio==0){tue_bg_music.play();}
     tue_next.style.visibility='hidden';
     tue_back.style.visibility='hidden';
     view.appendChild(map);

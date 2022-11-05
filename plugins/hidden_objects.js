@@ -82,7 +82,7 @@ function hidden_objects(){
     tuesday.appendChild(view);
     objectsroom_resize();
     tue_objectsroom.style.transformOrigin="left top";
-    if(arr_dialog.background_music){
+    if(tue_set_audio==0&&arr_dialog.background_music&&!tue_bg_music.src.includes(encodeURI(arr_dialog.background_music))){
         if(tue_bg_music.canPlayType("audio/mpeg")){
             if(arr_dialog.background_music.includes("blob:")){
                 tue_bg_music.src=arr_dialog.background_music;
@@ -92,7 +92,8 @@ function hidden_objects(){
         }else{tue_bg_music.src=arr_dialog.background_music+".ogg";}
         tue_bg_music.loop=true;
         tue_bg_music.play();
-    }
+    } else if(!arr_dialog.background_music||arr_dialog.background_music==""){tue_bg_music.pause();
+    } else if(tue_set_audio==0){tue_bg_music.play();}
     view.onmousedown=function(e) {
         ho.startmove_x=e.clientX;
         ho.startmove_y=e.clientY;
