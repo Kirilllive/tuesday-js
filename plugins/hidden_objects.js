@@ -36,6 +36,7 @@ function hidden_objects(){
         item.style.backgroundSize=arr_dialog.objects[i].fit;
         item.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
         item.style.position="absolute";
+        item.style.transformOrigin="top left";
         item.style.transform='rotate('+arr_dialog.objects[i].angle+'deg)';
         item.style.top=arr_dialog.objects[i].position[1]+"px";
         item.style.left=arr_dialog.objects[i].position[0]+"px";

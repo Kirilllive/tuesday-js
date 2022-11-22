@@ -124,7 +124,14 @@
 			"user_name": ""
 		},
 		"sounds": {},
-		"characters": {},
+		"characters": {
+			"char0": {
+				"en": "<user_name>"
+			},
+			"char1": {
+				"en": "<user_name>"
+			}
+		},
 		"plugins": [],
 		"icon": "",
 		"font_files": {}
@@ -132,7 +139,7 @@
 	"blocks": {
 		"block_1": [
 			"67px",
-			"92.5px",
+			"91.5px",
 			"block",
 			false
 		]
@@ -170,12 +177,20 @@
 								"0%",
 								"0%"
 							],
-							"js": "let person = prompt(\"Please enter your name:\",\"User Name\");\nstory_json.parameters.variables.user_name=person;"
+							"js": "story_json.parameters.variables.user_name=prompt(\"Please enter your name:\",\"User Name\");"
 						}
 					]
 				},
 				{
-					"text": "hello <user_name>"
+					"text": "hello <user_name>",
+					"name": "char0"
+				},
+				{
+					"js": "story_json.parameters.variables.user_name=prompt(\"Please enter your name:\",\"User Name\");go_story();"
+				},
+				{
+					"text": "hello <user_name>",
+					"name": "char1"
 				}
 			]
 		}

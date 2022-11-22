@@ -1,0 +1,2790 @@
+[
+	[
+		"the limit of the cursor size is 128×128px. Larger cursor images are ignored. However, you should limit yourself to the size 32×32 for maximum compatibility with operating systems and platforms.",
+		{
+			"ru": "Максимально допустимый размера курсора 128×128px, изображения большего размера будут игнорироваться. Рекомендуемый размер 32х32 для максимальной совместимости.",
+			"ja": "カーソルとして設定できる画像のサイズは128ピクセル×128ピクセルまでです。ただし、推奨は32ビクセル×32ビクセル以下です。これを上回る画像は、OSやデバイスの互換性に支障が出る可能性があります。",
+			"es": "El tamaño limite del cursor es de 128×128px. Las imágenes más grandes que el cursor son ignoradas. Sin embargo, deberías limitarte al tamaño de 32×32 para mayor compatibilidad con sistemas operativos y plataformas.",
+			"en": ""
+		}
+	],
+	[
+		"Move to the next block based on the values ​​in variables. Variables are created in the 'Settings project' in the 'Variables' section.",
+		{
+			"ru": "Автоматический переход к следующему блоку на основе значений в переменных. Переменные создаются в «Настройки проекта» в разделе «Переменные».",
+			"ja": "変数の値で次に処理するブロックが決まります。変数は設定ウィンドウの【変数】で作成します",
+			"es": "Desplaza al siguiente bloque basado en el valor de las variables. Las variables son creadas en la sección de \\\"Ajustes del Proyecto\\\", en la sección \\\"Variables\\\"."
+		}
+	],
+	[
+		"Only index.html file will be created, after its creation it is necessary to transfer it to the working folder of the project.",
+		{
+			"ru": "Будет создан только index.html, после его создания необходимо перенести его в рабочую папку проекта.",
+			"ja": "プロジェクトの内容と各ファイルの位置(パス)を記述したindex.htmlのみ作成。ゲームを起動するには、作成したindex.htmlが作業フォルダーにある必要があります。",
+			"es": "Solo los archivos .hml indexados serán creados, y después de ello es necesario transferirlo a la carpeta de trabajo del proyecto."
+		}
+	],
+	[
+		"Not recommended! All files will be combined into one html file in base64 format. Use only with a small number of files.",
+		{
+			"ru": "Не рекомендуется! Все файлы будут объединены в один файл. Используйте только в не больших проектах.",
+			"ja": "非推奨です。使用する全リソース・ファイル(画像や音楽)をbase64形式に変換して組み込んだhtmlファイルを作成します。総ファイル数が少ないプロジェクト以外では不具合の原因になります。",
+			"es": "¡No recomendado! Todos los archivos serán combinados en un solo archivo html en formato base64. Solo usa un número ínfimo de archivos."
+		}
+	],
+	[
+		"Choose the input device that suits you. You can change the device in the settings in the 'editor' section.",
+		{
+			"ru": "Выберите подходящее вам устройство ввода. Изменить устройство можно в настройках в разделе «редактор».",
+			"ja": "操作に使用するデバイスを選びましょう。設定画面の「エディター」タブからいつでも変更できます。",
+			"es": "Escoge la entrada del dispositivo que más se acomode a ti. Puedes cambiar el dispositivo en los ajustes en la sección de \\\"Editor\\\"."
+		}
+	],
+	[
+		"Text and character name settings that will be displayed in the text area. To use data from variable, use",
+		{
+			"ru": "Настройки текста и имени персонажа для текстовой области. Чтобы использовать данные из переменной, используйте ",
+			"ja": "テキストエリアに表示するテキストと、発言者を表わすキャラクター名を設定します。変数の値を表示するには、",
+			"es": "Los ajustes de texto y nombre del personaje se mostrarán en el área de texto. Para usar datos de variables, usar  "
+		}
+	],
+	[
+		"Customize the look of the scene, its background image and music, for subsequent dialogues and actions.",
+		{
+			"ru": "Настройка внешнего вида сцены, ее фоновое изображение и музыка для последующих диалогов и действий.",
+			"ja": "シーンの背景画像や背景色、音楽について設定します。",
+			"es": "Personaliza la apariencia de la escena, su imagen de fondo y música, para posteriores dialogos y acciones."
+		}
+	],
+	[
+		"Changes in the values ​​of variables, their values ​​can be displayed in the text as ",
+		{
+			"ru": "Изменения в значениях переменных, эти значения могут отображаться в тексте как ",
+			"ja": "変数の値を変更します。変数は",
+			"es": "Los cambios en los valores de las variables, pueden ser mostrados en el texto como "
+		}
+	],
+	[
+		"All files from the working folder and index.html will be packed into a zip archive.",
+		{
+			"ru": "Все файлы из рабочей папки и index.html будут упакованы в zip-архив.",
+			"ja": "作業フォルダーの全ファイルとindex.htmlを纏めたzipアーカイブを作成します。",
+			"es": "Todos los archivos de la carpeta de trabajo y del archivo .html indexado serán comprimidos en un zip. "
+		}
+	],
+	[
+		". If you write only skip then the phrase in the localization will be skipped.",
+		{
+			"ru": ". Если написать skip то фраза в локализации будет пропущена.",
+			"ja": "とすれば、「簡単」の上に「かんたん」という語が振り仮名のように加わります。テキスト欄にテキストが無い箇所は、その言語設定時は省略されます。",
+			"es": ". Si solo escribes skip, la frase en la traducción será omitida."
+		}
+	],
+	[
+		"player must find items from a list that are hidden within a scene.",
+		{
+			"ru": "игровая механика где игрок должен найти в сцене элементы из списка.",
+			"ja": "配置したオブジェクトをプレイヤーが見つけると処理が進む仕掛けです。",
+			"es": "el jugador debe encontrar los objetos de una lista que están ocultos dentro de una escena"
+		}
+	],
+	[
+		"switches dialogue by swiping your finger across the touchscreen",
+		{
+			"ru": "переключает диалогов используя жест смахивания (свайп) влево или право",
+			"ja": "スワイプ操作でダイアログを進行",
+			"es": "cambia los dialogos deslizando tu dedo a traves de la pantalla táctil"
+		}
+	],
+	[
+		"location with markers for transition to other plot blocks.",
+		{
+			"ru": "локация с отметками на другие блоки сюжета.",
+			"ja": "別のプロックに処理が移行する際、地図とマーカーを表示して現在位置を示す演出が可能です",
+			"es": "ubicación con marcadores para la transición a otros bloques de la trama."
+		}
+	],
+	[
+		"<p style='font-size:22px;'>Tuesday JS visual novel engine",
+		{
+			"ru": "<p style='font-size:18px;'>Тьюсдей JS Движок визуальных новелл",
+			"ja": "<p style='font-size:18px;'>ビジュアルノベル制作エンジン「Tuesday JS」",
+			"es": "<p style='font-size:22px;'>Tuesday JS motor de novela visual"
+		}
+	],
+	[
+		"Select a working folder with resources for the project.",
+		{
+			"ru": "Выберите рабочую папку с ресурсами для проекта.",
+			"ja": "このプロジェクトに使用する作業フォルダーを指定してください",
+			"es": "Selecciona una carpeta de trabajo con recursos para el proyecto."
+		}
+	],
+	[
+		"scrolling with the mouse cursor, zooming with the wheel",
+		{
+			"ru": "прокрутка курсором мыши, масштабирование колесиком",
+			"ja": "スクロールはマウスカーソルとボタン。拡大と縮小はホイールで操作",
+			"es": "desplazando con el cursor del mouse, haciendo zoom con la rueda"
+		}
+	],
+	[
+		"swipe scrolling is recommended for Laptops and MacBooks",
+		{
+			"ru": "прокрутка свайпом, рекомендуется для ноутбуков и MacBook.",
+			"ja": "スワイプで操作。ノートパソコン又はマックブック以外の動作環境ではお薦めできません",
+			"es": "el desplazamiento por deslizamiento es recomendado para Laptops y MacBooks"
+		}
+	],
+	[
+		"show all lines of a block or only a selected block",
+		{
+			"ru": "показать все линии связей или только выделенный блок",
+			"ja": "接続ラインを全て表示(オン)。選択したブロックに繋がるラインのみ(オフ)",
+			"es": "muestra todas las líneas de un bloque o solo un bloque seleccionado"
+		}
+	],
+	[
+		"TouchPad<br>recommended for laptops and MacBooks",
+		{
+			"ru": "Тачпад<br>рекомендуется для ноутбуков и MacBook",
+			"ja": "タッチパッド<br>ノートパソコンとマックブックでのみ推奨。",
+			"es": "Panel Táctil<br>recomendado para laptops and MacBooks"
+		}
+	],
+	[
+		"animate lines from element to next block",
+		{
+			"ru": "анимация линий от элемента к следующему блоку",
+			"ja": "要素と移動先のブロックを繋ぐラインがアニメーションします",
+			"es": "lineas de animación del elemento al siguiente bloque"
+		}
+	],
+	[
+		"placeholder='path to plugin js file'",
+		{
+			"ru": "placeholder='путь к js файлу расширения'",
+			"ja": "placeholder='jsプラグインファイルの位置'",
+			"es": "placeholder='ruta al archivo js del plugin'"
+		}
+	],
+	[
+		". To add furigana or annotations use",
+		{
+			"ru": ". Чтобы добавить фуригану или аннотации, используйте",
+			"ja": "のように記述してください。読み仮名や補足文として、文や語の上に小さなテキストを表示させることもできます。\\< 任意の語や文 = 小さなテキスト \\>のように記述します。例えば\\",
+			"es": ". Para agregar furigana o anotaciones usar"
+		}
+	],
+	[
+		"Mouse<br>control with the zoom wheel",
+		{
+			"ru": "Мышь<br>управление зума колесиком ",
+			"ja": "マウス<br>拡大と縮小はホイールで操作",
+			"es": "Mouse<br>controla con la rueda del zoom"
+		}
+	],
+	[
+		"title='Export text to spreadsheet'",
+		{
+			"ru": "title='Экспорт текстов в CSV'",
+			"ja": "title='テキストをスプレッドシート形式で出力'",
+			"es": "title='Exporta texto a una hoja de cálculo'"
+		}
+	],
+	[
+		"small message appears for a while",
+		{
+			"ru": "небольшое сообщение которое появляется на короткое время",
+			"ja": "「toast」というポップアップのようなメッセージを一時的に表示します",
+			"es": "pequeño mensaje aparece por un momento"
+		}
+	],
+	[
+		"to go to another block of script.",
+		{
+			"ru": "для перехода к другому блоку.",
+			"ja": "処理を別なブロックに進めるのに使います。",
+			"es": " para ir a otro bloque del código."
+		}
+	],
+	[
+		"This name is used by other blocks",
+		{
+			"ru": "Это имя блока уже используется",
+			"ja": "他のブロックと同じ名前にはできません",
+			"es": "Este nombre es usado por otros bloques"
+		}
+	],
+	[
+		"title='Save JSON script project'",
+		{
+			"ru": "title='Сохранить JSON проект'",
+			"ja": "title='スクリプトを記述したJSONファイルを保存'",
+			"es": "title='Guardar script del projecto JSON'"
+		}
+	],
+	[
+		"placeholder='path to audio file'",
+		{
+			"ru": "placeholder='путь к аудио-файлу'",
+			"ja": "placeholder='音声ファイルの位置'",
+			"es": "placeholder='ruta al archivo de audio'"
+		}
+	],
+	[
+		"placeholder='path to font file'",
+		{
+			"ru": "placeholder='путь к файлу шрифта'",
+			"ja": "placeholder='フォントファイルの位置'",
+			"es": "placeholder='ruta al archivo de fuente'"
+		}
+	],
+	[
+		"Only latin characters & numbers",
+		{
+			"ru": "Только латинские буквы и цифры",
+			"ja": "ラテン・アルファベットと半角数字のみ使用可能",
+			"es": "Solo caracteres latinos y números"
+		}
+	],
+	[
+		">Tuesday JS web visual editor<",
+		{
+			"ru": ">Тьюсдей JS Движок визуальных новелл<",
+			"ja": ">Tuesday JS ビジュアルノベル・エンジン<",
+			"es": ">Editor visual web Tuesday JS<"
+		}
+	],
+	[
+		"placeholder='translated title'",
+		{
+			"ru": "placeholder='переведенное название'",
+			"ja": "placeholder='異言語版のタイトル(未使用)'",
+			"es": "placeholder='traducir título'"
+		}
+	],
+	[
+		"Thanks for the help from users",
+		{
+			"ru": "Спасибо за помощь пользователям",
+			"ja": "お世話になったユーザーの方々",
+			"es": "Gracias a la ayuda de los usuarios"
+		}
+	],
+	[
+		"title='Load project folder '",
+		{
+			"ru": "title='Загрузить папку проекта'",
+			"ja": "title='プロジェクトフォルダーの読込'",
+			"es": "title='Cargar carpeta del proyecto '"
+		}
+	],
+	[
+		"title='About visual editor'",
+		{
+			"ru": "title='О программе'",
+			"ja": "title='Tuesday JSについて'",
+			"es": "title='Acerca del editor visual'"
+		}
+	],
+	[
+		"title='Run preview Project'",
+		{
+			"ru": "title='Запустить проект'",
+			"ja": "title='テストプレイ'",
+			"es": "title='Vista previa del Proyecto'"
+		}
+	],
+	[
+		"JSON file loading completed",
+		{
+			"ru": "Данные JSON загружаны успешно",
+			"ja": "JSONファイルを読み込みました",
+			"es": "Carga completada del archivo JSON",
+			"en": ""
+		}
+	],
+	[
+		"CSV Comma-Separated Values.",
+		{
+			"ru": "CSV разделение запятыми.",
+			"ja": "CSVコンマ区切り方式で出力",
+			"es": "CSV Valores Delimitados por Comas."
+		}
+	],
+	[
+		"padding:4px 24px 24px 16px;",
+		{
+			"ja": "font-size:11px;padding:4px 24px 24px 16px;",
+			"es": "padding:4px 24px 24px 16px;"
+		}
+	],
+	[
+		"placeholder=\"Search block\"",
+		{
+			"ru": "placeholder=\"Поиск блока\"",
+			"ja": "placeholder=\"ブロック検索\"",
+			"es": "placeholder=\"Buscar bloque\""
+		}
+	],
+	[
+		"Export text to spreadsheet",
+		{
+			"ru": "Экспорт текста в таблицу",
+			"ja": "テキストをスプレッドシート形式で出力",
+			"es": "Exportar texto a hoja de cálculo"
+		}
+	],
+	[
+		"index.html file is created",
+		{
+			"ru": "файл index.html создан",
+			"ja": "index.htmlを作成します",
+			"es": "El archivo index.html está creado"
+		}
+	],
+	[
+		"placeholder='Search text'",
+		{
+			"ru": "placeholder='Поиск'",
+			"ja": "placeholder='テキスト検索'",
+			"es": "placeholder='Buscar texto'"
+		}
+	],
+	[
+		"TSV tab separated values.",
+		{
+			"ru": "TSV разделение табуляцией",
+			"ja": "TSVタブ区切り方式で出力",
+			"es": "TSV Valores Separados por Tabulaciones"
+		}
+	],
+	[
+		"Dialogue translation tool",
+		{
+			"ru": "Инструмент перевода диалогов",
+			"ja": "ダイアログ翻訳支援ツール",
+			"es": "Herramienta de traducción de diálogos"
+		}
+	],
+	[
+		"placeholder=\"search file\"",
+		{
+			"ru": "placeholder=\"поиск\"",
+			"ja": "placeholder=\"ファイル検索\"",
+			"es": "placeholder=\"buscar archivo\""
+		}
+	],
+	[
+		"title='Dialogues & texts'",
+		{
+			"ru": "title='Диалоги и тексты'",
+			"ja": "title='対話とテキスト'",
+			"es": "title='Diálogos y texto'"
+		}
+	],
+	[
+		"Select JSON project file",
+		{
+			"ru": "Выберите JSON файл проекта",
+			"ja": "プロジェクトファイル(JSON形式)を指定してください",
+			"es": "Seleccionar archivo JSON del proyecto"
+		}
+	],
+	[
+		"Project folder/location",
+		{
+			"ru": "Папка проекта",
+			"ja": "プロジェクトフォルダーの位置",
+			"es": "Carpeta del proyecto/ubicación"
+		}
+	],
+	[
+		"title='Edit json text'",
+		{
+			"ru": "title='Редактор JSON'",
+			"ja": "title='JSONファイル検索'",
+			"es": "title='Editar texto json'"
+		}
+	],
+	[
+		"align=\"right\">Symbols",
+		{
+			"ru": "align=\"right\">Символы",
+			"ja": "align=\"right\">文字数",
+			"es": "align=\"right\">Símbolos"
+		}
+	],
+	[
+		"Add element to dialog",
+		{
+			"ru": "Добавить элемент",
+			"ja": "ダイアログに要素を追加",
+			"es": "Agregar elementos al diálogo"
+		}
+	],
+	[
+		"Select project folder",
+		{
+			"ru": "Выберите папку проекта",
+			"ja": "プロジェクトフォルダーを指定してください",
+			"es": "Seleccionar carpeta del proyecto"
+		}
+	],
+	[
+		">Display conditions<",
+		{
+			"ru": ">Условия отображения<",
+			"ja": ">表示条件<",
+			"es": ">Mostrar condiciones<"
+		}
+	],
+	[
+		"Changes to variables",
+		{
+			"ru": "Изменения в переменных",
+			"ja": "変数の操作",
+			"es": "Cambia a variables"
+		}
+	],
+	[
+		"zip archive complete",
+		{
+			"ru": "Создан zip-архив",
+			"ja": "Zipアーカイブを作成しました",
+			"es": "archivo comrpimido completado"
+		}
+	],
+	[
+		"JSON file not loaded",
+		{
+			"ru": "JSON-файл не загружен",
+			"ja": "JSONファイルを読み込んでいません",
+			"es": "El archivo JSON no está cargado"
+		}
+	],
+	[
+		"block id not entered",
+		{
+			"ru": "ID блока не введен",
+			"ja": "ブロックIDを入力していません",
+			"es": "id del bloque no ingresado"
+		}
+	],
+	[
+		"title='New project'",
+		{
+			"ru": "title='Новый проект'",
+			"ja": "title='新規プロジェクト'",
+			"es": "title='Nuevo Proyecto'"
+		}
+	],
+	[
+		"Preview window size",
+		{
+			"ru": "Размер окна предварительного просмотра",
+			"ja": "テストプレイ用ウィンドウの大きさ",
+			"es": "Tamaño de la ventana de vista previa"
+		}
+	],
+	[
+		"placeholder='value'",
+		{
+			"ru": "placeholder='значение'",
+			"ja": "placeholder='値'",
+			"es": "placeholder='valor'"
+		}
+	],
+	[
+		"align=\"right\">Words",
+		{
+			"ru": "align=\"right\">Слов",
+			"ja": "align=\"right\">単語数",
+			"es": "align=\"right\">Palabras"
+		}
+	],
+	[
+		"story launch block ",
+		{
+			"ru": "стартовый блок ",
+			"ja": "始点ブロック",
+			"es": "bloque de inicio de la historia"
+		}
+	],
+	[
+		">Interface buttons<",
+		{
+			"ru": ">Кнопки интерфейса<",
+			"ja": ">インターフェイスボタン<",
+			"es": ">Botones de la Interfaz<"
+		}
+	],
+	[
+		"Default color label",
+		{
+			"ru": "Цвет лейбла",
+			"ja": "ラベル色[デフォルト]",
+			"es": "Etiqueta del color por defecto"
+		}
+	],
+	[
+		"New project created",
+		{
+			"ru": "Новый проект создан ",
+			"ja": "新規プロジェクトを作成しました",
+			"es": "Nuevo proyecto creado"
+		}
+	],
+	[
+		"Added new character",
+		{
+			"ru": "Добавлен новый персонаж",
+			"ja": "キャラクターを追加しました",
+			"es": "Nuevo personaje agregado"
+		}
+	],
+	[
+		"JSON file not found",
+		{
+			"ru": "JSON-файл не найден",
+			"ja": "JSONファイルが見つかりません",
+			"es": "Archivo JSON no encontrado"
+		}
+	],
+	[
+		"Text panel settings",
+		{
+			"ru": "Настройки текстовой панели",
+			"ja": "テキストパネル設定",
+			"es": "Ajustes del panel de texto"
+		}
+	],
+	[
+		"Name panel settings",
+		{
+			"ru": "Настроек панели имени",
+			"ja": "ネームパネル設定",
+			"es": "Ajustes del panel de nombre"
+		}
+	],
+	[
+		".search{width:88px;",
+		{
+			"ru": "",
+			"es": ".search{width:98px;"
+		}
+	],
+	[
+		"Error in JSON file",
+		{
+			"ru": "Ошибка в файле JSON",
+			"ja": "JSONファイルに問題があります",
+			"es": "Error en archivo JSON"
+		}
+	],
+	[
+		">Background image<",
+		{
+			"ru": ">Фоновое изображение<",
+			"ja": ">背景画像<",
+			"es": ">Imagen de Fondo<"
+		}
+	],
+	[
+		"Default color text",
+		{
+			"ru": "Цвет текста",
+			"ja": "テキスト色[デフォルト]",
+			"es": "Color de texto por defecto"
+		}
+	],
+	[
+		"Default class name",
+		{
+			"ru": "Class name",
+			"ja": "デフォルトクラス名",
+			"es": "Nombre de la clase por defecto"
+		}
+	],
+	[
+		"Legacy choice edit",
+		{
+			"ru": "Редактировать наследие выбора",
+			"ja": "分岐(変数依拠)の編集",
+			"es": "Edición de la elección del destino"
+		}
+	],
+	[
+		"Parameters updated",
+		{
+			"ru": "Параметры обновлены",
+			"ja": "パラメーターを更新しました",
+			"es": "Parametros actualizados"
+		}
+	],
+	[
+		"LocalStorage clear",
+		{
+			"ru": "LocalStorage очищен",
+			"ja": "ローカル・デバイス上のバックアップを削除しました",
+			"es": "Almacenamiento local vacio"
+		}
+	],
+	[
+		"Close application?",
+		{
+			"ru": "Закрыть приложение?",
+			"ja": "アプリを終了しますか？",
+			"es": "¿Cierra la aplicación?"
+		}
+	],
+	[
+		">Text autoscroll<",
+		{
+			"ru": ">Прокрутка текста<",
+			"ja": ">テキスト自動スクロール<",
+			"es": ">Desplazamiento automático del texto<"
+		}
+	],
+	[
+		">Bottom position<",
+		{
+			"ru": ">Снизу<",
+			"ja": ">下端からの距離<",
+			"es": ">Posición Inferior<"
+		}
+	],
+	[
+		">End text cursor<",
+		{
+			"ru": ">Курсор в конце текста<",
+			"ja": ">カーソル[テキスト末尾]<",
+			"es": ">Finalizar cursor de texto<"
+		}
+	],
+	[
+		">JavaScript code<",
+		{
+			"ru": ">JavaScript код<",
+			"ja": ">JavaScriptコード<",
+			"es": ">Código JavaScript<"
+		}
+	],
+	[
+		"New block created",
+		{
+			"ru": "Создан новый блок",
+			"ja": "ブロックを作成しました",
+			"es": "Nuevo bloque creado"
+		}
+	],
+	[
+		"Dialogues & texts",
+		{
+			"ru": "Диалоги и тексты",
+			"ja": "ダイアログとテキスト",
+			"es": "Diálogo y textos"
+		}
+	],
+	[
+		"Edit story block",
+		{
+			"ru": "Редактирование блока",
+			"ja": "ストーリーブロック編集",
+			"es": "Editar bloque de historia"
+		}
+	],
+	[
+		"Settings project",
+		{
+			"ru": "Настройки проекта",
+			"ja": "プロジェクト設定",
+			"es": "Ajustes del proyecto"
+		}
+	],
+	[
+		"css styles file ",
+		{
+			"ru": "файл стилей css ",
+			"ja": "CSSスタイルシート",
+			"es": "archivos de estilos css "
+		}
+	],
+	[
+		">Default screen<",
+		{
+			"ru": ">По умолчанию<",
+			"ja": ">標準<",
+			"es": ">Pantalla por defecto<"
+		}
+	],
+	[
+		">Right position<",
+		{
+			"ru": ">Справа<",
+			"ja": ">右端からの距離<",
+			"es": ">Posición derecha<"
+		}
+	],
+	[
+		"Buttons & Choice",
+		{
+			"ru": "Кнопки и выборы",
+			"ja": "ボタンと選択肢",
+			"es": "Botones y Elección"
+		}
+	],
+	[
+		">Only text from<",
+		{
+			"ru": ">Только текст из<",
+			"ja": ">テキストのみ表示<",
+			"es": ">Solo forma de texto<"
+		}
+	],
+	[
+		"Items for search",
+		{
+			"ru": "Предметов поиска",
+			"ja": "捜索オブジェクト数",
+			"es": "Elementos a buscar"
+		}
+	],
+	[
+		"Find color label",
+		{
+			"ru": "Цвет найденого лейбла",
+			"ja": "ラベル色[発見済み]",
+			"es": "Encontrar color de la etiqueta"
+		}
+	],
+	[
+		">Settings scene<",
+		{
+			"ru": ">Настройки сцены<",
+			"ja": ">シーンの設定<",
+			"es": ">Ajustes de escena<"
+		}
+	],
+	[
+		"Hidden only here",
+		{
+			"ru": "Скрыто только здесь",
+			"ja": "このダイアログの間だけ非表示",
+			"es": "Oculto solo aquí"
+		}
+	],
+	[
+		"Project metadata",
+		{
+			"ja": "プロジェクト・メタデータ",
+			"ru": "Данные проекта",
+			"es": "Metadatos del Proyecto"
+		}
+	],
+	[
+		"default language",
+		{
+			"ru": "язык по умолчанию",
+			"ja": "標準言語",
+			"es": "idioma predeterminado"
+		}
+	],
+	[
+		"Add story block",
+		{
+			"ru": "Создать блок",
+			"ja": "ストーリーブロックの追加",
+			"es": "Agregar bloque de historia"
+		}
+	],
+	[
+		"New story block",
+		{
+			"ru": "Создать новый блок",
+			"ja": "ストーリーブロックを作成",
+			"es": "Nuevo bloque de historia"
+		}
+	],
+	[
+		"working folder ",
+		{
+			"ru": "рабочая папка ",
+			"ja": "作業フォルダ―",
+			"es": "carpeta de trabajo"
+		}
+	],
+	[
+		">Left position<",
+		{
+			"ru": ">Слева<",
+			"ja": ">左端からの距離<",
+			"es": ">Posición Izquierda<"
+		}
+	],
+	[
+		">Scene content<",
+		{
+			"ru": ">Содержимое сцены<",
+			"ja": ">シーンのコンテンツ<",
+			"es": ">Contenido de la Escena<"
+		}
+	],
+	[
+		"Speed transform",
+		{
+			"ru": "Стиль анимации",
+			"ja": "速度変化",
+			"es": "Transformación de la velocidad"
+		}
+	],
+	[
+		">Button cursor<",
+		{
+			"ru": ">Для кнопок<",
+			"ja": ">ボタン重ね時<",
+			"es": ">Cursor de botón<"
+		}
+	],
+	[
+		">Choice cursor<",
+		{
+			"ru": ">Для выборов<",
+			"ja": ">選択肢重ね時<",
+			"es": ">Cursor de selección<"
+		}
+	],
+	[
+		">Launch screen<",
+		{
+			"ru": ">Стартовый экран<",
+			"ja": ">起動画面に戻る<",
+			"es": ">Pantalla de Inicio<"
+		}
+	],
+	[
+		"JavaScript edit",
+		{
+			"ru": "Редактор JavaScript",
+			"ja": "JavaScript編集",
+			"es": "Edición de JavaScript"
+		}
+	],
+	[
+		"Devices control",
+		{
+			"ru": "Устройство управления",
+			"ja": "操作デバイス",
+			"es": "Dispotivos de control"
+		}
+	],
+	[
+		"Find color text",
+		{
+			"ru": "Цвет найденого текста",
+			"ja": "テキスト色[発見済み]",
+			"es": "Encontrar texto de color"
+		}
+	],
+	[
+		"Find class name",
+		{
+			"ru": "Class name найденого",
+			"ja": "発見済みクラス名",
+			"es": "Encontrar nombre de clase"
+		}
+	],
+	[
+		"System function",
+		{
+			"ru": "Функции",
+			"ja": "システム機能実行",
+			"es": "Función del Sistema"
+		}
+	],
+	[
+		"Switch languare",
+		{
+			"ru": "Языки",
+			"ja": "言語切り替え",
+			"es": "Cambiar lenguaje"
+		}
+	],
+	[
+		"(100vw - 286px)",
+		{
+			"ja": "(100vw - 300px)",
+			"es": "(100vw - 300px)"
+		}
+	],
+	[
+		">Legacy choice",
+		{
+			"ru": ">Последствие выбора",
+			"ja": ">分岐(変数依拠)",
+			"es": ">Elección del destino"
+		}
+	],
+	[
+		">Characters: <",
+		{
+			"ru": ">Персонажей: <",
+			"ja": ">キャラクター:<",
+			"es": ">Personajes: <"
+		}
+	],
+	[
+		"Hidden objects",
+		{
+			"ru": "Поиск предметов",
+			"ja": "オブジェクト探し",
+			"es": "Objetos ocultos"
+		}
+	],
+	[
+		"File selection",
+		{
+			"ru": "Выбор файла",
+			"ja": "ファイル選択",
+			"es": "Selección de archivo"
+		}
+	],
+	[
+		">Preview size<",
+		{
+			"ru": ">Предварительный просмотр<",
+			"ja": ">テストプレイ用サイズ<",
+			"es": ">Vista Previa<"
+		}
+	],
+	[
+		">Dialog speed<",
+		{
+			"ru": ">Скорость диалога<",
+			"ja": ">ダイアログ速度<",
+			"es": ">Velocidad de diálogos<"
+		}
+	],
+	[
+		">Console mode<",
+		{
+			"ru": ">Режим консоли<",
+			"ja": ">コンソール・モード<",
+			"es": ">Modo Consola<"
+		}
+	],
+	[
+		">Top position<",
+		{
+			"ru": ">Сверху<",
+			"ja": ">上端からの距離<",
+			"es": ">Posición Superior<"
+		}
+	],
+	[
+		"Time transform",
+		{
+			"ru": "Время анимации",
+			"ja": "時間変化",
+			"es": "Tiempo de transformación"
+		}
+	],
+	[
+		">bottom right<",
+		{
+			"ru": ">снизу справа<",
+			"ja": ">右下<",
+			"es": ">Inferior derecha<"
+		}
+	],
+	[
+		">Main cursor <",
+		{
+			"ru": ">Основной <",
+			"ja": ">標準カーソル<",
+			"es": ">Cursor principal <"
+		}
+	],
+	[
+		"Display script",
+		{
+			"ru": "Отображение сценария",
+			"ja": "画面表示とスクリプト",
+			"es": "Mostrar script"
+		}
+	],
+	[
+		"Show all lines",
+		{
+			"ru": "Показывать все линии",
+			"ja": "接続ライン<br>全表示",
+			"es": "Mostrar todas las líneas"
+		}
+	],
+	[
+		"line animation",
+		{
+			"ru": "Анимация линий",
+			"ja": "接続ラインのアニメーション",
+			"es": "línea de animación"
+		}
+	],
+	[
+		"Create project",
+		{
+			"ru": "Создать проект",
+			"ja": "プロジェクト作成",
+			"en": "",
+			"es": "Crear proyecto"
+		}
+	],
+	[
+		"Hide interface",
+		{
+			"ru": "Скрыть интерфейс",
+			"ja": "インターフェイス非表示",
+			"es": "Ocultar interfaz"
+		}
+	],
+	[
+		"Start scroll Y",
+		{
+			"ru": "Стартовая позиция Y",
+			"ja": "スクロール基準座標(Y)",
+			"es": "Inicar desplazamiento Y"
+		}
+	],
+	[
+		"Start scroll X",
+		{
+			"ru": "Стартовая позиция X",
+			"ja": "スクロール基準座標(X)",
+			"es": "Iniciar desplazamiento X"
+		}
+	],
+	[
+		"Name character",
+		{
+			"ru": "Имя персонажа",
+			"ja": "新規キャラクター",
+			"es": "Nombre del personaje"
+		}
+	],
+	[
+		"script updated",
+		{
+			"ru": "Сценарий обновлен",
+			"ja": "スクリプトを更新しました",
+			"es": "Script actualizado"
+		}
+	],
+	[
+		"Text off sound",
+		{
+			"ru": "Текст без звука",
+			"ja": "テキスト(ミュート)",
+			"es": "Sonido desactivado"
+		}
+	],
+	[
+		"Text off music",
+		{
+			"ru": "Текст без музыки",
+			"ja": " テキスト(BGMオフ)",
+			"es": "Music desactivado"
+		}
+	],
+	[
+		"Skip dialogues",
+		{
+			"ru": "Пропустить диалоги ",
+			"ja": "スキップ"
+		}
+	],
+	[
+		"Load autosave",
+		{
+			"ru": "Автосохранение",
+			"ja": "自動セーブファイル読込",
+			"es": "Cargar autoguardado"
+		}
+	],
+	[
+		"Build project",
+		{
+			"ru": "Собрать проект",
+			"ja": "パッケージ作成 / Build",
+			"es": "Construir proyecto"
+		}
+	],
+	[
+		">color block<",
+		{
+			"ru": ">Цвет блока<",
+			"ja": ">ブロックの色<",
+			"es": ">Color del Bloque<"
+		}
+	],
+	[
+		"mobile scale ",
+		{
+			"ru": "масштабирование ",
+			"ja": "モバイル用サイズ比",
+			"es": "escala movil"
+		}
+	],
+	[
+		"dialog speed ",
+		{
+			"ru": "скорость текста ",
+			"ja": "ダイアログ速度",
+			"es": "velocidad de diálogos"
+		}
+	],
+	[
+		">Orientation<",
+		{
+			"ru": ">Ориентация<",
+			"ja": ">画面の向き<",
+			"es": ">Orientación<"
+		}
+	],
+	[
+		">Height size<",
+		{
+			"ru": ">Высота<",
+			"ja": ">縦幅<",
+			"es": ">Tamaño de altura<"
+		}
+	],
+	[
+		">Indent text<",
+		{
+			"ru": ">Отступы текста<",
+			"ja": ">インデント<",
+			"es": ">Texto con sangría<"
+		}
+	],
+	[
+		">Font family<",
+		{
+			"ru": ">Шрифт<",
+			"ja": ">フォントファミリー<",
+			"es": ">Familia de fuentes<"
+		}
+	],
+	[
+		">Color panel<",
+		{
+			"ru": ">Цвет панели<",
+			"ja": ">カラーパネル<",
+			"es": ">Color del panel<"
+		}
+	],
+	[
+		">ease-in-out<",
+		{
+			"ru": ">Замедление в середине<",
+			"ja": ">遅→早→遅<",
+			"es": ">Suavizado de entrada-salida<"
+		}
+	],
+	[
+		">bottom left<",
+		{
+			"ru": ">снизу слева<",
+			"ja": ">左下<",
+			"es": ">inferior izquierda<"
+		}
+	],
+	[
+		">Choice edit<",
+		{
+			"ru": ">Редактор выбора<",
+			"ja": ">選択肢編集<",
+			"es": ">editar decisión<"
+		}
+	],
+	[
+		"Block removed",
+		{
+			"ru": "Блок удален",
+			"ja": "ブロックを削除しました",
+			"es": "Bloque removido"
+		}
+	],
+	[
+		"Block updated",
+		{
+			"ru": "Блок обновлен",
+			"ja": "ブロック情報を更新しました",
+			"es": "Bloque actualizado"
+		}
+	],
+	[
+		"Dialogue text",
+		{
+			"ru": "Текст диалога",
+			"ja": "ダイアログテキスト",
+			"es": "Dialogo de texto"
+		}
+	],
+	[
+		"Legacy Choice",
+		{
+			"ja": "分岐(変数依拠)",
+			"ru": "Последствие выбора",
+			"es": "Decisión de destino"
+		}
+	],
+	[
+		">New project<",
+		{
+			"ja": ">新規プロジェクト<",
+			"ru": ">Новый проект<",
+			"es": ">Nuevo Proyecto<"
+		}
+	],
+	[
+		"Replace scene",
+		{
+			"ru": "Заменить сцену",
+			"es": "Reemplazar escena",
+			"ja": "この シーンに 上書き貼り付け"
+		}
+	],
+	[
+		"Art off music",
+		{
+			"ru": "Арт без музыки",
+			"ja": "画像(ミュート)",
+			"es": "Music desactivado"
+		}
+	],
+	[
+		"Art off sound",
+		{
+			"ru": "Арт без звука",
+			"ja": "画像(BGMオフ)",
+			"es": "Sonido desactivado"
+		}
+	],
+	[
+		"title='Undo'",
+		{
+			"ru": "title='Отменить'",
+			"ja": "title='やり直す'",
+			"es": "title='Deshacer'"
+		}
+	],
+	[
+		"title='Redo'",
+		{
+			"ru": "title='Повторить'",
+			"ja": "title='一つ戻す'",
+			"es": "title='Rehacer'"
+		}
+	],
+	[
+		"Delete block",
+		{
+			"ru": "Удалить блок",
+			"ja": "ブロック削除",
+			"es": "Borrar bloque"
+		}
+	],
+	[
+		"Update block",
+		{
+			"ru": "Обновить блок",
+			"ja": "ブロック情報更新",
+			"es": "Actualizar bloque"
+		}
+	],
+	[
+		"Create block",
+		{
+			"ru": "Создать блок",
+			"ja": "ブロック作成",
+			"es": "Crear bloque"
+		}
+	],
+	[
+		"Count files:",
+		{
+			"ru": "Файлов:",
+			"ja": "総ファイル数",
+			"es": "Conteo de archivos:"
+		}
+	],
+	[
+		"Add to block",
+		{
+			"ru": "Добавить в",
+			"ja": "ブロックに追加",
+			"es": "Agregar al bloque"
+		}
+	],
+	[
+		"font family ",
+		{
+			"ru": "шрифт ",
+			"ja": "フォントファミリー",
+			"es": "familia de fuentes"
+		}
+	],
+	[
+		">Width size<",
+		{
+			"ru": ">Ширины<",
+			"ja": ">横幅<",
+			"es": ">Tamaño del ancho<"
+		}
+	],
+	[
+		">Height art<",
+		{
+			"ru": ">Высота<",
+			"ja": ">縦幅<",
+			"es": ">Altura del arte<"
+		}
+	],
+	[
+		">Color text<",
+		{
+			"ru": ">Цвет текста<",
+			"ja": ">テキスト色<",
+			"es": ">Color del texto<"
+		}
+	],
+	[
+		">Text panel<",
+		{
+			"ru": ">Текстовая панель<",
+			"ja": ">テキストパネル<",
+			"es": ">Panel de texto<"
+		}
+	],
+	[
+		">Name panel<",
+		{
+			"ru": ">Панель имени<",
+			"ja": ">ネームパネル<",
+			"es": ">Nombre del panel<"
+		}
+	],
+	[
+		">Align text<",
+		{
+			"ru": ">Позиция<",
+			"ja": ">テキスト位置<",
+			"es": ">Alinear texto<"
+		}
+	],
+	[
+		">Background<",
+		{
+			"ru": ">Фоновая картинка<",
+			"ja": ">作業画面の背景<",
+			"es": ">Fondo<"
+		}
+	],
+	[
+		"Name project",
+		{
+			"ru": "Название проекта",
+			"ja": "プロジェクト名",
+			"es": "Nombre del proyecto"
+		}
+	],
+	[
+		"Button sound",
+		{
+			"ru": "Звук кнопки",
+			"ja": "ボタンサウンド",
+			"es": "Botón de sonido"
+		}
+	],
+	[
+		"Delete label",
+		{
+			"ru": "Удалить лейбл",
+			"ja": "ラベルを消去",
+			"es": "Borrar etiqueta"
+		}
+	],
+	[
+		"Story blocks",
+		{
+			"ru": "Блоки",
+			"ja": "ストーリーブロック",
+			"es": "Bloques de historia"
+		}
+	],
+	[
+		">Saturation<",
+		{
+			"ru": ">Насыщенность<",
+			"ja": ">彩度<",
+			"es": ">Saturación<"
+		}
+	],
+	[
+		"\"Position X\"",
+		{
+			"ru": "\"Позиция X\"",
+			"ja": "\"X座標\"",
+			"es": "\"Posición X\""
+		}
+	],
+	[
+		"Add to scene",
+		{
+			"ru": "Добавить в сцену",
+			"ja": "シーンに追加",
+			"es": "Agregar a la escena"
+		}
+	],
+	[
+		"width:286px;",
+		{
+			"ja": "width:300px;",
+			"es": "width:300px;"
+		}
+	],
+	[
+		"Sound toggle",
+		{
+			"ja": "音声設定",
+			"ru": "Переключатель звука",
+			"es": "Palanca de Sonido"
+		}
+	],
+	[
+		"Full screen",
+		{
+			"ru": "Полный экран",
+			"ja": "フルスクリーン",
+			"es": "Pantalla completa"
+		}
+	],
+	[
+		">block id <",
+		{
+			"ru": ">ID блока <",
+			"ja": ">ブロックID<",
+			"es": ">id del bloque <"
+		}
+	],
+	[
+		"Size files:",
+		{
+			"ru": "Размер:",
+			"ja": "ファイルのサイズ",
+			"es": "Tamaño de archivos:"
+		}
+	],
+	[
+		"paste scene",
+		{
+			"ru": "вставить сцену",
+			"ja": "シーンの貼りつけ",
+			"es": "pegar escena"
+		}
+	],
+	[
+		"Touch swipe",
+		{
+			"ru": "Свайп-жес",
+			"ja": "タッチスワイプ操作",
+			"es": "Desplazamiento táctil"
+		}
+	],
+	[
+		"Terrain map",
+		{
+			"ru": "Карта местности",
+			"ja": "地図表示",
+			"es": "Mapa del terreno"
+		}
+	],
+	[
+		">Variables<",
+		{
+			"ru": ">Переменные<",
+			"ja": ">変数<",
+			"es": ">Variables<"
+		}
+	],
+	[
+		"Pixel mode ",
+		{
+			"ru": "Пиксель арт ",
+			"ja": "アンチエイリアス無効",
+			"es": "Modo pixelado"
+		}
+	],
+	[
+		">Position:<",
+		{
+			"ru": ">Позиция:<",
+			"ja": ">位置:<",
+			"es": ">Posición:<"
+		}
+	],
+	[
+		">landscape<",
+		{
+			"ru": ">Альбомная<",
+			"ja": ">横<",
+			"es": ">paisaje<"
+		}
+	],
+	[
+		">Width art<",
+		{
+			"ru": ">Ширины<",
+			"ja": ">横幅<",
+			"es": ">Anchura del arte<"
+		}
+	],
+	[
+		">Font size<",
+		{
+			"ru": ">Размер шрифта<",
+			"ja": ">フォントサイズ<",
+			"es": ">Tamaño de la fuente<"
+		}
+	],
+	[
+		">Style CSS<",
+		{
+			"ru": ">Стиль CSS<",
+			"ja": ">CSSスタイルシート<",
+			"es": ">Estilo CSS<"
+		}
+	],
+	[
+		">Align art<",
+		{
+			"ru": ">Позиция<",
+			"ja": ">画像の位置調整<",
+			"es": ">Alinear arte<"
+		}
+	],
+	[
+		">hidden if<",
+		{
+			"ru": ">скрыть если<",
+			"ja": ">以下の場合は非表示<",
+			"es": ">oculto si<"
+		}
+	],
+	[
+		">top right<",
+		{
+			"ru": ">сверху справа<",
+			"ja": ">右上<",
+			"es": ">superior derecha<"
+		}
+	],
+	[
+		">TouchPad <",
+		{
+			"ru": ">Тачпад <",
+			"ja": ">タッチパッド<",
+			"es": ">Panel Táctil <"
+		}
+	],
+	[
+		"No autosave",
+		{
+			"ru": "Без автосохранения",
+			"ja": "自動セーブ機能停止",
+			"es": "No hay autoguardado"
+		}
+	],
+	[
+		">HTML code<",
+		{
+			"ru": ">HTML код<",
+			"ja": ">HTMLコード<",
+			"es": ">código HTML<"
+		}
+	],
+	[
+		"Copy dialog",
+		{
+			"ru": "Копировать диалог",
+			"ja": "ダイアログをコピー",
+			"es": "Copiar diálogo"
+		}
+	],
+	[
+		"Delete item",
+		{
+			"ru": "Удалить предмет",
+			"ja": "アイテムを削除",
+			"es": "Borrar elemento"
+		}
+	],
+	[
+		"Start block",
+		{
+			"ru": "Стартовый блок",
+			"ja": "初期ブロック",
+			"es": "Iniciar bloque"
+		}
+	],
+	[
+		">Lightness<",
+		{
+			"ru": ">Яркость<",
+			"ja": ">明るさ<",
+			"es": ">Luminosidad<"
+		}
+	],
+	[
+		"\"else if {\"",
+		{
+			"ru": "\"или же {\"",
+			"ja": "\"あるいは以下の条件を満たせば {\"",
+			"es": "\"else if {\""
+		}
+	],
+	[
+		"Time start:",
+		{
+			"ru": "Время начала:",
+			"ja": "再生開始地点:",
+			"es": "Tiempo de inicio:"
+		}
+	],
+	[
+		">language:<",
+		{
+			"ru": ">язык:<",
+			"ja": ">言語<",
+			"es": ">idioma:<"
+		}
+	],
+	[
+		"Panel color",
+		{
+			"ru": "Цвет панели",
+			"ja": "パネルの色",
+			"es": "Color del panel"
+		}
+	],
+	[
+		"Save stage",
+		{
+			"ru": "Сохранить стадию",
+			"ja": "セーブ",
+			"es": "Guardar escenario"
+		}
+	],
+	[
+		"Load stage",
+		{
+			"ru": "Загрузить стадию",
+			"ja": "ロード",
+			"es": "Cargar escenario"
+		}
+	],
+	[
+		">Blocks: <",
+		{
+			"ru": ">Блоков: <",
+			"ja": ">ブロック:<",
+			"es": ">Bloques: <"
+		}
+	],
+	[
+		"Show toast",
+		{
+			"ru": "Тост",
+			"ja": "トースト",
+			"es": "Mostrar aviso"
+		}
+	],
+	[
+		"Characters",
+		{
+			"ru": "Персонажи",
+			"ja": "キャラクター",
+			"es": "Personajes"
+		}
+	],
+	[
+		"font size ",
+		{
+			"ru": "размер шрифта ",
+			"ja": "フォントのサイズ",
+			"es": "tamaño de la fuente"
+		}
+	],
+	[
+		"Auto save ",
+		{
+			"ru": "Автосохранение ",
+			"ja": "自動セーブ",
+			"es": "Autoguardado"
+		}
+	],
+	[
+		">Position<",
+		{
+			"ru": ">Позиция<",
+			"ja": ">固定位置<",
+			"es": ">Posición<"
+		}
+	],
+	[
+		">position<",
+		{
+			"ru": ">позиция<",
+			"ja": ">位置<",
+			"es": ">posición<"
+		}
+	],
+	[
+		">Portrait<",
+		{
+			"ru": ">Портретная<",
+			"ja": ">縦<",
+			"es": ">Presentación<"
+		}
+	],
+	[
+		">ease-out<",
+		{
+			"ru": ">Ускорение в начале<",
+			"ja": ">早→遅<",
+			"es": ">Suavizado-salida<"
+		}
+	],
+	[
+		">original<",
+		{
+			"ru": ">оригинал<",
+			"ja": ">オリジナル<",
+			"es": ">original<"
+		}
+	],
+	[
+		">top left<",
+		{
+			"ru": ">сверху слева<",
+			"ja": ">左上<",
+			"es": ">superior izquierda<"
+		}
+	],
+	[
+		"Scene edit",
+		{
+			"ru": "Редактор сцен",
+			"ja": "シーン編集",
+			"es": "Edición de escena"
+		}
+	],
+	[
+		"Play sound",
+		{
+			"ru": "Воспроизвести звук",
+			"ja": "音声再生",
+			"es": "Reproducir sonido"
+		}
+	],
+	[
+		"Stop sound",
+		{
+			"ru": "Остановить звук",
+			"ja": "音声停止",
+			"es": "Detener sonido"
+		}
+	],
+	[
+		">Variable<",
+		{
+			"ru": ">Изменение переменных<",
+			"ja": ">変数<",
+			"es": ">Variable<"
+		}
+	],
+	[
+		"Light them",
+		{
+			"ru": "Светлая тема ",
+			"ja": "ライトモード",
+			"es": "Tema claro"
+		}
+	],
+	[
+		"Separated:",
+		{
+			"ru": "Разделители: значения",
+			"ja": "区切り文字(separater)",
+			"es": "Separado:"
+		}
+	],
+	[
+		"Delimiter:",
+		{
+			"ru": " строки",
+			"ja": "区切り括弧(delimiter)",
+			"es": "Delimitador:"
+		}
+	],
+	[
+		">ID event<",
+		{
+			"ru": ">Идентификатор события<",
+			"ja": ">IDイベント<",
+			"es": ">ID del evento<"
+		}
+	],
+	[
+		">Text add<",
+		{
+			"ru": ">Добавить текст<",
+			"ja": ">テキスト追加<",
+			"es": ">Agregar texto<"
+		}
+	],
+	[
+		"Add dialog",
+		{
+			"ru": "Добавить диалог",
+			"ja": "ダイアログを追加",
+			"es": "Agregar diálogo"
+		}
+	],
+	[
+		">Fill art<",
+		{
+			"ru": ">Заполнить<",
+			"ja": ">引き延ばし調整<",
+			"es": ">Relleno del arte<"
+		}
+	],
+	[
+		"Art & text",
+		{
+			"ru": "Текст и картинка",
+			"ja": "画像とネームを表示",
+			"es": "Arte y texto"
+		}
+	],
+	[
+		"Next scene",
+		{
+			"ru": "Следующая сцена",
+			"ja": "次のシーン",
+			"es": "Siguiente escena"
+		}
+	],
+	[
+		">Function<",
+		{
+			"ru": ">Функция<",
+			"ja": ">作動<",
+			"es": ">Función<"
+		}
+	],
+	[
+		"Copy scene",
+		{
+			"ru": "Копировать сцену",
+			"ja": "シーンをコピー",
+			"es": "Copiar escena"
+		}
+	],
+	[
+		">symbols:<",
+		{
+			"ru": ">символов:<",
+			"ja": ">文字数:<",
+			"es": ">símbolos:<"
+		}
+	],
+	[
+		"Text color",
+		{
+			"ru": "Цвет текста",
+			"ja": "テキストの色",
+			"es": "Color del texto"
+		}
+	],
+	[
+		"width:40%;",
+		{
+			"ja": "width:45%;",
+			"es": "width:48%;"
+		}
+	],
+	[
+		"Edit toast",
+		{
+			"ru": "Редактировать тост",
+			"ja": "トースト設定",
+			"es": "Editar tostada?"
+		}
+	],
+	[
+		"JSON edit",
+		{
+			"ru": "Редактор JSON",
+			"ja": "JSON編集",
+			"es": "Edición del JSON"
+		}
+	],
+	[
+		"Languages",
+		{
+			"ru": "Языки",
+			"ja": "言語",
+			"es": "Idiomas"
+		}
+	],
+	[
+		">Project<",
+		{
+			"ru": ">Проект<",
+			"ja": ">プロジェクト<",
+			"es": ">Proyecto<"
+		}
+	],
+	[
+		">Preview<",
+		{
+			"ru": ">Предварительный просмотр<",
+			"ja": ">テストプレイ<",
+			"es": ">Vista Previa<"
+		}
+	],
+	[
+		">Opacity<",
+		{
+			"ru": "Прозрачность",
+			"ja": ">不透明度<",
+			"es": ">Opacidad<"
+		}
+	],
+	[
+		">ease-in<",
+		{
+			"ru": ">Ускорение в конце<",
+			"ja": ">遅→早<",
+			"es": ">suavizado-entrada<"
+		}
+	],
+	[
+		">show if<",
+		{
+			"ru": ">показать если<",
+			"ja": ">以下の条件を満たせば表示<",
+			"es": ">mostrar si<"
+		}
+	],
+	[
+		">contain<",
+		{
+			"ru": ">По большей стороне<",
+			"ja": ">縮小で調整<",
+			"es": ">contenido<"
+		}
+	],
+	[
+		">9-patch<",
+		{
+			"ru": ">9-patch<",
+			"ja": ">9-Patch<",
+			"es": ">parche-9<"
+		}
+	],
+	[
+		"Text edit",
+		{
+			"ru": "Редактор текста",
+			"ja": "テキスト編集",
+			"es": "Edición de texto"
+		}
+	],
+	[
+		"HTML edit",
+		{
+			"ru": "Редактор HTML",
+			"ja": "HTML編集",
+			"es": "Edición de HTML"
+		}
+	],
+	[
+		"code edit",
+		{
+			"ru": "редактор",
+			"ja": "コード編集",
+			"es": "edición de código"
+		}
+	],
+	[
+		"Dark them",
+		{
+			"ru": "Темная тема",
+			"ja": "ダークモード",
+			"es": "Tema oscuro"
+		}
+	],
+	[
+		"Html file",
+		{
+			"ru": "Html файл",
+			"ja": "HTMLファイル",
+			"es": "Archivo HTML"
+		}
+	],
+	[
+		">Back to<",
+		{
+			"ru": ">Вернуться в<",
+			"ja": ">指定先に戻る<",
+			"es": ">Volver a<"
+		}
+	],
+	[
+		"Duplicate",
+		{
+			"ru": "Дублировать",
+			"ja": "複製",
+			"es": "Duplicar"
+		}
+	],
+	[
+		"duplicate",
+		{
+			"ru": "дублировать",
+			"ja": "複製",
+			"es": "duplicar"
+		}
+	],
+	[
+		"Tip label",
+		{
+			"ru": "Тип лейбла",
+			"ja": "捜索ラベル方法",
+			"es": "Etiqueta de consejo"
+		}
+	],
+	[
+		">seconds<",
+		{
+			"ru": ">секунды<",
+			"ja": ">秒<",
+			"es": ">segundos<"
+		}
+	],
+	[
+		">Visible<",
+		{
+			"ru": ">Показать<",
+			"ja": ">表示<",
+			"es": ">Visible<"
+		}
+	],
+	[
+		"Autoplay:",
+		{
+			"ru": "Автозапуск:",
+			"ja": "オートプレイ",
+			"es": "Reproducción automática:"
+		}
+	],
+	[
+		"Time end:",
+		{
+			"ru": "Время конца:",
+			"ja": "終了時間:",
+			"es": "Tiempo de finalización:"
+		}
+	],
+	[
+		"Not scene",
+		{
+			"ru": "Нет сцены",
+			"ja": "シーンがありません",
+			"es": "No hay escena"
+		}
+	],
+	[
+		"OffSet X",
+		{
+			"ru": "Смещение X",
+			"ja": "ホットスポット X",
+			"es": "Desplazamiento X"
+		}
+	],
+	[
+		"OffSet Y",
+		{
+			"ru": "Смещение Y",
+			"ja": "ホットスポット Y",
+			"es": "Desplazamiento Y"
+		}
+	],
+	[
+		"Release:",
+		{
+			"ru": "Релиз:",
+			"ja": "公開バージョン",
+			"es": "Lanzamiento:"
+		}
+	],
+	[
+		"WebSite:",
+		{
+			"ru": "Сайт:",
+			"ja": "ウェブサイト:",
+			"es": "Sitio Web:"
+		}
+	],
+	[
+		">Cancel<",
+		{
+			"ru": ">Отмена<",
+			"ja": ">キャンセル<",
+			"es": ">Cancelar<"
+		}
+	],
+	[
+		"Keyboard",
+		{
+			"ru": "Клавиатура",
+			"ja": "キーボード",
+			"es": "Teclado"
+		}
+	],
+	[
+		">Editor<",
+		{
+			"ru": ">Редактор<",
+			"ja": ">エディター<",
+			"es": ">Editor<"
+		}
+	],
+	[
+		">Image:<",
+		{
+			"ru": ">Картинка:<",
+			"ja": ">画像:<",
+			"es": ">Imagen:<"
+		}
+	],
+	[
+		">Music:<",
+		{
+			"ru": ">Музыка:<",
+			"ja": ">音楽 / BGM:<",
+			"es": ">Musica:<"
+		}
+	],
+	[
+		">Color:<",
+		{
+			"ru": ">Цвет:<",
+			"ja": ">背景色:<",
+			"es": ">Color:<"
+		}
+	],
+	[
+		">Screen<",
+		{
+			"ru": ">Экран<",
+			"ja": ">画面比率<",
+			"es": ">Pantalla<"
+		}
+	],
+	[
+		">Height<",
+		{
+			"ru": ">Высота<",
+			"ja": ">縦幅<",
+			"es": ">Altura<"
+		}
+	],
+	[
+		">linear<",
+		{
+			"ru": ">Не менять скорость<",
+			"ja": ">等速<",
+			"es": ">lineal<"
+		}
+	],
+	[
+		">center<",
+		{
+			"ru": ">центр<",
+			"ja": ">中央<",
+			"es": ">centro<"
+		}
+	],
+	[
+		">bottom<",
+		{
+			"ru": ">снизу<",
+			"ja": ">下<",
+			"es": ">inferior<"
+		}
+	],
+	[
+		">Mouse <",
+		{
+			"ru": ">Мышь <",
+			"ja": ">マウス<",
+			"es": ">Mouse <"
+		}
+	],
+	[
+		"Zip file",
+		{
+			"ru": "Zip файл",
+			"ja": "Zipファイル",
+			"es": "Archivo zip"
+		}
+	],
+	[
+		">Choice<",
+		{
+			"ru": ">Выбор<",
+			"ja": ">選択肢<",
+			"es": ">Elección<"
+		}
+	],
+	[
+		">Delete<",
+		{
+			"ru": ">Удалить<",
+			"ja": ">削除<",
+			"es": ">Borrar<"
+		}
+	],
+	[
+		">Labels<",
+		{
+			"ru": ">Лейблы<",
+			"ja": ">ラベル<",
+			"es": ">Etiquetas<"
+		}
+	],
+	[
+		"\"bottom\"",
+		{
+			"ru": "\"Выбор\"",
+			"ja": "\"下\"",
+			"es": "\"inferior\""
+		}
+	],
+	[
+		">Hidden<",
+		{
+			"ru": ">Скрыть<",
+			"ja": ">隠す<",
+			"es": ">Oculto<"
+		}
+	],
+	[
+		"> or in ",
+		{
+			"ru": "> или использоваться в ",
+			"ja": "> と入力してテキスト欄に表示したり、<br>",
+			"es": "> o en "
+		}
+	],
+	[
+		">words:<",
+		{
+			"ru": ">слов:<",
+			"ja": ">単語数<",
+			"es": ">palabras:<"
+		}
+	],
+	[
+		"dialog:",
+		{
+			"ru": "диалог:",
+			"ja": "ダイアログ:",
+			"es": "diálogo:"
+		}
+	],
+	[
+		"E-Mail:",
+		{
+			"ru": "Почта:",
+			"ja": "メールアドレス:",
+			"es": "Correo:"
+		}
+	],
+	[
+		"Cursors",
+		{
+			"ru": "Курсоры",
+			"ja": "カーソル",
+			"es": "Cursores"
+		}
+	],
+	[
+		">icon <",
+		{
+			"ru": ">иконка <",
+			"ja": ">アイコン<",
+			"es": ">icono <"
+		}
+	],
+	[
+		">Color<",
+		{
+			"ru": ">Цвет<",
+			"ja": ">カラー<",
+			"es": ">Color<"
+		}
+	],
+	[
+		">Size:<",
+		{
+			"ru": ">Размер:<",
+			"ja": ">サイズ比率調整:<",
+			"es": ">Tamaño:<"
+		}
+	],
+	[
+		">Ratio<",
+		{
+			"ru": ">Пропорции<",
+			"ja": ">サイズ比<",
+			"es": ">Razón<"
+		}
+	],
+	[
+		">Width<",
+		{
+			"ru": ">Ширины<",
+			"ja": ">横幅<",
+			"es": ">Ancho<"
+		}
+	],
+	[
+		">Style<",
+		{
+			"ru": ">Стиль<",
+			"ja": ">スタイル<",
+			"es": ">Estilo<"
+		}
+	],
+	[
+		">Angle<",
+		{
+			"ru": ">Угол наклона<",
+			"ja": ">角度<",
+			"es": ">Ángulo<"
+		}
+	],
+	[
+		">Go to<",
+		{
+			"ru": ">Перейти в<",
+			"ja": ">移動 / go to<",
+			"es": ">Ir a<"
+		}
+	],
+	[
+		">cover<",
+		{
+			"ru": ">По меньшей стороне<",
+			"ja": ">トリミング調整<",
+			"es": ">portada<"
+		}
+	],
+	[
+		">right<",
+		{
+			"ru": ">справа<",
+			"ja": ">右<",
+			"es": ">derecha<"
+		}
+	],
+	[
+		">Next <",
+		{
+			"ru": ">Далее <",
+			"ja": ">次へ<",
+			"es": ">Siguiente<"
+		}
+	],
+	[
+		">Back <",
+		{
+			"ru": ">Назад <",
+			"ja": ">戻る<",
+			"es": ">Atrás<"
+		}
+	],
+	[
+		">Timer<",
+		{
+			"ru": ">Таймер<",
+			"ja": ">タイマー<",
+			"es": ">Temporizador<"
+		}
+	],
+	[
+		">Music<",
+		{
+			"ru": ">Музыка<",
+			"ja": ">音楽<",
+			"es": ">Musica<"
+		}
+	],
+	[
+		">Scale<",
+		{
+			"ru": ">Масштаб<",
+			"ja": ">スケール<",
+			"es": ">Escala<"
+		}
+	],
+	[
+		">Items<",
+		{
+			"ru": ">Предметы<",
+			"ja": ">アイテム<",
+			"es": ">Elementos<"
+		}
+	],
+	[
+		">Scene<",
+		{
+			"ru": ">Сцена<",
+			"ja": ">シーン<",
+			"es": ">Escena<"
+		}
+	],
+	[
+		">Green<",
+		{
+			"ru": ">Зеленый<",
+			"ja": ">グリーン<",
+			"es": ">Verde<"
+		}
+	],
+	[
+		">Alpha<",
+		{
+			"ru": ">Прозрачность<",
+			"ja": ">透過度<",
+			"es": ">Alfa<"
+		}
+	],
+	[
+		">Dialog",
+		{
+			"ru": ">Диалог",
+			"ja": ">ダイアログ",
+			"es": ">Diálogo"
+		}
+	],
+	[
+		"Replace",
+		{
+			"ru": "Заменить",
+			"es": "Reemplazar",
+			"ja": "上書き貼り付け"
+		}
+	],
+	[
+		"Paste '",
+		{
+			"ru": "Вставить '",
+			"ja": "この次に貼り付け「 '",
+			"es": "Pegar '"
+		}
+	],
+	[
+		"' below",
+		{
+			"ru": "' ниже",
+			"ja": "'」",
+			"es": "' debajo"
+		}
+	],
+	[
+		"go to:",
+		{
+			"ru": "перейти в:",
+			"ja": "移動:",
+			"es": "Ir a:"
+		}
+	],
+	[
+		"scene:",
+		{
+			"ru": "сцена:",
+			"ja": "シーン:",
+			"es": "Escena:"
+		}
+	],
+	[
+		"Add-on",
+		{
+			"ru": "Дополнения",
+			"ja": "アドオン",
+			"es": "Complemento"
+		}
+	],
+	[
+		">Size<",
+		{
+			"ru": ">Размер<",
+			"ja": ">サイズ比率調整<",
+			"es": ">Tamaño<"
+		}
+	],
+	[
+		">Text<",
+		{
+			"ru": ">Текст<",
+			"ja": ">テキスト<",
+			"es": ">Texto<"
+		}
+	],
+	[
+		">Arts<",
+		{
+			"ru": ">Изображения<",
+			"ja": ">画像<",
+			"es": ">Artes<"
+		}
+	],
+	[
+		">ease<",
+		{
+			"ru": ">Ускорение в середине<",
+			"ja": ">普→早→普<",
+			"es": ">facilidad<"
+		}
+	],
+	[
+		">fill<",
+		{
+			"ru": ">Заполнить<",
+			"ja": ">引き延ばし調整<",
+			"es": ">llenar<"
+		}
+	],
+	[
+		">left<",
+		{
+			"ru": ">слева<",
+			"ja": ">左<",
+			"es": ">izquierda<"
+		}
+	],
+	[
+		"Sounds",
+		{
+			"ru": "Звуки",
+			"ja": "音声ファイル",
+			"es": "Sonidos"
+		}
+	],
+	[
+		">Play<",
+		{
+			"ru": ">Запустить<",
+			"ja": ">プレイ<",
+			"es": ">Reproducir<"
+		}
+	],
+	[
+		">Name<",
+		{
+			"ru": ">Название<",
+			"ja": ">ネーム<",
+			"es": ">Nombre<"
+		}
+	],
+	[
+		">none<",
+		{
+			"ru": ">нет<",
+			"ja": ">無し<",
+			"es": ">ninguno<"
+		}
+	],
+	[
+		">Blue<",
+		{
+			"ru": ">Синий<",
+			"ja": ">ブルー<",
+			"es": ">Azul<"
+		}
+	],
+	[
+		"\"if {\"",
+		{
+			"ru": "\"если {\"",
+			"ja": "\"次の条件を満たす {\"",
+			"es": "\"si {\""
+		}
+	],
+	[
+		">else<",
+		{
+			"ru": ">иначе<",
+			"ja": ">その他<",
+			"es": ">else<"
+		}
+	],
+	[
+		">Scene",
+		{
+			"ru": ">Сцена",
+			"ja": ">シーン",
+			"es": ">Escena"
+		}
+	],
+	[
+		">Edit<",
+		{
+			"ru": ">Изменить<",
+			"ja": ">編集<",
+			"es": ">Editar<"
+		}
+	],
+	[
+		"Video",
+		{
+			"ru": "Видео",
+			"ja": "動画",
+			"es": "Video"
+		}
+	],
+	[
+		"Fonts",
+		{
+			"ru": "Шрифты",
+			"ja": "フォント",
+			"es": "Fuentes"
+		}
+	],
+	[
+		"Apply",
+		{
+			"ru": "Применить",
+			"ja": "適用",
+			"es": "Aplicar"
+		}
+	],
+	[
+		">Off<",
+		{
+			"ru": ">Нет<",
+			"ja": ">オフ<",
+			"es": ">Desactivado<"
+		}
+	],
+	[
+		">Art<",
+		{
+			"ru": ">Изображение<",
+			"ja": ">画像<",
+			"es": ">Arte<"
+		}
+	],
+	[
+		">add<",
+		{
+			"ru": ">+<",
+			"ja": ">追加<",
+			"es": ">agregar<"
+		}
+	],
+	[
+		">set<",
+		{
+			"ru": ">=<",
+			"ja": ">セット<",
+			"es": ">ajustar<"
+		}
+	],
+	[
+		">top<",
+		{
+			"ru": ">сверху<",
+			"ja": ">上<",
+			"es": ">superior<"
+		}
+	],
+	[
+		"Sound",
+		{
+			"ru": "Звук",
+			"ja": "音量",
+			"es": "Sonido"
+		}
+	],
+	[
+		"Paste",
+		{
+			"ru": "Вставить",
+			"ja": "ペースト",
+			"es": "Pegar"
+		}
+	],
+	[
+		">Cut<",
+		{
+			"ru": ">Вырезать<",
+			"ja": ">カット<",
+			"es": ">Cortar<"
+		}
+	],
+	[
+		">Red<",
+		{
+			"ru": ">Красный<",
+			"ja": ">レッド<",
+			"es": ">Rojo<"
+		}
+	],
+	[
+		"Loop:",
+		{
+			"ru": "Зациклить:",
+			"ja": "ループ",
+			"es": "Bucle:"
+		}
+	],
+	[
+		">Yes<",
+		{
+			"ru": ">Да<",
+			"ja": ">はい<",
+			"es": ">Sí<"
+		}
+	],
+	[
+		"Copy",
+		{
+			"ru": "Копировать",
+			"ja": "コピー",
+			"es": "Copiar"
+		}
+	],
+	[
+		">No<",
+		{
+			"ru": ">Нет<",
+			"ja": ">いいえ<"
+		}
+	]
+]

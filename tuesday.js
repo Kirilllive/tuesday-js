@@ -216,8 +216,9 @@ function name_block_update(){
         if(story_json.parameters.buttons[i].name!="none"&&!story_json[story_json.parameters.buttons[i].name]){button.id=story_json.parameters.buttons[i].name};
         button.classList.add("tue_controll");
         button.style.position="absolute";
-        button.style.width=story_json.parameters.buttons[i].size[0];
-        button.style.height=story_json.parameters.buttons[i].size[1];
+        button.style.transformOrigin="top left";
+        if(story_json.parameters.buttons[i].size[0]!="0"){button.style.width=story_json.parameters.buttons[i].size[0];}
+        if(story_json.parameters.buttons[i].size[1]!="0"){button.style.height=story_json.parameters.buttons[i].size[1];}
         button.style.backgroundColor=story_json.parameters.buttons[i].color;
         button.style.backgroundRepeat="no-repeat";
         if(story_json.parameters.cursors&&story_json.parameters.cursors.button){button.style.cursor="url("+art_data(story_json.parameters.cursors.button[0])+") "+story_json.parameters.cursors.button[1]+" "+story_json.parameters.cursors.button[2]+",auto";}
@@ -348,14 +349,14 @@ function name_block_update(){
         if(arr_dialog.name){
             bg_art(story_json.parameters.name_panel,'tue_name_block',(story_json.parameters.characters[arr_dialog.name].art)?story_json.parameters.characters[arr_dialog.name].art:false);
             if(arr_dialog.name[languare]){
-                tue_name_block.innerHTML=arr_dialog.name[languare]
+                tue_name_block.innerHTML=values_button(arr_dialog.name[languare])
                 tue_name_block.style.backgroundColor=arr_dialog.name.color;
                 tue_name_block.style.color=arr_dialog.name.color_text;
                 if(arr_dialog.name.className){ tue_name_block.className=arr_dialog.name.className}
             } else if(story_json.parameters.characters){
 				if(story_json.parameters.characters[arr_dialog.name]){
                     if(story_json.parameters.characters[arr_dialog.name].style){tue_name_block.style=story_json.parameters.characters[arr_dialog.name].style;name_block_update();}
-                    tue_name_block.innerHTML=story_json.parameters.characters[arr_dialog.name][languare]
+                    tue_name_block.innerHTML=values_button(story_json.parameters.characters[arr_dialog.name][languare])
                     tue_name_block.style.backgroundColor=story_json.parameters.characters[arr_dialog.name].color;
                     tue_name_block.style.color=story_json.parameters.characters[arr_dialog.name].color_text;
 					if(story_json.parameters.characters[arr_dialog.name].className){
@@ -392,7 +393,8 @@ function name_block_update(){
                     video.style.width="100%";
                     video.style.height="100%";
                 } else if(arr_dialog.video.fit=='position'){
-                    video.style.transform='none';
+                    video.style.transformOrigin="top left";
+                    if(arr_dialog.video.angle){video.style.transform="rotate("+arr_dialog.video.angle+"deg)"}else{video.style.transform='none';}
                     video.style.width=arr_dialog.video.size[0];
                     video.style.height=arr_dialog.video.size[1];
                     if(arr_dialog.video.position[0]!=0){video.style.left=arr_dialog.video.position[0];}
@@ -438,6 +440,7 @@ function name_block_update(){
                             if(arr_dialog.art[i].style&&arr_dialog.art[i].style.length>0){
                                 old[o].style="user-select:text;"+arr_dialog.art[i].style;
                                 old[o].style.position="absolute";
+                                old[o].style.transformOrigin="top left";
                             }
                             if(arr_dialog.art[i].move&&arr_dialog.art[i].move!=0){
                                 old[o].style.transitionDuration=arr_dialog.art[i].move+"s";
@@ -479,6 +482,7 @@ function name_block_update(){
                 art.classList.add("tue_art");
                 art.style="user-select:text;"+((arr_dialog.art[i].style)?arr_dialog.art[i].style:"");
                 art.style.position="absolute";
+                art.style.transformOrigin="top left";
                 if(arr_dialog.art[i].fit)art.style.objectFit=arr_dialog.art[i].fit;
                 if(arr_dialog.art[i].opacity){art.style.opacity=arr_dialog.art[i].opacity;} else {art.style.opacity=null}
                 if(arr_dialog.art[i].size){
@@ -499,7 +503,8 @@ function name_block_update(){
         } else {del_element("tue_art");}
         var button_ui=document.getElementsByClassName("tue_controll");
         for(i=0;i<button_ui.length;i++){
-            if(story_json.parameters.buttons[i].name="tue_audio"){show_audio(button_ui[i],story_json.parameters.buttons[i]);}
+            if(story_json.parameters.buttons[i].name=="tue_audio"){show_audio(button_ui[i],story_json.parameters.buttons[i]);}
+            else if(story_json.parameters.buttons[i].name=="tue_fullScreen"){show_fullscreen(button_ui[i],story_json.parameters.buttons[i])}
             else if(story_json.parameters.buttons[i].text && art_data(story_json.parameters.buttons[i].text).length>0){
                 button_ui[i].innerHTML=values_button(art_data(story_json.parameters.buttons[i].text))
             }
@@ -512,6 +517,7 @@ function name_block_update(){
                 if(arr_dialog.choice[i].style){choice.style=arr_dialog.choice[i].style;}
                 choice.classList.add("tue_choice");
                 choice.style.position="absolute";
+                choice.style.transformOrigin="top left";
                 choice.style.backgroundColor=arr_dialog.choice[i].color;
                 choice.style.whiteSpace="pre-wrap";
                 choice.style.backgroundRepeat="no-repeat";
@@ -555,6 +561,7 @@ function name_block_update(){
                     choice.innerHTML=values_button(art_data(arr_dialog.choice[i].text));
                 }
                 if(arr_dialog.choice[i].go_to=="tue_audio"){show_audio(choice,arr_dialog.choice[i]);}
+                else if(arr_dialog.choice[i].go_to=="tue_fullScreen"){show_fullscreen(choice,arr_dialog.choice[i])}
 				var v='';
 				if(arr_dialog.choice[i].variables){
 					for(var g=0;g < arr_dialog.choice[i].variables.length;g++){
@@ -580,7 +587,7 @@ function name_block_update(){
                         if (arr_dialog.choice[i].text_from){choice.setAttribute("onclick",v+"dialog="+(dialog+1)+";creation_dialog(true);"+add_sound()+((arr_dialog.choice[i].delete)?"this.remove();":""));}
                         else {choice.setAttribute("onclick","del_element('tue_choice'); "+v+"go_story(true);"+add_sound());}
                     }
-                    else if (g == "tue_load_autosave"){choice.setAttribute("onclick",v+"load_stag('auto');"+add_sound());}
+                    else if (g == "tue_load_autosave"){choice.setAttribute("onclick",v+"load_stag('auto');"+add_sound());  if(story_json.parameters.autosave && !localStorage.getItem("tue_auto_data")){choice.style.visibility.style.visibility='hidden'}}
                     else if (g == "load"||g == "tue_load"){choice.setAttribute("onclick",v+"load_stag('bookmark');"+add_sound());}
                     else if (g == "tue_save"){choice.setAttribute("onclick",v+"save_stag('bookmark');"+add_sound());}
                     else if (g == "tue_no"||g == ""){choice.setAttribute("onclick",v+add_sound())}
@@ -770,7 +777,10 @@ function name_block_update(){
         tue_text_view.innerHTML=dialog_text.replace(new RegExp("\n","g"),"<br>");
     } else if(dialog_speed != 0 && dialog_letter <= dialog_text.length){
         dialog_timeout=setTimeout(add_letter,dialog_speed);
-    } else if(dialog_letter >= dialog_text.length){tue_text_view.innerHTML+=((story_json.parameters.text_panel.end_text_cursor&&story_json.parameters.text_panel.end_text_cursor[0])?'&nbsp<img src="'+story_json.parameters.text_panel.end_text_cursor[0]+'" style="width:'+((story_json.parameters.text_panel.end_text_cursor[1])?story_json.parameters.text_panel.end_text_cursor[1]:'auto')+';height:'+((story_json.parameters.text_panel.end_text_cursor[2])?story_json.parameters.text_panel.end_text_cursor[2]:'auto')+';position:absolute;'+((story_json.parameters.text_panel.end_text_cursor[3])?story_json.parameters.text_panel.end_text_cursor[3]:'')+'">':'');tuesday.dispatchEvent(new Event('dialog_end'));}
+    } else if(dialog_letter >= dialog_text.length){
+        var e_cursor=(arr_dialog.end_text_cursor)?arr_dialog.end_text_cursor:(story_json.parameters.text_panel.end_text_cursor)? story_json.parameters.text_panel.end_text_cursor:false;
+        tue_text_view.innerHTML="<span style=''>"+tue_text_view.innerHTML+((e_cursor&&e_cursor[0])?'&nbsp<span style="position:relative;">&nbsp<img src="'+e_cursor[0]+'" style="position:absolute;width:'+((e_cursor[1])?e_cursor[1]:'auto')+';height:'+((e_cursor[2])?e_cursor[2]:'auto')+';'+((e_cursor[3])?e_cursor[3]:'')+'"></span></span>':'</span>');tuesday.dispatchEvent(new Event('dialog_end'));
+    }
     if(story_json.parameters.text_panel.scroll){tue_text_view.scrollTop=tue_text_view.scrollHeight;}
 } function add_letter(){
     var t=dialog_text.slice(0,dialog_letter).replace(new RegExp("\n","g"),"<br>")
@@ -897,8 +907,13 @@ function show_audio(el,arr){
     if(arr["text"+n]&&art_data(arr["text"+n]).length>0){el.innerHTML=values_button(art_data(arr["text"+n]))}
     if(arr["art"+n]&&art_data(arr["art"+n]).length>0){el.style.backgroundImage="url('"+art_data(arr["art"+n])+"')"}
 }
+function show_fullscreen(el,arr){
+    if(arr["text"+((tue_fullScreen)?"1":"")]&&art_data(arr["text"+((tue_fullScreen)?"1":"")]).length>0){el.innerHTML=values_button(art_data(arr["text"+((tue_fullScreen)?"1":"")]))}
+    if(arr["art"+((tue_fullScreen)?"1":"")]&&art_data(arr["art"+((tue_fullScreen)?"1":"")]).length>0){el.style.backgroundImage="url('"+art_data(arr["art"+((tue_fullScreen)?"1":"")])+"')"}
+}
 tuesday.addEventListener('mousedown',autoplaysound)
 function autoplaysound(){
     if(tue_set_audio==0){tue_bg_music.play();}
     tuesday.removeEventListener('mousedown',autoplaysound);
 }
+
