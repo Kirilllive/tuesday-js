@@ -97,6 +97,7 @@ line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4
 .icon_add{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3ccircle fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' cx='128' cy='128' r='120'/%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M47,128h161M128,208V47'/%3e%3c/svg%3e")}
 .icon_del{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M194,62V230H63V62M47,45H210M108,23h39V45H108V23ZM128,62V213M92,62V213M164,62V213'/%3e%3c/svg%3e")}
 .icon_json{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' d='M177,4h24c7,0,13,1,18,6s6,10,6,18v82l27,17L225,146v82c0,7-1,12-6,17s-10,7-18,7H177M84,7H60c-7,0-13,1-18,6s-6,10-6,18v79L8,128,36,146v79c0,7,1,12,6,17s10,7,18,7H84M113,212c9,0,18-4,22-10,3-4,4-12,4-25V72'/%3e%3ccircle fill='none' stroke='%23000' stroke-width='12' cx='139.375' cy='43.594' r='2.5'/%3e%3c/svg%3e")}
+.icon_css{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' d='M177,4h24c7,0,13,1,18,6s6,10,6,18v82l27,17L225,146v82c0,7-1,12-6,17s-10,7-18,7H177M84,7H60c-7,0-13,1-18,6s-6,10-6,18v79L8,128,36,146v79c0,7,1,12,6,17s10,7,18,7H84 '/%3e%3ccircle fill='none' stroke='%23000' stroke-width='12' cx='130' cy='210' r='6'/%3e%3c/svg%3e")}
 .icon_text{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' d='M217,196H109L43,249V196H38c-16,0-29-13-29-30V38C9,21,22,9,39,9H218c16,0,29,12,29,29V166A30,30,0,0,1,217,196Z'/%3e%3c/svg%3e")}
 .icon_up{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' d='M12,188 128,60 246,188z'/%3e%3c/svg%3e")}
 .icon_down{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' d='M12,60 128,188 246,60z'/%3e%3c/svg%3e")}
@@ -516,6 +517,32 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 <input id='p_width' class='input_slider input_slider_progress' onchange='aspect_ratio.selectedIndex="-1";setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='if(objFocus){scene_scroll=false;saveResize();}preview_size(false);video_size();' type="range" value='100' min="50" max="100" style='width:100%;'>
                             </td></tr>
                         </tbody></table></div>
+                        <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Scene content</td></tr></tbody></table>
+                        <div class="set_panel" id="set_scene" style="width:100%;display:none;">
+                            <table style="width:100%;"><tbody>
+                                <tr><td align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_edit'><tbody><tr><td width='60px' class='icon_m icon_art'></td><td align='left'>Scene edit</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_json'><tbody><tr><td width='60px' class='icon_m icon_json'></td><td align='left'>JSON edit</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_text'><tbody><tr><td width='60px' class='icon_m icon_edit2'></td><td align='left'>Text edit</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_video'><tbody><tr><td width='60px' class='icon_m icon_video'></td><td align='left'>Video</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_audio_play'><tbody><tr><td width='60px' class='icon_m icon_audio_play'></td><td align='left'>Play sound</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_audio_off'><tbody><tr><td width='60px' class='icon_m icon_audio_off'></td><td align='left'>Stop sound</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_var'><tbody><tr><td width='60px' class='icon_m icon_var'></td><td align='left'>Variable</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_html'><tbody><tr><td width='60px' class='icon_m icon_html'></td><td align='left'>HTML edit</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_css'><tbody><tr><td width='60px' class='icon_m icon_css'></td><td align='left'>CSS class edit</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
+                                    <table class='edit_button' width='100%' id='s_scene_js'><tbody><tr><td width='60px' class='icon_m icon_js'></td><td align='left'>JavaScript edit</td><td width='42px'></td></tr></tbody></table>
+                                </td></tr>
+                            </tbody></table>
+                        </div>
                         <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Text panel</td></tr></tbody></table>
                         <div class="set_panel" id="text_panel_g" style="width:100%;display:none;">
                         <table style="width:100%;"><tbody>
@@ -673,30 +700,6 @@ input:checked+.toggle:before{transform:translateX(14px);}
                         <table onclick="block_open('interface_buttons');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Interface buttons</td></tr></tbody></table>
                         <div class="interface_buttons" id="interface_buttons" style="width:100%;display:none;"><div id='interface_buttons_c'></div>
                             <div style='width:100%;margin-bottom:16px;' onclick='interface_buttons_c.innerHTML+=button_panel_edit(-1);state_save();button_panel_update();' align='center'><div id='add_scen_items' class='add_button icon_m icon_add'></div></div>
-                        </div>
-                        <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Scene content</td></tr></tbody></table>
-                        <div class="set_panel" id="set_scene" style="width:100%;display:none;">
-                            <table style="width:100%;"><tbody>
-                                <tr><td align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_scene_edit'><tbody><tr><td width='60px' class='icon_m icon_art'></td><td align='left'>Scene edit</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_scene_json'><tbody><tr><td width='60px' class='icon_m icon_json'></td><td align='left'>JSON edit</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_scene_text'><tbody><tr><td width='60px' class='icon_m icon_edit2'></td><td align='left'>Text edit</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_scene_video'><tbody><tr><td width='60px' class='icon_m icon_video'></td><td align='left'>Video</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_scene_audio_play'><tbody><tr><td width='60px' class='icon_m icon_audio_play'></td><td align='left'>Play sound</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_scene_audio_off'><tbody><tr><td width='60px' class='icon_m icon_audio_off'></td><td align='left'>Stop sound</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_scene_var'><tbody><tr><td width='60px' class='icon_m icon_var'></td><td align='left'>Variable</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_scene_html'><tbody><tr><td width='60px' class='icon_m icon_html'></td><td align='left'>HTML edit</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_scene_js'><tbody><tr><td width='60px' class='icon_m icon_js'></td><td align='left'>JavaScript edit</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr>
-                            </tbody></table>
                         </div>
                         <table onclick="block_open('arts_e');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Arts</td></tr></tbody></table>
                         <div class="set_panel" id="arts_e" style="width:100%;display:block;"><div id='arts_ec' style='margin-bottom:12px;'></div>
@@ -1039,11 +1042,11 @@ function creation_block(b){
                     }
                     if(story_script[chapter.id][i].dialogs[d].art){
                         var t="<table width='100%' height='48px' style='margin:4px 0;'><tbody><tr>"
-                            +((story_script[chapter.id][i].dialogs[d].art[0])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[0].url))+") no-repeat center;background-size:contain;'></td>":"")
-                            +((story_script[chapter.id][i].dialogs[d].art[1])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[1].url))+") no-repeat center;background-size:contain;'></td>":"")
-                            +((story_script[chapter.id][i].dialogs[d].art[2])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[2].url))+") no-repeat center;background-size:contain;'></td>":"")
-                            +((story_script[chapter.id][i].dialogs[d].art[3])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[3].url))+") no-repeat center;background-size:contain;'></td>":"")
                             +((story_script[chapter.id][i].dialogs[d].art[4])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[4].url))+") no-repeat center;background-size:contain;'></td>":"")
+                            +((story_script[chapter.id][i].dialogs[d].art[3])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[3].url))+") no-repeat center;background-size:contain;'></td>":"")
+                            +((story_script[chapter.id][i].dialogs[d].art[2])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[2].url))+") no-repeat center;background-size:contain;'></td>":"")
+                            +((story_script[chapter.id][i].dialogs[d].art[1])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[1].url))+") no-repeat center;background-size:contain;'></td>":"")
+                            +((story_script[chapter.id][i].dialogs[d].art[0])?"<td width='20%' style='background: url("+open_file(languare_data(story_script[chapter.id][i].dialogs[d].art[0].url))+") no-repeat center;background-size:contain;'></td>":"")
                             +"</tr></tbody></table>"
                         element+="<div class='dialog_element' align='left' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"art\";scen_data=[\""+chapter.id+"\","+i+","+(d+1)+"];scen_editor(scen_data[0],scen_data[1],scen_data[2]);scen_edit_data();'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Art<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_art' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='art';scen_data=[\'"+chapter.id+"\',"+i+","+(d+1)+"];dialog_el(this.id,'Art',true);\" width='24px' class='icon_m icon_edit' title='Scen editor'></td></tr></tbody></table>"+t+"</div>"
                     }
@@ -1059,7 +1062,7 @@ function creation_block(b){
                     }
                     if(story_script[chapter.id][i].dialogs[d].choice){
                         element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"choice\";edit_choice();'><tbody><tr><td align='left' valign='center' style='padding-left:4px;word-break:break-all;'><b>Choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
-                        for(var c=0;c<story_script[chapter.id][i].dialogs[d].choice.length;c++){
+                        for(var c=story_script[chapter.id][i].dialogs[d].choice.length-1;c>=0;c--){
                             go=story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if(go&&go!=""&&go!="undefined"){
                                 if(story_script[chapter.id][i].dialogs[d].choice[c].text){data_corr(story_script[chapter.id][i].dialogs[d].choice[c],'text')}
@@ -1419,17 +1422,16 @@ function modal_window(action,content){
 var preview=null
 function play_novel(bl,se){
     if(preview!=null){preview.close();}
-    var story_preview=JSON.stringify(story_script),plugins_code="",plugins_file="",fonts="";
-    for(var f=0;f<project_files.length;f++){for(var r=JSON.stringify(story_script).split(project_files[f][0]).length+2;r>0;r--){story_preview=story_preview.replace(project_files[f][0],project_files[f][1])}}
+    var story_preview=JSON.stringify(story_script),plugins_code="",plugins_file="",fonts="",d=JSON.parse(JSON.stringify(project_files)),s=0,p=0,a=d.length;
+    for(var x=0;x<a;x++){for(var i=0;i<d.length;i++){if(d[i][0].length>s){p=i;s=d[i][0].length}};story_preview=story_preview.replace(new RegExp(d[p][0],"g"),d[p][1]);d.splice(p,1);s=0;p=0;}
     if(story_script.parameters.plugins){for(var i=0;i<story_script.parameters.plugins.length;i++){
-        if(plugins_list[story_script.parameters.plugins[i]]){
-            if(plugins_list[story_script.parameters.plugins[i]].code){plugins_code+=plugins_list[story_script.parameters.plugins[i]].code+" "}
+        if(plugins_list[story_script.parameters.plugins[i]]){if(plugins_list[story_script.parameters.plugins[i]].code){plugins_code+=plugins_list[story_script.parameters.plugins[i]].code+" "}
         else if(plugins_list[story_script.parameters.plugins[i]].file){plugins_file+="<script type='text/javascript' src='"+open_file(plugins_list[story_script.parameters.plugins[i]].file)+"'><\/script>"}
         }else{plugins_file+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+open_file(plugins_list[story_script.parameters.plugins[i]].file)+"'><\/script>":"<script type='text/javascript' src='"+open_file(story_script.parameters.plugins[i])+"'><\/script>")}
     }}
     if(story_script.parameters.font_files){for(var i=0;i<Object.keys(story_script.parameters.font_files).length;i++){fonts+="@font-face{font-family:"+Object.keys(story_script.parameters.font_files)[i]+";src:url("+open_file(story_script.parameters.font_files[Object.keys(story_script.parameters.font_files)[i]])+");} "}}
     preview=window.open("","preview","location=no,scrollbars=no,width="+setup_editor.pvw[0]+",height="+setup_editor.pvw[1]);
-    preview.document.write("<html><head><title>"+languare_data(story_script.parameters.title)+"</title><style>"+fonts+" "+((story_script.parameters.font)?"*{font-family:"+story_script.parameters.font+";} ":"")+"body{font-size:"+story_script.parameters.font_size+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;-webkit-touch-callout:none;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script src='true'><\/script><script type='text/javascript'>let story_preview="+story_preview+";tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'});"+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"');"+((se)?"scene="+scen_data[1]+";dialog="+(scen_data[2]-1)+";del_element('tue_choice');creation_scene();":"")+" });" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
+    preview.document.write("<html><head><title>"+languare_data(story_script.parameters.title)+"</title><style>"+((story_script.parameters.css)?story_script.parameters.css:"")+fonts+" "+((story_script.parameters.font)?"*{font-family:"+story_script.parameters.font+";} ":"")+"body{font-size:"+story_script.parameters.font_size+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;-webkit-touch-callout:none;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script src='true'><\/script><script type='text/javascript'>let story_preview="+story_preview+";tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'});"+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"');"+((se)?"scene="+scen_data[1]+";dialog="+(scen_data[2]-1)+";del_element('tue_choice');creation_scene();":"")+" });" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
 }
 function search_block(){
     var i,txt;
@@ -1486,7 +1488,7 @@ function toast(message, color){
     x.classList.add("toast_anim");
 }
 function about(){
-    var html="<div class='window' style='padding:24px 16px 0px 16px;width:412px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday JS visual novel engine</p><hr><p>Release: 23</p>"
+    var html="<div class='window' style='padding:24px 16px 0px 16px;width:412px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday JS visual novel engine</p><hr><p>Release: 24</p>"
     +"<table style=' border-spacing:10px;border-collapse:separate; width: 100%;'><tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>kirilllive.github.io/tuesday-js</a></td></tr>  <tr><td align='right' colspan='1'>Tutorial:</td><td align='left' colspan='3'><a href='https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial' target='_blank'>kirilllive.github.io/tuesday-js/doc_editor</a></td></tr><tr>"
     +"<td class='button_menu' style='border-radius:16px;width:25%;height:64px' align='center'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 256 256' style='filter:var(--ft);'><path d='M128,0C57,0 0,57 0,128c0,57 37,104 88,121 6,1 9,-3 9,-6 0,-3-0,-13-0,-24C64,225 56,212 53,204 52,201 45,189 40,186c-4,-2-11,-8-0,-8 10,-0 17,9 20,13 12,19 30,14 37,11 1,-8 4,-14 8,-17-28,-3-58,-14-58,-63 0,-14 5,-25 13,-34-1,-3-6,-16 1,-34 0,0 11,-3 35,13 10,-3 21,-4 32,-4 11,0 22,1 32,4 24,-17 35,-13 35,-13 7,18 3,31 1,34 8,9 13,20 13,34 0,49-30,60-58,63 5,4 9,12 9,24 0,17-0,31-0,35 0,3 2,7 9,6C219,232 256,184 256,128 256,57 199,0 128,0Z' fill='#000' /></svg></a></td>"
     +"<td class='button_menu' style='border-radius:16px;width:25%;height:64px' align='center'><a href='https://kirill-live.itch.io/tuesday-js' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 128 128' style='filter:var(--ft);'><path d='M18,8.6C13,12 2,24 2,27v5.3c0,7 6,12 12,12.6 7,0 12,-5 12.6,-12.4 0,7 5,12.4 12.4,12.4 6.8,0 12,-5 12.2,-12.4 0,7 6,12.4 12.7,12.4h0.1c7,0 12.7,-5.6 12.7,-12.4 0,7 5,12.4 12.2,12.4 7,0 12.4,-6 12.4,-12.4 0,7 6,12.4 12.5,12.4 6,0 12,-6 12,-12V27C126,24 115,12 110,8.6 93,8 81,8 64,8 47,8 23,8 18,9ZM51.1,42.1a14.1,14.1 0 0 1-2.4,3.1c-3,3-6,4-10,4A14.4,14.4 0 0 1 28.5,45.3C27.6,44.3 26.9,43.3 26.2,42.2l-0,0c-0.6,1.1-1.6,2.1-2.5,3a14.4,14.4 0 0 1-10,4.1c-0.47,0-0.96,-0.13-1.36,-0.26-0.55,5.74-0.78,11.23-0.86,15.24l-10e-4,0c-0,2-0,3.7-0,6 0.1,12-1.2,39.1 5.3,45.7 10.1,2.3 28.6,3.4 47.3,3.4h0c18.6,-0 37,-1 47.2,-3.4 6.5,-6.6 5.2,-33.6 5.3,-45.7-0,-2.3-0,-4-0,-6l-9e-4,-0c-0,-4-0.3,-9.5-1,-15-0.4,0-1,0.2-1.3,0.2a14.4,14.4 0 0 1-10,-4.1c-1,-1-2,-2-2.5,-3l0,0c0.6,1-1.3,2-2.3,3a14.4,14.4 0 0 1-10,4c-4,0-7.4,-1.5-10,-4a14,14 0 0 1-2.4,-3 14,14 0 0 1-2.4,3 14.4,14.4 0 0 1-10,4c-0.1,0-0.2,-0-0.4,-0h-0c-0.13,0-0.3,0-0.4,0a14.4,14.4 0 0 1-10,-4.1 14.1,14.1 0 0 1-2.4,-3.1zm-10.3,13.4-9.7e-4,0h0c4.1,0 7.7,0 12.2,5 3.5,-0.3 7.2,-0.5 11,-0.55h0c3.7,-0 7.4,0.2 11,0.5 4.5,-5 8.1,-5 12.25,-5h0l-9.7e-4,-0c1.9,0 9.7,0 15,15.2l5.8,20.8c4.3,15.5-1.3,15.8-8.4,15.8-10.5,-0.4-16.3,-8-16.3,-15.6-5.8,0.9-12.5,1.4-19.3,1.4h-0c-6.7,0-13.5,-0.4-19.3,-1.4 0,7.6-5.8,15.2-16.3,15.6C21.2,107.3 15.5,107 19.9,91.5L25.6,70.7C31,55.5 39,55.5 40.7,55.5ZM64,67.4v0c-0,0-11,10-13,13.7l 7.2,-0.3v6.3c0,0.3 3,0 5.8,0h0c2.9,0.1 5.8,0.2 5.8,-0v-6.3l 7.22,0.3C75,77.6 64,67.4 64,67.4 v-0l-0,9.7e-4z' color='#000'/></svg></a></td>"
@@ -1550,17 +1552,18 @@ function build(tip){
     delete story_build.parameters['font_size'];
     delete story_build.parameters['icon'];
     delete story_build.parameters.font_files;
+    delete story_build.parameters.css;
     delete story_build.blocks;
     var story_preview=JSON.stringify(story_build)
     if(tip==0){
-        var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent("<html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<meta charset='UTF-8'><meta name='viewport' content='initial-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",width=device-width,height=device-height,viewport-fit=cover,maximum-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",user-scalable=no'><style>"+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;-webkit-touch-callout:none;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_novel="+story_preview+";load_story('data',story_novel);<\/script><\/body><\/html>");
+        var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent("<html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<meta charset='UTF-8'><meta name='viewport' content='initial-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",width=device-width,height=device-height,viewport-fit=cover,maximum-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",user-scalable=no'><style>"+((story_script.parameters.css)?story_script.parameters.css:"")+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;-webkit-touch-callout:none;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_novel="+story_preview+";load_story('data',story_novel);<\/script><\/body><\/html>");
         download_files('index.html',dataStr)
         modal_window("close")
         if(story_script.base){delete story_script.base;delete story_script.base_sound;}
         toast("index.html file is created");
     }
     else if(tip==1){
-        var dataStr="<html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<meta charset='UTF-8'><meta name='viewport' content='initial-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",width=device-width,height=device-height,viewport-fit=cover,maximum-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",user-scalable=no'><style>"+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_novel="+story_preview+";load_story('data',story_novel);<\/script><\/body><\/html>";
+        var dataStr="<html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<meta charset='UTF-8'><meta name='viewport' content='initial-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",width=device-width,height=device-height,viewport-fit=cover,maximum-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",user-scalable=no'><style>"+((story_script.parameters.css)?story_script.parameters.css:"")+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_novel="+story_preview+";load_story('data',story_novel);<\/script><\/body><\/html>";
         build_zip(dataStr)
     }
 }
@@ -1607,7 +1610,7 @@ function jsonedit(arr){
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
     +"<td align='center'>JSON edit</td>"
-    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
+    +"<td style='width:88px;'><input id='search_edit' onkeypress='if(event.key==\"Enter\"){search_text(\"editJson\",this.value)}' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
@@ -1616,7 +1619,7 @@ function jsonedit(arr){
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
     +"<td align='center'>JSON edit</td>"
-    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
+    +"<td style='width:88px;'><input id='search_edit' onkeypress='if(event.key==\"Enter\"){search_text(\"editJson\",this.value)}' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
@@ -2783,7 +2786,7 @@ function edit_html(){
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
     +"<td align='center'>HTML code edit</td>"
-    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
+    +"<td style='width:88px;'><input id='search_edit' onkeypress='if(event.key==\"Enter\"){search_text(\"editcode\",this.value)}' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editHtml\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
@@ -2795,11 +2798,11 @@ function edit_code(vol,n){
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
     +"<td align='center'>"+n+" code edit</td>"
-    +"<td style='width:88px;'><input id='search_edit' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
+    +"<td style='width:88px;'><input id='search_edit' onkeypress='if(event.key==\"Enter\"){search_text(\"editcode\",this.value)}' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editcode\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
-    +"<p><textarea id='editcode' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border:1px solid var(--cb);min-height:92px;'>"+((copy_arr[vol])?copy_arr[vol]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='copy_arr[\""+vol+"\"]=editcode.value;update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    +"<p><textarea id='editcode' spellcheck='false' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:8px;height:calc(90vh - 128px);width:calc(100% - 8px);border:1px solid var(--cb);min-height:92px;'>"+((vol=="css")?story_script.parameters.css:(copy_arr[vol])?copy_arr[vol]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='"+((vol=="css")?"story_script.parameters.css":"copy_arr[\""+vol+"\"]")+"=editcode.value;update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_toast(){
@@ -2889,6 +2892,7 @@ function scen_edit_data(){
     s_scene_html.setAttribute("onclick","if(!story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].html){story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].html=''};arr_l=story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];arr_n='html';edit_html();");
     s_scene_var.setAttribute("onclick","if(!story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].variables  ){story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].variables=[]}if(story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0){arr_l=story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];arr_n='variables';variables_set_edit();}else{setup();set_menu(4);}");
     s_scene_js.setAttribute("onclick","if(!story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].js){story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].js=''};copy_arr=story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];edit_code(\'js\',\'JavaScript\');");
+    s_scene_css.setAttribute("onclick","if(!story_script.parameters.css){story_script.parameters.css=''};edit_code(\'css\',\'CSS Class\');");
     size_w.value=((arr_t.size[0])?arr_t.size[0]:"")
     size_h.value=((arr_t.size[1])?arr_t.size[1]:"")
     className.value=((arr_t.className)?arr_t.className:"")
@@ -2977,6 +2981,7 @@ function scen_editor(block,i,n){
     arr_s=story_script[block][i].dialogs[n-1];
     scen_data=[block,i,n];
     p_width.value=setup_editor.preview[0];
+    aspect_ratio.selectedIndex=(setup_editor.preview[0]==76)?1:(setup_editor.preview[0]==56)?2:(setup_editor.preview[0]==100)?0:-1;
     ratio_screen.selectedIndex=setup_editor.preview[1];
     if(setup_editor.preview[2]){screen_size.selectedIndex=setup_editor.preview[2];}
     world.style.display="none";
@@ -3238,7 +3243,11 @@ function art_panel_update(block,i,n){
         art.setAttribute('onclick','objSelect(this.id);arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+']');
         art.src=(arr_s.art[b].url[languare])?open_file(arr_s.art[b].url[languare]):open_file(arr_s.art[b].url)
         art.classList.add("tue_art");art.classList.add("objSelect");
-        art.style="user-select:text;"+((arr_s.art[b].style)?arr_s.art[b].style:"")
+        if(arr_s.art[b].style&&arr_s.art[b].style.length>0){
+            var s=arr_s.art[b].style;
+            for(var f=0;f<project_files.length;f++){s=s.replace(new RegExp(project_files[f][0],"g"),project_files[f][1]);};
+            art.style=s;
+        }
         art.style.position="absolute";
         art.style.transformOrigin="top left";
         art.style.zIndex=1001+b;
@@ -3405,8 +3414,11 @@ function choice_panel_update(block,i,n){
         var choice=document.createElement("div");
         choice.id='cho'+b
         choice.setAttribute('onclick','objSelect(this.id);arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+']');
-        if(arr_s[b].className){choice.className=arr_s[b].className;}
-        if(arr_s[b].style){choice.style=arr_s[b].style;}
+        if(arr_s[b].style&&arr_s[b].style.length>0){
+            var s=arr_s[b].style;
+            for(var f=0;f<project_files.length;f++){s=s.replace(new RegExp(project_files[f][0],"g"),project_files[f][1]);};
+            choice.style=s;
+        }
         choice.classList.add("tue_choice");choice.classList.add("objSelect");
         choice.style.position="absolute";
         choice.style.transformOrigin="top left";
@@ -3705,8 +3717,11 @@ function button_panel_update(){
         if(!arr_s[b].sound){arr_s[b].sound=''}
         if(!arr_s[b].sound[languare]){data_corr(arr_s[b],'sound')}
         var ui_button=document.createElement("div");
-        if(arr_s[b].className){ui_button.className=arr_s[b].className;}
-        if(arr_s[b].style){ui_button.style=arr_s[b].style;}
+        if(arr_s[b].style&&arr_s[b].style.length>0){
+            var s=arr_s[b].style;
+            for(var f=0;f<project_files.length;f++){s=s.replace(new RegExp(project_files[f][0],"g"),project_files[f][1]);};
+            ui_button.style=s;
+        }
         if(arr_s[b].text){
             if(arr_s[b].text[languare]){
                 ui_button.innerHTML=values_in_text(arr_s[b].text[languare]);
