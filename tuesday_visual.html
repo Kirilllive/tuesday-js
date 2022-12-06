@@ -53,7 +53,7 @@ line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4
 @keyframes viwe{from{opacity:0;bottom:64px}to{opacity:1;bottom:64px}}
 @keyframes stop{from{opacity:1;bottom:64px}to{opacity:1;bottom:64px}}
 @keyframes close{from{opacity:1;bottom:64px}to{opacity:0;bottom:-32px}}
-#new_story_block,#scene_controll,#ho_controll{
+#new_story_block,#scene_controll,#ho_controll,.scene_close{
 	position:fixed;
 	height:40px;
 	z-index:10000;
@@ -285,7 +285,16 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 .chec_bg:checked{background-color:var(--cw);border:2px solid var(--cb);}
 #scene_maker{height:100vh;width:100%;position:fixed;left:0px;top:0px;display:none;}
 #scene_canvas{height:calc(100vh - 40px);width:calc(98vh - 40px);position:relative;}
-@media only screen and (max-width:120vh){#scene_canvas{height:72vw;width:72vw;}}
+@media only screen and (max-width:120vh){
+    #scene_canvas{height:72vw;width:72vw;}
+<!--    .set_layout_panel{display:none;}-->
+<!--    #scene_view,#ho_preview{width:100vw !important;}-->
+<!--    #scene_controll,#ho_controll{right:110px !important;}-->
+<!--    .scene_close{display:block !important;width:40px;}-->
+<!--    .scene_close:hover{background-color:var(--cb);}-->
+}
+.scene_close{display:none;}
+.scene_close div{height:100%;width:100%;}
 #scene_layout{
     overflow:hidden;
     height:100%;
@@ -306,21 +315,21 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 .drag{transform-origin:top left;box-sizing:border-box;width:100px;height:100px;position:absolute;top:100px;left:100px;cursor:move;border: 1px dashed var(--cb);}
 .resizer{width:7px;height:7px;border-radius:50%;background:var(--cw);border: 1px solid var(--cb);position:absolute;z-index:4000;}
 .size-right{right:-5px;top:50%;cursor:ew-resize;transform:translateY(-50%);}
-.size-right:before{position:absolute;content:'';top:-8px;right:-16px;left:0px;bottom:-8px;}
+.size-right:before{position:absolute;content:'';top:-8px;right:-12px;left:-4px;bottom:-8px;}
 .top-right{right:-5px;top:-5px;cursor:nesw-resize;}
-.top-right:before{position:absolute;content:'';top:-16px;right:-16px;left:0px;bottom:0px;}
+.top-right:before{position:absolute;content:'';top:-12px;right:-12px;left:-4px;bottom:-4px;}
 .top-left{left:-5px;top:-5px;cursor:nwse-resize;}
-.top-left:before{position:absolute;content:'';top:-16px;right:0px;left:-16px;bottom:0px;}
+.top-left:before{position:absolute;content:'';top:-12px;right:-4px;left:-12px;bottom:-4px;}
 .size-left{left:-5px;top:50%;cursor:ew-resize;transform:translateY(-50%);}
-.size-left:before{position:absolute;content:'';top:-8px;right:0px;left:-16px;bottom:-8px;}
+.size-left:before{position:absolute;content:'';top:-8px;right:-4px;left:-12px;bottom:-8px;}
 .bottom-left{left:-5px;bottom:-5px;cursor:nesw-resize;}
-.bottom-left:before{position:absolute;content:'';top:0px;right:0px;left:-16px;bottom:-16px;}
+.bottom-left:before{position:absolute;content:'';top:-4px;right:-4px;left:-12px;bottom:-12px;}
 .size-bottom{left:50%;bottom:-5px;cursor:ns-resize;transform:translateX(-50%);}
-.size-bottom:before{position:absolute;content:'';top:0px;right:-8px;left:-8px;bottom:-16px;}
+.size-bottom:before{position:absolute;content:'';top:-4px;right:-8px;left:-8px;bottom:-12px;}
 .bottom-right{right:-5px;bottom:-5px;cursor:nwse-resize;}
-.bottom-right:before{position:absolute;content:'';top:0px;right:-16px;left:0px;bottom:-16px;}
+.bottom-right:before{position:absolute;content:'';top:-4px;right:-12px;left:-4px;bottom:-12px;}
 .size-top{left:50%;top:-5px;cursor:ns-resize;transform:translateX(-50%);}
-.size-top:before{position:absolute;content:'';bottom:0px;right:-8px;left:-8px;top:-16px;}
+.size-top:before{position:absolute;content:'';bottom:-4px;right:-8px;left:-8px;top:-12px;}
 .rotate {left:50%;top:-42px;cursor:crosshair;transform:translateX(-50%);}
 .rotate:before{position:absolute;content:'';bottom:-8px;right:-8px;left:-8px;top:-8px;}
 .proportion_c{filter:var(--ft);content:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 512'%3e%3cg fill='none' stroke='%23000' stroke-width='9' stroke-linejoin='round'%3e%3cpath d='M128,188a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V200A12,12,0,0,1,128,188Z M128,268a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V280A12,12,0,0,1,128,268Z M128,283V232'/%3e%3ccircle cx='16' cy='85' r='12'/%3e%3ccircle cx='16' cy='428' r='12'/%3e%3c/g%3e%3c/svg%3e");height:64px;width:32px;background:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;}
@@ -332,34 +341,34 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 }
 .align:checked {background-color:var(--cb);}
 .switchbox {
-  position:relative;
-  display:inline-block;
-  width:32px;
-  height:18px;
-  margin-bottom:3px;
+    position:relative;
+    display:inline-block;
+    width:32px;
+    height:18px;
+    margin-bottom:3px;
 }
 .switchbox input{opacity:0;width:0;height:0;}
 .toggle{
-  position:absolute;
-  cursor:pointer;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background-color:var(--cw);
-  transition:0.1s;
-  border-radius:12px;
+    position:absolute;
+    cursor:pointer;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:var(--cw);
+    transition:0.1s;
+    border-radius:12px;
 }
 .toggle:before{
-  position:absolute;
-  content:"";
-  height:14px;
-  width:14px;
-  left:2px;
-  bottom:2px;
-  background-color:#fff;
-  transition:0.1s;
-  border-radius:12px;
+    position:absolute;
+    content:"";
+    height:14px;
+    width:14px;
+    left:2px;
+    bottom:2px;
+    background-color:#fff;
+    transition:0.1s;
+    border-radius:12px;
 }
 input:checked+.toggle{background-color:var(--cb);}
 input:checked+.toggle:before{transform:translateX(14px);}
@@ -483,10 +492,11 @@ input:checked+.toggle:before{transform:translateX(14px);}
                         </tbody>
                         </table>
                     </div>
+                    <div class="scene_close" onclick='saveResize();scen_compres(scen_data[0],scen_data[1],scen_data[2]);scen_edit_update(false);'><div class="icon button_menu icon_undo"></div></div>
                 </td>
-                    <td id='scrnr_title' height="40px" align='center' style="background-color:var(--wn);width:286px;" class='namber'>block name (scene:1 | dialog:1)</td></tr>
+                    <td id='scrnr_title' height="40px" align='center' style="background-color:var(--wn);width:286px;" class='namber set_layout_panel'>block name (scene:1 | dialog:1)</td></tr>
                 <tr>
-                    <td style="background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);"><div id='scen_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>
+                    <td style="background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);" class='set_layout_panel'><div id='scen_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>
                         <table onclick="block_open('set_preview');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Preview</td></tr></tbody></table>
                         <div class="set_panel" id="set_preview" style="width:100%;display:block;">
                         <table id="set_layout" style="width:100%;"><tbody>
@@ -713,7 +723,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                     </div></td>
                 </tr>
                 <tr>
-                    <td height="40px" align='center' style="background-color:var(--wn);" class='button_menu'><table class='button_menu' width='100%' height="100%" onclick='saveResize();scen_compres(scen_data[0],scen_data[1],scen_data[2]);scen_edit_update(false);'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td>
+                    <td height="40px" align='center' style="background-color:var(--wn);" class='button_menu set_layout_panel'><table class='button_menu' width='100%' height="100%" onclick='saveResize();scen_compres(scen_data[0],scen_data[1],scen_data[2]);scen_edit_update(false);'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td>
                 </tr>
             </tbody>
         </table>
@@ -1158,15 +1168,12 @@ function creaton_line(id,go,chapter){
 }
 new_novel()
 function save_file(){
-    var n="new";
-    var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(story_script));
+    var n;
     if(story_script.parameters.title){
-        if(story_script.parameters.title.en){n=story_script.parameters.title.en}
-        else if(story_script.parameters.title[story_script.parameters.languares[0]]){n=story_script.parameters.title[story_script.parameters.languares[0]]}
-        else{n=story_script.parameters.title}
+        n=(story_script.parameters.title.en)?story_script.parameters.title.en:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
         n=correct_name(String(n).toLowerCase());
     }else{n="new_novel";}
-    download_files(n+'.json',dataStr)
+    download_files(n+'.json',"data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(story_script)))
 }
 function download_files(n,c){
     var dlAnchorElem=document.getElementById('downloadAnchorElem');
@@ -2028,9 +2035,10 @@ function ho_edit(){
         +"<td width='42px' class='icon button_menu icon_scale' onclick='ho_scale()'></td>"
         +"<td width='42px' class='icon button_menu icon_minus' onclick='ho_scale(-0.05)'></td>"
         +"<td width='42px' class='icon button_menu icon_play'  onclick='play_novel(scen_data[0],true)' style='border-radius:0 20px 20px 0;'></td>"
-    +"</tr></tbody></table></div></div></td>"
-    +"<td style='width:286px;height:40px;background-color:var(--wn);' class='namber' align='center'>"+scen_data[0]+" ( scene: "+scen_data[1]+" "+plugins_list[arr_n].name+" )</td></tr><tr>"
-    +"<td id='ho_content' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div id='hidden_objects_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>"
+    +"</tr></tbody></table></div>"
+    +"<div class='scene_close' onclick='ho_close();'><div class='icon button_menu icon_undo'></div></div> </div></td>"
+    +"<td style='width:286px;height:40px;background-color:var(--wn);' class='namber set_layout_panel' align='center'>"+scen_data[0]+" ( scene: "+scen_data[1]+" "+plugins_list[arr_n].name+" )</td></tr><tr>"
+    +"<td id='ho_content' class='set_layout_panel' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div id='hidden_objects_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>"
     //label
     if(arr_n=="hidden_objects"){
     tool+="<table onclick='block_open(\"ho_label\");' class='set_title' height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Labels</td></tr></tbody></table>"
@@ -2199,7 +2207,7 @@ function ho_edit(){
     +"</div>"
     +"<div id='menu_objects' align='center' style='z-index:10040;position:absolute;left:0;top:0;visibility:hidden;width:190px;'></div>"
     +"</div></td></tr><tr>"
-    +"<td height='40px' style='background-color:var(--wn);' style='background-color:var(--wn);' class='button_menu'><table class='button_menu' width='100%' height='100%' onclick='ho_close();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td></tr></tbody></table>"
+    +"<td height='40px' style='background-color:var(--wn);' style='background-color:var(--wn);' class='button_menu set_layout_panel'><table class='button_menu' width='100%' height='100%' onclick='ho_close();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td></tr></tbody></table>"
     open_tool(tool,"ho_update()");ho_update();
     tool=document.getElementById('ho_preview');
     adden_scroll(tool,document.getElementById('ho_canvas'));tool.scrollTop=200;tool.scrollLeft=240;
@@ -2622,7 +2630,7 @@ function dialog_text_edit(){
 	+"<table width='100%'><tbody><tr><td width='80px' align='center'>language:</td>"
 	+"<td width='40px'><select id='text_la' onchange='"+((n)?"name_text.value=((story_script.parameters.characters[copy_arr.name][this.value])?story_script.parameters.characters[copy_arr.name][this.value]:\"\")":"name_text.value=((copy_arr.name[this.value])?copy_arr.name[this.value]:\"\")")+";dialogtext.value=((copy_arr.text[this.value])?copy_arr.text[this.value]:\"\");text_chars.innerHTML=dialogtext.value.length;text_words.innerHTML=dialogtext.value.split(reg).length-1' style='height:40px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:0'>"+project_languares(languare)+"</select></td>"
 	+"<td width='90px' align='center'>symbols:</td><td width='90px' align='left' id='text_chars'>"+copy_arr[arr_n][languare].length+"</td><td width='70px' align='center'>words:</td><td width='90px' align='left' id='text_words'>"+(copy_arr[arr_n][languare].split(reg).length-1)+"</td><td></td></tr></tbody></table><table width='100%'><tbody><tr>"
-	+"<td><textarea id='dialogtext' oninput='text_chars.innerHTML=this.value.length;text_words.innerHTML=this.value.split(reg).length-1;copy_arr[arr_n][text_la.value]=this.value;' class='input_text' style='font-family:"+((story_script.parameters.text_panel.font_family)?story_script.parameters.text_panel.font_family:story_script.parameters.font)+";white-space:pre-wrap;resize:none;padding:4px;-moz-box-sizing:border-box;box-sizing:border-box;height:calc(90vh - 256px);width:100%;min-height:92px;border:1px solid var(--cb);'>"+((copy_arr[arr_n][languare].length>0)?copy_arr[arr_n][languare]:"")+"</textarea></td>"
+	+"<td><textarea id='dialogtext' oninput='text_chars.innerHTML=this.value.length;text_words.innerHTML=this.value.split(reg).length-1;copy_arr[arr_n][text_la.value]=this.value;' class='input_text' style='white-space:pre-wrap;resize:none;padding:4px;-moz-box-sizing:border-box;box-sizing:border-box;height:calc(90vh - 256px);width:100%;min-height:92px;border:1px solid var(--cb);'>"+((copy_arr[arr_n][languare].length>0)?copy_arr[arr_n][languare]:"")+"</textarea></td>"
 	+"<td style='max-width:286px;width:45%;' valign='top'><div style='width:100%;height:calc(90vh - 256px);overflow-x:hidden;overflow-y:auto;'><table width='100%'><tbody>"
 	+"<tr><td width='80px' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);' colspan='3'>Text panel settings</td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Text color</td><td><input id='text_color' class='input_text' value='"+((copy_arr.color_text)?copy_arr.color_text:"")+"' type='text'></td>"
@@ -4466,7 +4474,6 @@ function text_export(){
         +'</td></tr></tbody></table>'
         +'<table class="button" style="width:312px;margin:8px 8px;cursor:pointer;" onclick="modal_window(\'close\');csv_export(\'csv\');"><tbody><tr><td width="48px" height="48px" class="icon icon_new"> </td><td align="left"><div style="width:264px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">'+texts.tutorials[11].en+'</div></td></tr></tbody></table>'
         +'<table class="button" style="width:312px;margin:8px 8px;cursor:pointer;" onclick="modal_window(\'close\');csv_export(\'tsv\');"><tbody><tr><td width="48px" height="48px" class="icon icon_new"> </td><td align="left"><div style="width:264px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">'+texts.tutorials[12].en+'</div></td></tr></tbody></table>'
-        +'<table class="button" style="width:312px;margin:8px 8px;cursor:pointer;" onclick="modal_window(\'close\');csv_export(\'xls\');"><tbody><tr><td width="48px" height="48px" class="icon icon_new"> </td><td align="left"><div style="width:264px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">XLS Microsoft Office Excel</div></td></tr></tbody></table>'
         +"</div>"
     modal_window("open",html);
 }
@@ -4612,6 +4619,7 @@ function objSelect(id,r){
     r.appendChild(objFocus);
     var c,e=r.parentNode.getElementsByClassName("objSelect");
     for(c=0;c<e.length;c++){if(e[c]){e[c].style.pointerEvents="none"}}
+    tue_text_block.style.pointerEvents="none";
 }	  
 function make_resizable(s,f){
     const resizers=s.getElementsByClassName("resizer");
@@ -5071,7 +5079,7 @@ function translation_edit(){
     +"<table id='translation_input'><tbody></tbody></table><div id='translation_slider'></div>"
     +"</div></td></tr><tr><td colspan='3' style='height:40px;'><table style='width:100%'><tbody><tr><td>"
     +"<input type='text' oninput='translation_search(this.value.toUpperCase());' class='search' style='max-width:256px;width:50%;padding-left:8px;border-left:0;' placeholder='Search text'></td><td align='right'>"
-    +"<table class='big_button' style='max-width:256px;width:100%;margin:4px;' onclick=\"document.removeEventListener('touchend', slideFinish, false);document.removeEventListener('mouseup', slideFinish, false);open_tool();update_novel();\"><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Back </td><td width='42px'></td></tr></tbody></table></td></tr></tbody></table>"
+    +"<table class='big_button' style='max-width:256px;width:100%;margin:4px;' onclick=\"document.removeEventListener('touchend', slideFinish, false);document.removeEventListener('mouseup', slideFinish, false);open_tool();update_novel();\"><tbody><tr><td width='42px' class='icon icon_undo'></td><td align='center'>Back</td><td width='42px'></td></tr></tbody></table></td></tr></tbody></table>"
     +"</td></tr></tbody></table>"
     open_tool(tool,"");translation_texts();scene_screen=false;
 }

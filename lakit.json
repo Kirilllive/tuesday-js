@@ -217,14 +217,6 @@
 		}
 	],
 	[
-		"title='Save JSON script project'",
-		{
-			"ru": "title='Сохранить JSON проект'",
-			"ja": "title='スクリプトを記述したJSONファイルを保存'",
-			"es": "title='Guardar script del projecto JSON'"
-		}
-	],
-	[
 		"placeholder='path to audio file'",
 		{
 			"ru": "placeholder='путь к аудио-файлу'",
@@ -382,6 +374,14 @@
 			"ru": "title='Диалоги и тексты'",
 			"ja": "title='対話とテキスト'",
 			"es": "title='Diálogos y texto'"
+		}
+	],
+	[
+		"Save JSON script project",
+		{
+			"ru": "Сохранить JSON проект",
+			"ja": "スクリプトを記述したJSONファイルを保存",
+			"es": "Guardar script del projecto JSON"
 		}
 	],
 	[
@@ -2122,6 +2122,12 @@
 			"ru": "Нет сцены",
 			"ja": "シーンがありません",
 			"es": "No hay escena"
+		}
+	],
+	[
+		">Save as<",
+		{
+			"ru": ">Сохранить как<"
 		}
 	],
 	[
