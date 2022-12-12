@@ -307,10 +307,10 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 .set_title{background-color:var(--cb);cursor:pointer;}
 .input_color{cursor:pointer;border:none;height:100%;width:100%;opacity: 0;}
 .show_color{background-color:var(--cb);border-radius:50%;width:26px;height:26px;}
-.drag{transform-origin:top left;box-sizing:border-box;width:100px;height:100px;position:absolute;top:100px;left:100px;cursor:move;border: 1px dashed var(--cb);}
+.drag{transform-origin:top left;box-sizing:border-box;width:100px;height:100px;position:absolute;top:100px;left:100px;cursor:move;border: 1px solid var(--cb);outline: dashed 1px var(--cl);outline-offset: -1px;}
 .resizer{width:6px;height:6px;position:absolute;z-index:4000;}
-.top-right,.top-left,.bottom-left,.bottom-right,.rotate{border-radius:50%;background:var(--cw);border: 1px solid var(--cb);}
-.size-right:after,.size-left:after,.size-bottom:after,.size-top:after{content:'';width:6px;height:6px;position:absolute;transform:translateY(-50%) translateX(-50%);top:50%;left:50%;border-radius:50%;background:var(--cw);border: 1px solid var(--cb);}
+.top-right,.top-left,.bottom-left,.bottom-right,.rotate{border-radius:50%;background:#fff;border: 1px solid var(--cl);}
+.size-right:after,.size-left:after,.size-bottom:after,.size-top:after{content:'';width:6px;height:6px;position:absolute;transform:translateY(-50%) translateX(-50%);top:50%;left:50%;border-radius:50%;background:#fff;border: 1px solid var(--cb);}
 .size-right{right:-4px;top:50%;cursor:ew-resize;height:calc(100% - 32px);transform:translateY(-50%);}
 .size-right:before{position:absolute;content:'';top:-8px;right:-12px;left:-4px;bottom:-8px;}
 .top-right{right:-5px;top:-5px;cursor:nesw-resize;}
@@ -453,13 +453,13 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <div id='scene_layout'><div class="offselect" onclick='if(objFocus){scene_scroll=false;saveResize()};'></div>
                                 <div id='resizers' class='drag' style='visibility:hidden;'>
                                     <div class='resizer size-right'></div>
-                                    <div class='resizer top-right'></div>
-                                    <div class='resizer size-top'></div>
-                                    <div class='resizer top-left'></div>
                                     <div class='resizer size-left'></div>
-                                    <div class='resizer bottom-left'></div>
                                     <div class='resizer size-bottom'></div>
+                                    <div class='resizer size-top'></div>
+                                    <div class='resizer top-right'></div>
+                                    <div class='resizer top-left'></div>
                                     <div class='resizer bottom-right'></div>
+                                    <div class='resizer bottom-left'></div>
                                     <div class='resizer rotate'></div>
                                 </div>
                             <table id="tue_text_block" align="center" onclick='if(objFocus){scene_scroll=false;saveResize()};'>
@@ -501,6 +501,12 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 <select id='ratio_screen' oninput='setup_editor.preview[1]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));if(objFocus){scene_scroll=false;saveResize()};preview_size(false);video_size();' style='width:100%;'>
                                       <option value=true selected>landscape</option>
                                       <option value=false>Portrait</option>
+                                </select>
+                            </td></tr>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Backstage</td><td style='padding-right:8px;'>
+                               <select id='off_screen' oninput='setup_editor.preview[3]=this.value;scene_layout.style.overflow=(this.value==1)?"visible":"hidden";localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' style='width:100%;'>
+                                    <option value="0">Hidden</option>
+                                    <option value="1">Show</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;'>
@@ -833,7 +839,7 @@ let texts={"tutorials":[{
         "en":"the limit of the cursor size is 128×128px. Larger cursor images are ignored. However, you should limit yourself to the size 32×32 for maximum compatibility with operating systems and platforms."
         }
 ]}
-let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0],'ferst':true,'pvw':[640,480],'lines_anim':true};
+let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0],'ferst':true,'pvw':[640,480],'lines_anim':true};
 let buf=['',''],back_up=[];
 if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"))};
 if(setup_editor.ferst){
@@ -2362,7 +2368,7 @@ function adden_sizer(id,f){
         r.style='visibility:hidden;';
         r.id=id.id+"_sizer";
         r.className="drag";
-        r.innerHTML="<div class='resizer size-right'></div><div class='resizer top-right'></div><div class='resizer size-top'></div><div class='resizer top-left'></div><div class='resizer size-left'></div><div class='resizer bottom-left'></div><div class='resizer size-bottom'></div><div class='resizer bottom-right'></div><div class='resizer rotate'></div>";
+        r.innerHTML="<div class='resizer size-right'></div><div class='resizer size-top'></div><div class='resizer size-left'></div><div class='resizer size-bottom'></div><div class='resizer top-right'></div><div class='resizer top-left'></div><div class='resizer bottom-left'></div><div class='resizer bottom-right'></div><div class='resizer rotate'></div>";
         id.appendChild(r);
     }make_resizable(r,f);
 }
@@ -2986,6 +2992,8 @@ function scen_editor(block,i,n){
     arr_s=story_script[block][i].dialogs[n-1];
     scen_data=[block,i,n];
     p_width.value=setup_editor.preview[0];
+    scene_layout.style.overflow=(setup_editor.preview[3]&&setup_editor.preview[3]==1)?"visible":"hidden";
+    off_screen.selectedIndex=setup_editor.preview[3];
     aspect_ratio.selectedIndex=(setup_editor.preview[0]==76)?1:(setup_editor.preview[0]==56)?2:(setup_editor.preview[0]==100)?0:-1;
     ratio_screen.selectedIndex=setup_editor.preview[1];
     if(setup_editor.preview[2]){screen_size.selectedIndex=setup_editor.preview[2];}
@@ -3974,8 +3982,8 @@ function button_panel_edit(b){
 }
 function preview_size(scale){
     var rows=document.getElementById('set_layout').getElementsByTagName('tbody')[0].rows
-    if(screen_size.selectedIndex==1){rows[2].style.display='none';rows[3].style.display='none';}
-    else{rows[2].style.display='table-row';rows[3].style.display='table-row';}
+    if(screen_size.selectedIndex==1){rows[3].style.display='none';rows[4].style.display='none';}
+    else{rows[3].style.display='table-row';rows[4].style.display='table-row';}
     if(screen_size.value==0){
         screen_preview.style.backgroundSize="64px"
         screen_preview.style.width="100%";
