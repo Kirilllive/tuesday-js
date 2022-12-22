@@ -917,7 +917,7 @@ function open_file(name){
     for(var f=0;f<project_files.length;f++){if(project_files[f][0]==name){name=(project_files[f][1]);break;}} return name;
 }
 function new_novel(){
-    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"position":[],"color":"#efefff","color_text":"#000","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10"},"name_panel":{"size":["222px","48px"],"position":["0","0","-48px","0"],"indent_text":"8px","size_text":"18px","color_text":"#000","align":["flex-start","center"]},"title":{"en":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["2.5%","0","0","32px"],"size":["38px","38px"],"color":"","color_text":"#000","size_text":"28px","text":"<"},{"name":"tue_next","style":"border-radius:26px;","position":["0","2.5%","0","32px"],"size":["38px","38px"],"color":"","color_text":"#000","size_text":"28px","text":">"}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{}},"blocks":{}};
+    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"position":[],"color":"rgba(200,200,200,0.6)","color_text":"#000","indent_text":"8px","indent_bottom":"32px","dialog_speed":"10"},"name_panel":{"size":["","32px"],"position":["0","0","-32px","0"],"indent_text":"0 8px","color_text":"#fff","align":["flex-start","center"],"color":"#000"},"title":{"en":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","position":["2.5%",0,0,"32px"],"size":["25%","25%"],"color_text":"#000","size_text":"28px","text":{"en":"<"},"hotspot":["0%","0%"],"align":["flex-start","flex-end"],"indent_text":"8px"},{"name":"tue_next","position":[0,"2.5%",0,"32px"],"size":["25%","25%"],"color_text":"#000","size_text":"28px","text":{"en":">"},"hotspot":["0%","0%"],"align":["flex-end","flex-end"],"indent_text":"8px"}],"autosave":false,"font":"Arial","font_size":"18px"},"blocks":{}};
     update_novel();
     state_num=0;back_up=[];state_save();
 }
@@ -2076,11 +2076,11 @@ function ho_edit(){
             +"<option "+((p.label_find.no_del_item)?'selected':'')+" value='art'>No</option>"
         +"</select></td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Default color label</td><td style='width:40px;' align='center'><div class='show_color' id='ho_lcdp' "+((p.label.color)?'style="background-color:'+p.label.color+';"':"")+"></div></td><td style='padding-right:8px;'>"
-        +"<input id='ho_lcd' class='input_text' onchange='story_script.parameters.hidden_objects.label.color=this.value;ho_lcp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label.color:"")+"' style='width:100%;'>"
+        +"<input id='ho_lcd' class='input_text' onchange='story_script.parameters.hidden_objects.label.color=this.value;ho_lcdp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label.color:"")+"' style='width:100%;'>"
         +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_lcd\",ho_lcd.value)'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Find color label</td><td style='width:40px;' align='center'><div class='show_color' id='ho_lcfp' "+((p.label_find.color)?'style="background-color:'+p.label_find.color+';"':"")+"></div></td><td style='padding-right:8px;'>"
-        +"<input id='ho_lcf' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.color=this.value;ho_lcp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label_find.color:"")+"' style='width:100%;'>"
+        +"<input id='ho_lcf' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.color=this.value;ho_lcfp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label_find.color:"")+"' style='width:100%;'>"
         +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_lcf\",ho_lcf.value)'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Tip label</td><td style='padding-right:8px;' colspan='3'>"
@@ -2111,7 +2111,7 @@ function ho_edit(){
         +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_lc\",ho_lc.value)'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Find color text</td><td style='width:40px;' align='center'><div class='show_color' id='ho_fcp' "+((p.label_find.color_text)?'style="background-color:'+p.label_find.color_text+';"':"")+"></div></td><td style='padding-right:8px;'>"
-        +"<input id='ho_fc' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.color=this.value;ho_lcp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label_find.color_text:"")+"' style='width:100%;'>"
+        +"<input id='ho_fc' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.color=this.value;ho_fcp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label_find.color_text:"")+"' style='width:100%;'>"
         +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_fc\",ho_fc.value)'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Width art</td><td style='padding-right:8px;' colspan='3'>"
@@ -4170,13 +4170,13 @@ function setup(){
         "<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>Project</td><td width='100%' valign='top' rowspan='6' style='position:relative;'>"+
         //
         "<div id='blank_0' style='visibility:visible;' class='set_blank'><table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
-        "<tr><td align='right' style='white-space:nowrap;'>start block </td><td align='left' colspan='2'><select id='launch_story'>"+((block_list)?block_list :'')+"</select></td></tr>"+
+        "<tr><td align='right' style='white-space:nowrap;'>start block </td><td align='left'><select id='launch_story'>"+((block_list)?block_list :'')+"</select></td></tr>"+
         ((story_script.parameters.languares.length>1)?"<tr><td align='right' style='white-space:nowrap;'>default language </td><td align='left' colspan='2'><select id='default_language' class='input_text'>"+project_languares(story_script.parameters.languares[0])+"</select></td></tr>":"")+
         "<tr><td align='right' style='white-space:nowrap;'>working folder </td><td align='left'><input id='project_foler' class='input_text' value='"+((wf)?wf:"")+"' onclick='json_file.value=null;load_new=true;json_file.click();' type='text'></td><td id='l_icon' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='json_file.value=null;load_new=true;json_file.click();'></td></tr>"+
         "<tr><td align='right' style='white-space:nowrap;'>css styles file </td><td align='left'><input id='style_file' class='input_text' value='"+((story_script.parameters.style_file)?story_script.parameters.style_file:'')+"' type='text'></td><td id='l_css' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\".css\",\"style_file\",0,\"story_script.parameters.style_file\")'></td></tr>"+
-        "<tr><td align='right' style='white-space:nowrap;'>mobile scale </td><td align='left' colspan='2'><input id='mobile_scale' class='input_text' onchange='this.value=correct_value(this.value,true)' value='"+((story_script.parameters.scale)?story_script.parameters.scale:1)+"' type='text'></td></tr>"+
-        "<tr><td align='right' style='white-space:nowrap;'>dialog speed </td><td align='left' colspan='2'><input id='dialog_speed_s' onchange='this.value=parseInt(correct_value(this.value,true))' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:'')+"' type='text'></td></tr><tr><td align='right'>font family </td><td align='left' colspan='2'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr>"+
-        "<tr><td align='right' style='white-space:nowrap;'>font size </td><td align='left' colspan='2'><input id='font_size' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size:'')+"' type='text'></td></tr>"+
+        "<tr><td align='right' style='white-space:nowrap;'>mobile scale </td><td align='left'><input id='mobile_scale' class='input_text' onchange='this.value=correct_value(this.value,true)' value='"+((story_script.parameters.scale)?story_script.parameters.scale:1)+"' type='text'></td></tr>"+
+        "<tr><td align='right' style='white-space:nowrap;'>dialog speed </td><td align='left'><input id='dialog_speed_s' onchange='this.value=parseInt(correct_value(this.value,true))' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:'')+"' type='text'></td></tr><tr><td align='right'>font family </td><td align='left'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr>"+
+        "<tr><td align='right' style='white-space:nowrap;'>font size </td><td align='left'><input id='font_size' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size:'')+"' type='text'></td></tr>"+
         "<tr><td align='right' style='white-space:nowrap;'>icon </td><td align='left'><input id='icon' class='input_text' value='"+((story_script.parameters.icon)?story_script.parameters.icon :'')+"' type='text'></td><td id='l_icon' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\"img\",\"icon\",0,\"story_script.parameters.icon\")'></td></tr>"+
         "<tr><td height='20px' style='white-space:nowrap;'></td><td></td></tr>"+
         "<tr><td align='right' style='white-space:nowrap;'>Auto save </td><td align='left' style='padding-top:4px;width:60%;'><table style='width:100%'><tbody><tr><td><label class='switchbox'><input type='checkbox' id='autosave' "+((story_script.parameters.autosave)?'checked':'')+"><span class='toggle round'></span></label>"+
@@ -4264,19 +4264,19 @@ function chars_list(){
         var arr_s=story_script.parameters.characters
         for(var i=0;i<Object.keys(arr_s).length;i++){
             chars_list+="<table class='ui_buttons dialog' style='width:calc(100% - 16px);margin:8px;border-spacing:4px;border-collapse:separate;'><tbody>"
-            +"<tr><td colspan='2' align='center'><table style='height:22px;width:100%;'><tbody><tr>"
+            +"<tr><td colspan='3' align='center'><table style='height:22px;width:100%;'><tbody><tr>"
                 +"<td width='20px'></td>"
                 +"<td width='24px'></td>"
                 +"<td></td>"
                 +"<td width='32px' class='icon_m icon_copu' title='duplicate' onclick='story_script.parameters.characters."+Object.keys(arr_s)[i]+"_copu=JSON.parse(JSON.stringify(story_script.parameters.characters."+Object.keys(arr_s)[i]+"));chars_list_update();'></td>"
                 +"<td width='32px' class='icon icon_del' title='delete' style='cursor:pointer;' onclick='delete story_script.parameters.characters."+Object.keys(arr_s)[i]+";chars_list_update();'></td>"
             +"</tr></tbody></table></td></tr>"
-            for(var l=0;l<story_script.parameters.languares.length;l++){chars_list+="<tr><td align='right'>"+story_script.parameters.languares[l]+"</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+"."+story_script.parameters.languares[l]+"=this.value' value='"+((arr_s[Object.keys(arr_s)[i]][story_script.parameters.languares[l]])?arr_s[Object.keys(arr_s)[i]][story_script.parameters.languares[l]]:"")+"' type='text'></td></tr>"}
-            chars_list+="<tr><td align='right'>Class name</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".className=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].className)?arr_s[Object.keys(arr_s)[i]].className:"")+"' type='text'></td></tr>"
-            +"<tr><td align='right'>Style</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".style=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].style)?arr_s[Object.keys(arr_s)[i]].style:"")+"' type='text'></td></tr>"
-            +"<tr><td align='right'>Color</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".color=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].color)?arr_s[Object.keys(arr_s)[i]].color:"")+"' type='text'></td></tr>"
-            +"<tr><td align='right'>Color text</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".color_text=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].color_text)?arr_s[Object.keys(arr_s)[i]].color_text:"")+"' type='text'></td></tr>"
-            +"<tr><td align='right'>Art</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".art=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].art)?arr_s[Object.keys(arr_s)[i]].art:"")+"' type='text'></td></tr>"
+            for(var l=0;l<story_script.parameters.languares.length;l++){chars_list+="<tr><td align='right' style='white-space:nowrap;width:30px;'>"+story_script.parameters.languares[l]+"</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+"."+story_script.parameters.languares[l]+"=this.value' value='"+((arr_s[Object.keys(arr_s)[i]][story_script.parameters.languares[l]])?arr_s[Object.keys(arr_s)[i]][story_script.parameters.languares[l]]:"")+"' type='text'></td><td width='20px'></td></tr>"}
+            chars_list+="<tr><td align='right' style='white-space:nowrap;'>Color panel</td><td><input id='color_panel"+Object.keys(arr_s)[i]+"' class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".color=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].color)?arr_s[Object.keys(arr_s)[i]].color:"")+"' type='text'></td><td style='width:40px;cursor:pointer;' class='icon icon_color' onclick='edit_color(\"color_panel"+Object.keys(arr_s)[i]+"\",color_panel"+Object.keys(arr_s)[i]+".value)'></td></tr>"
+            +"<tr><td align='right' style='white-space:nowrap;'>Color text</td><td><input id='color_text"+Object.keys(arr_s)[i]+"' class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".color_text=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].color_text)?arr_s[Object.keys(arr_s)[i]].color_text:"")+"' type='text'></td><td style='width:40px;cursor:pointer;' class='icon icon_color' onclick='edit_color(\"color_text"+Object.keys(arr_s)[i]+"\",color_text"+Object.keys(arr_s)[i]+".value)'></td></tr>"
+            +"<tr><td align='right' style='white-space:nowrap;'>Art panel</td><td><input id='art_panel"+Object.keys(arr_s)[i]+"' class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".art=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].art)?arr_s[Object.keys(arr_s)[i]].art:"")+"' type='text'></td><td style=''width:40px;cursor:pointer;' class='icon icon_load' onclick=\"file_catalog('','img','art_panel"+Object.keys(arr_s)[i]+"','','story_script.parameters.characters."+Object.keys(arr_s)[i]+".art')\"></td></tr>"
+            +"<tr><td align='right' style='white-space:nowrap;'>Style panel</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".style=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].style)?arr_s[Object.keys(arr_s)[i]].style:"")+"' type='text'></td><td width='20px'></td></tr>"
+            +"<tr><td align='right' style='white-space:nowrap;'>Class name</td><td><input class='input_text' onchange='story_script.parameters.characters."+Object.keys(arr_s)[i]+".className=this.value' value='"+((arr_s[Object.keys(arr_s)[i]].className)?arr_s[Object.keys(arr_s)[i]].className:"")+"' type='text'></td><td width='20px'></td></tr>"
             +"</tbody></table>"
         }
     } return chars_list+"<div onclick='story_script.parameters.characters.char"+Object.keys(story_script.parameters.characters).length+"={};chars_list_update();' class='icon icon_add' style='margin:16px 0 0 45%;height:26px;width:26px;cursor:pointer;'></div>";
@@ -4973,16 +4973,17 @@ function apply_color(n){
     else if(n=='choice'){arr_l[arr_n[0]]=c;choice_panel_update(arr_n[1],arr_n[2],arr_n[3]);}
     else{
         document.getElementById(n).value=c;
+        document.getElementById(n).onchange();
         if(n=='scene_color'){scene_bg_preview.style.backgroundColor=c}
-        else if(n=='color_t'){story_script.parameters.text_panel.color=c;color_t.value=c;color_t_s.style.backgroundColor=c;scen_edit_update(true);state_save()}
-        else if(n=='color_text'){story_script.parameters.text_panel.color_text=c;color_text.value=c;color_text_s.style.backgroundColor=c;scen_edit_update(true);state_save()}
-        else if(n=='n_color'){story_script.parameters.name_panel.color=c;n_color.value=c;n_color_s.style.backgroundColor=c;scen_edit_update(true);state_save()}
-        else if(n=='n_color_text'){story_script.parameters.name_panel.color_text=c;n_color_text.value=c;n_color_text_s.style.backgroundColor=c;scen_edit_update(true);state_save()}
-        else if(n=='ho_c'){arr_l.hidden_objects.color=c;ho_c.value=c;ho_cp.style.backgroundColor=c;ho_room.style.backgroundColor=c;}
-        else if(n=='ho_lc'){story_script.parameters.hidden_objects.label.color_text=c;ho_lc.value=c;ho_lcp.style.backgroundColor=c;}
-        else if(n=='ho_fc'){story_script.parameters.hidden_objects.label_find.color_text=c;ho_fc.value=c;ho_fcp.style.backgroundColor=c;}
-        else if(n=='ho_lcd'){story_script.parameters.hidden_objects.label.color=c;ho_lcd.value=c;ho_lcdp.style.backgroundColor=c;}
-        else if(n=='ho_lcf'){story_script.parameters.hidden_objects.label_find.color=c;ho_lcf.value=c;ho_lcfp.style.backgroundColor=c;}
+        //else if(n=='color_t'){story_script.parameters.text_panel.color=c;color_t.value=c;color_t_s.style.backgroundColor=c;scen_edit_update(true);state_save()}
+        //else if(n=='color_text'){story_script.parameters.text_panel.color_text=c;color_text.value=c;color_text_s.style.backgroundColor=c;scen_edit_update(true);state_save()}
+        //else if(n=='n_color'){story_script.parameters.name_panel.color=c;n_color.value=c;n_color_s.style.backgroundColor=c;scen_edit_update(true);state_save()}
+        //else if(n=='n_color_text'){story_script.parameters.name_panel.color_text=c;n_color_text.value=c;n_color_text_s.style.backgroundColor=c;scen_edit_update(true);state_save()}
+        //else if(n=='ho_c'){arr_l.hidden_objects.color=c;ho_c.value=c;ho_cp.style.backgroundColor=c;ho_room.style.backgroundColor=c;}
+        //else if(n=='ho_lc'){story_script.parameters.hidden_objects.label.color_text=c;ho_lc.value=c;ho_lcp.style.backgroundColor=c;}
+        //else if(n=='ho_fc'){story_script.parameters.hidden_objects.label_find.color_text=c;ho_fc.value=c;ho_fcp.style.backgroundColor=c;}
+        //else if(n=='ho_lcd'){story_script.parameters.hidden_objects.label.color=c;ho_lcd.value=c;ho_lcdp.style.backgroundColor=c;}
+        //else if(n=='ho_lcf'){story_script.parameters.hidden_objects.label_find.color=c;ho_lcf.value=c;ho_lcfp.style.backgroundColor=c;}
         else {var e=document.getElementById(n);e.value=c;}
     }
 }
