@@ -176,6 +176,24 @@ body {
 .title{
     font-size: 20px;
 }
+.bottom_m{
+    width:220px;height:48px;border-radius:8px;background-color:rgba(110,95,165,0.5);
+    transition-duration: 0.4s;
+}
+.bottom_m:hover {
+    transition-duration: 0.2s;
+    background-color:rgba(110,95,165,1);
+}
+.platform{
+    display:grid;
+    align-items:center;
+    justify-content:center;
+    width:100%;height:100%;
+    transform: scale(1, 1);
+    transition-duration: 0.8s;}
+.platform:hover{
+    transition-duration: 0.3s;
+    transform: scale(1.07, 1.07);}
 .leru{background-repeat:no-repeat;background-position:center;background-size:100% 100%;height:10vh;background-image:url("data:image/svg+xml,%3csvg style='width:100vw;height:10vh;' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 160' preserveAspectRatio='none'%3e%3cpath fill='%23cec8e3' d='M1024,1V160H-25Z'/%3e%3c/svg%3e")}
 </style>
 </head>
@@ -265,7 +283,7 @@ body {
                                                 <tbody>
                                                     <tr>
                                                         <td align='center' style="min-width:128px;height:128px;"><a href="https://github.com/Kirilllive/tuesday-js/releases" target='_blank'>
-                                                                <table style="width:100%;height:100%;">
+                                                                <table class="platform">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td class='icon_m icon_web'></td>
@@ -275,7 +293,7 @@ body {
                                                                 </table>
                                                             </a></td>
                                                         <td align='center' style="min-width:128px;"><a href="https://github.com/Kirilllive/tuesday-js/releases" target='_blank'>
-                                                                <table style="width:100%;height:100%;">
+                                                                <table class="platform">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td class='icon_m icon_android'></td>
@@ -285,7 +303,7 @@ body {
                                                                 </table>
                                                             </a></td>
                                                         <td align='center' style="min-width:128px;"><a href="https://github.com/Kirilllive/tuesday-js/releases" target='_blank'>
-                                                                <table style="width:100%;height:100%;">
+                                                                <table class="platform">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td class='icon_m icon_mac'></td>
@@ -295,7 +313,7 @@ body {
                                                                 </table>
                                                             </a></td>
                                                         <td align='center' style="min-width:128px;"><a href="https://github.com/Kirilllive/tuesday-js/releases" target='_blank'>
-                                                                <table style="width:100%;height:100%;">
+                                                                <table class="platform">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td class='icon_m icon_win'></td>
@@ -307,10 +325,10 @@ body {
                                                     </tr>
                                                     <tr>
                                                         <td id="play" colspan="4" align="center" valign="bottom" style="height:64px;">
-                                                            <a href='doc_editor.html#quick_tutorial' target='_blank'><table style='width:220px;height:48px;border-radius:8px;background-color:rgba(110,95,165,0.5);'><tbody><tr>
+                                                            <a href='doc_editor.html#quick_tutorial' target='_blank'><table class='bottom_m'><tbody><tr>
                                                                 <td class='icon_m icon_about' style='width:52px;'></td><td style='font-size:20px;' align='left'>Quick tutorial</td>
                                                             </tr></tbody></table></a><br><br>
-                                                            <a href='tuesday_visual.html' target='_blank'><table style='width:220px;height:48px;border-radius:8px;background-color:rgba(110,95,165,0.5)'><tbody><tr>
+                                                            <a href='tuesday_visual.html' target='_blank'><table class='bottom_m'><tbody><tr>
                                                                 <td class='icon_m icon_play' style='width:52px;'></td><td style='font-size:20px;' align='left'>Run in browser</td>
                                                             </tr></tbody></table></a>
                                                         </td>
@@ -712,7 +730,7 @@ var languare = 'en';
 let translation = {
     "ru": [
         ["title", "Tuesday JS движок визуальных новелл"],
-        ["play", "<a href='doc_editor.html#quick_tutorial_ru' target='_blank'><table style='width:280px;height:48px;border-radius:8px;background-color:rgba(110,95,165,0.5);'><tbody><tr><td class='icon_m icon_about' style='width:52px;'></td><td style='font-size:20px;' align='left'>Краткое руководство</td></tr></tbody></table></a><br><br><a href='tuesday_visual.html' target='_blank'><table style='width:280px;height:48px;border-radius:8px;background-color:rgba(110,95,165,0.5)'><tbody><tr><td class='icon_m icon_play' style='width:52px;'></td><td style='font-size:20px;' align='left'>Запустить в браузере</td></tr></tbody></table></a>"],
+        ["play", "<a href='doc_editor.html#quick_tutorial_ru' target='_blank'><table style='width:280px;' class='bottom_m'><tbody><tr><td class='icon_m icon_about' style='width:52px;'></td><td style='font-size:20px;' align='left'>Краткое руководство</td></tr></tbody></table></a><br><br><a href='tuesday_visual.html' target='_blank'><table style='width:280px;' class='bottom_m'><tbody><tr><td class='icon_m icon_play' style='width:52px;'></td><td style='font-size:20px;' align='left'>Запустить в браузере</td></tr></tbody></table></a>"],
         ["description", "Простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом, который можно использовать в браузере. Он написан на JavaScript без использования каких-либо сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML5 документа, такие как div и img. Это позволяет использовать любой медиаформат поддерживаемый браузерами включая векторную графику svg, gif-анимацию и стили css.</p><br><p>Редактор предназначен для создания интерактивных историй, графических или кинетических новелл, без знания языков программирования. Он использует drag and drop интерфейс для редактирования сцен и создания интерфейсов. Сценарий истории отображается в виде узла блок-схем со всеми элементами и ответвлениями сюжета. Это облегчает навигацию и поможет вам создать историю с множеством вариантов сюжета.</p><br><p>Есть версии редактора доступные для Android устройств и настольных компьютеров. Все версии полностью совместимы друг с другом и имеют одинаковый интерфейс.</p>"],
         ["thanks", "Спасибо за вашу помощь!"],
         ["donut", "Вы можете поддержать проект на Patreon или Boosty!"],
@@ -739,7 +757,7 @@ let translation = {
     ],
     "ja": [
         ["title", "Tuesday JS ビジュアルノベル・エンジン"],
-        ["play", "<a href='doc_editor.html#quick_tutorial_ja' target='_blank'><table style='width:320px;height:48px;border-radius:8px;background-color:rgba(110,95,165,0.5);'><tbody><tr><td class='icon_m icon_about' style='width:52px;'></td><td style='font-size:20px;' align='left'>クイック・チュートリアル</td></tr></tbody></table></a><br><br><a href='tuesday_visual.html' target='_blank'><table style='width:320px;height:48px;border-radius:8px;background-color:rgba(110,95,165,0.5)'><tbody><tr><td class='icon_m icon_play' style='width:52px;'></td><td style='font-size:20px;' align='left'>ブラウザ版を起動</td></tr></tbody></table></a>"],
+        ["play", "<a href='doc_editor.html#quick_tutorial_ja' target='_blank'><table style='width:320px;' class='bottom_m'><tbody><tr><td class='icon_m icon_about' style='width:52px;'></td><td style='font-size:20px;' align='left'>クイック・チュートリアル</td></tr></tbody></table></a><br><br><a href='tuesday_visual.html' target='_blank'><table style='width:320px;' class='bottom_m'><tbody><tr><td class='icon_m icon_play' style='width:52px;'></td><td style='font-size:20px;' align='left'>ブラウザ版を起動</td></tr></tbody></table></a>"],
         ["description", "Tuesday JS は無駄を排した作りの、無償かつオープンソースのビジュアルノベル作成ソフトウェアです。ゲームの制作もプレイもウェブブラウザ上で可能です。JavaScriptで開発したソフトウェアですが、サードパーティ製ライブラリーを一切使用していないので、他のソフトウェアをインストールする手間は不要です。divやimgといった標準HTML5文章でお馴染みのタグや要素でゲームのスクリプトを記述し、svg形式のベクターイメージ、gif形式のアニメーション、CSSスタイルシートなど、ブラウザが扱えるファイルなら何でも使用可能です。</p><br><p>Tuesday JSは、プログラミングの知識が全然無い人でもアドベンチャー・ゲームやノベルゲームを作れるソフトウェアを目標に開発しています。会話場面の編集も、インターフェイスの作成も、ドラッグ・アンド・ドロップで操作でき、物語の進行に関わる要素やストーリーの分岐を樹枝のように描写するフローチャートでスクリプトの全体像を表示するので、分岐や選択肢が沢山ある大作でも全体構造を把握しながら制作できます。</p><br><p>アンドロイド機器並びにパソコン版WindowsとMac用の単体で動作するダウンロード版もあります。各々のバージョン間には完全な互換性があり、インターフェイスも共通しています。</p>"],
         ["thanks", "いつもありがとうございます！"],
         ["donut", "宜しければ、Patreonで制作を支援していただけると助かります。"],
@@ -786,7 +804,7 @@ let translation = {
     ],
     "es": [
         ["title", "Tuesday JS motor de novelas visuales"],
-        ["play", "<a href='doc_editor.html#quick_tutorial_es' target='_blank'><table style='width:280px;height:48px;border-radius:8px;background-color:rgba(110,95,165,0.5);'><tbody><tr><td class='icon_m icon_about' style='width:52px;'></td><td style='font-size:20px;' align='left'>Una guía rápida</td></tr></tbody></table></a><br><br><a href='tuesday_visual.html' target='_blank'><table style='width:280px;height:48px;border-radius:8px;background-color:rgba(110,95,165,0.5)'><tbody><tr><td class='icon_m icon_play' style='width:52px;'></td><td style='font-size:20px;' align='left'>Ejecutar en Navegador</td></tr></tbody></table></a>"],
+        ["play", "<a href='doc_editor.html#quick_tutorial_es' target='_blank'><table style='width:280px;' class='bottom_m'><tbody><tr><td class='icon_m icon_about' style='width:52px;'></td><td style='font-size:20px;' align='left'>Una guía rápida</td></tr></tbody></table></a><br><br><a href='tuesday_visual.html' target='_blank'><table style='width:280px;' class='bottom_m'><tbody><tr><td class='icon_m icon_play' style='width:52px;'></td><td style='font-size:20px;' align='left'>Ejecutar en Navegador</td></tr></tbody></table></a>"],
         ["description", "Es un editor de novelas visuales, sencillo y de código abierto, que puede ser utilizado en navegadores web. Está escrito en JavaScript sin la utilización de ninguna biblioteca de terceros, por lo tanto, no requiere de ninguna instalación de software adicional. El motor utiliza el estándar HTML5, por ejemplo, div e img. Eso permite utilizar cualquier formato multimedia soportado por los navegadores, incluidos gráficos vectoriales svg, animaciones gif y estilos css.</p><br><p>El editor está diseñado para crear novelas interactivas, gráficas o cinéticas, sin necesidad de conocer un lenguaje de programación. Utiliza una interfaz de arrastrar y soltar para la edición de escenas y para hacer interfaces. El guión de la historia es mostrado como un diagrama de flujo con todos los elementos de la trama y todas las rutas. Esto facilita la navegación y ayuda a crear una gran historia con muchas tramas posibles.</p><br><p>Hay una versión del editor disponible como aplicación independiente para dispositivos Android y ordenadores. Todas las versiones son totalmente compatibles entre sí y tienen la misma interfaz.</p>"],
         ["thanks", "¡Gracias por tu ayuda!"],
         ["donut", "¡Puedes apoyar el proyecto en Patreon!"],
