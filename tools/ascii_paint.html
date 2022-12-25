@@ -494,11 +494,10 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
         <td><input type="text" class="input_text palette_simbols" style="font-family:var(--font),monospace;"></td>
         <td style="width:128px;" rowspan="3" valign="top">
         <table style="border-collapse: collapse; width: 100%; margin-top:40px;"><tbody><tr>
-        <td colspan="2" align="center">
-        <select id="fonts_palette" class="input_text" style="padding:0 10px;margin-bottom:16px;" oninput='root_style.style.setProperty("--font",this.value);'></select>
-        </td></tr>
-        <td colspan="2" align="center">Character range</td></tr>
-        <tr><td style="width:32px;padding-right:10px;" align="right">from</td>
+        <td align="left">Font</td><td align="center"><select id="fonts_palette" class="input_text" oninput='root_style.style.setProperty("--font",this.value);'></select></td></tr>
+        <td align="left">Size</td><td align="center"><input style="margin:16px 0;border-bottom:none;" onchange="var symbol_ele=document.getElementsByClassName('char');for (var e=0;e<symbol_ele.length;e++){symbol_ele[e].style.fontSize=this.value+'px';}" class="input_text" type="range" value="12" min="12" max="22" step="1"></td></tr>
+        <td colspan="2" style="padding:14px 0 4px 0;" align="left">Character range</td></tr>
+        <tr><td style="padding:0 12px 0 0;" align="right">from</td>
         <td><input type="text" class="input_text range"></td></tr>
         <tr><td align="right" style="padding-right:10px;">to</td>
         <td><input type="text" class="input_text range"></td></tr>
@@ -705,7 +704,7 @@ function getallChar(){
         s=String.fromCharCode(c)
         p=false;for(t=0;t<f.length;t++){if(f[t]==s){p=true;break}}
         label=document.createElement("label");
-        label.innerHTML="<input type='checkbox' onchange='addChar(this.checked,\""+s+"\");' "+((p)?"checked":"")+"><span class='symbol'>"+s+"</span>"
+        label.innerHTML="<input type='checkbox' onchange='addChar(this.checked,\""+s+"\");' "+((p)?"checked":"")+"><span class='char symbol'>"+s+"</span>"
         label.classList.add("symbol_select");
         e.appendChild(label);
     }
