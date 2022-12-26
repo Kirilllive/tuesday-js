@@ -2043,7 +2043,7 @@ function ho_edit(){
         +"<td width='42px' class='icon button_menu icon_minus' onclick='ho_scale(-0.05)'></td>"
         +"<td width='42px' class='icon button_menu icon_play'  onclick='play_novel(scen_data[0],true)' style='border-radius:0 20px 20px 0;'></td>"
     +"</tr></tbody></table></div>"
-    +"<div class='scene_close' onclick='ho_close();'><div class='icon button_menu icon_undo'></div></div> </div></td>"
+    +"<div class='scene_close' onclick='ho_close();'><div class='icon button_menu icon_undo'></div></div></div></td>"
     +"<td style='width:286px;height:40px;background-color:var(--wn);' class='namber set_layout_panel' align='center'>"+scen_data[0]+" ( scene: "+scen_data[1]+" "+plugins_list[arr_n].name+" )</td></tr><tr>"
     +"<td id='ho_content' class='set_layout_panel' style='background-color:var(--wn);border-bottom:1px solid var(--cb);border-top:1px solid var(--cb);'><div id='hidden_objects_setup' style='height:calc(100vh - 80px);overflow-x:hidden;overflow-y:auto;position:relative;'>"
     //label
@@ -4878,7 +4878,7 @@ function make_resizable(s,f){
             s.style.height=newH+'px';
         };
         function stopResizeTouch(){
-            if(!scene_scroll){if(!f){saveResize(size,angle);}else{eval(f)}};
+            if(!scene_scroll){if(!f){moveSave=true;saveResize(size,angle);}else{eval(f)}};
             window.removeEventListener('touchmove',resizeTouch);
             moveSize=true;angle=0;size=0;
         }
