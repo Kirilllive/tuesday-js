@@ -2740,7 +2740,7 @@ function scene_edit(){
     +"<td id='files_auio' class='icon icon_load' style='height:40px;width:40px;' onclick='file_catalog(this.id,\"audio\",\"scene_music\",0,\"copy_arr[arr_n].background_music\")'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Color:</td>"
-    +"<td colspan='2'><input id='scene_color' class='input_text' style='height:28px;' value='"+((copy_arr[arr_n].background_color)?copy_arr[arr_n].background_color:"")+"' type='text' onkeyup='scene_bg_preview.style.backgroundColor=this.value'></td>"
+    +"<td colspan='2'><input id='scene_color' class='input_text' style='height:28px;' value='"+((copy_arr[arr_n].background_color)?copy_arr[arr_n].background_color:"")+"' type='text' onchange='scene_bg_preview.style.backgroundColor=this.value'></td>"
     +"<td class='icon icon_color' style='height:40px;width:40px;' onclick='edit_color(\"scene_color\",scene_color.value)'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Size:</td>"
