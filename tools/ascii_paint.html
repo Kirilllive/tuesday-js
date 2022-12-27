@@ -463,7 +463,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
 <div id="toast"></div>
 <div id='about' style="display:none"><div class='window' style='padding:24px 16px;width:412px;'>
     <div><div class='window_close icon icon_close' onclick='modal_window(false)'></div></div>
-    <div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><p style=''>Release: 10</p><br><br>
+    <div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><p style=''>Release: 11</p><br><br>
         <table style='border-spacing:10px;border-collapse:separate; width: 100%;'>
             <tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr>
             <tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://github.com/Kirilllive/ASCII_Art_Paint' target='_blank'>https://github.com/Kirilllive/ASCII_Art_Paint</a></td></tr>
@@ -503,7 +503,7 @@ input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;backgroun
         <td><input type="text" class="input_text range"></td></tr>
         <tr><td colspan="2"><div class="button" style="margin:14px;" onclick="if(edit_p){art_palette.value=window_zone.getElementsByClassName('palette_simbols')[0].value}else{palette=window_zone.getElementsByClassName('palette_simbols')[0].value}range_font=[parseInt(window_zone.getElementsByClassName('range')[0].value),parseInt(window_zone.getElementsByClassName('range')[1].value)];getallChar();">Update</div></td>
         </tr></tbody></table></td></tr>
-        <tr><td><div class="all_simbols" style="height:calc(100vh - 256px);width:100%;overflow:auto;border-bottom:1px solid var(--cb);"></div></td></tr></tbody></table>
+        <tr><td><div class="all_simbols" style="display:none;height:calc(100vh - 256px);width:100%;overflow:auto;border-bottom:1px solid var(--cb);"></div></td></tr></tbody></table>
         <div id="palette_apply" class="button" style="margin-top:16px;" onclick="applyChar();modal_window(false);">Apply</div>
     </div>
 </div>
@@ -708,6 +708,7 @@ function getallChar(){
         label.classList.add("symbol_select");
         e.appendChild(label);
     }
+    e.style.display="block";
 }
 function show_img(){
     const img_preview=document.getElementById('img_preview');
