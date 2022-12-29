@@ -4580,7 +4580,7 @@ function fileSize(b){
       else{b='0 byte';}
       return b;
 }
-var objFocus,moveSize=true,angle=0,arr_e,moveSave=false;
+var objFocus,moveSize=true,angle=0,trans="0,0",arr_e,moveSave=false;
 function droppFocus(r){
     if(objFocus){
         objFocus.style.width=r.style.width;
@@ -4613,6 +4613,7 @@ function objSelect(id,r){
     r.style.visibility="visible";
     r.style.zIndex=objFocus.style.zIndex;
     r.style.transform=objFocus.style.transform;
+    trans=r.style.transform.split('(')[1].split(')')[0];
     objFocus.style.transform="";
     objFocus.style.boxSizing='border-box';
     objFocus.style.width='100%';
@@ -4769,10 +4770,10 @@ function make_resizable(s,f){
                 if(newW<minSize){newW=minSize;rotatedWDiff=minSize+original_width;}
             }else if(sizer.classList.contains('rotate')){
                 angle=Math.atan2((e.pageX-html.scrollLeft)-rotate_x,-((e.pageY-html.scrollTop)-rotate_y))*(180/Math.PI);
-                let radians=(Math.PI / -180)*angle;
-                newX= cx-((original_width/2)*Math.cos(radians)+(original_height/2)*Math.sin(radians));
-                newY= cy+((original_width/2)*Math.sin(radians)-(original_height/2)*Math.cos(radians));
-                s.style.transform='rotate('+angle+'deg)';
+                let radians=(Math.PI/-180)*angle;
+                newX=cx-((original_width/2)*Math.cos(radians)+(original_height/2)*Math.sin(radians));
+                newY=cy+((original_width/2)*Math.sin(radians)-(original_height/2)*Math.cos(radians));
+                s.style.transform='translate('+trans+') rotate('+angle+'deg)';
             };
             s.style.left=newX+'px';
             s.style.top=newY+'px';
@@ -4868,9 +4869,9 @@ function make_resizable(s,f){
             }else if(sizer.classList.contains('rotate')){
                 angle=Math.atan2((e.touches[0].pageX-html.scrollLeft)-rotate_x,-((e.touches[0].pageY-html.scrollTop)-rotate_y))*(180/Math.PI);
                 let radians=(Math.PI / -180)*angle;
-                newX= cx-((original_width/2)*Math.cos(radians)+(original_height/2)*Math.sin(radians));
-                newY= cy+((original_width/2)*Math.sin(radians)-(original_height/2)*Math.cos(radians));
-                s.style.transform='rotate('+angle+'deg)';
+                newX=cx-((original_width/2)*Math.cos(radians)+(original_height/2)*Math.sin(radians));
+                newY=cy+((original_width/2)*Math.sin(radians)-(original_height/2)*Math.cos(radians));
+                s.style.transform='translate('+trans+') rotate('+angle+'deg)';
             };
             s.style.left=newX+'px';
             s.style.top=newY+'px';
