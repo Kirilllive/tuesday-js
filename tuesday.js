@@ -583,9 +583,9 @@ function name_block_update(){
                             }
                         }
                     }
-                    if (g == "tue_go"){
+                    if (g == "tue_go" || g == "tue_update_scene"){
                         if (arr_dialog.choice[i].text_from){choice.setAttribute("onclick",v+"dialog="+(dialog+1)+";creation_dialog(true);"+add_sound()+((arr_dialog.choice[i].delete)?"this.remove();":""));}
-                        else {choice.setAttribute("onclick","del_element('tue_choice'); "+v+"go_story(true);"+add_sound());}
+                        else {choice.setAttribute("onclick","del_element('tue_choice'); "+v+((g=="tue_go")?"go_story(true);":"creation_scene();")+add_sound());}
                     }
                     else if (g == "tue_load_autosave"){choice.setAttribute("onclick",v+"load_stag('auto');"+add_sound());  if(story_json.parameters.autosave && !localStorage.getItem("tue_auto_data")){choice.style.visibility.style.visibility='hidden'}}
                     else if (g == "load"||g == "tue_load"){choice.setAttribute("onclick",v+"load_stag('bookmark');"+add_sound());}
