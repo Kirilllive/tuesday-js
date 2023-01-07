@@ -1,0 +1,162 @@
+{
+	"parameters": {
+		"text_panel": {
+			"size": [
+				"95%",
+				"25%"
+			],
+			"position": [],
+			"color": "rgba(200,200,200,0.75)",
+			"style": "backdrop-filter: blur(6px);",
+			"color_text": "#000",
+			"indent_text": "8px",
+			"indent_bottom": "32px",
+			"dialog_speed": "10"
+		},
+		"name_panel": {
+			"size": [
+				"",
+				"32px"
+			],
+			"position": [
+				"0",
+				"0",
+				"-32px",
+				"0"
+			],
+			"indent_text": "0 8px",
+			"color_text": "#fff",
+			"align": [
+				"flex-start",
+				"center"
+			],
+			"color": "#000"
+		},
+		"title": "new novel",
+		"launch_story": "block_2",
+		"key": {},
+		"languares": [
+			"en"
+		],
+		"buttons": [
+			{
+				"name": "tue_back",
+				"position": [
+					"2.5%",
+					0,
+					0,
+					"32px"
+				],
+				"size": [
+					"25%",
+					"25%"
+				],
+				"color_text": "#000",
+				"size_text": "28px",
+				"text": {
+					"en": "<"
+				},
+				"hotspot": [
+					"0%",
+					"0%"
+				],
+				"align": [
+					"flex-start",
+					"flex-end"
+				],
+				"indent_text": "8px"
+			},
+			{
+				"name": "tue_next",
+				"position": [
+					0,
+					"2.5%",
+					0,
+					"32px"
+				],
+				"size": [
+					"25%",
+					"25%"
+				],
+				"color_text": "#000",
+				"size_text": "28px",
+				"text": {
+					"en": ">"
+				},
+				"hotspot": [
+					"0%",
+					"0%"
+				],
+				"align": [
+					"flex-end",
+					"flex-end"
+				],
+				"indent_text": "8px"
+			}
+		],
+		"autosave": false,
+		"font": "Arial",
+		"font_size": "62px",
+		"variables": {
+			"time": 0
+		}
+	},
+	"blocks": {
+		"block_1": [
+			"157px",
+			"223.5px",
+			"block",
+			false
+		],
+		"block_2": [
+			"125px",
+			"125.5px",
+			"block",
+			false
+		]
+	},
+	"block_2": [
+		{
+			"dialogs": [
+				{
+					"choice": [
+						{
+							"go_to": "tue_no",
+							"position": [
+								"50%",
+								"0",
+								"50%",
+								"0"
+							],
+							"size": [
+								"100vw",
+								""
+							],
+							"color": "rgba(200,200,200,0.75)",
+							"color_text": "#000",
+							"text": {
+								"en": "<time>"
+							},
+							"indent_text": "8px",
+							"hotspot": [
+								"-50%",
+								"-50%"
+							]
+						}
+					],
+					"timer": [
+						1000,
+						"tue_update_scene"
+					],
+					"variables": [
+						[
+							"time",
+							"add",
+							1
+						]
+					]
+				}
+			]
+		}
+	]
+}

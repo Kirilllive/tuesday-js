@@ -877,10 +877,10 @@ function name_block_update(){
 } function show_if(data,element){
     show=true;
     for(var v=1;v < data.length;v++){
-        var var_name=data[v][0],var_oper=data[v][1];
-        if(var_oper=="="){if(story_json.parameters.variables[var_name] != data[v][2]){show=false; break;}}
-        else if(var_oper==">"){if(story_json.parameters.variables[var_name] <= data[v][2]){show=false; break;}}
-        else if(var_oper=="<"){if(story_json.parameters.variables[var_name] >= data[v][2]){show=false; break;}}
+        var var_name=data[v][0],var_oper=data[v][1],var_data=(typeof story_json.parameters.variables[data[v][2]]!=="undefined")?story_json.parameters.variables[data[v][2]]:data[v][2];
+        if(var_oper=="="){if(story_json.parameters.variables[var_name] != var_data){show=false; break;}}
+        else if(var_oper==">"){if(story_json.parameters.variables[var_name] <= var_data){show=false; break;}}
+        else if(var_oper=="<"){if(story_json.parameters.variables[var_name] >= var_data){show=false; break;}}
         if(!show){break;}
     }
     if(!show && data[0]){element.style.visibility='hidden';}
