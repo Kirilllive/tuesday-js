@@ -792,9 +792,10 @@ let color_ui=[
     ['#d2c4a5','#efe1c3','rgba(121,103,63,0.25)','rgb(121,103,63)','rgba(121,103,63,0.5)' ,'#7b6f54','#fff','none','#000'],
     ['#c4cebb','#dfebd5','rgba(109,124,91,0.25)','rgb(109,124,91)','rgba(109,124,91,0.5)' ,'#427e00','#fff','none','#000'],
     ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#383838','invert(85%)','#d8d8d8',"#7f7f7f"],
+    ['#6178aa','#192543','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#303f6a','invert(90%) hue-rotate(180deg)','#ddd',"#6178aa"],
     ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#26343d','invert(90%)','#ddd',"#647f90"],
-    ['#7f7f7f','#1e111a','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#411934','invert(85%)','#ddd',"#6B4C61"],
-    ['#7f7f7f','#24130f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#3a2622','invert(85%)','#ddd',"#64452b"]
+    ['#9d7290','#1e111a','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#411934','invert(85%) hue-rotate(180deg)','#ddd',"#6B4C61"],
+    ['#8d726d','#24130f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#3a2622','invert(85%) hue-rotate(180deg)','#ddd',"#64452b"]
 ]
 let story_script={};
 let line_controll=[];
@@ -4174,7 +4175,7 @@ function setup(){
     var thems="<table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody><tr>"
     for(i=0;i<7;i++){thems+="<td align='center'><input class='checkbox_b' type='radio' name='color' style='background-color:"+color_ui[i][0]+";' value='"+i+"' "+((setup_editor.ui==i)?'checked' :'')+"></td>"}
     thems+="</tr></tbody></table>"
-    thems+="<p align='left' style='margin-left:8px;'>Dark them</p><hr><table style='width:58%;border-spacing:10px;border-collapse:separate;'><tbody><tr>"
+    thems+="<p align='left' style='margin-left:8px;'>Dark them</p><hr><table style='width:72%;border-spacing:10px;border-collapse:separate;'><tbody><tr>"
     for(i=7;i<color_ui.length;i++){thems+="<td align='center'><input class='checkbox_b' type='radio' name='color' style='background-color:"+color_ui[i][9]+";' value='"+i+"' "+((setup_editor.ui==i)?'checked' :'')+"></td>"}
     thems+="</tr></tbody></table>"
     var addon_list="<table width='100%' id='var_addon'><tbody>";
