@@ -399,6 +399,16 @@ input:checked+.toggle:before{transform:translateX(14px);}
     background-color:#2196F3;
     opacity:0;
 }
+#scene_view:after,#ho_preview:after{
+    position:absolute;
+    content:"";
+    top:0px;
+    right:0px;
+    pointer-events: none;
+    height:100%;
+    width:28px;
+    box-shadow:inset -26px 0 16px -28px var(--cs);
+}
 .translation_data{height:40px;display:flex;justify-content:start;align-items:center;white-space:nowrap;}
 </style>
 </head>
@@ -2051,7 +2061,7 @@ function ho_edit(){
         image.onload = function(){arr_l[arr_n].size=[this.width,this.height];ho_edit();}
     }else{var p=story_script.parameters[arr_n]
     if(!arr_l[arr_n].art[languare]){data_la(arr_l[arr_n],'art')}
-    var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr><td rowspan='3'>"
+    var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr><td rowspan='3' style='position:relative;'>"
     +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();'>"
     +"<div id='ho_canvas' class='"+setup_editor.fon+"' style='transform-origin:left top;display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;background-color:var(--cw);background-blend-mode:overlay;background-size:64px;'><div id='ho_room' style='position:relative;background-repeat:no-repeat;background-position:left top;"+((arr_l[arr_n].art)?"background-image:url("+open_file(languare_data(arr_l[arr_n].art))+");":"")+((arr_l[arr_n].color)?"background-color:"+arr_l[arr_n].color+";":"")+";background-size:"+((arr_l[arr_n].fit)?arr_l[arr_n].fit:"auto")+";width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'></div></div>"
     +"<div id='ho_controll' style='right:320px;'><table height='100%'><tbody><tr>"
@@ -2282,7 +2292,7 @@ function ho_update(){
         o.style.backgroundImage="url("+open_file(arr_l[arr_n].objects[i].art)+")";
         o.style.backgroundPosition="center";
         o.style.backgroundRepeat="no-repeat";
-        o.style.transform='rotate('+arr_l[arr_n].objects[i].angle+'deg)';
+        o.style.transform='translate(0%, 0%) rotate('+arr_l[arr_n].objects[i].angle+'deg)';
         if(arr_l[arr_n].objects[i].fit){o.style.backgroundSize=arr_l[arr_n].objects[i].fit}
         e.appendChild(o);
         var show_if="<table width='100%'><tbody><tr><td style='width:128px;' valign='bottom'></td><td style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);'></td><td></td><td style='width:30px;'></td></tr>"
@@ -4635,7 +4645,7 @@ function objSelect(id,r){
     r.style.visibility="visible";
     r.style.zIndex=objFocus.style.zIndex;
     r.style.transform=objFocus.style.transform;
-    trans=r.style.transform.split('(')[1].split(')')[0];
+    trans=(r.style.transform.includes('translate('))?r.style.transform.split('translate(')[1].split(')')[0]:'0,0';
     objFocus.style.transform="";
     objFocus.style.boxSizing='border-box';
     objFocus.style.width='100%';
