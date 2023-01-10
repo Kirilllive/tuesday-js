@@ -10,11 +10,13 @@ There is a version of the editor available as a standalone application for Andro
 Простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом, который можно использовать в браузере. Он написан на JavaScript без использования каких-либо сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML5 документа, такие как div и img. Это позволяет использовать любой медиаформат поддерживаемый браузерами включая векторную графику svg, gif-анимацию и стили css.
 Есть версии редактора доступные для Android устройств и настольных компьютеров. Все версии полностью совместимы друг с другом и имеют одинаковый интерфейс.
 
+Download
 
 > Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
 
 > itch.io: https://kirill-live.itch.io/tuesday-js
 
+Blogs
 
 > Twitter: https://twitter.com/TuesdayJS_vn
 
