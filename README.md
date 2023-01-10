@@ -13,6 +13,8 @@ There is a version of the editor available as a standalone application for Andro
 
 Download
 -------------------------
+> GitHub: https://github.com/Kirilllive/tuesday-js/releases
+
 > Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
 
 > itch.io: https://kirill-live.itch.io/tuesday-js
