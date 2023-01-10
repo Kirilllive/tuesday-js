@@ -11,16 +11,15 @@ There is a version of the editor available as a standalone application for Andro
 Есть версии редактора доступные для Android устройств и настольных компьютеров. Все версии полностью совместимы друг с другом и имеют одинаковый интерфейс.
 
 
-> Run the visual editor in a web browser https://kirilllive.github.io/tuesday-js/tuesday_visual.html
-
-
-> Home Page: https://kirilllive.github.io/tuesday-js/
-
 > Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
 
 > itch.io: https://kirill-live.itch.io/tuesday-js
 
+
 > Twitter: https://twitter.com/TuesdayJS_vn
+
+> Reddit: https://www.reddit.com/r/TuesdayJS/
+
 
 [![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
 
