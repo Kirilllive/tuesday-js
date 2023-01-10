@@ -12,14 +12,14 @@ There is a version of the editor available as a standalone application for Andro
 
 
 Download
-
+========================
 > Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
 
 > itch.io: https://kirill-live.itch.io/tuesday-js
 
 
 Tutorials
-
+========================
 > EN  - [A quick tutorial to create a visual novel ](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial)
 
 > JA  - [Tuesday JSでビジュアルノベルを作ってみよう](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ja)
@@ -30,7 +30,7 @@ Tutorials
 
 
 Blogs
-
+========================
 > Twitter: https://twitter.com/TuesdayJS_vn
 
 > Reddit: https://www.reddit.com/r/TuesdayJS/
