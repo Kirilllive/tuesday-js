@@ -36,13 +36,7 @@ Blogs
 > Reddit: https://www.reddit.com/r/TuesdayJS/
 
 
-Sponsor this project
-
-> Patreon: http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live
-
-> Boosty: https://boosty.to/kirilllive
-
-> Ci-en: https://ci-en.net/profile/1575854
+[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
 
 
 
