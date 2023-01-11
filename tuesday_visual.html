@@ -4939,12 +4939,11 @@ function saveResize(s,a){
                 arr_e.size[1]=(resizers.style.height.replace('px','')-b).toFixed(2)+'px';
             }
         }
-        scen_edit_update(true)
     }else{
         var c,e=scene_layout.getElementsByClassName("objSelect");
         for(c=0;c<e.length;c++){if(e[c]){e[c].style.pointerEvents=null}}
         tue_text_block.style.pointerEvents=null;
-    }droppFocus(document.getElementById("resizers"));off_drag();state_save();
+    }droppFocus(document.getElementById("resizers"));off_drag();state_save();scen_edit_update(true);
 }
 function off_drag(){
     document.onmouseup=null;
