@@ -1,1 +1,238 @@
-{"parameters":{"text_panel":{"size":["95%","25%"],"position":[],"color":"#efefff","color_text":"#000","indent_text":"8px","indent_bottom":"32px","size_text":"20px","style":"border-radius:16px;","dialog_speed":"10","art":{"en":"","ru":"","ja":"","es":""}},"name_panel":{"size":["222px","48px"],"position":["0","0","-48px","0"],"indent_text":"8px","size_text":"18px","color_text":"#000","align":["flex-start","center"],"art":{"en":"","ru":"","ja":"","es":""}},"title":"new novel","launch_story":"block_1","key":{},"languares":["en","ru","ja","es"],"buttons":[{"name":"tue_back","style":"border-radius:26px;","position":["2.5%","0","0","32px"],"size":["38px","38px"],"color":"","color_text":"#000","size_text":"28px","text":{"en":"<","ru":"<","ja":"<","es":"<"},"art":{"en":""},"sound":{"en":""},"hotspot":["0%","0%"]},{"name":"tue_next","style":"border-radius:26px;","position":["0","2.5%","0","32px"],"size":["38px","38px"],"color":"","color_text":"#000","size_text":"28px","text":{"en":">","ru":">","ja":">","es":">"},"art":{"en":""},"sound":{"en":""},"hotspot":["0%","0%"]}],"style_file":"","autosave":false,"font":"Arial","font_size":"18px","variables":{},"sounds":{},"characters":{},"plugins":[],"icon":"","font_files":{}},"blocks":{"block_1":["232px","128.5px","block",false]},"block_1":[{"dialogs":[{"choice":[{"go_to":"tue_ja","position":["33%",0,0,"33%"],"size":[0,null],"color":"#efefff","color_text":"#000","text":{"en":"Japanese","ru":"Japanese","ja":"Japanese","es":"Japanese"},"indent_text":"8px","art":{"en":""},"sound":{"en":""},"hotspot":["50%","50%"],"js":"go_story(true);del_element('tue_choice');"},{"go_to":"tue_es","position":[0,"33%",0,"33%"],"size":[0,null],"color":"#efefff","color_text":"#000","text":{"en":"Spanish","ru":"Spanish","ja":"Spanish","es":"Spanish"},"indent_text":"8px","art":{"en":""},"sound":{"en":""},"hotspot":["50%","50%"],"js":"go_story(true);del_element('tue_choice');"},{"go_to":"tue_en","position":["33%",0,"33%",0],"size":[0,null],"color":"#efefff","color_text":"#000","text":{"en":"English","ru":"English","ja":"English","es":"English"},"indent_text":"8px","art":{"en":""},"sound":{"en":""},"hotspot":["-50%","-50%"],"js":"go_story(true);del_element('tue_choice');"},{"go_to":"tue_ru","position":[0,"33%","33%",0],"size":[0,null],"color":"#efefff","color_text":"#000","text":{"en":"Russian","ru":"Russian","ja":"Russian","es":"Russian"},"indent_text":"8px","art":{"en":""},"sound":{"en":""},"hotspot":["-50%","-50%"],"js":"go_story(true);del_element('tue_choice');"}]},{"timer":[100,"tue_go"]},{"text":{"ru":"Привет!","en":"Hello!","ja":" 今日は!","es":"¡Hola!"},"choice":[{"go_to":"block_1","position":["50%","0","40%","0"],"size":[0,null],"color":"#efefff","color_text":"#000","text":{"en":"Again","ru":"Снова","es":"Repetir","ja":"また"},"indent_text":"8px","art":{"en":"","ru":""},"sound":{"en":"","ru":""},"hotspot":["-50%","-50%"]}]}]}]}
+{
+	"parameters": {
+		"text_panel": {
+			"size": [
+				"95%",
+				"25%"
+			],
+			"color": "#efefff",
+			"color_text": "#000",
+			"indent_text": "8px",
+			"indent_bottom": "32px",
+			"size_text": "20px",
+			"style": "border-radius:16px;",
+			"dialog_speed": "10"
+		},
+		"name_panel": {
+			"size": [
+				"222px",
+				"48px"
+			],
+			"position": [
+				"0",
+				"0",
+				"-48px",
+				"0"
+			],
+			"indent_text": "8px",
+			"size_text": "18px",
+			"color_text": "#000",
+			"align": [
+				"flex-start",
+				"center"
+			]
+		},
+		"title": "new novel",
+		"launch_story": "block_1",
+		"key": {},
+		"languares": [
+			"en",
+			"ru",
+			"ja",
+			"es"
+		],
+		"buttons": [
+			{
+				"name": "tue_back",
+				"style": "border-radius:26px;",
+				"position": [
+					"2.5%",
+					"0",
+					"0",
+					"32px"
+				],
+				"size": [
+					"38px",
+					"38px"
+				],
+				"color": "",
+				"color_text": "#000",
+				"size_text": "28px",
+				"text": "<",
+				"hotspot": [
+					"0%",
+					"0%"
+				]
+			},
+			{
+				"name": "tue_next",
+				"style": "border-radius:26px;",
+				"position": [
+					"0",
+					"2.5%",
+					"0",
+					"32px"
+				],
+				"size": [
+					"38px",
+					"38px"
+				],
+				"color": "",
+				"color_text": "#000",
+				"size_text": "28px",
+				"text": ">",
+				"hotspot": [
+					"0%",
+					"0%"
+				]
+			}
+		],
+		"autosave": false,
+		"font": "Arial",
+		"font_size": "18px"
+	},
+	"blocks": {
+		"block_1": [
+			"232px",
+			"128.5px",
+			"block",
+			false
+		]
+	},
+	"block_1": [
+		{
+			"dialogs": [
+				{
+					"choice": [
+						{
+							"go_to": "tue_ja",
+							"position": [
+								"33%",
+								0,
+								0,
+								"33%"
+							],
+							"size": [
+								0,
+								null
+							],
+							"color": "#efefff",
+							"color_text": "#000",
+							"text": "Japanese",
+							"indent_text": "8px",
+							"hotspot": [
+								"50%",
+								"50%"
+							]
+						},
+						{
+							"go_to": "tue_es",
+							"position": [
+								0,
+								"33%",
+								0,
+								"33%"
+							],
+							"size": [
+								0,
+								null
+							],
+							"color": "#efefff",
+							"color_text": "#000",
+							"text": "Spanish",
+							"indent_text": "8px",
+							"hotspot": [
+								"50%",
+								"50%"
+							]
+						},
+						{
+							"go_to": "tue_en",
+							"position": [
+								"33%",
+								0,
+								"33%",
+								0
+							],
+							"size": [
+								0,
+								null
+							],
+							"color": "#efefff",
+							"color_text": "#000",
+							"text": "English",
+							"indent_text": "8px",
+							"hotspot": [
+								"-50%",
+								"-50%"
+							]
+						},
+						{
+							"go_to": "tue_ru",
+							"position": [
+								0,
+								"33%",
+								"33%",
+								0
+							],
+							"size": [
+								0,
+								null
+							],
+							"color": "#efefff",
+							"color_text": "#000",
+							"text": "Russian",
+							"indent_text": "8px",
+							"hotspot": [
+								"-50%",
+								"-50%"
+							]
+						}
+					]
+				},
+				{
+					"timer": [
+						100,
+						"tue_go"
+					]
+				},
+				{
+					"text": {
+						"ru": "Привет!",
+						"en": "Hello!",
+						"ja": " 今日は!",
+						"es": "¡Hola!"
+					},
+					"choice": [
+						{
+							"go_to": "block_1",
+							"position": [
+								"50%",
+								"0",
+								"40%",
+								"0"
+							],
+							"size": [
+								0,
+								null
+							],
+							"color": "#efefff",
+							"color_text": "#000",
+							"text": {
+								"en": "Again",
+								"ru": "Снова",
+								"es": "Repetir",
+								"ja": "また"
+							},
+							"indent_text": "8px",
+							"hotspot": [
+								"-50%",
+								"-50%"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
