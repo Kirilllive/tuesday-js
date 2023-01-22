@@ -579,7 +579,7 @@ function name_block_update(){
                     if (story_json.parameters.languares.length>1){
                         for(var l=0;l<story_json.parameters.languares.length;l++){
                             if(g == "tue_"+story_json.parameters.languares[l]){
-                                g=8;choice.setAttribute("onclick",v+"languare='"+story_json.parameters.languares[l]+"';del_element('tue_choice');go_story(true);"+add_sound());
+                                g=8;choice.setAttribute("onclick",v+"languare='"+story_json.parameters.languares[l]+"';if(story_json.parameters.title&&story_json.parameters.title[languare]){document.title=story_json.parameters.title[languare];}};del_element('tue_choice');go_story(true);"+add_sound());
                             }
                         }
                     }
