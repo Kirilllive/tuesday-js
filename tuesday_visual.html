@@ -4677,7 +4677,7 @@ function make_resizable(s,f){
     document.onkeydown=function(e){
         e=e||window.event;
         if(e.keyCode == '27'){if(add_element.style.visibility=="visible"){menu_add.style.visibility='hidden';}else if(window_zone.style.visibility=="visible"){modal_window("close")}}
-        else if(e.keyCode == '13'){{if(!f){scene_scroll=false;saveResize();}else{eval(f)};}}
+        else if(e.keyCode == '13'){{if(objFocus){if(!f){scene_scroll=false;saveResize();}else{eval(f)};}}}
         else if(e.keyCode == '38'){if(objFocus){scene_view.style.overflow='hidden';s.style.top=(s.offsetTop-((e.shiftKey)?10:1))+'px';moveSave=true;}}
         else if(e.keyCode == '40'){if(objFocus){scene_view.style.overflow='hidden';s.style.top=(s.offsetTop+((e.shiftKey)?10:1))+'px';moveSave=true;}}
         else if(e.keyCode == '37'){if(objFocus){scene_view.style.overflow='hidden';s.style.left=(s.offsetLeft-((e.shiftKey)?10:1))+'px';moveSave=true;}}
