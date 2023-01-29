@@ -129,6 +129,7 @@ function find_item(id){
     else {
         id=document.getElementById(id);
         if(story_json.parameters.hidden_objects.label_find.className){id.className=story_json.parameters.hidden_objects.label_find.className}
+        if(story_json.parameters.hidden_objects.label_find.style){id.className=story_json.parameters.hidden_objects.label_find.style}
         if(story_json.parameters.hidden_objects.label_find.color){id.style.backgroundColor=story_json.parameters.hidden_objects.label_find.color}
         if(story_json.parameters.hidden_objects.label_find.color_text){id.style.color=story_json.parameters.hidden_objects.label_find.color_text;}
     }

@@ -15,11 +15,14 @@ function terrain_map(){
     map.style=arr_dialog.style;
     map.style.width=arr_dialog.size[0]+"px";
     map.style.height=arr_dialog.size[1]+"px";
-    map.style.backgroundRepeat="no-repeat";
-    map.style.backgroundPosition="center";
-    map.style.backgroundSize="cover";
+    map.style.backgroundRepeat=(arr_dialog.repeat)?arr_dialog.repeat:"no-repeat";
+    if(arr_dialog.art_align){map.style.backgroundPosition=arr_dialog.art_align;}
+    if(arr_dialog.fit){
+        if(arr_dialog.fit=="none"){map.style.backgroundSize=arr_dialog.art_size[0]+"px "+arr_dialog.art_size[1]+"px";}
+        else{map.style.backgroundSize=arr_dialog.fit;}
+    }
     if(arr_dialog.color){view.style.backgroundColor=art_data(arr_dialog.color);}
-    map.style.backgroundImage='url("'+art_data(arr_dialog.art)+'")';
+    if(arr_dialog.art&&arr_dialog.art.length>0){map.style.backgroundImage='url("'+art_data(arr_dialog.art)+'")';}
     map.style.position="relative";
     map.style.overflow="hidden";
     map.style.transformOrigin="left top";

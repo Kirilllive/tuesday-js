@@ -2008,7 +2008,7 @@ function scene_add(arr){
 }
 function ho_add(arr,plugin){
     if(plugin=="terrain_map"){
-        story_script[arr].push({"terrain_map":{"color":"#fff","fit":"contain","objects":[]}});
+        story_script[arr].push({"terrain_map":{"color":"#fff","fit":"contain","objects":[],"art":"","size":[setup_editor.pvw[0],setup_editor.pvw[1]]}});
 	}else if(plugin=="hidden_objects"){
         if(!story_script.parameters.hidden_objects){story_script.parameters.hidden_objects={"label":{"tip":false,"size":["12.5%","90%"],"items":"8","art_size": ["90%","auto"]},"label_find":{"del":true}}}
         story_script[arr].push({"hidden_objects":{"color":"#fff","fit":"contain","objects":[]}});
@@ -2058,7 +2058,7 @@ function ho_scale(s){
 }
 function ho_edit(){
     arr_l=story_script[scen_data[0]][scen_data[1]];tool_scale=1;
-    if(!arr_l[arr_n].art){tool_update='ho_edit()';scroll_block=true;file_catalog('','img','','','arr_l.'+arr_n+'.art');}
+    if(arr_n=="hidden_objects"&&!arr_l[arr_n].art){tool_update='ho_edit()';scroll_block=true;file_catalog('','img','','','arr_l.'+arr_n+'.art');}
     else if(!arr_l[arr_n].size){
         var image = new Image();
         image.src = open_file(languare_data(arr_l[arr_n].art));
@@ -2067,7 +2067,7 @@ function ho_edit(){
     if(!arr_l[arr_n].art[languare]){data_la(arr_l[arr_n],'art')}
     var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr><td rowspan='3' style='position:relative;'>"
     +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();'>"
-    +"<div id='ho_canvas' class='"+setup_editor.fon+"' style='transform-origin:left top;display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;background-color:var(--cw);background-blend-mode:overlay;background-size:64px;'><div id='ho_room' style='position:relative;background-repeat:no-repeat;background-position:left top;"+((arr_l[arr_n].art)?"background-image:url("+open_file(languare_data(arr_l[arr_n].art))+");":"")+((arr_l[arr_n].color)?"background-color:"+arr_l[arr_n].color+";":"")+";background-size:"+((arr_l[arr_n].fit)?arr_l[arr_n].fit:"auto")+";width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'></div></div>"
+    +"<div id='ho_canvas' class='"+setup_editor.fon+"' style='transform-origin:left top;display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;background-color:var(--cw);background-blend-mode:overlay;background-size:64px;'><div id='ho_room' style='position:relative;background-repeat:"+((arr_l[arr_n].repeat)?arr_l[arr_n].repeat:"no-repeat")+";background-position:"+((arr_l[arr_n].art_align)?arr_l[arr_n].art_align:"left top")+";"+((arr_l[arr_n].art)?"background-image:url("+open_file(languare_data(arr_l[arr_n].art))+");":"")+((arr_l[arr_n].color)?"background-color:"+arr_l[arr_n].color+";":"")+";background-size:"+((arr_l[arr_n].fit)?arr_l[arr_n].fit:"auto")+";width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'></div></div>"
     +"<div id='ho_controll' style='right:320px;'><table height='100%'><tbody><tr>"
         +"<td width='42px' class='icon button_menu icon_equal' onclick='ho_scale(0.05)'></td>"
         +"<td width='42px' class='icon button_menu icon_scale' onclick='ho_scale()'></td>"
@@ -2091,9 +2091,10 @@ function ho_edit(){
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Items for search</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='this.value=correct_value(this.value,true);story_script.parameters.hidden_objects.label.items=this.value' type='text' value='"+p.label.items+"' style='width:100%;'>"
         +"</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='3'>"
-        +"<input class='input_text' onchange='story_script.parameters.hidden_objects.label.style=this.value;' type='text' value='"+((p.label.style)?p.label.style:"")+"' style='width:100%;'>"
-        +'</tr><tr>'
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Sound</td>"
+        +"<td colspan='2'><input id='ho_ls' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.sound=this.value;' type='text' style='width:100%;height:28px' value='"+((p.label_find.sound)?p.label_find.sound:'')+"'></td>"
+        +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('','audio','ho_ls','','story_script.parameters.hidden_objects.label_find.sound')\">"
+        +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Delete label</td><td style='padding-right:8px;' colspan='3'>"
         +"<select onchange='if(this.selectedIndex==0){delete story_script.parameters.hidden_objects.label_find.no_del_label}else{story_script.parameters.hidden_objects.label_find.no_del_label=true};'>"
             +"<option "+((!p.label_find.no_del_label)?'selected':'')+" value=true>Yes</option>"
@@ -2105,23 +2106,24 @@ function ho_edit(){
             +"<option "+((!p.label_find.no_del_item)?'selected':'')+" value=true>Yes</option>"
             +"<option "+((p.label_find.no_del_item)?'selected':'')+" value='art'>No</option>"
         +"</select></td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Default color label</td><td style='width:40px;' align='center'><div class='show_color' id='ho_lcdp' "+((p.label.color)?'style="background-color:'+p.label.color+';"':"")+"></div></td><td style='padding-right:8px;'>"
-        +"<input id='ho_lcd' class='input_text' onchange='story_script.parameters.hidden_objects.label.color=this.value;ho_lcdp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label.color:"")+"' style='width:100%;'>"
-        +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_lcd\",ho_lcd.value)'>"
-        +"</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Find color label</td><td style='width:40px;' align='center'><div class='show_color' id='ho_lcfp' "+((p.label_find.color)?'style="background-color:'+p.label_find.color+';"':"")+"></div></td><td style='padding-right:8px;'>"
-        +"<input id='ho_lcf' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.color=this.value;ho_lcfp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label_find.color:"")+"' style='width:100%;'>"
-        +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_lcf\",ho_lcf.value)'>"
-        +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Tip label</td><td style='padding-right:8px;' colspan='3'>"
         +"<select onchange='story_script.parameters.hidden_objects.label.tip=((this.selectedIndex!=0)?this.value:false);'>"
             +"<option "+((p.label.tip)?'selected':'')+" value=true>Art & text</option>"
             +"<option "+((p.label.tip=='art')?'selected':'')+" value='art'>Art</option>"
             +"<option "+((p.label.tip=='text')?'selected':'')+" value='text'>Text</option>"
         +"</select></td></tr>"
+        +"</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Label text</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Default color text</td><td style='width:40px;' align='center'><div class='show_color' id='ho_lcp' "+((p.label.color_text)?'style="background-color:'+p.label.color_text+';"':"")+"></div></td><td style='padding-right:8px;'>"
+        +"<input id='ho_lc' class='input_text' onchange='story_script.parameters.hidden_objects.label.color_text=this.value;ho_lcp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color_text)?p.label.color_text:"")+"' style='width:100%;'>"
+        +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_lc\",ho_lc.value)'>"
+        +"</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Find color text</td><td style='width:40px;' align='center'><div class='show_color' id='ho_fcp' "+((p.label_find.color_text)?'style="background-color:'+p.label_find.color_text+';"':"")+"></div></td><td style='padding-right:8px;'>"
+        +"<input id='ho_fc' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.color_text=this.value;ho_fcp.style.backgroundColor=this.value;' type='text' value='"+((p.label_find.color_text)?p.label_find.color_text:"")+"' style='width:100%;'>"
+        +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_fc\",ho_fc.value)'>"
+        +"</td></tr>"
         +'<td height="40px" align="right" style="padding-right:8px;">Align text</td>'
         +'<td colspan="3" align="center">'
-            +'<table style="background-color:var(--cw);border-radius:4px;"><tbody><tr>'
+            +'<table style="border-radius:4px;"><tbody><tr>'
                 +'<td><input class="icon icon_diag align" type="radio" name="align_tl" onchange="story_script.parameters.hidden_objects.label.align=[\'flex-start\',\'flex-start\'];" '+((p.label.align&&p.label.align[0]=='flex-start'&&p.label.align[1]=='flex-start')?'checked':'')+' style="transform:scaleX(-1) scaleY(-1);"></td>'
                 +'<td><input class="icon icon_side align" type="radio" name="align_tl" onchange="story_script.parameters.hidden_objects.label.align=[\'center\',\'flex-start\'];" '+((p.label.align&&p.label.align[0]=='center'&&p.label.align[1]=='flex-start')?'checked':'')+'></td>'
                 +'<td><input class="icon icon_diag align" type="radio" name="align_tl" onchange="story_script.parameters.hidden_objects.label.align=[\'flex-end\',\'flex-start\'];" '+((p.label.align&&p.label.align[0]=='flex-end'&&p.label.align[1]=='flex-start')?'checked':'')+' style="transform:scaleY(-1);"></td>'
@@ -2136,14 +2138,7 @@ function ho_edit(){
             +'</tr></tbody></table>'
             +'</td>'
         +'</tr><tr>'
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Default color text</td><td style='width:40px;' align='center'><div class='show_color' id='ho_lcp' "+((p.label.color_text)?'style="background-color:'+p.label.color_text+';"':"")+"></div></td><td style='padding-right:8px;'>"
-        +"<input id='ho_lc' class='input_text' onchange='story_script.parameters.hidden_objects.label.color=this.value;ho_lcp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color_text)?p.label.color_text:"")+"' style='width:100%;'>"
-        +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_lc\",ho_lc.value)'>"
-        +"</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Find color text</td><td style='width:40px;' align='center'><div class='show_color' id='ho_fcp' "+((p.label_find.color_text)?'style="background-color:'+p.label_find.color_text+';"':"")+"></div></td><td style='padding-right:8px;'>"
-        +"<input id='ho_fc' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.color=this.value;ho_fcp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label_find.color_text:"")+"' style='width:100%;'>"
-        +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_fc\",ho_fc.value)'>"
-        +"</td></tr>"
+        +"</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Label image</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Width art</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='this.value=correct_value(this.value);if(!story_script.parameters.hidden_objects.label.art_size){story_script.parameters.hidden_objects.label.art_size=[this.value,this.value]};story_script.parameters.hidden_objects.label.art_size[0]=this.value;' type='text' value='"+((p.label.art_size)?p.label.art_size[0]:"")+"' style='width:100%;'>"
         +"</td></tr>"
@@ -2159,7 +2154,7 @@ function ho_edit(){
         +"</select></td></tr>"
         +'<td height="40px" align="right" style="padding-right:8px;">Align art</td>'
         +'<td colspan="3" align="center">'
-            +'<table style="background-color:var(--cw);border-radius:4px;"><tbody><tr>'
+            +'<table style="border-radius:4px;"><tbody><tr>'
                 +'<td><input class="icon icon_diag align" type="radio" name="align_ta" onchange="story_script.parameters.hidden_objects.label.art_align=\'left top\';" '+((p.label.art_align=='left top')?'checked':'')+' style="transform:scaleX(-1) scaleY(-1);"></td>'
                 +'<td><input class="icon icon_side align" type="radio" name="align_ta" onchange="story_script.parameters.hidden_objects.label.art_align=\'center top\';" '+((p.label.art_align=='center top')?'checked':'')+'></td>'
                 +'<td><input class="icon icon_diag align" type="radio" name="align_ta" onchange="story_script.parameters.hidden_objects.label.art_align=\'right top\';" '+((p.label.art_align=='right top')?'checked':'')+' style="transform:scaleY(-1);"></td>'
@@ -2170,19 +2165,32 @@ function ho_edit(){
             +'</tr><tr>'
                 +'<td><input class="icon icon_diag align" type="radio" name="align_ta" onchange="story_script.parameters.hidden_objects.label.art_align=\'left bottom\';" '+((p.label.art_align=='left bottom')?'checked':'')+' style="transform:scaleX(-1);"></td>'
                 +'<td><input class="icon icon_side align" type="radio" name="align_ta" onchange="story_script.parameters.hidden_objects.label.art_align=\'center bottom\';" '+((p.label.art_align=='center bottom')?'checked':'')+' style="transform:scaleY(-1);"></td>'
-                +'<td><input class="icon icon_diag align" type="radio" name="align_ta" onchange="story_script.parameters.hidden_objects.label.art_align=\'fuck\';" '+((p.label.art_align=='right bottom')?'checked':'')+' style="transform:scaleX(1);"></td>'
+                +'<td><input class="icon icon_diag align" type="radio" name="align_ta" onchange="story_script.parameters.hidden_objects.label.art_align=\'right bottom\';" '+((p.label.art_align=='right bottom')?'checked':'')+' style="transform:scaleX(1);"></td>'
             +'</tr></tbody></table>'
             +'</td>'
         +'</tr><tr>'
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Sound</td>"
-        +"<td colspan='2'><input id='ho_ls' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.sound=this.value;' type='text' style='width:100%;height:28px' value='"+((p.label_find.sound)?p.label_find.sound:'')+"'></td>"
-        +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('','audio','ho_ls','','story_script.parameters.hidden_objects.label_find.sound')\">"
+        +"</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Style</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Default color label</td><td style='width:40px;' align='center'><div class='show_color' id='ho_lcdp' "+((p.label.color)?'style="background-color:'+p.label.color+';"':"")+"></div></td><td style='padding-right:8px;'>"
+        +"<input id='ho_lcd' class='input_text' onchange='story_script.parameters.hidden_objects.label.color=this.value;ho_lcdp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label.color:"")+"' style='width:100%;'>"
+        +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_lcd\",ho_lcd.value)'>"
         +"</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Find color label</td><td style='width:40px;' align='center'><div class='show_color' id='ho_lcfp' "+((p.label_find.color)?'style="background-color:'+p.label_find.color+';"':"")+"></div></td><td style='padding-right:8px;'>"
+        +"<input id='ho_lcf' class='input_text' onchange='story_script.parameters.hidden_objects.label_find.color=this.value;ho_lcfp.style.backgroundColor=this.value;' type='text' value='"+((p.label.color)?p.label_find.color:"")+"' style='width:100%;'>"
+        +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_lcf\",ho_lcf.value)'>"
+        +"</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Default style CSS</td><td style='padding-right:8px;' colspan='2'>"
+        +"<input class='input_text' onchange='story_script.parameters.hidden_objects.label.style=this.value;' type='text' value='"+((p.label.style)?p.label.style:"")+"' style='width:100%;'>"
+        +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=story_script.parameters.hidden_objects.label;edit_code(\"style\",\"Style CSS\",\"ho_update()\");'>"
+        +'</tr><tr>'
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Find style CSS</td><td style='padding-right:8px;' colspan='2'>"
+        +"<input class='input_text' onchange='story_script.parameters.hidden_objects.label_find.style=this.value;' type='text' value='"+((p.label.style)?p.label_find.style:"")+"' style='width:100%;'>"
+        +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=story_script.parameters.hidden_objects.label_find;edit_code(\"style\",\"Style CSS\",\"ho_update()\");'>"
+        +'</tr><tr>'
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Default class name</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='story_script.parameters.hidden_objects.label.className=this.value;' type='text' value='"+((p.label.className)?p.label.className:"")+"' style='width:100%;'>"
         +'</tr><tr>'
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Find class name</td><td style='padding-right:8px;' colspan='3'>"
-        +"<input class='input_text' onchange='story_script.parameters.hidden_objects.label.className=this.value;' type='text' value='"+((p.label.className)?p.label.className:"")+"' style='width:100%;'>"
+        +"<input class='input_text' onchange='story_script.parameters.hidden_objects.label_find.className=this.value;' type='text' value='"+((p.label.className)?p.label_find.className:"")+"' style='width:100%;'>"
         +'</tr><tr>'
     +"</tbody></table></div>"}
     //Scene
@@ -2192,7 +2200,7 @@ function ho_edit(){
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Art</td>"
         +"<td style='width:28px;' align='center'><select id='ho_rl' onchange='ho_rf.value=arr_l."+arr_n+".art[this.value];ho_room.style.backgroundImage=\"url(\"+open_file(arr_l."+arr_n+".art[this.value])+\")\"' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select></td>"
         +"<td><input id='ho_rf' class='input_text' onchange='var v=document.getElementById(\"ho_rl\");arr_l."+arr_n+".art[v.value]=this.value;ho_room.style.backgroundImage=\"url(\"+open_file(this.value)+\")\";' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].art[languare]&&arr_l[arr_n].art[languare].length>0)?arr_l[arr_n].art[languare]:'')+"'></td>"
-        +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('ho_rf','img','ho_rf','ho_room','arr_l."+arr_n+".art[ho_rl.value]')\">"
+        +"<td height='40px' align='right' style='width:40px;' class='icon icon_load' onclick=\"file_catalog('ho_rf','img','ho_rf','ho_room','arr_l."+arr_n+".art[ho_rl.value]')\">"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Width</td><td style='padding-right:8px;' colspan='2'>"
         +"<input id='ho_w' class='input_text' onchange='var s=parseInt(correct_value(this.value,true));if(ho_bs.checked){arr_l."+arr_n+".size[1]=parseInt(arr_l."+arr_n+".size[1]*(s/arr_l."+arr_n+".size[0]))};arr_l."+arr_n+".size[0]=s;ho_size();state_save();' type='text' value='"+arr_l[arr_n].size[0]+"' style='width:100%;'>"
@@ -2201,42 +2209,76 @@ function ho_edit(){
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Height</td><td style='padding-right:8px;' colspan='2'>"
         +"<input id='ho_h' class='input_text' onchange='var s=parseInt(correct_value(this.value,true));if(ho_bs.checked){arr_l."+arr_n+".size[0]=parseInt(arr_l."+arr_n+".size[0]*(s/arr_l."+arr_n+".size[1]))};arr_l."+arr_n+".size[1]=s;ho_size();state_save();' type='text' value='"+arr_l[arr_n].size[1]+"' style='width:100%;'>"
         +"</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Scale</td><td style='padding-right:8px;' colspan='3'>"
+        +"<input id='ho_z' class='input_text' onchange='var s=parseFloat(correct_value(this.value,true));if(s<1){s=1};if(s==1){delete arr_l."+arr_n+".scale}else{arr_l."+arr_n+".scale=s};this.value=s;state_save();' type='text' value='"+((arr_l[arr_n].scale)?arr_l[arr_n].scale:1)+"' style='width:100%;'>"
+        +"</td></tr>"
+        +((arr_n=="hidden_objects")?"<tr><td height='40px' align='right' style='padding-right:8px;'>Go to</td><td style='padding-right:8px;' colspan='3'><select onchange='arr_l.hidden_objects.go_to=this.value;'>"+option_block(arr_l.hidden_objects.go_to,0)+"</select></td></tr></td></tr>":"")
+        +((arr_n=="hidden_objects")?"<tr><td height='40px' align='right' style='padding-right:8px;'>JavaScript</td><td style='padding-right:8px;' colspan='2'><input id='ho_j' class='input_text' onchange='arr_l.hidden_objects.js=this.value' type='text' value='"+((arr_l.hidden_objects.js)?arr_l.hidden_objects.js:"")+"' style='width:100%;'></td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l.hidden_objects;edit_code(\"js\",\"JavaScript\",\"ho_update()\");'></td></tr>":"")
         if(arr_n=="terrain_map"){if(!arr_l[arr_n].scale){arr_l[arr_n].scroll=[0,0];}
         tool+="</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Start scroll X</td><td style='padding-right:8px;' colspan='2'>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Start scroll X</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='var s=parseFloat(correct_value(this.value,true));arr_l."+arr_n+".scroll[0]=s;this.value=s;state_save();' type='text' value='"+arr_l[arr_n].scroll[0]+"' style='width:100%;'>"
         +"</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Start scroll Y</td><td style='padding-right:8px;' colspan='2'>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Start scroll Y</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='var s=parseFloat(correct_value(this.value,true));arr_l."+arr_n+".scroll[1]=s;this.value=s;state_save();' type='text' value='"+arr_l[arr_n].scroll[1]+"' style='width:100%;'>"
         +"</td></tr>"}
-        tool+="<tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;' colspan='3'>"
-        +"<select onchange='arr_l."+arr_n+".fit=this.value;ho_room.style.backgroundSize=this.value;'>"
+        if(arr_n=="terrain_map"){tool+="</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Background image</td>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;' colspan='3'>"
+        +"<select onchange='arr_l."+arr_n+".fit=this.value;ho_room.style.backgroundSize=this.value;ho_size_art.style.display=(this.value==\"none\")?\"table\":\"none\";if(arr_l."+arr_n+".art_size){ho_size();}'>"
             +"<option "+((arr_l[arr_n].fit=='auto')?'selected':'')+" value='auto'>original</option>"
             +"<option "+((arr_l[arr_n].fit=='cover')?'selected':'')+" value='cover'>cover</option>"
             +"<option "+((arr_l[arr_n].fit=='contain')?'selected':'')+" value='contain'>contain</option>"
             +"<option "+((arr_l[arr_n].fit=='100% 100%')?'selected':'')+" value='100% 100%'>fill</option>"
+            +"<option "+((arr_l[arr_n].fit=='none')?'selected':'')+" value='none'>none</option>"
         +"</select></td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Scale</td><td style='padding-right:8px;' colspan='2'>"
-        +"<input id='ho_z' class='input_text' onchange='var s=parseFloat(correct_value(this.value,true));if(s<1){s=1};if(s==1){delete arr_l."+arr_n+".scale}else{arr_l."+arr_n+".scale=s};this.value=s;state_save();' type='text' value='"+((arr_l[arr_n].scale)?arr_l[arr_n].scale:1)+"' style='width:100%;'>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Repeat</td><td style='padding-right:8px;' colspan='3'>"
+        +"<select onchange='arr_l."+arr_n+".repeat=this.value;ho_room.style.backgroundRepeat=this.value;'>"
+            +"<option "+((arr_l[arr_n].repeat=='no-repeat')?'selected':'')+" value='no-repeat'>no</option>"
+            +"<option "+((arr_l[arr_n].repeat=='repeat')?'selected':'')+" value='repeat'>yes</option>"
+            +"<option "+((arr_l[arr_n].repeat=='repeat-x')?'selected':'')+" value='repeat-x'>horizontal</option>"
+            +"<option "+((arr_l[arr_n].repeat=='repeat-y')?'selected':'')+" value='repeat-y'>vertical</option>"
+        +"</select></td></tr></tbody></table>"
+        +"<table id='ho_size_art' style='width:100%;display:"+((arr_l[arr_n].fit=="none")?"table":"none")+";'><tbody><tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Width art</td><td style='padding-right:8px;'>"
+        +"<input id='ho_sw' class='input_text' onchange='if(!arr_l."+arr_n+".art_size){arr_l."+arr_n+".art_size=[arr_l."+arr_n+".size[0],arr_l."+arr_n+".size[1]]};var s=correct_value(this.value,true);if(ho_as.checked){var h=parseFloat(arr_l."+arr_n+".art_size[1]),w=parseFloat(arr_l."+arr_n+".art_size[0]);arr_l."+arr_n+".art_size[1]=h*(s/w) }; arr_l."+arr_n+".art_size[0]=correct_value(s,true);ho_size();state_save();' type='text' value='"+((arr_l[arr_n].art_size)?arr_l[arr_n].art_size[0]:arr_l[arr_n].size[0])+"' style='width:100%;'>"
+        +'<td height="40px" align="right" rowspan="2"><input id="ho_as" type="checkbox" class="proportion_c" checked></td>'
         +"</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Color</td><td style='width:40px;' align='center'><div class='show_color' id='ho_cp' "+((arr_l[arr_n].color)?'style="background-color:'+arr_l[arr_n].color+';"':"")+"></div></td><td style='padding-right:8px;'>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Height art</td><td style='padding-right:8px;'>"
+        +"<input id='ho_sh' class='input_text' onchange='if(!arr_l."+arr_n+".art_size){arr_l."+arr_n+".art_size=[arr_l."+arr_n+".size[0],arr_l."+arr_n+".size[1]]};var s=correct_value(this.value,true);if(ho_as.checked){var h=parseFloat(arr_l."+arr_n+".art_size[1]),w=parseFloat(arr_l."+arr_n+".art_size[0]);arr_l."+arr_n+".art_size[0]=w*(s/h) }; arr_l."+arr_n+".art_size[1]=correct_value(s,true);ho_size();state_save();' type='text' value='"+((arr_l[arr_n].art_size)?arr_l[arr_n].art_size[1]:arr_l[arr_n].size[1])+"' style='width:100%;'>"
+        +"</td></tr></tbody></table>"
+        +'<table style="width:100%;"><tbody><td height="40px" align="right" style="padding-right:8px;">Align art</td>'
+        +'<td colspan="3" align="center">'
+            +'<table style="border-radius:4px;"><tbody><tr>'
+                +'<td><input class="icon icon_diag align" type="radio" name="align_ta" onchange="delete arr_l.'+arr_n+'.art_align;ho_room.style.backgroundPosition=\'left top\';state_save();" '+((!arr_l[arr_n].art_align)?'checked':'')+' style="transform:scaleX(-1) scaleY(-1);"></td>'
+                +'<td><input class="icon icon_side align" type="radio" name="align_ta" onchange="arr_l.'+arr_n+'.art_align=\'center top\';ho_room.style.backgroundPosition=\'center top\';state_save();" '+((arr_l[arr_n].art_align=='center top')?'checked':'')+'></td>'
+                +'<td><input class="icon icon_diag align" type="radio" name="align_ta" onchange="arr_l.'+arr_n+'.art_align=\'right top\';ho_room.style.backgroundPosition=\'right top\';state_save();" '+((arr_l[arr_n].art_align=='right top')?'checked':'')+' style="transform:scaleY(-1);"></td>'
+            +'</tr><tr>'
+                +'<td><input class="icon icon_side align" type="radio" name="align_ta" onchange="arr_l.'+arr_n+'.art_align=\'left center\';ho_room.style.backgroundPosition=\'left center\';state_save();" '+((arr_l[arr_n].art_align=='left center')?'checked':'')+' style="transform:rotate(270deg);"></td>'
+                +'<td><input class="icon icon_cent align" type="radio" name="align_ta" onchange="arr_l.'+arr_n+'.art_align=\'center\';ho_room.style.backgroundPosition=\'center\';state_save();" '+((arr_l[arr_n].art_align=='center'||arr_l[arr_n].art_align=='center center')?'checked':'')+'></td>'
+                +'<td><input class="icon icon_side align" type="radio" name="align_ta" onchange="arr_l.'+arr_n+'.art_align=\'right center\';ho_room.style.backgroundPosition=\'right center\';state_save();" '+((arr_l[arr_n].art_align=='right center')?'checked':'')+' style="transform:rotate(90deg);"></td>'
+            +'</tr><tr>'
+                +'<td><input class="icon icon_diag align" type="radio" name="align_ta" onchange="arr_l.'+arr_n+'.art_align=\'left bottom\';ho_room.style.backgroundPosition=\'left bottom\';state_save();" '+((arr_l[arr_n].art_align=='left bottom')?'checked':'')+' style="transform:scaleX(-1);"></td>'
+                +'<td><input class="icon icon_side align" type="radio" name="align_ta" onchange="arr_l.'+arr_n+'.art_align=\'center bottom\';ho_room.style.backgroundPosition=\'center bottom\';state_save();" '+((arr_l[arr_n].art_align=='center bottom')?'checked':'')+' style="transform:scaleY(-1);"></td>'
+                +'<td><input class="icon icon_diag align" type="radio" name="align_ta" onchange="arr_l.'+arr_n+'.art_align=\'right bottom\';ho_room.style.backgroundPosition=\'right bottom\';state_save();" '+((arr_l[arr_n].art_align=='right bottom')?'checked':'')+' style="transform:scaleX(1);"></td>'
+            +'</tr></tbody></table></td>'
+        +'</tr><tr>'}
+        tool+="</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Style</td>"
+        +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Color</td><td style='width:40px;' align='center'><div class='show_color' id='ho_cp' "+((arr_l[arr_n].color)?'style="background-color:'+arr_l[arr_n].color+';"':"")+"></div></td><td style='padding-right:8px;'>"
         +"<input id='ho_c' class='input_text' onchange='ho_room.style.backgroundColor=this.value;ho_cp.style.backgroundColor=this.value;' type='text' value='"+((arr_l[arr_n].color)?arr_l[arr_n].color:"")+"' style='width:100%;'>"
         +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_c\",ho_c.value)'>"
         +"</td></tr>"
-        +((arr_n=="terrain_map")?"<tr><td height='40px' align='right' style='padding-right:8px;'>Button sound</td><td colspan='2'><input id='ho_b' class='input_text' onchange='arr_l."+arr_n+".sound=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].sound)?arr_l[arr_n].sound:'')+"'></td><td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('','audio','ho_b','','arr_l."+arr_n+".sound')\"></td></tr>":"")
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Music</td>"
-        +"<td colspan='2'><input id='ho_m' class='input_text' onchange='arr_l."+arr_n+".background_music=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].background_music)?arr_l[arr_n].background_music:'')+"'></td>"
-        +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('files_auio','audio','ho_m',0,'arr_l."+arr_n+".background_music')\">"
-        +"</td></tr>"
-        +((arr_n=="hidden_objects")?"<tr><td height='40px' align='right' style='padding-right:8px;'>Go to</td><td style='padding-right:8px;' colspan='3'><select onchange='arr_l.hidden_objects.go_to=this.value;'>"+option_block(arr_l.hidden_objects.go_to,0)+"</select></td></tr></td></tr>":"")
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>"
         +"<input id='ho_n' class='input_text' onchange='arr_l."+arr_n+".className=this.value;' type='text' value='"+((arr_l[arr_n].className)?arr_l[arr_n].className:"")+"' style='width:100%;'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>"
         +"<input id='ho_s' class='input_text' onchange='arr_l."+arr_n+".style=this.value' type='text' value='"+((arr_l[arr_n].style)?arr_l[arr_n].style:"")+"' style='width:100%;'>"
-        +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l."+arr_n+";edit_code(\"style\",\"Style CSS\",\"ho_update()\");'>"
+        +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_edit' onclick='copy_arr=arr_l."+arr_n+";edit_code(\"style\",\"Style CSS\",\"ho_update()\");'>"
         +"</td></tr>"
-        +((arr_n=="hidden_objects")?"<tr><td height='40px' align='right' style='padding-right:8px;'>JavaScript</td><td style='padding-right:8px;' colspan='2'><input id='ho_j' class='input_text' onchange='arr_l.hidden_objects.js=this.value' type='text' value='"+((arr_l.hidden_objects.js)?arr_l.hidden_objects.js:"")+"' style='width:100%;'></td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l.hidden_objects;edit_code(\"js\",\"JavaScript\",\"ho_update()\");'></td></tr>":"")
+        +"</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Sounds</td>"
+        +((arr_n=="terrain_map")?"<tr><td height='40px' align='right' style='padding-right:8px;'>Click sound</td><td colspan='2'><input id='ho_b' class='input_text' onchange='arr_l."+arr_n+".sound=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].sound)?arr_l[arr_n].sound:'')+"'></td><td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick=\"file_catalog('','audio','ho_b','','arr_l."+arr_n+".sound')\"></td></tr>":"")
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Music</td>"
+        +"<td colspan='2'><input id='ho_m' class='input_text' onchange='arr_l."+arr_n+".background_music=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].background_music)?arr_l[arr_n].background_music:'')+"'></td>"
+        +"<td height='40px' align='right' style='width:40px;' class='icon icon_load' onclick=\"file_catalog('files_auio','audio','ho_m',0,'arr_l."+arr_n+".background_music')\">"
+        +"</td></tr>"
     +"</tbody></table></div>"
     //items
     +"<table onclick='block_open(\"ho_items\");' class='set_title' height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Items</td></tr></tbody></table>"
@@ -2252,16 +2294,23 @@ function ho_edit(){
     }
 }
 function ho_size(){
-    ho_canvas.style.width=(parseInt(arr_l[arr_n].size[0])+512)+"px";ho_room.style.width=arr_l[arr_n].size[0]+"px"
-    ho_canvas.style.height=(parseInt(arr_l[arr_n].size[1])+512)+"px";ho_room.style.height=arr_l[arr_n].size[1]+"px"
+    ho_canvas.style.width=(((arr_l[arr_n].size[0]+512)<ho_preview.offsetWidth)?parseFloat(arr_l[arr_n].size[0])+512+ho_preview.offsetWidth:parseFloat(arr_l[arr_n].size[0])+512)+"px";
+    ho_room.style.width=arr_l[arr_n].size[0]+"px"
+    ho_canvas.style.height=(((arr_l[arr_n].size[1]+512)<ho_preview.offsetHeight)?parseFloat(arr_l[arr_n].size[1])+512+ho_preview.offsetHeight:parseFloat(arr_l[arr_n].size[1])+512)+"px";
+    ho_room.style.height=arr_l[arr_n].size[1]+"px"
     ho_w.value=arr_l[arr_n].size[0];
     ho_h.value=arr_l[arr_n].size[1];
+    if(arr_l[arr_n].fit=="none"&&arr_l[arr_n].art_size){
+        ho_room.style.backgroundSize=arr_l[arr_n].art_size[0]+"px "+arr_l[arr_n].art_size[1]+"px";
+        ho_sw.value=arr_l[arr_n].art_size[0];
+        ho_sh.value=arr_l[arr_n].art_size[1];
+    }
 }
 function ho_new(s){
     if(!s){
-        var a=story_script[scen_data[0]][scen_data[1]][arr_n]
-        if(arr_n=="hidden_objects"){a.objects.push({"position":[ho_preview.scrollLeft+(ho_preview.clientWidth/2)-320,ho_preview.scrollTop+(ho_preview.clientHeight/2)-320],"size":[128,128],"art":"","fit":"contain","name":""});}
-        else{a.objects.push({"go_to":"tue_go","position":[ho_preview.scrollLeft+(ho_preview.clientWidth/2)-320,ho_preview.scrollTop+(ho_preview.clientHeight/2)-320],"size":[128,128],"art":"","fit":"contain"});}
+        var a=story_script[scen_data[0]][scen_data[1]][arr_n],p=[(ho_canvas.offsetWidth-ho_room.offsetWidth)/2,(ho_canvas.offsetHeight-ho_room.offsetHeight)/2];
+        if(arr_n=="hidden_objects"){a.objects.push({"position":[(ho_preview.scrollLeft-p[0])+(ho_preview.clientWidth/2),(ho_preview.scrollTop-p[1])+(ho_preview.clientHeight/2)],"size":[128,128],"art":"","fit":"contain","name":""});}
+        else{a.objects.push({"go_to":"tue_go","position":[(ho_preview.scrollLeft-p[0])+(ho_preview.clientWidth/2),(ho_preview.scrollTop-p[1])+(ho_preview.clientHeight/2)],"size":[128,128],"art":"","fit":"contain"});}
         tool_update='ho_new(1)';ho_update();
         file_catalog('','img','hois_art'+(a.objects.length-1),'','story_script[scen_data[0]][scen_data[1]].'+arr_n+'.objects['+(a.objects.length-1)+'].art');
     }else if(s==1){
