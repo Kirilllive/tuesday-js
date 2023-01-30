@@ -3460,6 +3460,8 @@ function art_panel_edit(block,i,n,b){
         +'<td height="40px" align="right" style="padding-right:8px;">Angle</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].angle=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].angle)?arr_s.art[b].angle:0)+'"></td>'
     +'</tr><tr>'
+            +'<td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Animation</td>'
+    +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Time transform</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].move=correct_value(this.value,true);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].move)?arr_s.art[b].move:0)+'"></td>'
     +'</tr><tr>'
