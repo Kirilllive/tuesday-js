@@ -22,7 +22,7 @@ function terrain_map(){
         else{map.style.backgroundSize=arr_dialog.fit;}
     }
     if(arr_dialog.color){view.style.backgroundColor=art_data(arr_dialog.color);}
-    if(arr_dialog.art&&arr_dialog.art.length>0){map.style.backgroundImage='url("'+art_data(arr_dialog.art)+'")';}
+    if(arr_dialog.art&&art_data(arr_dialog.art).length>0){map.style.backgroundImage='url("'+art_data(arr_dialog.art)+'")';}
     map.style.position="relative";
     map.style.overflow="hidden";
     map.style.transformOrigin="left top";
