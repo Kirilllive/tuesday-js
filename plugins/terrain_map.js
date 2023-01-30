@@ -17,10 +17,7 @@ function terrain_map(){
     map.style.height=arr_dialog.size[1]+"px";
     map.style.backgroundRepeat=(arr_dialog.repeat)?arr_dialog.repeat:"no-repeat";
     if(arr_dialog.art_align){map.style.backgroundPosition=arr_dialog.art_align;}
-    if(arr_dialog.fit){
-        if(arr_dialog.fit=="none"){map.style.backgroundSize=arr_dialog.art_size[0]+"px "+arr_dialog.art_size[1]+"px";}
-        else{map.style.backgroundSize=arr_dialog.fit;}
-    }
+    if(arr_dialog.fit){map.style.backgroundSize=(typeof arr_dialog.fit==="object")?arr_dialog.fit[0]+" "+arr_dialog.fit[1]:arr_dialog.fit}
     if(arr_dialog.color){view.style.backgroundColor=art_data(arr_dialog.color);}
     if(arr_dialog.art&&art_data(arr_dialog.art).length>0){map.style.backgroundImage='url("'+art_data(arr_dialog.art)+'")';}
     map.style.position="relative";
@@ -34,7 +31,7 @@ function terrain_map(){
         item.style.height=arr_dialog.objects[i].size[1]+"px";
         item.style.backgroundRepeat="no-repeat";
         item.style.backgroundPosition="center";
-        item.style.backgroundSize=arr_dialog.objects[i].fit;
+        item.style.backgroundSize=(typeof arr_dialog.objects[i].fit==="object")?arr_dialog.objects[i].fit[0]+" "+arr_dialog.objects[i].fit[1]:arr_dialog.objects[i].fit;
         item.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
         item.style.position="absolute";
         item.style.transformOrigin="top left";
