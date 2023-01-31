@@ -864,6 +864,8 @@ let texts={"tutorials":[{
         "en":"the limit of the cursor size is 128×128px. Larger cursor images are ignored. However, you should limit yourself to the size 32×32 for maximum compatibility with operating systems and platforms."
         },{
         "en":"The variables are in story_json.parameters.variables[var_name] array"
+        },{
+        "en":"More settings for the appearance and position of the button on the layout are located in the scene editor"
         }
 ]}
 let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0],'ferst':true,'pvw':[640,480],'lines_anim':true};
@@ -2224,7 +2226,7 @@ function ho_edit(){
         +"</td></tr>"}
         if(arr_n=="terrain_map"){tool+="</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Background image</td>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;' colspan='3'>"
-        +"<select onchange='if(this.selectedIndex==0){delete arr_l."+arr_n+".fit;ho_size_art.style.display=\"table\";ho_room.style.backgroundSize=\"auto\";}else{arr_l."+arr_n+".fit=this.value;ho_size_art.style.display=\"none\";ho_room.style.backgroundSize=this.value;}'>"
+        +"<select onchange='if(this.selectedIndex==0){delete arr_l."+arr_n+".fit;ho_size_art.style.display=\"table\";ho_room.style.backgroundSize=\"auto\";ho_sw.value=\"\"; ho_sh.value=\"\";}else{arr_l."+arr_n+".fit=this.value;ho_size_art.style.display=\"none\";ho_room.style.backgroundSize=this.value;}'>"
             +"<option value=''>original</option>"
             +"<option "+((arr_l[arr_n].fit=="cover")?"selected":"")+" value='cover'>cover</option>"
             +"<option "+((arr_l[arr_n].fit=="contain")?"selected":"")+" value='contain'>contain</option>"
@@ -2238,10 +2240,10 @@ function ho_edit(){
             +"<option "+((arr_l[arr_n].repeat=="repeat-y")?"selected":"")+" value='repeat-y'>vertical</option>"
         +"</select></td></tr></tbody></table>"
         +"<table id='ho_size_art' style='width:100%;display:"+((!arr_l[arr_n].fit||(arr_l[arr_n].fit!="cover"&&arr_l[arr_n].fit!="contain"&&arr_l[arr_n].fit!="100% 100%"))?"table":"none")+";'><tbody><tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Width art</td><td style='padding-right:8px;' colspan='3'>"
-        +"<input id='ho_sw' class='input_text' onchange='if(typeof arr_l."+arr_n+".fit!==\"object\"){arr_l."+arr_n+".fit=[correct_value(this.value),\"auto\"]}else{arr_l."+arr_n+".fit[0]=correct_value(this.value)};if(arr_l."+arr_n+".fit[1].length==0){arr_l."+arr_n+".fit[1]=\"auto\"};ho_update();state_save();' type='text' value='"+((typeof arr_l[arr_n].fit==="object")?arr_l[arr_n].fit[0]:"")+"' style='width:100%;'>"
+        +"<input id='ho_sw' class='input_text' onchange='if(typeof arr_l."+arr_n+".fit!==\"object\"){arr_l."+arr_n+".fit=[correct_value(this.value),\"auto\"]}else{arr_l."+arr_n+".fit[0]=correct_value(this.value)};if(arr_l."+arr_n+".fit[1].length==0){arr_l."+arr_n+".fit[1]=\"auto\"};ho_size();state_save();' type='text' value='"+((typeof arr_l[arr_n].fit==="object")?arr_l[arr_n].fit[0]:"")+"' style='width:100%;'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Height art</td><td style='padding-right:8px;' colspan='3'>"
-        +"<input id='ho_sh' class='input_text' onchange='if(typeof arr_l."+arr_n+".fit!==\"object\"){arr_l."+arr_n+".fit=[\"auto\",correct_value(this.value)]}else{arr_l."+arr_n+".fit[1]=correct_value(this.value)};if(arr_l."+arr_n+".fit[0].length==0){arr_l."+arr_n+".fit[0]=\"auto\"};ho_update();state_save();' type='text' value='"+((typeof arr_l[arr_n].fit==="object")?arr_l[arr_n].fit[1]:"")+"' style='width:100%;'>"
+        +"<input id='ho_sh' class='input_text' onchange='if(typeof arr_l."+arr_n+".fit!==\"object\"){arr_l."+arr_n+".fit=[\"auto\",correct_value(this.value)]}else{arr_l."+arr_n+".fit[1]=correct_value(this.value)};if(arr_l."+arr_n+".fit[0].length==0){arr_l."+arr_n+".fit[0]=\"auto\"};ho_size();state_save();' type='text' value='"+((typeof arr_l[arr_n].fit==="object")?arr_l[arr_n].fit[1]:"")+"' style='width:100%;'>"
         +"</td></tr></tbody></table>"
         +"<table style='width:100%;'><tbody><td height='40px' align='right' style='padding-right:8px;'>Align art</td>"
         +"<td colspan='3' align='center'>"
@@ -2298,6 +2300,9 @@ function ho_size(){
     ho_room.style.height=arr_l[arr_n].size[1]+"px"
     ho_w.value=arr_l[arr_n].size[0];
     ho_h.value=arr_l[arr_n].size[1];
+    if(typeof arr_l[arr_n].fit==="object"){ho_sw.value=arr_l[arr_n].fit[0];ho_sh.value=arr_l[arr_n].fit[1];}
+    if(arr_l[arr_n].repeat){ho_room.style.backgroundRepeat=arr_l[arr_n].repeat;}
+    if(arr_l[arr_n].fit){ho_room.style.backgroundSize=(typeof arr_l[arr_n].fit==="object")?arr_l[arr_n].fit[0]+" "+arr_l[arr_n].fit[1]:arr_l[arr_n].fit;}
 }
 function ho_new(s){
     if(!s){
@@ -2973,7 +2978,7 @@ function edit_choice(){
         choice_list+="<tr><td style='width:32px;height:26px;'>Text</td><td valign='bottom' style='height:26px;width:28px;'><select id='chol"+l+"' onchange='chot"+l+".value=copy_arr."+arr_n+"["+l+"].text[this.value];' style='height:26px;width:30px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select></td><td><input id='chot"+l+"' class='input_text' oninput='copy_arr."+arr_n+"["+l+"].text[chol"+l+".value]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].text[languare]+"' type='text'></td><td style='width:64px;padding-right:8px;' align='right'>Position X</td><td style='width:48px;'><input class='input_text' style='height:26px;' oninput='copy_arr."+arr_n+"["+l+"].position[0]=this.value;' value='"+copy_arr[arr_n][l].position[0]+"' type='text'></td><td style='width:16px;' align='center'>Y</td><td style='width:48px;'><input class='input_text' oninput='copy_arr."+arr_n+"["+l+"].position[2]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].position[2]+"' type='text'></td><td style='width:48px;' align='right'>go to:</td><td style='width:92px;'><select onchange='copy_arr."+arr_n+"["+l+"].go_to=this.value;'>"+option_block(copy_arr[arr_n][l].go_to,2)+"</select></td><td onclick='copy_arr."+arr_n+"["+l+"]={};var a=this.closest(\"tr\");a.parentElement.removeChild(a);' style='width:32px;cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
     }
     choice_list+="</tbody></table>"
-    var html="<div class='window' style='max-width:568px;width:calc(100% - 32px);'><div class='win_head'>Choice edit<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'>"+choice_list+"<div onclick=\"edit_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px;width:26px;cursor:pointer;'></div></div><br><br><table class='big_button' width='256px' onclick='for(var l=copy_arr[arr_n].length;l>=0;l--){if(!copy_arr[arr_n][l]||!copy_arr[arr_n][l].go_to){copy_arr[arr_n].splice(l,1);}else{data_only(copy_arr[arr_n][l],\"text\");}};arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    var html="<div class='window' style='max-width:568px;width:calc(100% - 32px);'><div class='win_head'>Choice edit<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'> <p class='text_tutorials_a select_tutorials'>"+texts.tutorials[15].en+"</p>  <div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'>"+choice_list+"<div onclick=\"edit_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px;width:26px;cursor:pointer;'></div></div><br><br><table class='big_button' width='256px' onclick='for(var l=copy_arr[arr_n].length;l>=0;l--){if(!copy_arr[arr_n][l]||!copy_arr[arr_n][l].go_to){copy_arr[arr_n].splice(l,1);}else{data_only(copy_arr[arr_n][l],\"text\");}};arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function edit_choice_new(){
