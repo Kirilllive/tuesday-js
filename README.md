@@ -67,6 +67,55 @@ In the scene layout you can use standard HTML units in percentage pixels or cent
 ![Tuesday JS scene editor](screenshots/scene_editor.jpg)
 
 
+# Translate tool / 内蔵翻訳支援ツール
+The built-in translation editing tool allows you to quickly add a new translation and edit all the texts in your project without leaving the editor. In addition, it displays the number of completed translations for each language.
+
+Tuesday JSが内蔵する翻訳支援ツールなら、他の言語版用の翻訳文を、プロジェクトで使用している元のテキストを対訳表のように参照しながら追加していけるので、別のテキストエディターを起動する手間が省けます。また、翻訳の進捗率を言語ごとに確認できます。
+
+Встроенный инструмент редактирования перевода позволяет быстро добавлять новый перевод и отредактировать все тексты в вашем проекте, не выходя из редактора. Кроме того, он отображает количество выполненного переводова для каждого языка.
+
+
+![Tuesday JS preview](screenshots/translate_tool.jpg)
+
+
+# Preview / プレビュー
+
+Preview allows you to start a project from a certain point in the script with the selected localization.
+
+各々の言語設定で、任意の時点から動作をテストできるプレビュー機能があります。
+
+Предварительный просмотр позволяет запустить проект с определенной точки в сценарии с выбранной локализацией.
+
+
+![Tuesday JS preview](screenshots/preview.jpg)
+
+
+# JSON
+A story script has all the elements stored in a JSON structure. Almost any programming language can work with this format. This allows you to port your script to another engine or platform.
+The editor has a built-in tool to work with JSON. This will allow you to edit the entire contents of the script or just the selected element.
+
+ゲームスクリプトは、全要素をJSON形式で保存します。JSONは、一部を除く全てのプログラム言語で扱えるので、他のゲームエンジンやコンピューターにTuesday JSで作成したスクリプトを移植できます。
+JSONを編集するツールを内蔵していおり、スクリプト全体をJSONとして編集することも、任意の箇所のみを編集することも可能です。
+    
+Сценарий истории сохраняется в структуре JSON. Практически любой язык программирования может работать с этим форматом что позволяет вам перенести ваш сценарий на другой движок или платформу. 
+Редактор имеет встроенный инструмент для работы с JSON это позволит вам отредактировать все содержимое истории или только выбранный элемент.
+
+
+![Tuesday JS json edit](screenshots/json_edit.jpg)
+
+
+# ASCII art / アスキーアート (AA)
+
+The engine is adapted to use ASCII graphics. With its help, you can diversify the texts with images and patterns made up of text characters.
+
+Tuesday JSエンジンはアスキーアート(AA)を適切に表示できます。テキストで様々な絵や模様を作ることができます。
+
+Движок адаптирован для использования ASCII-графики. С ее помощью вы сможете разнообразить тексты изображениями и узорами составленых из текстовых символов.
+
+
+![Tuesday JS preview](screenshots/ascii_art.jpg)
+
+
 # Localization / ローカリゼーション
 Tuesday JS provides ample opportunities for adapting stories into other languages.
 You can set the localized translation for almost any element of your project including text and graphics.
@@ -84,55 +133,6 @@ Tuesday JS предоставляет обширные возможности д
 
 
 ![Tuesday JS localization](screenshots/localization.jpg)
-
-
-# JSON
-A story script has all the elements stored in a JSON structure. Almost any programming language can work with this format. This allows you to port your script to another engine or platform.
-The editor has a built-in tool to work with JSON. This will allow you to edit the entire contents of the script or just the selected element.
-
-ゲームスクリプトは、全要素をJSON形式で保存します。JSONは、一部を除く全てのプログラム言語で扱えるので、他のゲームエンジンやコンピューターにTuesday JSで作成したスクリプトを移植できます。
-JSONを編集するツールを内蔵していおり、スクリプト全体をJSONとして編集することも、任意の箇所のみを編集することも可能です。
-    
-Сценарий истории сохраняется в структуре JSON. Практически любой язык программирования может работать с этим форматом что позволяет вам перенести ваш сценарий на другой движок или платформу. 
-Редактор имеет встроенный инструмент для работы с JSON это позволит вам отредактировать все содержимое истории или только выбранный элемент.
-
-
-![Tuesday JS json edit](screenshots/json_edit.jpg)
-
-
-# Preview / プレビュー
-
-Preview allows you to start a project from a certain point in the script with the selected localization.
-
-各々の言語設定で、任意の時点から動作をテストできるプレビュー機能があります。
-
-Предварительный просмотр позволяет запустить проект с определенной точки в сценарии с выбранной локализацией.
-
-
-![Tuesday JS preview](screenshots/preview.jpg)
-
-
-# Translate tool / 内蔵翻訳支援ツール
-The built-in translation editing tool allows you to quickly add a new translation and edit all the texts in your project without leaving the editor. In addition, it displays the number of completed translations for each language.
-
-Tuesday JSが内蔵する翻訳支援ツールなら、他の言語版用の翻訳文を、プロジェクトで使用している元のテキストを対訳表のように参照しながら追加していけるので、別のテキストエディターを起動する手間が省けます。また、翻訳の進捗率を言語ごとに確認できます。
-
-Встроенный инструмент редактирования перевода позволяет быстро добавлять новый перевод и отредактировать все тексты в вашем проекте, не выходя из редактора. Кроме того, он отображает количество выполненного переводова для каждого языка.
-
-
-![Tuesday JS preview](screenshots/translate_tool.jpg)
-
-
-# ASCII art / アスキーアート (AA)
-
-The engine is adapted to use ASCII graphics. With its help, you can diversify the texts with images and patterns made up of text characters.
-
-Tuesday JSエンジンはアスキーアート(AA)を適切に表示できます。テキストで様々な絵や模様を作ることができます。
-
-Движок адаптирован для использования ASCII-графики. С ее помощью вы сможете разнообразить тексты изображениями и узорами составленых из текстовых символов.
-
-
-![Tuesday JS preview](screenshots/ascii_art.jpg)
 
 
 

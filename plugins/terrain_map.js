@@ -33,11 +33,26 @@ function terrain_map(){
         item.style.backgroundPosition="center";
         item.style.backgroundSize=(typeof arr_dialog.objects[i].fit==="object")?arr_dialog.objects[i].fit[0]+" "+arr_dialog.objects[i].fit[1]:arr_dialog.objects[i].fit;
         item.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
+        item.style.backgroundPosition=((arr_dialog.objects[i].art_align)?arr_dialog.objects[i].art_align[0]+" "+arr_dialog.objects[i].art_align[1]:"center");
         item.style.position="absolute";
         item.style.transformOrigin="top left";
         item.style.transform='rotate('+arr_dialog.objects[i].angle+'deg)';
         item.style.top=arr_dialog.objects[i].position[1]+"px";
         item.style.left=arr_dialog.objects[i].position[0]+"px";
+        item.style.display="flex";
+        if(arr_dialog.objects[i].color){item.style.backgroundColor=arr_dialog.objects[i].color}
+        if(arr_dialog.objects[i].name){
+            item.innerHTML=art_data(arr_dialog.objects[i].name);
+            if(arr_dialog.objects[i].indent_text){item.style.padding=arr_dialog.objects[i].indent_text;}
+            if(arr_dialog.objects[i].color_text){item.style.color=arr_dialog.objects[i].color_text}
+            if(arr_dialog.objects[i].size_text){item.style.fontSize=arr_dialog.objects[i].size_text}
+            if(arr_dialog.objects[i].font_family){item.style.fontFamily=arr_dialog.objects[i].font_family}
+            item.style.whiteSpace="pre-wrap";
+            if(arr_dialog.objects[i].align){
+                item.style.justifyContent=((arr_dialog.objects[i].align)?arr_dialog.objects[i].align[0]:"center");
+                item.style.alignItems=((arr_dialog.objects[i].align)?arr_dialog.objects[i].align[1]:"center");
+            }else{item.style.justifyContent="center";item.style.alignItems="center"}
+        }
         if(story_json.parameters.cursors&&story_json.parameters.cursors.choice){item.style.cursor="url("+art_data(story_json.parameters.cursors.choice[0])+") "+story_json.parameters.cursors.choice[1]+" "+story_json.parameters.cursors.choice[2]+",auto";}
         if(arr_dialog.objects[i].show_if){show_if(arr_dialog.objects[i].show_if,item)}
         var v='';

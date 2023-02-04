@@ -865,7 +865,7 @@ let texts={"tutorials":[{
         },{
         "en":"The variables are in story_json.parameters.variables[var_name] array"
         },{
-        "en":"More settings for the appearance and position of the button on the layout are located in the scene editor"
+        "en":"More settings for appearance and position of the choice on layout are located in the scene editor"
         }
 ]}
 let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0],'ferst':true,'pvw':[640,480],'lines_anim':true};
@@ -1005,8 +1005,9 @@ function lang_select(){
 }
 language_view.onchange=function(e){
 	languare=language_view.value;
-    if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2]);}
-    update_novel()
+    if(arr_n=="hidden_objects"||arr_n=="terrain_map"){ho_update();}
+    else if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2]);}
+    else{update_novel()}
 };
 function creation_block(b){
     var chapter=document.createElement("div"),element="",all=0,go="";
@@ -2068,7 +2069,7 @@ function ho_edit(){
     }else{var p=story_script.parameters[arr_n]
     if(!arr_l[arr_n].art[languare]){data_la(arr_l[arr_n],'art')}
     var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr><td rowspan='3' style='position:relative;'>"
-    +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();'>"
+    +"<div id='ho_preview' style='width:calc(100vw - 286px);height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'>"
     +"<div id='ho_canvas' class='"+setup_editor.fon+"' style='transform-origin:left top;display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;background-color:var(--cw);background-blend-mode:overlay;background-size:64px;'><div id='ho_room' style='position:relative;background-repeat:"+((arr_l[arr_n].repeat)?arr_l[arr_n].repeat:"no-repeat")+";background-position:"+((arr_l[arr_n].art_align)?arr_l[arr_n].art_align:"left top")+";"+((arr_l[arr_n].art)?"background-image:url("+open_file(languare_data(arr_l[arr_n].art))+");":"")+((arr_l[arr_n].color)?"background-color:"+arr_l[arr_n].color+";":"")+";background-size:"+((arr_l[arr_n].fit)?arr_l[arr_n].fit:"auto")+";width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'></div></div>"
     +"<div id='ho_controll' style='right:320px;'><table height='100%'><tbody><tr>"
         +"<td width='42px' class='icon button_menu icon_equal' onclick='ho_scale(0.05)'></td>"
@@ -2309,9 +2310,8 @@ function ho_new(s){
         var a=story_script[scen_data[0]][scen_data[1]][arr_n],p=[(ho_canvas.offsetWidth-ho_room.offsetWidth)/2,(ho_canvas.offsetHeight-ho_room.offsetHeight)/2];
         if(arr_n=="hidden_objects"){a.objects.push({"position":[(ho_preview.scrollLeft-p[0])+(ho_preview.clientWidth/2),(ho_preview.scrollTop-p[1])+(ho_preview.clientHeight/2)],"size":[128,128],"art":"","fit":"contain","name":""});
             file_catalog('','img','hois_art'+(a.objects.length-1),'','story_script[scen_data[0]][scen_data[1]].'+arr_n+'.objects['+(a.objects.length-1)+'].art');}
-        else{a.objects.push({"go_to":"tue_go","position":[(ho_preview.scrollLeft-p[0])+(ho_preview.clientWidth/2),(ho_preview.scrollTop-p[1])+(ho_preview.clientHeight/2)],"size":[128,128],"art":"","fit":"contain","name":"label","color":"new","color_text":"new","indent_text":"8px"});}
+        else{a.objects.push({"go_to":"tue_go","position":[(ho_preview.scrollLeft-p[0])+(ho_preview.clientWidth/2),(ho_preview.scrollTop-p[1])+(ho_preview.clientHeight/2)],"size":[128,128],"art":"","fit":"contain","name":"label","indent_text":"8px"});}
         tool_update='ho_new(1)';ho_update();
-        
     }else if(s==1){
         var a=story_script[scen_data[0]][scen_data[1]][arr_n].objects,image = new Image();
         image.src=open_file(languare_data(a[a.length-1].art));
@@ -2329,6 +2329,7 @@ function ho_update(){
     e.innerHTML="";c.innerHTML="";
     for(var i=0;i<arr_l[arr_n].objects.length;i++){
         if(arr_l[arr_n].objects[i].name&&!arr_l[arr_n].objects[i].name[languare]){data_la(arr_l[arr_n].objects[i],'name')}
+        if(arr_l[arr_n].objects[i].art&&!arr_l[arr_n].objects[i].art[languare]){data_la(arr_l[arr_n].objects[i],"art")}
         o=document.createElement("div");
         o.id="item"+i;
         o.setAttribute('onclick','objSelect(this.id,\"'+e.id+'\");arr_e=story_script.'+scen_data[0]+'['+scen_data[1]+'].'+[arr_n]+'.objects['+i+'];event.stopPropagation();');
@@ -2341,11 +2342,25 @@ function ho_update(){
         o.style.left=arr_l[arr_n].objects[i].position[0]+"px";
         o.style.width=arr_l[arr_n].objects[i].size[0]+"px";
         o.style.height=arr_l[arr_n].objects[i].size[1]+"px";
-        o.style.backgroundImage="url("+open_file(arr_l[arr_n].objects[i].art)+")";
-        o.style.backgroundPosition="center";
+        o.style.display="flex";
+        o.style.backgroundImage="url("+open_file(arr_l[arr_n].objects[i].art[languare])+")";
+        o.style.backgroundPosition=((arr_l[arr_n].objects[i].art_align)?arr_l[arr_n].objects[i].art_align[0]+" "+arr_l[arr_n].objects[i].art_align[1]:"center");
         o.style.backgroundRepeat="no-repeat";
         o.style.transform='translate(0%, 0%) rotate('+arr_l[arr_n].objects[i].angle+'deg)';
         if(arr_l[arr_n].objects[i].fit){o.style.backgroundSize=(typeof arr_l[arr_n].objects[i].fit==="object")?arr_l[arr_n].objects[i].fit[0]+" "+arr_l[arr_n].objects[i].fit[1]:arr_l[arr_n].objects[i].fit}
+        if(arr_l[arr_n].objects[i].color){o.style.backgroundColor=arr_l[arr_n].objects[i].color}
+        if(arr_l[arr_n].objects[i].name){
+            o.innerHTML=arr_l[arr_n].objects[i].name[languare];
+            if(arr_l[arr_n].objects[i].color_text){o.style.padding=arr_l[arr_n].objects[i].indent_text;}
+            if(arr_l[arr_n].objects[i].color_text){o.style.color=arr_l[arr_n].objects[i].color_text}
+            if(arr_l[arr_n].objects[i].size_text){o.style.fontSize=arr_l[arr_n].objects[i].size_text}
+            if(arr_l[arr_n].objects[i].font_family){o.style.fontFamily=arr_l[arr_n].objects[i].font_family}
+            o.style.whiteSpace="pre-wrap";
+            if(arr_l[arr_n].objects[i].align){
+                o.style.justifyContent=((arr_l[arr_n].objects[i].align)?arr_l[arr_n].objects[i].align[0]:"center");
+                o.style.alignItems=((arr_l[arr_n].objects[i].align)?arr_l[arr_n].objects[i].align[1]:"center");
+            }else{o.style.justifyContent="center";o.style.alignItems="center"}
+        }
         e.appendChild(o);
         var show_if="<table width='100%'><tbody><tr><td style='width:128px;' valign='bottom'></td><td style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);'></td><td></td><td style='width:30px;'></td></tr>"
         if(arr_l[arr_n].objects[i].show_if){
@@ -2360,7 +2375,7 @@ function ho_update(){
             +"<td width='24px' class='icon_m icon_up'   onclick='move_elenetn(story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects,"+i+",-1);ho_update();state_save();' height='22px'></td>"
             +"<td width='24px' class='icon_m icon_down' onclick='move_elenetn(story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects,"+i+",1);ho_update();state_save();'></td><td>&nbsp;</td>"
             +"<td width='26px' class='icon_show icon_m' style='cursor:pointer;' onclick='panel_m(\"b_item"+i+"\",\""+arr_n+"\",\""+scen_data[0]+"\","+scen_data[1]+","+i+",\"objects\",\"ho_update\")' ></td>"
-            +"</tr><tr><td colspan='4' height='40px' align='center'><div id='ho_ip"+i+"' style='background-image:url("+open_file(arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;background-size:contain;height:100%;width:100%';> </div></td></tr><tr>"
+            +"</tr><tr><td colspan='4' height='40px' align='center'><div id='ho_ip"+i+"' style='background-image:url("+open_file((arr_l[arr_n].objects[i].art[languare])?arr_l[arr_n].objects[i].art[languare]:arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;background-size:contain;height:100%;width:100%;display:grid;justify-content:center;align-items:center;'>"+ ((arr_l[arr_n].objects[i].name[languare])?arr_l[arr_n].objects[i].name[languare]:"")+" </div></td></tr><tr>"
             +"<td class='icon_m icon_more' height='22px' onclick='block_open(\"ho_is"+i+"\");scen_element.ho_is"+i+"=ho_is"+i+".style.display;menu_objects.style.visibility=\"hidden\"'></td><td colspan='2'></td></tr></tbody></table>"
             +"<table width='100%' id=ho_is"+i+" style='display:"+((scen_element["ho_is"+i])?scen_element["ho_is"+i]:"none")+";border-top:1px solid var(--cb);margin-top:8px;'><tbody><tr>"
             +((arr_n=="terrain_map")?"<tr><td height='40px' align='right' style='padding-right:8px;'><select style='height:28px;width:100%;border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);' onchange='if(this.selectedIndex==1){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from=true;}else{delete story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from;}'><option "+((!arr_l[arr_n].objects[i].text_from)?"selected":"")+">Go to</option><option "+((arr_l[arr_n].objects[i].text_from)?"selected":"")+">Only text from</option></select></td><td style='padding-right:8px;' colspan='3'><select style='height:28px;width:100%;border-bottom:1px solid var(--cb);background-color: var(--cw);' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=this.value'>"+option_block( arr_l[arr_n].objects[i].go_to,0)+"</select></td>":"")
@@ -2380,14 +2395,17 @@ function ho_update(){
             +"</td></tr>"
             +"<tr><td height='40px' align='right' style='padding-right:8px;'>JavaScript</td><td style='padding-right:8px;' colspan='2'><input id='ho_j"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].js=this.value' type='text' value='"+((arr_l[arr_n].objects[i].js)?arr_l[arr_n].objects[i].js:"")+"' style='width:100%;'></td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l."+arr_n+".objects["+i+"];edit_code(\"js\",\"JavaScript\",\"ho_update()\");'>"
             +"</tr><tr>"
-        if(arr_n=="terrain_map"){k+="<td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Text</td></tr>"
+            if(arr_n=="terrain_map"){k+="<td height='40px' align='right' style='padding-right:8px;'>Indent text</td>"
+            +"<td colspan='3'><input class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].indent_text=correct_value(this.value);ho_update();state_save();' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].objects[i].indent_text)?arr_l[arr_n].objects[i].indent_text:'')+"'></td>"
+            +"</tr><tr>"
+            +"<td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Text</td></tr>"
             +"<td height='40px' align='right' style='padding-right:8px;'>Text color</td>"
             +"<td style='width:28px;' align='center'><div class='show_color' style='"+((arr_l[arr_n].objects[i].color_text)?"background-color:"+arr_l[arr_n].objects[i].color_text:"")+"'></div></td>"
-            +"<td style='padding-right:8px;'><input id='ho_tc"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].color_text=this.value;ho_update();state_save();' type='text' value='"+((arr_l[arr_n].objects[i].color)?arr_l[arr_n].objects[i].color:"")+"' style='width:100%;'></td>"
+            +"<td style='padding-right:8px;'><input id='ho_tc"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].color_text=this.value;ho_update();state_save();' type='text' value='"+((arr_l[arr_n].objects[i].color_text)?arr_l[arr_n].objects[i].color_text:"")+"' style='width:100%;'></td>"
             +"<td height='40px' align='right' style='width:30px;' class='icon icon_color' onclick='edit_color(\"ho_tc"+i+"\",ho_tc"+i+".value);'></td>"
             +"</tr><tr>"
             +"<td height='40px' align='right' style='padding-right:8px;'>Font size</td>"
-            +"<td colspan='3'><input id='ho_tfs"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size_text=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].objects[i].size_text)?arr_l[arr_n].objects[i].size_text:"")+"'></td>"
+            +"<td colspan='3'><input id='ho_tfs"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size_text=correct_value(this.value);ho_update();state_save();' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].objects[i].size_text)?arr_l[arr_n].objects[i].size_text:"")+"'></td>"
             +"</td></tr>"
             +"<td height='40px' align='right' style='padding-right:8px;'>Font family</td>"
             +"<td colspan='3'><input id='ho_tff"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].font_family=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].objects[i].font_family)?arr_l[arr_n].objects[i].font_family:"")+"'></td>"
@@ -2395,24 +2413,25 @@ function ho_update(){
             +"<td height='40px' align='right' style='padding-right:8px;'>Align text</td>"
                 +"<td colspan='3' align='center'>"
                 +"<table style='background-color:var(--cw);border-radius:4px;'><tbody><tr>"
-                    +"<td><input class='icon icon_diag align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-start\",\"flex-start\"];' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-start"&&arr_l[arr_n].objects[i].align[1]=="flex-start")?"checked":"")+" style='transform:scaleX(-1) scaleY(-1);'></td>"
-                    +"<td><input class='icon icon_side align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"center\",\"flex-start\"];' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="center"&&arr_l[arr_n].objects[i].align[1]=="flex-start")?"checked":"")+"></td>"
-                    +"<td><input class='icon icon_diag align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-end\",\"flex-start\"];' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-end"&&arr_l[arr_n].objects[i].align[1]=="flex-start")?"checked":"")+" style='transform:scaleY(-1);'></td>"
+                    +"<td><input class='icon icon_diag align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-start\",\"flex-start\"];ho_update();' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-start"&&arr_l[arr_n].objects[i].align[1]=="flex-start")?"checked":"")+" style='transform:scaleX(-1) scaleY(-1);'></td>"
+                    +"<td><input class='icon icon_side align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"center\",\"flex-start\"];ho_update();' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="center"&&arr_l[arr_n].objects[i].align[1]=="flex-start")?"checked":"")+"></td>"
+                    +"<td><input class='icon icon_diag align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-end\",\"flex-start\"];ho_update();' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-end"&&arr_l[arr_n].objects[i].align[1]=="flex-start")?"checked":"")+" style='transform:scaleY(-1);'></td>"
                 +"</tr><tr>"
-                    +"<td><input class='icon icon_side align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-start\",\"center\"];' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-start"&&arr_l[arr_n].objects[i].align[1]=="center")?"checked":"")+" style='transform:rotate(270deg);'></td>"
-                    +"<td><input class='icon icon_cent align' type='radio' name='ho_ta"+i+"' onchange='delete story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align;' "+((!arr_l[arr_n].objects[i].align)?"checked":"")+"></td>"
-                    +"<td><input class='icon icon_side align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-end\",\"center\"];' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-end"&&arr_l[arr_n].objects[i].align[1]=="center")?"checked":"")+" style='transform:rotate(90deg);'></td>"
+                    +"<td><input class='icon icon_side align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-start\",\"center\"];ho_update();' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-start"&&arr_l[arr_n].objects[i].align[1]=="center")?"checked":"")+" style='transform:rotate(270deg);'></td>"
+                    +"<td><input class='icon icon_cent align' type='radio' name='ho_ta"+i+"' onchange='delete story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align;ho_update();' "+((!arr_l[arr_n].objects[i].align)?"checked":"")+"></td>"
+                    +"<td><input class='icon icon_side align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-end\",\"center\"];ho_update();' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-end"&&arr_l[arr_n].objects[i].align[1]=="center")?"checked":"")+" style='transform:rotate(90deg);'></td>"
                 +"</tr><tr>"
-                    +"<td><input class='icon icon_diag align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-start\",\"flex-end\"];' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-start"&&arr_l[arr_n].objects[i].align[1]=="flex-end")?"checked":"")+" style='transform:scaleX(-1);'></td>"
-                    +"<td><input class='icon icon_side align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"center\",\"flex-end\"];' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="center"&&arr_l[arr_n].objects[i].align[1]=="flex-end")?"checked":"")+" style='transform:scaleY(-1);'></td>"
-                    +"<td><input class='icon icon_diag align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-end\",\"flex-end\"];' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-end"&&arr_l[arr_n].objects[i].align[1]=="flex-end")?"checked":"")+" style='transform:scaleX(1);'></td>"
+                    +"<td><input class='icon icon_diag align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-start\",\"flex-end\"];ho_update();' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-start"&&arr_l[arr_n].objects[i].align[1]=="flex-end")?"checked":"")+" style='transform:scaleX(-1);'></td>"
+                    +"<td><input class='icon icon_side align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"center\",\"flex-end\"];ho_update();' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="center"&&arr_l[arr_n].objects[i].align[1]=="flex-end")?"checked":"")+" style='transform:scaleY(-1);'></td>"
+                    +"<td><input class='icon icon_diag align' type='radio' name='ho_ta"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-end\",\"flex-end\"];ho_update();' "+((arr_l[arr_n].objects[i].align&&arr_l[arr_n].objects[i].align[0]=="flex-end"&&arr_l[arr_n].objects[i].align[1]=="flex-end")?"checked":"")+" style='transform:scaleX(1);'></td>"
                 +"</tr></tbody></table>"
                 +"</td>"
             +'</tr><tr>'}
         k+="<td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Art</td></tr>"
             +"<td height='40px' align='right' style='padding-right:8px;'>Art</td>"
-            +"<td colspan='2'><input id='hois_art"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px' value='"+arr_l[arr_n].objects[i].art+"'></td>"
-            +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick='file_catalog(\"\",\"img\",\"hois_art"+i+"\",\"\",\"story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art\");'></td>"
+            +"<td style='width:28px;' align='center'><select id='hois_artl"+i+"' onchange='if(!story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art[languare]){data_la(story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"],\"art\")} ;hois_art"+i+".value=story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art[this.value];' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);'>"+project_languares(languare)+"</select></td>"
+            +"<td><input id='hois_art"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art[hois_artl"+i+".value]=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px' value='"+arr_l[arr_n].objects[i].art[languare]+"'></td>"
+            +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick='file_catalog(\"\",\"img\",\"hois_art"+i+"\",\"\",\"story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art[hois_artl"+i+".value]\");'></td>"
             +"</td></tr>"
             +"<tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;' colspan='3'>"
             +"<select onchange='if(this.selectedIndex==0){delete story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].fit}else{story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].fit=this.value};ho_update();state_save();' style='height:28px;width:100%;border-bottom:1px solid var(--cb);background-color: var(--cw);'>"
@@ -2430,17 +2449,17 @@ function ho_update(){
             k+="<td height='40px' align='right' style='padding-right:8px;'>Align art</td>"
                 +"<td colspan='3' align='center'>"
                 +"<table style='background-color:var(--cw);border-radius:4px;'><tbody><tr>"
-                    +"<td><input class='icon icon_diag align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"flex-start\",\"flex-start\"];' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="flex-start"&&arr_l[arr_n].objects[i].art_align[1]=="flex-start")?"checked":"")+" style='transform:scaleX(-1) scaleY(-1);'></td>"
-                    +"<td><input class='icon icon_side align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"center\",\"flex-start\"];' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="center"&&arr_l[arr_n].objects[i].art_align[1]=="flex-start")?"checked":"")+"></td>"
-                    +"<td><input class='icon icon_diag align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"flex-end\",\"flex-start\"];' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="flex-end"&&arr_l[arr_n].objects[i].art_align[1]=="flex-start")?"checked":"")+" style='transform:scaleY(-1);'></td>"
+                    +"<td><input class='icon icon_diag align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"left\",\"top\"];ho_update();' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="left"&&arr_l[arr_n].objects[i].art_align[1]=="top")?"checked":"")+" style='transform:scaleX(-1) scaleY(-1);'></td>"
+                    +"<td><input class='icon icon_side align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"center\",\"top\"];ho_update();' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="center"&&arr_l[arr_n].objects[i].art_align[1]=="top")?"checked":"")+"></td>"
+                    +"<td><input class='icon icon_diag align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"right\",\"top\"];ho_update();' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="right"&&arr_l[arr_n].objects[i].art_align[1]=="top")?"checked":"")+" style='transform:scaleY(-1);'></td>"
                 +"</tr><tr>"
-                    +"<td><input class='icon icon_side align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"flex-start\",\"center\"];' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="flex-start"&&arr_l[arr_n].objects[i].art_align[1]=="center")?"checked":"")+" style='transform:rotate(270deg);'></td>"
-                    +"<td><input class='icon icon_cent align' type='radio' name='ho_aa"+i+"' onchange='delete story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align;' "+((!arr_l[arr_n].objects[i].align)?"checked":"")+"></td>"
-                    +"<td><input class='icon icon_side align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].align=[\"flex-end\",\"center\"];' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="flex-end"&&arr_l[arr_n].objects[i].art_align[1]=="center")?"checked":"")+" style='transform:rotate(90deg);'></td>"
+                    +"<td><input class='icon icon_side align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"left\",\"center\"];ho_update();' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="left"&&arr_l[arr_n].objects[i].art_align[1]=="center")?"checked":"")+" style='transform:rotate(270deg);'></td>"
+                    +"<td><input class='icon icon_cent align' type='radio' name='ho_aa"+i+"' onchange='delete story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align;ho_update();' "+((!arr_l[arr_n].objects[i].art_align)?"checked":"")+"></td>"
+                    +"<td><input class='icon icon_side align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"right\",\"center\"];ho_update();' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="right"&&arr_l[arr_n].objects[i].art_align[1]=="center")?"checked":"")+" style='transform:rotate(90deg);'></td>"
                 +"</tr><tr>"
-                    +"<td><input class='icon icon_diag align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"flex-start\",\"flex-end\"];' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="flex-start"&&arr_l[arr_n].objects[i].art_align[1]=="flex-end")?"checked":"")+" style='transform:scaleX(-1);'></td>"
-                    +"<td><input class='icon icon_side align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"center\",\"flex-end\"];' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="center"&&arr_l[arr_n].objects[i].art_align[1]=="flex-end")?"checked":"")+" style='transform:scaleY(-1);'></td>"
-                    +"<td><input class='icon icon_diag align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"flex-end\",\"flex-end\"];' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="flex-end"&&arr_l[arr_n].objects[i].art_align[1]=="flex-end")?"checked":"")+" style='transform:scaleX(1);'></td>"
+                    +"<td><input class='icon icon_diag align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"left\",\"bottom\"];ho_update();' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="left"&&arr_l[arr_n].objects[i].art_align[1]=="bottom")?"checked":"")+" style='transform:scaleX(-1);'></td>"
+                    +"<td><input class='icon icon_side align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"center\",\"bottom\"];ho_update();' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="center"&&arr_l[arr_n].objects[i].art_align[1]=="bottom")?"checked":"")+" style='transform:scaleY(-1);'></td>"
+                    +"<td><input class='icon icon_diag align' type='radio' name='ho_aa"+i+"' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art_align=[\"right\",\"bottom\"];ho_update();' "+((arr_l[arr_n].objects[i].art_align&&arr_l[arr_n].objects[i].art_align[0]=="right"&&arr_l[arr_n].objects[i].art_align[1]=="bottom")?"checked":"")+" style='transform:scaleX(1);'></td>"
                 +"</tr></tbody></table>"
                 +"</td>"
             +"</tr><tr>"}
@@ -2459,7 +2478,7 @@ function ho_update(){
             +"<input id='ho_c"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].className=this.value;' type='text' value='"+((arr_l[arr_n].objects[i].className)?arr_l[arr_n].objects[i].className:"")+"' style='width:100%;'>"
             +"</td></tr>"
             +"<tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>"
-            +"<input id='ho_s"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].style=this.value' type='text' value='"+((arr_l[arr_n].objects[i].style)?arr_l[arr_n].objects[i].style:"")+"' style='width:100%;'>"
+            +"<input id='ho_s"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].style=this.value;ho_update();' type='text' value='"+((arr_l[arr_n].objects[i].style)?arr_l[arr_n].objects[i].style:"")+"' style='width:100%;'>"
             +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=arr_l."+arr_n+".objects["+i+"];edit_code(\"style\",\"Style CSS\",\"ho_update()\");'>"
             +"</td></tr>"
         if(arr_n=="terrain_map"){k+="<td height='40px' align='right' style='padding-right:8px;'>Color</td>"
@@ -2485,7 +2504,10 @@ function ho_close(a){
     droppFocus(document.getElementById('ho_room_sizer'));
     data_only(arr_l[arr_n],'art');
     if(arr_n=="terrain_map"&&arr_l[arr_n].scroll==0&&arr_l[arr_n].scroll[1]==0){ delete arr_l[arr_n].scroll}
-    for(var i=0;i<arr_l[arr_n].objects.length;i++){if(arr_l[arr_n].objects[i].name){data_only(arr_l[arr_n].objects[i],'name')}}
+    for(var i=0;i<arr_l[arr_n].objects.length;i++){
+        if(arr_l[arr_n].objects[i].name){data_only(arr_l[arr_n].objects[i],'name')}
+        if(arr_l[arr_n].objects[i].art){data_only(arr_l[arr_n].objects[i],'art')}
+    }
     open_tool();update_novel();
 }
 function open_tool(content,update){
