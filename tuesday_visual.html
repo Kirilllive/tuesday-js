@@ -3340,7 +3340,7 @@ function scen_editor(block,i,n){
                 scene_layout.appendChild(html_show);
             }
         }
-    }
+    }make_resizable(document.getElementById("resizers"));
 }
 function video_size(){
     var v=document.getElementById('scen_video')
@@ -5103,7 +5103,6 @@ function off_drag(){
     document.ontouchmove=null;
     scene_scroll=true;
 }
-make_resizable(document.getElementById("resizers"));
 function edit_color(n,c){
     var code='<div class="window" style="position:fixed;padding:8px;width:380px;"><div><div class="window_close icon icon_close" onclick="menu_add.style.visibility=\'hidden\';" ></div></div><p>Color</p><hr style="margin-top:10px;">'
     +'<form id="type_color"><table style="margin-top:16px;"><tbody><tr>'
