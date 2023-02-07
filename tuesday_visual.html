@@ -2264,7 +2264,7 @@ function ho_edit(){
         +"</tr><tr>"}
         tool+="</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Style</td>"
         +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Color</td><td style='width:40px;' align='center'><div class='show_color' id='ho_cp' "+((arr_l[arr_n].color)?'style="background-color:'+arr_l[arr_n].color+';"':"")+"></div></td><td style='padding-right:8px;'>"
-        +"<input id='ho_c' class='input_text' onchange='ho_room.style.backgroundColor=this.value;ho_cp.style.backgroundColor=this.value;' type='text' value='"+((arr_l[arr_n].color)?arr_l[arr_n].color:"")+"' style='width:100%;'>"
+        +"<input id='ho_c' class='input_text' onchange='ho_room.style.backgroundColor=this.value;ho_cp.style.backgroundColor=this.value;arr_l."+arr_n+".color=this.value' type='text' value='"+((arr_l[arr_n].color)?arr_l[arr_n].color:"")+"' style='width:100%;'>"
         +"</td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color(\"ho_c\",ho_c.value)'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>"
@@ -2329,7 +2329,7 @@ function ho_update(){
     e.innerHTML="";c.innerHTML="";
     for(var i=0;i<arr_l[arr_n].objects.length;i++){
         if(arr_l[arr_n].objects[i].name&&!arr_l[arr_n].objects[i].name[languare]){data_la(arr_l[arr_n].objects[i],'name')}
-        if(arr_l[arr_n].objects[i].art&&!arr_l[arr_n].objects[i].art[languare]){data_la(arr_l[arr_n].objects[i],"art")}
+        if(!arr_l[arr_n].objects[i].art[languare]){data_la(arr_l[arr_n].objects[i],"art")}
         o=document.createElement("div");
         o.id="item"+i;
         o.setAttribute('onclick','objSelect(this.id,\"'+e.id+'\");arr_e=story_script.'+scen_data[0]+'['+scen_data[1]+'].'+[arr_n]+'.objects['+i+'];event.stopPropagation();');
@@ -2351,7 +2351,7 @@ function ho_update(){
         if(arr_l[arr_n].objects[i].color){o.style.backgroundColor=arr_l[arr_n].objects[i].color}
         if(arr_l[arr_n].objects[i].name){
             o.innerHTML=arr_l[arr_n].objects[i].name[languare];
-            if(arr_l[arr_n].objects[i].color_text){o.style.padding=arr_l[arr_n].objects[i].indent_text;}
+            if(arr_l[arr_n].objects[i].indent_text){o.style.padding=arr_l[arr_n].objects[i].indent_text;}
             if(arr_l[arr_n].objects[i].color_text){o.style.color=arr_l[arr_n].objects[i].color_text}
             if(arr_l[arr_n].objects[i].size_text){o.style.fontSize=arr_l[arr_n].objects[i].size_text}
             if(arr_l[arr_n].objects[i].font_family){o.style.fontFamily=arr_l[arr_n].objects[i].font_family}
@@ -2383,11 +2383,11 @@ function ho_update(){
             +"<td height='40px' align='right' style='width:40%;padding-right:8px;'>Name</td><td style='width:28px;' align='center'><select id='ho_tl"+i+"' onchange='ho_t"+i+".value=story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name[this.value];' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);'>"+project_languares(languare)+"</select></td><td colspan='2'><input id='ho_t"+i+"' class='input_text' onchange='var v=document.getElementById(\"ho_tl"+i+"\");if(!story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name={}};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name[v.value]=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px;' value='"+((arr_l[arr_n].objects[i].name&&arr_l[arr_n].objects[i].name[languare])?arr_l[arr_n].objects[i].name[languare]:"")+"'></td>"
             +"</tr><tr>"
             +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Width size</td><td style='padding-right:8px;' colspan='2'>"
-            +"<input id='ho_w"+i+"' class='input_text' onchange='var s=parseInt(correct_value(this.value,true));if(ho_bs"+i+".checked){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]=parseInt(story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]*(s/story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]))};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]=s;ho_update();state_save();' type='text' value='"+arr_l[arr_n].objects[i].size[0]+"' style='width:100%;'>"
+            +"<input id='ho_w"+i+"' class='input_text' onchange='var s=parseInt(correct_value(this.value,true));if(ho_bs"+i+".checked){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]=parseInt(story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]*(s/story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]))};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]=s;item"+i+".style.width=s+\"px\";state_save();if(ho_bs"+i+".checked){ho_update()}' type='text' value='"+arr_l[arr_n].objects[i].size[0]+"' style='width:100%;'>"
             +"<td height='40px' align='right' rowspan='2'><input id='ho_bs"+i+"' type='checkbox' class='proportion_c' checked></td>"
             +"</td></tr>"
             +"<tr><td height='40px' align='right' style='padding-right:8px;'>Height size</td><td style='padding-right:8px;' colspan='2'>"
-            +"<input id='ho_h"+i+"' class='input_text' onchange='var s=parseInt(correct_value(this.value,true));if(ho_bs"+i+".checked){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]=parseInt(story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]*(s/story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]))};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]=s;ho_update();state_save();' type='text' value='"+arr_l[arr_n].objects[i].size[1]+"' style='width:100%;'>"
+            +"<input id='ho_h"+i+"' class='input_text' onchange='var s=parseInt(correct_value(this.value,true));if(ho_bs"+i+".checked){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]=parseInt(story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]*(s/story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]))};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]=s;item"+i+".style.height=s+\"px\";state_save();if(ho_bs"+i+".checked){ho_update()}' type='text' value='"+arr_l[arr_n].objects[i].size[1]+"' style='width:100%;'>"
             +"</td></tr>"
             +"<tr><td height='40px' align='right' style='padding-right:8px;'>Sound</td>"
             +"<td colspan='2'><input id='ho_m"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].sound=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].objects[i].sound)?arr_l[arr_n].objects[i].sound:'')+"'></td>"
@@ -2430,7 +2430,7 @@ function ho_update(){
         k+="<td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Art</td></tr>"
             +"<td height='40px' align='right' style='padding-right:8px;'>Art</td>"
             +"<td style='width:28px;' align='center'><select id='hois_artl"+i+"' onchange='if(!story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art[languare]){data_la(story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"],\"art\")} ;hois_art"+i+".value=story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art[this.value];' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);'>"+project_languares(languare)+"</select></td>"
-            +"<td><input id='hois_art"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art[hois_artl"+i+".value]=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px' value='"+arr_l[arr_n].objects[i].art[languare]+"'></td>"
+            +"<td><input id='hois_art"+i+"' class='input_text' onchange='if(!story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art=[]};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art[hois_artl"+i+".value]=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].objects[i].art)?arr_l[arr_n].objects[i].art[languare]:"")+"'></td>"
             +"<td height='40px' align='right' style='width:30px;' class='icon icon_load' onclick='file_catalog(\"\",\"img\",\"hois_art"+i+"\",\"\",\"story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].art[hois_artl"+i+".value]\");'></td>"
             +"</td></tr>"
             +"<tr><td height='40px' align='right' style='padding-right:8px;'>Size</td><td style='padding-right:8px;' colspan='3'>"
