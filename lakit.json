@@ -1293,6 +1293,13 @@
 		}
 	],
 	[
+		">Click sound<",
+		{
+			"ru": ">Звук нажатия<",
+			"es": ">Haga clic en sonido<"
+		}
+	],
+	[
 		"title='Undo'",
 		{
 			"ru": "title='Отменить'",
