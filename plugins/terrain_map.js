@@ -29,11 +29,20 @@ function terrain_map(){
         item.style=arr_dialog.objects[i].style;
         item.style.width=arr_dialog.objects[i].size[0]+"px";
         item.style.height=arr_dialog.objects[i].size[1]+"px";
-        item.style.backgroundRepeat="no-repeat";
-        item.style.backgroundPosition="center";
-        item.style.backgroundSize=(typeof arr_dialog.objects[i].fit==="object")?arr_dialog.objects[i].fit[0]+" "+arr_dialog.objects[i].fit[1]:arr_dialog.objects[i].fit;
-        item.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
-        item.style.backgroundPosition=((arr_dialog.objects[i].art_align)?arr_dialog.objects[i].art_align[0]+" "+arr_dialog.objects[i].art_align[1]:"center");
+        if(arr_dialog.objects[i].fit!='patch'){
+            item.style.backgroundRepeat="no-repeat";
+            item.style.backgroundPosition="center";
+            item.style.backgroundSize=(typeof arr_dialog.objects[i].fit==="object")?arr_dialog.objects[i].fit[0]+" "+arr_dialog.objects[i].fit[1]:arr_dialog.objects[i].fit;
+            item.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
+            item.style.backgroundPosition=((arr_dialog.objects[i].art_align)?arr_dialog.objects[i].art_align[0]+" "+arr_dialog.objects[i].art_align[1]:"center");
+        }else if (arr_dialog.objects[i].fit=='patch'){
+            item.style.backgroundImage="none";
+            item.style.backgroundSize="none";
+            item.style.backgroundClip="padding-box";
+            item.style.borderStyle="solid";
+            item.style.borderWidth=arr_dialog.objects[i].patch[0]+"px "+arr_dialog.objects[i].patch[1]+"px "+arr_dialog.objects[i].patch[2]+"px "+arr_dialog.objects[i].patch[3]+"px";
+            item.style.borderImage="url('"+art_data(arr_dialog.objects[i].art)+"') "+arr_dialog.objects[i].patch[0]+" "+arr_dialog.objects[i].patch[1]+" "+arr_dialog.objects[i].patch[2]+" "+arr_dialog.objects[i].patch[3]+" stretch stretch";
+        } else {tue_id.style.backgroundSize=arr_dialog.objects[i].art_size;}
         item.style.position="absolute";
         item.style.transformOrigin="top left";
         item.style.transform='rotate('+arr_dialog.objects[i].angle+'deg)';
