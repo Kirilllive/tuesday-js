@@ -5401,7 +5401,7 @@ function translation_texts(){
                                 var c=story_script[k][i].dialogs[d].choice[r];
                                 if(typeof c.text==='string'){
                                     if(c.text.length>0){la++;lb++;a++;}
-                                    add_string(c.text,"data_la(story_script['"+k+"']['"+i+"'].dialogs['"+d+"'].choice['"+r+"'],'text');story_script['"+k+"']['"+i+"'].dialogs['"+d+"'].choice['"+r+"'].text['"+language_a.value+"']",c.text,"data_la(story_script['"+k+"']['"+i+"'].dialogs['"+d+"'].choice['"+r+"'],'text');story_script['"+k+"']['"+i+"'].dialogs['"+d+"'].choice['"+r+"'].text['"+language_b.value+"']",k,"icon_choice",i,d);
+                                    add_string(c.text,"data_la(story_script['"+k+"']['"+i+"'].dialogs['"+d+"'].choice['"+r+"'],'text');story_script['"+k+"']['"+i+"'].dialogs['"+d+"'].choice['"+r+"'].text['"+language_a.value+"']",c.text,"data_la(story_script['"+k+"']['"+i+"'].dialogs['"+d+"'].choice['"+r+"'],'text');story_script['"+k+"']['"+i+"'].dialogs['"+d+"'].choice['"+r+"'].text['"+language_b.value+"']",k,"icon_choice",i,d,u);
                                 }else{
                                     if(!c.text[language_a.value]){c.text[language_a.value]=""}
                                     if(!c.text[language_b.value]){c.text[language_b.value]=""}
@@ -5432,26 +5432,26 @@ function translation_texts(){
                     for(var d=0;d<story_script[k][i].terrain_map.objects.length;d++){
                         if(typeof story_script[k][i].terrain_map.objects[d].name==='string'){
                             if(story_script[k][i].terrain_map.objects[d].name.length>0){la++;lb++;a++;}
-                            add_string(story_script[k][i].terrain_map.objects[d].name,"data_la(story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'],'name');story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'].name['"+language_a.value+"']",story_script[k][i].terrain_map.objects[d].name,"data_la(story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'],'name');story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'].name['"+language_b.value+"']","item","icon_map");
+                            add_string(story_script[k][i].terrain_map.objects[d].name,"data_la(story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'],'name');story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'].name['"+language_a.value+"']",story_script[k][i].terrain_map.objects[d].name,"data_la(story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'],'name');story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'].name['"+language_b.value+"']",k,"icon_map",i);
                         }else{
                             if(!story_script[k][i].terrain_map.objects[d].name[language_a.value]){story_script[k][i].terrain_map.objects[d].name[language_a.value]=""}
                             if(!story_script[k][i].terrain_map.objects[d].name[language_b.value]){story_script[k][i].terrain_map.objects[d].name[language_b.value]=""}
                             la+=story_script[k][i].terrain_map.objects[d].name[language_a.value].length>0?1:0;
                             lb+=story_script[k][i].terrain_map.objects[d].name[language_b.value].length>0?1:0;a++;
-                            add_string(story_script[k][i].terrain_map.objects[d].name[language_a.value],"story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'].name['"+language_a.value+"']",story_script[k][i].terrain_map.objects[d].name[language_b.value],"story_script['"+k+"']['"+i+"'].terrain_map.objects['"+language_b.value+"']","item","icon_map");
+                            add_string(story_script[k][i].terrain_map.objects[d].name[language_a.value],"story_script['"+k+"']['"+i+"'].terrain_map.objects['"+d+"'].name['"+language_a.value+"']",story_script[k][i].terrain_map.objects[d].name[language_b.value],"story_script['"+k+"']['"+i+"'].terrain_map.objects['"+language_b.value+"']",k,"icon_map",i);
                         }
                     }
                 }else if(story_script[k][i].hidden_objects){
                     for(var d=0;d<story_script[k][i].hidden_objects.objects.length;d++){
                         if(typeof story_script[k][i].hidden_objects.objects[d].name==='string'){
                             if(story_script[k][i].hidden_objects.objects[d].name.length>0){la++;lb++;a++;}
-                            add_string(story_script[k][i].hidden_objects.objects[d].name,"data_la(story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'],'name');story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'].name['"+language_a.value+"']",story_script[k][i].hidden_objects.objects[d].name,"data_la(story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'],'name');story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'].name['"+language_b.value+"']","item","icon_map");
+                            add_string(story_script[k][i].hidden_objects.objects[d].name,"data_la(story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'],'name');story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'].name['"+language_a.value+"']",story_script[k][i].hidden_objects.objects[d].name,"data_la(story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'],'name');story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'].name['"+language_b.value+"']",k,"icon_search",i);
                         }else{
                             if(!story_script[k][i].hidden_objects.objects[d].name[language_a.value]){story_script[k][i].hidden_objects.objects[d].name[language_a.value]=""}
                             if(!story_script[k][i].hidden_objects.objects[d].name[language_b.value]){story_script[k][i].hidden_objects.objects[d].name[language_b.value]=""}
                             la+=story_script[k][i].hidden_objects.objects[d].name[language_a.value].length>0?1:0;
                             lb+=story_script[k][i].hidden_objects.objects[d].name[language_b.value].length>0?1:0;a++;
-                            add_string(story_script[k][i].hidden_objects.objects[d].name[language_a.value],"story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'].name['"+language_a.value+"']",story_script[k][i].hidden_objects.objects[d].name[language_b.value],"story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+language_b.value+"']","item","icon_map");
+                            add_string(story_script[k][i].hidden_objects.objects[d].name[language_a.value],"story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+d+"'].name['"+language_a.value+"']",story_script[k][i].hidden_objects.objects[d].name[language_b.value],"story_script['"+k+"']['"+i+"'].hidden_objects.objects['"+language_b.value+"']",k,"icon_search",i);
                         }
                     }
                 }
