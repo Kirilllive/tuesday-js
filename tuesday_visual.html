@@ -868,6 +868,8 @@ let texts={"tutorials":[{
         "en":"The variables are in story_json.parameters.variables[var_name] array"
         },{
         "en":"More settings for appearance and position of the choice on layout are located in the scene editor"
+        },{
+        "en":""
         }
 ]}
 let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0],'ferst':true,'pvw':[640,480],'lines_anim':true};
@@ -1108,7 +1110,7 @@ function creation_block(b){
                     if(story_script[chapter.id][i].dialogs[d].choice){
                         element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"choice\";edit_choice();'><tbody><tr><td align='left' valign='center' style='padding-left:4px;word-break:break-all;'><b>Choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
                         for(var c=story_script[chapter.id][i].dialogs[d].choice.length-1;c>=0;c--){
-                            go=story_script[chapter.id][i].dialogs[d].choice[c].go_to;
+                            go=(typeof story_script[chapter.id][i].dialogs[d].choice[c].go_to==='object')?story_script[chapter.id][i].dialogs[d].choice[c].go_to[0]:story_script[chapter.id][i].dialogs[d].choice[c].go_to;
                             if(go&&go!=""&&go!="undefined"){
                                 if(story_script[chapter.id][i].dialogs[d].choice[c].text){data_corr(story_script[chapter.id][i].dialogs[d].choice[c],'text')}
                                 var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
@@ -1479,12 +1481,12 @@ function scroll_z(){
     scroll_yz=((html.scrollLeft+(html.clientWidth/2))/scale)-(html.clientWidth/2);
 }
 function selector_objects(x,y,w,h){
-    for(var i=0;i<all_blocks.length;i++){
-          var c=[false,false];
-          if((x+w>=all_blocks[i].offsetLeft)&&(x<=all_blocks[i].offsetLeft+all_blocks[i].offsetWidth))c[0]=true;
-          if((y+h>=all_blocks[i].offsetTop)&&(y<=all_blocks[i].offsetTop+all_blocks[i].offsetHeight))c[1]=true;
-          if(c[0]&c[1]){all_blocks[i].style.opacity="0.5"}
-    }
+//    for(var i=0;i<all_blocks.length;i++){
+//          var c=[false,false];
+//          if((x+w>=all_blocks[i].offsetLeft)&&(x<=all_blocks[i].offsetLeft+all_blocks[i].offsetWidth))c[0]=true;
+//          if((y+h>=all_blocks[i].offsetTop)&&(y<=all_blocks[i].offsetTop+all_blocks[i].offsetHeight))c[1]=true;
+//          if(c[0]&c[1]){all_blocks[i].style.opacity="0.5"}
+//    }
 }
 
 
@@ -2393,13 +2395,13 @@ function ho_update(){
         o.style.display="flex";
         o.style.transform='translate(0%, 0%) rotate('+arr_l[arr_n].objects[i].angle+'deg)';
         if(arr_l[arr_n].objects[i].fit=='patch'){
-                if(!arr_l[arr_n].objects[i].patch){arr_l[arr_n].objects[i].patch=[8,8,8,8]};
-                o.style.backgroundImage="none";
-                o.style.backgroundSize="none";
-                o.style.backgroundClip="padding-box";
-                o.style.borderStyle="solid";
-                o.style.borderWidth=arr_l[arr_n].objects[i].patch[0]+"px "+arr_l[arr_n].objects[i].patch[1]+"px "+arr_l[arr_n].objects[i].patch[2]+"px "+arr_l[arr_n].objects[i].patch[3]+"px";
-                o.style.borderImage="url('"+open_file((arr_l[arr_n].objects[i].art[languare])?arr_l[arr_n].objects[i].art[languare]:arr_l[arr_n].objects[i].art)+"') "+arr_l[arr_n].objects[i].patch[0]+" "+arr_l[arr_n].objects[i].patch[1]+" "+arr_l[arr_n].objects[i].patch[2]+" "+arr_l[arr_n].objects[i].patch[3]+" stretch stretch";
+            if(!arr_l[arr_n].objects[i].patch){arr_l[arr_n].objects[i].patch=[8,8,8,8]};
+            o.style.backgroundImage="none";
+            o.style.backgroundSize="none";
+            o.style.backgroundClip="padding-box";
+            o.style.borderStyle="solid";
+            o.style.borderWidth=arr_l[arr_n].objects[i].patch[0]+"px "+arr_l[arr_n].objects[i].patch[1]+"px "+arr_l[arr_n].objects[i].patch[2]+"px "+arr_l[arr_n].objects[i].patch[3]+"px";
+            o.style.borderImage="url('"+open_file((arr_l[arr_n].objects[i].art[languare])?arr_l[arr_n].objects[i].art[languare]:arr_l[arr_n].objects[i].art)+"') "+arr_l[arr_n].objects[i].patch[0]+" "+arr_l[arr_n].objects[i].patch[1]+" "+arr_l[arr_n].objects[i].patch[2]+" "+arr_l[arr_n].objects[i].patch[3]+" stretch stretch";
         }else{
             o.style.backgroundImage="url("+open_file(arr_l[arr_n].objects[i].art[languare])+")";
             o.style.backgroundPosition=((arr_l[arr_n].objects[i].art_align)?arr_l[arr_n].objects[i].art_align[0]+" "+arr_l[arr_n].objects[i].art_align[1]:"center");
@@ -2436,7 +2438,7 @@ function ho_update(){
             +"</tr><tr><td colspan='4' height='40px' align='center'><div id='ho_ip"+i+"' style='background-image:url("+open_file((arr_l[arr_n].objects[i].art[languare])?arr_l[arr_n].objects[i].art[languare]:arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;background-size:contain;height:100%;width:100%;display:grid;justify-content:center;align-items:center;'>"+ ((arr_l[arr_n].objects[i].name&&arr_l[arr_n].objects[i].name[languare])?arr_l[arr_n].objects[i].name[languare]:"")+" </div></td></tr><tr>"
             +"<td class='icon_m icon_more' height='22px' onclick='block_open(\"ho_is"+i+"\");scen_element.ho_is"+i+"=ho_is"+i+".style.display;menu_objects.style.visibility=\"hidden\"'></td><td colspan='2'></td></tr></tbody></table>"
             +"<table width='100%' id=ho_is"+i+" style='display:"+((scen_element["ho_is"+i])?scen_element["ho_is"+i]:"none")+";border-top:1px solid var(--cb);margin-top:8px;'><tbody><tr>"
-            +((arr_n=="terrain_map")?"<tr><td height='40px' align='right' style='padding-right:8px;'><select style='height:28px;width:100%;border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);' onchange='if(this.selectedIndex==1){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from=true;}else{delete story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from;}'><option "+((!arr_l[arr_n].objects[i].text_from)?"selected":"")+">Go to</option><option "+((arr_l[arr_n].objects[i].text_from)?"selected":"")+">Only text from</option></select></td><td style='padding-right:8px;' colspan='3'><select style='height:28px;width:100%;border-bottom:1px solid var(--cb);background-color: var(--cw);' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=this.value'>"+option_block( arr_l[arr_n].objects[i].go_to,0)+"</select></td>":"")
+            +((arr_n=="terrain_map")?"<tr><td height='40px' align='right' style='padding-right:8px;'><select style='height:28px;width:100%;border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);' onchange='if(this.selectedIndex==2){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=[story_script.parameters.launch_story,0,0];ho_update()}else if((this.selectedIndex==1||this.selectedIndex==0)&&typeof story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to===\"object\"){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=story_script.parameters.launch_story;ho_update()}if(this.selectedIndex==1){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from=true;}else{delete story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from;}'><option "+((!arr_l[arr_n].objects[i].text_from&&typeof arr_l[arr_n].objects[i].go_to!='object')?"selected":"")+">Go to</option><option "+((arr_l[arr_n].objects[i].text_from)?"selected":"")+">Only text from</option><option "+((typeof arr_l[arr_n].objects[i].go_to==='object')?"selected":"")+">Timeline</option></select></td>"+((typeof arr_l[arr_n].objects[i].go_to==='object')?"<td colspan='3' id='tl_show"+i+"' align='center' onclick='timeline_edit(story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"],this.id)'>"+arr_l[arr_n].objects[i].go_to[0]+" / "+arr_l[arr_n].objects[i].go_to[1]+" / "+arr_l[arr_n].objects[i].go_to[2]+"</td>":"<td style='padding-right:8px;' colspan='3'><select style='height:28px;width:100%;border-bottom:1px solid var(--cb);background-color: var(--cw);' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=this.value'>"+option_block( arr_l[arr_n].objects[i].go_to,0)+"</select></td>"):"")
             +"</tr><tr>"
             +"<td height='40px' align='right' style='width:40%;padding-right:8px;'>Name</td><td style='width:28px;' align='center'><select id='ho_tl"+i+"' onchange='ho_t"+i+".value=story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name[this.value];' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);'>"+project_languares(languare)+"</select></td><td colspan='2'><input id='ho_t"+i+"' class='input_text' onchange='var v=document.getElementById(\"ho_tl"+i+"\");if(!story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name={}};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name[v.value]=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px;' value='"+((arr_l[arr_n].objects[i].name&&arr_l[arr_n].objects[i].name[languare])?arr_l[arr_n].objects[i].name[languare]:"")+"'></td>"
             +"</tr><tr>"
@@ -3755,9 +3757,9 @@ function choice_panel_edit(block,i,n,b){
     +'</tr><tr><td id="chdbn'+b+'" colspan="4" height="40px" align="center" style="background-image:url('+open_file((arr_s[b].art[languare])?arr_s[b].art[languare]:arr_s[b].art)+');background-position:center;background-repeat:no-repeat;background-size:contain;word-break:break-all;">'+((arr_s[b].text[languare])?arr_s[b].text[languare]:((arr_s[b].text.length>0)?arr_s[b].text:((arr_s[b].art[languare])?'':arr_s[b].go_to)))+'</td></tr><tr>'
     +'<td class="icon_m icon_more" height="22px" onclick="menu_element.style.visibility=\'hidden\';block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
     +'<table id="chosp'+b+'" width="100%" style="display:'+((scen_element['chosp'+b])?scen_element['chosp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;"><select style="height:28px;width:100%;border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);" onchange="if(this.selectedIndex==1){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text_from=true;}else{delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text_from;};choice_panel_update(\''+block+'\','+i+','+n+');state_save();"><option '+((!arr_s[b].text_from)?'selected':'')+'>Go to</option><option '+((arr_s[b].text_from)?'selected':'')+'>Only text from</option></select></td>'
-        +'<td colspan="3"><select onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" style="width:100%;height:28px;background-color: var(--cw);">'+option_block(arr_s[b].go_to,2)+'</select></td>'
-    +((arr_s[b].text_from)?'</tr><tr id><td height="40px" align="right" style="padding-right:8px;">Delete</td><td colspan="3"><select oninput="if(this.selectedIndex==0){delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].delete}else{story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].delete=this.value};choice_panel_update(\''+block+'\','+i+','+n+');state_save();" style="background-color: var(--cw);"><option value=false>no</option><option '+((arr_s[b].delete)?'selected':'')+' value=true>after click</option></select></td>':'')
+        +'<td height="40px" align="right" style="padding-right:8px;"><select style="height:28px;width:100%;border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);" onchange="if(this.selectedIndex==2){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=[story_script.parameters.launch_story,0,0]}else if((this.selectedIndex==1||this.selectedIndex==0)&&typeof story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to===\'object\'){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=story_script.parameters.launch_story} if(this.selectedIndex==1){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text_from=true;}else{delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text_from;};choice_panel_update(\''+block+'\','+i+','+n+');state_save();"><option '+((!arr_s[b].text_from)?'selected':'')+'>Go to</option><option '+((arr_s[b].text_from&&typeof arr_s[b].go_to!='object')?'selected':'')+'>Only text from</option><option '+((typeof arr_s[b].go_to==='object')?'selected':'')+'>Timeline</option></select></td>'
+        +((typeof arr_s[b].go_to==='object')?'<td id="tl_show'+b+'" colspan="3" align="center" onclick="timeline_edit(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'],this.id)">'+arr_s[b].go_to[0]+' / '+arr_s[b].go_to[1]+' / '+arr_s[b].go_to[2]+'</td>':'<td colspan="3"><select onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" style="width:100%;height:28px;background-color: var(--cw);">'+option_block(arr_s[b].go_to,2)+'</select></td>')
+    +((arr_s[b].text_from)?'</tr><tr id><td height="40px" align="right" style="padding-right:8px;">Timeline</td><td colspan="3"><select oninput="if(this.selectedIndex==0){delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].delete}else{story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].delete=this.value};choice_panel_update(\''+block+'\','+i+','+n+');state_save();" style="background-color: var(--cw);"><option value=false>no</option><option '+((arr_s[b].delete)?'selected':'')+' value=true>after click</option></select></td>':'')
     +'</tr><tr>'
         +'<td height="40px" align="right" style="width:40%;padding-right:8px;">Text</td>'
         +'<td style="width:28px;" align="center"><select id="cts'+b+'" onchange="ctм'+b+'.value=((story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[this.value].length>0)?story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text[this.value]:\'\')" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color: var(--cw);">'+project_languares(languare)+'</select></td>'
@@ -5355,6 +5357,31 @@ function translation_edit(){
     open_tool(tool,"");translation_texts();scene_screen=false;
 }
 var left_block;
+function timeline_edit(n,u){
+    copy_arr=n;
+    var html="<div class='window'><div class='win_head'>Timeline<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[16].en+"</p>"
+    +"<table width='300px'><tbody><tr>"
+    +"<td height='40px' width='64px' align='right' style='padding-right:8px;' oninput='timeline_edit(0)'>Block</td><td><select id='tl_block' style='width:100%;' oninput='timeline_update(0),timeline_update(1)'>"+option_block(n.go_to[0],0)+"</select></td>"
+    +"</tr><tr>"
+    +"<td height='40px' width='64px' align='right' style='padding-right:8px;' oninput='timeline_edit(1)'>Scene</td><td><select id='tl_scene' style='width:100%;' oninput='timeline_update(1)'></select></td>"
+    +"</tr><tr>"
+    +"<td height='40px' width='64px' align='right' style='padding-right:8px;'>Dialog</td><td><select id='tl_dialog' style='width:100%;'></select></td>"
+    +"</tr></tbody></table>"
+    +"<br><table class='big_button' width='256px' onclick='copy_arr.go_to=[tl_block.value,tl_scene.value,tl_dialog.value];"+u+".innerHTML=tl_block.value+\" / \"+tl_scene.value+\" / \"+tl_dialog.value;modal_window(\"close\")'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+	modal_window("open",html);
+    timeline_update(0,n.go_to[1])
+    timeline_update(1,n.go_to[2])
+
+}
+function timeline_update(n,i){
+	var scene_list="",l;
+    if(n==0){for(l=0;l<story_script[tl_block.value].length;l++){
+        scene_list+="<option value="+l+" "+((i==l)?"selected":"")+">"+l+"</option>";
+    };tl_scene.innerHTML=scene_list;}
+    else if(n==1){for(l=0;l<story_script[tl_block.value][tl_scene.value].dialogs.length;l++){
+        if(story_script[tl_block.value][tl_scene.value].dialogs[l].text){scene_list+="<option value="+l+" "+((i==l)?"selected":"")+">"+l+" "+((story_script[tl_block.value][tl_scene.value].dialogs[l].text[languare])?story_script[tl_block.value][tl_scene.value].dialogs[l].text[languare]:story_script[tl_block.value][tl_scene.value].dialogs[l].text).slice(0,36)+"</option>";}
+    };tl_dialog.innerHTML=scene_list;}
+}
 function translation_texts(){
     var a=0,lb=0,la=0,u,i,k,all_blocks=0,tab=document.getElementById('translation_input').getElementsByTagName('tbody')[0];
     tab.innerHTML="";
