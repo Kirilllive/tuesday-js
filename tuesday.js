@@ -598,6 +598,7 @@ function name_block_update(){
                     else if (g == "tue_back"){choice.setAttribute("onclick",v+"back_story();"+add_sound());}
                     else if (g == "tue_next"){choice.setAttribute("onclick",v+"go_story();"+add_sound());}
                     else if (g != 8&&arr_dialog.choice[i].text_from){choice.setAttribute("onclick",v+"tue_story='"+arr_dialog.choice[i].go_to+"';scene=0;dialog=0;creation_dialog(true);"+add_sound()+((arr_dialog.choice[i].delete)?"del_element('tue_choice');":""));}
+                    else if (g != 8&&arr_dialog.choice[i].url){choice.setAttribute("onclick",v+"window.open('"+((arr_dialog.choice[i].go_to[languare])?arr_dialog.choice[i].go_to[languare]:arr_dialog.choice[i].go_to)+"','_"+arr_dialog.choice[i].url+"');"+add_sound()+((arr_dialog.choice[i].delete)?"del_element('tue_choice');":""));}
                     else if (g != 8){choice.setAttribute("onclick",v+"go_to('"+g+"');"+add_sound())}
                 } else {choice.setAttribute("onclick",v+"go_story(true);del_element('tue_choice');"+add_sound());}
                 tuesday.appendChild(choice);
@@ -761,11 +762,19 @@ function name_block_update(){
         tuesday.dispatchEvent(new Event('load'));
     };
 } function go_to(go){
+    if(go.includes(",")){
+        go=go.split(",")
+        tue_story=go[0];
+        dialog=go[2];
+        scene=go[1];
+    }
+    else {
+        tue_story=go;
+        dialog=0;
+        scene=0;
+    }
     del_element("tue_choice");
     del_element("tue_html_dialog");
-    tue_story=go;
-    dialog=0;
-    scene=0;
     creation_scene();
 } function del_element(element){
     var del=document.getElementById("tuesday").getElementsByClassName(element);
