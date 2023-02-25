@@ -259,6 +259,7 @@ body {
                                                         <tr>
                                                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='en'><span class="checkmark">EN</span></label></td>
                                                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='es'><span class="checkmark">ES</span></label></td>
+                                                            <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='pt'><span class="checkmark">PT</span></label></td>
                                                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='fr'><span class="checkmark">FR</span></label></td>
                                                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='de'><span class="checkmark">DE</span></label></td>
                                                             <td align="center" width="32"><label class="radio_element"><input type="radio" name="lang" value='ru'><span class="checkmark">RU</span></label></td>
@@ -523,6 +524,12 @@ body {
                                         <td align='right' style='width:25%;'>English translator:</td>
                                         <td align='left' style='width:25%;'>Argosa</td>
                                     </tr>
+                                    <tr>
+                                        <td align='right' style='width:25%;'>Portuguese translation:&nbsp;</td>
+                                        <td align='left' style='width:25%;'><a href="" target="_blank">Sarah Camargo</a></td>
+                                        <td align='right' style='width:25%;'></td>
+                                        <td align='left' style='width:25%;'></td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <br>
@@ -712,38 +719,38 @@ let translation = {
         ["download_macos", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_EN_R"+varsion+"_mac.dmg' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_mac'></td><td>macOS</td></tr></tbody></table></a>"],
         ["download_windows", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_EN_R"+varsion+"_win.zip' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_win'></td><td>Windows</td></tr></tbody></table></a>"],
     ],
-    "ru": [
-        ["title", "Tuesday JS движок визуальных новелл"],
-        ["play_online", "<a href='translate/ru_tuesday_visual.html' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_play'></td><td align='left' style='padding-right:14px;'>Запустить в браузере</td></tr></tbody></table></a>"],
-        ["play_tutorial", "<a href='doc_editor.html#quick_tutorial_ja' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_about'></td><td align='left' style='padding-right:14px;'>Краткое руководство</td></tr></tbody></table></a>"],
-        ["download_txt", "Скачать"],
+    "pt": [
+        ["title", "Tuesday JS engine para visual novel"],
+        ["play_online", "<a href='translate/ru_tuesday_visual.html' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_play'></td><td align='left' style='padding-right:14px;'>Execute no navegador</td></tr></tbody></table></a>"],
+        ["play_tutorial", "<a href='doc_editor.html#quick_tutorial_ja' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_about'></td><td align='left' style='padding-right:14px;'>Tutorial Rápido</td></tr></tbody></table></a>"],
+        ["download_txt", "Download"],
         ["download_browser", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_RU_R"+varsion+"_web_recommend.zip ' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_web'></td><td>Browser</td></tr></tbody></table></a>"],
         ["download_android", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_RU_R"+varsion+"_android.apk' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_android'></td><td>Android</td></tr></tbody></table></a>"],
         ["download_macos", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_RU_R"+varsion+"_mac.dmg' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_mac'></td><td>macOS</td></tr></tbody></table></a>"],
         ["download_windows", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_RU_R"+varsion+"_win.zip' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_win'></td><td>Windows</td></tr></tbody></table></a>"],
-        ["description", "Простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом, который можно использовать в браузере. Он написан на JavaScript без использования каких-либо сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML5 документа, такие как div и img. Это позволяет использовать любой медиаформат поддерживаемый браузерами включая векторную графику svg, gif-анимацию и стили css.</p><br><p>Редактор предназначен для создания интерактивных историй, графических или кинетических новелл, без знания языков программирования. Он использует drag and drop интерфейс для редактирования сцен и создания интерфейсов. Сценарий истории отображается в виде узла блок-схем со всеми элементами и ответвлениями сюжета. Это облегчает навигацию и поможет вам создать историю с множеством вариантов сюжета.</p><br><p>Есть версии редактора доступные для Android устройств и настольных компьютеров. Все версии полностью совместимы друг с другом и имеют одинаковый интерфейс.</p>"],
-        ["thanks", "Спасибо за вашу помощь!"],
-        ["donut", "Вы можете поддержать проект на Patreon или Boosty!"],
-        ["title_1", "Визуализация"],
-        ["screen_1", "Редактор отображает структуру сценария со всеми элементами, такими как параметры диалога и последствия выбора. Это облегчает навигацию и редактирование сценария."],
+        ["description", "é um simples editor de visual novel online, gratuito e open-source que pode ser utilizado em um navegador web.É escrito em JavaScript e não utiliza nenhuma biblioteca de terceiros. Dessa forma, não é necessário instalar nenhum programa adicional.A engine utiliza elementos de um documento HTML padrão, como 'div' e 'img'.Isso permite a utilização de qualquer formato de mídia suportado por navegador, incluindo vetores gráficos 'svg', animações em gif e estilos de 'css'.</p><br><p>O editor é desenhado para criar novelas interativas de ficção, gráficas ou cinéticas, sem conhecimento necessário em linguagens de programação.Utiliza uma interface de arrastar e soltar para editar cenas e criar interfaces.O roteiro da história é mostrado como um diagrama de fluxo com todos os elementos e rotas do enredo.Isso facilita a navegação e auxilia a criação de boas histórias com muitas opções de enredo.</p><br><p>Há uma versão do editor disponível como uma aplicação autônoma para dispositivos Android e desktop.Todas as versões são completamente compatíveis entre si e possuem a mesma interface.</p>"],
+        ["thanks", "Obrigado pela sua ajuda!"],
+        ["donut", "Você pode apoiar o projeto pelo Patreon!"],
+        ["title_1", "Visualização"],
+        ["screen_1", "O editor mostra a estrutura do roteiro com todos os elementos, como opções de diálogo e seleção de consequências.Isso facilita a navegação e a edição do roteiro."],
         ["title_3", "JSON"],
-        ["screen_3", "Сценарий истории сохраняется в структуре JSON. Практически любой язык программирования может работать с этим форматом что позволяет вам перенести ваш сценарий на другой движок или платформу. Редактор имеет встроенный инструмент для работы с JSON это позволит вам отредактировать все содержимое истории или только выбранный элемент."],
-        ["title_4", "Предварительный просмотр"],
-        ["screen_4", "Предварительный просмотр позволяет запустить проект с определенной точки в сценарии с выбранной локализацией."],
-        ["title_2", "Локализация"],
-        ["screen_2", "Tuesday JS предоставляет обширные возможности для адаптации историй на другие языки. Вы можете локализировать перевод практически любого элемента проекта, включая текст и графику. Функция предварительного просмотра позволяет запускать проект на выбранном языке. Все тексты могут быть экспортированы в файл csv таблицы для редактирования или добавления локализаций в другом редакторе."],
-        ["title_6", "Редактор сцен"],
-        ["screen_6", "Позволяет расположить все элементы по своим местам. Он также показывает, как будет выглядеть сцена на разных экранах. В макете сцены вы можете использовать стандартные параметры  HTML как проценты, пиксели или сантиметры, чтобы лучше адаптировать сцену к различным экранам."],
-        ["title_5", "ASCII-графика"],
-        ["screen_5", "Движок адаптирован для использования ASCII-графики. С ее помощью вы сможете разнообразить тексты изображениями и узорами составленых из текстовых символов."],
-        ["title_7", "Инструмент для перевода"],
-        ["screen_7", "Встроенный инструмент редактирования перевода позволяет быстро добавлять новый перевод и отредактировать все тексты в вашем проекте, не выходя из редактора. Кроме того, он отображает количество выполненного переводова для каждого языка."],
-        ["tool_1", "<b>Runtime tuesday.js</b></a><br><br>Вы можете использовать все функции Tuesday JS без использования визуального редактора в другой ide для редактирование файла json. Дополнительная информация о Runtime и JSON-сценарии в <u style='text-decoration:underline;'>документации</u>."],
-        ["tool_2", "<b>Конвертер цветов</b></a><br><br>Конвертирование RGB в HEX и наоборот. Вы можете получить цвет непосредственно с изображения. Так же присутствуют дополнительные функции для расчета пропорционального соотношения сторон при изменении размера изображения"],
-        ["tool_3", "<b>Конвертер текста</b></a><br><br>Вы можете конвертировать обычный текст в JSON для Tuesday JS. Конвертер разделит текст рассказа на небольшие части для использования в диалогах."],
-        ["tool_4", "<b>Конвертер base64</b></a><br><br>Группа схем кодирования двоичного кода в текст, которые представляют двоичные данные в строку ASCII. Затем эти данные могут быть добавлены в текст документа вместо адреса файла."],
-        ["tool_5","<b>Ascii Art Paint</b><br><br>Графический редактор ASCII, который сочетает в себе графический редактор и преобразователь изображения в текст."],
-        ["tool_6","<b>Инструмент замены</b><br><br>Очень простая программа способная заменить неограниченное количество значений в нескольких текстовых файлах, которые может прочитать браузер. Значения для замены могут храниться в файле JSON."]
+        ["screen_3", "O roteiro de uma história possui os elementos armazenados em uma estrutura JSON. Quase todas as linguagens de programação podem trabalhar com esse formato. Isso permite importar o roteiro para outra ferramenta ou plataforma. O editor possui um ferramenta embutida para trabalhar com JSON. Isso permitirá editar todo o conteúdo do roteiro ou apenas o elemento selecionado."],
+        ["title_4", "Prévia"],
+        ["screen_4", "A prévia permite executar um projeto de um certo ponto do roteiro com a localização selecionada."],
+        ["title_2", "Localização"],
+        ["screen_2", "Tuesday JS fornece amplas oportunidades para adaptar histórias em outras línguas. É possível selecionar traduções para praticamente qualquer elemento do projeto, incluindo textos e gráficos. A função de prévia permite executar o projeto no idioma selecionado. Todos os textos podem também ser exportados para uma tabela em um arquivo 'csv' para edição ou adição de localizações em outro editor."],
+        ["title_6", "Editor de Cena"],
+        ["screen_6", "O editor de cena permite ordenar todos os elementos em seus lugares. Ele também mostra como a cena mudará em diferentes telas. Na disposição das cenas, é possível utilizar unidades padrão de porcentagem de pixels ou centímetros do HTML para adaptar melhor a cena em diferentes telas."],
+        ["title_5", "ASCII art"],
+        ["screen_5", "A ferramenta é adaptada para utilizar gráficos ASCII.Com a ajuda dela, é possível diversificar os textos com imagens e padrões elaborados a partir de caracteres de texto"],
+        ["title_7", "Ferramenta de tradução"],
+        ["screen_7", "A ferramenta de edição de tradução embutida permite rapidamente adicionar uma nova tradução e editar todos os textos no projeto sem precisar fechar o editor. Adicionalmente, ela mostra o número de traduções completadas para cada idioma."],
+        ["tool_1", "<b>Runtime tuesday.js</b></a><br><br>É possível utilizar todas as funções do Tuesday JS sem utilizar o editor visual em outra IDE para editar o arquivo JSON. Mais informações sobre RunTime e opções de script em JSON encontram-se na <u style='text-decoration:underline;'>documentação</u>."],
+        ["tool_2", "<b>Conversor de Cor</b></a><br><br>Conversão de RGB para formatos de cor em HEX e vice e versa. É possível também obter uma cor diretamente de uma imagem. Existem funções adicionais para calcular a taxa de proporção quando redimensionar a imagem"],
+        ["tool_3", "<b>Conversor de Texto</b></a><br><br>É possível converter textos simples da história em JSON para o Tuesday JS. O conversor de texto irá separar o texto da história em pequenas partes para utilizar nos diálogos."],
+        ["tool_4", "<b>Conversor de Base64</b></a><br><br>É um grupo de esquemas de codificação binário-para-texto que representa dados binários em uma String ASCII. Esses dados podem então ser adicionados no corpo do documento ao invés de no endereço do arquivo."],
+        ["tool_5","<b>Ascii Art Paint</b><br><br>Um editor de gráficos ASCII que reúne um editor de gráficos e um conversor de imagem para texto."],
+        ["tool_6","<b>Ferramenta de substituição em textos</b><br><br>Um programa bem simples capaz de substituir um número ilimitado de valores em múltiplos arquivos de texto que um navegador pode ler. Valores substituídos podem ser armazenados em um arquivo JSON."]
     ],
     "ja": [
         ["title", "Tuesday JS ビジュアルノベル・エンジン"],
@@ -875,9 +882,39 @@ let translation = {
         ["title", "Tuesday JS วิชวลโนเวลเอ็นจิ้น"],
         ["description", "Tuesday JS เป็นโปรแกรมแก้ไขแบบ WYSIWYG ที่ฟรีและใช้งานง่าย เพื่อสร้างเรื่องราวเชิงโต้ตอบและนิยายภาพซึ่งเน้นที่ HTML5 โดยใช้</p><br><p>The editor is designed to create interactive fiction, graphic or kinetic novels without knowledge of programming languages. It uses a drag and drop interface for scene editing and to make interfaces. The story script is displayed as a flowchart node with all plot elements and branches. This makes it easier to navigate and helps you create a great story with many plot options.</p><br><p>The editor is available as a standalone application for Android devices and desktops. All versions are fully compatible with each other and have the same interface.</p>"]
     ],
-    "pt": [
-        ["description", "Terça-feira é um motor de código aberto gratuito para criar romances visuais, histórias interativas e jogos de aventura baseados em texto. Escrito em JavaScript sem usar bibliotecas de terceiros. Há suporte para o framework Apache Cordova para a construção de aplicativos móveis e desktop nativos. O motor usa padrão Elementos de documentos Html como div e img, que permite quase qualquer formato de mídia suportado por navegadores, incluindo gráficos vetoriais em formato svg, animações gif e estilos css. O script de história com todos os elementos é especificado na estrutura de formato JSON. Este formato pode ser lido por quase qualquer outra linguagem de programação ou motor. Isso faz com que seja mais fácil e mais rápido ligar o script para outro motor ou plataforma. O editor tem uma ferramenta embutida para trabalhar com JSON diretamente, você pode editar todo o script ou apenas parte dele do elemento selecionado. "]
-    ],
+    "ru": [
+        ["title", "Tuesday JS движок визуальных новелл"],
+        ["play_online", "<a href='translate/ru_tuesday_visual.html' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_play'></td><td align='left' style='padding-right:14px;'>Запустить в браузере</td></tr></tbody></table></a>"],
+        ["play_tutorial", "<a href='doc_editor.html#quick_tutorial_ja' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_about'></td><td align='left' style='padding-right:14px;'>Краткое руководство</td></tr></tbody></table></a>"],
+        ["download_txt", "Скачать"],
+        ["download_browser", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_RU_R"+varsion+"_web_recommend.zip ' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_web'></td><td>Browser</td></tr></tbody></table></a>"],
+        ["download_android", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_RU_R"+varsion+"_android.apk' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_android'></td><td>Android</td></tr></tbody></table></a>"],
+        ["download_macos", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_RU_R"+varsion+"_mac.dmg' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_mac'></td><td>macOS</td></tr></tbody></table></a>"],
+        ["download_windows", "<a href='https://github.com/Kirilllive/tuesday-js/releases/download/"+varsion+".0.0/TuesdayJS_RU_R"+varsion+"_win.zip' target='_blank'><table class='platform'><tbody><tr><td class='icon_m icon_win'></td><td>Windows</td></tr></tbody></table></a>"],
+        ["description", "Простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом, который можно использовать в браузере. Он написан на JavaScript без использования каких-либо сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML5 документа, такие как div и img. Это позволяет использовать любой медиаформат поддерживаемый браузерами включая векторную графику svg, gif-анимацию и стили css.</p><br><p>Редактор предназначен для создания интерактивных историй, графических или кинетических новелл, без знания языков программирования. Он использует drag and drop интерфейс для редактирования сцен и создания интерфейсов. Сценарий истории отображается в виде узла блок-схем со всеми элементами и ответвлениями сюжета. Это облегчает навигацию и поможет вам создать историю с множеством вариантов сюжета.</p><br><p>Есть версии редактора доступные для Android устройств и настольных компьютеров. Все версии полностью совместимы друг с другом и имеют одинаковый интерфейс.</p>"],
+        ["thanks", "Спасибо за вашу помощь!"],
+        ["donut", "Вы можете поддержать проект на Patreon или Boosty!"],
+        ["title_1", "Визуализация"],
+        ["screen_1", "Редактор отображает структуру сценария со всеми элементами, такими как параметры диалога и последствия выбора. Это облегчает навигацию и редактирование сценария."],
+        ["title_3", "JSON"],
+        ["screen_3", "Сценарий истории сохраняется в структуре JSON. Практически любой язык программирования может работать с этим форматом что позволяет вам перенести ваш сценарий на другой движок или платформу. Редактор имеет встроенный инструмент для работы с JSON это позволит вам отредактировать все содержимое истории или только выбранный элемент."],
+        ["title_4", "Предварительный просмотр"],
+        ["screen_4", "Предварительный просмотр позволяет запустить проект с определенной точки в сценарии с выбранной локализацией."],
+        ["title_2", "Локализация"],
+        ["screen_2", "Tuesday JS предоставляет обширные возможности для адаптации историй на другие языки. Вы можете локализировать перевод практически любого элемента проекта, включая текст и графику. Функция предварительного просмотра позволяет запускать проект на выбранном языке. Все тексты могут быть экспортированы в файл csv таблицы для редактирования или добавления локализаций в другом редакторе."],
+        ["title_6", "Редактор сцен"],
+        ["screen_6", "Позволяет расположить все элементы по своим местам. Он также показывает, как будет выглядеть сцена на разных экранах. В макете сцены вы можете использовать стандартные параметры  HTML как проценты, пиксели или сантиметры, чтобы лучше адаптировать сцену к различным экранам."],
+        ["title_5", "ASCII-графика"],
+        ["screen_5", "Движок адаптирован для использования ASCII-графики. С ее помощью вы сможете разнообразить тексты изображениями и узорами составленых из текстовых символов."],
+        ["title_7", "Инструмент для перевода"],
+        ["screen_7", "Встроенный инструмент редактирования перевода позволяет быстро добавлять новый перевод и отредактировать все тексты в вашем проекте, не выходя из редактора. Кроме того, он отображает количество выполненного переводова для каждого языка."],
+        ["tool_1", "<b>Runtime tuesday.js</b></a><br><br>Вы можете использовать все функции Tuesday JS без использования визуального редактора в другой ide для редактирование файла json. Дополнительная информация о Runtime и JSON-сценарии в <u style='text-decoration:underline;'>документации</u>."],
+        ["tool_2", "<b>Конвертер цветов</b></a><br><br>Конвертирование RGB в HEX и наоборот. Вы можете получить цвет непосредственно с изображения. Так же присутствуют дополнительные функции для расчета пропорционального соотношения сторон при изменении размера изображения"],
+        ["tool_3", "<b>Конвертер текста</b></a><br><br>Вы можете конвертировать обычный текст в JSON для Tuesday JS. Конвертер разделит текст рассказа на небольшие части для использования в диалогах."],
+        ["tool_4", "<b>Конвертер base64</b></a><br><br>Группа схем кодирования двоичного кода в текст, которые представляют двоичные данные в строку ASCII. Затем эти данные могут быть добавлены в текст документа вместо адреса файла."],
+        ["tool_5","<b>Ascii Art Paint</b><br><br>Графический редактор ASCII, который сочетает в себе графический редактор и преобразователь изображения в текст."],
+        ["tool_6","<b>Инструмент замены</b><br><br>Очень простая программа способная заменить неограниченное количество значений в нескольких текстовых файлах, которые может прочитать браузер. Значения для замены могут храниться в файле JSON."]
+    ]
 }
 function getLang(){
     if (window.location.hash.length!=0 && translation[window.location.hash.slice(1,3)]){
