@@ -272,6 +272,8 @@ documentation: https://kirilllive.github.io/tuesday-js/doc_runetime.html
 The goal of Tuesday JS is to make project development no more difficult than working in an office program to make presentations, and does not require special skills from the user.
 
 
+[Portuguese translation and adaptation by Sarah Camargo](https://www.linkedin.com/in/sarah-carolina-camargo/)
+
 [Japanes translation and adaptation by Onigi](https://twitter.com/onigi123)
 
 [Spanish translation and adaptation by Suki Novels](https://twitter.com/Suki_Novels)
