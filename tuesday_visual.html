@@ -456,7 +456,6 @@ input:checked+.toggle:before{transform:translateX(14px);}
     <div id='world'>
 	<svg id="story_lines" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"></svg>
 	<div id="story_blocks"></div>
- 	<div id="select_area_world" class="drag select_box"></div>
     </div>
     <!--scene_maker-->
     <div id='scene_maker'>
@@ -1349,8 +1348,6 @@ function block_open(id){
 	else{e.style.display="block";}
     lines()
 }
-var select_area=1,select_area_box;
-select_area_box=document.getElementById("select_area_world");
 var startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null,scroll_xz=null,scroll_yz=null,dictat_m=0,dictat_s=0;
 html.ontouchstart=function(e){
     if(!scroll_block||(scene_screen&&!scene_scroll)){
@@ -1395,63 +1392,31 @@ scene_view.ontouchstart=function(e){
         };
     }
 }
-
-
-
-
-
 world.onmousedown=function(e){
     if(!scroll_block&&!scene_screen){
-        if(select_area!=2){
-            startmove_x=e.clientX;
-            startmove_y=e.clientY;
-            scroll_x=html.scrollTop;
-            scroll_y=html.scrollLeft;
-        }
+        startmove_x=e.clientX;
+        startmove_y=e.clientY;
+        scroll_x=html.scrollTop;
+        scroll_y=html.scrollLeft;
         html.onmousemove=function(e){
-            if(select_area==2){
-                var mx=e.pageX/scale,my=e.pageY/scale
-                select_area_box.style.visibility='visible';
-                if(my>startmove_y){select_area_box.style.height=(my-startmove_y)+"px";}else{select_area_box.style.top=my+"px";select_area_box.style.height=(startmove_y-my)+"px";}
-                if(mx>startmove_x){select_area_box.style.width=(mx-startmove_x)+"px";}else{select_area_box.style.left=mx+"px";select_area_box.style.width=(startmove_x-mx)+"px";}
-            }else{
-                html.scrollTop=scroll_x-(e.clientY-startmove_y);
-                html.scrollLeft=scroll_y-(e.clientX-startmove_x);select_area=0;}
-            };
+            html.scrollTop=scroll_x-(e.clientY-startmove_y);
+            html.scrollLeft=scroll_y-(e.clientX-startmove_x);
+        }
         html.onmouseup=function(e){
-            if(select_area==1){
-                select_area=2;scroll_block=true;
-                select_area_box.style.top=(e.pageY/scale)+"px";
-                select_area_box.style.left=(e.pageX/scale)+"px";
-                startmove_x=e.pageX/scale;startmove_y=e.pageY/scale;
-            }else if(select_area==2){
-                select_area=1;select_area_box.style.visibility='hidden';scroll_block=false;selector_objects(select_area_box.offsetLeft,select_area_box.offsetTop,select_area_box.offsetWidth,select_area_box.offsetHeight);
-                startmove_x=null;
-                startmove_y=null;
-                html.onmousemove=null;
-                html.onmouseup=null;
-            }else{select_area=1;
-                startmove_x=null;
-                startmove_y=null;
-                html.onmousemove=null;
-                html.onmouseup=null;
-                scroll_z();
-            }
+            startmove_x=null;
+            startmove_y=null;
+            html.onmousemove=null;
+            html.onmouseup=null;
+            scroll_z();
         };
 		html.onmouseleave=function(){
 			html.onmousemove=null;
 			html.onmouseup=null;
 			document.onmousemove=null;
 			document.onmouseup=null;
-            select_area=1;select_area_box.style.visibility='hidden';scroll_block=false;
 		};
     }
 }
-
-
-
-
-
 scene_view.onmousedown=function(e){
     if(scene_screen&&scene_scroll){
         startmove_x=e.clientX;
@@ -1479,14 +1444,6 @@ scene_view.onmousedown=function(e){
 function scroll_z(){
     scroll_xz=((html.scrollTop+(html.clientHeight/2))/scale)-(html.clientHeight/2);
     scroll_yz=((html.scrollLeft+(html.clientWidth/2))/scale)-(html.clientWidth/2);
-}
-function selector_objects(x,y,w,h){
-//    for(var i=0;i<all_blocks.length;i++){
-//          var c=[false,false];
-//          if((x+w>=all_blocks[i].offsetLeft)&&(x<=all_blocks[i].offsetLeft+all_blocks[i].offsetWidth))c[0]=true;
-//          if((y+h>=all_blocks[i].offsetTop)&&(y<=all_blocks[i].offsetTop+all_blocks[i].offsetHeight))c[1]=true;
-//          if(c[0]&c[1]){all_blocks[i].style.opacity="0.5"}
-//    }
 }
 
 
@@ -3765,7 +3722,7 @@ function choice_panel_edit(block,i,n,b){
     show_if+="</tbody></table>"+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?"<div onclick=\"if(!story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].show_if){story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].show_if=[true]};story_script."+block+"["+i+"].dialogs["+(n-1)+"].choice["+b+"].show_if.push( ['"+Object.keys(story_script.parameters.variables)[0]+"','=',0] );choice_panel_update('"+block+"',"+i+","+n+");state_save();\" class='icon_m icon_add' style='margin-top:4px;padding-bottom:16px;height:26px;width:100%;cursor:pointer;'></div>":"<div onclick=\"setup();set_menu(4);\" class='icon_m icon_add' style='margin-top:4px;padding-bottom:16px;height:26px;width:100%;cursor:pointer;'></div>")
     var html='<div id="b_cho'+b+'" class="ui_buttons dialog" style="margin:8px;"><table style="width:100%;'+((story_script.blocks[arr_s[b].go_to]&&story_script.blocks[arr_s[b].go_to][3])?'border-radius:6px;background-color:'+story_script.blocks[arr_s[b].go_to][3]+';':'')+'" ondblclick="objSelect(\'cho'+b+'\');arr_e=story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+']"><tbody><tr>'
             +'<td width="24px" class="icon_m icon_up"   onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+',1);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" height="22px"></td>'
-            +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+',-1);choice_panel_update(\''+block+'\','+i+','+n+');state_save();"></td><td>&nbsp;</td>'
+            +'<td width="24px" class="icon_m icon_down" onclick="move_elenetn(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice,'+b+',-1);choice_panel_update(\''+block+'\','+i+','+n+');state_save();"></td><td></td>'
             +'<td width="26px" class="icon_show icon_m" style="cursor:pointer;" onclick="panel_m(\'b_cho'+b+'\','+n+',\''+block+'\','+i+','+b+',\'choice\',\'choice_panel_update\')" ></td>'
     +'</tr><tr><td id="chdbn'+b+'" colspan="4" height="40px" align="center" style="background-image:url('+open_file((arr_s[b].art[languare])?arr_s[b].art[languare]:arr_s[b].art)+');background-position:center;background-repeat:no-repeat;background-size:contain;word-break:break-all;">'+((arr_s[b].text[languare])?arr_s[b].text[languare]:((arr_s[b].text.length>0)?arr_s[b].text:((arr_s[b].art[languare])?'':arr_s[b].go_to)))+'</td></tr><tr>'
     +'<td class="icon_m icon_more" height="22px" onclick="menu_element.style.visibility=\'hidden\';block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
