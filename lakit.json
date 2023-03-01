@@ -57,6 +57,14 @@
 		}
 	],
 	[
+		"You can set transition to a specific scene and dialogue in blok (the function may cause errors)",
+		{
+			"ja": "任意のシーンやダイアログに進行順序を無視して処理を飛ばします。想定外の不具合を引き起こすこともあるので、注意して使用してください。",
+			"ru": "Вы можете указать переход к определенной сцене и диалогу в блоке (функция может вызывать ошибки)",
+			"es": "Puede configurar la transición a una escena y diálogo específicos en bloque (la función puede causar errores)"
+		}
+	],
+	[
 		"Changes in the values ​​of variables, their values ​​can be displayed in the text as ",
 		{
 			"ru": "Изменения в значениях переменных, эти значения могут отображаться в тексте как ",
@@ -1730,6 +1738,22 @@
 		}
 	],
 	[
+		">Animation<",
+		{
+			"ja": ">アニメｰション<",
+			"ru": ">Анимация<",
+			"es": ">Animación<"
+		}
+	],
+	[
+		">Open link<",
+		{
+			"ja": ">リンクの開き方<",
+			"ru": ">Открыть ссылку<",
+			"es": ">Abrir enlace<"
+		}
+	],
+	[
 		"Save stage",
 		{
 			"ru": "Сохранить стадию",
@@ -1985,6 +2009,21 @@
 		}
 	],
 	[
+		">Timeline<",
+		{
+			"ja": ">時間転移<",
+			"ru": ""
+		}
+	],
+	[
+		">This tab<",
+		{
+			"ja": ">既存タブ<",
+			"ru": ">В этом окне<",
+			"es": ">This ventana<"
+		}
+	],
+	[
 		"JSON edit",
 		{
 			"ru": "Редактор JSON",
@@ -2181,6 +2220,14 @@
 			"en": "",
 			"ja": "チュートリアル:",
 			"ru": "Руководство:"
+		}
+	],
+	[
+		">New tab<",
+		{
+			"ja": ">新規タブ<",
+			"ru": ">Новое окно<",
+			"es": ">Nueva ventana<"
 		}
 	],
 	[
@@ -2730,6 +2777,14 @@
 		{
 			"ru": ">Показать<",
 			"ja": ">表示<"
+		}
+	],
+	[
+		">Link<",
+		{
+			"ja": ">URLリンク<",
+			"ru": ">Ссылка<",
+			"es": ">Enlace<"
 		}
 	],
 	[
