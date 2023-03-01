@@ -1448,10 +1448,6 @@ function scroll_z(){
     scroll_xz=((html.scrollTop+(html.clientHeight/2))/scale)-(html.clientHeight/2);
     scroll_yz=((html.scrollLeft+(html.clientWidth/2))/scale)-(html.clientWidth/2);
 }
-
-
-
-
 function modal_window(action,content){
     var window_zone=document.getElementById("window_zone");
     if(audio_preplay.currentTime>0){audio_preplay.currentTime=0;audio_preplay.pause()}
