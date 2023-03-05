@@ -1780,7 +1780,8 @@ function delet_block(id){
 	modal_window('close');
 }
 function updata_block(old_id){
-    if(/^[\w\s]+$/i.test(block_id.value)){
+    if(block_id.value.length<5){toast('Name at least 5 characters')}
+    else if(/^[\w\s]+$/i.test(block_id.value)){
         var color_chec=document.forms.color_chec;
         for(i=0;i<color_chec.length;i++){
             if(color_chec[i].checked){
