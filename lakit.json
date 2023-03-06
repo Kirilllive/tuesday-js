@@ -525,7 +525,8 @@
 		{
 			"ru": ">Кнопки интерфейса<",
 			"ja": ">インターフェイスボタン<",
-			"es": ">Botones de la Interfaz<"
+			"es": ">Botones de la Interfaz<",
+			"pt": ">Botões da Interface<"
 		}
 	],
 	[
@@ -747,7 +748,8 @@
 		{
 			"ru": "Кнопки и выборы",
 			"ja": "ボタンと選択肢",
-			"es": "Botones y Elección"
+			"es": "Botones y Elección",
+			"pt": "Botões e Escolhas"
 		}
 	],
 	[
@@ -811,7 +813,8 @@
 		{
 			"ru": "Создать блок",
 			"ja": "ストーリーブロックの追加",
-			"es": "Agregar bloque de historia"
+			"es": "Agregar bloque de historia",
+			"pt": "Adicionar bloco de história"
 		}
 	],
 	[
@@ -1051,7 +1054,8 @@
 			"ru": "Создать проект",
 			"ja": "プロジェクト作成",
 			"en": "",
-			"es": "Crear proyecto"
+			"es": "Crear proyecto",
+			"pt": "Criar Projeto"
 		}
 	],
 	[
@@ -1344,7 +1348,8 @@
 		{
 			"ru": "Создать блок",
 			"ja": "ブロック作成",
-			"es": "Crear bloque"
+			"es": "Crear bloque",
+			"pt": "Criar bloco"
 		}
 	],
 	[
@@ -1400,7 +1405,8 @@
 		{
 			"ru": ">Текстовая панель<",
 			"ja": ">テキストパネル<",
-			"es": ">Panel de texto<"
+			"es": ">Panel de texto<",
+			"pt": ">Painel de texto<"
 		}
 	],
 	[
@@ -1408,7 +1414,8 @@
 		{
 			"ru": ">Панель имени<",
 			"ja": ">ネームパネル<",
-			"es": ">Nombre del panel<"
+			"es": ">Nombre del panel<",
+			"pt": ">Painel de Nomes<"
 		}
 	],
 	[
@@ -1862,7 +1869,8 @@
 		{
 			"ru": "Редактор сцен",
 			"ja": "シーン編集",
-			"es": "Edición de escena"
+			"es": "Edición de escena",
+			"pt": "Editor de Cena"
 		}
 	],
 	[
@@ -1934,7 +1942,8 @@
 		{
 			"ru": "Добавить диалог",
 			"ja": "ダイアログを追加",
-			"es": "Agregar diálogo"
+			"es": "Agregar diálogo",
+			"pt": "Adicionar Diálogo"
 		}
 	],
 	[
@@ -1958,7 +1967,8 @@
 		{
 			"ru": "Следующая сцена",
 			"ja": "次のシーン",
-			"es": "Siguiente escena"
+			"es": "Siguiente escena",
+			"pt": "Próxima cena"
 		}
 	],
 	[
@@ -2100,7 +2110,8 @@
 		{
 			"ru": "Редактор текста",
 			"ja": "テキスト編集",
-			"es": "Edición de texto"
+			"es": "Edición de texto",
+			"pt": "Editar texto"
 		}
 	],
 	[
@@ -2148,7 +2159,8 @@
 		{
 			"ru": "Дублировать",
 			"ja": "複製",
-			"es": "Duplicar"
+			"es": "Duplicar",
+			"pt": "Duplicar"
 		}
 	],
 	[
@@ -2156,7 +2168,8 @@
 		{
 			"ru": "дублировать",
 			"ja": "複製",
-			"es": "duplicar"
+			"es": "duplicar",
+			"pt": "duplicar"
 		}
 	],
 	[
@@ -2507,7 +2520,8 @@
 		{
 			"ru": ">Перейти в<",
 			"ja": ">移動 / go to<",
-			"es": ">Ir a<"
+			"es": ">Ir a<",
+			"pt": ">Ir para<"
 		}
 	],
 	[
@@ -2633,7 +2647,8 @@
 		{
 			"ru": "перейти в:",
 			"ja": "移動:",
-			"es": "Ir a:"
+			"es": "Ir a:",
+			"pt": "ir para:"
 		}
 	],
 	[
@@ -2665,7 +2680,8 @@
 		{
 			"ru": ">Текст<",
 			"ja": ">テキスト<",
-			"es": ">Texto<"
+			"es": ">Texto<",
+			"pt": ">Texto<"
 		}
 	],
 	[
@@ -2673,7 +2689,8 @@
 		{
 			"ru": ">Изображения<",
 			"ja": ">画像<",
-			"es": ">Artes<"
+			"es": ">Artes<",
+			"pt": ">Artes<"
 		}
 	],
 	[
@@ -2792,7 +2809,8 @@
 		{
 			"ru": ">Назад",
 			"ja": ">戻る",
-			"es": ">Atrás"
+			"es": ">Atrás",
+			"pt": ">Voltar"
 		}
 	],
 	[
@@ -2816,7 +2834,8 @@
 		{
 			"ru": "Применить",
 			"ja": "適用",
-			"es": "Aplicar"
+			"es": "Aplicar",
+			"pt": "Aplicar"
 		}
 	],
 	[
