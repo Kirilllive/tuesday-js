@@ -45,7 +45,8 @@
 		{
 			"ru": "Настройки текста и имени персонажа для текстовой области. Чтобы использовать данные из переменной, используйте ",
 			"ja": "テキストエリアに表示するテキストと、発言者を表わすキャラクター名を設定します。変数の値を表示するには、",
-			"es": "Los ajustes de texto y nombre del personaje se mostrarán en el área de texto. Para usar datos de variables, usar  "
+			"es": "Los ajustes de texto y nombre del personaje se mostrarán en el área de texto. Para usar datos de variables, usar  ",
+			"pt": "Textos e nomes de personagens serão mostrados na área de texto. Para utilizar dados de uma variável, utilize "
 		}
 	],
 	[
@@ -69,7 +70,8 @@
 		{
 			"ru": "Изменения в значениях переменных, эти значения могут отображаться в тексте как ",
 			"ja": "変数の値を変更します。変数は",
-			"es": "Los cambios en los valores de las variables, pueden ser mostrados en el texto como "
+			"es": "Los cambios en los valores de las variables, pueden ser mostrados en el texto como ",
+			"pt": "Mudanças nos valores das variáveis, seus valores podem ser apresentados em texto utilizando "
 		}
 	],
 	[
@@ -85,7 +87,8 @@
 		{
 			"ru": ". Если написать skip то фраза в локализации будет пропущена.",
 			"ja": "とすれば、「簡単」の上に「かんたん」という語が振り仮名のように加わります。テキスト欄にテキストが無い箇所は、その言語設定時は省略されます。",
-			"es": ". Si solo escribes skip, la frase en la traducción será omitida."
+			"es": ". Si solo escribes skip, la frase en la traducción será omitida.",
+			"pt": ". Se você escrever apenas 'skip' então a frase na localização será ignorada."
 		}
 	],
 	[
@@ -181,7 +184,8 @@
 		{
 			"ru": ". Чтобы добавить фуригану или аннотации, используйте",
 			"ja": "のように記述してください。読み仮名や補足文として、文や語の上に小さなテキストを表示させることもできます。\\< 任意の語や文 = 小さなテキスト \\>のように記述します。例えば\\",
-			"es": ". Para agregar furigana o anotaciones usar"
+			"es": ". Para agregar furigana o anotaciones usar",
+			"pt": ". Para adicionar furigana ou anotações, utilize "
 		}
 	],
 	[
@@ -213,7 +217,8 @@
 		{
 			"ru": "для перехода к другому блоку.",
 			"ja": "処理を別なブロックに進めるのに使います。",
-			"es": " para ir a otro bloque del código."
+			"es": " para ir a otro bloque del código.",
+			"pt": " ou para \"Escolhas Legado' ir para outro bloco do roteiro."
 		}
 	],
 	[
