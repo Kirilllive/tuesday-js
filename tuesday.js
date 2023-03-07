@@ -787,8 +787,8 @@ function name_block_update(){
     } else if(dialog_speed != 0 && dialog_letter <= dialog_text.length){
         dialog_timeout=setTimeout(add_letter,dialog_speed);
     } else if(dialog_letter >= dialog_text.length){
-        var e_cursor=JSON.parse(JSON.stringify((arr_dialog.end_text_cursor)?arr_dialog.end_text_cursor:(story_json.parameters.text_panel.end_text_cursor)?story_json.parameters.text_panel.end_text_cursor:false));
         if(arr_dialog.end_text_cursor&&story_json.parameters.text_panel.end_text_cursor){
+            var e_cursor=JSON.parse(JSON.stringify((arr_dialog.end_text_cursor)?arr_dialog.end_text_cursor:(story_json.parameters.text_panel.end_text_cursor)?story_json.parameters.text_panel.end_text_cursor:false));
             if(e_cursor[1]==""&&story_json.parameters.text_panel.end_text_cursor[1]){e_cursor[1]=story_json.parameters.text_panel.end_text_cursor[1]}
             if(e_cursor[2]==""&&story_json.parameters.text_panel.end_text_cursor[2]){e_cursor[2]=story_json.parameters.text_panel.end_text_cursor[2]}
             if(e_cursor[3]==""&&story_json.parameters.text_panel.end_text_cursor[3]){e_cursor[3]=story_json.parameters.text_panel.end_text_cursor[3]}
