@@ -748,7 +748,7 @@ function createPalette(){
         s=palette[c]
         div.innerHTML=s
         div.classList.add("symbol");
-        div.setAttribute("onclick","brush='"+s+"';active_brush.innerHTML=brush;select_symbol("+c+")");
+        div.setAttribute("onclick","brush='"+((s.match(/\\/))?"\\\\":s)+"';active_brush.innerHTML=brush;select_symbol("+c+")");
         if(brush==s){div.style.backgroundColor="var(--cb)";}
         symbols_view.appendChild(div);
     }
