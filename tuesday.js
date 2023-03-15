@@ -315,8 +315,7 @@ function name_block_update(){
 } function creation_dialog(next_scene){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog];
 		if(arr_dialog.controll == 'hidden' || arr_dialog.controll == 'hidden_here' || (tue_story == story_json.parameters.launch_story && !arr_dialog.text && dialog==0 && scene==0)){
-            if (dialog==0 && scene==0){controll=true;}
-            else if (arr_dialog.controll != 'hidden_here') {controll=false;}
+            if (arr_dialog.controll != 'hidden_here') {controll=false;} else {controll=true;}
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="hidden";}
 		} else if(arr_dialog.controll == 'visible' || controll==true) {
