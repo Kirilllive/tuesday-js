@@ -546,16 +546,6 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 <input id='p_width' class='input_slider input_slider_progress' onchange='aspect_ratio.selectedIndex="-1";setup_editor.preview[0]=this.value;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' oninput='if(objFocus){scene_scroll=false;saveResize();}preview_size(false);video_size();' type="range" value='100' min="50" max="100" style='width:100%;'>
                             </td></tr>
                         </tbody></table></div>
-                        <table onclick="block_open('set_global');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Project scripts</td></tr></tbody></table>
-                        <div class="set_panel" id="set_global" style="width:100%;display:none;">
-                            <table style="width:100%;"><tbody>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_script_css'><tbody><tr><td width='60px' class='icon_m icon_css'></td><td align='left'>CSS class</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr><tr><td height='40px' align='center' valign='center' style='border-bottom:1px solid var(--cw);'>
-                                    <table class='edit_button' width='100%' id='s_script_js'><tbody><tr><td width='60px' class='icon_m icon_js'></td><td align='left'>JavaScript</td><td width='42px'></td></tr></tbody></table>
-                                </td></tr>
-                            </tbody></table>
-                        </div>
                         <table onclick="block_open('set_scene');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Scene content</td></tr></tbody></table>
                         <div class="set_panel" id="set_scene" style="width:100%;display:none;">
                             <table style="width:100%;"><tbody>
@@ -3102,8 +3092,6 @@ function scen_edit_data(){
     s_scene_html.setAttribute("onclick","if(!story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].html){story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].html=''};arr_l=story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];arr_n='html';edit_html();");
     s_scene_var.setAttribute("onclick","if(!story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].variables  ){story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].variables=[]}if(story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0){arr_l=story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];arr_n='variables';variables_set_edit();}else{setup();set_menu(4);}");
     s_scene_js.setAttribute("onclick","if(!story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].js){story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"].js=''};copy_arr=story_script."+scen_data[0]+"["+scen_data[1]+"].dialogs["+(scen_data[2]-1)+"];edit_code(\'js\',\'JavaScript\');");
-    s_script_js.setAttribute("onclick","if(!story_script.parameters.js){story_script.parameters.js=''};edit_code(\'script_js\',\'JavaScript\');");
-    s_script_css.setAttribute("onclick","if(!story_script.parameters.css){story_script.parameters.css=''};edit_code(\'script_css\',\'CSS Class\');");
     size_w.value=((arr_t.size[0])?arr_t.size[0]:"")
     size_h.value=((arr_t.size[1])?arr_t.size[1]:"")
     className.value=((arr_t.className)?arr_t.className:"")
