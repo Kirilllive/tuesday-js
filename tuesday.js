@@ -318,7 +318,7 @@ function name_block_update(){
             if (arr_dialog.controll != 'hidden_here') {controll=false;} else {controll=true;}
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="hidden";}
-		} else if(arr_dialog.controll == 'visible' || controll==true) {
+		} else if(arr_dialog.controll == 'visible' || !arr_dialog.controll || controll==true) {
             controll=true;
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="visible";}
@@ -346,7 +346,7 @@ function name_block_update(){
         if(arr_dialog.color_text){tue_text_view.style.color=arr_dialog.color_text;}
 		else if(story_json.parameters.text_panel.color_text){tue_text_view.style.color=story_json.parameters.text_panel.color_text;}
         if(arr_dialog.name){
-            bg_art(story_json.parameters.name_panel,'tue_name_block',(story_json.parameters.characters[arr_dialog.name].art)?story_json.parameters.characters[arr_dialog.name].art:false);
+            bg_art(story_json.parameters.name_panel,'tue_name_block',(story_json.parameters.characters[arr_dialog.name]&&story_json.parameters.characters[arr_dialog.name].art)?story_json.parameters.characters[arr_dialog.name].art:false);
             if(arr_dialog.name[languare]){
                 tue_name_block.innerHTML=values_button(arr_dialog.name[languare])
                 tue_name_block.style.backgroundColor=arr_dialog.name.color;
