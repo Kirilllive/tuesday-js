@@ -31,6 +31,12 @@ a:link {color: #8d7fbd;}
 a:visited{color: #8d7fbd;}
 a:hover{color: #cec8e3;}
 a:active{color: #cec8e3;}
+code{
+    background-color: rgba(0,0,0,0.1);
+    display:block;
+    padding:16px;
+    border-radius:8px;
+}
 #search_bookmarks {
   background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 48 48'%3e %3ccircle fill='none' stroke='%23ccc' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' cx='32' cy='17' r='14' /%3e %3cpath fill='none' stroke='%23ccc' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' d='M 4,45 22,27'/%3e%3c/svg%3e");
   background-position:6px 6px;
@@ -193,6 +199,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <div class="accordion"><div class="block block_open">Lessons</div></div>
     <div class="panel">
         <div class="block" onclick="get_doc('unlocked_content')"><span class="three_1">Make hidden content</span></div>
+        <div class="block" onclick="get_doc('enter_name')"><span class="three_1">How to enter player name</span></div>
     </div>
 </div>
 </td>
@@ -512,6 +519,40 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         </tr>
         <tr>
             <td align='left' colspan="2" height='128px'>In this way, we create conditions for displaying a button that sees hidden content in which the user needs to perform the necessary actions in order to access it. You can use this to reveal hidden answer options to navigate through hidden scenes or unlock art in the gallery.<br>This example shows how the Show option and variables work in general. You can use these options in other ways as well.<br>You don't have to create a variable for every object, you can use one variable for multiple elements and only change the value in the variable itself.<br><br>Download the source code for this example here <a href="example/example_unlocked_content.zip" target='_blank'>example_unlocked_content.zip</a></td>
+        </tr>
+    </tbody></table>
+    </div>
+    <p></p>
+</div>
+<div id="enter_name" style="display:none">
+    <div style="width:100%;text-align: center;">
+    <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
+        <tr>
+            <td align='center' colspan="2" style="text-align:center;"><p class="head">How to enter player name</p></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 1</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>In the project settings, create a variable to store the name, for example "user_name"</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/new_var.svg" style="background-image:url('tutorial_img/new_var.png');"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 2</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/scene_choices_javascript.svg" style="background-image:url('tutorial_img/scene_choices_javascript.jpg');"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Add a JavaScript element to the scene, or create a button and add code to its JavaScript settings.<br><br><code>story_json.parameters.variables.user_name=prompt("Please enter your name:","User Name");</code><br><br>Note that the full address is used to store variables in the <br><br><code>story_json.parameters.variables.user_name</code><br> where user_name can be replaced by any other variable you use to store the name.<br><br>Learn more about the "Prompt" feature at <a href="https://www.w3schools.com/jsref/met_win_prompt.asp" target='_blank'>w3schools</a></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 3</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Now, when you click a button or go to the stage, a dialog box will appear prompting you to enter a name or other parameter.<br><br>You can display values from variables in the text. To do this, you need to write the name of the variable in angle brackets in the text "text <var_name> text", after which it will be replaced in the project with the value from the specified variable. </td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/enter_name.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='left' colspan="2" height='128px'>Download the source code for this example here <a href="example/example_enter_name.json" target='_blank'>example_enter_name.json</a></td>
         </tr>
     </tbody></table>
     </div>
