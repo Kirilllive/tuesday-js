@@ -509,7 +509,7 @@ function name_block_update(){
             }
         }
         if(arr_dialog.choice){
-			tue_next.style.visibility='hidden';
+            var interfaces=false;
             for(i=0;i < arr_dialog.choice.length;i++){
                 var choice=document.createElement("div");
                 if(arr_dialog.choice[i].className){choice.className=arr_dialog.choice[i].className;}
@@ -575,6 +575,7 @@ function name_block_update(){
                 if (arr_dialog.choice[i].js){v+=arr_dialog.choice[i].js+";"}
                 if (arr_dialog.choice[i].go_to){
                     var g=arr_dialog.choice[i].go_to;
+                    if (!interfaces){interfaces=(g != "tue_no" || arr_dialog.choice[i].url);}
                     if (story_json.parameters.languares.length>1){
                         for(var l=0;l<story_json.parameters.languares.length;l++){
                             if(g == "tue_"+story_json.parameters.languares[l]){
@@ -608,6 +609,7 @@ function name_block_update(){
 					return s;
 				}
             }
+			if(interfaces){tue_next.style.visibility='hidden'};
         }
         if(!next_scene||arr_dialog.html){del_element("tue_html_dialog")};
         if (arr_dialog.html){
@@ -688,7 +690,8 @@ function name_block_update(){
     var r=n.split('=');return "<ruby>"+r[0]+"<rt>"+r[1]+"</rt></ruby>"
 } function go_story(choice){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
-	if(!arr_dialog.choice || choice){
+	if(tue_next.style.visibility!='hidden' || choice){
+        if(arr_dialog.choice){del_element("tue_choice")}
 		if(arr_dialog.go_to){
 			var go=arr_dialog.go_to;
 			go_to(go)
