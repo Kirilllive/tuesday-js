@@ -34,8 +34,22 @@ a:active{color: #cec8e3;}
 code{
     background-color: rgba(0,0,0,0.1);
     display:block;
-    padding:16px;
+    padding:10px 48px 10px 12px;
+    margin-right:16px;
     border-radius:8px;
+    position:relative;
+}
+code::after{
+    content:'';
+    width:46px;height:46px;display:block;
+    background-size:22px 22px;
+    background-repeat:no-repeat;
+    background-position:center;
+    cursor:pointer;
+    background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M8,61L29,40M30,53V39H16M17,31V14a4,4,0,0,1,4-4h6v4H45V10h6a4,4,0,0,1,4,4V48a4,4,0,0,1-4,4H37M27,18V7h5a4,4,0,0,1,8,0h5V18H27Z'/%3e%3c/svg%3e");
+	position:absolute;
+	top:-4px;
+	right:-4px;
 }
 #search_bookmarks {
   background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 48 48'%3e %3ccircle fill='none' stroke='%23ccc' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' cx='32' cy='17' r='14' /%3e %3cpath fill='none' stroke='%23ccc' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' d='M 4,45 22,27'/%3e%3c/svg%3e");
@@ -94,6 +108,10 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     border-radius:6px;
     background-size:100% 100%;
     background-repeat:no-repeat;}
+    
+.flash_anim{animation:flashS 0.4s linear;}
+@keyframes flashS{from{color:rgba(0,0,0,0)}to{color:rgba(0,0,0,1)}}
+
 </style>
 </head>
 <body style="background-color:#fff;">
@@ -200,6 +218,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <div class="panel">
         <div class="block" onclick="get_doc('unlocked_content')"><span class="three_1">Make hidden content</span></div>
         <div class="block" onclick="get_doc('enter_name')"><span class="three_1">How to enter player name</span></div>
+        <div class="block" onclick="get_doc('bot_telegram')"><span class="three_1">Bot for Telegram</span></div>
     </div>
 </div>
 </td>
@@ -270,7 +289,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/w_dialog_JavaScript.png" style="max-height:670px;max-width:821px;"/>
     </div>
     <p>You can set JavaScript to execute after the scene or dialog is rendered. В этом случае используются стандартные браузерные JavaScript APIs.</p>
-    <p>All of Tuesday's components are in the document element ID "tuesday".<br><br><i><b>document.getElementById("tuesday");</b></i><br><br>Or in a global variable in RunTime "tuesday" so you can access elements using code<br><br><i><b>var element = tuesday.children;</b></i><br><br></p>
+    <p>All of Tuesday's components are in the document element ID "tuesday".<br><br><code>document.getElementById("tuesday");</code><br><br>Or in a global variable in RunTime "tuesday" so you can access elements using code<br><br><code>var element = tuesday.children;</code><br><br></p>
     <p>All elements have default classes by which you can access them.</p><br>
     <ul>
       <li><b>tue_art</b> - Images</li>
@@ -319,7 +338,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p class="head">ID event</p>
     <img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/e_ID_event.png" style="max-height:auto;max-width:317px;"/>
     </div>
-    <p>An element intended for external use in JavaScript. It sends a signal that can be tracked using a JavaScript event handling method. <br><br><i><b>tuesday.addEventListener( "you_event", function(event) { alert("event starting") } );</b></i></p>
+    <p>An element intended for external use in JavaScript. It sends a signal that can be tracked using a JavaScript event handling method. <br><br><code>tuesday.addEventListener( "you_event", function(event) { alert("event starting") } );</code></p>
     <br>
     <p>This way you can link Tuesday JS project to your JavaScript code. so that it can react to the moments of the story that you define.</p>
 </div>
@@ -558,6 +577,67 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </div>
     <p></p>
 </div>
+
+
+
+
+<div id="bot_telegram" style="display:none">
+    <div style="width:100%;text-align: center;">
+    <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
+        <tr>
+            <td align='center' colspan="2" style="text-align:center;"><p class="head">Starting from version 31, Tuesday JS has a project export to a telegram bot.<br>Warning: Not all Tuesday JS functions can be used in a bot.</p></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='64px'>Step 1 bot registration in Telegram</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>In the Telegram app, find the <a href="https://t.me/BotFather" target='_blank'>@BotFather user</a>.<br><br>Write to the chat or select /newbot from the menu<br><br>Enter all the required data and get an token for bot.<br><br>In the future, in this chat, you can change the data of the bot, set an avatar for it or delete it.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/telegram_botfather.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 2 installation of additional software</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/install_npm.jpg"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Install the appropriate <a href="https://nodejs.org/en" target='_blank'>Node.js</a> version for your PC<br><br>After the installation is complete, launch the console: the <a href="https://en.wikipedia.org/wiki/Terminal_(macOS)" target='_blank'>Terminal</a> if you have macOS, or <a href="https://en.wikipedia.org/wiki/Cmd.exe" target='_blank'>CMD</a> (command-line interface) if you have Windows.<br><br>Install npm by writing command:<br><br><code>npm install -g npm</code><br><br>After installation, do not close the console</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 3 Create local server</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Create a folder for the project using the command, The example uses the name "telegram_bot" in the user's root folder, but you can use any other directory<br><br><code>mkdir telegram_bot</code><br><br>Go to the folder with the command:<br><br><code>cd telegram_bot</code><br><br>Initialize the folder with the command:<br><br><code>npm "init -y"</code><br><br>Download <a href="https://www.npmjs.com/package/node-telegram-bot-api" target='_blank'>Telegram Bot API</a> with the command:<br><br><code>npm i node-telegram-bot-api</code><br><br>You can close the console after installation is complete.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 4</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/bot_package.png"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the folder for the bot, find the <b>"package.json"</b> file<br><br>Open it in a text editor and change the line "scripts" to<br><br><code>scripts:{"start":"node index.js"},</code><br><br>The index.js file will contain your bot code, its name can be anything.</td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 5 Creating a bot</td>
+        </tr>
+        <tr>
+            <td width='50%' align='left' class='textarr' valign='top'>Open your Tuesday JS project and click <a href="doc_editor.html#user_interface" target='_blank'>the build button</a>.<br><br>Select "Telegram bot"<br><br>You will be prompted to enter the bot token you received when registering the bot in telegram.<br><br>In the future, the bot token can be changed in <a href="doc_editor.html#settings_project" target='_blank'>the project settings</a>.<br><br>Save the resulting <b>"index.js"</b> file to the bots folder</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/bot_build.jpg"/></td>
+        </tr>
+        <tr>
+            <td align='center' colspan="2" height='128px'>Step 6 Bot launch</td>
+        </tr>
+        <tr>
+            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/"/></td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>Launch the console and go to the folder with the bot with the command:<br><br><code>cd telegram_bot</code><br><br>We start the bot with the command<br><br><code>npm run start</code><br><br>If no error messages appear in the console, then you can find and use your bots in the telegram service<br><br>the bot will work while the console is enabled</td>
+        </tr>
+    </tbody></table>
+    </div>
+    <p></p>
+</div>
+
+
+
+
+
 <div id="legacy_choice" style="display:none">
     <div style="width:100%;text-align: center;">
     <p class="head">Legacy choice</p>
@@ -2005,6 +2085,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </div>
     <p>List of all variables in the project, here you can add, delete and edit the names and values of variables, the editor automatically determines the type of the variable (string or number). If necessary, the editor will offer to create a new variable if you are using an element for which the use of variable variables is required.
     <br><br>Variables are used when defining the next block of the story using the "Legacy choice" element or for the conditions for displaying an object in a scene. If you write in the text the name of the variable in angle brackets <b>"text &#60var_name> text"</b>, then when the dialog is displayed, it will be replaced by the value from the specified variable.
+    <br><br>Access variables using JavaScript in array:<br><br><code>story_json.parameters.variables[var_name]</code>
     <br><br><b>Attention</b><br>When changing the name of a variable, the new name will be added only to this list, in the rest of the project the name will remain the same and will need to be changed manually.<br><br>Saving user progress also includes an array of all variables and their values. When loading a save, an array of values from the saved data will be added, which can lead to the loss of actual data when starting the project preview. In the same way, variable data from other projects can get in. To prevent this from happening, it is recommended to use "Clear All Saves" or disable this feature during project development.</p>
 </div><div id="settings_cursors" style="display:none">
     <div style="width:100%;text-align: center;">
@@ -2071,7 +2152,19 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
 </div>
 
 <script>
-function get_doc(id){doc_view.innerHTML=document.getElementById(id).innerHTML;window.location.hash=id;doc_view.scrollTo(0,0);}
+function get_doc(id){
+    doc_view.innerHTML=document.getElementById(id).innerHTML;window.location.hash=id;doc_view.scrollTo(0,0);
+    let code = document.getElementsByTagName("code");
+    for(let i = 0; i < code.length; i++) {
+        code[i].onclick = function () {
+            navigator.clipboard.writeText(this.innerText)
+            this.classList.remove("flash_anim");
+            void this.offsetParent;
+            this.classList.add("flash_anim");
+            this.addEventListener("animationend",(function(){this.style.color="rgba(0,0,0,1)"}), false);
+        }
+    }
+}
 var textbook=document.getElementById("textbook"),acc=document.getElementsByClassName("accordion");
 for (var i=0;i<acc.length;i++){
         acc[i].addEventListener("click",function(){
