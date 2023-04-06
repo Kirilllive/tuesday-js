@@ -37,14 +37,13 @@ code{
     padding:10px 48px 10px 12px;
     margin-right:16px;
     border-radius:8px;
-    position:relative;
+    position:relative;pointer-events: none;
 }
-code::after{
-    content:'';
+code::before{content:'';
     width:46px;height:46px;display:block;
     background-size:22px 22px;
     background-repeat:no-repeat;
-    background-position:center;
+    background-position:center;pointer-events: auto;
     cursor:pointer;
     background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' fill-opacity='0' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M8,61L29,40M30,53V39H16M17,31V14a4,4,0,0,1,4-4h6v4H45V10h6a4,4,0,0,1,4,4V48a4,4,0,0,1-4,4H37M27,18V7h5a4,4,0,0,1,8,0h5V18H27Z'/%3e%3c/svg%3e");
 	position:absolute;
@@ -577,10 +576,6 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </div>
     <p></p>
 </div>
-
-
-
-
 <div id="bot_telegram" style="display:none">
     <div style="width:100%;text-align: center;">
     <table cellpadding="10" cellspacing="16" style="width:100%;"><tbody>
@@ -605,15 +600,15 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td align='center' colspan="2" height='128px'>Step 3 Create local server</td>
         </tr>
         <tr>
-            <td width='50%' align='left' class='textarr' valign='top'>Create a folder for the project using the command, The example uses the name "telegram_bot" in the user's root folder, but you can use any other directory<br><br><code>mkdir telegram_bot</code><br><br>Go to the folder with the command:<br><br><code>cd telegram_bot</code><br><br>Initialize the folder with the command:<br><br><code>npm "init -y"</code><br><br>Download <a href="https://www.npmjs.com/package/node-telegram-bot-api" target='_blank'>Telegram Bot API</a> with the command:<br><br><code>npm i node-telegram-bot-api</code><br><br>You can close the console after installation is complete.</td>
-            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/"/></td>
+            <td width='50%' align='left' class='textarr' valign='top'>Create a folder for the project using the command, The example uses the name "telegram_bot" in the user's root folder, but you can use any other directory<br><br><code>mkdir telegram_bot</code><br><br>Go to the folder with the command:<br><br><code>cd telegram_bot</code><br><br>Initialize the folder with the command:<br><br><code>npm init -y</code><br><br>Download <a href="https://www.npmjs.com/package/node-telegram-bot-api" target='_blank'>Telegram Bot API</a> with the command:<br><br><code>npm i node-telegram-bot-api</code><br><br>You can close the console after installation is complete.</td>
+            <td width='50%' align='center' class='leftbor'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/bot_init.png"/></td>
         </tr>
         <tr>
             <td align='center' colspan="2" height='128px'>Step 4</td>
         </tr>
         <tr>
             <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/bot_package.png"/></td>
-            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the folder for the bot, find the <b>"package.json"</b> file<br><br>Open it in a text editor and change the line "scripts" to<br><br><code>scripts:{"start":"node index.js"},</code><br><br>The index.js file will contain your bot code, its name can be anything.</td>
+            <td width='50%' align='left' class='leftbor textarr' valign='top'>In the folder for the bot, find the <b>"package.json"</b> file<br><br>Open it in a text editor and change the line "scripts" to<br><br><code>"scripts":{"start":"node index.js"},</code><br><br>The index.js file will contain your bot code, its name can be anything.</td>
         </tr>
         <tr>
             <td align='center' colspan="2" height='128px'>Step 5 Creating a bot</td>
@@ -626,18 +621,13 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
             <td align='center' colspan="2" height='128px'>Step 6 Bot launch</td>
         </tr>
         <tr>
-            <td width='50%' align='center'><img class="img_t" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/"/></td>
+            <td width='50%' align='center'><img class="img_w" onclick="modal_window('open',this.src,this.style.backgroundImage)" src="tutorial_img/bot_start.jpg"/></td>
             <td width='50%' align='left' class='leftbor textarr' valign='top'>Launch the console and go to the folder with the bot with the command:<br><br><code>cd telegram_bot</code><br><br>We start the bot with the command<br><br><code>npm run start</code><br><br>If no error messages appear in the console, then you can find and use your bots in the telegram service<br><br>the bot will work while the console is enabled</td>
         </tr>
     </tbody></table>
     </div>
     <p></p>
 </div>
-
-
-
-
-
 <div id="legacy_choice" style="display:none">
     <div style="width:100%;text-align: center;">
     <p class="head">Legacy choice</p>
