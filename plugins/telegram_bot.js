@@ -89,7 +89,7 @@ const start = async () => {
                 if (block.dialogs[tue_dialog].choice){
                     texts+=(block.dialogs[tue_dialog].text)?values_button(data_la(block.dialogs[tue_dialog].text))+"\n\n":"?";
                     for(var e=block.dialogs[tue_dialog].choice.length-1;e>=0;e--){
-                        if(!block.dialogs[tue_dialog].choice[e].url && show_if(block.dialogs[tue_dialog].choice[e])){
+                        if(!block.dialogs[tue_dialog].choice[e].url && block.dialogs[tue_dialog].choice[e].go_to!="tue_no" && show_if(block.dialogs[tue_dialog].choice[e])){
                             buttons.push([{text:(block.dialogs[tue_dialog].choice[e].text && data_la(block.dialogs[tue_dialog].choice[e].text).length>0)?values_button(data_la(block.dialogs[tue_dialog].choice[e].text)):"choice "+e , callback_data:((block.dialogs[tue_dialog].choice[e].go_to!="tue_go")?block.dialogs[tue_dialog].choice[e].go_to:tue_story+","+tue_scene+","+(parseInt(tue_dialog)+1)).toString()}])
                         }
                     }

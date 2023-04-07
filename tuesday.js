@@ -575,7 +575,7 @@ function name_block_update(){
                 if (arr_dialog.choice[i].js){v+=arr_dialog.choice[i].js+";"}
                 if (arr_dialog.choice[i].go_to){
                     var g=arr_dialog.choice[i].go_to;
-                    if (!interfaces){interfaces=(g != "tue_no" || arr_dialog.choice[i].url);}
+                    if (!interfaces){interfaces=(arr_dialog.choice[i].url)?false:(g!="tue_no")?true:false;}
                     if (story_json.parameters.languares.length>1){
                         for(var l=0;l<story_json.parameters.languares.length;l++){
                             if(g == "tue_"+story_json.parameters.languares[l]){
