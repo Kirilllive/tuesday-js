@@ -39,6 +39,7 @@ const start = async () => {
    })
    function makeStory(chatId){
         var texts="",buttons=[],block=story_json[tue_story][tue_scene];
+        if(block.dialogs[tue_dialog].js){eval(block.dialogs[tue_dialog].js)}
         if(block.legacy_choice){
             for(var i=0;i < block.legacy_choice.length;i++){
                 var choice_n=block.legacy_choice[i][0];
