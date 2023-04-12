@@ -4395,7 +4395,7 @@ function setup(){
         "<tr><td align='right' style='white-space:nowrap;'>dialog speed </td><td align='left'><input id='dialog_speed_s' onchange='this.value=parseInt(correct_value(this.value,true))' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:'')+"' type='text'></td></tr><tr><td align='right'>font family </td><td align='left'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr>"+
         "<tr><td align='right' style='white-space:nowrap;'>font size </td><td align='left'><input id='font_size' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size:'')+"' type='text'></td></tr>"+
         "<tr><td align='right' style='white-space:nowrap;'>icon </td><td align='left'><input id='icon' class='input_text' value='"+((story_script.parameters.icon)?story_script.parameters.icon :'')+"' type='text'></td><td id='l_icon' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\"img\",\"icon\",0,\"story_script.parameters.icon\")'></td></tr>"+
-        ((story_script.parameters.telegram && story_script.parameters.telegram.length>0)?"<tr><td align='right' style='white-space:nowrap;'>telegram token</td><td align='left'><input id='icon' class='input_text' value='"+story_script.parameters.telegram+"' type='text'></td><td></td></tr>":"")+
+        ((story_script.parameters.telegram && story_script.parameters.telegram.length>0)?"<tr><td align='right' style='white-space:nowrap;'>telegram token</td><td align='left'><input id='telegram_token' class='input_text' value='"+story_script.parameters.telegram+"' type='text'></td><td></td></tr>":"")+
         "<tr><td height='20px' style='white-space:nowrap;'></td><td></td></tr>"+
         "<tr><td align='right' style='white-space:nowrap;'>Auto save </td><td align='left' style='padding-top:4px;width:60%;'><table style='width:100%'><tbody><tr><td><label class='switchbox'><input type='checkbox' id='autosave' "+((story_script.parameters.autosave)?'checked':'')+"><span class='toggle round'></span></label>"+
         "</td><td align='right' style='white-space:nowrap;'>Clear all save:</td></tr></tbody></table></td><td onclick=\"localStorage.clear();toast('LocalStorage cleared');\" style='width:40px;cursor:pointer;' title='clear autosave' class='icon icon_del'></td></tr>"+
@@ -4581,6 +4581,7 @@ function apply_setup(){
     story_script.parameters.font=font.value
     story_script.parameters.font_size=correct_value(font_size.value)
     story_script.parameters.text_panel.dialog_speed=dialog_speed_s.value
+    if(story_script.parameters.telegram){story_script.parameters.telegram=telegram_token.value}
     //
     forms=document.forms.devices;
     setup_editor.wheel=(forms[0].checked)?true:false;
