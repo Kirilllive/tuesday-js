@@ -88,7 +88,7 @@ const start = async () => {
                     }
                 }
                 if (block.dialogs[tue_dialog].choice){
-                    texts+=(block.dialogs[tue_dialog].text)?values_button(data_la(block.dialogs[tue_dialog].text))+"\n\n":"?";
+                    texts+=values_button((block.dialogs[tue_dialog].text)?((block.dialogs[tue_dialog].text[tue_languare])?block.dialogs[tue_dialog].text[tue_languare]:block.dialogs[tue_dialog].text)+"\n\n":  (block.dialogs[tue_dialog].text_add)?((block.dialogs[tue_dialog].text_add[tue_languare])?block.dialogs[tue_dialog].text_add[tue_languare]:block.dialogs[tue_dialog].text_add)+"\n\n":"?");
                     for(var e=block.dialogs[tue_dialog].choice.length-1;e>=0;e--){
                         if(!block.dialogs[tue_dialog].choice[e].url && block.dialogs[tue_dialog].choice[e].go_to!="tue_no" && show_if(block.dialogs[tue_dialog].choice[e])){
                             buttons.push([{text:(block.dialogs[tue_dialog].choice[e].text && data_la(block.dialogs[tue_dialog].choice[e].text).length>0)?values_button(data_la(block.dialogs[tue_dialog].choice[e].text)):"choice "+e , callback_data:((block.dialogs[tue_dialog].choice[e].go_to!="tue_go")?block.dialogs[tue_dialog].choice[e].go_to:tue_story+","+tue_scene+","+(parseInt(tue_dialog)+1)).toString()}])
@@ -96,7 +96,7 @@ const start = async () => {
                     }
                     tue_dialog++;break;
                 } else {
-                    texts+=values_button((block.dialogs[tue_dialog].text)?((block.dialogs[tue_dialog].text[tue_languare])?block.dialogs[tue_dialog].text[tue_languare]:block.dialogs[tue_dialog].text)+"\n\n":"");
+                    texts+=values_button((block.dialogs[tue_dialog].text)?((block.dialogs[tue_dialog].text[tue_languare])?block.dialogs[tue_dialog].text[tue_languare]:block.dialogs[tue_dialog].text)+"\n\n":  (block.dialogs[tue_dialog].text_add)?((block.dialogs[tue_dialog].text_add[tue_languare])?block.dialogs[tue_dialog].text_add[tue_languare]:block.dialogs[tue_dialog].text_add)+"\n\n":"");
                     tue_dialog++;
                 }
             }
