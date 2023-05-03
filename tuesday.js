@@ -314,7 +314,7 @@ function name_block_update(){
     }
 } function creation_dialog(next_scene){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog];
-		if(arr_dialog.controll == 'hidden' || arr_dialog.controll == 'hidden_here' || (tue_story == story_json.parameters.launch_story && !arr_dialog.text && dialog==0 && scene==0)){
+		if(arr_dialog.controll == 'hidden' || arr_dialog.controll == 'hidden_here' || (tue_story == story_json.parameters.launch_story && !arr_dialog && dialog==0 && scene==0)){
             if (arr_dialog.controll != 'hidden_here') {controll=false;} else {controll=true;}
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="hidden";}
@@ -474,9 +474,9 @@ function name_block_update(){
                 for(i=0;i < arr_dialog.art.length;i++){creation_art(i);}
             }
             function creation_art(i){
-                var art=document.createElement("img");
+                var art=document.createElement("img"),img=art_data(arr_dialog.art[i].url);
                 if(arr_dialog.art[i].className){art.classList=arr_dialog.art[i].className}
-                art.src=art_data(arr_dialog.art[i].url);
+                art.src=(typeof img==='string'&&img.length>0)?img:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'></svg>";
                 art.setAttribute("volume",((arr_dialog.art[i].url[languare])?arr_dialog.art[i].url[languare]:arr_dialog.art[i].url));
                 art.classList.add("tue_art");
                 art.style="user-select:text;"+((arr_dialog.art[i].style)?arr_dialog.art[i].style:"");
@@ -579,7 +579,7 @@ function name_block_update(){
                     if (story_json.parameters.languares.length>1){
                         for(var l=0;l<story_json.parameters.languares.length;l++){
                             if(g == "tue_"+story_json.parameters.languares[l]){
-                                g=8;choice.setAttribute("onclick",v+"languare='"+story_json.parameters.languares[l]+"';if(story_json.parameters.title&&story_json.parameters.title[languare]){document.title=story_json.parameters.title[languare];}};del_element('tue_choice');go_story(true);"+add_sound());
+                                g=8;choice.setAttribute("onclick",v+"languare='"+story_json.parameters.languares[l]+"';if(story_json.parameters.title&&story_json.parameters.title[languare]){document.title=story_json.parameters.title[languare];};del_element('tue_choice');go_story(true);"+add_sound());
                             }
                         }
                     }
@@ -587,7 +587,7 @@ function name_block_update(){
                         if (arr_dialog.choice[i].text_from){choice.setAttribute("onclick",v+"dialog="+(dialog+1)+";creation_dialog(true);"+add_sound()+((arr_dialog.choice[i].delete)?"this.remove();":""));}
                         else {choice.setAttribute("onclick","del_element('tue_choice'); "+v+((g=="tue_go")?"go_story(true);":"del_element('tue_art');del_element('tue_choice');del_element('tue_html_dialog');creation_dialog();")+add_sound());}
                     }
-                    else if (g == "tue_load_autosave"){choice.setAttribute("onclick",v+"load_stag('auto');"+add_sound());  if(story_json.parameters.autosave && !localStorage.getItem("tue_auto_data")){choice.style.visibility.style.visibility='hidden'}}
+                    else if (g == "tue_load_autosave"){choice.setAttribute("onclick",v+"load_stag('auto');"+add_sound());  if(story_json.parameters.autosave && !localStorage.getItem("tue_auto_data")){choice.style.visibility='hidden'}}
                     else if (g == "load"||g == "tue_load"){choice.setAttribute("onclick",v+"load_stag('bookmark');"+add_sound());}
                     else if (g == "tue_save"){choice.setAttribute("onclick",v+"save_stag('bookmark');"+add_sound());}
                     else if (g == "tue_no"||g == ""){choice.setAttribute("onclick",v+add_sound())}
