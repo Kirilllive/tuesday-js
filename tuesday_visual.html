@@ -423,7 +423,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
 		<table width="100%" height="100%">
 			<tbody>
 				<tr>
-					<td title='New project' onclick='json_file.value=null;load_files=[];new_project();menu_add.style.visibility="hidden";' class='icon button_menu icon_new'></td>
+					<td title='New project' onclick='new_project();menu_add.style.visibility="hidden";' class='icon button_menu icon_new'></td>
                     <td title='Load project folder ' onclick='json_file.value=null;load_new=false;json_file.click();menu_add.style.visibility="hidden";' class='icon button_menu icon_load'></td>
 					<td title='Save JSON script project' onclick='save_file();menu_add.style.visibility="hidden";' class='icon button_menu icon_save'></td>
                     <td title='Undo' onclick='state_back(1);' class='icon button_menu icon_undo'></td>
@@ -1565,9 +1565,6 @@ function build_choice(){
     modal_window("open",html);
 }
 function new_project(){
-    scen_editor_apply();
-    open_tool();
-    new_novel();
     var html="<div class='window' style='width:360px;'><div class='win_head'>New project<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><br><div style='overflow-x:hidden; overflow-y:auto; width:100%; max-height:60vh;'>"
         +"<p align='left' style=' margin-left:8px;'>Project folder/location</p>"
         +"<table style='width:100%;'><tbody><tr><td><input id='project_foler' onclick=\"json_file.value=null;load_new=true;json_file.click()\" class='input_text' style='padding-top:10px;' type='text'></td><td onclick=\"json_file.value=null;load_new=true;json_file.click()\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_load'></td></tr></tbody></table><p class='text_tutorials_b select_tutorials'>"+texts.tutorials[3].en+"</p><br><br>"
@@ -1575,7 +1572,7 @@ function new_project(){
         +"<tr><td style='padding-right:8px; border-right:1px solid var(--cb); width:40%; padding-top:10px;'><select class='title_lang'>"+big_languares()+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' type='text' value='"
         +story_script.parameters.title.en+"'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
         +"</tbody></table><div onclick=\"add_tr('new_title')\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div>"
-        +"</div><br><br><table class='big_button' width='256px' onclick='create_project()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create project</td><td width='42px'></td></tr></tbody></table></div>"
+        +"</div><br><br><table class='big_button' width='256px' onclick='json_file.value=null;load_files=[];scen_editor_apply();open_tool();new_novel();create_project()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create project</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function build(tip){
