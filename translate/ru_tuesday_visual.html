@@ -416,6 +416,9 @@ input:checked+.toggle:before{transform:translateX(14px);}
 </style>
 </head>
 <body onload="world_size();" style='background-color:var(--cw);font-size:12px;'>
+    
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+    
     <input type="file" id="json_file" style="display:none;position:fixed;" multiple webkitdirectory/>
     <audio id='audio_preplay' onended='this.currentTime=0' style="display:none;position:fixed;"></audio>
 	<div id="menu_panel" style='overflow:hidden;'>
@@ -5530,6 +5533,13 @@ function state_back(n){
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
 }
 
+
+import bridge from '@vkontakte/vk-bridge';
+
+vkBridge.send('VKWebAppInit');
+// Отправляет событие инициализации нативному клиенту
+
+bridge.send("VKWebAppInit");
 
 
 bridge.send('VKWebAppInit')
