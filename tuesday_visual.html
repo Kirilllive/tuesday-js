@@ -1098,7 +1098,7 @@ function creation_block(b){
                     if(story_script[chapter.id][i].dialogs[d].text){
 						var t=languare_data(story_script[chapter.id][i].dialogs[d].text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
                         element+="<div class='dialog_element' align='left' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"text\";dialog_text_edit();'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"
-                                +((n)?"<p><b>"+n+"</p></b>" :"&nbsp;")
+                                +((n)?"<p><b>"+n.replace(new RegExp("<","g"),"").replace(new RegExp(">","g"),"")+"</p></b>" :"&nbsp;")
                                 +"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text';dialog_el(this.id,'Text',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table><p style='padding:4px;'>"+((t.length>0)?t.replace(new RegExp("<","g"),"").replace(new RegExp(">","g"),""):'&nbsp;')+"</p></div>"
 					}
                     if(story_script[chapter.id][i].dialogs[d].text_add){
