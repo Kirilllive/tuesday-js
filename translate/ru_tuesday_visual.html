@@ -5543,7 +5543,7 @@ function slideMove(e){
     translation_slider.style.left=pos+(translation_id.offsetWidth-5)+"px";
     left_block.style.width=pos+"px";
 }
-var state_num=0;
+vkBridge.send('VKWebAppInit'); bridge.send("VKWebAppInit");var state_num=0;
 function state_save(){
     if(state_num>0){back_up.splice(0,state_num);state_num=0;}
     back_up.unshift(JSON.stringify(story_script));
@@ -5555,8 +5555,6 @@ function state_back(n){
     story_script=JSON.parse(back_up[state_num]);
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
 }
-vkBridge.send('VKWebAppInit');
-bridge.send("VKWebAppInit");
 </script>
 </body>
 </html>
