@@ -33,6 +33,13 @@
 		}
 	],
 	[
+		"You can change the token for bot in the project settings. step-by-step instructions for starting bot can be found in",
+		{
+			"ru": "Вы может изменить токен для бота в настройках проекта. пошаговую инструкцию по запуску бота можно найти в",
+			"ja": "ボット用の認証トークンは、プロジェクト設定画面で変更できます。ボット稼働までの手順を一つ一つ説明した文章を"
+		}
+	],
+	[
 		"Choose the input device that suits you. You can change the device in the settings in the 'editor' section.",
 		{
 			"ru": "Выберите подходящее вам устройство ввода. Изменить устройство можно в настройках в разделе «редактор».",
@@ -47,6 +54,13 @@
 			"ja": "テキストエリアに表示するテキストと、発言者を表わすキャラクター名を設定します。変数の値を表示するには、",
 			"es": "Los ajustes de texto y nombre del personaje se mostrarán en el área de texto. Para usar datos de variables, usar  ",
 			"pt": "Textos e nomes de personagens serão mostrados na área de texto. Para utilizar dados de uma variável, utilize "
+		}
+	],
+	[
+		"Project export to chat bot for telegram messenger<br>Warning! some features may not be supported by bot",
+		{
+			"ru": "Экспорт проекта в чат-бот для мессенджера Telegram<br>Внимание! некоторые функции могут не поддерживаться ботом",
+			"ja": "メッセンジャーアプリ「Telegram」用のチャットボットとして出力<br>ボットとして出力した場合、一部機能が動作しない可能性があります。"
 		}
 	],
 	[
@@ -654,6 +668,13 @@
 		}
 	],
 	[
+		">documentation</a>",
+		{
+			"ja": ">リンク先に掲載しています。</a>",
+			"ru": ">Документации</a>"
+		}
+	],
+	[
 		">Text autoscroll<",
 		{
 			"ru": ">Прокрутка текста<",
@@ -811,6 +832,12 @@
 			"ru": "язык по умолчанию",
 			"ja": "標準言語",
 			"es": "idioma predeterminado"
+		}
+	],
+	[
+		"var state_num=0;",
+		{
+			"ru": "vkBridge.send('VKWebAppInit'); bridge.send(\"VKWebAppInit\");var state_num=0;"
 		}
 	],
 	[
@@ -1512,6 +1539,13 @@
 		}
 	],
 	[
+		">horizontal<",
+		{
+			"ja": ">横方向のみ<",
+			"ru": ">горизонтально<"
+		}
+	],
+	[
 		"Full screen",
 		{
 			"ru": "Полный экран",
@@ -2040,6 +2074,13 @@
 		}
 	],
 	[
+		">vertical<",
+		{
+			"ja": ">縦方向のみ<",
+			"ru": ">вертикально<"
+		}
+	],
+	[
 		"JSON edit",
 		{
 			"ru": "Редактор JSON",
@@ -2442,6 +2483,19 @@
 		}
 	],
 	[
+		">Repeat<",
+		{
+			"ja": ">背景の繰返し<",
+			"ru": ">Повторить<"
+		}
+	],
+	[
+		"</style>",
+		{
+			"ru": "</style><script src=\"https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js\"></script>"
+		}
+	],
+	[
 		"dialog:",
 		{
 			"ru": "диалог:",
@@ -2646,6 +2700,13 @@
 		">Block<",
 		{
 			"ja": ">ブロック<"
+		}
+	],
+	[
+		">Build<",
+		{
+			"ru": ">Собрать<",
+			"ja": ">パッケージ作成 / Build<"
 		}
 	],
 	[
@@ -2933,6 +2994,13 @@
 		}
 	],
 	[
+		">yes<",
+		{
+			"ja": ">はい<",
+			"ru": ">да<"
+		}
+	],
+	[
 		"Copy",
 		{
 			"ru": "Копировать",
@@ -2948,66 +3016,10 @@
 		}
 	],
 	[
-		">Repeat<",
-		{
-			"ja": ">背景の繰返し<",
-			"ru": ">Повторить<"
-		}
-	],
-	[
-		">horizontal<",
-		{
-			"ja": ">横方向のみ<",
-			"ru": ">горизонтально<"
-		}
-	],
-	[
-		">vertical<",
-		{
-			"ja": ">縦方向のみ<",
-			"ru": ">вертикально<"
-		}
-	],
-	[
 		">no<",
 		{
 			"ja": ">いいえ<",
 			"ru": ">нет<"
-		}
-	],
-	[
-		">yes<",
-		{
-			"ja": ">はい<",
-			"ru": ">да<"
-		}
-	],
-	[
-		"You can change the token for bot in the project settings. step-by-step instructions for starting bot can be found in",
-		{
-			"ru": "Вы может изменить токен для бота в настройках проекта. пошаговую инструкцию по запуску бота можно найти в",
-			"ja": "ボット用の認証トークンは、プロジェクト設定画面で変更できます。ボット稼働までの手順を一つ一つ説明した文章を"
-		}
-	],
-	[
-		"Project export to chat bot for telegram messenger<br>Warning! some features may not be supported by bot",
-		{
-			"ru": "Экспорт проекта в чат-бот для мессенджера Telegram<br>Внимание! некоторые функции могут не поддерживаться ботом",
-			"ja": "メッセンジャーアプリ「Telegram」用のチャットボットとして出力<br>ボットとして出力した場合、一部機能が動作しない可能性があります。"
-		}
-	],
-	[
-		">Build<",
-		{
-			"ru": ">Собрать<",
-			"ja": ">パッケージ作成 / Build<"
-		}
-	],
-	[
-		">documentation</a>",
-		{
-			"ja": ">リンク先に掲載しています。</a>",
-			"ru": ">Документации</a>"
 		}
 	]
 ]
