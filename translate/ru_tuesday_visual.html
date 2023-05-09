@@ -5536,23 +5536,8 @@ function state_back(n){
 
 
 vkBridge.send('VKWebAppInit');
-// Отправляет событие инициализации нативному клиенту
 
 bridge.send("VKWebAppInit");
-
-
-bridge.send('VKWebAppInit')
-  .then((data) => {
-    if (data.result) {
-      // Приложение инициализировано
-    } else {
-      // Ошибка
-    }
-  })
-  .catch((error) => {
-    // Ошибка
-    console.log(error);
-  });
 </script>
 </body>
 </html>
