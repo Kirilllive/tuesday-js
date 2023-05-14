@@ -215,19 +215,16 @@ function convert(t){
             }else if(!tab[c].classList.contains("found")){tab[c].className="no_found";}
         }
     }
-    if(language.value=="ja"){
-        t=t.replace("<p><a href='https://www.patreon.com/kirill_live' target='_blank'>","<p style='display:none;'><a href='https://www.patreon.com/kirill_live' target='_blank'>")
-    }else if(language.value=="ru"){
-        t=t.replace("var state_num=0;","vkBridge.send('VKWebAppInit'); bridge.send(\"VKWebAppInit\");var state_num=0;")
-        t=t.replace("</style>","</style><script src='https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js'><\/script>")
-        t=t.replace("<p><a href='https://www.patreon.com/kirill_live' target='_blank'>","<p style='display:none;'><a href='https://www.patreon.com/kirill_live' target='_blank'>")
-        t=t.replace(new RegExp("border-radius:16px;width:33%;height:64px","g"),"display:none;")
-        t=t.replace("<a href='https://twitter.com/onigi123' target='_blank'>Onigi</a>","Onigi")
-        t=t.replace("<a href='https://twitter.com/Suki_Novels' target='_blank'>Suki Novels</a>","Suki Novels")
-
+//    if(language.value=="ja"){
+//        t=t.replace("<p><a href='https://www.patreon.com/kirill_live' target='_blank'>","<p style='display:none;'><a href='https://www.patreon.com/kirill_live' target='_blank'>")
+//    }else if(language.value=="ru"){
+//        t=t.replace("var state_num=0;","vkBridge.send('VKWebAppInit'); bridge.send(\"VKWebAppInit\");var state_num=0;")
+//        t=t.replace("</style>","</style><script src='https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js'><\/script>")
+//        t=t.replace("<p><a href='https://www.patreon.com/kirill_live' target='_blank'>","<p style='display:none;'><a href='https://www.patreon.com/kirill_live' target='_blank'>")
+//        t=t.replace(new RegExp("border-radius:16px;width:33%;height:64px","g"),"display:none;")
+//        t=t.replace("<a href='https://twitter.com/onigi123' target='_blank'>Onigi</a>","Onigi")
+//        t=t.replace("<a href='https://twitter.com/Suki_Novels' target='_blank'>Suki Novels</a>","Suki Novels")
     }
-    
-    
     a.setAttribute("href","data:text/html;charset=utf-8,"+encodeURIComponent(t));
     a.setAttribute("download",language.value+"_"+file_name);
     a.click();
