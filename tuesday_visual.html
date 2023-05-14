@@ -943,7 +943,7 @@ function open_file(name){
     for(var f=0;f<project_files.length;f++){if(project_files[f][0]==name){name=(project_files[f][1]);break;}} return name;
 }
 function new_novel(){
-    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"position":[],"color":"rgba(200,200,200,0.75)","style": "backdrop-filter: blur(16px);","color_text":"#000","indent_text":"8px","indent_bottom":"32px","dialog_speed":"10"},"name_panel":{"size":["","32px"],"position":["0","0","-32px","0"],"indent_text":"0 8px","color_text":"#fff","align":["flex-start","center"],"color":"#000"},"title":{"en":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","position":["2.5%",0,0,"32px"],"size":["25%","25%"],"color_text":"#000","size_text":"28px","text":{"en":"<"},"hotspot":["0%","0%"],"align":["flex-start","flex-end"],"indent_text":"8px"},{"name":"tue_next","position":[0,"2.5%",0,"32px"],"size":["25%","25%"],"color_text":"#000","size_text":"28px","text":{"en":">"},"hotspot":["0%","0%"],"align":["flex-end","flex-end"],"indent_text":"8px"}],"autosave":false,"font":"Arial","font_size":"18px"},"blocks":{}};
+    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"position":[],"color":"rgba(200,200,200,0.75)","style": "backdrop-filter: blur(16px);","color_text":"#000","indent_text":"8px","indent_bottom":"32px","dialog_speed":"10"},"name_panel":{"size":["","32px"],"position":["0","0","-32px","0"],"indent_text":"0 8px","color_text":"#fff","align":["flex-start","center"],"color":"#000"},"title":{"en":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","position":["2.5%",0,0,"32px"],"size":["25%","25%"],"color_text":"#000","size_text":"28px","text":"<","hotspot":["0%","0%"],"align":["flex-start","flex-end"],"indent_text":"8px"},{"name":"tue_next","position":[0,"2.5%",0,"32px"],"size":["25%","25%"],"color_text":"#000","size_text":"28px","text":">","hotspot":["0%","0%"],"align":["flex-end","flex-end"],"indent_text":"8px"}],"autosave":false,"font":"Arial","font_size":"18px"},"blocks":{}};
     update_novel();
     state_num=0;back_up=[];state_save();
 }
@@ -965,7 +965,7 @@ function load_story_edit(url){
     if(scene_screen){scen_edit_update(false);open_tool()};
     xmlhttp.onreadystatechange=function(){
         if(this.readyState==4&&this.status==200){
-            open_tool();new_novel()
+            open_tool();new_novel();
             story_script=JSON.parse(this.responseText);
             if(!story_script.parameters){alert("Error in JSON file")}
 			else{

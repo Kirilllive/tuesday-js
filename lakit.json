@@ -106,6 +106,14 @@
 		}
 	],
 	[
+		"https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial",
+		{
+			"ru": "https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ru",
+			"ja": "https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ja",
+			"es": "https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_es"
+		}
+	],
+	[
 		"player must find items from a list that are hidden within a scene.",
 		{
 			"ru": "игровая механика где игрок должен найти в сцене элементы из списка.",
@@ -361,6 +369,15 @@
 			"ru": "файл index.html создан",
 			"ja": "index.htmlを作成します",
 			"es": "El archivo index.html está creado"
+		}
+	],
+	[
+		"\"title\":{\"en\":\"new novel\"}",
+		{
+			"ru": "\"title\":{\"ru\":\"new novel\"}",
+			"ja": "\"title\":{\"ja\":\"new novel\"}",
+			"es": "\"title\":{\"es\":\"new novel\"}",
+			"pt": "\"title\":{\"pt\":\"new novel\"}"
 		}
 	],
 	[
@@ -832,12 +849,6 @@
 			"ru": "язык по умолчанию",
 			"ja": "標準言語",
 			"es": "idioma predeterminado"
-		}
-	],
-	[
-		"var state_num=0;",
-		{
-			"ru": "vkBridge.send('VKWebAppInit'); bridge.send(\"VKWebAppInit\");var state_num=0;"
 		}
 	],
 	[
@@ -2490,12 +2501,6 @@
 		}
 	],
 	[
-		"</style>",
-		{
-			"ru": "</style><script src=\"https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js\"></script>"
-		}
-	],
-	[
 		"dialog:",
 		{
 			"ru": "диалог:",
@@ -3020,6 +3025,15 @@
 		{
 			"ja": ">いいえ<",
 			"ru": ">нет<"
+		}
+	],
+	[
+		"en\"],\"buttons",
+		{
+			"ru": "ru\"],\"buttons",
+			"ja": "ja\"],\"buttons",
+			"es": "es\"],\"buttons",
+			"pt": "pt,\"buttons"
 		}
 	]
 ]
