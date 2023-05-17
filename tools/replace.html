@@ -224,7 +224,7 @@ function convert(t){
 //        t=t.replace(new RegExp("border-radius:16px;width:33%;height:64px","g"),"display:none;")
 //        t=t.replace("<a href='https://twitter.com/onigi123' target='_blank'>Onigi</a>","Onigi")
 //        t=t.replace("<a href='https://twitter.com/Suki_Novels' target='_blank'>Suki Novels</a>","Suki Novels")
-    }
+//    }
     a.setAttribute("href","data:text/html;charset=utf-8,"+encodeURIComponent(t));
     a.setAttribute("download",language.value+"_"+file_name);
     a.click();
