@@ -15,7 +15,6 @@ function select_choice(i){
         gamepad_cursor.innerHTML="<img src='"+c[0]+"' style='pointer-events:none;position:absolute;top:"+c[1]+";left:"+c[2]+";"+((c[3]!=0)?"width:"+c[3]+";":"")+((c[3]!=0)?"height:"+c[3]+";":"")+"'>"
         if(story_json[tue_story][scene].terrain_map){
             tue_map.appendChild(gamepad_cursor)
-            tue_world.style.scrollBehavior="smooth";
         }else{tuesday.appendChild(gamepad_cursor)}
     }
     gamepad_choice=(gamepad_choice+i>=gamepad_choices.length)?0:(gamepad_choice+i<0)?gamepad_choices.length-1:gamepad_choice+i;
