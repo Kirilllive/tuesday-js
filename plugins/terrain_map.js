@@ -25,7 +25,7 @@ function terrain_map(){
     map.style.transformOrigin="left top";
     for(var i=0;i<arr_dialog.objects.length;i++){
         var item=document.createElement("div");
-        item.className=arr_dialog.objects[i].className;
+        item.className=arr_dialog.objects[i].className+" tue_map_item";
         item.style=arr_dialog.objects[i].style;
         item.style.width=arr_dialog.objects[i].size[0]+"px";
         item.style.height=arr_dialog.objects[i].size[1]+"px";
