@@ -15,13 +15,15 @@ function select_choice(i){
         gamepad_cursor.innerHTML="<img src='"+c[0]+"' style='pointer-events:none;position:absolute;top:"+c[1]+";left:"+c[2]+";"+((c[3]!=0)?"width:"+c[3]+";":"")+((c[3]!=0)?"height:"+c[3]+";":"")+"'>"
         if(story_json[tue_story][scene].terrain_map){
             tue_map.appendChild(gamepad_cursor)
+            tue_world.style.scrollBehavior="smooth";
         }else{tuesday.appendChild(gamepad_cursor)}
     }
-        
     gamepad_choice=(gamepad_choice+i>=gamepad_choices.length)?0:(gamepad_choice+i<0)?gamepad_choices.length-1:gamepad_choice+i;
-    if( story_json[tue_story][scene].terrain_map || (gamepad_choices[gamepad_choice].onclick.toString().includes("go_to") || gamepad_choices[gamepad_choice].onclick.toString().includes("go_story")) ){
+    if( story_json[tue_story][scene].terrain_map || (gamepad_choices[gamepad_choice].onclick.toString().includes("go_to") || gamepad_choices[gamepad_choice].onclick.toString().includes("go_story") || gamepad_choices[gamepad_choice].onclick.toString().includes("tue_load_autosave") || gamepad_choices[gamepad_choice].onclick.toString().includes("load_stag") ) ){
         gamepad_cursor.style.left=gamepad_choices[gamepad_choice].style.left;
         gamepad_cursor.style.top=gamepad_choices[gamepad_choice].style.top;
+        gamepad_cursor.style.right=gamepad_choices[gamepad_choice].style.right;
+        gamepad_cursor.style.bottom=gamepad_choices[gamepad_choice].style.bottom;
         gamepad_cursor.style.width=gamepad_choices[gamepad_choice].style.width;
         gamepad_cursor.style.height=gamepad_choices[gamepad_choice].style.height;
         gamepad_cursor.style.padding=gamepad_choices[gamepad_choice].style.padding;
@@ -47,9 +49,9 @@ window.addEventListener("keydown",function(e){
         if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(-1);}
         else if( !story_json.parameters.key || !story_json.parameters.key.back ){go_story()}
     }else if(e==38){
-        if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(-1);}
-    }else if(e==40){
         if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(1);}
+    }else if(e==40){
+        if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(-1);}
     }
     else if(e==13||e==32){
         if( gamepad_cursor!=0 ){
