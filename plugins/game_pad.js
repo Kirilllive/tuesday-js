@@ -10,9 +10,9 @@ function select_choice(i){
         gamepad_cursor=document.createElement("div");
         gamepad_cursor.style.position="absolute";
         gamepad_cursor.style.pointerEvents="none";
-        gamepad_cursor.id="gamepad_cursor"
-        let c=story_json.parameters.gamepad.cursor
-        gamepad_cursor.innerHTML="<img src='"+c[0]+"' style='pointer-events:none;position:absolute;top:"+c[1]+";left:"+c[2]+";"+((c[3]!=0)?"width:"+c[3]+";":"")+((c[3]!=0)?"height:"+c[3]+";":"")+"'>"
+        gamepad_cursor.id="gamepad_cursor";
+        let c=story_json.parameters.gamepad.cursor;
+        gamepad_cursor.innerHTML="<img src='"+c[0]+"' style='pointer-events:none;position:absolute;top:"+c[1]+";left:"+c[2]+";"+((c[3]!=0)?"width:"+c[3]+";":"")+((c[3]!=0)?"height:"+c[3]+";":"")+"'>";
         if(story_json[tue_story][scene].terrain_map){
             tue_map.appendChild(gamepad_cursor)
         }else{tuesday.appendChild(gamepad_cursor)}
@@ -71,15 +71,15 @@ window.addEventListener('gamepadconnected',function(e){
                 gamepadPress=statenow;
                 if(gamepad.buttons[14].pressed){
                     if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){
-                        select_choice(-1);
+                        select_choice(1);
                     }else{back_story()}
                     
                 }else if(gamepad.buttons[15].pressed){
                     if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){
-                        select_choice(1);
+                        select_choice(-1);
                     }else{go_story()}
-                }else if(gamepad.buttons[12].pressed){if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(-1);}}
-                else if(gamepad.buttons[13].pressed){if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(1);}}
+                }else if(gamepad.buttons[12].pressed){if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(1);}}
+                else if(gamepad.buttons[13].pressed){if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(-1);}}
                 else if(gamepad.buttons[1].pressed||gamepad.buttons[2].pressed||gamepad.buttons[3].pressed||gamepad.buttons[0].pressed){
                     if( gamepad_cursor!=0 ){
                         gamepad_choices[gamepad_choice].click();
