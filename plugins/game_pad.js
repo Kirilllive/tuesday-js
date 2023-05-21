@@ -12,7 +12,7 @@ function select_choice(i){
         gamepad_cursor.style.pointerEvents="none";
         gamepad_cursor.id="gamepad_cursor";
         let c=story_json.parameters.gamepad.cursor;
-        gamepad_cursor.innerHTML="<div "+((c[6].length>0)?"class='"+c[6]+"'":"")+" style='"+((c[5].length>0)?c[5]+";":"")+((c[0].length>0)?" background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url("+c[0]+");":"")+"pointer-events:none;position:absolute;top:"+c[1]+";left:"+c[2]+";"+((c[3]!=0)?"width:"+c[3]+";":"")+((c[3]!=0)?"height:"+c[3]+";":"")+"'></div>";
+        gamepad_cursor.innerHTML="<div "+((c[6].length>0)?"class='"+c[6]+"'":"")+" style='"+((c[5].length>0)?c[5]+";":"")+((c[0]!="")?" background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url("+art_data(c[0])+");":"")+"pointer-events:none;position:absolute;top:"+c[1]+";left:"+c[2]+";"+((c[3]!=0)?"width:"+c[3]+";":"")+((c[3]!=0)?"height:"+c[3]+";":"")+"'></div>";
         if(story_json[tue_story][scene].terrain_map){
             tue_map.appendChild(gamepad_cursor)
         }else{tuesday.appendChild(gamepad_cursor)}
@@ -73,7 +73,6 @@ window.addEventListener('gamepadconnected',function(e){
                     if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){
                         select_choice(1);
                     }else{back_story()}
-                    
                 }else if(gamepad.buttons[15].pressed){
                     if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){
                         select_choice(-1);
