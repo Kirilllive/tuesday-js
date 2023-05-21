@@ -4386,6 +4386,17 @@ function setup(){
     if(story_script.parameters.plugins){for(i=0;i<story_script.parameters.plugins.length;i++){if(!plugins_list[story_script.parameters.plugins[i]]){addon_list+="<tr><td style='padding-right:8px;padding-left:8px;width:calc(100% - 14px);padding-top:10px;'><input id='plugin"+i+"' class='addon_path input_text' placeholder='path to plugin js file' value='"+story_script.parameters.plugins[i]+"' type='text'></td><td onclick='file_catalog(this.id,\"js\",\"plugin"+i+"\",0)' style='width:32px;cursor:pointer;' class='icon icon_load'></td><td onclick=\"var a=this.closest('tr');a.parentElement.removeChild(a);\" style='width:32px;cursor:pointer;' title='delet' class='icon icon_del'></td></tr>";}}}
     addon_list+="</tbody></table><div onclick='add_addon()' class='icon icon_add' style='margin:16px 0 0 45%;height:26px;width:26px;cursor:pointer;'></div>"
     title_list+="</tbody></table><div onclick=\"add_tr('var_title')\" class='icon icon_add' style='margin:16px 0 0 45%;height:26px;width:26px;cursor:pointer;'></div>"
+    function add_gamepad(){
+        if(story_script.parameters.gamepad){
+            return "<br><br><p align='left' style='margin-left:8px;'>D-pad cursor</p><hr>"+
+            "<table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
+            "<tr><td align='right' style='width:1%;'>Image cursor</td><td align='left'><input id='gamepad_image' class='input_text' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[0] :'')+"' type='text'><td class='icon icon_load' onclick=' file_catalog(\"gamepad_image\",\"img\",\"gamepad_image\",0) ' style='width:40px;' ></td></tr>"+
+            "<tr><td align='right'>Width size</td><td align='left'><input id='gamepad_width' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[3] :'')+"' type='text'><td></td></tr>"+
+            "<tr><td align='right'>Height size</td><td align='left'><input id='gamepad_height' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[4] :'')+"' type='text'><td></td></tr>"+
+            "<tr><td align='right'>Left position</td><td align='left'><input id='gamepad_left' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[2] :'')+"' type='text'><td></td></tr>"+
+            "<tr><td align='right'>Top position</td><td align='left'><input id='gamepad_top' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[1] :'')+"' type='text'><td></td></tr></tbody></table>"
+        }else{return ""}
+    }
     var html="<div class='window' style='padding:4px 24px 24px 16px;width:480px;'><div class='win_head'>Settings project<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div>"+
         "<table width='100%' style='height:60vh;border-radius:8px;border-top:1px solid var(--cb);'><tbody>"+
         "<tr><td id='set_1' onclick='set_menu(0)' align='right' class='set_button set_select'>Project</td><td width='100%' valign='top' rowspan='6' style='position:relative;'>"+
@@ -4413,10 +4424,10 @@ function setup(){
         "<tr><td align='right'>Save stage</td><td align='left'><input id='key_save' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.save)?story_script.parameters.key.save :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_save.value=\"\"'></td></tr>"+
         "<tr><td align='right'>Load stage</td><td align='left'><input id='key_load' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.load)?story_script.parameters.key.load :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_load.value=\"\"'></td></tr>"+
         "<tr><td align='right'>Full screen</td><td align='left'><input id='key_full_screen' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.full_screen)?story_script.parameters.key.full_screen :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_full_screen.value=\"\"'></td></tr>"+
-        "<tr><td align='right'>Skip dialogues</td><td align='left'><input id='key_fast_rewind' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.fast_rewind)?story_script.parameters.key.fast_rewind :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_launch_story.value=\"\"'></td></tr>"+
+        "<tr><td align='right'>Skip dialogues</td><td align='left'><input id='key_fast_rewind' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.fast_rewind)?story_script.parameters.key.fast_rewind :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_fast_rewind.value=\"\"'></td></tr>"+
         "<tr><td align='right'>Start block</td><td align='left'><input id='key_launch_story' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.launch_story)?story_script.parameters.key.launch_story :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_launch_story.value=\"\"'></td></tr>"+
         "<tr><td align='right'>Load autosave</td><td align='left' style='width:60%;'><input id='key_load_autosave' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.load_autosave)?story_script.parameters.key.load_autosave :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_load_autosave.value=\"\"' style='width:40px;'></td></tr>"+
-        "</table></div>"+
+        "</tbody></table></div>"+
         //
         "<div id='blank_1' style='visibility:hidden;' class='set_blank'>"+title_list+"</div>"+
         "<div id='blank_4' style='visibility:hidden;padding:10px;white-space:nowrap;' class='set_blank'><p style='border-radius:8px;white-space:normal;' class='text_tutorials_a select_tutorials'>"+texts.tutorials[14].en+"</p>"+var_list+"</div>"+
@@ -4463,7 +4474,7 @@ function setup(){
         "<td style='height:40px;padding-right:10px;' align='right'>Main cursor </td><td><input id='cur_m' class='cur_i input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.main)?story_script.parameters.cursors.main[0]:"")+"' type='text'></td><td style='width:48px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(\"cur_m\",\"img\",\"cur_m\",0)'></td><td>OffSet X</td><td><input style='width:28px;' class='cur_x input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.main)?story_script.parameters.cursors.main[1]:0)+"' type='text'></td><td>Y</td><td><input style='width:38px;' class='cur_y input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.main)?story_script.parameters.cursors.main[2]:0)+"' type='text'></td></tr><tr>"+
         "<td style='height:40px;padding-right:10px;' align='right'>Button cursor</td><td><input id='cur_b' class='cur_i input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.button)?story_script.parameters.cursors.button[0]:"")+"' type='text'></td><td style='width:48px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(\"cur_b\",\"img\",\"cur_b\",0)'></td><td>OffSet X</td><td><input style='width:28px;' class='cur_x input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.button)?story_script.parameters.cursors.button[1]:0)+"' type='text'></td><td>Y</td><td><input style='width:38px;' class='cur_y input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.button)?story_script.parameters.cursors.button[2]:0)+"' type='text'></td></tr><tr>"+
         "<td style='height:40px;padding-right:10px;' align='right'>Choice cursor</td><td><input id='cur_c' class='cur_i input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.choice)?story_script.parameters.cursors.choice[0]:"")+"' type='text'></td><td style='width:48px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(\"cur_c\",\"img\",\"cur_c\",0)'></td><td>OffSet X</td><td><input style='width:28px;' class='cur_x input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.choice)?story_script.parameters.cursors.choice[1]:0)+"' type='text'></td><td>Y</td><td><input style='width:38px;' class='cur_y input_text' value='"+((story_script.parameters.cursors&&story_script.parameters.cursors.choice)?story_script.parameters.cursors.choice[2]:0)+"' type='text'></td>"+
-        "</tr></tbody></table></div>"+
+        "</tr></tbody></table>"+add_gamepad()+"</div>"+
         //
         "</td></tr>"+
         "<tr><td id='set_1' onclick='set_menu(1)' align='right' class='set_button'>Languages</td></tr>"+
@@ -4582,6 +4593,13 @@ function apply_setup(){
     if(key_fast_rewind.value.length>0){story_script.parameters.key.fast_rewind=key_fast_rewind.value}else{delete story_script.parameters.key.fast_rewind}
     if(key_launch_story.value.length>0){story_script.parameters.key.launch_story=key_launch_story.value}else{delete story_script.parameters.key.launch_story}
     if(key_load_autosave.value.length>0){story_script.parameters.key.load_autosave=key_load_autosave.value}else{delete story_script.parameters.key.load_autosave}
+    if(story_script.parameters.gamepad){
+        story_script.parameters.gamepad.cursor[0]=gamepad_image.value;
+        story_script.parameters.gamepad.cursor[3]=gamepad_width.value;
+        story_script.parameters.gamepad.cursor[4]=gamepad_height.value;
+        story_script.parameters.gamepad.cursor[2]=gamepad_left.value;
+        story_script.parameters.gamepad.cursor[1]=gamepad_top.value;
+    }
     story_script.parameters.font=font.value
     story_script.parameters.font_size=correct_value(font_size.value)
     story_script.parameters.text_panel.dialog_speed=dialog_speed_s.value
@@ -4636,7 +4654,12 @@ function apply_setup(){
     data_only(story_script.parameters,'title');
     li_v=document.getElementsByClassName("chec_plugin");
     story_script.parameters.plugins=[];
-    for(i=0;i<li_v.length;i++){if(li_v[i].checked&&plugins_list[li_v[i].id] ){story_script.parameters.plugins.push(li_v[i].id);}}
+    for(i=0;i<li_v.length;i++){
+        if(li_v[i].checked&&plugins_list[li_v[i].id] ){
+            story_script.parameters.plugins.push(li_v[i].id);
+            if(li_v[i].id=="game_pad"&&!story_script.parameters.gamepad){story_script.parameters.gamepad = {"cursor": ["data:image/svg+xml,%3csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 32 32\"%3e%3ccircle cx=\"16\" cy=\"16\" r=\"15\"/%3e%3c/svg%3e",0,0,"24px","24px"]}}
+        }
+    }
     li_v=document.getElementsByClassName("addon_path");
     for(i=0;i<li_v.length;i++){if(li_v[i].value!=""){story_script.parameters.plugins.push(li_v[i].value);}}
     lang_select();
