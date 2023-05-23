@@ -27,6 +27,7 @@ function select_choice(i){
         gamepad_cursor.style.height=gamepad_choices[gamepad_choice].style.height;
         gamepad_cursor.style.padding=gamepad_choices[gamepad_choice].style.padding;
         gamepad_cursor.style.zIndex=gamepad_choices[gamepad_choice].style.zIndex;
+        gamepad_cursor.style.transform=gamepad_choices[gamepad_choice].style.transform;
         if(story_json[tue_story][scene].terrain_map){
             let r=gamepad_choices[gamepad_choice].getBoundingClientRect();
             tue_world.scrollTop = tue_world.scrollTop+ (r.top -(tuesday.clientHeight/2))
