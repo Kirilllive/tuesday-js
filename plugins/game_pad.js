@@ -18,7 +18,7 @@ function select_choice(i){
         }else{tuesday.appendChild(gamepad_cursor)}
     }
     gamepad_choice=(gamepad_choice+i>=gamepad_choices.length)?0:(gamepad_choice+i<0)?gamepad_choices.length-1:gamepad_choice+i;
-    if( story_json[tue_story][scene].terrain_map || (gamepad_choices[gamepad_choice].onclick.toString().includes("go_to") || gamepad_choices[gamepad_choice].onclick.toString().includes("go_story") || gamepad_choices[gamepad_choice].onclick.toString().includes("tue_load_autosave") || gamepad_choices[gamepad_choice].onclick.toString().includes("load_stag") ) ){
+    if( gamepad_choices[gamepad_choice].style.visibility!="hidden"&&(story_json[tue_story][scene].terrain_map || (gamepad_choices[gamepad_choice].onclick.toString().includes("go_to") || gamepad_choices[gamepad_choice].onclick.toString().includes("go_story") || gamepad_choices[gamepad_choice].onclick.toString().includes("tue_load_autosave") || gamepad_choices[gamepad_choice].onclick.toString().includes("load_stag")))){
         gamepad_cursor.style.left=gamepad_choices[gamepad_choice].style.left;
         gamepad_cursor.style.top=gamepad_choices[gamepad_choice].style.top;
         gamepad_cursor.style.right=gamepad_choices[gamepad_choice].style.right;
