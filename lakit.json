@@ -36,7 +36,8 @@
 		"You can change the token for bot in the project settings. step-by-step instructions for starting bot can be found in",
 		{
 			"ru": "Вы может изменить токен для бота в настройках проекта. пошаговую инструкцию по запуску бота можно найти в",
-			"ja": "ボット用の認証トークンは、プロジェクト設定画面で変更できます。ボット稼働までの手順を一つ一つ説明した文章を"
+			"ja": "ボット用の認証トークンは、プロジェクト設定画面で変更できます。ボット稼働までの手順を一つ一つ説明した文章を",
+			"es": "Puede cambiar el token para bot en la configuración del proyecto. las instrucciones paso a paso para iniciar el bot se pueden encontrar en"
 		}
 	],
 	[
@@ -60,7 +61,8 @@
 		"Project export to chat bot for telegram messenger<br>Warning! some features may not be supported by bot",
 		{
 			"ru": "Экспорт проекта в чат-бот для мессенджера Telegram<br>Внимание! некоторые функции могут не поддерживаться ботом",
-			"ja": "メッセンジャーアプリ「Telegram」用のチャットボットとして出力<br>ボットとして出力した場合、一部機能が動作しない可能性があります。"
+			"ja": "メッセンジャーアプリ「Telegram」用のチャットボットとして出力<br>ボットとして出力した場合、一部機能が動作しない可能性があります。",
+			"es": "Exportación de proyecto a bot de chat para Telegram Messenger<br>¡Advertencia! algunas funciones pueden no ser compatibles con el bot"
 		}
 	],
 	[
@@ -743,7 +745,8 @@
 		">Project scripts<",
 		{
 			"ru": ">Скрипты проекта<",
-			"ja": ">スクリプト編集<"
+			"ja": ">スクリプト編集<",
+			"es": ">Códigos de proyecto<"
 		}
 	],
 	[
@@ -1161,14 +1164,16 @@
 		"Skip dialogues",
 		{
 			"ru": "Пропустить диалоги ",
-			"ja": "スキップ"
+			"ja": "スキップ",
+			"es": "Saltar diálogo"
 		}
 	],
 	[
 		">Scene update<",
 		{
 			"ru": ">Обновить сцену<",
-			"ja": ">処理の更新<"
+			"ja": ">処理の更新<",
+			"es": ">Actualización de escena<"
 		}
 	],
 	[
@@ -1553,7 +1558,8 @@
 		">horizontal<",
 		{
 			"ja": ">横方向のみ<",
-			"ru": ">горизонтально<"
+			"ru": ">горизонтально<",
+			"es": ">horizontal<"
 		}
 	],
 	[
@@ -1792,7 +1798,8 @@
 		">Backstage<",
 		{
 			"ru": ">Вне сцены<",
-			"ja": ">画面外オブジェクト<"
+			"ja": ">画面外オブジェクト<",
+			"es": ">Afuera del escenario<"
 		}
 	],
 	[
@@ -2088,7 +2095,8 @@
 		">vertical<",
 		{
 			"ja": ">縦方向のみ<",
-			"ru": ">вертикально<"
+			"ru": ">вертикально<",
+			"es": ">vertical<"
 		}
 	],
 	[
@@ -2282,7 +2290,8 @@
 		">Save as<",
 		{
 			"ru": ">Сохранить как<",
-			"ja": ">保存名<"
+			"ja": ">保存名<",
+			"es": ">Guardar como<"
 		}
 	],
 	[
@@ -2290,7 +2299,8 @@
 		{
 			"en": "",
 			"ja": "チュートリアル:",
-			"ru": "Руководство:"
+			"ru": "Руководство:",
+			"es": "Tutorial:"
 		}
 	],
 	[
@@ -2497,7 +2507,8 @@
 		">Repeat<",
 		{
 			"ja": ">背景の繰返し<",
-			"ru": ">Повторить<"
+			"ru": ">Повторить<",
+			"es": ">Repetir<"
 		}
 	],
 	[
@@ -2704,14 +2715,16 @@
 	[
 		">Block<",
 		{
-			"ja": ">ブロック<"
+			"ja": ">ブロック<",
+			"es": ">Bloquear<"
 		}
 	],
 	[
 		">Build<",
 		{
 			"ru": ">Собрать<",
-			"ja": ">パッケージ作成 / Build<"
+			"ja": ">パッケージ作成 / Build<",
+			"es": ">Recolectar<"
 		}
 	],
 	[
@@ -2865,7 +2878,8 @@
 		">Show<",
 		{
 			"ru": ">Показать<",
-			"ja": ">表示<"
+			"ja": ">表示<",
+			"es": ">Mostrar<"
 		}
 	],
 	[
@@ -3002,7 +3016,8 @@
 		">yes<",
 		{
 			"ja": ">はい<",
-			"ru": ">да<"
+			"ru": ">да<",
+			"es": "> sí<"
 		}
 	],
 	[
@@ -3017,14 +3032,16 @@
 		">No<",
 		{
 			"ru": ">Нет<",
-			"ja": ">いいえ<"
+			"ja": ">いいえ<",
+			"es": ">No<"
 		}
 	],
 	[
 		">no<",
 		{
 			"ja": ">いいえ<",
-			"ru": ">нет<"
+			"ru": ">нет<",
+			"es": ">no<"
 		}
 	],
 	[
@@ -3043,6 +3060,40 @@
 			"ja": "var languare=\"ja\";",
 			"es": "var languare=\"es\";",
 			"pt": "var languare=\"pt\";"
+		}
+	],
+	[
+		"GamePad",
+		{
+			"ru": ""
+		}
+	],
+	[
+		"Support for external game controllers",
+		{
+			"ru": "Поддержка внешних игровых контроллеров",
+			"es": "Compatibilidad con controladores de juegos externos"
+		}
+	],
+	[
+		"Image cursor",
+		{
+			"ru": "Изображение курсора",
+			"es": "Cursor de imagen"
+		}
+	],
+	[
+		"Screen control",
+		{
+			"ru": "Управление экраном",
+			"es": "control de pantalla"
+		}
+	],
+	[
+		"switches dialogue by click to screen.",
+		{
+			"ru": "переключение диалогов по клику или нажатию на экран.",
+			"es": "cambia el diálogo haciendo clic en la pantalla."
 		}
 	]
 ]

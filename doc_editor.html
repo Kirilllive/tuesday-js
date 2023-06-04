@@ -19,6 +19,7 @@
 	border-spacing:0px;
 	outline:none;
 }
+li {margin:16px 8px 8px 16px;}
 a{color:#000;}
 #bookmarks{
     width:220px;
@@ -214,6 +215,17 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <div class="block" onclick="get_doc('terrain_map')"><span class="three_1">Terrain map</span></div>
         <div class="block" onclick="get_doc('hidden_object')"><span class="three_1">Hidden object</span></div>
     </div>
+    
+    <div class="accordion"><div class="block block_open">Add-on</div></div>
+    <div class="panel">
+        <div class="block" onclick="get_doc('game_pad')"><span class="three_1">Game Pad</span></div>
+        <div class="block" onclick="get_doc('hidden_object')"><span class="three_1">Hidden objects</span></div>
+        <!--<div class="block" onclick="get_doc('screen_control')"><span class="three_1">Screen control</span></div>-->
+        <!--<div class="block" onclick="get_doc('show_toast')"><span class="three_1">Show toast</span></div>-->
+        <div class="block" onclick="get_doc('terrain_map')"><span class="three_1">Terrain map</span></div>
+        <!--<div class="block" onclick="get_doc('touch_swipe')"><span class="three_1">Touch swipe</span></div>-->
+    </div>
+    
     <div class="block" onclick="get_doc('editor_options')">Editor Options</div>
     <div class="block" onclick="get_doc('android')">Android Version</div>
     <div class="accordion"><div class="block block_open">Lessons</div></div>
@@ -677,6 +689,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <br><br><b>Show</b> - Conditions based on variable values under which the marker will be hidden or shown
         </td>
     </tr></tbody></table>
+    <br><br>Download the source code for this example here <a href="example/example_map.zip" target='_blank'>example_map.zip</a>
 </div>
 <div id="hidden_object" style="display:none">
     <div style="width:100%;text-align: center;">
@@ -739,6 +752,8 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         </td>
         <td width="50%;" align="center"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/ho_item.png" style="max-height:581px;max-width:270px;box-shadow: 0px 2px 18px rgba(110,95,165,0.25);"/></td>
     </tr></tbody></table>
+    <br><br>Download the source code for this example here <a href="example/example_hidden_objects.zip" target='_blank'>example_hidden_objects.zip</a>
+
 </div>
 <div id="dialog" style="display:none">
     <div style="width:100%;text-align: center;">
@@ -2142,6 +2157,36 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p>- Do not recommend Google Pixel and devices with <b><u>original</u></b> OS Android 10 and higher</p>
     <br><p>If you have problems accessing the file system on Android 10 and above, then try to open access in the application or system settings.</p>
     <br><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/android_settings.png" style="max-height:auto;width:100%;max-width:800px;"/>
+</div>
+</div><div id="game_pad" style="display:none">
+    <div style="width:100%;text-align: center;"><p class="head">GamePad and joystick controls.</p>
+        <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/game_pad_addon.jpg" style="max-height:466px;max-width:682px;"/>
+    </div>
+    <br><br><p>By default, Tuesday JS has custom controls and is focused on cursor or touch screen control.</p><p>The "GamePad" add-on adds the ability to control the project using the D-pad from the keyboard or joystick. In this case, the user settings will also be used, which, in case of conflict, take precedence.</p><br><br>
+    <table style="width:100%;"><tbody><tr>
+    <td width="50%;" align="center">
+            <div style="width:100%;text-align: center;">
+                <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/game_pad_buttons.jpg" style="max-height:466px;max-width:682px;"/>
+            </div>
+        </td>
+        <td><p>After applying the plugin in a running project, pressing the D-pad will show the default cursor (black ball)</p><br><p>The sequence of switching between buttons is determined by their location in the scene editor in the "Button & choices" section.</p></td>
+    </tr> <td colspan="2" style="height:32px;"></td><tr>
+        <td><p>AIn the "Cursors" section, new settings for the D-pad cursor are now available, in which you can set the image for the cursor, its size and location relative to the button it will be hovered over. Optionally, you can set the CSS class and style.</p></td>
+        <td align="center">
+            <div style="width:100%;text-align: center;">
+                <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/game_pad_cursor.jpg" style="max-height:466px;max-width:682px;"/>
+            </div>
+        </td>
+    </tr></tbody></table>
+    <br><br><p>The controller settings cannot be changed and by default it is configured as follows:</p>
+    <ul>
+        <li>D-pad is responsible for switching the cursor between the buttons, it moves over the select buttons on which the action is assigned, buttons with the value go to: none will be ignored by the cursors.</li>
+        <li>"Esc" for keyboard and "Start"/"Select" for GamePad, returns to start block.</li>
+        <li>"Enter" and "space" for the keyboard and all other buttons for the GamePad are responsible for pressing the selected button.</li>
+    </ul>
+    <br><br><p><b>CSS Style</b><br><br><p>ID gamepad_cursor is responsible for the element that is created above the selected button and completely repeats its size. The appearance of this element can be set using CSS.</p>
+    <br><br><code>#gamepad_cursor{backdrop-filter: invert(100%);}</code>
+    <br><br>Download the source code for this example here <a href="example/example_game_pad.zip" target='_blank'>example_game_pad.zip</a>
 </div>
 
 <script>
