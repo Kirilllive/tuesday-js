@@ -227,6 +227,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     </div>
     
     <div class="block" onclick="get_doc('editor_options')">Editor Options</div>
+    <div class="block" onclick="get_doc('css_class')">CSS Class</div>
     <div class="block" onclick="get_doc('android')">Android Version</div>
     <div class="accordion"><div class="block block_open">Lessons</div></div>
     <div class="panel">
@@ -234,6 +235,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
         <div class="block" onclick="get_doc('enter_name')"><span class="three_1">How to enter player name</span></div>
         <div class="block" onclick="get_doc('bot_telegram')"><span class="three_1">Bot for Telegram</span></div>
     </div>
+    
 </div>
 </td>
 </tr>
@@ -2156,7 +2158,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <p>- Recommended Samsung and HUAWEI devices</p>
     <p>- Do not recommend Google Pixel and devices with <b><u>original</u></b> OS Android 10 and higher</p>
     <br><p>If you have problems accessing the file system on Android 10 and above, then try to open access in the application or system settings.</p>
-    <br><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/android_settings.png" style="max-height:auto;width:100%;max-width:800px;"/>
+    <br><div style="width:100%;text-align: center;"><img class="img_w" onclick="modal_window('open',this.src)" src="tutorial_img/android_settings.png" style="height:auto;width:100%;"/></div>
 </div>
 </div><div id="game_pad" style="display:none">
     <div style="width:100%;text-align: center;"><p class="head">GamePad and joystick controls.</p>
@@ -2187,6 +2189,20 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br><p><b>CSS Style</b><br><br><p>ID gamepad_cursor is responsible for the element that is created above the selected button and completely repeats its size. The appearance of this element can be set using CSS.</p>
     <br><br><code>#gamepad_cursor{backdrop-filter: invert(100%);}</code>
     <br><br>Download the source code for this example here <a href="example/example_game_pad.zip" target='_blank'>example_game_pad.zip</a>
+</div>
+
+<div id="css_class" style="display:none">
+    <div style="width:100%;text-align: center;">
+    <p class="head">CSS Class</p>
+    </div>
+    <p>Project item classes that can be customized and animated using CSS styling features. You can also define groups of objects by class and use them in JavaScript. These classes can be used both in external files connected to the project, and in internal JavaScript and Style elements. You can apply CSS functions "hover", "keyframes", "after", "before" and more.</p>
+    <p>Element settings set in the editor have a high priority and cannot be overridden by settings from the global "CSS" or "Style".</p><br>
+    <br><br><p><b>tue_choice</b> - Choice buttons, items from "Buttons & Choice" section</p>
+    <br><br><p><b>tue_art</b> - Sprites and other image elements from the "Arts" section</p>
+    <br><br><p><b>tue_controll</b> - Interface elements</p>
+    <br><br><p><b>tue_name_block</b> - A panel from the text area that displays the name of the character.</p>
+    <br><br><p><b>tue_text_block</b> - The text panel relative to which the panel with the name is displayed.</p>
+    <br><br><p><b>tue_text_view</b> - The part of the text area that displays the dialog, if you want to change the style of the text, it is recommended to refer to this class.</p>
 </div>
 
 <script>

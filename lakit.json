@@ -3065,35 +3065,48 @@
 	[
 		"GamePad",
 		{
-			"ru": ""
+			"ru": "",
+			"ja": "ゲームパッド"
 		}
 	],
 	[
 		"Support for external game controllers",
 		{
 			"ru": "Поддержка внешних игровых контроллеров",
-			"es": "Compatibilidad con controladores de juegos externos"
+			"es": "Compatibilidad con controladores de juegos externos",
+			"ja": "ゲーム用コントローラーを使った操作を有効にします"
 		}
 	],
 	[
 		"Image cursor",
 		{
 			"ru": "Изображение курсора",
-			"es": "Cursor de imagen"
+			"es": "Cursor de imagen",
+			"ja": "カーソル用イメージ"
 		}
 	],
 	[
 		"Screen control",
 		{
 			"ru": "Управление экраном",
-			"es": "control de pantalla"
+			"es": "control de pantalla",
+			"ja": "画面操作"
 		}
 	],
 	[
 		"switches dialogue by click to screen.",
 		{
 			"ru": "переключение диалогов по клику или нажатию на экран.",
-			"es": "cambia el diálogo haciendo clic en la pantalla."
+			"es": "cambia el diálogo haciendo clic en la pantalla.",
+			"ja": "画面のクリック又はタップでダイアログを進行します"
+		}
+	],
+	[
+		"D-pad cursor",
+		{
+			"ja": "十時キー操作時のカーソル",
+			"ru": "D-pad курсор",
+			"es": "Cursor D-pad"
 		}
 	]
 ]
