@@ -4388,7 +4388,7 @@ function setup(){
     title_list+="</tbody></table><div onclick=\"add_tr('var_title')\" class='icon icon_add' style='margin:16px 0 0 45%;height:26px;width:26px;cursor:pointer;'></div>"
     function add_gamepad(){
         if(story_script.parameters.gamepad){
-            return "<br><br><p align='left' style='margin-left:8px;'>D-pad cursor</p><hr>"+
+            return "<br><br><p align='left' style='margin-left:8px;'>D-pad курсор</p><hr>"+
             "<table style='margin-left:10px;width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
             "<tr><td align='right' style='width:1%;'>Изображение курсора</td><td align='left'><input id='gamepad_image' class='input_text' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[0] :'')+"' type='text'><td class='icon icon_load' onclick=' file_catalog(\"gamepad_image\",\"img\",\"gamepad_image\",0) ' style='width:40px;' ></td></tr>"+
             "<tr><td align='right'>Ширины</td><td align='left'><input id='gamepad_width' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[3] :'')+"' type='text'><td></td></tr>"+
@@ -4421,7 +4421,7 @@ function setup(){
         "</table></div>"+
         //
         "<div id='blank_3' style='visibility:hidden;white-space:nowrap;' class='set_blank'><table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
-        "<tr><td align='right'>Далее </td><td align='left'><input id='key_next' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.next)?story_script.parameters.key.next :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_next.value=\"\"' style='width:40px;'></td></tr>"+
+        "<tr><td align='right'>Далее </td><td align='left'><input id='key_next' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.next)?story_script.parameters.key.next :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_next.value=\"\"'><div style='display:block;width:40px;'></div></td></tr>"+
         "<tr><td align='right'>Назад </td><td align='left'><input id='key_back' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.back)?story_script.parameters.key.back :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_back.value=\"\"'></td></tr>"+
         "<tr><td align='right'>Сохранить стадию</td><td align='left'><input id='key_save' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.save)?story_script.parameters.key.save :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_save.value=\"\"'></td></tr>"+
         "<tr><td align='right'>Загрузить стадию</td><td align='left'><input id='key_load' class='input_text' onkeyup='this.value=event.code;' value='"+((story_script.parameters.key.load)?story_script.parameters.key.load :'')+"' type='text'></td><td class='icon icon_clear' onclick='key_load.value=\"\"'></td></tr>"+
