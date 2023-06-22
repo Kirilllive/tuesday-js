@@ -5170,9 +5170,13 @@ function saveResize(s,a){
         var b=((objFocus.style.paddingTop.replace('px',''))*2)+((objFocus.style.borderTopWidth)?parseFloat(objFocus.style.borderTopWidth):0)+((objFocus.style.borderBottomWidth)?parseFloat(objFocus.style.borderBottomWidth):0);
         var r=((objFocus.style.paddingLeft.replace('px',''))*2)+((objFocus.style.borderRightWidth)?parseFloat(objFocus.style.borderRightWidth):0)+((objFocus.style.borderLeftWidth)?parseFloat(objFocus.style.borderLeftWidth):0);
         arr_e.position[0]=0;arr_e.position[2]=0;arr_e.position[1]=0;arr_e.position[3]=0
-        arr_e.position[0]=parseFloat((z/layout_width*100).toFixed(2))+'%';
+        //arr_e.position[0]=parseFloat((z/layout_width*100).toFixed(2))+'%';
+        if((layout_width/2)>=z){arr_e.position[0]=(z/layout_width*100).toFixed(2)+'%';}
+        else{z=parseFloat(getComputedStyle(resizers,null).getPropertyValue('right').replace('px',''));arr_e.position[1]=(z/layout_width*100).toFixed(2)+'%';}
         z=resizers.style.top.replace('px','')
-        arr_e.position[2]=parseFloat((z/layout_height*100).toFixed(2))+'%';
+        if((layout_height/2)>=z){arr_e.position[2]=(z/layout_height*100).toFixed(2)+'%';}
+        else{z=parseFloat(getComputedStyle(resizers,null).getPropertyValue('bottom').replace('px',''));arr_e.position[3]=(z/layout_height*100).toFixed(2)+'%';}
+        //arr_e.position[2]=parseFloat((z/layout_height*100).toFixed(2))+'%';
         if(!a==0){arr_e.angle=parseFloat(a.toFixed(2));}
         else if(!s==0){
             if(arr_e.url){
