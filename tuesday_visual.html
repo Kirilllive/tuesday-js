@@ -319,21 +319,21 @@ hr{border-top:1px solid var(--cb);margin:4px 0px;}
 .top-right,.top-left,.bottom-left,.bottom-right,.rotate{border-radius:50%;background:#fff;border: 1px solid var(--cl);}
 .size-right:after,.size-left:after,.size-bottom:after,.size-top:after{content:'';width:6px;height:6px;position:absolute;transform:translateY(-50%) translateX(-50%);top:50%;left:50%;border-radius:50%;background:#fff;border: 1px solid var(--cl);}
 .size-right{right:-4px;top:50%;cursor:ew-resize;height:calc(100% - 32px);transform:translateY(-50%);}
-.size-right:before{position:absolute;content:'';top:-8px;right:-12px;left:-4px;bottom:-8px;}
+.size-right:before{position:absolute;content:'';top:-8px;right:-12px;left:0px;bottom:-8px;}
 .top-right{right:-5px;top:-5px;cursor:nesw-resize;}
 .top-right:before{position:absolute;content:'';top:-12px;right:-12px;left:-4px;bottom:-4px;}
 .top-left{left:-5px;top:-5px;cursor:nwse-resize;}
 .top-left:before{position:absolute;content:'';top:-12px;right:-4px;left:-12px;bottom:-4px;}
 .size-left{left:-4px;top:50%;cursor:ew-resize;height:calc(100% - 32px);transform:translateY(-50%);}
-.size-left:before{position:absolute;content:'';top:-8px;right:-4px;left:-12px;bottom:-8px;}
+.size-left:before{position:absolute;content:'';top:-8px;right:0px;left:-12px;bottom:-8px;}
 .bottom-left{left:-5px;bottom:-5px;cursor:nesw-resize;}
 .bottom-left:before{position:absolute;content:'';top:-4px;right:-4px;left:-12px;bottom:-12px;}
 .size-bottom{left:50%;bottom:-4px;cursor:ns-resize;width:calc(100% - 32px);transform:translateX(-50%);}
-.size-bottom:before{position:absolute;content:'';top:-4px;right:-8px;left:-8px;bottom:-12px;}
+.size-bottom:before{position:absolute;content:'';top:4px;right:-8px;left:-8px;bottom:-12px;}
 .bottom-right{right:-5px;bottom:-5px;cursor:nwse-resize;}
 .bottom-right:before{position:absolute;content:'';top:-4px;right:-12px;left:-4px;bottom:-12px;}
 .size-top{left:50%;top:-4px;cursor:ns-resize;width:calc(100% - 32px);transform:translateX(-50%);}
-.size-top:before{position:absolute;content:'';bottom:-4px;right:-8px;left:-8px;top:-12px;}
+.size-top:before{position:absolute;content:'';bottom:4px;right:-8px;left:-8px;top:-12px;}
 .rotate {left:50%;top:-42px;cursor:crosshair;transform:translateX(-50%);}
 .rotate:before{position:absolute;content:'';bottom:-8px;right:-8px;left:-8px;top:-8px;}
 .proportion_c{filter:var(--ft);content:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 512'%3e%3cg fill='none' stroke='%23000' stroke-width='9' stroke-linejoin='round'%3e%3cpath d='M128,188a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V200A12,12,0,0,1,128,188Z M128,268a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V280A12,12,0,0,1,128,268Z M128,283V232'/%3e%3ccircle cx='16' cy='85' r='12'/%3e%3ccircle cx='16' cy='428' r='12'/%3e%3c/g%3e%3c/svg%3e");height:64px;width:32px;background:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;}
@@ -4787,26 +4787,26 @@ function csv_export(f){
 						if(story_script[k][i].dialogs[d].text){
 							CSV+=languare_data(story_script[k][i].dialogs[d].name)+setup_editor.csv[0];
 							if(story_script[k][i].dialogs[d].text[languare]){for(l=0;l<story_script.parameters.languares.length;l++){
-                                if(typeof story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]]==='string'){CSV+=story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp(setup_editor.csv[0],"g"),'')+setup_editor.csv[0];}
+                                if(typeof story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]]==='string'){CSV+='"'+story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replace(new RegExp(setup_editor.csv[0],"g"),'').replace(new RegExp('"',"g"),'ˮ')+'"'+setup_editor.csv[0];}
                                 else{CSV+=setup_editor.csv[0];}
                                 }
                             }
-                            else if(typeof story_script[k][i].dialogs[d].text==='string'){CSV+=story_script[k][i].dialogs[d].text.replace(new RegExp(setup_editor.csv[0],"g"),'')+setup_editor.csv[0];}
+                            else if(typeof story_script[k][i].dialogs[d].text==='string'){CSV+='"'+story_script[k][i].dialogs[d].text.replace(new RegExp(setup_editor.csv[0],"g"),'').replace(new RegExp('"',"g"),'ˮ')+'"'+setup_editor.csv[0];}
 							CSV+=setup_editor.csv[1];
 						}else if(story_script[k][i].dialogs[d].text_add){
 							CSV+=languare_data(story_script[k][i].dialogs[d].name)+setup_editor.csv[0];
 							if(story_script[k][i].dialogs[d].text_add[languare]){for(l=0;l<story_script.parameters.languares.length;l++){
-                                if(typeof story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]]==='string'){CSV+=story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]].replace(new RegExp(setup_editor.csv[0],"g"),'')+setup_editor.csv[0];}
+                                if(typeof story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]]==='string'){CSV+='"'+story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]].replace(new RegExp(setup_editor.csv[0],"g"),'').replace(new RegExp('"',"g"),'ˮ')+'"'+setup_editor.csv[0];}
                                 else{CSV+=setup_editor.csv[0];}
                                 }
                             }
-							else if(typeof story_script[k][i].dialogs[d].text_add==='string'){CSV+=story_script[k][i].dialogs[d].text_add.replace(new RegExp(setup_editor.csv[0],"g"),'')+setup_editor.csv[0];}
+							else if(typeof story_script[k][i].dialogs[d].text_add==='string'){CSV+='"'+story_script[k][i].dialogs[d].text_add.replace(new RegExp(setup_editor.csv[0],"g"),'').replace(new RegExp('"',"g"),'ˮ')+'"'+setup_editor.csv[0];}
                             CSV+=setup_editor.csv[1];
 						}if(story_script[k][i].dialogs[d].choice){
 							for(r=0;r<story_script[k][i].dialogs[d].choice.length;r++){
 								if(story_script[k][i].dialogs[d].choice[r].text){
 									if(story_script[k][i].dialogs[d].choice[r].text[languare]){CSV+='choice '+setup_editor.csv[0];for(l=0;l<story_script.parameters.languares.length;l++){
-										if(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+=story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp(setup_editor.csv[0],"g"),'')+setup_editor.csv[0];}
+										if(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+='"'+story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replace(new RegExp(setup_editor.csv[0],"g"),'').replace(new RegExp('"',"g"),'ˮ')+'"'+setup_editor.csv[0];}
 										else{CSV+=setup_editor.csv[1]}
 									}CSV+=setup_editor.csv[1];}else if(typeof story_script[k][i].dialogs[d].choice[r].text==='string'){CSV+='choice '+setup_editor.csv[0]+story_script[k][i].dialogs[d].choice[r].text.replace(new RegExp(setup_editor.csv[0],"g"),'')+setup_editor.csv[0];}else{CSV+=setup_editor.csv[1]}
 								}
