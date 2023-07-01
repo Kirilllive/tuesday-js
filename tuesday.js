@@ -783,7 +783,7 @@ function name_block_update(){
     for(var i=0;i < len;i++){del[0].parentNode.removeChild(del[0]);}
 } function anim_text(){
     if(dialog_speed == 0){
-        for(var i=0;i < ruby_rt.length;i++){dialog_text=dialog_text.replace(new RegExp(ruby_rt[i][0],"g"),ruby_rt[i][1]);}
+        for(var i=0;i < ruby_rt.length;i++){dialog_text=dialog_text.replaceAll(ruby_rt[i][0],ruby_rt[i][1]);}
         tue_text_view.innerHTML=dialog_text.replace(new RegExp("\n","g"),"<br>");
     } else if(dialog_speed != 0 && dialog_letter <= dialog_text.length){
         dialog_timeout=setTimeout(add_letter,dialog_speed);
@@ -799,7 +799,7 @@ function name_block_update(){
     if(story_json.parameters.text_panel.scroll){tue_text_view.scrollTop=tue_text_view.scrollHeight;}
 } function add_letter(){
     var t=dialog_text.slice(0,dialog_letter).replace(new RegExp("\n","g"),"<br>")
-    for(var i=0;i < ruby_rt.length;i++){t=t.replace(new RegExp(ruby_rt[i][0],"g"),ruby_rt[i][1]);}
+    for(var i=0;i < ruby_rt.length;i++){t=t.replaceAll(ruby_rt[i][0],ruby_rt[i][1]);}
     tue_text_view.innerHTML=t;
     dialog_letter++;
     anim_text();
