@@ -116,6 +116,12 @@
 		}
 	],
 	[
+		"The variables are in story_json.parameters.variables[var_name] array",
+		{
+			"ru": "Переменные находятся в массиве story_json.parameters.variables[var_name]"
+		}
+	],
+	[
 		"player must find items from a list that are hidden within a scene.",
 		{
 			"ru": "игровая механика где игрок должен найти в сцене элементы из списка.",
@@ -193,6 +199,22 @@
 			"ru": "анимация линий от элемента к следующему блоку",
 			"ja": "要素と移動先のブロックを繋ぐラインがアニメーションします",
 			"es": "lineas de animación del elemento al siguiente bloque"
+		}
+	],
+	[
+		"Support for external game controllers",
+		{
+			"ru": "Поддержка внешних игровых контроллеров",
+			"es": "Compatibilidad con controladores de juegos externos",
+			"ja": "ゲーム用コントローラーを使った操作を有効にします"
+		}
+	],
+	[
+		"switches dialogue by click to screen.",
+		{
+			"ru": "переключение диалогов по клику или нажатию на экран.",
+			"es": "cambia el diálogo haciendo clic en la pantalla.",
+			"ja": "画面のクリック又はタップでダイアログを進行します"
 		}
 	],
 	[
@@ -694,6 +716,15 @@
 		}
 	],
 	[
+		"var languare=\"en\";",
+		{
+			"ru": "var languare=\"ru\";",
+			"ja": "var languare=\"ja\";",
+			"es": "var languare=\"es\";",
+			"pt": "var languare=\"pt\";"
+		}
+	],
+	[
 		">Text autoscroll<",
 		{
 			"ru": ">Прокрутка текста<",
@@ -1177,6 +1208,14 @@
 		}
 	],
 	[
+		"Screen control",
+		{
+			"ru": "Управление экраном",
+			"es": "control de pantalla",
+			"ja": "画面操作"
+		}
+	],
+	[
 		"Load autosave",
 		{
 			"ru": "Автосохранение",
@@ -1358,6 +1397,15 @@
 			"ru": ">Звук нажатия<",
 			"es": ">Haga clic en sonido<",
 			"ja": ">クリック(選択)音<"
+		}
+	],
+	[
+		"en\"],\"buttons",
+		{
+			"ru": "ru\"],\"buttons",
+			"ja": "ja\"],\"buttons",
+			"es": "es\"],\"buttons",
+			"pt": "pt,\"buttons"
 		}
 	],
 	[
@@ -1560,6 +1608,22 @@
 			"ja": ">横方向のみ<",
 			"ru": ">горизонтально<",
 			"es": ">horizontal<"
+		}
+	],
+	[
+		"Image cursor",
+		{
+			"ru": "Изображение курсора",
+			"es": "Cursor de imagen",
+			"ja": "カーソル用イメージ"
+		}
+	],
+	[
+		"D-pad cursor",
+		{
+			"ja": "十時キー操作時のカーソル",
+			"ru": "D-pad курсор",
+			"es": "Cursor D-pad"
 		}
 	],
 	[
@@ -2728,6 +2792,13 @@
 		}
 	],
 	[
+		"GamePad",
+		{
+			"ru": "",
+			"ja": "ゲームパッド"
+		}
+	],
+	[
 		"go to:",
 		{
 			"ru": "перейти в:",
@@ -3042,71 +3113,6 @@
 			"ja": ">いいえ<",
 			"ru": ">нет<",
 			"es": ">no<"
-		}
-	],
-	[
-		"en\"],\"buttons",
-		{
-			"ru": "ru\"],\"buttons",
-			"ja": "ja\"],\"buttons",
-			"es": "es\"],\"buttons",
-			"pt": "pt,\"buttons"
-		}
-	],
-	[
-		"var languare=\"en\";",
-		{
-			"ru": "var languare=\"ru\";",
-			"ja": "var languare=\"ja\";",
-			"es": "var languare=\"es\";",
-			"pt": "var languare=\"pt\";"
-		}
-	],
-	[
-		"GamePad",
-		{
-			"ru": "",
-			"ja": "ゲームパッド"
-		}
-	],
-	[
-		"Support for external game controllers",
-		{
-			"ru": "Поддержка внешних игровых контроллеров",
-			"es": "Compatibilidad con controladores de juegos externos",
-			"ja": "ゲーム用コントローラーを使った操作を有効にします"
-		}
-	],
-	[
-		"Image cursor",
-		{
-			"ru": "Изображение курсора",
-			"es": "Cursor de imagen",
-			"ja": "カーソル用イメージ"
-		}
-	],
-	[
-		"Screen control",
-		{
-			"ru": "Управление экраном",
-			"es": "control de pantalla",
-			"ja": "画面操作"
-		}
-	],
-	[
-		"switches dialogue by click to screen.",
-		{
-			"ru": "переключение диалогов по клику или нажатию на экран.",
-			"es": "cambia el diálogo haciendo clic en la pantalla.",
-			"ja": "画面のクリック又はタップでダイアログを進行します"
-		}
-	],
-	[
-		"D-pad cursor",
-		{
-			"ja": "十時キー操作時のカーソル",
-			"ru": "D-pad курсор",
-			"es": "Cursor D-pad"
 		}
 	]
 ]
