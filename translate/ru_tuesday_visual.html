@@ -4995,8 +4995,8 @@ function make_resizable(s,f){
             var initRadians=rotate_o*Math.PI/180;
             var cosFraction=Math.cos(initRadians);
             var sinFraction=Math.sin(initRadians);
-            var wDiff=(e.pageX-original_mouse_x)/((!tool_update)?scale_сцена:tool_scale);
-            var hDiff=(e.pageY-original_mouse_y)/((!tool_update)?scale_сцена:tool_scale);
+            var wDiff=(e.pageX-original_mouse_x)/((!tool_update)?scale_scene :tool_scale);
+            var hDiff=(e.pageY-original_mouse_y)/((!tool_update)?scale_scene :tool_scale);
             var rotatedWDiff=cosFraction*wDiff+sinFraction*hDiff;
             var rotatedHDiff=cosFraction*hDiff-sinFraction*wDiff;
             var newW=box_width,newH=box_height,newX=box_x,newY=box_y;
@@ -5094,8 +5094,8 @@ function make_resizable(s,f){
             var initRadians=rotate_o*Math.PI/180;
             var cosFraction=Math.cos(initRadians);
             var sinFraction=Math.sin(initRadians);
-            var wDiff=(e.touches[0].pageX-original_mouse_x)/((!tool_update)?scale_сцена:tool_scale);
-            var hDiff=(e.touches[0].pageY-original_mouse_y)/((!tool_update)?scale_сцена:tool_scale);
+            var wDiff=(e.touches[0].pageX-original_mouse_x)/((!tool_update)?scale_scene :tool_scale);
+            var hDiff=(e.touches[0].pageY-original_mouse_y)/((!tool_update)?scale_scene :tool_scale);
             var rotatedWDiff=cosFraction*wDiff+sinFraction*hDiff;
             var rotatedHDiff=cosFraction*hDiff-sinFraction*wDiff;
             var newW=box_width,newH=box_height,newX=box_x,newY=box_y;
