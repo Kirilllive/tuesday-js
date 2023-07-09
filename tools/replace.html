@@ -209,7 +209,7 @@ function convert(t){
     for(var c=0;c<lakit.length;c++){
         if(lakit[c][1][language.value]){
             if(lakit[c][1][language.value].length>0&&t.includes(lakit[c][0])){
-                t=t.replace(new RegExp(lakit[c][0],"g"),lakit[c][1][language.value])
+                t=t.replaceAll(lakit[c][0],lakit[c][1][language.value])
                 tab[c].classList.remove("no_found");
                 tab[c].classList.add("found");
             }else if(!tab[c].classList.contains("found")){tab[c].className="no_found";}

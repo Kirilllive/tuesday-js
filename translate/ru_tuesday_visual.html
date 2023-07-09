@@ -843,7 +843,7 @@ const texts={"tutorials":[{
         },{
         "en":"Выберите рабочую папку с ресурсами для проекта."
         },{
-        "en":"Изменения в значениях переменных, эти значения могут отображаться в тексте как \< var_name \> или использоваться в \"Последствие выбора\" для перехода к другому блоку."
+        "en":"Изменения в значениях переменных, эти значения могут отображаться в тексте как \< var_name \> или использоваться в "Последствие выбора" для перехода к другому блоку."
         },{
         "en":"Выберите подходящее вам устройство ввода. Изменить устройство можно в настройках в разделе «редактор»."
         },{
@@ -863,11 +863,11 @@ const texts={"tutorials":[{
         },{
         "en":"Максимально допустимый размера курсора 128×128px, изображения большего размера будут игнорироваться. Рекомендуемый размер 32х32 для максимальной совместимости."
         },{
-        "en":"The variables are in story_json.parameters.variables[var_name] array"
+        "en":"Переменные находятся в массиве story_json.parameters.variables[var_name]"
         },{
         "en":"More settings for appearance and position of the choice on layout are located in the scene editor"
         },{
-        "en":"You can set transition to a specific scene and dialogue in blok (the function may cause errors)"
+        "en":"Вы можете указать переход к определенной сцене и диалогу в блоке (функция может вызывать ошибки)"
         },{
         "en":"Telegram bot<br><br>Экспорт проекта в чат-бот для мессенджера Telegram<br>Внимание! некоторые функции могут не поддерживаться ботом"
         },{
@@ -4684,7 +4684,9 @@ document.addEventListener('keydown',function(event){
             else if(scene_screen&&event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
         }
         if(event.code=='KeyR'){play_novel();}
-    }
+    }else if(event.code=='Enter'&&window_zone.style.visibility=="visible"){
+        let b=window_zone.getElementsByClassName("big_button");b[b.length-1].click();
+    }else if(event.code=='Escape'&&window_zone.style.visibility=="visible"){modal_window("close")}
 });
 var scene_screen=false
 var scroll_xs=null;

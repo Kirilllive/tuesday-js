@@ -4684,7 +4684,9 @@ document.addEventListener('keydown',function(event){
             else if(scene_screen&&event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
         }
         if(event.code=='KeyR'){play_novel();}
-    }
+    }else if(event.code=='Enter'&&window_zone.style.visibility=="visible"){
+        let b=window_zone.getElementsByClassName("big_button");b[b.length-1].click();
+    }else if(event.code=='Escape'&&window_zone.style.visibility=="visible"){modal_window("close")}
 });
 var scene_screen=false
 var scroll_xs=null;

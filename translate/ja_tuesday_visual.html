@@ -463,7 +463,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
         <table style="height:100vh;width:100%;">
             <tbody>
                 <tr><td rowspan="3" style="position:relative;">
-                    <div id='scene_view' style='width:calc((100vw - 300px));height:100vh;overflow:auto;box-sizing:border-box;' align='center' onmouseover='this.tabindex=1' onmouseout='this.tabindex=0'>
+                    <div id='scene_view' style='width:calc(100vw - 300px);height:100vh;overflow:auto;box-sizing:border-box;' align='center' onmouseover='this.tabindex=1' onmouseout='this.tabindex=0'>
                         <div id='screen_preview' style='background-color:var(--cw);background-blend-mode:overlay;transform-origin:0 0;min-width:100%;min-height:100%;padding-top:40px;display:flex;justify-content:center;align-items:center;transform:scale(1);'> <!--onmouseup="window.getSelection().removeAllRanges();"-->
                         <div class="offselect" onclick='if(objFocus){scene_scroll=false;saveResize()};'></div>
                             <div id='scene_canvas'><div class="offselect" onclick='if(objFocus){scene_scroll=false;saveResize()};'></div>
@@ -837,13 +837,13 @@ const color_dg=['#774C4C','#634C4C','#77654A','#657742','#477750','#567777',fals
 const texts={"tutorials":[{
         "en":"変数の値で次に処理するブロックが決まります。変数は設定ウィンドウの【変数】で作成します"
         },{
-        "en":"テキストエリアに表示するテキストと、発言者を表わすキャラクター名を設定します。変数の値を表示するには、 \< var_name \>のように記述してください。読み仮名や補足文として、文や語の上に小さなテキストを表示させることもできます。\< 任意の語や文 = 小さなテキスト \>のように記述します。例えば\ \< 簡単 = かんたん \>とすれば、「簡単」の上に「かんたん」という語が振り仮名のように加わります。テキスト欄にテキストが無い箇所は、その言語設定時は省略されます。"
+        "en":"テキストエリアに表示するテキストと、発言者を表わすキャラクター名を設定します。変数の値を表示するには、\< var_name \>のように記述してください。読み仮名や補足文として、文や語の上に小さなテキストを表示させることもできます。\< 任意の語や文 = 小さなテキスト \>のように記述します。例えば\< 簡単 = かんたん \>とすれば、「簡単」の上に「かんたん」という語が振り仮名のように加わります。テキスト欄にテキストが無い箇所は、その言語設定時は省略されます。"
         },{
         "en":"シーンの背景画像や背景色、音楽について設定します。"
         },{
         "en":"このプロジェクトに使用する作業フォルダーを指定してください"
         },{
-        "en":"変数の値を変更します。変数は\< var_name \> と入力してテキスト欄に表示したり、<br>\"分岐(変数依拠)\" 処理を別なブロックに進めるのに使います。"
+        "en":"変数の値を変更します。変数は\< var_name \> と入力してテキスト欄に表示したり、<br>"分岐(変数依拠)" 処理を別なブロックに進めるのに使います。"
         },{
         "en":"操作に使用するデバイスを選びましょう。設定画面の「エディター」タブからいつでも変更できます。"
         },{
@@ -867,7 +867,7 @@ const texts={"tutorials":[{
         },{
         "en":"More settings for appearance and position of the choice on layout are located in the scene editor"
         },{
-        "en":"You can set transition to a specific scene and dialogue in blok (the function may cause errors)"
+        "en":"任意のシーンやダイアログに進行順序を無視して処理を飛ばします。想定外の不具合を引き起こすこともあるので、注意して使用してください。"
         },{
         "en":"Telegram bot<br><br>メッセンジャーアプリ「Telegram」用のチャットボットとして出力<br>ボットとして出力した場合、一部機能が動作しない可能性があります。"
         },{
@@ -2094,7 +2094,7 @@ function ho_edit(){
     }else{var p=story_script.parameters[arr_n]
     if(!arr_l[arr_n].art[languare]){data_la(arr_l[arr_n],'art')}
     var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr><td rowspan='3' style='position:relative;'>"
-    +"<div id='ho_preview' style='width:calc((100vw - 300px));height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'>"
+    +"<div id='ho_preview' style='width:calc(100vw - 300px);height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'>"
     +"<div id='ho_canvas' class='"+setup_editor.fon+"' style='transform-origin:left top;display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;background-color:var(--cw);background-blend-mode:overlay;background-size:64px;'><div id='ho_room' style='position:relative;background-repeat:"+((arr_l[arr_n].repeat)?arr_l[arr_n].repeat:"no-repeat")+";background-position:"+((arr_l[arr_n].art_align)?arr_l[arr_n].art_align:"left top")+";"+((arr_l[arr_n].art)?"background-image:url("+open_file(languare_data(arr_l[arr_n].art))+");":"")+((arr_l[arr_n].color)?"background-color:"+arr_l[arr_n].color+";":"")+";background-size:"+((arr_l[arr_n].fit)?arr_l[arr_n].fit:"auto")+";width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'></div></div>"
     +"<div id='ho_controll' style='right:320px;'><table height='100%'><tbody><tr>"
         +"<td width='42px' class='icon button_menu icon_equal' onclick='ho_scale(0.05)'></td>"
@@ -4684,7 +4684,9 @@ document.addEventListener('keydown',function(event){
             else if(scene_screen&&event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
         }
         if(event.code=='KeyR'){play_novel();}
-    }
+    }else if(event.code=='Enter'&&window_zone.style.visibility=="visible"){
+        let b=window_zone.getElementsByClassName("big_button");b[b.length-1].click();
+    }else if(event.code=='Escape'&&window_zone.style.visibility=="visible"){modal_window("close")}
 });
 var scene_screen=false
 var scroll_xs=null;

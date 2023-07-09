@@ -463,7 +463,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
         <table style="height:100vh;width:100%;">
             <tbody>
                 <tr><td rowspan="3" style="position:relative;">
-                    <div id='scene_view' style='width:calc((100vw - 300px));height:100vh;overflow:auto;box-sizing:border-box;' align='center' onmouseover='this.tabindex=1' onmouseout='this.tabindex=0'>
+                    <div id='scene_view' style='width:calc(100vw - 300px);height:100vh;overflow:auto;box-sizing:border-box;' align='center' onmouseover='this.tabindex=1' onmouseout='this.tabindex=0'>
                         <div id='screen_preview' style='background-color:var(--cw);background-blend-mode:overlay;transform-origin:0 0;min-width:100%;min-height:100%;padding-top:40px;display:flex;justify-content:center;align-items:center;transform:scale(1);'> <!--onmouseup="window.getSelection().removeAllRanges();"-->
                         <div class="offselect" onclick='if(objFocus){scene_scroll=false;saveResize()};'></div>
                             <div id='scene_canvas'><div class="offselect" onclick='if(objFocus){scene_scroll=false;saveResize()};'></div>
@@ -837,13 +837,13 @@ const color_dg=['#774C4C','#634C4C','#77654A','#657742','#477750','#567777',fals
 const texts={"tutorials":[{
         "en":"Desplaza al siguiente bloque basado en el valor de las variables. Las variables son creadas en la sección de \"Ajustes del Proyecto\", en la sección \"Variables\"."
         },{
-        "en":"Los ajustes de texto y nombre del personaje se mostrarán en el área de texto. Para usar datos de variables, usar   \< var_name \>. Para agregar furigana o anotaciones usar \< 簡単 = かんたん \>. Si solo escribes skip, la frase en la traducción será omitida."
+        "en":"Los ajustes de texto y nombre del personaje se mostrarán en el área de texto. Para usar datos de variables, usar \< var_name \>. Para agregar furigana o anotaciones usar \< 簡単 = かんたん \>. Si solo escribes skip, la frase en la traducción será omitida."
         },{
         "en":"Personaliza la apariencia de la escena, su imagen de fondo y música, para posteriores dialogos y acciones."
         },{
         "en":"Selecciona una carpeta de trabajo con recursos para el proyecto."
         },{
-        "en":"Los cambios en los valores de las variables, pueden ser mostrados en el texto como \< var_name \> o en \"Decisión de destino\"  para ir a otro bloque del código."
+        "en":"Los cambios en los valores de las variables, pueden ser mostrados en el texto como \< var_name \> o en "Decisión de destino"  para ir a otro bloque del código."
         },{
         "en":"Escoge la entrada del dispositivo que más se acomode a ti. Puedes cambiar el dispositivo en los ajustes en la sección de \"Editor\"."
         },{
@@ -867,7 +867,7 @@ const texts={"tutorials":[{
         },{
         "en":"More settings for appearance and position of the choice on layout are located in the scene editor"
         },{
-        "en":"You can set transition to a specific scene and dialogue in blok (the function may cause errors)"
+        "en":"Puede configurar la transición a una escena y diálogo específicos en bloque (la función puede causar errores)"
         },{
         "en":"Telegram bot<br><br>Exportación de proyecto a bot de chat para Telegram Messenger<br>¡Advertencia! algunas funciones pueden no ser compatibles con el bot"
         },{
@@ -2094,7 +2094,7 @@ function ho_edit(){
     }else{var p=story_script.parameters[arr_n]
     if(!arr_l[arr_n].art[languare]){data_la(arr_l[arr_n],'art')}
     var tool="<table style='width:100%;height:100vh;background-color:var(--cw);'><tbody><tr><td rowspan='3' style='position:relative;'>"
-    +"<div id='ho_preview' style='width:calc((100vw - 300px));height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'>"
+    +"<div id='ho_preview' style='width:calc(100vw - 300px);height:100vh;overflow:auto;box-sizing:border-box;background-color:var(--cw);' onmouseup='window.getSelection().removeAllRanges();' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'>"
     +"<div id='ho_canvas' class='"+setup_editor.fon+"' style='transform-origin:left top;display:grid;justify-content:center;align-items:center;width:"+(arr_l[arr_n].size[0]+512)+"px;height:"+(arr_l[arr_n].size[1]+512)+"px;background-color:var(--cw);background-blend-mode:overlay;background-size:64px;'><div id='ho_room' style='position:relative;background-repeat:"+((arr_l[arr_n].repeat)?arr_l[arr_n].repeat:"no-repeat")+";background-position:"+((arr_l[arr_n].art_align)?arr_l[arr_n].art_align:"left top")+";"+((arr_l[arr_n].art)?"background-image:url("+open_file(languare_data(arr_l[arr_n].art))+");":"")+((arr_l[arr_n].color)?"background-color:"+arr_l[arr_n].color+";":"")+";background-size:"+((arr_l[arr_n].fit)?arr_l[arr_n].fit:"auto")+";width:"+arr_l[arr_n].size[0]+"px;height:"+arr_l[arr_n].size[1]+"px;border-radius:8px;box-shadow:0px 2px 24px var(--cs);' onclick='if(ho_room_sizer.style.visibility==\"visible\"){ho_stopResize()};'></div></div>"
     +"<div id='ho_controll' style='right:320px;'><table height='100%'><tbody><tr>"
         +"<td width='42px' class='icon button_menu icon_equal' onclick='ho_scale(0.05)'></td>"
@@ -4684,7 +4684,9 @@ document.addEventListener('keydown',function(event){
             else if(scene_screen&&event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
         }
         if(event.code=='KeyR'){play_novel();}
-    }
+    }else if(event.code=='Enter'&&window_zone.style.visibility=="visible"){
+        let b=window_zone.getElementsByClassName("big_button");b[b.length-1].click();
+    }else if(event.code=='Escape'&&window_zone.style.visibility=="visible"){modal_window("close")}
 });
 var scene_screen=false
 var scroll_xs=null;
