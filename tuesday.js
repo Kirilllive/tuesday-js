@@ -661,7 +661,7 @@ function name_block_update(){
 		str=(arr_dialog.text[languare])?arr_dialog.text[languare]:arr_dialog.text;
 	}else{
 		dialog_letter=!dialog_text?0:dialog_text.length;
-		str=dialog_text
+		str=(typeof dialog_text != 'undefined')?dialog_text:"";
 		str+=(arr_dialog.text_add[languare])?arr_dialog.text_add[languare]:arr_dialog.text_add;
 	}
     let regexp=/<(.*?)>/g;ruby_rt=[];
