@@ -263,6 +263,12 @@
 		}
 	],
 	[
+		"text_tutorials_a{font-size:11px;",
+		{
+			"ja": "text_tutorials_a{font-size:10px;"
+		}
+	],
+	[
 		"placeholder='path to font file'",
 		{
 			"ru": "placeholder='путь к файлу шрифта'",
