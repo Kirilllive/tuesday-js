@@ -255,6 +255,15 @@
 		}
 	],
 	[
+		"story_script.parameters.title.en",
+		{
+			"ru": "story_script.parameters.title.ru",
+			"ja": "story_script.parameters.title.ja",
+			"es": "story_script.parameters.title.es",
+			"pt": "story_script.parameters.title.pt"
+		}
+	],
+	[
 		"placeholder='path to font file'",
 		{
 			"ru": "placeholder='путь к файлу шрифта'",
@@ -982,6 +991,15 @@
 		{
 			"ja": "(100vw - 300px)",
 			"es": "(100vw - 300px)"
+		}
+	],
+	[
+		"big_languares()",
+		{
+			"ru": "big_languares('ru')",
+			"ja": "big_languares('ja')",
+			"es": "big_languares('es')",
+			"pt": "big_languares('pt')"
 		}
 	],
 	[
