@@ -247,14 +247,6 @@
 		}
 	],
 	[
-		"+story_script.parameters.title.en",
-		{
-			"es": "+story_script.parameters.title.es",
-			"ja": "+story_script.parameters.title.ja",
-			"ru": "+story_script.parameters.title.ru"
-		}
-	],
-	[
 		"placeholder='path to audio file'",
 		{
 			"ru": "placeholder='путь к аудио-файлу'",
@@ -263,9 +255,12 @@
 		}
 	],
 	[
-		"text_tutorials_a{font-size:11px;",
+		"story_script.parameters.title.en",
 		{
-			"ja": "text_tutorials_a{font-size:10px;"
+			"ru": "story_script.parameters.title.ru",
+			"ja": "story_script.parameters.title.ja",
+			"es": "story_script.parameters.title.es",
+			"pt": "story_script.parameters.title.pt"
 		}
 	],
 	[
@@ -1001,9 +996,10 @@
 	[
 		"big_languares()",
 		{
-			"es": "big_languares('es')",
+			"ru": "big_languares('ru')",
 			"ja": "big_languares('ja')",
-			"ru": "big_languares('ru')"
+			"es": "big_languares('es')",
+			"pt": "big_languares('pt')"
 		}
 	],
 	[

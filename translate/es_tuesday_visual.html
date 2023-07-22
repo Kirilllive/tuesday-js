@@ -1209,7 +1209,7 @@ new_novel()
 function save_file(){
     var n;
     if(story_script.parameters.title){
-        n=(story_script.parameters.title.en)?story_script.parameters.title.en:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
+        n=(story_script.parameters.title.es)?story_script.parameters.title.es:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
         n=correct_name(String(n).toLowerCase());
     }else{n="new_novel";}
     download_files(n+'.json',"data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(story_script)))
@@ -1653,7 +1653,7 @@ function build_zip(dataStr){
     arhiv.generateAsync({type:"blob"})
     .then(function(content) {
         var n="new";
-        if(story_script.parameters.title){n=(story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title;}
+        if(story_script.parameters.title){n=(story_script.parameters.title.es)?story_script.parameters.title.es :story_script.parameters.title;}
         download_files(n+'_'+data_time()+'.zip',URL.createObjectURL(content))
         modal_window("close")
         toast('archivo comrpimido completado')
@@ -4825,7 +4825,7 @@ function csv_export(f){
 			}
 		};all_blocks++;
     }
-    if(story_script.parameters.title){n="translate_kit_"+((story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title)}
+    if(story_script.parameters.title){n="translate_kit_"+((story_script.parameters.title.es)?story_script.parameters.title.es :story_script.parameters.title)}
     else{n="translate_kit";}
     var uri='data:text/csv;charset=utf-8,'+encodeURIComponent(CSV);
     download_files(n+"."+f,uri)
