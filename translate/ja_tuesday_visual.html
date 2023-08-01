@@ -16,6 +16,7 @@
 	user-select:none;
 	outline:none;
     color:var(--tx);
+    overscroll-behavior: none;
 }
 :root {
   --cw:#efefff;
@@ -1342,15 +1343,15 @@ function movie_dlock(id){
     }
 }
 function world_size(){
-    var height=Math.max(body.scrollHeight,body.offsetHeight,html.clientHeight,html.scrollHeight,html.offsetHeight);
-    var width=Math.max(body.scrollWidth,body.offsetWidth,html.clientWidth,html.scrollWidth,html.offsetWidth);
+    let height=Math.max(body.scrollHeight,body.offsetHeight,html.clientHeight,html.scrollHeight,html.offsetHeight);
+    let width=Math.max(body.scrollWidth,body.offsetWidth,html.clientWidth,html.scrollWidth,html.offsetWidth);
     story_lines.setAttribute("height",height/scale);
     story_lines.setAttribute("width",width/scale);
     story_lines.setAttribute("viewBox","0,0,"+width/scale+","+height/scale);
 }
 function block_open(id){
     var e=document.getElementById(id);
-    if(e.style.display === "block"){e.style.display="none";}
+    if(e.style.display==="block"){e.style.display="none";}
 	else{e.style.display="block";}
     lines()
 }
@@ -1459,7 +1460,7 @@ function modal_window(action,content){
         window_zone.style.visibility="hidden"
         window_zone.style.backgroundColor='rgba(110,95,165,0)';
         if(!scene_screen){html.style.overflow='scroll';scroll_block=false;}
-        window_zone.innerHTML="";synth.cancel();
+        window_zone.innerHTML="";
     }else if(action=='open'&&window_zone.style.visibility!="visible"){
         window_zone.style.visibility="visible";
         window_zone.style.backgroundColor='var(--cm)'
@@ -2724,9 +2725,9 @@ function dialog_audio_edit(id){
         for(var i=0;i<story_script.parameters.languares.length;i++){copy_arr[arr_n][story_script.parameters.languares[i]]=s;}
     }else{copy_arr=JSON.parse(JSON.stringify(arr_l))}
     var html="<div class='window' style='width:480px;'><div class='win_head'>"+((arr_n!="sound_stop")?"音声再生":"音声停止")+"<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'>"
-        +"<table style='height:32px;border-bottom:1px solid var(--cb);width:100%;'><tbody><tr><td width='80px' align='center'>言語</td><td><select id='audio_la' onchange='dialog_audio_save(arr_e);document.getElementById(\"dialog_audio\").getElementsByTagName(\"tbody\")[0].innerHTML=dialog_audio_update(this.value);arr_e=this.value;' style='height:32px;width:40px;border-bottom:0;border-left:1px solid var(--cb);border-right:1px solid var(--cb);'>"+project_languares(languare)+"</select></td></tr></tbody></table>"
-        +"<div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'><table id='dialog_audio' style='width:100%'><tbody>"+dialog_audio_update(languare)+"</tbody></table>"
-        +"<div onclick='dialog_audio_add()' class='icon icon_add' style='margin:16px 0;height:26px;width:26px;cursor:pointer;'></div></div><table class='big_button' width='256px' onclick='dialog_audio_save(arr_e);data_only(copy_arr,arr_n);arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));modal_window(\"close\");state_save();update_novel();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>適用</td><td width='42px'></td></tr></tbody></table></div>"
+		+"<table style='height:32px;border-bottom:1px solid var(--cb);width:100%;'><tbody><tr><td width='80px' align='center'>言語</td><td><select id='audio_la' onchange='dialog_audio_save(arr_e);document.getElementById(\"dialog_audio\").getElementsByTagName(\"tbody\")[0].innerHTML=dialog_audio_update(this.value);arr_e=this.value;' style='height:32px;width:40px;border-bottom:0;border-left:1px solid var(--cb);border-right:1px solid var(--cb);'>"+project_languares(languare)+"</select></td></tr></tbody></table>"
+		+"<div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'><table id='dialog_audio' style='width:100%'><tbody>"+dialog_audio_update(languare)+"</tbody></table>"
+		+"<div onclick='dialog_audio_add()' class='icon icon_add' style='margin:16px 0;height:26px;width:26px;cursor:pointer;'></div></div><table class='big_button' width='256px' onclick='dialog_audio_save(arr_e);data_only(copy_arr,arr_n);arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));modal_window(\"close\");state_save();update_novel();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>適用</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function dialog_audio_save(l){
@@ -2849,7 +2850,7 @@ function dialog_text_edit(){
 	if(!copy_arr.name){copy_arr.name={}}
     if(story_script.parameters.characters&&story_script.parameters.characters[copy_arr.name]){n=story_script.parameters.characters[copy_arr.name]}
     if(typeof copy_arr[arr_n]!=='object'){data_la(copy_arr,arr_n)};if(!copy_arr[arr_n][languare]){copy_arr[arr_n][languare]=""};
-	var html="<div class='window' style='width:90%;max-width:800px; padding: 2px 0 24px 0;'><div class='win_head'>ダイアログテキスト<div class='window_close icon icon_close' onclick='modal_window(\"close\");'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[1].en+"</p>"
+	var html="<div class='window' style='width:90%;max-width:800px; padding: 2px 0 24px 0;'><div class='win_head'>ダイアログテキスト<div class='window_close icon icon_close' onclick='modal_window(\"close\");synth.cancel();'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[1].en+"</p>"
 	+"<table width='100%' style='border-bottom:1px solid var(--cb);'><tbody><tr><td align='right' style='width:1%;white-space:nowrap;'>&nbsp;言語&nbsp;</td>"
 	+"<td width='40px'><select id='text_la' onchange='"+((n)?"name_text.value=((story_script.parameters.characters[copy_arr.name][this.value])?story_script.parameters.characters[copy_arr.name][this.value]:\"\")":"name_text.value=((copy_arr.name[this.value])?copy_arr.name[this.value]:\"\")")+";dialogtext.value=((copy_arr.text[this.value])?copy_arr.text[this.value]:\"\");text_chars.innerHTML=dialogtext.value.length;text_words.innerHTML=dialogtext.value.split(reg).length-1;synth.cancel();loadVoices()' style='height:40px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:0'>"+project_languares(languare)+"</select></td>"
     +"<td align='right' style='width:1%;white-space:nowrap;'>&nbsp;&nbsp;文字数:&nbsp;</td><td align='left' id='text_chars' style='width:1%;padding-right:8px;'>"+copy_arr[arr_n][languare].length+"</td><td style='width:1%;white-space:nowrap;' align='right'>&nbsp;&nbsp;単語数&nbsp;</td><td align='left' id='text_words'>"+(copy_arr[arr_n][languare].split(reg).length-1)+"</td>"
@@ -2909,7 +2910,7 @@ function speak(text) {
 	const speech = new SpeechSynthesisUtterance(text);
     if (synth.speaking){synth.cancel()}
     else{
-        speech.rate = 0.75;
+        speech.rate=0.85;
         if (voice_select.value){speech.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voice_select.value; })[0];}
         synth.speak(speech);
     }
@@ -4724,7 +4725,7 @@ document.addEventListener('keydown',function(event){
         else if(window_zone.style.visibility=="visible"&&(document.getElementById('editcode')==null&&document.getElementById('editJson')==null)){let b=window_zone.getElementsByClassName("big_button");b[b.length-1].click();}
     }else if(event.code=='Escape'){
         if(add_element.style.visibility=="visible"){menu_add.style.visibility='hidden';}
-        else if(window_zone.style.visibility=="visible"){modal_window("close")}
+        else if(window_zone.style.visibility=="visible"){modal_window("close");synth.cancel();}
     }
 });
 var scene_screen=false
