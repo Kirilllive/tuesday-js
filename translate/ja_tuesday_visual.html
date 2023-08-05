@@ -1824,7 +1824,7 @@ function file_catalog(id,files,area,preview,arr){
         +"<table style='width:100%;'><tbody><tr><td><input id='project_foler' onclick=\"json_file.value=null;load_new=true;json_file.click();menu_add.style.visibility='hidden';\" class='input_text' style='padding-top:10px;' type='text'></td><td onclick=\"json_file.value=null;load_new=true;json_file.click();menu_add.style.visibility='hidden';\" style='width:40px;cursor:pointer;' title='delet' class='icon icon_load'></td></tr></tbody></table><p class='text_tutorials_b select_tutorials'>"+texts.tutorials[3].en+"</p><br><br>"
         +"</div><br><br><table class='big_button' width='256px' onclick=\"menu_add.style.visibility='hidden';scroll_block=true;\"><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>適用</td><td width='42px'></td></tr></tbody></table></div>"
     }else{
-        code='<div class="window" style="width:480px;position:fixed;"><table style="width:100%;"><tbody><tr>'
+        code='<div class="window" style="width:480px;position:fixed;content-visibility:auto;"><table style="width:100%;"><tbody><tr>'
             +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center" onclick="" width="52px"></td>'
             +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">ファイル選択</td>'
             +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center" title="update working folder" onclick="json_file.value=null;load_new=true;json_file.click();menu_add.style.visibility=\'hidden\';" width="52px" class="icon icon_load"></td>'
@@ -1886,7 +1886,7 @@ function add_element_s(id,n){
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="back_to";element_to();state_save();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_back"></td><td>指定先に戻る</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="art";scen_editor("'+scen_data[0]+'",'+scen_data[1]+','+scen_data[2]+');scen_edit_data();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>画像</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text";element_to();dialog_text_edit();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>テキスト</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text_add";element_to();dialog_text_edit();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>テキスト追加</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text_add";element_to();dialog_text_edit();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>テキスト追加</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'choice\';element_to();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>選択肢</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'video\';element_to();dialog_video_edit();"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_video"></td><td>動画</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'sound_stop\';element_to();dialog_audio_edit(\''+id+'\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td>音声停止</td></tr></tbody></table></td></tr>'
@@ -2854,7 +2854,7 @@ function dialog_text_edit(){
 	+"<table width='100%' style='border-bottom:1px solid var(--cb);'><tbody><tr><td align='right' style='width:1%;white-space:nowrap;'>&nbsp;言語&nbsp;</td>"
 	+"<td width='40px'><select id='text_la' onchange='"+((n)?"name_text.value=((story_script.parameters.characters[copy_arr.name][this.value])?story_script.parameters.characters[copy_arr.name][this.value]:\"\")":"name_text.value=((copy_arr.name[this.value])?copy_arr.name[this.value]:\"\")")+";dialogtext.value=((copy_arr.text[this.value])?copy_arr.text[this.value]:\"\");text_chars.innerHTML=dialogtext.value.length;text_words.innerHTML=dialogtext.value.split(reg).length-1;synth.cancel();loadVoices()' style='height:40px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:0'>"+project_languares(languare)+"</select></td>"
     +"<td align='right' style='width:1%;white-space:nowrap;'>&nbsp;&nbsp;文字数:&nbsp;</td><td align='left' id='text_chars' style='width:1%;padding-right:8px;'>"+copy_arr[arr_n][languare].length+"</td><td style='width:1%;white-space:nowrap;' align='right'>&nbsp;&nbsp;単語数&nbsp;</td><td align='left' id='text_words'>"+(copy_arr[arr_n][languare].split(reg).length-1)+"</td>"
-    +"<td align='right' id='name_speec' style='display:none;white-space:nowrap;width:1%;'>&nbsp;読む:</td><td width='40px'><div id='play_speak' style='display:none;width:100%;height:40px' class='icon_m icon_audio_play' onclick='speak(dialogtext.value);'></div></td><td align='left' style='width:1%;'><select id='voice_select' style='display:none;height:40px;width:64px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:0'></select></td>"
+    +"<td align='right' id='name_speec' style='display:none;white-space:nowrap;width:1%;'>&nbsp;読む:</td><td width='40px'><div id='play_speak' style='display:none;width:100%;height:40px' class='icon_m icon_audio_play' onclick='speak(dialogtext.selectionStart==dialogtext.selectionEnd?dialogtext.value:dialogtext.value.substring(dialogtext.selectionStart,dialogtext.selectionEnd))'></div></td><td align='left' style='width:1%;'><select id='voice_select' onchange='localStorage.setItem(\"tue_voice\",this.value)' style='display:none;height:40px;width:64px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:0'></select></td>"
     +"<td></td></tr></tbody></table><table width='100%' style='border-bottom:1px solid var(--cb);'><tbody><tr>"
     +"<td><textarea id='dialogtext' oninput='text_chars.innerHTML=this.value.length;text_words.innerHTML=this.value.split(reg).length-1;copy_arr[arr_n][text_la.value]=this.value;synth.cancel();' class='input_text' style='border-bottom:none; white-space:pre-wrap;resize:none;padding:4px;-moz-box-sizing:border-box;box-sizing:border-box;height:calc(90vh - 256px);width:100%;min-height:92px;border-right:1px solid var(--cb);'>"+((copy_arr[arr_n][languare].length>0)?copy_arr[arr_n][languare]:"")+"</textarea></td>"
 	+"<td style='max-width:300px;width:45%;' valign='top'><div style='width:100%;height:calc(90vh - 256px);overflow-x:hidden;overflow-y:auto;'><table width='100%'><tbody>"
@@ -2883,18 +2883,20 @@ function dialog_text_edit(){
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>CSSスタイルシート</td><td><input id='e_style' class='input_text' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[3]:"")+"' type='text'></td><td></td></tr>"
     +"</tbody></table></div></td>"
 	+"</tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>適用</td><td width='42px'></td></tr></tbody></table></div>"
-    modal_window("open",html);loadVoices();window.speechSynthesis.onvoiceschanged=function(e){loadVoices();};
+    modal_window("open",html);if('speechSynthesis' in window){loadVoices();window.speechSynthesis.onvoiceschanged=function(e){loadVoices()}};
 }
-function loadVoices() {
+function loadVoices(){
 	var voices = speechSynthesis.getVoices();
     voice_select.innerHTML="";
-    if(voices.length>0 && ('speechSynthesis' in window)){
+    if(voices.length>0&&'speechSynthesis' in window){
+        let tue_voice=localStorage.getItem("tue_voice");
         voice_select.style.removeProperty("display");
         name_speec.style.removeProperty("display");
         play_speak.style.removeProperty("display");
         voices.forEach(function(voice, i) {
             if(text_la.value==voice.lang.substring(0,2)){
                 var option = document.createElement('option');
+                option.selected = (voice.name==tue_voice);
                 option.value = voice.name;
                 option.text = voice.name;
                 voice_select.add( option );
