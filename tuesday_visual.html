@@ -2843,7 +2843,6 @@ function dialog_video_apply(){
     if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
     else{update_novel()}
 }
-const synth = window.speechSynthesis;
 function dialog_text_edit(){
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
     var n
@@ -2885,6 +2884,7 @@ function dialog_text_edit(){
 	+"</tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);if('speechSynthesis' in window){loadVoices();window.speechSynthesis.onvoiceschanged=function(e){loadVoices()}};
 }
+const synth = window.speechSynthesis;
 function loadVoices(){
 	var voices = speechSynthesis.getVoices();
     voice_select.innerHTML="";
@@ -2942,7 +2942,6 @@ function dialog_char_update(){
     c_color.value=(arr_s&&arr_s.color)?arr_s.color:'';
 }
 function dialog_text_apply(){
-    synth.cancel();
 	if(text_class.value!=""){copy_arr[arr_n].className=text_class.value;}else{delete copy_arr[arr_n].className};
     if(text_color.value!=""){arr_l.color_text=text_color.value;}else{delete arr_l.color_text};
     if(p_color.value!=""){arr_l.color=p_color.value;}else{delete arr_l.color};
@@ -2974,6 +2973,7 @@ function dialog_text_apply(){
 	modal_window("close");state_save();
     if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
     else{update_novel();}
+    synth.cancel();
 }
 function scene_edit(){
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
