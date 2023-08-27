@@ -2899,10 +2899,6 @@ function dialog_text_edit(){
     html+="</tbody></table></div></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);if('speechSynthesis' in window){loadVoices();window.speechSynthesis.onvoiceschanged=function(e){loadVoices()}};
 }
-
-
-
-
 function voicesSynthesis(l,t,a){
     let v="",voices = speechSynthesis.getVoices(),s=document.getElementById(t).value.split(",").map((item)=>{return item.trim()});
     voices.forEach(function(voice,i){if(l==voice.lang.substring(0,2)){v+="<tr><td style='width:60px;' align='center'><label class='switchbox'><input type='checkbox' class='chec_plugin' value='"+voice.name+"' "+((s.includes(voice.name))?"checked":"")+"><span class='toggle round'></span></label>   </td><td>"+voice.name+"</td><td class='icon_m icon_audio_play' style='height:40px;width:40px;' onclick='speak(((dialogtext.value.length>0)?dialogtext.value:\"Hello\"),\""+voice.name+"\")'></td></tr>"}});
@@ -2911,14 +2907,15 @@ function voicesSynthesis(l,t,a){
     menu_add.innerHTML=code
     menu_add.style.visibility='visible';
 }
-
 function voicesSynthesis_apply(l,t,a){
-    let c=0,text="",voices=all_voices.getElementsByClassName("chec_plugin");
-    for(let i=0;i<voices.length;i++){if(voices[i].checked){text+=((c>0)?" ,":"")+voices[i].value;c++;}}
-    document.getElementById(t).value=text;
+    let c=0,s=document.getElementById(t).value.split(",").map((item)=>{return item.trim()}),voices=all_voices.getElementsByClassName("chec_plugin");
+    for(let i=0;i<voices.length;i++){
+        if(voices[i].checked){
+            if(!s.includes(voices[i].value)){s.push(voices[i].value)}
+        } else {s=s.filter((s) => s!==voices[i].value)};
+    }
+    document.getElementById(t).value=String(s);
 }
-
-
 function loadVoices(){
 	var voices = speechSynthesis.getVoices();
     voice_select.innerHTML="";
