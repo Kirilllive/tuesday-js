@@ -2892,13 +2892,33 @@ function dialog_text_edit(){
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td><input id='e_style' class='input_text' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[3]:"")+"' type='text'></td><td></td></tr>"
     if(story_script.parameters.plugins&&story_script.parameters.plugins.includes("speech")){
         html+="<tr><td height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);' colspan='3'>Speech synthesis</td></tr>"
-        +"<tr><td align='right' style='padding-right:8px;'>Voice</td><td><input id='e_art' class='input_text' value='"+"' type='text'></td>"
-        +"<td class='icon icon_edit' style='height:40px;width:40px;' onclick=''></td></tr>"
+        +"<tr><td align='right' style='padding-right:8px;'>Voice</td><td><input id='voices_data' class='input_text' value='"+"' type='text'></td>"
+        +"<td class='icon icon_edit' style='height:40px;width:40px;' onclick='voicesSynthesis(languare,\"voices_data\")'></td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Speed</td><td><input id='' class='input_slider input_slider_progress' onchange='' type='range' min='0' max='1' step='0.1' value='1' style='width:100%;'></td><td></td></tr>"
     }
     html+="</tbody></table></div></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);if('speechSynthesis' in window){loadVoices();window.speechSynthesis.onvoiceschanged=function(e){loadVoices()}};
 }
+
+
+
+
+function voicesSynthesis(l,t,a){
+    let v="",voices = speechSynthesis.getVoices(),s=document.getElementById(t).value.split(",").map((item)=>{return item.trim()});
+    voices.forEach(function(voice,i){if(l==voice.lang.substring(0,2)){v+="<tr><td style='width:60px;' align='center'><label class='switchbox'><input type='checkbox' class='chec_plugin' value='"+voice.name+"' "+((s.includes(voice.name))?"checked":"")+"><span class='toggle round'></span></label>   </td><td>"+voice.name+"</td><td class='icon_m icon_audio_play' style='height:40px;width:40px;' onclick='speak(((dialogtext.value.length>0)?dialogtext.value:\"Hello\"),\""+voice.name+"\")'></td></tr>"}});
+    code='<div class="window" style="position:fixed;padding:8px;width:380px;"><div><div class="window_close icon icon_close" onclick="synth.cancel();menu_add.style.visibility=\'hidden\';" ></div></div><p>Voice selection</p><hr style="margin-top:10px;"><div style="border-bottom:1px solid var(--cb);overflow-x:hidden;overflow-y:auto;max-height:calc(100vh - 120px);"><table id="all_voices" style="width: 100%;"><tbody>'+v+'</tbody></table></div>'
+    +'<br><table class="big_button" width="256px" onclick="synth.cancel();voicesSynthesis_apply(\''+l+'\',\''+t+'\');menu_add.style.visibility=\'hidden\';"><tbody><tr><td width="42px" class="icon icon_ok"></td><td align="center">Apply</td><td width="42px"></td></tr></tbody></table></div>'
+    menu_add.innerHTML=code
+    menu_add.style.visibility='visible';
+}
+
+function voicesSynthesis_apply(l,t,a){
+    let c=0,text="",voices=all_voices.getElementsByClassName("chec_plugin");
+    for(let i=0;i<voices.length;i++){if(voices[i].checked){text+=((c>0)?" ,":"")+voices[i].value;c++;}}
+    document.getElementById(t).value=text;
+}
+
+
 function loadVoices(){
 	var voices = speechSynthesis.getVoices();
     voice_select.innerHTML="";
@@ -2922,12 +2942,13 @@ function loadVoices(){
         play_speak.style.display="none";
     }
 }
-function speak(text) {
+function speak(text,v) {
 	const speech = new SpeechSynthesisUtterance(text);
     if (synth.speaking){synth.cancel()}
     else{
         speech.rate=0.85;
-        if (voice_select.value){speech.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voice_select.value; })[0];}
+        if(v){speech.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name==v; })[0];}
+        else if(voice_select.value){speech.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name==voice_select.value; })[0];}
         synth.speak(speech);
     }
 }
@@ -3520,8 +3541,8 @@ function panel_art(id){
         tbody.innerHTML+="</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Speech synthesis</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Voice</td>"
             +'<td style="width:28px;" align="center"><select id="vo'+id+'" onchange="vot'+id+'.value='+arr_t+'.art[this.value]" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
-            +"<td><input id='vot"+id+"' class='input_text' onchange='' type='text' style='width:100%;height:28px' value=''></td>"
-            +"<td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick=''></td>"
+            +"<td><input id='vot' class='input_text' onchange='' type='text' style='width:100%;height:28px' value=''></td>"
+            +"<td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick=\"voicesSynthesis(vo"+id+".value,'vot')\"></td>"
         +"<tr></tr><tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Speed</td><td style='padding-right:8px;' colspan='3'>"
             +"<input id='' class='input_slider input_slider_progress' onchange='' type='range' min='0' max='1' step='0.1' value='1' style='width:100%;'>"
         +"</td></tr>"
