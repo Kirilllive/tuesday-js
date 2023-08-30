@@ -20,5 +20,7 @@ function TueAspectRatio(){
     tuesday.style.height=tue_size[1]+"px";
     tuesday.style.transform='scale('+s+')';
 }
+window.addEventListener('script_executed',TueAspectRatio,true);
+window.addEventListener('script_loaded',TueAspectRatio,true);
 window.addEventListener('resize',TueAspectRatio,true);
 TueAspectRatio();
