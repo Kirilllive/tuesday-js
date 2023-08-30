@@ -914,6 +914,7 @@ function set_audio(el,arr){
     }
     if(tue_set_audio==2){
         var a=tuesday.getElementsByTagName('audio');for(let i=0;i<a.length;i++){a[i].pause();}
+        if(typeof synth!=="undefined"&&synth.speaking){synth.cancel()}
     }
     show_audio(el,arr);
 }
