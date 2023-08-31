@@ -811,7 +811,7 @@ let scen_element={};
 const plugins_list={"tue_aspect_ratio":{
         "name":"Aspect ratio",
         "text":"adapts the project screen while maintaining the aspect ratio",
-        "code":"function TueAspectRatio(){let e=story_json.parameters.resolutions,t=tuesday.parentNode,i=t.getBoundingClientRect();if(0==i.height||0==i.width){var n=e[0]/window.innerWidth>e[1]/window.innerHeight?window.innerWidth/e[0]:window.innerHeight/e[1];tuesday.style.left=(window.innerWidth-e[0]*n)/2+\"px\",tuesday.style.top=(window.innerHeight-e[1]*n)/2+\"px\"}else{var n=e[0]/i.width>e[1]/i.height?i.width/e[0]:i.height/e[1];tuesday.style.left=(i.width-e[0]*n)/2+\"px\",tuesday.style.top=(i.height-e[1]*n)/2+\"px\"}t.style.backgroundColor=\"#000\",t.style.overflow=\"hidden\",t.style.position=\"relative\",tuesday.style.position=\"absolute\",tuesday.style.transformOrigin=\"left top\",tuesday.style.width=e[0]+\"px\",tuesday.style.height=e[1]+\"px\",tuesday.style.transform=\"scale(\"+n+\")\"}window.addEventListener(\"resize\",TueAspectRatio,!0),TueAspectRatio();"
+        "code":"function TueAspectRatio(){let e=story_script.parameters.size_screen,t=tuesday.parentNode,i=t.getBoundingClientRect();if(0==i.height||0==i.width){var s=e[0]/window.innerWidth>e[1]/window.innerHeight?window.innerWidth/e[0]:window.innerHeight/e[1];tuesday.style.left=(window.innerWidth-e[0]*s)/2+'px',tuesday.style.top=(window.innerHeight-e[1]*s)/2+'px'}else{var s=e[0]/i.width>e[1]/i.height?i.width/e[0]:i.height/e[1];tuesday.style.left=(i.width-e[0]*s)/2+'px',tuesday.style.top=(i.height-e[1]*s)/2+'px'}t.style.backgroundColor='#000',t.style.overflow='hidden',t.style.position='relative',tuesday.style.position='absolute',tuesday.style.transformOrigin='left top',tuesday.style.width=e[0]+'px',tuesday.style.height=e[1]+'px',tuesday.style.transform='scale(\"+s+\")'}window.addEventListener('script_executed',TueAspectRatio,!0),window.addEventListener('script_loaded',TueAspectRatio,!0),window.addEventListener('resize',TueAspectRatio,!0),TueAspectRatio();"
     },"game_pad":{
         "name":"GamePad",
         "text":"Support for external game controllers",
@@ -827,7 +827,7 @@ const plugins_list={"tue_aspect_ratio":{
     },"speech":{
         "name":"Speech",
         "text":"Speech synthesis TTS<br>reading text with a synthesized voice",
-        "code":"const synth=window.speechSynthesis;tuesday.addEventListener('creation_dialog',()=>{if(tue_set_audio<2&&story_json.parameters.text_panel.speech||arr_dialog.speech){let e=new SpeechSynthesisUtterance(dialog_text);synth.speaking&&synth.cancel();let t=arr_dialog.speech?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],s=speechSynthesis.getVoices(),n=t[0].split(',').map(e=>e.trim()),a=!1;for(v=0;v<s.length&&(s.filter(e=>{e.name==n[v]&&(a=e)}),!a);v++);e.voice=a,e.rate=t[1],synth.speak(e)}});"
+        "code":"const synth=window.speechSynthesis;tuesday.addEventListener('creation_dialog',()=>{if(tue_set_audio<2&&story_json.parameters.text_panel.speech||arr_dialog.speech){let e=new SpeechSynthesisUtterance(dialog_text);synth.speaking&&synth.cancel();let t=arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],s=speechSynthesis.getVoices(),n=t[0].split(',').map(e=>e.trim()),a=!1;for(v=0;v<s.length&&(s.filter(e=>{e.name==n[v]&&(a=e)}),!a);v++);e.voice=a,e.rate=t[1],synth.speak(e)}});"
     },"show_toast":{
         "name":"Show toast",
         "text":"small message appears for a while",
@@ -2899,7 +2899,7 @@ function dialog_text_edit(){
         html+="<tr><td height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);' colspan='3'>Speech synthesis</td></tr>"
         +"<tr><td align='right' style='padding-right:8px;'>Voice</td><td><input id='voices_data' class='input_text' onchange='copy_arr.speech[text_la.value][0]=this.value' value='"+copy_arr.speech[languare][0]+"' type='text'></td>"
         +"<td class='icon icon_edit' style='height:40px;width:40px;' onclick='voicesSynthesis(text_la.value,\"voices_data\",\"copy_arr.speech[text_la.value][0]\",dialogtext.value)'></td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Speed</td><td><input id='voices_speed' class='input_slider input_slider_progress' type='range' min='0' max='1' step='0.1' style='width:100%;' onchange='copy_arr.speech[text_la.value][1]=this.value' value='"+copy_arr.speech[languare][1]+"'></td><td></td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Speed</td><td><input id='voices_speed' class='input_slider input_slider_progress' type='range' min='0' max='2' step='0.1' style='width:100%;' onchange='copy_arr.speech[text_la.value][1]=this.value' value='"+copy_arr.speech[languare][1]+"'></td><td></td></tr>"
     }
     html+="</tbody></table></div></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);if('speechSynthesis' in window){loadVoices();window.speechSynthesis.onvoiceschanged=function(e){loadVoices()}};
@@ -3554,7 +3554,7 @@ function panel_art(id){
             +"<td><input id='vot' class='input_text' onchange='story_script.parameters.text_panel.speech[vols.value][0]=this.value' type='text' style='width:100%;height:28px' value='"+arr_t.speech[languare][0]+"'></td>"
             +"<td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick=\"voicesSynthesis(vols.value,'vot',story_script.parameters.text_panel.speech[vols.value][0],tue_text_view.textContent)\"></td>"
         +"<tr></tr><tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Speed</td><td style='padding-right:8px;' colspan='3'>"
-            +"<input id='vots' class='input_slider input_slider_progress' onchange='story_script.parameters.text_panel.speech[vols.value][1]=this.value' type='range' min='0' max='1' step='0.1' value='"+arr_t.speech[languare][1]+"' style='width:100%;'>"
+            +"<input id='vots' class='input_slider input_slider_progress' onchange='story_script.parameters.text_panel.speech[vols.value][1]=this.value' type='range' min='0' max='2' step='0.1' value='"+arr_t.speech[languare][1]+"' style='width:100%;'>"
         +"</td></tr>"
     }
 }
