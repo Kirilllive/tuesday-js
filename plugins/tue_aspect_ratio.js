@@ -1,5 +1,5 @@
 function TueAspectRatio(){
-    let tue_size=story_script.parameters.size_screen;
+    let tue_size=story_json.parameters.resolutions;
     let elem=tuesday.parentNode;
     let rect=elem.getBoundingClientRect();
     if( rect.height==0 || rect.width==0 ){
@@ -23,4 +23,3 @@ function TueAspectRatio(){
 window.addEventListener('script_executed',TueAspectRatio,true);
 window.addEventListener('script_loaded',TueAspectRatio,true);
 window.addEventListener('resize',TueAspectRatio,true);
-TueAspectRatio();
