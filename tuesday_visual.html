@@ -2908,7 +2908,7 @@ function voicesSynthesis(l,t,a,d){
     let v="",voices=speechSynthesis.getVoices(),s=document.getElementById(t).value.split(",").map((item)=>{return item.trim()});
     voices.forEach(function(voice,i){if(l==voice.lang.substring(0,2)){v+="<tr><td style='width:60px;' align='center'><label class='switchbox'><input type='checkbox' class='chec_plugin' value='"+voice.name+"' "+((s.includes(voice.name))?"checked":"")+"><span class='toggle round'></span></label>   </td><td>"+voice.name+"</td><td class='icon_m icon_audio_play' style='height:40px;width:40px;' onclick='speak(\""+((d.length>0)?d:"Hello")+"\",\""+voice.name+"\")'></td></tr>"}});
     code='<div class="window" style="position:fixed;padding:8px;width:380px;"><div><div class="window_close icon icon_close" onclick="synth.cancel();menu_add.style.visibility=\'hidden\';" ></div></div><p>Voice selection</p><hr style="margin-top:10px;"><div style="border-bottom:1px solid var(--cb);overflow-x:hidden;overflow-y:auto;max-height:calc(100vh - 120px);"><table id="all_voices" style="width: 100%;"><tbody>'+v+'</tbody></table></div>'
-    +'<br><table class="big_button" width="256px" onclick="synth.cancel();voicesSynthesis_apply(\''+l+'\',\''+t+'\');menu_add.style.visibility=\'hidden\';"><tbody><tr><td width="42px" class="icon icon_ok"></td><td align="center">Apply</td><td width="42px"></td></tr></tbody></table></div>'
+    +'<br><table class="big_button" width="256px" onclick="synth.cancel();voicesSynthesis_apply(\''+l+'\',\''+t+'\','+a+');menu_add.style.visibility=\'hidden\';"><tbody><tr><td width="42px" class="icon icon_ok"></td><td align="center">Apply</td><td width="42px"></td></tr></tbody></table></div>'
     menu_add.innerHTML=code;
     menu_add.style.visibility='visible';
 }
@@ -3551,8 +3551,8 @@ function panel_art(id){
         tbody.innerHTML+="</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Speech synthesis</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Voice</td>"
             +'<td style="width:28px;" align="center"><select id="vols" onchange="vot.value=story_script.parameters.text_panel.speech[this.value][0];vots.value=story_script.parameters.text_panel.speech[this.value][1];" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
-            +"<td><input id='vot' class='input_text' onchange='story_script.parameters.text_panel.speech[vols.value][0]=this.value' type='text' style='width:100%;height:28px' value='"+arr_t.speech[languare][0]+"'></td>"
-            +"<td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick=\"voicesSynthesis(vols.value,'vot',story_script.parameters.text_panel.speech[vols.value][0],tue_text_view.textContent)\"></td>"
+            +"<td><input id='vot' class='input_text' onchange='story_script.parameters.text_panel.speech[document.getElementById(\"vols\").value][0]=this.value' type='text' style='width:100%;height:28px' value='"+arr_t.speech[languare][0]+"'></td>"
+            +"<td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='let l=document.getElementById(\"vols\").value;voicesSynthesis(l,\"vot\",\"story_script.parameters.text_panel.speech.\"+l+\"[0]\",tue_text_view.textContent)'></td>"
         +"<tr></tr><tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Speed</td><td style='padding-right:8px;' colspan='3'>"
             +"<input id='vots' class='input_slider input_slider_progress' onchange='story_script.parameters.text_panel.speech[vols.value][1]=this.value' type='range' min='0' max='2' step='0.1' value='"+arr_t.speech[languare][1]+"' style='width:100%;'>"
         +"</td></tr>"
