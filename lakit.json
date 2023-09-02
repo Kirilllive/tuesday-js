@@ -111,7 +111,7 @@
 		}
 	],
 	[
-		"player must find items from a list that are hidden within a scene.",
+		"player must find items from a list that are hidden within a scene",
 		{
 			"ru": "игровая механика где игрок должен найти в сцене элементы из списка.",
 			"ja": "配置したオブジェクトをプレイヤーが見つけると処理が進む仕掛けです。",
@@ -3170,6 +3170,25 @@
 		">Speed<",
 		{
 			"ru": ">Скорость<"
+		}
+	],
+	[
+		">screen size <",
+		{
+			"ja": ">размер экрана <",
+			"ru": ">размер экрана <"
+		}
+	],
+	[
+		">Fixed<",
+		{
+			"ru": ">Фиксированный<"
+		}
+	],
+	[
+		">Adaptive<",
+		{
+			"ru": ">Адаптивный<"
 		}
 	]
 ]
