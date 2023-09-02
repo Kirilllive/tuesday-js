@@ -3117,5 +3117,59 @@
 			"ru": ">нет<",
 			"es": ">no<"
 		}
+	],
+	[
+		"Warning! Voices may vary across OS and browsers.",
+		{
+			"ru": "Внимание! Голоса могут различаться в зависимости от ОС и браузера."
+		}
+	],
+	[
+		"Speech synthesis TTS<br>reading text with a synthesized voice",
+		{
+			"ru": "Синтез речи TTS чтение текста синтезированным голосом"
+		}
+	],
+	[
+		">Voice<",
+		{
+			"ru": ">Голос<"
+		}
+	],
+	[
+		">Speech synthesis<",
+		{
+			"ru": ">Синтез речи<"
+		}
+	],
+	[
+		">Voice selection<",
+		{
+			"ru": ">Выбор голоса<"
+		}
+	],
+	[
+		"fixed screen size while maintaining aspect ratio",
+		{
+			"ru": "фиксированный размер экран проекта с сохранением соотношения сторон"
+		}
+	],
+	[
+		"Aspect ratio",
+		{
+			"ru": "Фиксированый экрана"
+		}
+	],
+	[
+		"\"Speech\"",
+		{
+			"ru": "\"Речь\""
+		}
+	],
+	[
+		">Speed<",
+		{
+			"ru": ">Скорость<"
+		}
 	]
 ]

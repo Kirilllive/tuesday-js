@@ -810,7 +810,7 @@ let scen_data=[];
 let scen_element={};
 const plugins_list={"tue_aspect_ratio":{
         "name":"Aspect ratio",
-        "text":"adapts the project screen while maintaining the aspect ratio",
+        "text":"fixed screen size while maintaining aspect ratio",
         "code":"function TueAspectRatio(){let e=story_json.parameters.resolutions,t=tuesday.parentNode,i=t.getBoundingClientRect();if(0==i.height||0==i.width){var n=e[0]/window.innerWidth>e[1]/window.innerHeight?window.innerWidth/e[0]:window.innerHeight/e[1];tuesday.style.left=(window.innerWidth-e[0]*n)/2+\"px\",tuesday.style.top=(window.innerHeight-e[1]*n)/2+\"px\"}else{var n=e[0]/i.width>e[1]/i.height?i.width/e[0]:i.height/e[1];tuesday.style.left=(i.width-e[0]*n)/2+\"px\",tuesday.style.top=(i.height-e[1]*n)/2+\"px\"}t.style.backgroundColor=\"#000\",t.style.overflow=\"hidden\",t.style.position=\"relative\",tuesday.style.position=\"absolute\",tuesday.style.transformOrigin=\"left top\",tuesday.style.width=e[0]+\"px\",tuesday.style.height=e[1]+\"px\",tuesday.style.transform=\"scale(\"+n+\")\"}window.addEventListener(\"script_executed\",TueAspectRatio,!0),window.addEventListener(\"script_loaded\",TueAspectRatio,!0),window.addEventListener(\"resize\",TueAspectRatio,!0);"
     },"game_pad":{
         "name":"GamePad",
@@ -883,6 +883,8 @@ const texts={"tutorials":[{
         "en":"Telegram bot<br><br>Project export to chat bot for telegram messenger<br>Warning! some features may not be supported by bot"
         },{
         "en":"You can change the token for bot in the project settings. step-by-step instructions for starting bot can be found in <a href='https://kirilllive.github.io/tuesday-js/doc_editor.html#bot_telegram' target='_blank'>documentation</a>"
+        },{
+        "en":"Warning! Voices may vary across OS and browsers."
         }
 ]}
 let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0],'ferst':true,'pvw':[640,480],'lines_anim':true};
@@ -2907,7 +2909,7 @@ function dialog_text_edit(){
 function voicesSynthesis(l,t,a,d){
     let v="",voices=speechSynthesis.getVoices(),s=document.getElementById(t).value.split(",").map((item)=>{return item.trim()});
     voices.forEach(function(voice,i){if(l==voice.lang.substring(0,2)){v+="<tr><td style='width:60px;' align='center'><label class='switchbox'><input type='checkbox' class='chec_plugin' value='"+voice.name+"' "+((s.includes(voice.name))?"checked":"")+"><span class='toggle round'></span></label>   </td><td>"+voice.name+"</td><td class='icon_m icon_audio_play' style='height:40px;width:40px;' onclick='speak(\""+((d.length>0)?d:"Hello")+"\",\""+voice.name+"\")'></td></tr>"}});
-    code='<div class="window" style="position:fixed;padding:8px;width:380px;"><div><div class="window_close icon icon_close" onclick="synth.cancel();menu_add.style.visibility=\'hidden\';" ></div></div><p>Voice selection</p><hr style="margin-top:10px;"><div style="border-bottom:1px solid var(--cb);overflow-x:hidden;overflow-y:auto;max-height:calc(100vh - 120px);"><table id="all_voices" style="width: 100%;"><tbody>'+v+'</tbody></table></div>'
+    code='<div class="window" style="position:fixed;padding:8px;width:380px;"><div><div class="window_close icon icon_close" onclick="synth.cancel();menu_add.style.visibility=\'hidden\';" ></div></div><p>Voice selection</p>   <br><hr style="margin:0;"><p class="text_tutorials_a select_tutorials">'+texts.tutorials[19].en+'</p>  <div style="border-bottom:1px solid var(--cb);overflow-x:hidden;overflow-y:auto;max-height:calc(100vh - 120px);"><table id="all_voices" style="width: 100%;"><tbody>'+v+'</tbody></table></div>'
     +'<br><table class="big_button" width="256px" onclick="synth.cancel();voicesSynthesis_apply(\''+l+'\',\''+t+'\','+a+');menu_add.style.visibility=\'hidden\';"><tbody><tr><td width="42px" class="icon icon_ok"></td><td align="center">Apply</td><td width="42px"></td></tr></tbody></table></div>'
     menu_add.innerHTML=code;
     menu_add.style.visibility='visible';
