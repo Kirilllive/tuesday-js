@@ -827,7 +827,7 @@ const plugins_list={"tue_aspect_ratio":{
     },"speech":{
         "name":"Speech",
         "text":"Speech synthesis TTS<br>reading text with a synthesized voice",
-        "code":"const synth=window.speechSynthesis;tuesday.addEventListener('creation_dialog',()=>{if(tue_set_audio<2&&story_json.parameters.text_panel.speech||arr_dialog.speech){let e=new SpeechSynthesisUtterance(dialog_text);synth.speaking&&synth.cancel();let t=arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],s=speechSynthesis.getVoices(),n=t[0].split(',').map(e=>e.trim()),a=!1;for(v=0;v<s.length&&(s.filter(e=>{e.name==n[v]&&(a=e)}),!a);v++);e.voice=a,e.rate=t[1],synth.speak(e)}});"
+        "code":"const synth=window.speechSynthesis;tuesday.addEventListener(\"creation_dialog\",()=>{if(dialog_text&&tue_set_audio<2&&(story_json.parameters.text_panel.speech||arr_dialog.speech)){let e=new SpeechSynthesisUtterance(dialog_text);synth.speaking&&synth.cancel();let t=arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],s=speechSynthesis.getVoices(),n=t[0].split(\",\").map(e=>e.trim()),a=!1;for(v=0;v<s.length&&(s.filter(e=>{e.name==n[v]&&(a=e)}),!a);v++);e.voice=a,e.rate=t[1],synth.speak(e)}});"
     },"show_toast":{
         "name":"Show toast",
         "text":"small message appears for a while",

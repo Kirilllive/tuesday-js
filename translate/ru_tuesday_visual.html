@@ -810,7 +810,7 @@ let scen_data=[];
 let scen_element={};
 const plugins_list={"tue_aspect_ratio":{
         "name":"Фиксированый экрана",
-        "text":"фиксированный размер экран проекта с сохранением соотношения сторон",
+        "text":"фиксированный размер экрана с сохранением соотношения сторон",
         "code":"function TueAspectRatio(){let e=story_json.parameters.resolutions,t=tuesday.parentNode,i=t.getBoundingClientRect();if(0==i.height||0==i.width){var n=e[0]/window.innerWidth>e[1]/window.innerHeight?window.innerWidth/e[0]:window.innerHeight/e[1];tuesday.style.left=(window.innerWidth-e[0]*n)/2+\"px\",tuesday.style.top=(window.innerHeight-e[1]*n)/2+\"px\"}else{var n=e[0]/i.width>e[1]/i.height?i.width/e[0]:i.height/e[1];tuesday.style.left=(i.width-e[0]*n)/2+\"px\",tuesday.style.top=(i.height-e[1]*n)/2+\"px\"}t.style.backgroundColor=\"#000\",t.style.overflow=\"hidden\",t.style.position=\"relative\",tuesday.style.position=\"absolute\",tuesday.style.transformOrigin=\"left top\",tuesday.style.width=e[0]+\"px\",tuesday.style.height=e[1]+\"px\",tuesday.style.transform=\"scale(\"+n+\")\"}window.addEventListener(\"script_executed\",TueAspectRatio,!0),window.addEventListener(\"script_loaded\",TueAspectRatio,!0),window.addEventListener(\"resize\",TueAspectRatio,!0);"
     },"game_pad":{
         "name":"GamePad",
@@ -827,7 +827,7 @@ const plugins_list={"tue_aspect_ratio":{
     },"speech":{
         "name":"Речь",
         "text":"Синтез речи TTS чтение текста синтезированным голосом",
-        "code":"const synth=window.speechSynthesis;tuesday.addEventListener('creation_dialog',()=>{if(tue_set_audio<2&&story_json.parameters.text_panel.speech||arr_dialog.speech){let e=new SpeechSynthesisUtterance(dialog_text);synth.speaking&&synth.cancel();let t=arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],s=speechSynthesis.getVoices(),n=t[0].split(',').map(e=>e.trim()),a=!1;for(v=0;v<s.length&&(s.filter(e=>{e.name==n[v]&&(a=e)}),!a);v++);e.voice=a,e.rate=t[1],synth.speak(e)}});"
+        "code":"const synth=window.speechSynthesis;tuesday.addEventListener(\"creation_dialog\",()=>{if(dialog_text&&tue_set_audio<2&&(story_json.parameters.text_panel.speech||arr_dialog.speech)){let e=new SpeechSynthesisUtterance(dialog_text);synth.speaking&&synth.cancel();let t=arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],s=speechSynthesis.getVoices(),n=t[0].split(\",\").map(e=>e.trim()),a=!1;for(v=0;v<s.length&&(s.filter(e=>{e.name==n[v]&&(a=e)}),!a);v++);e.voice=a,e.rate=t[1],synth.speak(e)}});"
     },"show_toast":{
         "name":"Тост",
         "text":"небольшое сообщение которое появляется на короткое время",
@@ -2861,14 +2861,14 @@ function dialog_text_edit(){
 	if(!copy_arr.name){copy_arr.name={}}
     if(story_script.parameters.characters&&story_script.parameters.characters[copy_arr.name]){n=story_script.parameters.characters[copy_arr.name]}
     if(typeof copy_arr[arr_n]!=='object'){data_la(copy_arr,arr_n)};if(!copy_arr[arr_n][languare]){copy_arr[arr_n][languare]=""};
-	var html="<div class='window' style='width:90%;max-width:800px; padding: 2px 0 24px 0;'><div class='win_head'>Текст диалога<div class='window_close icon icon_close' onclick='modal_window(\"close\");synth.cancel();'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[1].en+"</p>"
+	var html="<div class='window' style='width:90%;max-width:800px;padding: 2px 0 24px 0;'><div class='win_head'>Текст диалога<div class='window_close icon icon_close' onclick='modal_window(\"close\");synth.cancel();'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[1].en+"</p>"
 	+"<table width='100%' style='border-bottom:1px solid var(--cb);'><tbody><tr><td align='right' style='width:1%;white-space:nowrap;'>&nbsp;язык:&nbsp;</td>"
 	+"<td width='40px'><select id='text_la' onchange='"+((n)?"name_text.value=((story_script.parameters.characters[copy_arr.name][this.value])?story_script.parameters.characters[copy_arr.name][this.value]:\"\")":"name_text.value=((copy_arr.name[this.value])?copy_arr.name[this.value]:\"\")")+((v)?";voices_data.value=copy_arr.speech[this.value][0];voices_speed.value=copy_arr.speech[this.value][1]":"")+";dialogtext.value=((copy_arr.text[this.value])?copy_arr.text[this.value]:\"\");text_chars.innerHTML=dialogtext.value.length;text_words.innerHTML=dialogtext.value.split(reg).length-1;synth.cancel();loadVoices()' style='height:40px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:0'>"+project_languares(languare)+"</select></td>"
     +"<td align='right' style='width:1%;white-space:nowrap;'>&nbsp;&nbsp;символов:&nbsp;</td><td align='left' id='text_chars' style='width:1%;padding-right:8px;'>"+copy_arr[arr_n][languare].length+"</td><td style='width:1%;white-space:nowrap;' align='right'>&nbsp;&nbsp;слов:&nbsp;</td><td align='left' id='text_words'>"+(copy_arr[arr_n][languare].split(reg).length-1)+"</td>"
     +"<td align='right' id='name_speec' style='display:none;white-space:nowrap;width:1%;'>&nbsp;прочесть:</td><td width='40px'><div id='play_speak' style='display:none;width:100%;height:40px' class='icon_m icon_audio_play' onclick='speak(dialogtext.selectionStart==dialogtext.selectionEnd?dialogtext.value:dialogtext.value.substring(dialogtext.selectionStart,dialogtext.selectionEnd))'></div></td><td align='left' style='width:1%;'><select id='voice_select' onchange='localStorage.setItem(\"tue_voice\",this.value)' style='display:none;height:40px;width:64px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:0'></select></td>"
     +"<td></td></tr></tbody></table><table width='100%' style='border-bottom:1px solid var(--cb);'><tbody><tr>"
-    +"<td><textarea id='dialogtext' oninput='text_chars.innerHTML=this.value.length;text_words.innerHTML=this.value.split(reg).length-1;copy_arr[arr_n][text_la.value]=this.value;synth.cancel();' class='input_text' style='border-bottom:none; white-space:pre-wrap;resize:none;padding:4px;-moz-box-sizing:border-box;box-sizing:border-box;height:calc(90vh - 256px);width:100%;min-height:92px;border-right:1px solid var(--cb);'>"+((copy_arr[arr_n][languare].length>0)?copy_arr[arr_n][languare]:"")+"</textarea></td>"
-	+"<td style='max-width:286px;width:45%;' valign='top'><div style='width:100%;height:calc(90vh - 256px);overflow-x:hidden;overflow-y:auto;'><table width='100%'><tbody>"
+    +"<td><textarea id='dialogtext' oninput='text_chars.innerHTML=this.value.length;text_words.innerHTML=this.value.split(reg).length-1;copy_arr[arr_n][text_la.value]=this.value;synth.cancel();' class='input_text' style='min-height:128px;border-bottom:none;white-space:pre-wrap;resize:none;padding:4px;-moz-box-sizing:border-box;box-sizing:border-box;height:calc(90vh - 256px);width:100%;border-right:1px solid var(--cb);'>"+((copy_arr[arr_n][languare].length>0)?copy_arr[arr_n][languare]:"")+"</textarea></td>"
+	+"<td style='max-width:286px;width:45%;' valign='top'><div style='width:100%;min-height:128px;height:calc(90vh - 256px);overflow-x:hidden;overflow-y:auto;'><table width='100%'><tbody>"
 	+"<tr><td width='80px' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);' colspan='3'>Настройки текстовой панели</td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Цвет текста</td><td><input id='text_color' class='input_text' value='"+((copy_arr.color_text)?copy_arr.color_text:"")+"' type='text'></td>"
     +"<td class='icon icon_color' style='height:40px;width:40px;' onclick='edit_color(\"text_color\",text_color.value);'></td></tr>"
@@ -4636,7 +4636,7 @@ function add_tr(id){
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;padding-top:10px;";
         td2.innerHTML="<input class='title_name input_text' value='"+languare_data(story_script.parameters.title)+"' style='padding-top:10px;' type='text' placeholder='переведенное название'>";
     }else if(id=='var_tablet'){
-        td1.innerHTML="<input class='var_name input_text' value='variable"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name variable' onchange='this.value=correct_name(this.value)' style='padding-top:10px;' type='text'>";
+        td1.innerHTML="<input class='var_name input_text' value='variable"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='имя переменной' onchange='this.value=correct_name(this.value)' style='padding-top:10px;' type='text'>";
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;";
         td2.innerHTML="<input class='var_vol input_text' style='padding-top:10px;' type='text' placeholder='значение'>";
     }else if(id=='var_sounds'){

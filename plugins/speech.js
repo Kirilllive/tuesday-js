@@ -1,6 +1,6 @@
 const synth=window.speechSynthesis;
 tuesday.addEventListener('creation_dialog',()=>{
-    if(tue_set_audio<2&&story_json.parameters.text_panel.speech||arr_dialog.speech){
+    if(dialog_text&&tue_set_audio<2&&(story_json.parameters.text_panel.speech||arr_dialog.speech)){
         const speech=new SpeechSynthesisUtterance(dialog_text);
         if (synth.speaking){synth.cancel()}
         let voice=(arr_dialog.speech&&arr_dialog.speech[languare][0].length>0)?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare];
