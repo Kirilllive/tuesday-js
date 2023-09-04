@@ -2908,7 +2908,7 @@ function dialog_text_edit(){
 }
 function voicesSynthesis(l,t,a,d){
     let v="",voices=speechSynthesis.getVoices(),s=document.getElementById(t).value.split(",").map((item)=>{return item.trim()});
-    voices.forEach(function(voice,i){if(l==voice.lang.substring(0,2)){v+="<tr><td style='width:60px;' align='center'><label class='switchbox'><input type='checkbox' class='chec_plugin' value='"+voice.name+"' "+((s.includes(voice.name))?"checked":"")+"><span class='toggle round'></span></label>   </td><td>"+voice.name+"</td><td class='icon_m icon_audio_play' style='height:40px;width:40px;' onclick='speak(\""+((d.length>0)?d:"Hello")+"\",\""+voice.name+"\")'></td></tr>"}});
+    voices.forEach(function(voice,i){if(l==voice.lang.substring(0,2)){v+="<tr><td style='width:60px;' align='center'><label class='switchbox'><input type='checkbox' class='chec_plugin' value='"+voice.name+"' "+((s.includes(voice.name))?"checked":"")+"><span class='toggle round'></span></label>   </td><td>"+voice.name+"</td><td class='icon_m icon_audio_play' style='height:40px;width:40px;' onclick='speak(\""+((d.length>0)?d.replaceAll("'","").replaceAll('"',''):"Hello")+"\",\""+voice.name+"\")'></td></tr>"}});
     code='<div class="window" style="position:fixed;padding:8px;width:380px;"><div><div class="window_close icon icon_close" onclick="synth.cancel();menu_add.style.visibility=\'hidden\';" ></div></div><p>Voice selection</p>   <br><hr style="margin:0;"><p class="text_tutorials_a select_tutorials">'+texts.tutorials[19].en+'</p>  <div style="border-bottom:1px solid var(--cb);overflow-x:hidden;overflow-y:auto;max-height:calc(100vh - 120px);"><table id="all_voices" style="width: 100%;"><tbody>'+v+'</tbody></table></div>'
     +'<br><table class="big_button" width="256px" onclick="synth.cancel();voicesSynthesis_apply(\''+l+'\',\''+t+'\','+a+');menu_add.style.visibility=\'hidden\';"><tbody><tr><td width="42px" class="icon icon_ok"></td><td align="center">Apply</td><td width="42px"></td></tr></tbody></table></div>'
     menu_add.innerHTML=code;
@@ -2947,7 +2947,7 @@ function loadVoices(){
         play_speak.style.display="none";
     }
 }
-function speak(text,v) {
+function speak(text,v){
 	const speech = new SpeechSynthesisUtterance(text);
     if (synth.speaking){synth.cancel()}
     else{
