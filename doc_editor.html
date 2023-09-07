@@ -218,6 +218,7 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     
     <div class="accordion"><div class="block block_open">Add-on</div></div>
     <div class="panel">
+        <div class="block" onclick="get_doc('speech')"><span class="three_1">Speech</span></div>
         <div class="block" onclick="get_doc('game_pad')"><span class="three_1">Game Pad</span></div>
         <div class="block" onclick="get_doc('hidden_object')"><span class="three_1">Hidden objects</span></div>
         <!--<div class="block" onclick="get_doc('screen_control')"><span class="three_1">Screen control</span></div>-->
@@ -2203,6 +2204,23 @@ text.texts {fill:#000;font-size: 28px;font-family:Arial;cursor:pointer;}
     <br><br><p><b>tue_name_block</b> - A panel from the text area that displays the name of the character.</p>
     <br><br><p><b>tue_text_block</b> - The text panel relative to which the panel with the name is displayed.</p>
     <br><br><p><b>tue_text_view</b> - The part of the text area that displays the dialog, if you want to change the style of the text, it is recommended to refer to this class.</p>
+</div>
+
+<div id="speech" style="display:none">
+    <div style="width:100%;text-align: center;">
+    <p class="head">Speech</p>
+    </div>
+    <br><br><p>Plugin "Speech" allows you to convert the text of the dialogue into speech.</p>
+    <br><br><div style="width:100%;text-align: center;">
+        <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/speech_synthesis_add_on.jpg" style="max-height:466px;max-width:682px;"/>
+    </div>
+    <br><br><p>It can be activated in the "Add-on" section of the project settings, after that, speech synthesis settings will be available in the dialog editor and text panel options.</p>
+    <br><br><div style="width:100%;text-align: center;">
+        <img class="img_t" onclick="modal_window('open',this.src)" src="tutorial_img/speech_synthesis_voice.jpg" style="max-height:466px;max-width:682px;"/>
+    </div>
+    <br><br><p>In these settings, you can both globally and locally select the reading speed and voice from those available for the specified language.</p>
+    <br><br><p><b>Warning!</b><br><br>This feature is experimental and has some limitations.<br> Depending on operating systems and browsers, the catalog of available voices may differ.<br>You can select multiple voices to read, in which case the engine will use the first one available, or use the default voice for the system.<br>Also be aware that not all languages have speech synthesis and this feature may not be available on older systems and mobile platforms.</p>
+
 </div>
 
 <script>
