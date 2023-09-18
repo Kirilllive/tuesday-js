@@ -11,7 +11,10 @@ function TueAspectRatio(){
         tuesday.style.left=(rect.width-(tue_size[0]*s))/2+'px';
         tuesday.style.top=(rect.height-(tue_size[1]*s))/2+'px';
     }
-    elem.style.backgroundColor='#000';
+    elem.style.backgroundColor=(tue_size[2]&&tue_size[2].length>0)?tue_size[2]:'#000';
+    elem.style.backgroundImage="url('"+tue_size[3]+"')";
+    elem.style.backgroundPosition="center";
+    elem.style.backgroundSize="cover";
     elem.style.overflow='hidden';
     elem.style.position='relative';
     tuesday.style.position='absolute';
