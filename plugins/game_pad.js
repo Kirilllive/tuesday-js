@@ -43,15 +43,15 @@ function gamepad_cursor_cler(){
 window.addEventListener("keydown",function(e){
     e=e.keyCode;
     if(e==37){
-        if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(1);}
+        if(story_json[tue_story][scene].terrain_map||story_json[tue_story][scene].dialogs[dialog].choice){select_choice(1);}
         else if( !story_json.parameters.key || !story_json.parameters.key.next ){back_story()}
     }else if(e==39){
-        if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(-1);}
+        if(story_json[tue_story][scene].terrain_map||story_json[tue_story][scene].dialogs[dialog].choice){select_choice(-1);}
         else if( !story_json.parameters.key || !story_json.parameters.key.back ){go_story()}
     }else if(e==38){
-        if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(1);}
+        if(story_json[tue_story][scene].terrain_map||story_json[tue_story][scene].dialogs[dialog].choice){select_choice(1);}
     }else if(e==40){
-        if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(-1);}
+        if(story_json[tue_story][scene].terrain_map||story_json[tue_story][scene].dialogs[dialog].choice){select_choice(-1);}
     }else if(e==13||e==32){
         if( gamepad_cursor!=0 ){
             gamepad_choices[gamepad_choice].click();
@@ -71,15 +71,15 @@ window.addEventListener('gamepadconnected',function(e){
             if (gamepadPress!==statenow){
                 gamepadPress=statenow;
                 if(gamepad.buttons[14].pressed){
-                    if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){
+                    if(story_json[tue_story][scene].terrain_map||story_json[tue_story][scene].dialogs[dialog].choice){
                         select_choice(1);
                     }else{back_story()}
                 }else if(gamepad.buttons[15].pressed){
-                    if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){
+                    if(story_json[tue_story][scene].terrain_map||story_json[tue_story][scene].dialogs[dialog].choice){
                         select_choice(-1);
                     }else{go_story()}
-                }else if(gamepad.buttons[12].pressed){if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(1);}}
-                else if(gamepad.buttons[13].pressed){if(story_json[tue_story][scene].terrain_map||(tue_next.style.visibility='hidden'&&story_json[tue_story][scene].dialogs[dialog].choice)){select_choice(-1);}}
+                }else if(gamepad.buttons[12].pressed){if(story_json[tue_story][scene].terrain_map||story_json[tue_story][scene].dialogs[dialog].choice){select_choice(1);}}
+                else if(gamepad.buttons[13].pressed){if(story_json[tue_story][scene].terrain_map||story_json[tue_story][scene].dialogs[dialog].choice){select_choice(-1);}}
                 else if(gamepad.buttons[1].pressed||gamepad.buttons[2].pressed||gamepad.buttons[3].pressed||gamepad.buttons[0].pressed){
                     if( gamepad_cursor!=0 ){
                         gamepad_choices[gamepad_choice].click();

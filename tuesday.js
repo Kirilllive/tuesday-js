@@ -323,10 +323,14 @@ function name_block_update(){
 			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
 			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="visible";}
 		}
-        if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
-		else if(controll){document.getElementById("tue_next").style.visibility="visible";}
-		if(scene == 0 && dialog == 0 && !arr_dialog.back_to){document.getElementById('tue_back').style.visibility='hidden'}
-		else if(controll){document.getElementById("tue_back").style.visibility="visible";}
+        if(document.getElementById('tue_next')){
+            if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
+            else if(controll){document.getElementById("tue_next").style.visibility="visible";}
+		}
+        if(document.getElementById('tue_back')){
+            if(scene == 0 && dialog == 0 && !arr_dialog.back_to){document.getElementById('tue_back').style.visibility='hidden'}
+            else if(controll){document.getElementById("tue_back").style.visibility="visible";}
+        }
         if(arr_dialog.text && arr_dialog.text!='' && arr_dialog.text[languare]!=''){
             tue_text_view.innerHTML="";
             tue_text_block.style.visibility='visible';
@@ -608,7 +612,7 @@ function name_block_update(){
 					return s;
 				}
             }
-			if(interfaces){tue_next.style.visibility='hidden'};
+			if(interfaces&&document.getElementById('tue_next')){tue_next.style.visibility='hidden'};
         }
         if(!next_scene||arr_dialog.html){del_element("tue_html_dialog")};
         if (arr_dialog.html){
@@ -689,7 +693,7 @@ function name_block_update(){
     var r=n.split('=');return "<ruby>"+r[0]+"<rt>"+r[1]+"</rt></ruby>"
 } function go_story(choice){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
-	if(tue_next.style.visibility!='hidden' || choice){
+	if(!document.getElementById('tue_next')||(document.getElementById('tue_next')&&tue_next.style.visibility!='hidden') || choice){
         if(arr_dialog.choice){del_element("tue_choice")}
 		if(arr_dialog.go_to){
 			var go=arr_dialog.go_to;
