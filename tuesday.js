@@ -198,6 +198,7 @@ function name_block_update(){
         button.setAttribute("onclick",v+";"
             +((story_json.parameters.buttons[i].name=="tue_audio")?"set_audio(this,story_json.parameters.buttons["+i+"]);":"")
             +((story_json.parameters.buttons[i].name=="tue_fullScreen")?"full_screen(this,story_json.parameters.buttons["+i+"]);":"")
+            +((story_json.parameters.buttons[i].name=="tue_speech")?"play_synth(art_data(story_json.parameters.buttons["+i+"].text1),art_data(story_json.parameters.buttons["+i+"].text2));":"")
             +((story_json[story_json.parameters.buttons[i].name])?"go_to('"+story_json.parameters.buttons[i].name+"');":""))
         if(story_json.parameters.buttons[i].className){button.className=story_json.parameters.buttons[i].className;}
         if(story_json.parameters.buttons[i].style){button.style=story_json.parameters.buttons[i].style;}
@@ -597,6 +598,7 @@ function name_block_update(){
                     else if (g == "tue_fullScreen"){choice.setAttribute("onclick",v+"full_screen(this, story_json['"+tue_story+"']["+scene+"].dialogs["+dialog+"].choice["+i+"]);"+add_sound());}
                     else if (g == "tue_fastRewind"){choice.setAttribute("onclick",v+"fast_rewind();"+add_sound());}
                     else if (g == "tue_audio"){choice.setAttribute("onclick",v+"set_audio(this, story_json['"+tue_story+"']["+scene+"].dialogs["+dialog+"].choice["+i+"]);"+add_sound());}
+                    else if (g == "tue_speech"){choice.setAttribute("onclick",v+"play_synth(art_data(story_json['"+tue_story+"']["+scene+"].dialogs["+dialog+"].choice["+i+"].text1),art_data(story_json['"+tue_story+"']["+scene+"].dialogs["+dialog+"].choice["+i+"].text2));"+add_sound());}
                     else if (g == "tue_home"){choice.setAttribute("onclick",v+'go_to("'+story_json.parameters.launch_story+'");'+add_sound());}
                     else if (g == "tue_back"){choice.setAttribute("onclick",v+"back_story();"+add_sound());}
                     else if (g == "tue_next"){choice.setAttribute("onclick",v+"go_story();"+add_sound());}
@@ -936,4 +938,3 @@ function autoplaysound(){
     if(tue_set_audio==0){tue_bg_music.play();}
     tuesday.removeEventListener('mousedown',autoplaysound);
 }
-
