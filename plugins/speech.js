@@ -1,6 +1,7 @@
 const synth=window.speechSynthesis;
-tuesday.addEventListener('creation_dialog',()=>{if(tue_set_audio<2){play_synth()}else{synth.cancel()}})
+tuesday.addEventListener('creation_dialog',()=>{if(story_json.parameters.text_panel.speech_play&&tue_set_audio<2){play_synth()}else{synth.cancel()}})
 function play_synth(t,g,s){
+    if(t){t=(typeof t=='object')?t[languare]:t};
     if(((dialog_text&&dialog_text.length>0)||t)&&(story_json.parameters.text_panel.speech||arr_dialog.speech)){
         const speech=new SpeechSynthesisUtterance((t)?t:dialog_text);
         if (synth.speaking){synth.cancel()}

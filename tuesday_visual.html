@@ -827,7 +827,7 @@ const plugins_list={"tue_aspect_ratio":{
     },"speech":{
         "name":"Speech",
         "text":"Speech synthesis TTS<br>reading text with a synthesized voice",
-        "code":"const synth=window.speechSynthesis;function play_synth(e,t,n){if((dialog_text&&dialog_text.length>0||e)&&(story_json.parameters.text_panel.speech||arr_dialog.speech)){let s=new SpeechSynthesisUtterance(e||dialog_text);synth.speaking&&synth.cancel();let h=t&&t.length>0?[t,n||1]:arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],a=speechSynthesis.getVoices(),p=h[0].split(\",\").map(e=>e.trim()),c=!1;for(v=0;v<a.length&&(a.filter(e=>{e.name==p[v]&&(c=e)}),!c);v++);s.voice=c,s.rate=h[1],synth.speak(s)}}tuesday.addEventListener(\"creation_dialog\",()=>{tue_set_audio<2?play_synth():synth.cancel()});"
+        "code":"const synth=window.speechSynthesis;function play_synth(e,t,n){if(e&&(e=\"object\"==typeof e?e[languare]:e),(dialog_text&&dialog_text.length>0||e)&&(story_json.parameters.text_panel.speech||arr_dialog.speech)){let s=new SpeechSynthesisUtterance(e||dialog_text);synth.speaking&&synth.cancel();let a=t&&t.length>0?[t,n||1]:arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],p=speechSynthesis.getVoices(),h=a[0].split(\",\").map(e=>e.trim()),c=!1;for(v=0;v<p.length&&(p.filter(e=>{e.name==h[v]&&(c=e)}),!c);v++);s.voice=c,s.rate=a[1],synth.speak(s)}}tuesday.addEventListener(\"creation_dialog\",()=>{story_json.parameters.text_panel.speech_play&&tue_set_audio<2?play_synth():synth.cancel()});"
     },"show_toast":{
         "name":"Show toast",
         "text":"small message appears for a while",
@@ -2897,6 +2897,7 @@ function dialog_text_edit(){
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td><input id='e_style' class='input_text' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[3]:"")+"' type='text'></td><td></td></tr>"
     if(v){
         if(!copy_arr.speech){copy_arr.speech={}}
+        if(typeof story_script.parameters.text_panel.speech_play=="undefined"){story_script.parameters.text_panel.speech_play=true}
         if(!copy_arr.speech[languare]){
             for(var i=0;i<story_script.parameters.languares.length;i++){copy_arr.speech[story_script.parameters.languares[i]]=["",1];}
             copy_arr.speech[languare]=["",1]
@@ -3549,6 +3550,7 @@ function panel_art(id){
     if(story_script.parameters.plugins&&story_script.parameters.plugins.includes("speech")){
         let arr_t=story_script.parameters.text_panel;
         if(!arr_t.speech){arr_t.speech={}}
+        if(typeof arr_t.speech_play=="undefined"){arr_t.speech_play=true}
         if(!arr_t.speech[languare]){
             for(var i=0;i<story_script.parameters.languares.length;i++){arr_t.speech[story_script.parameters.languares[i]]=["",1];}
             arr_t.speech[languare]=["",1]
@@ -3560,6 +3562,8 @@ function panel_art(id){
             +"<td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='let l=document.getElementById(\"vols\").value;voicesSynthesis(l,\"vot\",\"story_script.parameters.text_panel.speech.\"+l+\"[0]\",tue_text_view.textContent)'></td>"
         +"<tr></tr><tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Speed</td><td style='padding-right:8px;' colspan='3'>"
             +"<input id='vots' class='input_slider input_slider_progress' onchange='story_script.parameters.text_panel.speech[vols.value][1]=this.value' type='range' min='0' max='2' step='0.1' value='"+arr_t.speech[languare][1]+"' style='width:100%;'>"
+        +"<tr></tr><tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Play</td><td style='padding-right:8px;' colspan='3'>"
+            +"<select class='choice_var_operation' onchange='story_script.parameters.text_panel.speech_play=(this.selectedIndex==0)?true:false'><option>Yes</option><option "+((arr_t.speech_play)?"":"selected")+">No</option></select>"
         +"</td></tr>"
     }
 }
