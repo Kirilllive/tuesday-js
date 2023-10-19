@@ -400,10 +400,10 @@ function name_block_update(){
                     if(arr_dialog.video.angle){video.style.transform="rotate("+arr_dialog.video.angle+"deg)"}else{video.style.transform='none';}
                     video.style.width=arr_dialog.video.size[0];
                     video.style.height=arr_dialog.video.size[1];
-                    if(arr_dialog.video.position[0]!=0){video.style.left=arr_dialog.video.position[0];}
-                    if(arr_dialog.video.position[1]!=0){video.style.right=arr_dialog.video.position[1];}
-                    if(arr_dialog.video.position[2]!=0){video.style.top=arr_dialog.video.position[2];}
-                    if(arr_dialog.video.position[3]!=0){video.style.bottom=arr_dialog.video.position[3];}
+                    if(arr_dialog.video.position[0]!=0){video.style.right=null;video.style.left=arr_dialog.video.position[0];}
+                    if(arr_dialog.video.position[1]!=0){video.style.left=null;video.style.right=arr_dialog.video.position[1];}
+                    if(arr_dialog.video.position[2]!=0){video.style.bottom=null;video.style.top=arr_dialog.video.position[2];}
+                    if(arr_dialog.video.position[3]!=0){video.style.top=null;video.style.bottom=arr_dialog.video.position[3];}
                 }
             }
             if(arr_dialog.video.loop){video.loop=arr_dialog.video.loop;}else{video.loop=false;}
