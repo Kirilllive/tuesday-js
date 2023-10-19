@@ -5312,7 +5312,7 @@ function saveResize(s,a){
                 arr_e.size[1]=parseFloat((resizers.style.height.replace('px','')-b).toFixed(2))+'px';
             }
         }
-        if(scen_video){scen_video.style.pointerEvents=null;}
+        if(document.getElementById("scen_video")){scen_video.style.pointerEvents=null;}
     }else{
         var c,e=scene_layout.getElementsByClassName("objSelect");
         for(c=0;c<e.length;c++){if(e[c]){e[c].style.pointerEvents=null}}
