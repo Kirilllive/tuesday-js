@@ -586,8 +586,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='indent_text' class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.text_panel.indent_text=this.value;scen_edit_update(true);state_save()' type="text" style='width:100%;'>
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Text</td>
-                            </td></tr>
+                                <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Text</td>
+                            </tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color text</td><td style='width:40px;' align='center'><div class='show_color' id='color_text_s'></div></td><td style='padding-right:8px;'>
                                 <input id='color_text' class='input_text' onchange='story_script.parameters.text_panel.color_text=this.value;color_text_s.style.backgroundColor=this.value;scen_edit_update(true);state_save()' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("color_text",color_text.value)'>
@@ -607,8 +607,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                     <option>Text autoscroll</option>
                                 </select>
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>
-                            </td></tr>
+                                <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>
+                            </tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Top position</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='position_t' class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.text_panel.position[2]=this.value;scen_edit_update(true);state_save()' type="text" value='0' style='width:100%;'>
                             </td></tr>
@@ -621,8 +621,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Right position</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='position_r' class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.text_panel.position[1]=this.value;scen_edit_update(true);state_save()' type="text" value='0' style='width:100%;'>
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Style</td>
-                            </td></tr>
+                                <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Style</td>
+                            </tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>
                                 <input id='style' class='input_text' onchange='scen_edit_update(true)' type="text" value='' style='width:100%;'>
                             </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.text_panel;edit_code('style','Style CSS');">
@@ -634,7 +634,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 <input id='color_t' class='input_text' onchange='story_script.parameters.text_panel.color=this.value;color_t_s.style.backgroundColor=this.value;scen_edit_update(true);state_save()' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("color_t",color_t.value)'>
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">End text cursor</td>
+                                <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">End text cursor</td>
                             </tr>
                             <tr><td height="40px" align="right" style="padding-right:8px;">Art</td>
                                 <td colspan='2'><input id="etc_i" class="input_text" onchange='if(!story_script.parameters.text_panel.end_text_cursor){story_script.parameters.text_panel.end_text_cursor=[0,0,0,""]};story_script.parameters.text_panel.end_text_cursor[0]=this.value;scen_edit_update(true);' type="text" style="width:100%;height:28px" ></td>
@@ -650,7 +650,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 <input id='etc_s' class='input_text' onchange='if(!story_script.parameters.text_panel.end_text_cursor){story_script.parameters.text_panel.end_text_cursor=[0,0,0,""]};story_script.parameters.text_panel.end_text_cursor[3]=this.value;scen_edit_update(true);' type="text" style='width:100%;'>
                             </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.text_panel.end_text_cursor;edit_code('3','Style CSS');">
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Background image</td>
+                                <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Background image</td>
                             </tr>
                             </tbody><tbody id='atp_edit'>
                         </tbody></table>
@@ -667,8 +667,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Indent text</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_indent_text' class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.name_panel.indent_text=(this.value.length>0)?this.value:0;scen_edit_update(true);state_save()' type="text" style='width:100%;'>
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Text</td>
-                            </td></tr>
+                                <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Text</td>
+                            </tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Color text</td><td style='width:40px;' align='center'><div class='show_color' id='n_color_text_s'></div></td><td style='padding-right:8px;'>
                                 <input id='n_color_text' class='input_text' onchange='story_script.parameters.name_panel.color_text=n_color_text.value;n_color_text_s.style.backgroundColor=this.value;scen_edit_update(true);state_save()' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("n_color_text",n_color_text.value)'>
@@ -696,8 +696,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 </tr></tbody></table>
                                 </td>
                             </tr><tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>
-                            </td></tr>
+                                <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>
+                            </tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Top position</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_position_t' class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.name_panel.position[2]=this.value;scen_edit_update(true);state_save()' type="text" value='0' style='width:100%;'>
                             </td></tr>
@@ -710,8 +710,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Right position</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_position_r' class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.name_panel.position[1]=this.value;scen_edit_update(true);state_save()' type="text" value='0' style='width:100%;'>
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Style</td>
-                            </td></tr>
+                                <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Style</td>
+                            </tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td style='padding-right:8px;' colspan='2'>
                                 <input id='n_style' class='input_text' onchange='scen_edit_update(true)' type="text" style='width:100%;'>
                             </td><td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="copy_arr=story_script.parameters.name_panel;edit_code('style','Style CSS');">
@@ -723,7 +723,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 <input id='n_color' class='input_text' onchange='story_script.parameters.name_panel.color=this.value;n_color_s.style.backgroundColor=this.value;scen_edit_update(true);state_save()' type="text" style='width:100%;'>
                             </td><td height='40px' align='right' style='width:40px;' class='icon icon_color' onclick='edit_color("n_color",n_color.value)'>
                             </td></tr>
-                                <td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Background image</td>
+                                <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Background image</td>
                             </tr>
                             </tbody><tbody id='anp_edit'>
                         </tbody></table>
@@ -807,6 +807,7 @@ const color_ui=[
 let story_script={};
 let line_controll=[];
 let scen_data=[];
+let copy_arr={};
 let scen_element={};
 const plugins_list={"tue_aspect_ratio":{
         "name":"Aspect ratio",
@@ -929,7 +930,7 @@ function loadFiles(e){
     if(load_new){
         clear_Files();countBytes=0;
         for(var i=0;i<e.target.files.length;i++){countBytes+=e.target.files[i].size;project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
-        project_foler.value=wf;
+        if(document.getElementById("project_foler")){project_foler.value=wf};
     }else{
         var jsons=[];clear_Files();countBytes=0;
         for(var i=0;i<e.target.files.length;i++){
@@ -1002,7 +1003,7 @@ function load_story_edit(url){
 }
 var all_blocks=0;
 function parse_story(){
-    story_blocks=document.getElementById("story_blocks");
+    let story_blocks=document.getElementById("story_blocks");
     story_blocks.innerHTML="";list_blocks.innerHTML="";
     story_lines=document.getElementById("story_lines");
 	story_blocks.setAttribute("align","center");
@@ -1705,12 +1706,12 @@ function jsonedit(arr){
 }
 function big_languares(s){
     var lang='<optgroup>';
-    for(l=0;l<Object.keys(languares).length;l++){lang+="<option value='"+languares[Object.keys(languares)[l]]+"' "+((languares[Object.keys(languares)[l]]==s)?"selected":"")+">"+languares[Object.keys(languares)[l]].toUpperCase()+" - "+Object.keys(languares)[l]+"</option>"+((l==8)?"</optgroup><optgroup>":"")}
+    for(let l=0;l<Object.keys(languares).length;l++){lang+="<option value='"+languares[Object.keys(languares)[l]]+"' "+((languares[Object.keys(languares)[l]]==s)?"selected":"")+">"+languares[Object.keys(languares)[l]].toUpperCase()+" - "+Object.keys(languares)[l]+"</option>"+((l==8)?"</optgroup><optgroup>":"")}
     return lang+='</optgroup>';
 }
 function create_project(){
-    li_n=document.getElementsByClassName("title_lang");
-    li_v=document.getElementsByClassName("title_name");
+    let li_n=document.getElementsByClassName("title_lang");
+    let li_v=document.getElementsByClassName("title_name");
     story_script.parameters.title={};
     story_script.parameters.languares=[];
     for(var i=0;i<li_n.length;i++){
@@ -1747,7 +1748,7 @@ function create_block(){
     if(block_id.value.length<5){toast('Name at least 5 characters')}
     else if(/^[\w\s]+$/i.test(block_id.value)){
         var color_chec=document.forms.color_chec;
-        for(i=0;i<color_chec.length;i++){
+        for(let i=0;i<color_chec.length;i++){
             if(color_chec[i].checked){
             color_chec=(setup_editor.ui<7)?color_bg[color_chec[i].value]:color_dg[color_chec[i].value]
             break;}
@@ -1800,7 +1801,7 @@ function edit_block(id){
 function delet_block(id){
 	delete story_script[id];
     if(story_script.parameters.launch_story==id){
-        for(i=0;i<color_chec.length;i++){
+        for(let i=0;i<color_chec.length;i++){
             if(Object.keys(story_script)[i]!='parameters'&&Object.keys(story_script)[i]!='blocks'){story_script.parameters.launch_story=Object.keys(story_script)[i];break;}
         }
     }
@@ -1812,7 +1813,7 @@ function updata_block(old_id){
     if(block_id.value.length<5){toast('Name at least 5 characters')}
     else if(/^[\w\s]+$/i.test(block_id.value)){
         var color_chec=document.forms.color_chec;
-        for(i=0;i<color_chec.length;i++){
+        for(let i=0;i<color_chec.length;i++){
             if(color_chec[i].checked){
             story_script.blocks[old_id][3]=(setup_editor.ui<7)?color_bg[color_chec[i].value]:color_dg[color_chec[i].value]
             document.getElementById(old_id).style.backgroundColor=color_bg[color_chec[i].value]
@@ -2068,12 +2069,12 @@ function legacy_choice_add(arr){
 }
 function option_var(d){
 	var var_list='';
-	if(story_script.parameters.variables){for(l=0;l<Object.keys(story_script.parameters.variables).length;l++){var_list+="<option value='"+Object.keys(story_script.parameters.variables)[l]+"' "+((d==Object.keys(story_script.parameters.variables)[l])?"selected" :"")+">"+Object.keys(story_script.parameters.variables)[l]+"</option>"}}
+	if(story_script.parameters.variables){for(let l=0;l<Object.keys(story_script.parameters.variables).length;l++){var_list+="<option value='"+Object.keys(story_script.parameters.variables)[l]+"' "+((d==Object.keys(story_script.parameters.variables)[l])?"selected" :"")+">"+Object.keys(story_script.parameters.variables)[l]+"</option>"}}
 	return var_list
 }
 function project_languares(d){
 	var lang='';
-	for(l=0;l<story_script.parameters.languares.length;l++){lang+="<option value='"+story_script.parameters.languares[l]+"' "+((d==story_script.parameters.languares[l])?"selected":"")+">"+story_script.parameters.languares[l].toUpperCase()+"</option>"}
+	for(let l=0;l<story_script.parameters.languares.length;l++){lang+="<option value='"+story_script.parameters.languares[l]+"' "+((d==story_script.parameters.languares[l])?"selected":"")+">"+story_script.parameters.languares[l].toUpperCase()+"</option>"}
 	return lang
 }
 function option_block(d,g){
@@ -2731,7 +2732,6 @@ function element_to(){
     else if(arr_n=='timer'){arr_l[arr_n]=["3000",story_script.parameters.launch_story]}
 	update_novel();
 }
-let copy_arr={};
 function dialog_audio_edit(id){
     arr_e=languare;
     if(!arr_l[arr_n][languare]){
@@ -2993,7 +2993,7 @@ function dialog_text_apply(){
     if(!copy_arr[arr_n].style&&!copy_arr[arr_n].className)data_only(copy_arr,arr_n);
     var arr_s=story_script.parameters.characters,n=0,l,c=0;
     if(copy_arr.name.length!=0&&!arr_s[copy_arr.name]){
-        for(l=0;l<story_script.parameters.languares.length;l++){
+        for(let l=0;l<story_script.parameters.languares.length;l++){
             var z=copy_arr.name[story_script.parameters.languares[l]];
             if(z){c+=z.length;}
             if(z && z.length>0 && /^[\w\s]+$/i.test(z) ){n=correct_name(z);break;}
@@ -3382,7 +3382,7 @@ function scen_editor(block,i,n){
             tue_text_block.style.zIndex="1000";
             tue_text_block.style.borderSpacing="0";
             tue_text_block.style.zIndex=1998;
-            tue_text_view=document.getElementById("tue_text_view");
+            let tue_text_view=document.getElementById("tue_text_view");
             tue_text_view.style.padding=arr_t.indent_text;
             tue_text_view.style.fontSize=((arr_t.size_text)?arr_t.size_text:story_script.parameters.font_size);
             tue_text_view.style.fontFamily=((arr_t.font_family)?arr_t.font_family:story_script.parameters.font);
@@ -3811,7 +3811,7 @@ function choice_panel_add(block,i,n){
     }else{
         arr_s.choice.unshift({"go_to":story_script.parameters.launch_story,"position":["50%","0","50%","0"],"size":[0,(story_script.parameters.buttons[0]&&story_script.parameters.buttons[0].size)?story_script.parameters.buttons[0].size[1]:0],"color":story_script.parameters.text_panel.color,"color_text":story_script.parameters.text_panel.color_text,"text":"choice","indent_text":"12px"});
     }
-    b=arr_s.choice.length-1;
+    let b=arr_s.choice.length-1;
     choice_panel_update(block,i,n);
     state_save();
 }
@@ -4912,7 +4912,7 @@ function csv_export(f){
 					for(d=0;d<story_script[k][i].dialogs.length;d++){
 						if(story_script[k][i].dialogs[d].text){
 							CSV+=languare_data(story_script[k][i].dialogs[d].name)+setup_editor.csv[0];
-							if(story_script[k][i].dialogs[d].text[languare]){for(l=0;l<story_script.parameters.languares.length;l++){
+							if(story_script[k][i].dialogs[d].text[languare]){for(let l=0;l<story_script.parameters.languares.length;l++){
                                 if(typeof story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]]==='string'){CSV+='"'+story_script[k][i].dialogs[d].text[story_script.parameters.languares[l]].replaceAll(setup_editor.csv[0],'').replaceAll('"','ˮ')+'"'+setup_editor.csv[0];}
                                 else{CSV+=setup_editor.csv[0];}
                                 }
@@ -4921,7 +4921,7 @@ function csv_export(f){
 							CSV+=setup_editor.csv[1];
 						}else if(story_script[k][i].dialogs[d].text_add){
 							CSV+=languare_data(story_script[k][i].dialogs[d].name)+setup_editor.csv[0];
-							if(story_script[k][i].dialogs[d].text_add[languare]){for(l=0;l<story_script.parameters.languares.length;l++){
+							if(story_script[k][i].dialogs[d].text_add[languare]){for(let l=0;l<story_script.parameters.languares.length;l++){
                                 if(typeof story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]]==='string'){CSV+='"'+story_script[k][i].dialogs[d].text_add[story_script.parameters.languares[l]].replaceAll(setup_editor.csv[0],'').replaceAll('"','ˮ')+'"'+setup_editor.csv[0];}
                                 else{CSV+=setup_editor.csv[0];}
                                 }
@@ -4931,7 +4931,7 @@ function csv_export(f){
 						}if(story_script[k][i].dialogs[d].choice){
 							for(r=0;r<story_script[k][i].dialogs[d].choice.length;r++){
 								if(story_script[k][i].dialogs[d].choice[r].text){
-									if(story_script[k][i].dialogs[d].choice[r].text[languare]){CSV+='choice '+setup_editor.csv[0];for(l=0;l<story_script.parameters.languares.length;l++){
+									if(story_script[k][i].dialogs[d].choice[r].text[languare]){CSV+='choice '+setup_editor.csv[0];for(let l=0;l<story_script.parameters.languares.length;l++){
 										if(story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]]){CSV+='"'+story_script[k][i].dialogs[d].choice[r].text[story_script.parameters.languares[l]].replaceAll(setup_editor.csv[0],'').replaceAll('"','ˮ')+'"'+setup_editor.csv[0];}
 										else{CSV+=setup_editor.csv[1]}
 									}CSV+=setup_editor.csv[1];}else if(typeof story_script[k][i].dialogs[d].choice[r].text==='string'){CSV+='choice '+setup_editor.csv[0]+story_script[k][i].dialogs[d].choice[r].text.replaceAll(setup_editor.csv[0],'')+setup_editor.csv[0];}else{CSV+=setup_editor.csv[1]}
@@ -5027,6 +5027,7 @@ function make_resizable(s,f){
     const resizers=s.getElementsByClassName("resizer");
     const minSize=26;
     let original_width=0,original_height=0,original_x=0,original_y=0,original_mouse_x=0,original_mouse_y=0,size=0,z_scale=0,rotate_o,rotate_x,rotate_y;
+    let box_x,box_y,box_width,box_height;
     document.onkeydown=function(e){
         e=e||window.event;
         if(e.keyCode == '27'){if(add_element.style.visibility=="visible"){menu_add.style.visibility='hidden';}else if(window_zone.style.visibility=="visible"){modal_window("close")}}
@@ -5525,10 +5526,10 @@ function timeline_edit(n,u){
 }
 function timeline_update(n,i){
 	var scene_list="",l;
-    if(n==0){for(l=0;l<story_script[tl_block.value].length;l++){
+    if(n==0){for(let l=0;l<story_script[tl_block.value].length;l++){
         scene_list+="<option value="+l+" "+((i==l)?"selected":"")+">"+l+"</option>";
     };tl_scene.innerHTML=scene_list;}
-    else if(n==1){for(l=0;l<story_script[tl_block.value][tl_scene.value].dialogs.length;l++){
+    else if(n==1){for(let l=0;l<story_script[tl_block.value][tl_scene.value].dialogs.length;l++){
         if(story_script[tl_block.value][tl_scene.value].dialogs[l].text){scene_list+="<option value="+l+" "+((i==l)?"selected":"")+">"+l+" "+((story_script[tl_block.value][tl_scene.value].dialogs[l].text[languare])?story_script[tl_block.value][tl_scene.value].dialogs[l].text[languare]:story_script[tl_block.value][tl_scene.value].dialogs[l].text).slice(0,36)+"</option>";}
     };tl_dialog.innerHTML=scene_list;}
 }
