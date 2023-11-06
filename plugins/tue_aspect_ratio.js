@@ -24,5 +24,4 @@ function TueAspectRatio(){
     tuesday.style.transform='scale('+s+')';
 }
 window.addEventListener('script_executed',TueAspectRatio,true);
-window.addEventListener('script_loaded',TueAspectRatio,true);
 window.addEventListener('resize',TueAspectRatio,true);
