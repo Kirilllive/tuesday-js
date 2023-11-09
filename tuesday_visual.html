@@ -1884,9 +1884,12 @@ function add_element_b(id,arr){
         +'<tr><td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">Add to block \''+arr+'\'</td></tr>'
         +((buf[0]=='scene')?'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="arr_n=\''+arr+'\';data_past();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_paste"></td><td>paste scene</td></tr></tbody></table></td></tr>':'')
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="scene_add(\''+arr+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>Scene</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'legacy_choice_add(\''+arr+'\')':'setup();set_menu(4);')+';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Legacy choice</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="add_plugin(\'terrain_map\');menu_add.style.visibility=\'hidden\';ho_add(\''+arr+'\',\'terrain_map\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_map"></td><td>'+plugins_list.terrain_map.name+'</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="add_plugin(\'hidden_objects\');menu_add.style.visibility=\'hidden\';ho_add(\''+arr+'\',\'hidden_objects\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_search"></td><td>'+plugins_list.hidden_objects.name+'</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'legacy_choice_add(\''+arr+'\')':'setup();set_menu(4);')+';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Legacy choice</td></tr></tbody></table></td></tr>'
+        
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="random_choice_add(\''+arr+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Random choice</td></tr></tbody></table></td></tr>'
+        
         +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
 	menu_view(id,code,48)
@@ -2065,6 +2068,13 @@ function legacy_choice_add(arr){
 	arr_n=story_script[arr].length-1
 	arr_l=story_script[arr]
 	legacy_choice_edit();
+    state_save();
+}
+function random_choice_add(arr){
+	story_script[arr].push({"random_choice":[]});
+	arr_n=story_script[arr].length-1
+	arr_l=story_script[arr]
+	random_choice_edit();
     state_save();
 }
 function option_var(d){
@@ -2651,6 +2661,13 @@ function adden_scroll(id,z){
         };
     }}
 }
+
+function random_choice_edit(){
+	
+    var html="<div class='window' style='min-width:512px;'><div class='win_head'>Random choice edit<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[0].en+"</p><br><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'> random </div><br><table class='big_button' width='256px' onclick='console.log(99)'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+	modal_window("open",html);
+}
+
 function legacy_choice_edit(){
 	var var_if="<table width='100%' id='legacy_choice_edit'><tbody>";
 	for(var i=0;i<arr_l[arr_n].legacy_choice.length-1;i++){
@@ -4783,6 +4800,7 @@ function apply_setup(){
         if(li_v[i].checked&&plugins_list[li_v[i].id] ){
             story_script.parameters.plugins.push(li_v[i].id);
             if(li_v[i].id=="game_pad"&&!story_script.parameters.gamepad){story_script.parameters.gamepad = {"cursor": ["","50%","-24px","24px","24px","border-radius:50%;background-color:#000;",""]}}
+            else if(li_v[i].id=="tue_aspect_ratio"&&!story_script.parameters.gamepad){story_script.parameters.resolutions = [800,600,"#000",""]}
         }
     }
     li_v=document.getElementsByClassName("addon_path");
