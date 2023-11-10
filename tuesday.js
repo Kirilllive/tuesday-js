@@ -259,7 +259,10 @@ function name_block_update(){
 } function creation_scene(){
     arr_dialog = story_json[tue_story][scene];
     del_element("tue_html_scene");
-    if(arr_dialog.legacy_choice){
+    if(arr_dialog.random_choice){
+        let choice_g=arr_dialog.random_choice[Math.floor(Math.random() * arr_dialog.random_choice.length)][1];
+        if(choice_g!="tue_go"){go_to(choice_g);}else{scene++;dialog=0;creation_scene();}
+    } else if(arr_dialog.legacy_choice){
         for(var i=0;i < arr_dialog.legacy_choice.length;i++){
             var choice_n=arr_dialog.legacy_choice[i][0];
             var choice_s=arr_dialog.legacy_choice[i][1];
