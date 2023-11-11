@@ -1035,19 +1035,15 @@ function creation_block(b){
     if(chapter.id!="parameters"&&chapter.id!="blocks"){
         for(var i=0;i<story_script[chapter.id].length;i++){
             element+="<div id='s_"+chapter.id+"_"+i+"' class='scene' align='center'>"
-            
             if(story_script[chapter.id][i].random_choice){
 				element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>Random choice:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";element_m(this.id,\"random choice\");' title='Scene edit'></td></tr></tbody></table><div width='100%'>"
                 for(var l=0;l<story_script[chapter.id][i].random_choice.length;l++){
                     go=story_script[chapter.id][i].random_choice[l][1];
-                    
-                    
                     if(story_script[go]){
                         element+="<table id='"+all+"r"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><td align='right'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].random_choice["+l+"][1]=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
                         if(go!=chapter.id){creaton_line(all+"r"+l+go+all_blocks,go,chapter.id)}
                         all++
-                    }else{element+="<table id='"+all+"r"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td align='right'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][1]=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"}
-                        
+                    }else{element+="<table id='"+all+"r"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td align='right'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].random_choice["+l+"][1]=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"}
                 }
                 element+="</div>"
             }else if(story_script[chapter.id][i].legacy_choice){
@@ -1902,9 +1898,7 @@ function add_element_b(id,arr){
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="add_plugin(\'terrain_map\');menu_add.style.visibility=\'hidden\';ho_add(\''+arr+'\',\'terrain_map\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_map"></td><td>'+plugins_list.terrain_map.name+'</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="add_plugin(\'hidden_objects\');menu_add.style.visibility=\'hidden\';ho_add(\''+arr+'\',\'hidden_objects\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_search"></td><td>'+plugins_list.hidden_objects.name+'</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'legacy_choice_add(\''+arr+'\')':'setup();set_menu(4);')+';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Legacy choice</td></tr></tbody></table></td></tr>'
-        
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="random_choice_add(\''+arr+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Random choice</td></tr></tbody></table></td></tr>'
-        
         +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancel</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
 	menu_view(id,code,48)
@@ -2679,22 +2673,28 @@ function adden_scroll(id,z){
 }
 function random_choice_edit(){
     let var_if="";
-    for(var i=0;i<arr_l[arr_n].random_choice.length;i++){var_if+="<tr><td align='right' style='width:0px;padding-right:4px;white-space:nowrap;'>go to:</td><td><select class='random_block'>"+option_block(arr_l[arr_n].random_choice[i][1],0)+"</select></td></tr>"}
+    for(var i=0;i<arr_l[arr_n].random_choice.length;i++){var_if+="<tr><td align='right' style='width:0px;padding-right:4px;white-space:nowrap;'> ? </td><td><select class='random_block'>"+option_block(arr_l[arr_n].random_choice[i][1],0)+"</select></td><td style='width:40px;cursor:pointer;' onclick=\"var a=this.closest('tr');a.parentElement.removeChild(a);\" title='delet' class='icon icon_del'></td></tr>"}
     var html="<div class='window' style='min-width:128px;padding-bottom:8px;'><div class='win_head'>Random choice<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'> <br><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'><table width='100%' id='random_choice_edit'><tbody>"
     +var_if+"</tbody></table><div aling='center' onclick=\"random_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px;width:26px;cursor:pointer;'></div> </div><br><table class='big_button' width='256px' onclick='random_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open",html);
 }
 function random_choice_new(){
-	var tbody=document.getElementById('random_choice_edit').getElementsByTagName('tbody')[0];
-	var row=document.createElement("tr");
-    var td1=document.createElement("td");
-    var td2=document.createElement("td");
-    td1.innerHTML="Go_to";
+	let tbody=document.getElementById('random_choice_edit').getElementsByTagName('tbody')[0];
+	let row=document.createElement("tr");
+    let td1=document.createElement("td");
+    let td2=document.createElement("td");
+    var td7=document.createElement("td");
+    td1.innerHTML="?";
 	td1.style="padding-right:4px;white-space:nowrap;";
     td1.align="right";
     td2.innerHTML="<select class='random_block'>"+option_block(story_script.parameters.launch_story,0)+"</select>";
+    td7.style="cursor:pointer;";
+    td7.title="delet";
+    td7.className="icon icon_del";
+    td7.setAttribute("onclick","var a=this.closest('tr');a.parentElement.removeChild(a);");
 	row.appendChild(td1);
     row.appendChild(td2);
+    row.appendChild(td7);
     tbody.appendChild(row);
 }
 function random_choice_apply(){
@@ -2704,10 +2704,6 @@ function random_choice_apply(){
 	modal_window('close');
 	update_novel();state_save();
 }
-
-
-
-
 function legacy_choice_edit(){
 	var var_if="<table width='100%' id='legacy_choice_edit'><tbody>";
 	for(var i=0;i<arr_l[arr_n].legacy_choice.length-1;i++){
