@@ -1038,8 +1038,17 @@ function creation_block(b){
             
             if(story_script[chapter.id][i].random_choice){
 				element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>Random choice:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";element_m(this.id,\"random choice\");' title='Scene edit'></td></tr></tbody></table><div width='100%'>"
-
-
+                for(var l=0;l<story_script[chapter.id][i].random_choice.length;l++){
+                    go=story_script[chapter.id][i].random_choice[l][1];
+                    
+                    
+                    if(story_script[go]){
+                        element+="<table id='"+all+"r"+l+go+all_blocks+"' class='choice_b to_go' width='100%'><tbody><td align='right'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].random_choice["+l+"][1]=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"
+                        if(go!=chapter.id){creaton_line(all+"r"+l+go+all_blocks,go,chapter.id)}
+                        all++
+                    }else{element+="<table id='"+all+"r"+l+go+all_blocks+"' class='choice_b' width='100%'><tbody><tr><td align='right'><select style='width:90%;background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].legacy_choice["+l+"][1]=this.value;update_novel();'>"+option_block(go,0)+"</select></td><td class='icon button_block icon_go' style='cursor:pointer;' onmouseup=\"go_to_block('"+go+"')\"> </td></tr></tbody></table>"}
+                        
+                }
                 element+="</div>"
             }else if(story_script[chapter.id][i].legacy_choice){
 				element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>Legacy choice:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";element_m(this.id,\"legacy choice\");' title='Scene edit'></td></tr></tbody></table><div width='100%'>"
@@ -1539,7 +1548,7 @@ function search_text(id,s){
     }
     i.scrollTop = ((i.rows+2) * w)-(i.rows+2);
 }
-function go_to_block(bl){scroll_to_block(document.getElementById(bl));}
+function go_to_block(bl){if(story_script[bl]){scroll_to_block(document.getElementById(bl));}}
 function scroll_to_block(bl){
     var rect=bl.getBoundingClientRect();
     html.scrollTop=(html.scrollTop+(rect.top-(html.clientHeight/2)+22));
@@ -2668,16 +2677,10 @@ function adden_scroll(id,z){
         };
     }}
 }
-
-
-
-
 function random_choice_edit(){
     let var_if="";
-    for(var i=0;i<arr_l[arr_n].random_choice.length;i++){
-        var_if+="<tr><td>go to</td><td><select class='random_block'>"+option_block(arr_l[arr_n].random_choice[i][1],0)+"</select></td></tr>"
-    }
-    var html="<div class='window' style='min-width:512px;'><div class='win_head'>Random choice edit<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'> <br><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'><table width='100%' id='random_choice_edit'><tbody>"
+    for(var i=0;i<arr_l[arr_n].random_choice.length;i++){var_if+="<tr><td align='right' style='width:0px;padding-right:4px;white-space:nowrap;'>go to:</td><td><select class='random_block'>"+option_block(arr_l[arr_n].random_choice[i][1],0)+"</select></td></tr>"}
+    var html="<div class='window' style='min-width:128px;padding-bottom:8px;'><div class='win_head'>Random choice<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'> <br><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'><table width='100%' id='random_choice_edit'><tbody>"
     +var_if+"</tbody></table><div aling='center' onclick=\"random_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px;width:26px;cursor:pointer;'></div> </div><br><table class='big_button' width='256px' onclick='random_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open",html);
 }
@@ -2687,6 +2690,8 @@ function random_choice_new(){
     var td1=document.createElement("td");
     var td2=document.createElement("td");
     td1.innerHTML="Go_to";
+	td1.style="padding-right:4px;white-space:nowrap;";
+    td1.align="right";
     td2.innerHTML="<select class='random_block'>"+option_block(story_script.parameters.launch_story,0)+"</select>";
 	row.appendChild(td1);
     row.appendChild(td2);
