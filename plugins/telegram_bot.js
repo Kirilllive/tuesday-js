@@ -37,44 +37,48 @@ const start = async () => {
             makeStory(chatId)
         }
    })
-   function makeStory(chatId){
+   
+    function go_to(data,chatId){
+        if(story_json[data]){
+            tue_scene=0,tue_dialog=0,tue_story=data;
+            makeStory(chatId);
+        }else if(data.includes(',')){
+            go=data.split(',')
+            tue_story=go[0];
+            tue_dialog=go[2];
+            tue_scene=go[1];
+            makeStory(chatId);
+        }else if(data === 'tue_go'){
+            makeStory(chatId)
+        }
+    }
+    function next_scene(chatId){tue_scene++;tue_dialog=0;makeStory(chatId)}
+    function makeStory(chatId){
         var texts="",buttons=[],block=story_json[tue_story][tue_scene];
-        if(block.dialogs[tue_dialog].js){eval(block.dialogs[tue_dialog].js)}
-        if(block.legacy_choice){
+        if(block.dialogs&&block.dialogs[tue_dialog].js){eval(block.dialogs[tue_dialog].js)}
+        if(block.random_choice){
+            let choice_g=block.random_choice[Math.floor(Math.random() * block.random_choice.length)][1];
+            if(choice_g!="tue_go"){go_to(choice_g,chatId);}else{next_scene(chatId);}
+        } else if(block.legacy_choice){
             for(var i=0;i < block.legacy_choice.length;i++){
                 var choice_n=block.legacy_choice[i][0];
                 var choice_s=block.legacy_choice[i][1];
                 var choice_v=block.legacy_choice[i][2];
                 var choice_g=block.legacy_choice[i][3];
                 if(choice_s == ">" && story_json.parameters.variables[choice_n] > choice_v){
-                    if(choice_g!="tue_go"){go_to(choice_g);}else{next_scene();}
+                    if(choice_g!="tue_go"){go_to(choice_g,chatId);}else{next_scene(chatId);}
                     break;
                 } else if(choice_s == "<" && story_json.parameters.variables[choice_n] < choice_v){
-                    if(choice_g!="tue_go"){go_to(choice_g);}else{next_scene();}
+                    if(choice_g!="tue_go"){go_to(choice_g,chatId);}else{next_scene(chatId);}
                     break;
                 } else if(choice_s == "=" && story_json.parameters.variables[choice_n] == choice_v){
-                    if(choice_g!="tue_go"){go_to(choice_g);}else{next_scene();}
+                    if(choice_g!="tue_go"){go_to(choice_g,chatId);}else{next_scene(chatId);}
                     break;
                 } else if(block.legacy_choice[i].go_to){
-                    if(block.legacy_choice[i].go_to&&block.legacy_choice[i].go_to!="tue_go"){go_to(block.legacy_choice[i].go_to);}else{next_scene();}
+                    if(block.legacy_choice[i].go_to&&block.legacy_choice[i].go_to!="tue_go"){go_to(block.legacy_choice[i].go_to,chatId);}else{next_scene(chatId);}
                     break;
-                } else if(i == block.legacy_choice.length-1){next_scene();break;}
+                } else if(i == block.legacy_choice.length-1){next_scene(chatId);break;}
             }
-            function go_to(data){
-                if(story_json[data]){
-                    tue_scene=0,tue_dialog=0,tue_story=data;
-                    makeStory(chatId);
-                }else if(data.includes(',')){
-                    go=data.split(',')
-                    tue_story=go[0];
-                    tue_dialog=go[2];
-                    tue_scene=go[1];
-                    makeStory(chatId);
-                }else if(data === 'tue_go'){
-                    makeStory(chatId)
-                }
-            }
-            function next_scene(){tue_scene++;tue_dialog=0;makeStory(chatId)}
         } else {
             for(i=0;i<block.dialogs.length-tue_dialog+1;i++){
                 if(block.dialogs[tue_dialog].variables){
