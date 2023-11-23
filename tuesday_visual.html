@@ -1129,11 +1129,11 @@ function creation_block(b){
 						var t=languare_data(story_script[chapter.id][i].dialogs[d].text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
                         element+="<div class='dialog_element' align='left' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"text\";dialog_text_edit();'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"
                                 +((n)?"<p><b>"+n.replaceAll("<","").replaceAll(">","")+"</p></b>" :"&nbsp;")
-                                +"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text';dialog_el(this.id,'Text',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table><p style='padding:4px;'>"+((t.length>0)?t.replaceAll("<","").replaceAll(">",""):'&nbsp;')+"</p></div>"
+                                +"</td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text';dialog_el(this.id,'Text',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table><p style='padding:4px;overflow:hidden;'>"+((t.length>0)?t.replaceAll("<","").replaceAll(">",""):'&nbsp;')+"</p></div>"
 					}
                     if(story_script[chapter.id][i].dialogs[d].text_add){
                         var t=languare_data(story_script[chapter.id][i].dialogs[d].text_add);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
-                        element+="<div class='dialog_element' align='left' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"text_add\";dialog_text_edit();'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n.length>0)?"<p><b>"+n+" " :"<p><b>")+"text add</b></p></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text_add' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text_add';dialog_el(this.id,'Text add',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table><p style='padding:4px;'>"+((t.length>0)?t.replaceAll("<","").replaceAll(">",""):'&nbsp;')+"</p></div>"
+                        element+="<div class='dialog_element' align='left' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"text_add\";dialog_text_edit();'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n.length>0)?"<p><b>"+n+" " :"<p><b>")+"text add</b></p></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text_add' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text_add';dialog_el(this.id,'Text add',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table><p style='padding:4px;overflow:hidden;'>"+((t.length>0)?t.replaceAll("<","").replaceAll(">",""):'&nbsp;')+"</p></div>"
                     }
                     if(story_script[chapter.id][i].dialogs[d].choice){
                         element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"choice\";edit_choice();'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
@@ -4832,7 +4832,7 @@ function apply_setup(){
         if(li_v[i].checked&&plugins_list[li_v[i].id] ){
             story_script.parameters.plugins.push(li_v[i].id);
             if(li_v[i].id=="game_pad"&&!story_script.parameters.gamepad){story_script.parameters.gamepad = {"cursor": ["","50%","-24px","24px","24px","border-radius:50%;background-color:#000;",""]}}
-            else if(li_v[i].id=="tue_aspect_ratio"&&!story_script.parameters.gamepad){story_script.parameters.resolutions = [800,600,"#000",""]}
+            else if(li_v[i].id=="tue_aspect_ratio"&&!story_script.parameters.resolutions){story_script.parameters.resolutions = [800,600,"#000",""]}
         }
     }
     li_v=document.getElementsByClassName("addon_path");
