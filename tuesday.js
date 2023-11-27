@@ -660,7 +660,7 @@ function name_block_update(){
 		}
         if(arr_dialog.js){eval(arr_dialog.js)}
         clearTimeout(timers);
-        if(arr_dialog.timer){timers=setTimeout(function(){if(arr_dialog.timer[1]=='tue_go'){go_story(true);} else if(arr_dialog.timer[1]=='tue_update_scene'){del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");creation_dialog();} else {go_to(arr_dialog.timer[1])}},arr_dialog.timer[0]);}
+        if(arr_dialog.timer&&!timers){timers=setTimeout(function(){if(arr_dialog.timer[1]=='tue_go'){go_story(true);} else if(arr_dialog.timer[1]=='tue_update_scene'){del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");creation_dialog();} else {go_to(arr_dialog.timer[1])};timers=false;},arr_dialog.timer[0]);}
 		tuesday.dispatchEvent(new Event('creation_dialog'));
 } function values_in_text(add){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
@@ -697,8 +697,8 @@ function name_block_update(){
 } function ruby(n){
     var r=n.split('=');return "<ruby>"+r[0]+"<rt>"+r[1]+"</rt></ruby>"
 } function go_story(choice){
-    arr_dialog = story_json[tue_story][scene].dialogs[dialog]
-	if(!document.getElementById('tue_next')||(document.getElementById('tue_next')&&tue_next.style.visibility!='hidden') || choice){
+	if(check_choice(story_json[tue_story][scene].dialogs) || choice){
+        arr_dialog = story_json[tue_story][scene].dialogs[dialog]
         if(arr_dialog.choice){del_element("tue_choice")}
 		if(arr_dialog.go_to){
 			var go=arr_dialog.go_to;
@@ -911,7 +911,15 @@ function name_block_update(){
     else if(show && !data[0]){element.style.visibility='hidden';}
 }
 function fast_rewind(){
-    timers=setTimeout(function(){go_story(true);if(dialog<story_json[tue_story][scene].dialogs.length){fast_rewind()}},350)
+    let d=story_json[tue_story][scene].dialogs;
+    timers=setTimeout(function(){go_story(true);if(dialog<d.length&&check_choice(d)){fast_rewind()}},350)
+}
+function check_choice(d){
+    if(d[dialog].choice){
+        let r=true;
+        d[dialog].choice.forEach((e) => {if(e.go_to!="tue_no"){r=false;}});
+        return r;
+    }else{return true}
 }
 function set_audio(el,arr){
     tue_set_audio=tue_set_audio>1?0:tue_set_audio+1;
