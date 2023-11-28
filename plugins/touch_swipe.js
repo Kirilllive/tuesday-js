@@ -16,7 +16,7 @@ window.addEventListener("touchend",function(event){
 		if(end > starttouch + 40){
 			back_story()
 		}
-		if(end < starttouch - 40 ){
+		if((end < starttouch - 40)&&check_choice(story_json[tue_story][scene].dialogs)){
 			go_story()
 		}
 	}
