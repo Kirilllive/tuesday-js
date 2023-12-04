@@ -109,8 +109,8 @@ function terrain_map(){
         tue_bg_music.play();
     } else if(!arr_dialog.background_music||arr_dialog.background_music==""){tue_bg_music.pause();
     } else if(tue_set_audio==0){tue_bg_music.play();}
-    tue_next.style.visibility='hidden';
-    tue_back.style.visibility='hidden';
+    if(document.getElementById('tue_next')){tue_next.style.visibility='hidden'};
+    if(document.getElementById('tue_back')){tue_back.style.visibility='hidden'};
     view.appendChild(map);
     tuesday.appendChild(view);
     worldmap_resize();

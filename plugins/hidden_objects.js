@@ -77,8 +77,8 @@ function hidden_objects(){
     }
     tue_text_block.style.visibility='visible';
     if(story_json.parameters.text_panel.color){tue_text_block.style.backgroundColor=story_json.parameters.text_panel.color;}
-    tue_next.style.visibility='hidden';
-    tue_back.style.visibility='hidden';
+    if(document.getElementById('tue_next')){tue_next.style.visibility='hidden'};
+    if(document.getElementById('tue_back')){tue_back.style.visibility='hidden'};
     view.appendChild(room);
     tuesday.appendChild(view);
     objectsroom_resize();
