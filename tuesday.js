@@ -660,8 +660,9 @@ function name_block_update(){
 		}
         if(arr_dialog.js){eval(arr_dialog.js)}
         clearTimeout(timers);
-        if(arr_dialog.timer&&!timers){timers=setTimeout(function(){if(arr_dialog.timer[1]=='tue_go'){go_story(true);} else if(arr_dialog.timer[1]=='tue_update_scene'){del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");creation_dialog();} else {go_to(arr_dialog.timer[1])};timers=false;},arr_dialog.timer[0]);}
-		tuesday.dispatchEvent(new Event('creation_dialog'));
+        if(arr_dialog.timer&&!timers){timers=setTimeout(function(){if(arr_dialog.timer[1]=='tue_go'){go_story(true);} else if(arr_dialog.timer[1]=='tue_update_scene'){del_element("tue_art");del_element("tue_choice");del_element("tue_html_dialog");creation_dialog();} else {go_to(arr_dialog.timer[1])};},arr_dialog.timer[0]);}
+		timers=false;
+        tuesday.dispatchEvent(new Event('creation_dialog'));
 } function values_in_text(add){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 	var str=""
@@ -697,7 +698,7 @@ function name_block_update(){
 } function ruby(n){
     var r=n.split('=');return "<ruby>"+r[0]+"<rt>"+r[1]+"</rt></ruby>"
 } function go_story(choice){
-	if(check_choice(story_json[tue_story][scene].dialogs) || choice){
+	if(story_json[tue_story][scene].dialogs.length!=0 && (check_choice(story_json[tue_story][scene].dialogs) || choice)){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog]
         if(arr_dialog.choice){del_element("tue_choice")}
 		if(arr_dialog.go_to){
@@ -721,13 +722,17 @@ function name_block_update(){
 			}
 		}
         if(story_json.parameters.autosave && !story_json[tue_story][scene].dialogs[dialog].no_autosave){save_stag('auto')};
-	}
+	} else if(story_json[tue_story][scene+1]){
+            scene++;
+            dialog=0;
+            creation_scene();
+		}
     if(!choice){timers=false};
 } function back_story(){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
 	del_element("tue_choice")
     del_element("tue_html_dialog")
-    if(arr_dialog.back_to){
+    if(story_json[tue_story][scene].dialogs.length!=0 && arr_dialog.back_to){
         var go=arr_dialog.back_to;
         go_to(go)
     } else if(dialog>0){

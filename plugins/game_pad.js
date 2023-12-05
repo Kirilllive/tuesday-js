@@ -43,10 +43,10 @@ function gamepad_cursor_cler(){
 window.addEventListener("keydown",function(e){
     e=e.keyCode;
     if(e==37){
-        if(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs)){select_choice(1); }
+        if(story_json[tue_story][scene].terrain_map||( story_json[tue_story][scene].dialogs.length!=0 && !check_choice(story_json[tue_story][scene].dialogs))){select_choice(1); }
         else if( !story_json.parameters.key || !story_json.parameters.key.next ){back_story()}
     }else if(e==39){
-        if(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs)){select_choice(-1);}
+        if(story_json[tue_story][scene].terrain_map||( story_json[tue_story][scene].dialogs.length!=0 && !check_choice(story_json[tue_story][scene].dialogs))){select_choice(-1);}
         else if( !story_json.parameters.key || !story_json.parameters.key.back ){go_story()}
     }else if(e==38){
         if(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs)){select_choice(1);}
