@@ -209,6 +209,7 @@ function name_block_update(){
             button.style.whiteSpace="pre-wrap";
             button.style.justifyContent=((story_json.parameters.buttons[i].align)?story_json.parameters.buttons[i].align[0]:"center");
             button.style.alignItems=((story_json.parameters.buttons[i].align)?story_json.parameters.buttons[i].align[1]:"center");
+            button.style.textAlign=button.style.justifyContent;
             button.style.color=story_json.parameters.buttons[i].color_text;
             button.style.fontSize=(story_json.parameters.buttons[i].size_text)?story_json.parameters.buttons[i].size_text:story_json.parameters.font_size;
             button.style.fontFamily=((story_json.parameters.buttons[i].font_family)?story_json.parameters.buttons[i].font_family:story_json.parameters.font);
@@ -561,6 +562,7 @@ function name_block_update(){
                 choice.style.display="flex";
                 choice.style.justifyContent=((arr_dialog.choice[i].align)?arr_dialog.choice[i].align[0]:"center");
                 choice.style.alignItems=((arr_dialog.choice[i].align)?arr_dialog.choice[i].align[1]:"center");
+                choice.style.textAlign=choice.style.justifyContent;
                 choice.style.zIndex=1001+i;
                 if(arr_dialog.choice[i].show_if){show_if(arr_dialog.choice[i].show_if,choice)}
                 if(arr_dialog.choice[i].text && (typeof arr_dialog.choice[i].text!=='object' || (arr_dialog.choice[i].text[languare] && typeof arr_dialog.choice[i].text[languare]!=='object'))){
