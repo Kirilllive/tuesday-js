@@ -682,19 +682,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             </tr><tr>
                                 <td height="40px" align="right" style="padding-right:8px;">Align text</td>
                                 <td colspan="3" align="center">
-                                <table style="border-radius:4px;"><tbody><tr>
-                                    <td><input class="icon icon_diag align" type="radio" name="align_tp" onchange='story_script.parameters.name_panel.align=["start","start"];scen_edit_update(true);state_save()' style="transform:scaleX(-1) scaleY(-1);"></td>
-                                    <td><input class="icon icon_side align" type="radio" name="align_tp" onchange='story_script.parameters.name_panel.align=["center","start"];scen_edit_update(true);state_save()' ></td>
-                                    <td><input class="icon icon_diag align" type="radio" name="align_tp" onchange='story_script.parameters.name_panel.align=["end","start"];scen_edit_update(true);state_save()' style="transform:scaleY(-1);"></td>
-                                </tr><tr>
-                                    <td><input class="icon icon_side align" type="radio" name="align_tp" onchange='story_script.parameters.name_panel.align=["start","center"];scen_edit_update(true);state_save()' style="transform:rotate(270deg);"></td>
-                                    <td><input class="icon icon_cent align" type="radio" name="align_tp" onchange='delete story_script.parameters.name_panel.align;scen_edit_update(true);state_save()' ></td>
-                                    <td><input class="icon icon_side align" type="radio" name="align_tp" onchange='story_script.parameters.name_panel.align=["end","center"];scen_edit_update(true);state_save()' style="transform:rotate(90deg);"></td>
-                                </tr><tr>
-                                    <td><input class="icon icon_diag align" type="radio" name="align_tp" onchange='story_script.parameters.name_panel.align=["start","end"];scen_edit_update(true);state_save()' style="transform:scaleX(-1);"></td>
-                                    <td><input class="icon icon_side align" type="radio" name="align_tp" onchange='story_script.parameters.name_panel.align=["center","end"];scen_edit_update(true);state_save()' style="transform:scaleY(-1);"></td>
-                                    <td><input class="icon icon_diag align" type="radio" name="align_tp" onchange='story_script.parameters.name_panel.align=["end","end"];scen_edit_update(true);state_save()' style="transform:scaleX(1);"></td>
-                                </tr></tbody></table>
+                                <table style="border-radius:4px;"><tbody id='n_align_tp'></tbody></table>
                                 </td>
                             </tr><tr>
                                 <tr><td colspan="4" height="40px" align="left" style="padding-left:8px;border-bottom:1px solid var(--cb);">Position</td>
@@ -3304,6 +3292,19 @@ function scen_edit_data(){
         n_color_text.value=arr_p.color_text
         n_color_text_s.style.backgroundColor=arr_p.color_text
     }else{n_color_text.value=""}
+    n_align_tp.innerHTML="<tr>"
+        +"<td><input class='icon icon_diag align' type='radio' name='align_tp' "+((arr_p.align&&arr_p.align[0]=='start'&&arr_p.align[1]=='start')?'checked':'')+" onchange='story_script.parameters.name_panel.align=[\"start\",\"start\"];scen_edit_update(true);state_save()' style='transform:scaleX(-1) scaleY(-1);'></td>"
+        +"<td><input class='icon icon_side align' type='radio' name='align_tp' "+((arr_p.align&&arr_p.align[0]=='center'&&arr_p.align[1]=='start')?'checked':'')+" onchange='story_script.parameters.name_panel.align=[\"center\",\"start\"];scen_edit_update(true);state_save()' ></td>"
+        +"<td><input class='icon icon_diag align' type='radio' name='align_tp' "+((arr_p.align&&arr_p.align[0]=='end'&&arr_p.align[1]=='start')?'checked':'')+" onchange='story_script.parameters.name_panel.align=[\"end\",\"start\"];scen_edit_update(true);state_save()' style='transform:scaleY(-1);'></td>"
+    +"</tr><tr>"
+        +"<td><input class='icon icon_side align' type='radio' name='align_tp' "+((arr_p.align&&arr_p.align[0]=='start'&&arr_p.align[1]=='center')?'checked':'')+" onchange='story_script.parameters.name_panel.align=[\"start\",\"center\"];scen_edit_update(true);state_save()' style='transform:rotate(270deg);'></td>"
+        +"<td><input class='icon icon_cent align' type='radio' name='align_tp' "+((!arr_p.align)?'checked':'')+" onchange='delete story_script.parameters.name_panel.align;scen_edit_update(true);state_save()' ></td>"
+        +"<td><input class='icon icon_side align' type='radio' name='align_tp' "+((arr_p.align&&arr_p.align[0]=='end'&&arr_p.align[1]=='center')?'checked':'')+" onchange='story_script.parameters.name_panel.align=[\"end\",\"center\"];scen_edit_update(true);state_save()' style='transform:rotate(90deg);'></td>"
+    +"</tr><tr>"
+        +"<td><input class='icon icon_diag align' type='radio' name='align_tp' "+((arr_p.align&&arr_p.align[0]=='start'&&arr_p.align[1]=='end')?'checked':'')+" onchange='story_script.parameters.name_panel.align=[\"start\",\"end\"];scen_edit_update(true);state_save()' style='transform:scaleX(-1);'></td>"
+        +"<td><input class='icon icon_side align' type='radio' name='align_tp' "+((arr_p.align&&arr_p.align[0]=='center'&&arr_p.align[1]=='end')?'checked':'')+" onchange='story_script.parameters.name_panel.align=[\"center\",\"end\"];scen_edit_update(true);state_save()' style='transform:scaleY(-1);'></td>"
+        +"<td><input class='icon icon_diag align' type='radio' name='align_tp' "+((arr_p.align&&arr_p.align[0]=='end'&&arr_p.align[1]=='end')?'checked':'')+" onchange='story_script.parameters.name_panel.align=[\"end\",\"end\"];scen_edit_update(true);state_save()' style='transform:scaleX(1);'></td>"
+    +"</tr>"
 }
 function scen_edit_update(show){
     var arr_t=story_script.parameters.text_panel
