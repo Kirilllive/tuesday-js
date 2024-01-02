@@ -4858,8 +4858,10 @@ document.addEventListener('keydown',function(event){
         if(add_element.style.visibility=="visible"){let b=add_element.getElementsByClassName("big_button");b[b.length-1].click();}
         else if(window_zone.style.visibility=="visible"){let b=window_zone.getElementsByClassName("big_button");b[b.length-1].click();}
     }else if(event.code=='Escape'){
-        if(add_element.style.visibility=="visible"){menu_add.style.visibility='hidden';}
-        else if(window_zone.style.visibility=="visible"){modal_window("close");synth.cancel();}
+        if(document.activeElement.tagName=="BODY"){
+            if(add_element.style.visibility=="visible"){menu_add.style.visibility='hidden';}
+            else if(window_zone.style.visibility=="visible"){modal_window("close");synth.cancel();}
+        } else {document.activeElement.blur();}
     }
 });
 var scene_screen=false
