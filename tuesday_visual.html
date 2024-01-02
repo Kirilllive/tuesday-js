@@ -4854,14 +4854,14 @@ document.addEventListener('keydown',function(event){
             else if(scene_screen&&event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
         }
         if(event.code=='KeyR'){play_novel();}
-    }else if(event.code=='Enter'&&!(event.altKey||event.shiftKey)&&document.activeElement.tagName=="BODY"){
-        if(add_element.style.visibility=="visible"){let b=add_element.getElementsByClassName("big_button");b[b.length-1].click();}
-        else if(window_zone.style.visibility=="visible"){let b=window_zone.getElementsByClassName("big_button");b[b.length-1].click();}
-    }else if(event.code=='Escape'){
+    }else if(event.code=='Enter'&&!(event.altKey||event.shiftKey)){
         if(document.activeElement.tagName=="BODY"){
-            if(add_element.style.visibility=="visible"){menu_add.style.visibility='hidden';}
-            else if(window_zone.style.visibility=="visible"){modal_window("close");synth.cancel();}
-        } else {document.activeElement.blur();}
+            if(add_element.style.visibility=="visible"){let b=add_element.getElementsByClassName("big_button");b[b.length-1].click();}
+            else if(window_zone.style.visibility=="visible"){let b=window_zone.getElementsByClassName("big_button");b[b.length-1].click();}
+        }else{document.activeElement.blur();}
+    }else if(event.code=='Escape'){
+        if(add_element.style.visibility=="visible"){menu_add.style.visibility='hidden';}
+        else if(window_zone.style.visibility=="visible"){modal_window("close");synth.cancel();}
     }
 });
 var scene_screen=false
