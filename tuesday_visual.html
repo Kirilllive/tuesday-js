@@ -1229,7 +1229,7 @@ function save_file(){
     download_files(n+'.json',JSON.stringify(story_script))
 }
 async function download_files(n,c){
-    if("showSaveFilePicker" in window) {
+    if("showSaveFilePicker" in window && window.self===window.top) {
         const opt={
             suggestedName:n,
             id:'tuesdyaJSengine',
