@@ -17,11 +17,11 @@
 		}
 	],
 	[
-		"Changes in the values ​​of variables, their values ​​can be displayed in the text as \\< var_name \\> or in ''Legacy Choice'' to go to another block of script.",
+		"Changes in the values ​​of variables, their values ​​can be displayed in the text as \\< var_name \\> or in \\\"Legacy Choice\\\" to go to another block of script.",
 		{
-			"ru": "Изменения в значениях переменных, эти значения могут отображаться в тексте как \\< var_name \\> или использоваться в ''Последствие выбора'' для перехода к другому блоку.",
+			"ru": "Изменения в значениях переменных, эти значения могут отображаться в тексте как \\<var_name\\> или использоваться в \\''Последствие выбора\\'' для перехода к другому блоку.",
 			"ja": "変数の値を変更します。変数は\\< var_name \\> と入力してテキスト欄に表示したり、<br>「分岐(変数依拠)」処理を別なブロックに進めるのに使います。",
-			"es": "Los cambios en los valores de las variables, pueden ser mostrados en el texto como \\< var_name \\> o en ''Decisión de destino''  para ir a otro bloque del código."
+			"es": "Los cambios en los valores de las variables, pueden ser mostrados en el texto como \\<var_name\\> o en \\\"Decisión de destino\\\"  para ir a otro bloque del código."
 		}
 	],
 	[
@@ -2864,7 +2864,8 @@
 		">Block<",
 		{
 			"ja": ">ブロック<",
-			"es": ">Bloquear<"
+			"es": ">Bloquear<",
+			"ru": ">Блок<"
 		}
 	],
 	[
