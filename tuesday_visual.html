@@ -459,10 +459,10 @@ input:checked+.toggle:before{transform:translateX(14px);}
     left:-3.3px;top:-0.5px;
 }
 .code_elem_1{color:var(--cb);font-style:italic;}
-.code_elem_2{color:var(--cb);filter:saturate(500%) brightness(0.75) contrast(150%);}
-.code_elem_3{color:var(--cb);font-weight:bold;filter:hue-rotate(90deg) saturate(500%) brightness(0.75) contrast(150%);}
-.code_elem_4{color:var(--cb);filter:hue-rotate(180deg) saturate(500%) brightness(0.75) contrast(150%);}
-.code_elem_5{color:var(--cb);filter:hue-rotate(45deg) saturate(500%) brightness(0.75) contrast(150%);}
+.code_elem_2{color:var(--tx);filter:brightness(0.5) invert(50%);}
+.code_elem_3{color:#e88;font-weight:bold;filter:var(--ft);}
+.code_elem_4{color:#6b5;filter:var(--ft);}
+.code_elem_5{color:#88e;filter:var(--ft);}
     
     
     
@@ -837,7 +837,7 @@ const color_ui=[
     ['#beb3af','#dfd9d7','rgba(64,55,51,0.25)','rgb(160,142,136)','rgba(160,142,136,0.5)' ,'#5a4d46','#fff','none','#000'],
     ['#d2c4a5','#efe1c3','rgba(121,103,63,0.25)','rgb(121,103,63)','rgba(121,103,63,0.5)' ,'#7b6f54','#fff','none','#000'],
     ['#c4cebb','#dfebd5','rgba(109,124,91,0.25)','rgb(109,124,91)','rgba(109,124,91,0.5)' ,'#427e00','#fff','none','#000'],
-    ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#383838','invert(85%)','#d8d8d8',"#7f7f7f"],
+    ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#383838','invert(85%) hue-rotate(180deg)','#d8d8d8',"#7f7f7f"],
     ['#6178aa','#192543','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#303f6a','invert(90%) hue-rotate(180deg)','#ddd',"#6178aa"],
     ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#26343d','invert(90%)','#ddd',"#647f90"],
     ['#9d7290','#1e111a','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#411934','invert(85%) hue-rotate(180deg)','#ddd',"#6B4C61"],
@@ -3084,6 +3084,7 @@ function dialog_char_update(){
     c_class.value=(arr_s&&arr_s.className)?arr_s.className:'';
     t_color.value=(arr_s&&arr_s.color_text)?arr_s.color_text:'';
     c_color.value=(arr_s&&arr_s.color)?arr_s.color:'';
+    c_art.value=(arr_s&&arr_s.art)?arr_s.art:'';
 }
 function dialog_text_apply(){
 	if(text_class.value!=""){copy_arr[arr_n].className=text_class.value;}else{delete copy_arr[arr_n].className};
