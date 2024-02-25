@@ -4904,6 +4904,7 @@ function apply_setup(){
 var scale=1;
 var scale_scene=1;
 document.addEventListener('keydown',function(event){
+    if (event.key==='Enter'&&!event.shiftKey){document.execCommand('insertLineBreak');event.preventDefault();}
     if(event.altKey){
         if(!scroll_block||scene_screen){
             if(event.code=='Equal'){world_scale(2)}
@@ -5829,6 +5830,8 @@ function state_back(n){
     story_script=JSON.parse(back_up[state_num]);
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
 }
+
+
 function syntax_javascipt(code){
     function isAlphaNumericChar(char){return char&&/[0-9a-z_\$]/i.test(char);}
     const states={NONE:0,SINGLE_QUOTE:1,DOUBLE_QUOTE:2,ML_QUOTE:3,REGEX_LITERAL:4,SL_COMMENT:5,ML_COMMENT:6,NUMBER_LITERAL:7,KEYWORD:8,SPECIAL:9,ELEMENT:10};
