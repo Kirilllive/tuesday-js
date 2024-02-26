@@ -444,7 +444,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
 }
 .code_text{
     width:100%;
-    min-height:calc(100vh - 32px);
+    min-height:100%;
     border:none;
     color:transparent;
     caret-color:var(--tx);
@@ -4903,8 +4903,32 @@ function apply_setup(){
 }
 var scale=1;
 var scale_scene=1;
+document.addEventListener("paste",(event)=>{
+    let elem=document.getElementsByClassName("code_text")[0]
+    if(elem){
+        event.preventDefault();
+        const sel=window.getSelection(),range=sel.getRangeAt(0),tabNode=document.createTextNode((event.clipboardData||window.clipboardData).getData("text") );
+        if (!sel.rangeCount) return;
+        range.insertNode(tabNode)
+        range.setStartAfter(tabNode)
+        range.setEndAfter(tabNode);
+        elem.previousElementSibling.innerHTML=syntax_javascipt(elem.innerText);
+    }
+});
+
+let symbol_tab=Array(4).join('\u00a0');
 document.addEventListener('keydown',function(event){
-    if (event.key==='Enter'&&!event.shiftKey){document.execCommand('insertLineBreak');event.preventDefault();}
+    let elem=document.getElementsByClassName("code_text")[0]
+    if (elem&&event.key==='Enter'&&!event.shiftKey){document.execCommand('insertLineBreak');event.preventDefault();}
+    else if(elem&&event.key=='Tab'){
+        event.preventDefault();
+        const sel=document.getSelection(),range=sel.getRangeAt(0),tabNode=document.createTextNode(symbol_tab);
+        if (!sel.rangeCount) return;
+        range.insertNode(tabNode)
+        range.setStartAfter(tabNode)
+        range.setEndAfter(tabNode);
+        elem.previousElementSibling.innerHTML=syntax_javascipt(elem.innerText);
+    }
     if(event.altKey){
         if(!scroll_block||scene_screen){
             if(event.code=='Equal'){world_scale(2)}
@@ -5830,8 +5854,6 @@ function state_back(n){
     story_script=JSON.parse(back_up[state_num]);
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
 }
-
-
 function syntax_javascipt(code){
     function isAlphaNumericChar(char){return char&&/[0-9a-z_\$]/i.test(char);}
     const states={NONE:0,SINGLE_QUOTE:1,DOUBLE_QUOTE:2,ML_QUOTE:3,REGEX_LITERAL:4,SL_COMMENT:5,ML_COMMENT:6,NUMBER_LITERAL:7,KEYWORD:8,SPECIAL:9,ELEMENT:10};
@@ -5877,7 +5899,7 @@ function syntax_javascipt(code){
         if(state==states.NONE&&'+-/*=&|%!<>?:'.indexOf(char)!=-1){output+="<span class='code_elem_5'>"+char+'</span>';continue;}
         output+=char.replace('<', '&lt;');
     }
-    return output.replace(/\n/gm,'<br>').replace(/\t/g,new Array(9).join('&nbsp;')).replace(/^\s+|\s{2,}/g,(a)=>new Array(a.length+1).join('&nbsp;'));
+    return output.replace(/\n/gm,'<br>').replace(/\t/g,document.createTextNode(symbol_tab)).replace(/^\s+|\s{2,}/g,(a)=>new Array(a.length+1).join('&nbsp;'));
 }
 </script>
 </body>
