@@ -434,9 +434,11 @@ input:checked+.toggle:before{transform:translateX(14px);}
 }
 .code_text,.code_show{
     background-color:transparent;
+    font-family:monospace;
     text-decoration:none;
     position:absolute;
-    line-height: 1.5;
+    top:0px;left:0px;
+    overflow:hidden;
     outline:none;
     resize:none;
     padding:8px;
@@ -444,6 +446,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
 }
 .code_text{
     width:100%;
+    min-width:100%;
     min-height:100%;
     border:none;
     color:transparent;
@@ -3207,11 +3210,10 @@ function edit_code(vol,n){
     +"<td style='width:40px;height:40px;'></td>"
     +"<td align='center' style='white-space:nowrap;'>"+n+" code edit</td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
-    +"</tr></tbody></table>"
-    +"<p><div class='codeView'><pre class='code_show' id='showcode'></pre><pre id='editcode' class='code_text' spellcheck='false' contenteditable='true' oninput='this.previousElementSibling.innerHTML=syntax_javascipt(this.innerText);'>"+code.replaceAll('<', '&lt;')+"</pre></div>"
-    +"</p><br><table class='big_button' width='256px' onclick='"+((vol=="script_js")?"story_script.parameters.js":(vol=="script_css")?"story_script.parameters.css":"copy_arr[\""+vol+"\"]")+"=editcode.innerText;update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
+    +"</tr></tbody></table><p><div class='codeView'><pre class='code_show'></pre><textarea id='editcode' class='code_text' spellcheck='false' wrap='off' oninput='code_edit(this,this.previousElementSibling,\"js\")'>"+code+"</textarea></div>"
+    +"</p><br><table class='big_button' width='256px' onclick='"+((vol=="script_js")?"story_script.parameters.js":(vol=="script_css")?"story_script.parameters.css":"copy_arr[\""+vol+"\"]")+"=editcode.value;update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
-    showcode.innerHTML=syntax_javascipt(code);
+    code_edit(editcode,editcode.previousElementSibling,"js")
 }
 function edit_toast(){
     copy_arr=JSON.parse(JSON.stringify(arr_l));
@@ -4903,31 +4905,17 @@ function apply_setup(){
 }
 var scale=1;
 var scale_scene=1;
-document.addEventListener("paste",(event)=>{
-    let elem=document.getElementsByClassName("code_text")[0]
-    if(elem){
-        event.preventDefault();
-        const sel=window.getSelection(),range=sel.getRangeAt(0),tabNode=document.createTextNode((event.clipboardData||window.clipboardData).getData("text") );
-        if (!sel.rangeCount) return;
-        range.insertNode(tabNode)
-        range.setStartAfter(tabNode)
-        range.setEndAfter(tabNode);
-        elem.previousElementSibling.innerHTML=syntax_javascipt(elem.innerText);
-    }
-});
 
-let symbol_tab=Array(4).join('\u00a0');
+
+
 document.addEventListener('keydown',function(event){
-    let elem=document.getElementsByClassName("code_text")[0]
-    if (elem&&event.key==='Enter'&&!event.shiftKey){document.execCommand('insertLineBreak');event.preventDefault();}
-    else if(elem&&event.key=='Tab'){
+    let elem=document.getElementsByClassName("code_text")[0];
+    if(elem&&event.key=='Tab'){
         event.preventDefault();
-        const sel=document.getSelection(),range=sel.getRangeAt(0),tabNode=document.createTextNode(symbol_tab);
-        if (!sel.rangeCount) return;
-        range.insertNode(tabNode)
-        range.setStartAfter(tabNode)
-        range.setEndAfter(tabNode);
-        elem.previousElementSibling.innerHTML=syntax_javascipt(elem.innerText);
+        let start=elem.selectionStart,end=elem.selectionEnd;
+        elem.value=elem.value.substring(0,start)+"\t"+elem.value.substring(end);
+        elem.selectionStart=elem.selectionEnd=start+1;
+        elem.previousElementSibling.innerHTML=syntax_javascipt(elem.value);
     }
     if(event.altKey){
         if(!scroll_block||scene_screen){
@@ -4948,6 +4936,9 @@ document.addEventListener('keydown',function(event){
         else if(window_zone.style.visibility=="visible"){modal_window("close");synth.cancel();}
     }
 });
+
+
+
 var scene_screen=false
 var scroll_xs=null;
 var scroll_ys=null;
@@ -5854,6 +5845,12 @@ function state_back(n){
     story_script=JSON.parse(back_up[state_num]);
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
 }
+function code_edit(edit,show,code){
+    if(code=="js"){show.innerHTML=syntax_javascipt(edit.value)};
+    let e=show.getBoundingClientRect();
+    edit.style.width =(e.width+100)+'px';
+    edit.style.height=(e.height+100)+'px';
+}
 function syntax_javascipt(code){
     function isAlphaNumericChar(char){return char&&/[0-9a-z_\$]/i.test(char);}
     const states={NONE:0,SINGLE_QUOTE:1,DOUBLE_QUOTE:2,ML_QUOTE:3,REGEX_LITERAL:4,SL_COMMENT:5,ML_COMMENT:6,NUMBER_LITERAL:7,KEYWORD:8,SPECIAL:9,ELEMENT:10};
@@ -5899,7 +5896,7 @@ function syntax_javascipt(code){
         if(state==states.NONE&&'+-/*=&|%!<>?:'.indexOf(char)!=-1){output+="<span class='code_elem_5'>"+char+'</span>';continue;}
         output+=char.replace('<', '&lt;');
     }
-    return output.replace(/\n/gm,'<br>').replace(/\t/g,document.createTextNode(symbol_tab)).replace(/^\s+|\s{2,}/g,(a)=>new Array(a.length+1).join('&nbsp;'));
+    return output.replace(/\n/gm,'<br>').replace(/\t/g,Array(9).join('&nbsp;')).replace(/^\s+|\s{2,}/g,(a)=>new Array(a.length+1).join('&nbsp;')); //let symbol_tab=Array(4).join('\u00a0'); //.replace(/\t/g,document.createTextNode(symbol_tab))
 }
 </script>
 </body>
