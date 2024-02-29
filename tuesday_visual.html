@@ -1273,14 +1273,39 @@ function save_file(){
         n=(story_script.parameters.title.en)?story_script.parameters.title.en:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
         n=correct_name(String(n).toLowerCase());
     }else{n="new_novel";}
-    download_files(n+'.json',"data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(story_script)))
+    download_files(n+'.json',JSON.stringify(story_script),true)
 }
-function download_files(n,c){
-    var dlAnchorElem=document.getElementById('downloadAnchorElem');
-    dlAnchorElem.setAttribute("href",c);
-    dlAnchorElem.setAttribute("download",n);
-    dlAnchorElem.click();
+
+
+
+async function download_files(n,c,p){
+    if( p&&"showSaveFilePicker" in window&&window.self===window.top) {
+        const opt={
+            suggestedName:n,
+            id:'tuesdyaJSengine',
+            types:[{description:'Text Files',accept:{'application/json':['.json']}}],
+        };
+        const file = await window.showSaveFilePicker(opt);
+        const content = await file.createWritable();
+        await content.write(c);
+        await content.close();
+    } else {
+		if(p){c="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(story_script))}
+        var dlAnchorElem=document.getElementById('downloadAnchorElem');
+        dlAnchorElem.setAttribute("href",c);
+        dlAnchorElem.setAttribute("download",n);
+        dlAnchorElem.click();
+    }
 }
+
+// "data:text/json;charset=utf-8,"+encodeURIComponent(c)
+
+//function download_files(n,c){
+//    var dlAnchorElem=document.getElementById('downloadAnchorElem');
+//    dlAnchorElem.setAttribute("href",c);
+//    dlAnchorElem.setAttribute("download",n);
+//    dlAnchorElem.click();
+//}
 function data_time(){
     var d=new Date(),dm=String(d.getMonth()+1),dd=String(d.getDate()),dh=String(d.getHours()),di=String(d.getMinutes()),ds=String(d.getSeconds());
     return d.getFullYear()+'_'+(dm.length<2?'0'+dm :dm)+'_'+(dd.length<2?'0'+dd :dd)+'_'+(dh.length<2?'0'+dh :dh)+"-"+(di.length<2?'0'+di:di)+"-"+(ds.length<2?'0'+ds:ds)
