@@ -416,6 +416,53 @@ input:checked+.toggle:before{transform:translateX(14px);}
     box-shadow:inset -26px 0 16px -28px var(--cs);
 }
 .translation_data{height:40px;display:flex;justify-content:start;align-items:center;white-space:nowrap;}
+.codeView{
+    overflow: scroll;
+    position: relative;
+    padding-left:0px;
+    height:calc(90vh - 128px);
+    width:100%;
+    border-top:1px solid var(--cb);
+    border-bottom:1px solid var(--cb);
+    min-height:92px;
+}
+.codeView *{
+    box-sizing:border-box;
+    font-size:12px;
+    text-align:left;
+    font-family:monospace;
+}
+.code_text,.code_show{
+    background-color:transparent;
+    font-family:monospace;
+    text-decoration:none;
+    position:absolute;
+    top:0px;left:0px;
+    overflow:hidden;
+    outline:none;
+    resize:none;
+    padding:8px;
+    margin:0;
+}
+.code_text{
+    width:100%;
+    min-width:100%;
+    min-height:100%;
+    border:none;
+    color:transparent;
+    caret-color:var(--tx);
+}
+.code_show{
+    color:var(--tx);
+    padding-top:9px;
+    padding-left:12px;
+    left:-3.3px;top:-0.5px;
+}
+.code_elem_1{color:var(--cb);font-style:italic;}
+.code_elem_2{color:var(--tx);filter:brightness(0.5) invert(50%);}
+.code_elem_3{color:#e88;font-weight:bold;filter:var(--ft);}
+.code_elem_4{color:#6b5;filter:var(--ft);}
+.code_elem_5{color:#88e;filter:var(--ft);}
 </style>
 </head>
 <body onload="world_size();" style='background-color:var(--cw);font-size:12px;'>
@@ -787,7 +834,7 @@ const color_ui=[
     ['#beb3af','#dfd9d7','rgba(64,55,51,0.25)','rgb(160,142,136)','rgba(160,142,136,0.5)' ,'#5a4d46','#fff','none','#000'],
     ['#d2c4a5','#efe1c3','rgba(121,103,63,0.25)','rgb(121,103,63)','rgba(121,103,63,0.5)' ,'#7b6f54','#fff','none','#000'],
     ['#c4cebb','#dfebd5','rgba(109,124,91,0.25)','rgb(109,124,91)','rgba(109,124,91,0.5)' ,'#427e00','#fff','none','#000'],
-    ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#383838','invert(85%)','#d8d8d8',"#7f7f7f"],
+    ['#7f7f7f','#1f1f1f','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#383838','invert(85%) hue-rotate(180deg)','#d8d8d8',"#7f7f7f"],
     ['#6178aa','#192543','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#303f6a','invert(90%) hue-rotate(180deg)','#ddd',"#6178aa"],
     ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#26343d','invert(90%)','#ddd',"#647f90"],
     ['#9d7290','#1e111a','rgba(0,0,0,0.5)','rgba(0,0,0,0.7)','rgba(0,0,0,0.5)','#888','#411934','invert(85%) hue-rotate(180deg)','#ddd',"#6B4C61"],
@@ -844,7 +891,7 @@ const texts={"tutorials":[{
         },{
         "en":"Selecciona una carpeta de trabajo con recursos para el proyecto."
         },{
-        "en":"Changes in the values ​​of variables, their values ​​can be displayed in the text as \< var_name \> or in \"Decisión de destino\" to go to another block of script."
+        "en":"Los cambios en los valores de las variables, pueden ser mostrados en el texto como \<var_name\> o en \"Decisión de destino\"  para ir a otro bloque del código."
         },{
         "en":"Escoge la entrada del dispositivo que más se acomode a ti. Puedes cambiar el dispositivo en los ajustes en la sección de \"Editor\"."
         },{
@@ -1226,25 +1273,27 @@ function save_file(){
         n=(story_script.parameters.title.es)?story_script.parameters.title.es:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
         n=correct_name(String(n).toLowerCase());
     }else{n="new_novel";}
-    download_files(n+'.json',JSON.stringify(story_script))
+    create_json_files(n+'.json',JSON.stringify(story_script))
+	async function create_json_files(n,c){
+		if("showSaveFilePicker" in window&&window.self===window.top) {
+			const opt={
+				suggestedName:n,
+				id:'tuesdyaJSengine',
+				types:[{description:'Text Files',accept:{'application/json':['.json']}}],
+			};
+			const file = await window.showSaveFilePicker(opt);
+			const content = await file.createWritable();
+			await content.write(c);
+			await content.close();
+		} else {download_files(n,"data:text/json;charset=utf-8,"+encodeURIComponent(c))}
+	}
 }
-async function download_files(n,c){
-    if("showSaveFilePicker" in window && window.self===window.top) {
-        const opt={
-            suggestedName:n,
-            id:'tuesdyaJSengine',
-            types:[{description:'Text Files',accept:{'application/json':['.json']}}],
-        };
-        const file = await window.showSaveFilePicker(opt);
-        const content = await file.createWritable();
-        await content.write(c);
-        await content.close();
-    } else {
-        var dlAnchorElem=document.getElementById('downloadAnchorElem');
-        dlAnchorElem.setAttribute("href", "data:text/json;charset=utf-8,"+encodeURIComponent(c) );
-        dlAnchorElem.setAttribute("download",n);
-        dlAnchorElem.click();
-    }
+
+function download_files(n,c){
+    let e=document.getElementById('downloadAnchorElem');
+    e.setAttribute("href",c);
+    e.setAttribute("download",n);
+    e.click();
 }
 function data_time(){
     var d=new Date(),dm=String(d.getMonth()+1),dd=String(d.getDate()),dh=String(d.getHours()),di=String(d.getMinutes()),ds=String(d.getSeconds());
@@ -1563,7 +1612,7 @@ function toast(message, color){
     x.classList.add("toast_anim");
 }
 function about(){
-    var html="<div class='window' style='padding:24px 16px 0px 16px;width:422px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday JS motor de novela visual</p><hr><p>Lanzamiento: 43</p>"
+    var html="<div class='window' style='padding:24px 16px 0px 16px;width:422px;'><div><div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><div align='center'><p style='font-size:22px;'>Tuesday JS motor de novela visual</p><hr><p>Lanzamiento: 44</p>"
     +"<table style=' border-spacing:10px;border-collapse:separate; width: 100%;'><tr><td align='right' colspan='1'>Correo:</td><td align='left' colspan='2'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right' colspan='1'>Sitio Web:</td><td align='left' colspan='3'><a href='https://kirilllive.github.io/tuesday-js' target='_blank'>kirilllive.github.io/tuesday-js</a></td></tr>  <tr><td align='right' colspan='1'>Tutorial:</td><td align='left' colspan='3'><a href='https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_es' target='_blank'>kirilllive.github.io/tuesday-js/doc_editor</a></td></tr><tr>"
     +"<td class='button_menu' style='border-radius:16px;width:33%;height:64px' align='center'><a href='https://github.com/Kirilllive/tuesday-js' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 256 256' style='filter:var(--ft);'><path d='M128,0C57,0 0,57 0,128c0,57 37,104 88,121 6,1 9,-3 9,-6 0,-3-0,-13-0,-24C64,225 56,212 53,204 52,201 45,189 40,186c-4,-2-11,-8-0,-8 10,-0 17,9 20,13 12,19 30,14 37,11 1,-8 4,-14 8,-17-28,-3-58,-14-58,-63 0,-14 5,-25 13,-34-1,-3-6,-16 1,-34 0,0 11,-3 35,13 10,-3 21,-4 32,-4 11,0 22,1 32,4 24,-17 35,-13 35,-13 7,18 3,31 1,34 8,9 13,20 13,34 0,49-30,60-58,63 5,4 9,12 9,24 0,17-0,31-0,35 0,3 2,7 9,6C219,232 256,184 256,128 256,57 199,0 128,0Z' fill='#000' /></svg></a></td>"
     +"<td class='button_menu' style='border-radius:16px;width:33%;height:64px' align='center'><a href='https://www.reddit.com/r/TuesdayJS/' target='_blank'> <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 116 116' style='filter:var(--ft);'><path fill='#000' transform='translate(-82,-80)' d='m 195.7,139.8 c 0,-6.8 -5.5,-12.2 -12.2,-12.2 -3.3,0 -6.3,1.3 -8.5,3.4 -8.4,-6 -19.9,-9.9 -32.7,-10.4 l 5.6,-26.2 18.2,3.9 c 0.2,4.6 4,8.3 8.7,8.3 4.8,0 8.7,-3.9 8.7,-8.7 0,-4.8 -3.9,-8.7 -8.7,-8.7 -3.4,0 -6.4,2 -7.8,4.9 l -20.3,-4.3 c -0.6,-0.1 -1.2,0 -1.6,0.3 -0.5,0.3 -0.8,0.8 -0.9,1.4 l -6.2,29.2 c -13,0.4 -24.7,4.3 -33.2,10.4 -2.2,-2.1 -5.2,-3.4 -8.5,-3.4 -6.8,0 -12.2,5.5 -12.2,12.2 0,5 3,9.2 7.2,11.1 -0.2,1.2 -0.3,2.4 -0.3,3.7 0,18.8 21.9,34.1 48.9,34.1 27,0 48.9,-15.2 48.9,-34.1 0,-1.2 -0.1,-2.5 -0.3,-3.7 4.2,-1.9 7.2,-6.2 7.2,-11.2 z m -83.8,8.7 c 0,-4.8 3.9,-8.7 8.7,-8.7 4.8,0 8.7,3.9 8.7,8.7 0,4.8 -3.9,8.7 -8.7,8.7 -4.8,0.1 -8.7,-3.9 -8.7,-8.7 z m 48.7,23.1 c -6,6 -17.4,6.4 -20.7,6.4 -3.4,0 -14.8,-0.5 -20.7,-6.4 -0.9,-0.9 -0.9,-2.3 0,-3.2 0.9,-0.9 2.3,-0.9 3.2,0 3.8,3.8 11.8,5.1 17.5,5.1 5.7,0 13.8,-1.3 17.5,-5.1 0.9,-0.9 2.3,-0.9 3.2,0 0.8,0.9 0.8,2.3 0,3.2 z M 159,157.3 c -4.8,0 -8.7,-3.9 -8.7,-8.7 0,-4.8 3.9,-8.7 8.7,-8.7 4.8,0 8.7,3.9 8.7,8.7 0,4.7 -3.9,8.7 -8.7,8.7 z'/></svg></a></td>"
@@ -1704,7 +1753,7 @@ function jsonedit(arr){
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
-    +"<p><textarea id='editJson' spellcheck='false' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();state_save();modal_window(\"close\");toast(\"Script actualizado\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Aplicar</td><td width='42px'></td></tr></tbody></table></div>"}
+    +"<p><textarea id='editJson' spellcheck='false' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border-top:1px solid var(--cb);border-bottom:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();state_save();modal_window(\"close\");toast(\"Script actualizado\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Aplicar</td><td width='42px'></td></tr></tbody></table></div>"}
     else{var html="<div class='window' style='padding:0px 2px 16px 0px;width:calc(100vw - 32px);'>"
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
@@ -1713,7 +1762,7 @@ function jsonedit(arr){
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
     +"</tr></tbody></table>"
-    +"<textarea id='editJson' rows='12' spellcheck='false' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);if(story_script.blocks){block_colors()};update_novel();state_save();modal_window(\"close\");toast(\"Script actualizado\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Aplicar</td><td width='42px'></td></tr></tbody></table></div>"}
+    +"<textarea id='editJson' rows='12' spellcheck='false' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border-top:1px solid var(--cb);border-bottom:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);if(story_script.blocks){block_colors()};update_novel();state_save();modal_window(\"close\");toast(\"Script actualizado\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Aplicar</td><td width='42px'></td></tr></tbody></table></div>"}
     modal_window("open",html);
 }
 function big_languares(s){
@@ -3034,6 +3083,7 @@ function dialog_char_update(){
     c_class.value=(arr_s&&arr_s.className)?arr_s.className:'';
     t_color.value=(arr_s&&arr_s.color_text)?arr_s.color_text:'';
     c_color.value=(arr_s&&arr_s.color)?arr_s.color:'';
+    c_art.value=(arr_s&&arr_s.art)?arr_s.art:'';
 }
 function dialog_text_apply(){
 	if(text_class.value!=""){copy_arr[arr_n].className=text_class.value;}else{delete copy_arr[arr_n].className};
@@ -3156,16 +3206,16 @@ function edit_html(){
     modal_window("open",html);
 }
 function edit_code(vol,n){
-    var html="<div class='window' style='padding:0px 2px 16px 0px;width:calc(100vw - 32px);'>"
+    let code=(vol=="script_js")?story_script.parameters.js:(vol=="script_css")?story_script.parameters.css:(copy_arr[vol])?copy_arr[vol]:'';
+    let html="<div class='window' style='padding:0px 2px 16px 0px;width:calc(100vw - 32px);'>"
     +"<table style='width:100%;'><tbody><tr>"
-    +"<td style='width:168px;'></td>"
+    +"<td style='width:40px;height:40px;'></td>"
     +"<td align='center' style='white-space:nowrap;'>"+n+" edición de código</td>"
-    +"<td style='width:88px;'><input id='search_edit' onkeypress='if(event.key==\"Enter\"){search_text(\"editcode\",this.value)}' type='text' class='search' style='height:40px;width:100%;' placeholder='Buscar texto'></td>"
-    +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editcode\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
-    +"</tr></tbody></table>"
-    +"<p><textarea id='editcode' spellcheck='false' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:8px;height:calc(90vh - 128px);width:calc(100% - 8px);border:1px solid var(--cb);min-height:92px;'>"+((vol=="script_js")?story_script.parameters.js:(vol=="script_css")?story_script.parameters.css:(copy_arr[vol])?copy_arr[vol]:'')+"</textarea></p><br><table class='big_button' width='256px' onclick='"+((vol=="script_js")?"story_script.parameters.js":(vol=="script_css")?"story_script.parameters.css":"copy_arr[\""+vol+"\"]")+"=editcode.value;update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Aplicar</td><td width='42px'></td></tr></tbody></table></div>"
+    +"</tr></tbody></table><p><div class='codeView'><pre class='code_show'></pre><textarea id='editcode' class='code_text' spellcheck='false' wrap='off' oninput='code_edit(this,this.previousElementSibling,\"js\")'>"+code+"</textarea></div>"
+    +"</p><br><table class='big_button' width='256px' onclick='"+((vol=="script_js")?"story_script.parameters.js":(vol=="script_css")?"story_script.parameters.css":"copy_arr[\""+vol+"\"]")+"=editcode.value;update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Aplicar</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
+    code_edit(editcode,editcode.previousElementSibling,"js")
 }
 function edit_toast(){
     copy_arr=JSON.parse(JSON.stringify(arr_l));
@@ -4857,7 +4907,18 @@ function apply_setup(){
 }
 var scale=1;
 var scale_scene=1;
+
+
+
 document.addEventListener('keydown',function(event){
+    let elem=document.getElementsByClassName("code_text")[0];
+    if(elem&&event.key=='Tab'){
+        event.preventDefault();
+        let start=elem.selectionStart,end=elem.selectionEnd;
+        elem.value=elem.value.substring(0,start)+"\t"+elem.value.substring(end);
+        elem.selectionStart=elem.selectionEnd=start+1;
+        elem.previousElementSibling.innerHTML=syntax_javascipt(elem.value);
+    }
     if(event.altKey){
         if(!scroll_block||scene_screen){
             if(event.code=='Equal'){world_scale(2)}
@@ -4867,7 +4928,7 @@ document.addEventListener('keydown',function(event){
             else if(scene_screen&&event.code=='Period'){scen_editor(scen_data[0],scen_data[1],scen_data[2]+1)}
         }
         if(event.code=='KeyR'){play_novel();}
-    }else if(document.activeElement.tagName!="TEXTAREA"&&event.code=='Enter'&&!(event.altKey||event.shiftKey)){
+    }else if(document.activeElement.tagName!="TEXTAREA"&&document.activeElement.tagName!="PRE"&&event.code=='Enter'&&!(event.altKey||event.shiftKey)){
         if(document.activeElement.tagName=="BODY"){
             if(add_element.style.visibility=="visible"){let b=add_element.getElementsByClassName("big_button");b[b.length-1].click();}
             else if(window_zone.style.visibility=="visible"){let b=window_zone.getElementsByClassName("big_button");b[b.length-1].click();}
@@ -4877,6 +4938,9 @@ document.addEventListener('keydown',function(event){
         else if(window_zone.style.visibility=="visible"){modal_window("close");synth.cancel();}
     }
 });
+
+
+
 var scene_screen=false
 var scroll_xs=null;
 var scroll_ys=null;
@@ -5782,6 +5846,59 @@ function state_back(n){
     if(state_num<0){state_num=0}else if(state_num>=back_up.length-1){state_num=back_up.length-1};
     story_script=JSON.parse(back_up[state_num]);
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
+}
+function code_edit(edit,show,code){
+    if(code=="js"){show.innerHTML=syntax_javascipt(edit.value)};
+    let e=show.getBoundingClientRect();
+    edit.style.width =(e.width+100)+'px';
+    edit.style.height=(e.height+100)+'px';
+}
+function syntax_javascipt(code){
+    function isAlphaNumericChar(char){return char&&/[0-9a-z_\$]/i.test(char);}
+    const states={NONE:0,SINGLE_QUOTE:1,DOUBLE_QUOTE:2,ML_QUOTE:3,REGEX_LITERAL:4,SL_COMMENT:5,ML_COMMENT:6,NUMBER_LITERAL:7,KEYWORD:8,SPECIAL:9,ELEMENT:10};
+    const keywords=["async","await","break","case","class","const","continue","debugger","default","delete","do","else","enum","export","extends","for","from","function","get","if","implements","import","in","instanceof","interface","let","new","of","package","private","protected","public","return","set","static","super","switch","throw","try","typeof","var","void","while","with","yield","catch","finally"];
+    const specials=["this","null","true","false","undefined","NaN","Infinity"]
+    const elements=["window","document","addEventListener","removeEventListener","tuesday"];
+    let output='',state=states.NONE;
+    for (let i=0;i<code.length;i++){
+        let char=code[i],prev=code[i-1],next=code[i+1];
+        if(state==states.NONE&&char=='/'&&next=='/'){state=states.SL_COMMENT;output+="<span class='code_elem_1'>"+char;continue;}
+        if(state==states.SL_COMMENT&&char=='\n'){state=states.NONE;output+=char+'</span>';continue;}
+        if(state==states.NONE&&char=='/'&&next=='*'){state=states.ML_COMMENT;output+="<span class='code_elem_1'>"+char;continue;}
+        if(state==states.ML_COMMENT&&char=='/'&&prev=='*'){state=states.NONE;output+=char+'</span>';continue;}
+        const closingCharNotEscaped=prev!='\\'||prev=='\\'&&code[i-2]=='\\';
+        if(state==states.NONE&&char=='\''){state=states.SINGLE_QUOTE;output+="<span class='code_elem_2'>"+char;continue;}
+        if(state==states.SINGLE_QUOTE&&char=='\''&&closingCharNotEscaped){state=states.NONE;output+=char+'</span>';continue;}
+        if(state==states.NONE&&char=='"'){state=states.DOUBLE_QUOTE;output+="<span class='code_elem_2'>"+char;continue;}
+        if(state==states.DOUBLE_QUOTE&&char=='"'&&closingCharNotEscaped){state=states.NONE;output+=char+'</span>';continue;}
+        if(state==states.NONE&&char=='`'){state=states.ML_QUOTE;output+="<span class='code_elem_2'>"+char;continue;}
+        if(state==states.ML_QUOTE&&char=='`'&&closingCharNotEscaped){state=states.NONE;output+=char+'</span>';continue;}
+        if(state==states.NONE&&char=='/'){
+            let word='',j=0,isRegex=true;
+            while(i+j>=0){j--;
+                if('+/-*=|&<>%,({[?:;'.indexOf(code[i+j])!=-1)break;
+                if(!isAlphaNumericChar(code[i+j])&&word.length>0)break;
+                if(isAlphaNumericChar(code[i+j]))word=code[i+j]+word;
+                if(')]}'.indexOf(code[i+j])!=-1){isRegex=false;break;}
+            }
+            if(word.length>0&&!keywords.includes(word))isRegex=false;
+            if(isRegex){state=states.REGEX_LITERAL;output+="<span class='code_elem_2'>"+char;continue;}
+        }
+        if(state==states.REGEX_LITERAL&&char=='/'&&closingCharNotEscaped){state=states.NONE;output+=char+'</span>';continue;}
+        if(state==states.NONE&&/[0-9]/.test(char)&&!isAlphaNumericChar(prev)){state=states.NUMBER_LITERAL;output+="<span class='code_elem_4'>"+char;continue;}
+        if(state==states.NUMBER_LITERAL&&!isAlphaNumericChar(char)){state=states.NONE;output+='</span>'}
+        if(state==states.NONE&&!isAlphaNumericChar(prev)){
+            let word='', j=0;
+            while(code[i+j]&&isAlphaNumericChar(code[i+j])){word+=code[i+j];j++;}
+            if(keywords.includes(word)){state=states.KEYWORD;output+="<span class='code_elem_3'>";}
+            if(specials.includes(word)){state=states.SPECIAL;output+="<span class='code_elem_3'>";}
+            if(elements.includes(word)){state=states.ELEMENT;output+="<span class='code_elem_2'>";}
+        }
+        if((state==states.KEYWORD||state==states.SPECIAL||state==states.ELEMENT)&&!isAlphaNumericChar(char)){state=states.NONE;output+='</span>';}
+        if(state==states.NONE&&'+-/*=&|%!<>?:'.indexOf(char)!=-1){output+="<span class='code_elem_5'>"+char+'</span>';continue;}
+        output+=char.replace('<', '&lt;');
+    }
+    return output.replace(/\n/gm,'<br>').replace(/\t/g,Array(9).join('&nbsp;')).replace(/^\s+|\s{2,}/g,(a)=>new Array(a.length+1).join('&nbsp;')); //let symbol_tab=Array(4).join('\u00a0'); //.replace(/\t/g,document.createTextNode(symbol_tab))
 }
 </script>
 </body>

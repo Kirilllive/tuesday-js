@@ -1285,20 +1285,15 @@ function save_file(){
 			const content = await file.createWritable();
 			await content.write(c);
 			await content.close();
-		} else {
-			var dlAnchorElem=document.getElementById('downloadAnchorElem');
-			dlAnchorElem.setAttribute("href","data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(c)));
-			dlAnchorElem.setAttribute("download",n);
-			dlAnchorElem.click();
-		}
+		} else {download_files(n,"data:text/json;charset=utf-8,"+encodeURIComponent(c))}
 	}
 }
 
 function download_files(n,c){
-    var dlAnchorElem=document.getElementById('downloadAnchorElem');
-    dlAnchorElem.setAttribute("href",c);
-    dlAnchorElem.setAttribute("download",n);
-    dlAnchorElem.click();
+    let e=document.getElementById('downloadAnchorElem');
+    e.setAttribute("href",c);
+    e.setAttribute("download",n);
+    e.click();
 }
 function data_time(){
     var d=new Date(),dm=String(d.getMonth()+1),dd=String(d.getDate()),dh=String(d.getHours()),di=String(d.getMinutes()),ds=String(d.getSeconds());
