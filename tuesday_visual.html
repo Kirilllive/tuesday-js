@@ -1666,11 +1666,10 @@ function build(tip){
     }}
     if(story_build.parameters.font_files){for(var i=0;i<Object.keys(story_build.parameters.font_files).length;i++){fonts+="@font-face{font-family:"+Object.keys(story_build.parameters.font_files)[i]+";src:url("+story_build.parameters.font_files[Object.keys(story_build.parameters.font_files)[i]]+");} "}}
     var par=[((story_script.parameters.font)?story_script.parameters.font:0),((story_script.parameters.font_size)?story_script.parameters.font_size:0),((story_script.parameters.icon)?story_script.parameters.icon:0)]
-    if(story_script.parameters.characters&&Object.keys(story_script.parameters.characters).length==0){delete story_script.parameters.characters}
-    if(story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length==0){delete story_script.parameters.variables}
-    if(story_script.parameters.sounds&&Object.keys(story_script.parameters.sounds).length==0){delete story_script.parameters.sounds}
-    if(story_script.parameters.key&&Object.keys(story_script.parameters.key).length==0){delete story_script.parameters.key}
-    if(story_script.parameters.style_file&&story_script.parameters.style_file.length==0){delete story_script.parameters.style_file}
+    if(story_build.parameters.characters&&Object.keys(story_build.parameters.characters).length==0){delete story_build.parameters.characters}
+    if(story_build.parameters.sounds&&Object.keys(story_build.parameters.sounds).length==0){delete story_build.parameters.sounds}
+    if(story_build.parameters.key&&Object.keys(story_build.parameters.key).length==0){delete story_build.parameters.key}
+    if(story_build.parameters.style_file&&story_build.parameters.style_file.length==0){delete story_build.parameters.style_file}
     delete story_build.parameters['plugins'];
     delete story_build.parameters['font_size'];
     delete story_build.parameters['icon'];
@@ -3090,6 +3089,7 @@ function dialog_text_apply(){
     if(text_color.value!=""){arr_l.color_text=text_color.value;}else{delete arr_l.color_text};
     if(p_color.value!=""){arr_l.color=p_color.value;}else{delete arr_l.color};
     if(!copy_arr[arr_n].style&&!copy_arr[arr_n].className)data_only(copy_arr,arr_n);
+    if(!story_script.parameters.characters){story_script.parameters.characters={}}
     var arr_s=story_script.parameters.characters,n=0,l,c=0;
     if(copy_arr.name.length!=0&&!arr_s[copy_arr.name]){
         for(let l=0;l<story_script.parameters.languares.length;l++){
