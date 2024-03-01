@@ -459,10 +459,10 @@ input:checked+.toggle:before{transform:translateX(14px);}
     left:-3.3px;top:-0.5px;
 }
 .code_elem_1{color:var(--cb);font-style:italic;}
-.code_elem_5{color:var(--tx);filter:brightness(0.5) invert(50%);}
+.code_elem_2{color:var(--tx);filter:brightness(0.5) invert(50%);}
 .code_elem_3{color:#e88;font-weight:bold;filter:var(--ft);}
-.code_elem_2{color:#6b5;filter:var(--ft);}
-.code_elem_4{color:#88e;filter:var(--ft);}
+.code_elem_4{color:#6b5;filter:var(--ft);}
+.code_elem_5{color:#88e;filter:var(--ft);}
 </style>
 </head>
 <body onload="world_size();" style='background-color:var(--cw);font-size:12px;'>
@@ -4907,6 +4907,9 @@ function apply_setup(){
 }
 var scale=1;
 var scale_scene=1;
+
+
+
 document.addEventListener('keydown',function(event){
     let elem=document.getElementsByClassName("code_text")[0];
     if(elem&&event.key=='Tab'){
@@ -4935,6 +4938,9 @@ document.addEventListener('keydown',function(event){
         else if(window_zone.style.visibility=="visible"){modal_window("close");synth.cancel();}
     }
 });
+
+
+
 var scene_screen=false
 var scroll_xs=null;
 var scroll_ys=null;
