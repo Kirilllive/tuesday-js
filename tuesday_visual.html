@@ -473,7 +473,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
 			<tbody>
 				<tr>
 					<td title='New project' onclick='new_project();menu_add.style.visibility="hidden";' class='icon button_menu icon_new'></td>
-                    <td title='Load project folder ' onclick='json_file.value=null;load_new=false;json_file.click();menu_add.style.visibility="hidden";' class='icon button_menu icon_load'></td>
+                    <td title='Load project folder' onclick='json_file.value=null;load_new=false;json_file.click();menu_add.style.visibility="hidden";' class='icon button_menu icon_load'></td>
 					<td title='Save JSON script project' onclick='save_file();menu_add.style.visibility="hidden";' class='icon button_menu icon_save'></td>
                     <td title='Undo' onclick='state_back(1);' class='icon button_menu icon_undo'></td>
                     <td title='Redo' onclick='state_back(-1);' class='icon button_menu icon_undo' style='transform:scaleX(-1);'></td>
@@ -1273,25 +1273,27 @@ function save_file(){
         n=(story_script.parameters.title.en)?story_script.parameters.title.en:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
         n=correct_name(String(n).toLowerCase());
     }else{n="new_novel";}
-    download_files(n+'.json',JSON.stringify(story_script))
+    create_json_files(n+'.json',JSON.stringify(story_script))
+	async function create_json_files(n,c){
+		if("showSaveFilePicker" in window&&window.self===window.top) {
+			const opt={
+				suggestedName:n,
+				id:'tuesdyaJSengine',
+				types:[{description:'Text Files',accept:{'application/json':['.json']}}],
+			};
+			const file = await window.showSaveFilePicker(opt);
+			const content = await file.createWritable();
+			await content.write(c);
+			await content.close();
+		} else {download_files(n,"data:text/json;charset=utf-8,"+encodeURIComponent(c))}
+	}
 }
-async function download_files(n,c){
-    if("showSaveFilePicker" in window && window.self===window.top) {
-        const opt={
-            suggestedName:n,
-            id:'tuesdyaJSengine',
-            types:[{description:'Text Files',accept:{'application/json':['.json']}}],
-        };
-        const file = await window.showSaveFilePicker(opt);
-        const content = await file.createWritable();
-        await content.write(c);
-        await content.close();
-    } else {
-        var dlAnchorElem=document.getElementById('downloadAnchorElem');
-        dlAnchorElem.setAttribute("href", "data:text/json;charset=utf-8,"+encodeURIComponent(c) );
-        dlAnchorElem.setAttribute("download",n);
-        dlAnchorElem.click();
-    }
+
+function download_files(n,c){
+    let e=document.getElementById('downloadAnchorElem');
+    e.setAttribute("href",c);
+    e.setAttribute("download",n);
+    e.click();
 }
 function data_time(){
     var d=new Date(),dm=String(d.getMonth()+1),dd=String(d.getDate()),dh=String(d.getHours()),di=String(d.getMinutes()),ds=String(d.getSeconds());
@@ -1649,7 +1651,7 @@ function new_project(){
         +"<tr><td style='padding-right:8px; border-right:1px solid var(--cb); width:40%; padding-top:10px;'><select class='title_lang'>"+big_languares()+"</select></td><td><input class='title_name input_text' placeholder='translated title' style='padding-top:10px;' type='text' value='"
         +story_script.parameters.title.en+"'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
         +"</tbody></table><div onclick=\"add_tr('new_title')\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div>"
-        +"</div><br><br><table class='big_button' width='256px' onclick='json_file.value=null;load_files=[];scen_editor_apply();open_tool();new_novel();create_project()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create project</td><td width='42px'></td></tr></tbody></table></div>"
+        +"</div><br><br><table class='big_button' width='256px' onclick='scen_editor_apply();open_tool();create_project();new_novel();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create project</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function build(tip){
@@ -1664,11 +1666,10 @@ function build(tip){
     }}
     if(story_build.parameters.font_files){for(var i=0;i<Object.keys(story_build.parameters.font_files).length;i++){fonts+="@font-face{font-family:"+Object.keys(story_build.parameters.font_files)[i]+";src:url("+story_build.parameters.font_files[Object.keys(story_build.parameters.font_files)[i]]+");} "}}
     var par=[((story_script.parameters.font)?story_script.parameters.font:0),((story_script.parameters.font_size)?story_script.parameters.font_size:0),((story_script.parameters.icon)?story_script.parameters.icon:0)]
-    if(story_script.parameters.characters&&Object.keys(story_script.parameters.characters).length==0){delete story_script.parameters.characters}
-    if(story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length==0){delete story_script.parameters.variables}
-    if(story_script.parameters.sounds&&Object.keys(story_script.parameters.sounds).length==0){delete story_script.parameters.sounds}
-    if(story_script.parameters.key&&Object.keys(story_script.parameters.key).length==0){delete story_script.parameters.key}
-    if(story_script.parameters.style_file&&story_script.parameters.style_file.length==0){delete story_script.parameters.style_file}
+    if(story_build.parameters.characters&&Object.keys(story_build.parameters.characters).length==0){delete story_build.parameters.characters}
+    if(story_build.parameters.sounds&&Object.keys(story_build.parameters.sounds).length==0){delete story_build.parameters.sounds}
+    if(story_build.parameters.key&&Object.keys(story_build.parameters.key).length==0){delete story_build.parameters.key}
+    if(story_build.parameters.style_file&&story_build.parameters.style_file.length==0){delete story_build.parameters.style_file}
     delete story_build.parameters['plugins'];
     delete story_build.parameters['font_size'];
     delete story_build.parameters['icon'];
@@ -3088,6 +3089,7 @@ function dialog_text_apply(){
     if(text_color.value!=""){arr_l.color_text=text_color.value;}else{delete arr_l.color_text};
     if(p_color.value!=""){arr_l.color=p_color.value;}else{delete arr_l.color};
     if(!copy_arr[arr_n].style&&!copy_arr[arr_n].className)data_only(copy_arr,arr_n);
+    if(!story_script.parameters.characters){story_script.parameters.characters={}}
     var arr_s=story_script.parameters.characters,n=0,l,c=0;
     if(copy_arr.name.length!=0&&!arr_s[copy_arr.name]){
         for(let l=0;l<story_script.parameters.languares.length;l++){
