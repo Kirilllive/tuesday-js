@@ -104,13 +104,14 @@ function name_block_update(){
     tue_text_block=document.getElementById("tue_text_block");
 	tue_text_element=document.getElementById("tue_text_element");
 	tue_text_element.style.position="relative";
-	tue_text_element.style.verticalAlign="top";
+	//tue_text_element.style.verticalAlign="top";
     if(story_json.parameters.text_panel.className){tue_text_block.className=story_json.parameters.text_panel.className;}
     if(story_json.parameters.text_panel.style){tue_text_block.style=story_json.parameters.text_panel.style;}
     tue_text_block.style.position="absolute";
 	if(story_json.parameters.text_panel.size){
 		tue_text_block.style.width=story_json.parameters.text_panel.size[0];
 		tue_text_block.style.height=story_json.parameters.text_panel.size[1];
+		tue_text_element.style.height=story_json.parameters.text_panel.size[1];
 	}
 	if(story_json.parameters.text_panel.position){
          if((!story_json.parameters.text_panel.position[0]||story_json.parameters.text_panel.position[0]=="0")&&(!story_json.parameters.text_panel.position[1]||story_json.parameters.text_panel.position[1]=="0")){
@@ -140,7 +141,7 @@ function name_block_update(){
     tue_text_view.style.height="100%";
     if(story_json.parameters.text_panel.scroll){
         tue_text_block.style.paddingTop=story_json.parameters.text_panel.indent_text;
-        tue_text_view.style.height=tue_text_view.offsetHeight;
+        tue_text_view.style.height=tue_text_element.offsetHeight+"px";
         tue_text_view.style.position="relative";
         tue_text_view.style.overflowY="hidden";
     }
