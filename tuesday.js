@@ -104,6 +104,7 @@ function name_block_update(){
     tue_text_block=document.getElementById("tue_text_block");
 	tue_text_element=document.getElementById("tue_text_element");
 	tue_text_element.style.position="relative";
+	tue_text_element.style.verticalAlign="top";
     if(story_json.parameters.text_panel.className){tue_text_block.className=story_json.parameters.text_panel.className;}
     if(story_json.parameters.text_panel.style){tue_text_block.style=story_json.parameters.text_panel.style;}
     tue_text_block.style.position="absolute";
@@ -470,6 +471,7 @@ function name_block_update(){
                                 old[o].style.top="calc(100% - "+arr_dialog.art[i].position[3]+" - "+((arr_dialog.art[i].size[1]=='auto')?arr_dialog.art[i].size[0]:arr_dialog.art[i].size[1])+")";
                             }
                             src=true;
+                            if(arr_dialog.art[i].show_if){show_if(arr_dialog.art[i].show_if,old[o])}
                             old[o].style.zIndex=i;
                             old[o].classList.remove("img_del");
                             break;
