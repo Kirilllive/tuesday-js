@@ -1751,18 +1751,16 @@ function jsonedit(arr){
     +"<td style='width:88px;'><input id='search_edit' onkeypress='if(event.key==\"Enter\"){search_text(\"editJson\",this.value)}' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
-    +"</tr></tbody></table>"
-    +"<p><textarea id='editJson' spellcheck='false' rows='12' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border-top:1px solid var(--cb);border-bottom:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();state_save();modal_window(\"close\");toast(\"script updated\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
+    +"</tr></tbody></table><p><div class='codeView'><pre class='code_show'></pre><textarea id='editJson' class='code_text' spellcheck='false' wrap='off' oninput='code_edit(this,this.previousElementSibling,\"json\")'>"+JSON.stringify(arr_l[arr_n],null,'\t')+"</textarea></div><br><table class='big_button' width='256px' onclick='arr_l[arr_n]=JSON.parse(editJson.value);update_novel();state_save();modal_window(\"close\");toast(\"script updated\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
     else{var html="<div class='window' style='padding:0px 2px 16px 0px;width:calc(100vw - 32px);'>"
     +"<table style='width:100%;'><tbody><tr>"
     +"<td style='width:168px;'></td>"
     +"<td align='center'>JSON edit</td>"
     +"<td style='width:88px;'><input id='search_edit' onkeypress='if(event.key==\"Enter\"){search_text(\"editJson\",this.value)}' type='text' class='search' style='height:40px;width:100%;' placeholder='Search text'></td>"
     +"<td class='icon icon_search' style='width:60px;' onclick='search_text(\"editJson\",search_edit.value)'></td>"
-    +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
-    +"</tr></tbody></table>"
-    +"<textarea id='editJson' rows='12' spellcheck='false' class='input_text' wrap='off' style='font-family:monospace;resize:none;padding-left:0px;height:calc(90vh - 128px);width:100%;border-top:1px solid var(--cb);border-bottom:1px solid var(--cb);min-height:92px;'>"+JSON.stringify(story_script,null,'\t')+"</textarea></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);if(story_script.blocks){block_colors()};update_novel();state_save();modal_window(\"close\");toast(\"script updated\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
-    modal_window("open",html);
+    +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td></tr></tbody></table>"
+    +"<div class='codeView'><pre class='code_show'></pre><textarea id='editJson' class='code_text' spellcheck='false' wrap='off' oninput='code_edit(this,this.previousElementSibling,\"json\")'>"+JSON.stringify(story_script,null,'\t')+"</textarea></div></p><br><table class='big_button' width='256px' onclick='story_script=JSON.parse(editJson.value);if(story_script.blocks){block_colors()};update_novel();state_save();modal_window(\"close\");toast(\"script updated\");'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"}
+    modal_window("open",html);code_edit(editJson,editJson.previousElementSibling,"json")
 }
 function big_languares(s){
     var lang='<optgroup>';
@@ -3212,7 +3210,7 @@ function edit_code(vol,n){
     +"<td style='width:40px;height:40px;'></td>"
     +"<td align='center' style='white-space:nowrap;'>"+n+" code edit</td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
-    +"</tr></tbody></table><p><div class='codeView'><pre class='code_show'></pre><textarea id='editcode' class='code_text' spellcheck='false' wrap='off' oninput='code_edit(this,this.previousElementSibling,\"js\")'>"+code+"</textarea></div>"
+    +"</tr></tbody></table><p><div class='codeView'><pre class='code_show'></pre><textarea id='editcode' class='code_text' spellcheck='false' wrap='off' oninput='code_edit(this,this.previousElementSibling,"+(vol=="script_js"?"\"js\"":"false")+")'>"+code+"</textarea></div>"
     +"</p><br><table class='big_button' width='256px' onclick='"+((vol=="script_js")?"story_script.parameters.js":(vol=="script_css")?"story_script.parameters.css":"copy_arr[\""+vol+"\"]")+"=editcode.value;update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
     code_edit(editcode,editcode.previousElementSibling,"js")
@@ -5848,11 +5846,25 @@ function state_back(n){
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
 }
 function code_edit(edit,show,code){
-    if(code=="js"){show.innerHTML=syntax_javascipt(edit.value)};
+    if(code=="js"){show.innerHTML=syntax_javascipt(edit.value)}
+    else if(code=="json"){show.innerHTML=syntax_json(edit.value)}
+    else {show.innerHTML=edit.value}
     let e=show.getBoundingClientRect();
     edit.style.width =(e.width+100)+'px';
     edit.style.height=(e.height+100)+'px';
 }
+
+function syntax_json(code){
+    code=code.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    return code.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(data){
+        var style="null";
+        if (/^"/.test(data)){if(/:$/.test(data)){style="code_elem_5";}else{style="code_elem_2";}}
+        else if(/true|false|null/.test(data)){style="code_elem_3";}
+        else if(/[0-9]/.test(data)){style="code_elem_4";}
+        return "<span class='"+style+"'>"+data+"</span>";
+    }
+)}
+
 function syntax_javascipt(code){
     function isAlphaNumericChar(char){return char&&/[0-9a-z_\$]/i.test(char);}
     const states={NONE:0,SINGLE_QUOTE:1,DOUBLE_QUOTE:2,ML_QUOTE:3,REGEX_LITERAL:4,SL_COMMENT:5,ML_COMMENT:6,NUMBER_LITERAL:7,KEYWORD:8,SPECIAL:9,ELEMENT:10};
