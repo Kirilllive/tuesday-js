@@ -880,13 +880,14 @@ function name_block_update(){
     document.getElementsByTagName("head").item(0).appendChild(newlink);
 } function full_screen(el,arr){
 	if(!tue_fullScreen){
+        let elem=(story_json.parameters.resolutions)?tuesday.parentNode:tuesday;
 		tue_fullScreen=true;
         if(el&&arr&&arr["text1"]&&art_data(arr["text1"]).length>0){el.innerHTML=values_button(art_data(arr["text1"]))}
         if(el&&arr&&arr["art1"]&&art_data(arr["art1"]).length>0){el.style.backgroundImage="url('"+art_data(arr["art1"])+"')"}
-		if(tuesday.requestFullscreen){tuesday.requestFullscreen();} 
-		else if(tuesday.mozRequestFullScreen){tuesday.mozRequestFullScreen();} 
-		else if(tuesday.webkitRequestFullscreen){tuesday.webkitRequestFullscreen();} 
-		else if(tuesday.msRequestFullscreen){tuesday.msRequestFullscreen();}
+		if(elem.requestFullscreen){elem.requestFullscreen();}
+		else if(elem.mozRequestFullScreen){elem.mozRequestFullScreen();}
+		else if(elem.webkitRequestFullscreen){elem.webkitRequestFullscreen();}
+		else if(elem.msRequestFullscreen){elem.msRequestFullscreen();}
 	}else{
 		tue_fullScreen=false;
         if(arr&&arr["text"]&&art_data(arr["text"]).length>0){el.innerHTML=values_button(art_data(arr["text"]))}
