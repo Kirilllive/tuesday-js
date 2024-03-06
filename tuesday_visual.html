@@ -1900,7 +1900,7 @@ function file_catalog(id,files,area,preview,arr){
             +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center">File selection</td>'
             +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center" title="update working folder" onclick="json_file.value=null;load_new=true;json_file.click();menu_add.style.visibility=\'hidden\';" width="52px" class="icon icon_load"></td>'
             +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center" width="88px"><input type="text" class="search" id="search_file" onkeyup="search_file()" placeholder="search file"></td>'
-            +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);" align="center" onclick="menu_add.style.visibility=\'hidden\';if(audio_preplay.currentTime>0){audio_preplay.currentTime=0;audio_preplay.pause()}" width="52px" class="icon icon_close"></td>'
+            +'<td style="height:40px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--cb);background-position:right center;cursor:pointer;" align="center" onclick="menu_add.style.visibility=\'hidden\';if(audio_preplay.currentTime>0){audio_preplay.currentTime=0;audio_preplay.pause()}" width="40px" class="icon icon_close"></td>'
             +'</tr><tr><td colspan="5"><div style="overflow-x:hidden;overflow-y:auto;max-height:80vh;"><table style="width:100%;"><tbody>'
         if(id.includes('artt')){a=id.replace("artt","art")}
         else{a=''}
