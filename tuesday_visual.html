@@ -3388,10 +3388,10 @@ function values_in_text(e){
     }return e
 }
 function scen_editor(block,i,n){
-    var arr_s=story_script[block][i].dialogs[n-1]
-    var arr_t=story_script.parameters.text_panel
-    var arr_p=story_script.parameters.name_panel
-    var arr_c=story_script.parameters.characters
+    var arr_s=story_script[block][i].dialogs[n-1];
+    var arr_t=story_script.parameters.text_panel;
+    var arr_p=story_script.parameters.name_panel;
+    var arr_c=(story_script.parameters.characters)?story_script.parameters.characters:false;
     script_scroll=[html.scrollLeft,html.scrollTop]
     if(scen_data[2]<n){
         if(i>=story_script[block].length-1){i=story_script[block].length-1;}
@@ -4905,17 +4905,14 @@ function apply_setup(){
 }
 var scale=1;
 var scale_scene=1;
-
-
-
 document.addEventListener('keydown',function(event){
     let elem=document.getElementsByClassName("code_text")[0];
     if(elem&&event.key=='Tab'){
-        event.preventDefault();
+        event.preventDefault()
         let start=elem.selectionStart,end=elem.selectionEnd;
         elem.value=elem.value.substring(0,start)+"\t"+elem.value.substring(end);
         elem.selectionStart=elem.selectionEnd=start+1;
-        elem.previousElementSibling.innerHTML=syntax_javascipt(elem.value);
+        code_edit(elem,elem.previousElementSibling,last_code);
     }
     if(event.altKey){
         if(!scroll_block||scene_screen){
@@ -4936,9 +4933,6 @@ document.addEventListener('keydown',function(event){
         else if(window_zone.style.visibility=="visible"){modal_window("close");synth.cancel();}
     }
 });
-
-
-
 var scene_screen=false
 var scroll_xs=null;
 var scroll_ys=null;
@@ -5845,6 +5839,7 @@ function state_back(n){
     story_script=JSON.parse(back_up[state_num]);
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}else{update_novel();}
 }
+let last_code;
 function code_edit(edit,show,code){
     if(code=="js"){show.innerHTML=syntax_javascipt(edit.value)}
     else if(code=="json"){show.innerHTML=syntax_json(edit.value)}
@@ -5852,8 +5847,8 @@ function code_edit(edit,show,code){
     let e=show.getBoundingClientRect();
     edit.style.width =(e.width+100)+'px';
     edit.style.height=(e.height+100)+'px';
+    if(code){last_code=code}
 }
-
 function syntax_json(code){
     code=code.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
     return code.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(data){
@@ -5864,7 +5859,6 @@ function syntax_json(code){
         return "<span class='"+style+"'>"+data+"</span>";
     }
 )}
-
 function syntax_javascipt(code){
     function isAlphaNumericChar(char){return char&&/[0-9a-z_\$]/i.test(char);}
     const states={NONE:0,SINGLE_QUOTE:1,DOUBLE_QUOTE:2,ML_QUOTE:3,REGEX_LITERAL:4,SL_COMMENT:5,ML_COMMENT:6,NUMBER_LITERAL:7,KEYWORD:8,SPECIAL:9,ELEMENT:10};
@@ -5910,7 +5904,7 @@ function syntax_javascipt(code){
         if(state==states.NONE&&'+-/*=&|%!<>?:'.indexOf(char)!=-1){output+="<span class='code_elem_5'>"+char+'</span>';continue;}
         output+=char.replace('<', '&lt;');
     }
-    return output.replace(/\n/gm,'<br>').replace(/\t/g,Array(9).join('&nbsp;')).replace(/^\s+|\s{2,}/g,(a)=>new Array(a.length+1).join('&nbsp;')); //let symbol_tab=Array(4).join('\u00a0'); //.replace(/\t/g,document.createTextNode(symbol_tab))
+    return output.replace(/\n/gm,'<br>').replace(/\t/g,'&Tab;').replace(/^\s+|\s{2,}/g,(a)=>new Array(a.length+1).join('&nbsp;')); //let symbol_tab=Array(4).join('\u00a0'); //.replace(/\t/g,document.createTextNode('\u00a0'))
 }
 </script>
 </body>
