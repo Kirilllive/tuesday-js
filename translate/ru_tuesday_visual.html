@@ -460,9 +460,9 @@ input:checked+.toggle:before{transform:translateX(14px);}
 }
 .code_elem_1{color:var(--cb);font-style:italic;}
 .code_elem_2{color:var(--tx);filter:brightness(0.5) invert(50%);}
-.code_elem_3{color:#e88;font-weight:bold;filter:var(--ft);}
-.code_elem_4{color:#6b5;filter:var(--ft);}
-.code_elem_5{color:#88e;filter:var(--ft);}
+.code_elem_3{color:#e88;font-weight:bold;}
+.code_elem_4{color:#6b5; }
+.code_elem_5{color:#88e; }
 </style><script src='https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js'></script>
 </head>
 <body onload="world_size();" style='background-color:var(--cw);font-size:12px;'>
@@ -5853,10 +5853,10 @@ function syntax_json(code){
     code=code.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
     return code.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(data){
         var style="null";
-        if (/^"/.test(data)){if(/:$/.test(data)){style="code_elem_5";}else{style="code_elem_2";}}
+        if (/^"/.test(data)){if(/:$/.test(data)){style="code_elem_5'";}else{style="code_elem_2";}}
         else if(/true|false|null/.test(data)){style="code_elem_3";}
         else if(/[0-9]/.test(data)){style="code_elem_4";}
-        return "<span class='"+style+"'>"+data+"</span>";
+        return "<span class='"+style+"' style='filter:none;'>"+data+"</span>";
     }
 )}
 function syntax_javascipt(code){
