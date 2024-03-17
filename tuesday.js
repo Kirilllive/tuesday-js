@@ -708,7 +708,12 @@ function name_block_update(){
         if(arr_dialog.choice){del_element("tue_choice")}
 		if(arr_dialog.go_to){
 			var go=arr_dialog.go_to;
-			go_to(go)
+            if(go=="tue_go"){
+                scene++;dialog=0;creation_scene();
+            }
+            else{
+                go_to(go)
+            }
 		} else if(dialog < story_json[tue_story][scene].dialogs.length - 1){
 			dialog++;
 			if(arr_dialog.text){
