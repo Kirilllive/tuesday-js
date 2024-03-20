@@ -483,7 +483,8 @@ input:checked+.toggle:before{transform:translateX(14px);}
                     <td title='About visual editor' onclick='about();menu_add.style.visibility="hidden";' class='icon button_menu icon_about small_menu'></td>
                     <td style='width:88px;' class="small_menu"><input type="text" id="search_block" class="search" oninput="search_block()" onkeyup="search_block()" placeholder="Search block" list="list_blocks"><datalist id="list_blocks"></datalist></td>
                     <td style='width:40px;'><select id='language_view' style='height:40px;border-right:1px solid var(--cb);border-bottom:0;'><option value='en'>EN</option></select></td>
-					<td title='Build project' onclick='build_choice();menu_add.style.visibility="hidden";' class='icon button_menu icon_build'></td>
+					<!-- Builds directly to ZIP -->
+                    <td title='Build project' onclick='build();menu_add.style.visibility="hidden";' class='icon button_menu img_zip'></td>
 					<td title='Run preview Project' style='border-radius:0 0 16px 0;' onclick='play_novel();menu_add.style.visibility="hidden";' class='icon button_menu icon_play'></td>
 				</tr>
 			</tbody>
@@ -1626,23 +1627,6 @@ function about(){
     +"<p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='200' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><rect width='1000' height='200' fill='#FF424D'/><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff'/><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff'/><path d='M83 161V39h23v122z' fill='#fff'/></svg></a></p><br></div></div>"
     modal_window("open",html);
 }
-function build_choice(){
-    var html="<div class='window' style='padding:0px 0px 16px 0px;'><div class='win_head'>Build project<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0px;'><div style='max-height:75vh;overflow-x:hidden;'>"
-        +'<table style="border-spacing:10px;border-collapse:separate;border-bottom:1px solid var(--cb);" class="button_menu" onclick="modal_window(\'close\');build(0);"><tbody><tr>'
-        +'<td style="width:82px;height:82px;background-repeat:no-repeat;background-size: 48px 48px;background-position:center;" class="img_html"><div style="width:54px;display:block;"></div></td><td><p style="font-size:12px;text-align:left;width:320px;" class="select_tutorials">'+texts.tutorials[8].en+'</p></td></tr>'
-        +'</tbody></table>'
-        +'<table style="border-spacing:10px;border-collapse:separate;border-bottom:1px solid var(--cb);" class="button_menu" onclick="modal_window(\'close\');build(1);"><tbody><tr>'
-        +'<td style="width:82px;height:82px;background-repeat:no-repeat;background-size: 48px 48px;background-position:center;" class="img_zip"></td><td><p style="font-size:12px;text-align:left;width:320px;" class="select_tutorials">'+texts.tutorials[9].en+'</p></td></tr>'
-        +'</tbody></table>'
-        +'<table style="border-spacing:10px;border-collapse:separate;border-bottom:1px solid var(--cb);" class="button_menu" onclick="modal_window(\'close\');if(project_files.length>0){build_base_start()}else{build(0)}"><tbody><tr>'
-        +'<td style="width:82px;height:82px;background-repeat:no-repeat;background-size: 48px 48px;background-position:center;" class="img_base"></td><td><p style="font-size:12px;text-align:left;width:320px;" class="select_tutorials">'+texts.tutorials[10].en+'</p></td></tr>'
-        +'</tbody></table>'
-        +'<table style="border-spacing:10px;border-collapse:separate;border-bottom:1px solid var(--cb);" class="button_menu" onclick="modal_window(\'close\');build_bot();"><tbody><tr>'
-        +'<td style="width:82px;height:82px;background-repeat:no-repeat;background-size: 48px 48px;background-position:center;" class="icon-telegram"></td><td><p style="font-size:12px;text-align:left;width:320px;" class="select_tutorials">'+texts.tutorials[17].en+'</p></td></tr>'
-        +'</tbody></table>'
-        +"</div></div>"
-    modal_window("open",html);
-}
 function new_project(){
     var html="<div class='window' style='width:360px;'><div class='win_head'>New project<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><br><div style='overflow-x:hidden; overflow-y:auto; width:100%; max-height:60vh;'>"
         +"<p align='left' style=' margin-left:8px;'>Project folder/location</p>"
@@ -1654,7 +1638,8 @@ function new_project(){
         +"</div><br><br><table class='big_button' width='256px' onclick='scen_editor_apply();open_tool();create_project();new_novel();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Create project</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
-function build(tip){
+function build(){
+    // Note: main build function that preprocesses the content and then builds into ZIP
     let story_build=(story_script.base)?JSON.parse(copy_arr):JSON.parse(JSON.stringify(story_script));
     if(story_script.base){story_build.base=JSON.parse(JSON.stringify(story_script.base));story_build.parameters.sounds=JSON.parse(JSON.stringify(story_script.base_sound));story_build.parameters.style_file=story_script.style_file;delete story_script.style_file;}
     var plugins_file="",plugins_code="",fonts="";
@@ -1678,22 +1663,8 @@ function build(tip){
     delete story_build.parameters.js;
     delete story_build.blocks;
     var story_preview=JSON.stringify(story_build)+((story_script.parameters.js)?";"+story_script.parameters.js:"");
-    if(tip==0){
-        var dataStr="data:text/json;charset=utf-8,"+encodeURIComponent("<!DOCTYPE html><html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<meta charset='UTF-8'><meta name='viewport' content='initial-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",width=device-width,height=device-height,viewport-fit=cover,maximum-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",user-scalable=no'><style>"+((story_script.parameters.css)?story_script.parameters.css:"")+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;-webkit-touch-callout:none;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_novel="+story_preview+";load_story('data',story_novel);<\/script><\/body><\/html>");
-        download_files('index.html',dataStr)
-        modal_window("close")
-        if(story_script.base){delete story_script.base;delete story_script.base_sound;}
-        toast("index.html file is created");
-    }else if(tip==1){
-        var dataStr="<!DOCTYPE html><html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<meta charset='UTF-8'><meta name='viewport' content='initial-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",width=device-width,height=device-height,viewport-fit=cover,maximum-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",user-scalable=no'><style>"+((story_script.parameters.css)?story_script.parameters.css:"")+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_novel="+story_preview+";load_story('data',story_novel);<\/script><\/body><\/html>";
-        build_zip(dataStr)
-    }else if(tip==2){
-        var dataStr="data:application/javascript;charset=utf-8,"+encodeURIComponent("const TelegramApi=require(\"node-telegram-bot-api\"),story_json="+JSON.stringify(story_build)+",tue_bot=new TelegramApi(story_json.parameters.telegram,{polling:!0});var tue_languare,tue_story,next_button,tue_scene=0,tue_dialog=0;const start=async()=>{function go_to(e,t){story_json[e]?(tue_scene=0,tue_dialog=0,tue_story=e,makeStory(t)):e.includes(\",\")?(tue_story=(go=e.split(\",\"))[0],tue_dialog=go[2],tue_scene=go[1],makeStory(t)):\"tue_go\"===e&&makeStory(t)}function next_scene(e){tue_scene++,tue_dialog=0,makeStory(e)}function makeStory(chatId){var texts=\"\",buttons=[],block=story_json[tue_story][tue_scene];if(block.dialogs&&block.dialogs[tue_dialog].js&&eval(block.dialogs[tue_dialog].js),block.random_choice){let choice_g=block.random_choice[Math.floor(Math.random()*block.random_choice.length)][1];\"tue_go\"!=choice_g?go_to(choice_g,chatId):next_scene(chatId)}else if(block.legacy_choice)for(var i=0;i<block.legacy_choice.length;i++){var choice_n=block.legacy_choice[i][0],choice_s=block.legacy_choice[i][1],choice_v=block.legacy_choice[i][2],choice_g=block.legacy_choice[i][3];if(\">\"==choice_s&&story_json.parameters.variables[choice_n]>choice_v){\"tue_go\"!=choice_g?go_to(choice_g,chatId):next_scene(chatId);break}if(\"<\"==choice_s&&story_json.parameters.variables[choice_n]<choice_v){\"tue_go\"!=choice_g?go_to(choice_g,chatId):next_scene(chatId);break}if(\"=\"==choice_s&&story_json.parameters.variables[choice_n]==choice_v){\"tue_go\"!=choice_g?go_to(choice_g,chatId):next_scene(chatId);break}else if(block.legacy_choice[i].go_to){block.legacy_choice[i].go_to&&\"tue_go\"!=block.legacy_choice[i].go_to?go_to(block.legacy_choice[i].go_to,chatId):next_scene(chatId);break}else if(i==block.legacy_choice.length-1){next_scene(chatId);break}}else{for(i=0;i<block.dialogs.length-tue_dialog+1;i++){if(block.dialogs[tue_dialog].variables)for(var v=0;v<block.dialogs[tue_dialog].variables.length;v++){var choice_n=block.dialogs[tue_dialog].variables[v][0];\"add\"==block.dialogs[tue_dialog].variables[v][1]?story_json.parameters.variables[choice_n]+=block.dialogs[tue_dialog].variables[v][2]:\"set\"==block.dialogs[tue_dialog].variables[v][1]&&(story_json.parameters.variables[choice_n]=block.dialogs[tue_dialog].variables[v][2])}if(block.dialogs[tue_dialog].choice){texts+=values_button(block.dialogs[tue_dialog].text?(block.dialogs[tue_dialog].text[tue_languare]?block.dialogs[tue_dialog].text[tue_languare]:block.dialogs[tue_dialog].text)+\"\\n\\n\":block.dialogs[tue_dialog].text_add?(block.dialogs[tue_dialog].text_add[tue_languare]?block.dialogs[tue_dialog].text_add[tue_languare]:block.dialogs[tue_dialog].text_add)+\"\\n\\n\":\"?\");for(var e=block.dialogs[tue_dialog].choice.length-1;e>=0;e--)!block.dialogs[tue_dialog].choice[e].url&&\"tue_no\"!=block.dialogs[tue_dialog].choice[e].go_to&&show_if(block.dialogs[tue_dialog].choice[e])&&buttons.push([{text:block.dialogs[tue_dialog].choice[e].text&&data_la(block.dialogs[tue_dialog].choice[e].text).length>0?values_button(data_la(block.dialogs[tue_dialog].choice[e].text)):\"choice \"+e,callback_data:(\"tue_go\"!=block.dialogs[tue_dialog].choice[e].go_to?block.dialogs[tue_dialog].choice[e].go_to:tue_story+\",\"+tue_scene+\",\"+(parseInt(tue_dialog)+1)).toString()}]);tue_dialog++;break}texts+=values_button(block.dialogs[tue_dialog].text?(block.dialogs[tue_dialog].text[tue_languare]?block.dialogs[tue_dialog].text[tue_languare]:block.dialogs[tue_dialog].text)+\"\\n\\n\":block.dialogs[tue_dialog].text_add?(block.dialogs[tue_dialog].text_add[tue_languare]?block.dialogs[tue_dialog].text_add[tue_languare]:block.dialogs[tue_dialog].text_add)+\"\\n\\n\":\"\"),tue_dialog++}0==buttons.length&&block.dialogs.length==tue_dialog&&story_json[tue_story].length>tue_scene+1&&(tue_scene++,tue_dialog=0,buttons.push([{text:next_button,callback_data:\"tue_go\"}]));var background=data_la(block.background_image);background?tue_bot.sendPhoto(chatId,background,{caption:texts,reply_markup:JSON.stringify({inline_keyboard:buttons})}):tue_bot.sendMessage(chatId,texts,{reply_markup:JSON.stringify({inline_keyboard:buttons})})}}tue_bot.setMyCommands([{command:\"/start\",description:\"Restart\"}]),tue_bot.on(\"message\",async e=>{let t=e.text,a=e.chat.id;if(\"/start\"===t){tue_languare=story_json.parameters.languares.includes(e.from.language_code)?e.from.language_code:story_json.parameters.languares[0];for(var o=0;o<story_json.parameters.buttons.length;o++)if(\"tue_next\"==story_json.parameters.buttons[o].name){next_button=story_json.parameters.buttons[o].text?data_la(story_json.parameters.buttons[o].text):\"next\";break}tue_scene=0,tue_dialog=0,tue_story=story_json.parameters.launch_story,makeStory(a)}}),tue_bot.on(\"callback_query\",async e=>{let t=e.data,a=e.message.chat.id;story_json[t]?(tue_scene=0,tue_dialog=0,tue_story=t,makeStory(a)):t.includes(\",\")?(tue_story=(go=t.split(\",\"))[0],tue_dialog=go[2],tue_scene=go[1],makeStory(a)):\"tue_go\"===t&&makeStory(a)})};function data_la(e){var t=!!e&&(e[tue_languare]?e[tue_languare]:e);return t.length>0&&t}function show_if(e){if(show=!0,e.show_if){e=e.show_if;for(var t=1;t<e.length;t++){var a=e[t][0],o=e[t][1],s=void 0!==story_json.parameters.variables[e[t][2]]?story_json.parameters.variables[e[t][2]]:e[t][2];if(\"=\"==o){if(story_json.parameters.variables[a]!=s){show=!1;break}}else if(\">\"==o){if(story_json.parameters.variables[a]<=s){show=!1;break}}else if(\"<\"==o&&story_json.parameters.variables[a]>=s){show=!1;break}if(!show)break}show=e[0]?show:!show}return show}function values_button(e){let t=e.matchAll(/<(.*?)>/g);t=Array.from(t);for(var a=0;a<t.length;a++){let o=t[a];e=e.replace(o[0],story_json.parameters.variables[o[1]])}return e}start();"+((story_script.parameters.js)?story_script.parameters.js:""));
-        download_files('index.js',dataStr)
-        modal_window("close")
-        if(story_script.base){delete story_script.base;delete story_script.base_sound;}
-        toast("index.js file for bot is created");
-    }
+    var dataStr="<!DOCTYPE html><html><head>"+((par[2]!=0)?"<link rel='shortcut icon' href='"+par[2]+"' type='image/x-icon'>":"")+"<meta charset='UTF-8'><meta name='viewport' content='initial-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",width=device-width,height=device-height,viewport-fit=cover,maximum-scale="+((story_script.parameters.scale)?story_script.parameters.scale:1)+",user-scalable=no'><style>"+((story_script.parameters.css)?story_script.parameters.css:"")+fonts+" "+((par[0]!=0)?"*{font-family:"+par[0]+";} ":"")+"body {"+((par[1]!=0)?"font-size:"+par[1]:"")+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;user-select:none;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script>let story_novel="+story_preview+";load_story('data',story_novel);<\/script><\/body><\/html>";
+    build_zip(dataStr);
 }
 function build_base_start(){
     modal_window("open","<div class='window' style='padding:24px 24px;'><table><tbody><tr><td style='width:32px;height:32px;background-repeat:no-repeat;background-size: 32px 32px;background-position:center;' class='img_wait'></td><td align='center' style='width:188px;'>Converting data to base64</td></tr></tbody></table></div>");
@@ -1719,6 +1690,25 @@ function build_base(){
         else if(arr_n==load_files.length-1){build(0);}
     }
 }
+
+// TODO: assure this works
+function postContentBlobToAPI(fileBlob) {
+    // Assuming myBlob is your Blob object
+    const formData = new FormData();
+    formData.append('content', fileBlob, 'filename.zip');
+
+    fetch(
+        // TODO: assure we have an endpoint
+        'http://localhost:8080/content',
+        { method: 'POST', body: formData}
+    ).then(response => response.json())
+     .then(result => console.log('Success:', result))
+     .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
 function build_zip(dataStr){
     modal_window("open","<div class='window' style='padding:24px 24px;'><table><tbody><tr><td style='width:32px;height:32px;background-repeat:no-repeat;background-size: 32px 32px;background-position:center;' class='img_wait'></td><td align='center' style='width:144px;'>Creation ZIP archive</td></tr></tbody></table></div>");
     var arhiv = new JSZip();
@@ -1728,6 +1718,10 @@ function build_zip(dataStr){
     .then(function(content) {
         var n="new";
         if(story_script.parameters.title){n=(story_script.parameters.title.en)?story_script.parameters.title.en :story_script.parameters.title;}
+        console.log("URL: ", URL.createObjectURL(content))
+        var zipBlob = new Blob([content], { type: 'application/zip' });
+        // TODO: make this function work and then remove the download_files call
+        // postContentBlobToAPI(zipBlob);
         download_files(n+'_'+data_time()+'.zip',URL.createObjectURL(content))
         modal_window("close")
         toast('zip archive complete')
