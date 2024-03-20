@@ -1171,20 +1171,37 @@ function creation_block(b){
                         element+="<div class='dialog_element' align='left' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"text_add\";dialog_text_edit();'><table height='22px' width='100%' style='margin:4px 0px;'><tbody><tr><td align='left' valign='center'>"+((n.length>0)?"<p><b>"+n+" " :"<p><b>")+"text add</b></p></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_text_add' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='text_add';dialog_el(this.id,'Text add',true)\" width='24px' class='icon_m icon_edit' title='Edit dialog'></td></tr></tbody></table><p style='padding:4px;overflow:hidden;'>"+((t.length>0)?t.replaceAll("<","").replaceAll(">",""):'&nbsp;')+"</p></div>"
                     }
                     if(story_script[chapter.id][i].dialogs[d].choice){
-                        element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"choice\";edit_choice();'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Choice</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
+                        element+="<div class='dialog_element'><table height='22px' width='100%' style='margin:4px 0px;' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"choice\";edit_choice();'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Choice ph 2</b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_choice' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='choice';dialog_el(this.id,'Choice',true)\" width='24px' class='icon_m icon_edit' title='Edit choice'></td></tr></tbody></table>"
                         for(var c=story_script[chapter.id][i].dialogs[d].choice.length-1;c>=0;c--){
-                            go=(typeof story_script[chapter.id][i].dialogs[d].choice[c].go_to==='object')?story_script[chapter.id][i].dialogs[d].choice[c].go_to[0]:story_script[chapter.id][i].dialogs[d].choice[c].go_to;
+                          const choice = story_script[chapter.id][i].dialogs[d].choice[c];
+                            go=(typeof choice.go_to==='object')?choice.go_to[0]:choice.go_to;
                             if(go&&go!=""&&go!="undefined"){
-                                if(story_script[chapter.id][i].dialogs[d].choice[c].text){data_corr(story_script[chapter.id][i].dialogs[d].choice[c],'text')}
-                                var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
+                                if(choice.text){data_corr(choice,'text')}
+                                var t=languare_data(choice.text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
                                 if(story_script[go]){
-                                    element+="<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text[\""+languare+"\"]=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td>"+((typeof story_script[chapter.id][i].dialogs[d].choice[c].go_to==='object')?"<div onmouseup='timeline_edit(story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"])'>"+go+" / "+story_script[chapter.id][i].dialogs[d].choice[c].go_to[1]+" / "+story_script[chapter.id][i].dialogs[d].choice[c].go_to[2]+"<div>":"<select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();'>"+option_block(go,2)+"</select>")+"</td><td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td></tr></tbody></table>"
-                                    if(go!=chapter.id){creaton_line(all+"c"+d+go+all_blocks,((typeof story_script[chapter.id][i].dialogs[d].choice[c].go_to!='object')?go:"d_"+go+"_"+story_script[chapter.id][i].dialogs[d].choice[c].go_to[1]+"_"+story_script[chapter.id][i].dialogs[d].choice[c].go_to[2]),chapter.id);}
-                                }else{element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text[\""+languare+"\"]=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td>"+((typeof story_script[chapter.id][i].dialogs[d].choice[c].go_to==='object')?go+" / "+story_script[chapter.id][i].dialogs[d].choice[c].go_to[1]+" / "+story_script[chapter.id][i].dialogs[d].choice[c].go_to[2]:"<select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();'>"+option_block(go,2)+"</select>")+"</td><td class='button_block icon'></td></tr></tbody></table>"}
-                            }else{var t=languare_data(story_script[chapter.id][i].dialogs[d].choice[c].text);if(typeof t!=='object'){countWords+=t.split(reg).length-1;countSymbols+=t.length}
-								element+="<table style='width:100%;' class='choice_b'><tbody><tr><td class='button_block'></td><td style='padding:4px;'>"+((t=="")?go:t)+"</td><td class='button_block icon'></td></tr></tbody></table>"
-                            }all++
-                        };element+="</div>"
+                                    element+="<table id='"+all+"c"+d+go+all_blocks+"' style='width:100%;' class='choice_b to_go'>"+
+                                      "<tbody>"+
+                                        "<tr>"+
+                                          "<td style='padding-left:8px;width:50%;'>" +(choice.diamonds ? "<span title='"+choice.diamonds+"'>💎</span>" : '' )+ "<input style='width:calc(100% - "+(choice.diamonds ? '20px' : '0px')+");' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text[\""+languare+"\"]=this.value' value='"+((t=="")?go:t)+"' type='text'></td>"+
+                                          "<td>"+((typeof choice.go_to==='object')?"<div onmouseup='timeline_edit(story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"])'>"+go+" / "+choice.go_to[1]+" / "+choice.go_to[2]+"<div>":"<select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();'>"+option_block(go,2)+"</select>")+"</td>"+
+                                          "<td class='button_block icon icon_go' style='cursor:pointer;"+((story_script.blocks[go][3])?"background-color:"+story_script.blocks[go][3]+";border-radius:6px;filter:none;":"")+"' onmouseup=\"go_to_block('"+go+"')\"></td>"+
+                                        "</tr>"+
+                                      "</tbody>"+
+                                    "</table>"
+                                    if (go!=chapter.id) {
+                                      creaton_line(all+"c"+d+go+all_blocks,((typeof choice.go_to!='object')?go:"d_"+go+"_"+choice.go_to[1]+"_"+choice.go_to[2]),chapter.id);
+                                    }
+                                } else {element+="<table style='width:100%;' class='choice_b'><tbody><tr><td style='padding-left:8px;width:50%;'><input style='width:100%;' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].text[\""+languare+"\"]=this.value' value='"+((t=="")?go:t)+"' type='text'></td><td>"+((typeof choice.go_to==='object')?go+" / "+story_script[chapter.id][i].dialogs[d].choice[c].go_to[1]+" / "+story_script[chapter.id][i].dialogs[d].choice[c].go_to[2]:"<select style='background-color:var(--cw);' onchange='story_script."+chapter.id+"["+i+"].dialogs["+d+"].choice["+c+"].go_to=this.value;update_novel();'>"+option_block(go,2)+"</select>")+"</td><td class='button_block icon'></td></tr></tbody></table>"}
+                            } else {
+                              var t=languare_data(choice.text);
+                              if(typeof t!=='object'){
+                                countWords+=t.split(reg).length-1;countSymbols+=t.length
+                              }
+								              element+="<table style='width:100%;' class='choice_b'><tbody><tr><td class='button_block'></td><td style='padding:4px;'>"+((t=="")?go:t)+"</td><td class='button_block icon'></td></tr></tbody></table>"
+                            }
+                            all++;
+                        };
+                        element+="</div>";
                     }
                     if(story_script[chapter.id][i].dialogs[d].sound_stop){element+="<div class='dialog_element' align='left'><table height='22px' width='100%' style='margin:4px 0px;' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"sound_stop\";dialog_audio_edit(\"sound_stop_"+all+"_"+d+go+all_blocks+"\");'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Stop sound<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_sound_stop' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='sound_stop';dialog_el(this.id,'Stop sound',true)\" width='24px' class='icon_m icon_edit' title='Edit sound'></td></tr></tbody></table></div>"} //<input id='sound_stop_"+all+"_"+d+go+all_blocks+"' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].sound_stop=this.value' value='"+story_script[chapter.id][i].dialogs[d].sound_stop+"' type='text'>
                     if(story_script[chapter.id][i].dialogs[d].sound){element+="<div class='dialog_element' align='left'><table height='22px' width='100%' style='margin:4px 0px;' ondblclick='arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n=\"sound\";dialog_audio_edit(\"sound_"+all+"_"+d+go+all_blocks+"\");'><tbody><tr><td align='left' valign='center' style='padding-left:4px;'><b>Play sound<b></td><td id='dialog_"+chapter.id+"_"+i+"_"+d+"_sound' onmouseup=\"arr_l=story_script."+chapter.id+"["+i+"].dialogs["+d+"];arr_n='sound';dialog_el(this.id,'Play sound',true)\" width='24px' class='icon_m icon_edit' title='Edit sound'></td></tr></tbody></table></div>"} //<input id='sound_"+all+"_"+d+go+all_blocks+"' class='input_text' onkeyup='story_script."+chapter.id+"["+i+"].dialogs["+d+"].sound=this.value' value='"+story_script[chapter.id][i].dialogs[d].sound+"' type='text'>
@@ -1959,7 +1976,7 @@ function add_element_s(id,n){
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="art";scen_editor("'+scen_data[0]+'",'+scen_data[1]+','+scen_data[2]+');scen_edit_data();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_art"></td><td>Art</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text";element_to();dialog_text_edit();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_text"></td><td>Text</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick=\'dialog_add();arr_l=arr_l[arr_n];arr_n="text_add";element_to();dialog_text_edit();menu_add.style.visibility="hidden";\'><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_textadd"></td><td>Text add</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'choice\';element_to();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Choice</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'choice\';element_to();menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Choice ph3</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'video\';element_to();dialog_video_edit();"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_video"></td><td>Video</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'sound_stop\';element_to();dialog_audio_edit(\''+id+'\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_off"></td><td>Stop sound</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="dialog_add();arr_l=arr_l[arr_n];arr_n=\'sound\';element_to();dialog_audio_edit(\''+id+'\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_audio_play"></td><td>Play sound'+((story_script.parameters.launch_story==scen_data[0]&&scen_data[1]==0&& arr_l.length<1)?' ⨻ warning blocks':'')+'</td></tr></tbody></table></td></tr>'
@@ -3230,7 +3247,22 @@ function edit_choice(){
     var choice_list="<table width='98%' id='var_choice' style='margin:10px 0 10px 0;'><tbody>";
     for(var l=0;l<copy_arr[arr_n].length;l++){
         if(!copy_arr[arr_n][l].text[languare]){data_la(copy_arr[arr_n][l],'text')}
-        choice_list+="<tr><td style='width:32px;height:26px;'>Text</td><td valign='bottom' style='height:26px;width:28px;'><select id='chol"+l+"' onchange='chot"+l+".value=copy_arr."+arr_n+"["+l+"].text[this.value];' style='height:26px;width:30px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select></td><td><input id='chot"+l+"' class='input_text' oninput='copy_arr."+arr_n+"["+l+"].text[chol"+l+".value]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].text[languare]+"' type='text'></td><td style='width:64px;padding-right:8px;' align='right'>Position X</td><td style='width:48px;'><input class='input_text' style='height:26px;' oninput='copy_arr."+arr_n+"["+l+"].position[0]=this.value;' value='"+copy_arr[arr_n][l].position[0]+"' type='text'></td><td style='width:16px;' align='center'>Y</td><td style='width:48px;'><input class='input_text' oninput='copy_arr."+arr_n+"["+l+"].position[2]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].position[2]+"' type='text'></td><td style='width:48px;' align='right'>go to:</td><td style='width:92px;'><select onchange='copy_arr."+arr_n+"["+l+"].go_to=this.value;'>"+option_block(copy_arr[arr_n][l].go_to,2)+"</select></td><td onclick='copy_arr."+arr_n+"["+l+"]={};var a=this.closest(\"tr\");a.parentElement.removeChild(a);' style='width:32px;cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
+        choice_list+="<tr>" +
+          "<td style='width:32px;height:26px;'>Text</td>"+
+          "<td valign='bottom' style='height:26px;width:28px;'><select id='chol"+l+"' onchange='chot"+l+".value=copy_arr."+arr_n+"["+l+"].text[this.value];' style='height:26px;width:30px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select></td>"+
+          "<td><input id='chot"+l+"' class='input_text' oninput='copy_arr."+arr_n+"["+l+"].text[chol"+l+".value]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].text[languare]+"' type='text'></td>"+
+          "<td style='width:64px;padding-right:8px;' align='right'>Position X</td>"+
+          "<td style='width:48px;'><input class='input_text' style='height:26px;' oninput='copy_arr."+arr_n+"["+l+"].position[0]=this.value;' value='"+copy_arr[arr_n][l].position[0]+"' type='text'></td>"+
+          "<td style='width:16px;' align='center'>Y</td>"+
+          "<td style='width:48px;'><input class='input_text' oninput='copy_arr."+arr_n+"["+l+"].position[2]=this.value;' style='height:26px;' value='"+copy_arr[arr_n][l].position[2]+"' type='text'></td>"+
+          "<td style='width:48px;' align='right'>go to to:</td>"+
+          "<td style='width:92px;'><select onchange='copy_arr."+arr_n+"["+l+"].go_to=this.value;'>"+option_block(copy_arr[arr_n][l].go_to,2)+"</select></td>"+
+
+          "<td style='width:48px;' align='right'>💎:</td>"+
+          "<td style='width:50px;' align='right'><input type='number' value='"+copy_arr[arr_n][l].diamonds+"' onchange='copy_arr."+arr_n+"["+l+"].diamonds=this.value;' max='100' min='0' /></td>"+
+
+          "<td onclick='copy_arr."+arr_n+"["+l+"]={};var a=this.closest(\"tr\");a.parentElement.removeChild(a);' style='width:32px;cursor:pointer;' title='delet' class='icon icon_del'></td>"+
+          "</tr>"
     }
     choice_list+="</tbody></table>"
     var html="<div class='window' style='max-width:568px;width:calc(100% - 32px);'><div class='win_head'>Choice edit<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'> <p class='text_tutorials_a select_tutorials'>"+texts.tutorials[15].en+"</p>  <div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'>"+choice_list+"<div onclick=\"edit_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px;width:26px;cursor:pointer;'></div></div><br><br><table class='big_button' width='256px' onclick='for(var l=copy_arr[arr_n].length;l>=0;l--){if(!copy_arr[arr_n][l]||!copy_arr[arr_n][l].go_to){copy_arr[arr_n].splice(l,1);}else{data_only(copy_arr[arr_n][l],\"text\");}};arr_l[arr_n]=JSON.parse(JSON.stringify(copy_arr[arr_n]));update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Apply</td><td width='42px'></td></tr></tbody></table></div>"
@@ -3252,6 +3284,8 @@ function edit_choice_new(){
     var td8=document.createElement("td");
     var td9=document.createElement("td");
     var td10=document.createElement("td");
+    var td11=document.createElement("td");
+    var td12=document.createElement("td");
 	td1.innerHTML="Text";
 	td1.style="width:32px;height:26px;";
 	td2.innerHTML="<select id='chol"+l+"' class='choice_la' onchange='chot"+l+".value=copy_arr."+arr_n+"["+l+"].text[this.value];' style='height:26px;width:30px;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select>";
@@ -3274,10 +3308,14 @@ function edit_choice_new(){
     td8.style="width:48px;white-space:nowrap;";
     td9.innerHTML="<select onchange='copy_arr."+arr_n+"["+l+"].go_to=this.value;'>"+option_block("tue_no",2)+"</select>";
     td9.style="width:92px;";
-    td10.style="width:32px;cursor:pointer;";
-    td10.title="delet";
-    td10.className="icon icon_del";
-    td10.setAttribute("onclick","copy_arr."+arr_n+"["+l+"]={};var a=this.closest('tr');a.parentElement.removeChild(a);");
+    td10.innerHTML="💎:";
+    td10.title="How many diamonds is this choice worth?";
+    td11.innerHTML="<input type='number' onchange='copy_arr."+arr_n+"["+l+"].diamonds=this.value;' max='100' min='0' />";
+    td11.style="width:50px;";
+    td12.style="width:32px;cursor:pointer;";
+    td12.title="delete";
+    td12.className="icon icon_del";
+    td12.setAttribute("onclick","copy_arr."+arr_n+"["+l+"]={};var a=this.closest('tr');a.parentElement.removeChild(a);");
 	row.appendChild(td1);
     row.appendChild(td2);
     row.appendChild(td3);
@@ -3288,6 +3326,8 @@ function edit_choice_new(){
     row.appendChild(td8);
     row.appendChild(td9);
     row.appendChild(td10);
+    row.appendChild(td11);
+    row.appendChild(td12);
     tbody.appendChild(row);
 }
 function scen_edit_data(){
