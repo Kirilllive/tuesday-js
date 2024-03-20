@@ -814,6 +814,7 @@ document.oncontextmenu = cmenu, window.onmousedown = window.onselectstart = func
   t == story_json.parameters.key.next && controll ? go_story() : t == story_json.parameters.key.back && controll ? back_story() : t == story_json.parameters.key.main ? go_to(story_json.parameters.launch_story) : t == story_json.parameters.key.save ? save_stag("bookmark") : t == story_json.parameters.key.load ? load_stag("bookmark") : t == story_json.parameters.key.autosave ? load_stag("auto") : t == story_json.parameters.key.full_screen ? full_screen() : t == story_json.parameters.key.fast_rewind && fast_rewind()
 }), tuesday.addEventListener("mousedown", autoplaysound);
 </script>
+<script type="text/javascript" src="jszip.js"></script>
 <script type="text/javascript" src="editor.js"></script>
 </body>
 </html>
