@@ -1,27 +1,3 @@
-function set_ui(t){
-    var r=document.querySelector(':root');
-    r.style.setProperty('--cb', color_ui[t][0]);
-    r.style.setProperty('--cw', color_ui[t][1]);
-    r.style.setProperty('--cs', color_ui[t][2]);
-    r.style.setProperty('--cf', color_ui[t][3]);
-    r.style.setProperty('--cm', color_ui[t][4]);
-    r.style.setProperty('--cl', color_ui[t][5]);
-    r.style.setProperty('--wn', color_ui[t][6]);
-    r.style.setProperty('--ft', color_ui[t][7]);
-    r.style.setProperty('--tx', color_ui[t][8]);
-    if(story_script.blocks){block_colors();}
-}
-function block_colors(){
-    for(var i=0;i<Object.keys(story_script.blocks).length;i++){
-        for(var c=0;c<color_bg.length;c++){
-            if(setup_editor.ui<7&&story_script.blocks[Object.keys(story_script.blocks)[i]][3]==color_dg[c]){
-                story_script.blocks[Object.keys(story_script.blocks)[i]][3]=color_bg[c];break;
-            } else if(setup_editor.ui>=7&&story_script.blocks[Object.keys(story_script.blocks)[i]][3]==color_bg[c]){
-                story_script.blocks[Object.keys(story_script.blocks)[i]][3]=color_dg[c];break;
-            }
-        }
-    }
-}
 var countWords=0,countSymbols=0,countBytes=0,reg=/[aA-zZаА-яЯёЁ\u2019\u0027\-]+/g;
 var body=document.body,html=document.documentElement;
 var all_blocks=document.getElementsByClassName("story_block");
@@ -52,106 +28,138 @@ let line_controll=[];
 let scen_data=[];
 let copy_arr={};
 let scen_element={};
-const plugins_list={"tue_aspect_ratio":{
-        "name":"Aspect ratio",
-        "text":"fixed screen size while maintaining aspect ratio",
-        "code":"function TueAspectRatio(){let e=story_json.parameters.resolutions,t=tuesday.parentNode,i=t.getBoundingClientRect();if(0==i.height||0==i.width){var s=e[0]/window.innerWidth>e[1]/window.innerHeight?window.innerWidth/e[0]:window.innerHeight/e[1];tuesday.style.left=(window.innerWidth-e[0]*s)/2+\"px\",tuesday.style.top=(window.innerHeight-e[1]*s)/2+\"px\"}else{var s=e[0]/i.width>e[1]/i.height?i.width/e[0]:i.height/e[1];tuesday.style.left=(i.width-e[0]*s)/2+\"px\",tuesday.style.top=(i.height-e[1]*s)/2+\"px\"}t.style.backgroundColor=e[2]&&e[2].length>0?e[2]:\"#000\",t.style.backgroundImage=\"url('\"+e[3]+\"')\",t.style.backgroundPosition=\"center\",t.style.backgroundSize=\"cover\",t.style.overflow=\"hidden\",t.style.position=\"relative\",tuesday.style.position=\"absolute\",tuesday.style.transformOrigin=\"left top\",tuesday.style.width=e[0]+\"px\",tuesday.style.height=e[1]+\"px\",tuesday.style.transform=\"scale(\"+s+\")\"}window.addEventListener(\"script_executed\",TueAspectRatio,!0),window.addEventListener(\"script_loaded\",TueAspectRatio,!0),window.addEventListener(\"resize\",TueAspectRatio,!0);"
-    },"game_pad":{
-        "name":"GamePad",
-        "text":"Support for external game controllers",
-        "code":"let gamepad,gamepadPress,gamepad_choice=-1,gamepad_choices,gamepad_cursor=0;function select_choice(e){if(0==gamepad_cursor){gamepad_choices=story_json[tue_story][scene].terrain_map?tuesday.getElementsByClassName(\"tue_map_item\"):tuesday.getElementsByClassName(\"tue_choice\"),(gamepad_cursor=document.createElement(\"div\")).style.position=\"absolute\",gamepad_cursor.style.pointerEvents=\"none\",gamepad_cursor.id=\"gamepad_cursor\";let a=story_json.parameters.gamepad.cursor;gamepad_cursor.innerHTML=\"<div \"+(a[6].length>0?\"class='\"+a[6]+\"'\":\"\")+\" style='\"+(a[5].length>0?a[5]+\";\":\"\")+(\"\"!=a[0]?\" background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url(\"+art_data(a[0])+\");\":\"\")+\"pointer-events:none;position:absolute;top:\"+a[1]+\";left:\"+a[2]+\";\"+(0!=a[3]?\"width:\"+a[3]+\";\":\"\")+(0!=a[3]?\"height:\"+a[3]+\";\":\"\")+\"'></div>\",story_json[tue_story][scene].terrain_map?tue_map.appendChild(gamepad_cursor):tuesday.appendChild(gamepad_cursor)}if(\"hidden\"!=gamepad_choices[gamepad_choice=gamepad_choice+e>=gamepad_choices.length?0:gamepad_choice+e<0?gamepad_choices.length-1:gamepad_choice+e].style.visibility&&(story_json[tue_story][scene].terrain_map||gamepad_choices[gamepad_choice].onclick.toString().includes(\"go_to\")||gamepad_choices[gamepad_choice].onclick.toString().includes(\"go_story\")||gamepad_choices[gamepad_choice].onclick.toString().includes(\"tue_load_autosave\")||gamepad_choices[gamepad_choice].onclick.toString().includes(\"load_stag\"))){if(gamepad_cursor.style.left=gamepad_choices[gamepad_choice].style.left,gamepad_cursor.style.top=gamepad_choices[gamepad_choice].style.top,gamepad_cursor.style.right=gamepad_choices[gamepad_choice].style.right,gamepad_cursor.style.bottom=gamepad_choices[gamepad_choice].style.bottom,gamepad_cursor.style.width=gamepad_choices[gamepad_choice].style.width,gamepad_cursor.style.height=gamepad_choices[gamepad_choice].style.height,gamepad_cursor.style.padding=gamepad_choices[gamepad_choice].style.padding,gamepad_cursor.style.zIndex=gamepad_choices[gamepad_choice].style.zIndex,gamepad_cursor.style.transform=gamepad_choices[gamepad_choice].style.transform,story_json[tue_story][scene].terrain_map){let c=gamepad_choices[gamepad_choice].getBoundingClientRect();tue_world.scrollTop=tue_world.scrollTop+(c.top-tuesday.clientHeight/2),tue_world.scrollLeft=tue_world.scrollLeft+(c.left-tuesday.clientWidth/2)}}else select_choice(e)}function gamepad_cursor_cler(){gamepad_cursor.remove(),gamepad_cursor=0,gamepad_choice=-1}tuesday.addEventListener(\"creation_dialog\",function(e){0!=gamepad_cursor&&gamepad_cursor_cler()}),window.addEventListener(\"keydown\",function(e){37==(e=e.keyCode)?story_json[tue_story][scene].terrain_map||0!=story_json[tue_story][scene].dialogs.length&&!check_choice(story_json[tue_story][scene].dialogs)?select_choice(1):story_json.parameters.key&&story_json.parameters.key.next||back_story():39==e?story_json[tue_story][scene].terrain_map||0!=story_json[tue_story][scene].dialogs.length&&!check_choice(story_json[tue_story][scene].dialogs)?select_choice(-1):story_json.parameters.key&&story_json.parameters.key.back||go_story():38==e?(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs))&&select_choice(1):40==e?(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs))&&select_choice(-1):13==e||32==e?0!=gamepad_cursor&&(gamepad_choices[gamepad_choice].click(),story_json[tue_story][scene].terrain_map&&gamepad_cursor_cler()):27!=e||story_json.parameters.key&&story_json.parameters.key.launch_story||go_to(story_json.parameters.launch_story)}),window.addEventListener(\"gamepadconnected\",function(e){let a=()=>{for(gamepad of navigator.getGamepads()){if(!gamepad)continue;let e=gamepad.buttons.some(e=>e.pressed);gamepadPress!==e&&(gamepadPress=e,gamepad.buttons[14].pressed?story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs)?select_choice(1):back_story():gamepad.buttons[15].pressed?story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs)?select_choice(-1):go_story():gamepad.buttons[12].pressed?(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs))&&select_choice(1):gamepad.buttons[13].pressed?(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs))&&select_choice(-1):gamepad.buttons[1].pressed||gamepad.buttons[2].pressed||gamepad.buttons[3].pressed||gamepad.buttons[0].pressed?0!=gamepad_cursor&&(gamepad_choices[gamepad_choice].click(),story_json[tue_story][scene].terrain_map&&gamepad_cursor_cler()):(gamepad.buttons[8].pressed||gamepad.buttons[9].pressed)&&(go_to(story_json.parameters.launch_story),story_json[tue_story][scene].terrain_map&&gamepad_cursor_cler()))}requestAnimationFrame(a)};a()});"
-    },"hidden_objects":{
-        "name":"Hidden objects",
-        "text":"player must find items from a list that are hidden within a scene",
-        "code":"var ho={startmove_x:null,startmove_y:null,scroll_x:null,scroll_y:null,scale:1};function hidden_objects(){clearTimeout(dialog_timeout),arr_dialog=story_json[tue_story][scene].hidden_objects,tue_text_view.innerHTML=\"\",tuesday.style.backgroundImage=\"none\",findobjects=story_json.parameters.hidden_objects.label.items>arr_dialog.objects.length?arr_dialog.objects.length:story_json.parameters.hidden_objects.label.items;var e=document.createElement(\"div\");e.id=\"tue_hiddenobjects\",e.style=\"height:100%;width:100%;overflow:auto;\";var t=document.createElement(\"div\"),s=Math.round(arr_dialog.objects.length/findobjects),l=0,o=0;findobjects<arr_dialog.objects.length&&s<2&&(s=2);var a=Math.round(Math.random()*(s-1));arr_dialog.scale&&(ho.scale=arr_dialog.scale),t.id=\"tue_objectsroom\",t.className=arr_dialog.className,t.style=arr_dialog.style,t.style.width=arr_dialog.size[0]+\"px\",t.style.height=arr_dialog.size[1]+\"px\",t.style.backgroundRepeat=\"no-repeat\",t.style.backgroundPosition=\"center\",t.style.backgroundSize=\"cover\",arr_dialog.color&&(e.style.backgroundColor=art_data(arr_dialog.color)),t.style.backgroundImage='url(\"'+art_data(arr_dialog.art)+'\")',t.style.position=\"relative\",t.style.overflow=\"hidden\";for(var r=story_json.parameters.hidden_objects.label_find.sound?story_json.parameters.hidden_objects.label_find.sound:\"\",n=0;n<arr_dialog.objects.length;n++){var i=document.createElement(\"div\");i.className=arr_dialog.objects[n].className,i.style=arr_dialog.objects[n].style,i.style.width=arr_dialog.objects[n].size[0]+\"px\",i.style.height=arr_dialog.objects[n].size[1]+\"px\",i.style.backgroundRepeat=\"no-repeat\",i.style.backgroundPosition=\"center\",i.style.backgroundSize=arr_dialog.objects[n].fit,i.style.backgroundImage='url(\"'+art_data(arr_dialog.objects[n].art)+'\")',i.style.position=\"absolute\",i.style.transformOrigin=\"top left\",i.style.transform=\"rotate(\"+arr_dialog.objects[n].angle+\"deg)\",i.style.top=arr_dialog.objects[n].position[1]+\"px\",i.style.left=arr_dialog.objects[n].position[0]+\"px\";var c=document.createElement(\"div\");story_json.parameters.hidden_objects.label.style&&(c.style=story_json.parameters.hidden_objects.label.style),story_json.parameters.hidden_objects.label.className&&(c.className=story_json.parameters.hidden_objects.label.className),n==a&&o<findobjects&&(l+=s,i.setAttribute(\"onclick\",'sound_play(\"'+(arr_dialog.objects[n].sound?arr_dialog.objects[n].sound:r)+'\");'+(story_json.parameters.hidden_objects.label_find.no_del_item?\"this.setAttribute('onclick','')\":\"this.remove();\")+(arr_dialog.objects[n].js?arr_dialog.objects[n].js:\"\")+';find_item(\"item'+n+'\");'),c.style.width=story_json.parameters.hidden_objects.label.size[0],c.style.height=story_json.parameters.hidden_objects.label.size[1],c.style.float=\"left\",c.id=\"item\"+n,\"text\"!=story_json.parameters.hidden_objects.label.tip&&story_json.parameters.hidden_objects.label.tip||(c.style.display=\"flex\",c.style.justifyContent=story_json.parameters.hidden_objects.label.align?story_json.parameters.hidden_objects.label.align[0]:\"center\",c.style.alignItems=story_json.parameters.hidden_objects.label.align?story_json.parameters.hidden_objects.label.align[1]:\"center\",c.innerHTML=art_data(arr_dialog.objects[n].name)),\"art\"!=story_json.parameters.hidden_objects.label.tip&&story_json.parameters.hidden_objects.label.tip||(c.style.backgroundRepeat=\"no-repeat\",c.style.backgroundPosition=story_json.parameters.hidden_objects.label.art_align?story_json.parameters.hidden_objects.label.art_align:\"center\",story_json.parameters.hidden_objects.label.color_text&&(c.style.color=story_json.parameters.hidden_objects.label.color_text),story_json.parameters.hidden_objects.label.fit?c.style.backgroundSize=story_json.parameters.hidden_objects.label.fit:story_json.parameters.hidden_objects.label.art_size&&(\"object\"==typeof story_json.parameters.hidden_objects.label.art_size?c.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size[0]+\" \"+story_json.parameters.hidden_objects.label.art_size[1]:c.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size),c.style.backgroundImage='url(\"'+art_data(arr_dialog.objects[n].art)+'\")'),s>1&&(a=l+Math.round(Math.random()*(s-1))),arr_dialog.objects.length-l<findobjects-o&&(a=l,s=1),story_json.parameters.hidden_objects.label.color&&(c.style.backgroundColor=story_json.parameters.hidden_objects.label.color),tue_text_view.appendChild(c),o++),t.appendChild(i)}tue_text_block.style.visibility=\"visible\",story_json.parameters.text_panel.color&&(tue_text_block.style.backgroundColor=story_json.parameters.text_panel.color),document.getElementById(\"tue_next\")&&(tue_next.style.visibility=\"hidden\"),document.getElementById(\"tue_back\")&&(tue_back.style.visibility=\"hidden\"),e.appendChild(t),tuesday.appendChild(e),objectsroom_resize(),tue_objectsroom.style.transformOrigin=\"left top\",0==tue_set_audio&&arr_dialog.background_music&&!tue_bg_music.src.includes(encodeURI(arr_dialog.background_music))?(tue_bg_music.canPlayType(\"audio/mpeg\")?arr_dialog.background_music.includes(\"blob:\")?tue_bg_music.src=arr_dialog.background_music:arr_dialog.background_music.includes(\".mp3\")?tue_bg_music.src=arr_dialog.background_music:tue_bg_music.src=arr_dialog.background_music+\".mp3\":tue_bg_music.src=arr_dialog.background_music+\".ogg\",tue_bg_music.loop=!0,tue_bg_music.play()):arr_dialog.background_music&&\"\"!=arr_dialog.background_music?0==tue_set_audio&&tue_bg_music.play():tue_bg_music.pause(),e.onmousedown=function(t){ho.startmove_x=t.clientX,ho.startmove_y=t.clientY,ho.scroll_x=e.scrollTop,ho.scroll_y=e.scrollLeft,document.onmousemove=function(t){e.scrollTop=ho.scroll_x-(t.clientY-ho.startmove_y),e.scrollLeft=ho.scroll_y-(t.clientX-ho.startmove_x)},document.onmouseup=function(e){document.onmousemove=null,document.onmouseup=null},document.onmouseleave=function(){document.onmousemove=null,document.onmouseup=null}}}function objectsroom_resize(){if(!story_json.parameters.resolutions){var e=tuesday.getBoundingClientRect();arr_dialog.size[0]/arr_dialog.size[1]>e.width/e.height?tue_objectsroom.style.transform=\"scale(\"+e.height/arr_dialog.size[1]*ho.scale+\")\":tue_objectsroom.style.transform=\"scale(\"+e.width/arr_dialog.size[0]*ho.scale+\")\",tue_objectsroom.style.marginBottom=\"-\"+(e.height+arr_dialog.size[1])+\"px\",tue_objectsroom.style.marginRight=\"-\"+(e.width+arr_dialog.size[0])+\"px\",tue_objectsroom.style.marginTop=\"0px\",tue_objectsroom.style.marginLeft=\"0px\"}}function find_item(id){findobjects--,story_json.parameters.hidden_objects.label_find.no_del_label?(id=document.getElementById(id),story_json.parameters.hidden_objects.label_find.className&&(id.className=story_json.parameters.hidden_objects.label_find.className),story_json.parameters.hidden_objects.label_find.style&&(id.className=story_json.parameters.hidden_objects.label_find.style),story_json.parameters.hidden_objects.label_find.color&&(id.style.backgroundColor=story_json.parameters.hidden_objects.label_find.color),story_json.parameters.hidden_objects.label_find.color_text&&(id.style.color=story_json.parameters.hidden_objects.label_find.color_text)):document.getElementById(id).remove(),findobjects<=0&&(arr_dialog.js&&eval(arr_dialog.js),tue_hiddenobjects.remove(),\"tue_go\"==arr_dialog.go_to?(scene++,dialog=0,creation_scene()):go_to(arr_dialog.go_to))}tuesday.addEventListener(\"hidden_objects\",function(e){hidden_objects()}),window.addEventListener(\"resize\",objectsroom_resize,!0);"
-    },"screen_control":{
-        "name":"Screen control",
-        "text":"switches dialogue by click to screen.",
-        "code":"let tue_screen_control=!0;tuesday.addEventListener(\"mouseup\",function(e){tue_screen_control&&e.pageX>tuesday.offsetWidth/3?(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs))&&go_story():(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs)&&tue_screen_control)&&back_story(),tue_screen_control=!0}),tuesday.addEventListener(\"script_loaded\",function(e){document.getElementById(\"tue_back\")&&(tue_back.style.pointerEvents=\"none\"),document.getElementById(\"tue_next\")&&(tue_next.style.pointerEvents=\"none\");for(var t=document.getElementById(\"tuesday\").getElementsByClassName(\"tue_controll\"),n=0;n<t.length;n++)t[n].setAttribute(\"onmouseup\",\"tue_screen_control=false;\")});"
-    },"speech":{
-        "name":"Speech",
-        "text":"Speech synthesis TTS<br>reading text with a synthesized voice",
-        "code":"const synth=window.speechSynthesis;function play_synth(e,t,s){if(e=e?e=\"object\"==typeof e?e[languare]:e:arr_dialog.text_add?arr_dialog.text_add:dialog_text,\"hidden\"!=tue_text_block.style.visibility&&(story_json.parameters.text_panel.speech||arr_dialog.speech)){let n=new SpeechSynthesisUtterance(e||dialog_text);synth.speaking&&synth.cancel();let a=t&&t.length>0?[t,s||1]:arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],p=speechSynthesis.getVoices(),h=a[0].split(\",\").map(e=>e.trim()),c=!1;for(v=0;v<p.length&&(p.filter(e=>{e.name==h[v]&&(c=e)}),!c);v++);n.voice=c,n.rate=a[1],synth.speak(n)}}tuesday.addEventListener(\"creation_dialog\",()=>{story_json.parameters.text_panel.speech_play&&tue_set_audio<2?play_synth():synth.cancel()});"
-    },"show_toast":{
-        "name":"Show toast",
-        "text":"small message appears for a while",
-        "code":"let tue_toast;function creation_tost(){var t=document.createElement(\"style\");t.type=\"text/css\",t.innerHTML=\"#toast{position: fixed;opacity: 0;top: -96px;z-index: 1000;}.toast_anim{left: 50%;transform: translateX(-50%);animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;}@keyframes viwe {from {opacity: 0;top: 3em}to {opacity: 1;top: 3em}}@keyframes stop {from {opacity: 1;top: 3em}to {opacity: 1;top: 3em}}@keyframes close {from {opacity: 1;top: 3em}to {opacity: 0;top: -96px}}\",document.getElementsByTagName(\"head\")[0].appendChild(t),(tue_toast=document.createElement(\"div\")).id=\"toast\",tue_toast.innerHTML=\"<table border=\'0\' height=\'100%\' width=\'100%\'><tbody><tr><td id=\'toast_message\' align=\'center\' valign=\'center\' ></td></tr></tbody></table>\",document.body.appendChild(tue_toast)}function toast(t){tue_toast.classList.remove(\"toast_anim\"),document.getElementById(\"toast_message\").innerHTML=t,tue_toast.offsetParent,tue_toast.classList.add(\"toast_anim\")}creation_tost(),tuesday.addEventListener(\"creation_dialog\",function(t){story_json[tue_story][scene].dialogs[dialog].toast&&(story_json[tue_story][scene].dialogs[dialog].toast[languare]?toast(story_json[tue_story][scene].dialogs[dialog].toast[languare]):toast(story_json[tue_story][scene].dialogs[dialog].toast))});"
-    },"terrain_map":{
-        "name":"Terrain map",
-        "text":"location with markers for transition to other plot blocks.",
-        "code":"var wmap={startmove_x:null,startmove_y:null,scroll_x:null,scroll_y:null,scale:1};function terrain_map(){clearTimeout(dialog_timeout),arr_dialog=story_json[tue_story][scene].terrain_map,tue_text_view.innerHTML=\"\",tuesday.style.backgroundImage=\"none\";var e=document.createElement(\"div\");e.id=\"tue_world\",e.style=\"height:100%;width:100%;overflow:auto;\",e.className=\"tue_html_scene\";var t=document.createElement(\"div\");arr_dialog.scale&&(wmap.scale=arr_dialog.scale),t.id=\"tue_map\",t.className=arr_dialog.className,t.style=arr_dialog.style,t.style.width=arr_dialog.size[0]+\"px\",t.style.height=arr_dialog.size[1]+\"px\",t.style.backgroundRepeat=arr_dialog.repeat?arr_dialog.repeat:\"no-repeat\",arr_dialog.art_align&&(t.style.backgroundPosition=arr_dialog.art_align),arr_dialog.fit&&(t.style.backgroundSize=\"object\"==typeof arr_dialog.fit?arr_dialog.fit[0]+\" \"+arr_dialog.fit[1]:arr_dialog.fit),arr_dialog.color&&(e.style.backgroundColor=art_data(arr_dialog.color)),arr_dialog.art&&art_data(arr_dialog.art).length>0&&(t.style.backgroundImage='url(\"'+art_data(arr_dialog.art)+'\")'),t.style.position=\"relative\",t.style.overflow=\"hidden\",t.style.transformOrigin=\"left top\";for(var o=0;o<arr_dialog.objects.length;o++){var s=document.createElement(\"div\");s.className=arr_dialog.objects[o].className+\" tue_map_item\",s.style=arr_dialog.objects[o].style,s.style.width=arr_dialog.objects[o].size[0]+\"px\",s.style.height=arr_dialog.objects[o].size[1]+\"px\",\"patch\"!=arr_dialog.objects[o].fit?(s.style.backgroundRepeat=\"no-repeat\",s.style.backgroundPosition=\"center\",s.style.backgroundSize=\"object\"==typeof arr_dialog.objects[o].fit?arr_dialog.objects[o].fit[0]+\" \"+arr_dialog.objects[o].fit[1]:arr_dialog.objects[o].fit,s.style.backgroundImage='url(\"'+art_data(arr_dialog.objects[o].art)+'\")',s.style.backgroundPosition=arr_dialog.objects[o].art_align?arr_dialog.objects[o].art_align[0]+\" \"+arr_dialog.objects[o].art_align[1]:\"center\"):\"patch\"==arr_dialog.objects[o].fit?(s.style.backgroundImage=\"none\",s.style.backgroundSize=\"none\",s.style.backgroundClip=\"padding-box\",s.style.borderStyle=\"solid\",s.style.borderWidth=arr_dialog.objects[o].patch[0]+\"px \"+arr_dialog.objects[o].patch[1]+\"px \"+arr_dialog.objects[o].patch[2]+\"px \"+arr_dialog.objects[o].patch[3]+\"px\",s.style.borderImage=\"url('\"+art_data(arr_dialog.objects[o].art)+\"') \"+arr_dialog.objects[o].patch[0]+\" \"+arr_dialog.objects[o].patch[1]+\" \"+arr_dialog.objects[o].patch[2]+\" \"+arr_dialog.objects[o].patch[3]+\" stretch stretch\"):tue_id.style.backgroundSize=arr_dialog.objects[o].art_size,s.style.position=\"absolute\",s.style.transformOrigin=\"top left\",s.style.transform=\"rotate(\"+arr_dialog.objects[o].angle+\"deg)\",s.style.top=arr_dialog.objects[o].position[1]+\"px\",s.style.left=arr_dialog.objects[o].position[0]+\"px\",s.style.display=\"flex\",arr_dialog.objects[o].color&&(s.style.backgroundColor=arr_dialog.objects[o].color),arr_dialog.objects[o].name&&(s.innerHTML=art_data(arr_dialog.objects[o].name),arr_dialog.objects[o].indent_text&&(s.style.padding=arr_dialog.objects[o].indent_text),arr_dialog.objects[o].color_text&&(s.style.color=arr_dialog.objects[o].color_text),arr_dialog.objects[o].size_text&&(s.style.fontSize=arr_dialog.objects[o].size_text),arr_dialog.objects[o].font_family&&(s.style.fontFamily=arr_dialog.objects[o].font_family),s.style.whiteSpace=\"pre-wrap\",arr_dialog.objects[o].align?(s.style.justifyContent=arr_dialog.objects[o].align?arr_dialog.objects[o].align[0]:\"center\",s.style.alignItems=arr_dialog.objects[o].align?arr_dialog.objects[o].align[1]:\"center\"):(s.style.justifyContent=\"center\",s.style.alignItems=\"center\")),story_json.parameters.cursors&&story_json.parameters.cursors.choice&&(s.style.cursor=\"url(\"+art_data(story_json.parameters.cursors.choice[0])+\") \"+story_json.parameters.cursors.choice[1]+\" \"+story_json.parameters.cursors.choice[2]+\",auto\"),arr_dialog.objects[o].show_if&&show_if(arr_dialog.objects[o].show_if,s);var l=\"\";arr_dialog.objects[o].sound?l+=\"sound_play('\"+arr_dialog.objects[o].sound+\"');\":arr_dialog.sound&&(l+=\"sound_play('\"+arr_dialog.sound+\"');\"),arr_dialog.objects[o].js&&(l+=arr_dialog.objects[o].js+\";\"),arr_dialog.objects[o].go_to&&(arr_dialog.objects[o].text_from?l+=\"tue_story='\"+arr_dialog.objects[o].go_to+\"';scene=0;dialog=0;creation_dialog();\":arr_dialog.objects[o].url?l+=\"window.open('\"+(arr_dialog.objects[o].go_to[languare]?arr_dialog.objects[o].go_to[languare]:arr_dialog.objects[o].go_to)+\"','_\"+arr_dialog.objects[o].url+\"');\":l+=\"tue_world.remove();\"+(\"tue_go\"==arr_dialog.objects[o].go_to?\"scene++;dialog=0;creation_scene();\":\"go_to('\"+arr_dialog.objects[o].go_to+\"');\")),s.setAttribute(\"onclick\",l),t.appendChild(s)}e.onmousedown=function(t){wmap.startmove_x=t.clientX,wmap.startmove_y=t.clientY,wmap.scroll_x=e.scrollTop,wmap.scroll_y=e.scrollLeft,document.onmousemove=function(t){e.scrollTop=wmap.scroll_x-(t.clientY-wmap.startmove_y),e.scrollLeft=wmap.scroll_y-(t.clientX-wmap.startmove_x)},document.onmouseup=function(t){document.onmousemove=null,document.onmouseup=null,arr_dialog.scroll&&(arr_dialog.scroll[1]=e.scrollTop,arr_dialog.scroll[0]=e.scrollLeft)},document.onmouseleave=function(){document.onmousemove=null,document.onmouseup=null,arr_dialog.scroll[1]=e.scrollTop,arr_dialog.scroll[0]=e.scrollLeft}},0==tue_set_audio&&arr_dialog.background_music&&!tue_bg_music.src.includes(encodeURI(arr_dialog.background_music))?(tue_bg_music.canPlayType(\"audio/mpeg\")?arr_dialog.background_music.includes(\"blob:\")?tue_bg_music.src=arr_dialog.background_music:arr_dialog.background_music.includes(\".mp3\")?tue_bg_music.src=arr_dialog.background_music:tue_bg_music.src=arr_dialog.background_music+\".mp3\":tue_bg_music.src=arr_dialog.background_music+\".ogg\",tue_bg_music.loop=!0,tue_bg_music.play()):arr_dialog.background_music&&\"\"!=arr_dialog.background_music?0==tue_set_audio&&tue_bg_music.play():tue_bg_music.pause(),document.getElementById(\"tue_next\")&&(tue_next.style.visibility=\"hidden\"),document.getElementById(\"tue_back\")&&(tue_back.style.visibility=\"hidden\"),e.appendChild(t),tuesday.appendChild(e),worldmap_resize(),arr_dialog.scroll&&(e.scrollTop=arr_dialog.scroll[1],e.scrollLeft=arr_dialog.scroll[0])}function worldmap_resize(){if(!story_json.parameters.resolutions){var e=tuesday.getBoundingClientRect();arr_dialog.size[0]/arr_dialog.size[1]>e.width/e.height?tue_map.style.transform=\"scale(\"+e.height/arr_dialog.size[1]*wmap.scale+\")\":tue_map.style.transform=\"scale(\"+e.width/arr_dialog.size[0]*wmap.scale+\")\",tue_map.style.marginBottom=\"-\"+(e.height+arr_dialog.size[1])+\"px\",tue_map.style.marginRight=\"-\"+(e.width+arr_dialog.size[0])+\"px\",tue_map.style.marginTop=\"0px\",tue_map.style.marginLeft=\"0px\"}}tuesday.addEventListener(\"terrain_map\",function(e){terrain_map()}),window.addEventListener(\"resize\",worldmap_resize,!0);"
-    },"touch_swipe":{
-        "name":"Touch swipe",
-        "text":"switches dialogue by swiping your finger across the touchscreen",
-        "code":"var endTime,starttouch=null;window.addEventListener(\"touchstart\",function(t){startTime=new Date,starttouch=1===t.touches.length?t.touches.item(0).clientX:null}),window.addEventListener(\"touchend\",function(t){var e=new Date-startTime;if(starttouch&&e<500&&controll){var n=t.changedTouches.item(0).clientX;n>starttouch+40&&back_story(),n<starttouch-40&&check_choice(story_json[tue_story][scene].dialogs)&&go_story()}});"
-    }
-}
+const plugins_list = {
+  tue_aspect_ratio: {
+    name: "Aspect ratio",
+    text: "fixed screen size while maintaining aspect ratio",
+    code: 'function TueAspectRatio(){let e=story_json.parameters.resolutions,t=tuesday.parentNode,i=t.getBoundingClientRect();if(0==i.height||0==i.width){var s=e[0]/window.innerWidth>e[1]/window.innerHeight?window.innerWidth/e[0]:window.innerHeight/e[1];tuesday.style.left=(window.innerWidth-e[0]*s)/2+"px",tuesday.style.top=(window.innerHeight-e[1]*s)/2+"px"}else{var s=e[0]/i.width>e[1]/i.height?i.width/e[0]:i.height/e[1];tuesday.style.left=(i.width-e[0]*s)/2+"px",tuesday.style.top=(i.height-e[1]*s)/2+"px"}t.style.backgroundColor=e[2]&&e[2].length>0?e[2]:"#000",t.style.backgroundImage="url(\'"+e[3]+"\')",t.style.backgroundPosition="center",t.style.backgroundSize="cover",t.style.overflow="hidden",t.style.position="relative",tuesday.style.position="absolute",tuesday.style.transformOrigin="left top",tuesday.style.width=e[0]+"px",tuesday.style.height=e[1]+"px",tuesday.style.transform="scale("+s+")"}window.addEventListener("script_executed",TueAspectRatio,!0),window.addEventListener("script_loaded",TueAspectRatio,!0),window.addEventListener("resize",TueAspectRatio,!0);',
+  },
+  game_pad: {
+    name: "GamePad",
+    text: "Support for external game controllers",
+    code: 'let gamepad,gamepadPress,gamepad_choice=-1,gamepad_choices,gamepad_cursor=0;function select_choice(e){if(0==gamepad_cursor){gamepad_choices=story_json[tue_story][scene].terrain_map?tuesday.getElementsByClassName("tue_map_item"):tuesday.getElementsByClassName("tue_choice"),(gamepad_cursor=document.createElement("div")).style.position="absolute",gamepad_cursor.style.pointerEvents="none",gamepad_cursor.id="gamepad_cursor";let a=story_json.parameters.gamepad.cursor;gamepad_cursor.innerHTML="<div "+(a[6].length>0?"class=\'"+a[6]+"\'":"")+" style=\'"+(a[5].length>0?a[5]+";":"")+(""!=a[0]?" background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url("+art_data(a[0])+");":"")+"pointer-events:none;position:absolute;top:"+a[1]+";left:"+a[2]+";"+(0!=a[3]?"width:"+a[3]+";":"")+(0!=a[3]?"height:"+a[3]+";":"")+"\'></div>",story_json[tue_story][scene].terrain_map?tue_map.appendChild(gamepad_cursor):tuesday.appendChild(gamepad_cursor)}if("hidden"!=gamepad_choices[gamepad_choice=gamepad_choice+e>=gamepad_choices.length?0:gamepad_choice+e<0?gamepad_choices.length-1:gamepad_choice+e].style.visibility&&(story_json[tue_story][scene].terrain_map||gamepad_choices[gamepad_choice].onclick.toString().includes("go_to")||gamepad_choices[gamepad_choice].onclick.toString().includes("go_story")||gamepad_choices[gamepad_choice].onclick.toString().includes("tue_load_autosave")||gamepad_choices[gamepad_choice].onclick.toString().includes("load_stag"))){if(gamepad_cursor.style.left=gamepad_choices[gamepad_choice].style.left,gamepad_cursor.style.top=gamepad_choices[gamepad_choice].style.top,gamepad_cursor.style.right=gamepad_choices[gamepad_choice].style.right,gamepad_cursor.style.bottom=gamepad_choices[gamepad_choice].style.bottom,gamepad_cursor.style.width=gamepad_choices[gamepad_choice].style.width,gamepad_cursor.style.height=gamepad_choices[gamepad_choice].style.height,gamepad_cursor.style.padding=gamepad_choices[gamepad_choice].style.padding,gamepad_cursor.style.zIndex=gamepad_choices[gamepad_choice].style.zIndex,gamepad_cursor.style.transform=gamepad_choices[gamepad_choice].style.transform,story_json[tue_story][scene].terrain_map){let c=gamepad_choices[gamepad_choice].getBoundingClientRect();tue_world.scrollTop=tue_world.scrollTop+(c.top-tuesday.clientHeight/2),tue_world.scrollLeft=tue_world.scrollLeft+(c.left-tuesday.clientWidth/2)}}else select_choice(e)}function gamepad_cursor_cler(){gamepad_cursor.remove(),gamepad_cursor=0,gamepad_choice=-1}tuesday.addEventListener("creation_dialog",function(e){0!=gamepad_cursor&&gamepad_cursor_cler()}),window.addEventListener("keydown",function(e){37==(e=e.keyCode)?story_json[tue_story][scene].terrain_map||0!=story_json[tue_story][scene].dialogs.length&&!check_choice(story_json[tue_story][scene].dialogs)?select_choice(1):story_json.parameters.key&&story_json.parameters.key.next||back_story():39==e?story_json[tue_story][scene].terrain_map||0!=story_json[tue_story][scene].dialogs.length&&!check_choice(story_json[tue_story][scene].dialogs)?select_choice(-1):story_json.parameters.key&&story_json.parameters.key.back||go_story():38==e?(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs))&&select_choice(1):40==e?(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs))&&select_choice(-1):13==e||32==e?0!=gamepad_cursor&&(gamepad_choices[gamepad_choice].click(),story_json[tue_story][scene].terrain_map&&gamepad_cursor_cler()):27!=e||story_json.parameters.key&&story_json.parameters.key.launch_story||go_to(story_json.parameters.launch_story)}),window.addEventListener("gamepadconnected",function(e){let a=()=>{for(gamepad of navigator.getGamepads()){if(!gamepad)continue;let e=gamepad.buttons.some(e=>e.pressed);gamepadPress!==e&&(gamepadPress=e,gamepad.buttons[14].pressed?story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs)?select_choice(1):back_story():gamepad.buttons[15].pressed?story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs)?select_choice(-1):go_story():gamepad.buttons[12].pressed?(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs))&&select_choice(1):gamepad.buttons[13].pressed?(story_json[tue_story][scene].terrain_map||!check_choice(story_json[tue_story][scene].dialogs))&&select_choice(-1):gamepad.buttons[1].pressed||gamepad.buttons[2].pressed||gamepad.buttons[3].pressed||gamepad.buttons[0].pressed?0!=gamepad_cursor&&(gamepad_choices[gamepad_choice].click(),story_json[tue_story][scene].terrain_map&&gamepad_cursor_cler()):(gamepad.buttons[8].pressed||gamepad.buttons[9].pressed)&&(go_to(story_json.parameters.launch_story),story_json[tue_story][scene].terrain_map&&gamepad_cursor_cler()))}requestAnimationFrame(a)};a()});',
+  },
+  hidden_objects: {
+    name: "Hidden objects",
+    text: "player must find items from a list that are hidden within a scene",
+    code: 'var ho={startmove_x:null,startmove_y:null,scroll_x:null,scroll_y:null,scale:1};function hidden_objects(){clearTimeout(dialog_timeout),arr_dialog=story_json[tue_story][scene].hidden_objects,tue_text_view.innerHTML="",tuesday.style.backgroundImage="none",findobjects=story_json.parameters.hidden_objects.label.items>arr_dialog.objects.length?arr_dialog.objects.length:story_json.parameters.hidden_objects.label.items;var e=document.createElement("div");e.id="tue_hiddenobjects",e.style="height:100%;width:100%;overflow:auto;";var t=document.createElement("div"),s=Math.round(arr_dialog.objects.length/findobjects),l=0,o=0;findobjects<arr_dialog.objects.length&&s<2&&(s=2);var a=Math.round(Math.random()*(s-1));arr_dialog.scale&&(ho.scale=arr_dialog.scale),t.id="tue_objectsroom",t.className=arr_dialog.className,t.style=arr_dialog.style,t.style.width=arr_dialog.size[0]+"px",t.style.height=arr_dialog.size[1]+"px",t.style.backgroundRepeat="no-repeat",t.style.backgroundPosition="center",t.style.backgroundSize="cover",arr_dialog.color&&(e.style.backgroundColor=art_data(arr_dialog.color)),t.style.backgroundImage=\'url("\'+art_data(arr_dialog.art)+\'")\',t.style.position="relative",t.style.overflow="hidden";for(var r=story_json.parameters.hidden_objects.label_find.sound?story_json.parameters.hidden_objects.label_find.sound:"",n=0;n<arr_dialog.objects.length;n++){var i=document.createElement("div");i.className=arr_dialog.objects[n].className,i.style=arr_dialog.objects[n].style,i.style.width=arr_dialog.objects[n].size[0]+"px",i.style.height=arr_dialog.objects[n].size[1]+"px",i.style.backgroundRepeat="no-repeat",i.style.backgroundPosition="center",i.style.backgroundSize=arr_dialog.objects[n].fit,i.style.backgroundImage=\'url("\'+art_data(arr_dialog.objects[n].art)+\'")\',i.style.position="absolute",i.style.transformOrigin="top left",i.style.transform="rotate("+arr_dialog.objects[n].angle+"deg)",i.style.top=arr_dialog.objects[n].position[1]+"px",i.style.left=arr_dialog.objects[n].position[0]+"px";var c=document.createElement("div");story_json.parameters.hidden_objects.label.style&&(c.style=story_json.parameters.hidden_objects.label.style),story_json.parameters.hidden_objects.label.className&&(c.className=story_json.parameters.hidden_objects.label.className),n==a&&o<findobjects&&(l+=s,i.setAttribute("onclick",\'sound_play("\'+(arr_dialog.objects[n].sound?arr_dialog.objects[n].sound:r)+\'");\'+(story_json.parameters.hidden_objects.label_find.no_del_item?"this.setAttribute(\'onclick\',\'\')":"this.remove();")+(arr_dialog.objects[n].js?arr_dialog.objects[n].js:"")+\';find_item("item\'+n+\'");\'),c.style.width=story_json.parameters.hidden_objects.label.size[0],c.style.height=story_json.parameters.hidden_objects.label.size[1],c.style.float="left",c.id="item"+n,"text"!=story_json.parameters.hidden_objects.label.tip&&story_json.parameters.hidden_objects.label.tip||(c.style.display="flex",c.style.justifyContent=story_json.parameters.hidden_objects.label.align?story_json.parameters.hidden_objects.label.align[0]:"center",c.style.alignItems=story_json.parameters.hidden_objects.label.align?story_json.parameters.hidden_objects.label.align[1]:"center",c.innerHTML=art_data(arr_dialog.objects[n].name)),"art"!=story_json.parameters.hidden_objects.label.tip&&story_json.parameters.hidden_objects.label.tip||(c.style.backgroundRepeat="no-repeat",c.style.backgroundPosition=story_json.parameters.hidden_objects.label.art_align?story_json.parameters.hidden_objects.label.art_align:"center",story_json.parameters.hidden_objects.label.color_text&&(c.style.color=story_json.parameters.hidden_objects.label.color_text),story_json.parameters.hidden_objects.label.fit?c.style.backgroundSize=story_json.parameters.hidden_objects.label.fit:story_json.parameters.hidden_objects.label.art_size&&("object"==typeof story_json.parameters.hidden_objects.label.art_size?c.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size[0]+" "+story_json.parameters.hidden_objects.label.art_size[1]:c.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size),c.style.backgroundImage=\'url("\'+art_data(arr_dialog.objects[n].art)+\'")\'),s>1&&(a=l+Math.round(Math.random()*(s-1))),arr_dialog.objects.length-l<findobjects-o&&(a=l,s=1),story_json.parameters.hidden_objects.label.color&&(c.style.backgroundColor=story_json.parameters.hidden_objects.label.color),tue_text_view.appendChild(c),o++),t.appendChild(i)}tue_text_block.style.visibility="visible",story_json.parameters.text_panel.color&&(tue_text_block.style.backgroundColor=story_json.parameters.text_panel.color),document.getElementById("tue_next")&&(tue_next.style.visibility="hidden"),document.getElementById("tue_back")&&(tue_back.style.visibility="hidden"),e.appendChild(t),tuesday.appendChild(e),objectsroom_resize(),tue_objectsroom.style.transformOrigin="left top",0==tue_set_audio&&arr_dialog.background_music&&!tue_bg_music.src.includes(encodeURI(arr_dialog.background_music))?(tue_bg_music.canPlayType("audio/mpeg")?arr_dialog.background_music.includes("blob:")?tue_bg_music.src=arr_dialog.background_music:arr_dialog.background_music.includes(".mp3")?tue_bg_music.src=arr_dialog.background_music:tue_bg_music.src=arr_dialog.background_music+".mp3":tue_bg_music.src=arr_dialog.background_music+".ogg",tue_bg_music.loop=!0,tue_bg_music.play()):arr_dialog.background_music&&""!=arr_dialog.background_music?0==tue_set_audio&&tue_bg_music.play():tue_bg_music.pause(),e.onmousedown=function(t){ho.startmove_x=t.clientX,ho.startmove_y=t.clientY,ho.scroll_x=e.scrollTop,ho.scroll_y=e.scrollLeft,document.onmousemove=function(t){e.scrollTop=ho.scroll_x-(t.clientY-ho.startmove_y),e.scrollLeft=ho.scroll_y-(t.clientX-ho.startmove_x)},document.onmouseup=function(e){document.onmousemove=null,document.onmouseup=null},document.onmouseleave=function(){document.onmousemove=null,document.onmouseup=null}}}function objectsroom_resize(){if(!story_json.parameters.resolutions){var e=tuesday.getBoundingClientRect();arr_dialog.size[0]/arr_dialog.size[1]>e.width/e.height?tue_objectsroom.style.transform="scale("+e.height/arr_dialog.size[1]*ho.scale+")":tue_objectsroom.style.transform="scale("+e.width/arr_dialog.size[0]*ho.scale+")",tue_objectsroom.style.marginBottom="-"+(e.height+arr_dialog.size[1])+"px",tue_objectsroom.style.marginRight="-"+(e.width+arr_dialog.size[0])+"px",tue_objectsroom.style.marginTop="0px",tue_objectsroom.style.marginLeft="0px"}}function find_item(id){findobjects--,story_json.parameters.hidden_objects.label_find.no_del_label?(id=document.getElementById(id),story_json.parameters.hidden_objects.label_find.className&&(id.className=story_json.parameters.hidden_objects.label_find.className),story_json.parameters.hidden_objects.label_find.style&&(id.className=story_json.parameters.hidden_objects.label_find.style),story_json.parameters.hidden_objects.label_find.color&&(id.style.backgroundColor=story_json.parameters.hidden_objects.label_find.color),story_json.parameters.hidden_objects.label_find.color_text&&(id.style.color=story_json.parameters.hidden_objects.label_find.color_text)):document.getElementById(id).remove(),findobjects<=0&&(arr_dialog.js&&eval(arr_dialog.js),tue_hiddenobjects.remove(),"tue_go"==arr_dialog.go_to?(scene++,dialog=0,creation_scene()):go_to(arr_dialog.go_to))}tuesday.addEventListener("hidden_objects",function(e){hidden_objects()}),window.addEventListener("resize",objectsroom_resize,!0);',
+  },
+  screen_control: {
+    name: "Screen control",
+    text: "switches dialogue by click to screen.",
+    code: 'let tue_screen_control=!0;tuesday.addEventListener("mouseup",function(e){tue_screen_control&&e.pageX>tuesday.offsetWidth/3?(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs))&&go_story():(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs)&&tue_screen_control)&&back_story(),tue_screen_control=!0}),tuesday.addEventListener("script_loaded",function(e){document.getElementById("tue_back")&&(tue_back.style.pointerEvents="none"),document.getElementById("tue_next")&&(tue_next.style.pointerEvents="none");for(var t=document.getElementById("tuesday").getElementsByClassName("tue_controll"),n=0;n<t.length;n++)t[n].setAttribute("onmouseup","tue_screen_control=false;")});',
+  },
+  speech: {
+    name: "Speech",
+    text: "Speech synthesis TTS<br>reading text with a synthesized voice",
+    code: 'const synth=window.speechSynthesis;function play_synth(e,t,s){if(e=e?e="object"==typeof e?e[languare]:e:arr_dialog.text_add?arr_dialog.text_add:dialog_text,"hidden"!=tue_text_block.style.visibility&&(story_json.parameters.text_panel.speech||arr_dialog.speech)){let n=new SpeechSynthesisUtterance(e||dialog_text);synth.speaking&&synth.cancel();let a=t&&t.length>0?[t,s||1]:arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],p=speechSynthesis.getVoices(),h=a[0].split(",").map(e=>e.trim()),c=!1;for(v=0;v<p.length&&(p.filter(e=>{e.name==h[v]&&(c=e)}),!c);v++);n.voice=c,n.rate=a[1],synth.speak(n)}}tuesday.addEventListener("creation_dialog",()=>{story_json.parameters.text_panel.speech_play&&tue_set_audio<2?play_synth():synth.cancel()});',
+  },
+  show_toast: {
+    name: "Show toast",
+    text: "small message appears for a while",
+    code: 'let tue_toast;function creation_tost(){var t=document.createElement("style");t.type="text/css",t.innerHTML="#toast{position: fixed;opacity: 0;top: -96px;z-index: 1000;}.toast_anim{left: 50%;transform: translateX(-50%);animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;}@keyframes viwe {from {opacity: 0;top: 3em}to {opacity: 1;top: 3em}}@keyframes stop {from {opacity: 1;top: 3em}to {opacity: 1;top: 3em}}@keyframes close {from {opacity: 1;top: 3em}to {opacity: 0;top: -96px}}",document.getElementsByTagName("head")[0].appendChild(t),(tue_toast=document.createElement("div")).id="toast",tue_toast.innerHTML="<table border=\'0\' height=\'100%\' width=\'100%\'><tbody><tr><td id=\'toast_message\' align=\'center\' valign=\'center\' ></td></tr></tbody></table>",document.body.appendChild(tue_toast)}function toast(t){tue_toast.classList.remove("toast_anim"),document.getElementById("toast_message").innerHTML=t,tue_toast.offsetParent,tue_toast.classList.add("toast_anim")}creation_tost(),tuesday.addEventListener("creation_dialog",function(t){story_json[tue_story][scene].dialogs[dialog].toast&&(story_json[tue_story][scene].dialogs[dialog].toast[languare]?toast(story_json[tue_story][scene].dialogs[dialog].toast[languare]):toast(story_json[tue_story][scene].dialogs[dialog].toast))});',
+  },
+  terrain_map: {
+    name: "Terrain map",
+    text: "location with markers for transition to other plot blocks.",
+    code: 'var wmap={startmove_x:null,startmove_y:null,scroll_x:null,scroll_y:null,scale:1};function terrain_map(){clearTimeout(dialog_timeout),arr_dialog=story_json[tue_story][scene].terrain_map,tue_text_view.innerHTML="",tuesday.style.backgroundImage="none";var e=document.createElement("div");e.id="tue_world",e.style="height:100%;width:100%;overflow:auto;",e.className="tue_html_scene";var t=document.createElement("div");arr_dialog.scale&&(wmap.scale=arr_dialog.scale),t.id="tue_map",t.className=arr_dialog.className,t.style=arr_dialog.style,t.style.width=arr_dialog.size[0]+"px",t.style.height=arr_dialog.size[1]+"px",t.style.backgroundRepeat=arr_dialog.repeat?arr_dialog.repeat:"no-repeat",arr_dialog.art_align&&(t.style.backgroundPosition=arr_dialog.art_align),arr_dialog.fit&&(t.style.backgroundSize="object"==typeof arr_dialog.fit?arr_dialog.fit[0]+" "+arr_dialog.fit[1]:arr_dialog.fit),arr_dialog.color&&(e.style.backgroundColor=art_data(arr_dialog.color)),arr_dialog.art&&art_data(arr_dialog.art).length>0&&(t.style.backgroundImage=\'url("\'+art_data(arr_dialog.art)+\'")\'),t.style.position="relative",t.style.overflow="hidden",t.style.transformOrigin="left top";for(var o=0;o<arr_dialog.objects.length;o++){var s=document.createElement("div");s.className=arr_dialog.objects[o].className+" tue_map_item",s.style=arr_dialog.objects[o].style,s.style.width=arr_dialog.objects[o].size[0]+"px",s.style.height=arr_dialog.objects[o].size[1]+"px","patch"!=arr_dialog.objects[o].fit?(s.style.backgroundRepeat="no-repeat",s.style.backgroundPosition="center",s.style.backgroundSize="object"==typeof arr_dialog.objects[o].fit?arr_dialog.objects[o].fit[0]+" "+arr_dialog.objects[o].fit[1]:arr_dialog.objects[o].fit,s.style.backgroundImage=\'url("\'+art_data(arr_dialog.objects[o].art)+\'")\',s.style.backgroundPosition=arr_dialog.objects[o].art_align?arr_dialog.objects[o].art_align[0]+" "+arr_dialog.objects[o].art_align[1]:"center"):"patch"==arr_dialog.objects[o].fit?(s.style.backgroundImage="none",s.style.backgroundSize="none",s.style.backgroundClip="padding-box",s.style.borderStyle="solid",s.style.borderWidth=arr_dialog.objects[o].patch[0]+"px "+arr_dialog.objects[o].patch[1]+"px "+arr_dialog.objects[o].patch[2]+"px "+arr_dialog.objects[o].patch[3]+"px",s.style.borderImage="url(\'"+art_data(arr_dialog.objects[o].art)+"\') "+arr_dialog.objects[o].patch[0]+" "+arr_dialog.objects[o].patch[1]+" "+arr_dialog.objects[o].patch[2]+" "+arr_dialog.objects[o].patch[3]+" stretch stretch"):tue_id.style.backgroundSize=arr_dialog.objects[o].art_size,s.style.position="absolute",s.style.transformOrigin="top left",s.style.transform="rotate("+arr_dialog.objects[o].angle+"deg)",s.style.top=arr_dialog.objects[o].position[1]+"px",s.style.left=arr_dialog.objects[o].position[0]+"px",s.style.display="flex",arr_dialog.objects[o].color&&(s.style.backgroundColor=arr_dialog.objects[o].color),arr_dialog.objects[o].name&&(s.innerHTML=art_data(arr_dialog.objects[o].name),arr_dialog.objects[o].indent_text&&(s.style.padding=arr_dialog.objects[o].indent_text),arr_dialog.objects[o].color_text&&(s.style.color=arr_dialog.objects[o].color_text),arr_dialog.objects[o].size_text&&(s.style.fontSize=arr_dialog.objects[o].size_text),arr_dialog.objects[o].font_family&&(s.style.fontFamily=arr_dialog.objects[o].font_family),s.style.whiteSpace="pre-wrap",arr_dialog.objects[o].align?(s.style.justifyContent=arr_dialog.objects[o].align?arr_dialog.objects[o].align[0]:"center",s.style.alignItems=arr_dialog.objects[o].align?arr_dialog.objects[o].align[1]:"center"):(s.style.justifyContent="center",s.style.alignItems="center")),story_json.parameters.cursors&&story_json.parameters.cursors.choice&&(s.style.cursor="url("+art_data(story_json.parameters.cursors.choice[0])+") "+story_json.parameters.cursors.choice[1]+" "+story_json.parameters.cursors.choice[2]+",auto"),arr_dialog.objects[o].show_if&&show_if(arr_dialog.objects[o].show_if,s);var l="";arr_dialog.objects[o].sound?l+="sound_play(\'"+arr_dialog.objects[o].sound+"\');":arr_dialog.sound&&(l+="sound_play(\'"+arr_dialog.sound+"\');"),arr_dialog.objects[o].js&&(l+=arr_dialog.objects[o].js+";"),arr_dialog.objects[o].go_to&&(arr_dialog.objects[o].text_from?l+="tue_story=\'"+arr_dialog.objects[o].go_to+"\';scene=0;dialog=0;creation_dialog();":arr_dialog.objects[o].url?l+="window.open(\'"+(arr_dialog.objects[o].go_to[languare]?arr_dialog.objects[o].go_to[languare]:arr_dialog.objects[o].go_to)+"\',\'_"+arr_dialog.objects[o].url+"\');":l+="tue_world.remove();"+("tue_go"==arr_dialog.objects[o].go_to?"scene++;dialog=0;creation_scene();":"go_to(\'"+arr_dialog.objects[o].go_to+"\');")),s.setAttribute("onclick",l),t.appendChild(s)}e.onmousedown=function(t){wmap.startmove_x=t.clientX,wmap.startmove_y=t.clientY,wmap.scroll_x=e.scrollTop,wmap.scroll_y=e.scrollLeft,document.onmousemove=function(t){e.scrollTop=wmap.scroll_x-(t.clientY-wmap.startmove_y),e.scrollLeft=wmap.scroll_y-(t.clientX-wmap.startmove_x)},document.onmouseup=function(t){document.onmousemove=null,document.onmouseup=null,arr_dialog.scroll&&(arr_dialog.scroll[1]=e.scrollTop,arr_dialog.scroll[0]=e.scrollLeft)},document.onmouseleave=function(){document.onmousemove=null,document.onmouseup=null,arr_dialog.scroll[1]=e.scrollTop,arr_dialog.scroll[0]=e.scrollLeft}},0==tue_set_audio&&arr_dialog.background_music&&!tue_bg_music.src.includes(encodeURI(arr_dialog.background_music))?(tue_bg_music.canPlayType("audio/mpeg")?arr_dialog.background_music.includes("blob:")?tue_bg_music.src=arr_dialog.background_music:arr_dialog.background_music.includes(".mp3")?tue_bg_music.src=arr_dialog.background_music:tue_bg_music.src=arr_dialog.background_music+".mp3":tue_bg_music.src=arr_dialog.background_music+".ogg",tue_bg_music.loop=!0,tue_bg_music.play()):arr_dialog.background_music&&""!=arr_dialog.background_music?0==tue_set_audio&&tue_bg_music.play():tue_bg_music.pause(),document.getElementById("tue_next")&&(tue_next.style.visibility="hidden"),document.getElementById("tue_back")&&(tue_back.style.visibility="hidden"),e.appendChild(t),tuesday.appendChild(e),worldmap_resize(),arr_dialog.scroll&&(e.scrollTop=arr_dialog.scroll[1],e.scrollLeft=arr_dialog.scroll[0])}function worldmap_resize(){if(!story_json.parameters.resolutions){var e=tuesday.getBoundingClientRect();arr_dialog.size[0]/arr_dialog.size[1]>e.width/e.height?tue_map.style.transform="scale("+e.height/arr_dialog.size[1]*wmap.scale+")":tue_map.style.transform="scale("+e.width/arr_dialog.size[0]*wmap.scale+")",tue_map.style.marginBottom="-"+(e.height+arr_dialog.size[1])+"px",tue_map.style.marginRight="-"+(e.width+arr_dialog.size[0])+"px",tue_map.style.marginTop="0px",tue_map.style.marginLeft="0px"}}tuesday.addEventListener("terrain_map",function(e){terrain_map()}),window.addEventListener("resize",worldmap_resize,!0);',
+  },
+  touch_swipe: {
+    name: "Touch swipe",
+    text: "switches dialogue by swiping your finger across the touchscreen",
+    code: 'var endTime,starttouch=null;window.addEventListener("touchstart",function(t){startTime=new Date,starttouch=1===t.touches.length?t.touches.item(0).clientX:null}),window.addEventListener("touchend",function(t){var e=new Date-startTime;if(starttouch&&e<500&&controll){var n=t.changedTouches.item(0).clientX;n>starttouch+40&&back_story(),n<starttouch-40&&check_choice(story_json[tue_story][scene].dialogs)&&go_story()}});',
+  },
+};
+
 const languares={"English":"en","Japanese":"ja","French":"fr","Russian":"ru","Spanish":"es","Chinese":"zh","Korean":"ko","German":"de","Dutch":"nl","Portuguese":"pt","Afar":"aa","Abkhazian":"ab","Afrikaans":"af","Akan":"ak","Albanian":"sq","Amharic":"am","Arabic":"ar","Aragonese":"an","Armenian":"hy","Assamese":"as","Avaric":"av","Avestan":"ae","Aymara":"ay","Azerbaijani":"az","Bambara":"bm","Bashkir":"ba","Basque":"eu","Belarusian":"be","Bengali (Bangla)":"bn","Bihari":"bh","Bislama":"bi","Bosnian":"bs","Breton":"br","Bulgarian":"bg","Burmese":"my","Catalan":"ca","Chamorro":"ch","Chechen":"ce","Chichewa,Chewa,Nyanja":"ny","Chinese (Simplified)":"zh-Hans","Chinese (Traditional)":"zh-Hant","Chuvash":"cv","Cornish":"kw","Corsican":"co","Cree":"cr","Croatian":"hr","Czech":"cs","Danish":"da","Divehi,Dhivehi,Maldivian":"dv","Dzongkha":"dz","Esperanto":"eo","Estonian":"et","Ewe":"ee","Faroese":"fo","Fijian":"fj","Finnish":"fi","Fula,Fulah,Pulaar,Pular":"ff","Galician":"gl","Gaelic (Scottish)":"gd","Gaelic (Manx)":"gv","Georgian":"ka","Greek":"el","Greenlandic":"kl","Guarani":"gn","Gujarati":"gu","Haitian Creole":"ht","Hausa":"ha","Hebrew":"he","Herero":"hz","Hindi":"hi","Hiri Motu":"ho","Hungarian":"hu","Icelandic":"is","Ido":"io","Igbo":"ig","Indonesian":"id","Interlingua":"ia","Interlingue":"ie","Inuktitut":"iu","Inupiak":"ik","Irish":"ga","Italian":"it","Javanese":"jv","Kalaallisut,Greenlandic":"kl","Kannada":"kn","Kanuri":"kr","Kashmiri":"ks","Kazakh":"kk","Khmer":"km","Kikuyu":"ki","Kinyarwanda (Rwanda)":"rw","Kirundi":"rn","Kyrgyz":"ky","Komi":"kv","Kongo":"kg","Kurdish":"ku","Kwanyama":"kj","Lao":"lo","Latin":"la","Latvian (Lettish)":"lv","Limburgish ( Limburger)":"li","Lingala":"ln","Lithuanian":"lt","Luga-Katanga":"lu","Luganda,Ganda":"lg","Luxembourgish":"lb","Manx":"gv","Macedonian":"mk","Malagasy":"mg","Malay":"ms","Malayalam":"ml","Maltese":"mt","Maori":"mi","Marathi":"mr","Marshallese":"mh","Moldavian":"mo","Mongolian":"mn","Nauru":"na","Navajo":"nv","Ndonga":"ng","Northern Ndebele":"nd","Nepali":"ne","Norwegian":"no","Norwegian bokmål":"nb","Norwegian nynorsk":"nn","Nuosu":"ii","Occitan":"oc","Ojibwe":"oj","Old Church Slavonic,Old Bulgarian":"cu","Oriya":"or","Oromo (Afaan Oromo)":"om","Ossetian":"os","Pāli":"pi","Pashto,Pushto":"ps","Persian (Farsi)":"fa","Polish":"pl","Punjabi (Eastern)":"pa","Quechua":"qu","Romansh":"rm","Romanian":"ro","Sami":"se","Samoan":"sm","Sango":"sg","Sanskrit":"sa","Serbian":"sr","Serbo-Croatian":"sh","Sesotho":"st","Setswana":"tn","Shona":"sn","Sichuan Yi":"ii","Sindhi":"sd","Sinhalese":"si","Siswati":"ss","Slovak":"sk","Slovenian":"sl","Somali":"so","Southern Ndebele":"nr","Sundanese":"su","Swahili (Kiswahili)":"sw","Swati":"ss","Swedish":"sv","Tagalog":"tl","Tahitian":"ty","Tajik":"tg","Tamil":"ta","Tatar":"tt","Telugu":"te","Thai":"th","Tibetan":"bo","Tigrinya":"ti","Tonga":"to","Tsonga":"ts","Turkish":"tr","Turkmen":"tk","Twi":"tw","Uyghur":"ug","Urdu":"ur","Uzbek":"uz","Venda":"ve","Vietnamese":"vi","Volapük":"vo","Wallon":"wa","Welsh":"cy","Wolof":"wo","Western Frisian":"fy","Xhosa":"xh","Yiddish":"yi","Yoruba":"yo","Zhuang,Chuang":"za","Zulu":"zu"}
 const color_bg=['#ffd4d4','#ebd4d4','#ffedd2','#edffca','#cfffd8','#deffff',false,'#d3f2ff','#d8e7ff','#d3d1ff','#f0e0ff','#fbddff','#e9e9e9']
 const color_dg=['#774C4C','#634C4C','#77654A','#657742','#477750','#567777',false,'#4B6A77','#505F77','#4B4977','#685877','#735577','#616161']
-const texts={"tutorials":[{
-        "en":"Move to the next block based on the values ​​in variables. Variables are created in the 'Settings project' in the 'Variables' section."
-        },{
-        "en":"Text and character name settings that will be displayed in the text area. To use data from variable, use \< var_name \>. To add furigana or annotations use \< 簡単 = かんたん \>. If you write only skip then the phrase in the localization will be skipped."
-        },{
-        "en":"Customize the look of the scene, its background image and music, for subsequent dialogues and actions."
-        },{
-        "en":"Select a working folder with resources for the project."
-        },{
-        "en":"Changes in the values ​​of variables, their values ​​can be displayed in the text as \< var_name \> or in \"Legacy Choice\" to go to another block of script."
-        },{
-        "en":"Choose the input device that suits you. You can change the device in the settings in the 'editor' section."
-        },{
-        "en":"Mouse<br>control with the zoom wheel"
-        },{
-        "en":"TouchPad<br>recommended for laptops and MacBooks"
-        },{
-        "en":"Html file<br><br>Only index.html file will be created, after its creation it is necessary to transfer it to the working folder of the project."
-        },{
-        "en":"Zip file<br><br>All files from the working folder and index.html will be packed into a zip archive."
-        },{
-        "en":"Base64<br><br>Not recommended! All files will be combined into one html file in base64 format. Use only with a small number of files."
-        },{
-        "en":"CSV Comma-Separated Values."
-        },{
-        "en":"TSV tab separated values."
-        },{
-        "en":"the limit of the cursor size is 128×128px. Larger cursor images are ignored. However, you should limit yourself to the size 32×32 for maximum compatibility with operating systems and platforms."
-        },{
-        "en":"The variables are in story_json.parameters.variables[var_name] array"
-        },{
-        "en":"More settings for appearance and position of the choice on layout are located in the scene editor"
-        },{
-        "en":"You can set transition to a specific scene and dialogue in blok (the function may cause errors)"
-        },{
-        "en":"Telegram bot<br><br>Project export to chat bot for telegram messenger<br>Warning! some features may not be supported by bot"
-        },{
-        "en":"You can change the token for bot in the project settings. step-by-step instructions for starting bot can be found in <a href='https://kirilllive.github.io/tuesday-js/doc_editor.html#bot_telegram' target='_blank'>documentation</a>"
-        },{
-        "en":"Warning! Voices may vary across OS and browsers."
-        }
-]}
-let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true};
+const texts = {
+  tutorials: [
+    { en: "Move to the next block based on the values ​​in variables. Variables are created in the 'Settings project' in the 'Variables' section.", },
+    { en: "Text and character name settings that will be displayed in the text area. To use data from variable, use < var_name >. To add furigana or annotations use < 簡単 = かんたん >. If you write only skip then the phrase in the localization will be skipped.", },
+    { en: "Customize the look of the scene, its background image and music, for subsequent dialogues and actions.", },
+    { en: "Select a working folder with resources for the project.", },
+    { en: 'Changes in the values ​​of variables, their values ​​can be displayed in the text as < var_name > or in "Legacy Choice" to go to another block of script.', },
+    { en: "Choose the input device that suits you. You can change the device in the settings in the 'editor' section.", },
+    { en: "Mouse<br>control with the zoom wheel", },
+    { en: "TouchPad<br>recommended for laptops and MacBooks", },
+    { en: "Html file<br><br>Only index.html file will be created, after its creation it is necessary to transfer it to the working folder of the project.", },
+    { en: "Zip file<br><br>All files from the working folder and index.html will be packed into a zip archive.", },
+    { en: "Base64<br><br>Not recommended! All files will be combined into one html file in base64 format. Use only with a small number of files.", },
+    { en: "CSV Comma-Separated Values.", },
+    { en: "TSV tab separated values.", },
+    { en: "the limit of the cursor size is 128×128px. Larger cursor images are ignored. However, you should limit yourself to the size 32×32 for maximum compatibility with operating systems and platforms.", },
+    { en: "The variables are in story_json.parameters.variables[var_name] array", },
+    { en: "More settings for appearance and position of the choice on layout are located in the scene editor", },
+    { en: "You can set transition to a specific scene and dialogue in blok (the function may cause errors)", },
+    { en: "Telegram bot<br><br>Project export to chat bot for telegram messenger<br>Warning! some features may not be supported by bot", },
+    { en: "You can change the token for bot in the project settings. step-by-step instructions for starting bot can be found in <a href='https://kirilllive.github.io/tuesday-js/doc_editor.html#bot_telegram' target='_blank'>documentation</a>", },
+    { en: "Warning! Voices may vary across OS and browsers.", },
+  ],
+};
+
+let setup_editor = {
+  wheel: true,
+  fon: "",
+  ui: 0,
+  lines: false,
+  preview: [76, 0, 0, 1],
+  ferst: true,
+  pvw: [640, 480],
+  lines_anim: true,
+};
+
 let buf=['',''],back_up=[];
-if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"))};
-if(setup_editor.ferst){
-    var sel="<div class='window' style='padding:24px 8px;'><p>Devices control</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[5].en+"</p>"
-    +"<table style=' border-spacing:10px;border-collapse:separate;'><tbody><tr>"
-    +"<td><div style='width:256px;height:256px;border-radius:8px;' class='button_menu img_mouse' onclick='setup_editor.ferst=false;setup_editor.wheel=true;modal_window(\"close\");editor_setup();localStorage.setItem(\"editor_setup\",JSON.stringify(setup_editor));'></div><br><p style='font-size:12px;text-align:center;width:256px;' class='select_tutorials'>"+texts.tutorials[6].en+"</p></td>"
-    +"<td><div style='width:256px;height:256px;border-radius:8px;' class='button_menu img_touch' onclick='setup_editor.ferst=false;setup_editor.wheel=false;modal_window(\"close\");editor_setup();localStorage.setItem(\"editor_setup\",JSON.stringify(setup_editor));'></div><br><p style='font-size:12px;text-align:center;width:256px;' class='select_tutorials'>"+texts.tutorials[7].en+"</p></td>"
-    +"</tr></tbody></table></div>"
-    modal_window("open",sel);
-}else{editor_setup();}
-function editor_setup(){
-    world.className=setup_editor.fon;
-    screen_preview.className=setup_editor.fon;
-    //preview_size(true);
-    if(setup_editor.wheel){html.style.overflow='hidden';}
-    if(setup_editor.ui&&setup_editor.ui!=0){set_ui(setup_editor.ui);}
-    if(!setup_editor.pvw){setup_editor.pvw=[640,480];}
-    else{html.style.overflow='auto';}
-    if(setup_editor.lines_anim){document.querySelector(':root').style.setProperty('--ls','20');}else{document.querySelector(':root').style.setProperty('--ls','0');}
-    document.getElementById('screen_size').getElementsByTagName('option')[1].value=(setup_editor.pvw[0]>=setup_editor.pvw[1])?setup_editor.pvw[0]:setup_editor.pvw[1]
+
+if (localStorage.getItem("editor_setup")) {
+  setup_editor = JSON.parse(localStorage.getItem("editor_setup"));
+}
+if (setup_editor.ferst) {
+  var sel =
+    "<div class='window' style='padding:24px 8px;'><p>Devices control</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>" +
+    texts.tutorials[5].en +
+    "</p>" +
+    "<table style=' border-spacing:10px;border-collapse:separate;'><tbody><tr>" +
+    "<td><div style='width:256px;height:256px;border-radius:8px;' class='button_menu img_mouse' onclick='setup_editor.ferst=false;setup_editor.wheel=true;modal_window(\"close\");editor_setup();localStorage.setItem(\"editor_setup\",JSON.stringify(setup_editor));'></div><br><p style='font-size:12px;text-align:center;width:256px;' class='select_tutorials'>" +
+    texts.tutorials[6].en +
+    "</p></td>" +
+    "<td><div style='width:256px;height:256px;border-radius:8px;' class='button_menu img_touch' onclick='setup_editor.ferst=false;setup_editor.wheel=false;modal_window(\"close\");editor_setup();localStorage.setItem(\"editor_setup\",JSON.stringify(setup_editor));'></div><br><p style='font-size:12px;text-align:center;width:256px;' class='select_tutorials'>" +
+    texts.tutorials[7].en +
+    "</p></td>" +
+    "</tr></tbody></table></div>";
+  modal_window("open", sel);
+} else {
+  editor_setup();
+}
+
+
+function editor_setup() {
+  world.className = setup_editor.fon;
+  screen_preview.className = setup_editor.fon;
+  //preview_size(true);
+  if (setup_editor.wheel) {
+    html.style.overflow = "hidden";
+  }
+  if (setup_editor.ui && setup_editor.ui != 0) {
+    set_ui(setup_editor.ui);
+  }
+  if (!setup_editor.pvw) {
+    setup_editor.pvw = [640, 480];
+  } else {
+    html.style.overflow = "auto";
+  }
+  if (setup_editor.lines_anim) {
+    document.querySelector(":root").style.setProperty("--ls", "20");
+  } else {
+    document.querySelector(":root").style.setProperty("--ls", "0");
+  }
+  document
+    .getElementById("screen_size")
+    .getElementsByTagName("option")[1].value =
+    setup_editor.pvw[0] >= setup_editor.pvw[1]
+      ? setup_editor.pvw[0]
+      : setup_editor.pvw[1];
 }
 
 document.addEventListener("wheel",function(e){if(setup_editor.wheel&&(!scroll_block||(scene_screen&&scene_view.tabindex==1))){if(e.deltaY>0) world_scale(false);else world_scale(2);}});
@@ -161,33 +169,99 @@ img_file.addEventListener('change',loadFiles);
 var load_new=false;
 var wf;
 var tool_update=false;
+
+function set_ui(t){
+  var r=document.querySelector(':root');
+  r.style.setProperty('--cb', color_ui[t][0]);
+  r.style.setProperty('--cw', color_ui[t][1]);
+  r.style.setProperty('--cs', color_ui[t][2]);
+  r.style.setProperty('--cf', color_ui[t][3]);
+  r.style.setProperty('--cm', color_ui[t][4]);
+  r.style.setProperty('--cl', color_ui[t][5]);
+  r.style.setProperty('--wn', color_ui[t][6]);
+  r.style.setProperty('--ft', color_ui[t][7]);
+  r.style.setProperty('--tx', color_ui[t][8]);
+  if(story_script.blocks){block_colors();}
+}
+function block_colors(){
+  for(var i=0;i<Object.keys(story_script.blocks).length;i++){
+      for(var c=0;c<color_bg.length;c++){
+          if(setup_editor.ui<7&&story_script.blocks[Object.keys(story_script.blocks)[i]][3]==color_dg[c]){
+              story_script.blocks[Object.keys(story_script.blocks)[i]][3]=color_bg[c];break;
+          } else if(setup_editor.ui>=7&&story_script.blocks[Object.keys(story_script.blocks)[i]][3]==color_bg[c]){
+              story_script.blocks[Object.keys(story_script.blocks)[i]][3]=color_dg[c];break;
+          }
+      }
+  }
+}
+
 function clear_Files(){
     for(var i=0;i<project_files.length;i++){URL.revokeObjectURL(project_files[i][1])}
     project_files=[];
 }
-function loadFiles(e){
-    load_files=e.target.files
-    wf=e.target.files[0].webkitRelativePath.split("/")[0]+"/";
-    if(load_new){
-        clear_Files();countBytes=0;
-        for(var i=0;i<e.target.files.length;i++){countBytes+=e.target.files[i].size;project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);}
-        if(document.getElementById("project_foler")){project_foler.value=wf};
-    }else{
-        var jsons=[];clear_Files();countBytes=0;
-        for(var i=0;i<e.target.files.length;i++){
-            countBytes+=e.target.files[i].size
-            project_files.push([e.target.files[i].webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(e.target.files[i]),e.target.files[i].type]);
-            if(e.target.files[i].type=="application/json"&&e.target.files[i].webkitRelativePath.split("/").length==2){jsons.push([i,e.target.files[i].name])}
-        }
-        if(jsons.length==1){load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]))}
-        else if(jsons.length>1){
-            var html="<div class='window'><div class='win_head'>Select JSON project file<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><div style='margin:0 8px 0 8px;max-height:75vh;overflow-x:hidden;'>"
-            for(var f=0;f<jsons.length;f++){html+="<table class='button' style='width:412px;margin:8px 0px;' onclick='load_story_edit(open_file(\""+jsons[f][1]+"\"));modal_window(\"close\");'><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
-            html+="</div></div>"
-            modal_window("open",html)
-        }else if(jsons.length==0){alert('JSON file not found')}
+
+function loadFiles(e) {
+  load_files = e.target.files;
+  wf = e.target.files[0].webkitRelativePath.split("/")[0] + "/";
+  if (load_new) {
+    clear_Files();
+    countBytes = 0;
+    for (var i = 0; i < e.target.files.length; i++) {
+      countBytes += e.target.files[i].size;
+      project_files.push([
+        e.target.files[i].webkitRelativePath
+          .replace(wf, "")
+          .replace(".mp3", "")
+          .replace(".MP3", ""),
+        URL.createObjectURL(e.target.files[i]),
+        e.target.files[i].type,
+      ]);
     }
+    if (document.getElementById("project_foler")) {
+      project_foler.value = wf;
+    }
+  } else {
+    var jsons = [];
+    clear_Files();
+    countBytes = 0;
+    for (var i = 0; i < e.target.files.length; i++) {
+      countBytes += e.target.files[i].size;
+      project_files.push([
+        e.target.files[i].webkitRelativePath
+          .replace(wf, "")
+          .replace(".mp3", "")
+          .replace(".MP3", ""),
+        URL.createObjectURL(e.target.files[i]),
+        e.target.files[i].type,
+      ]);
+      if (
+        e.target.files[i].type == "application/json" &&
+        e.target.files[i].webkitRelativePath.split("/").length == 2
+      ) {
+        jsons.push([i, e.target.files[i].name]);
+      }
+    }
+    if (jsons.length == 1) {
+      load_story_edit(URL.createObjectURL(e.target.files[jsons[0][0]]));
+    } else if (jsons.length > 1) {
+      var html =
+        "<div class='window'><div class='win_head'>Select JSON project file<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><div style='margin:0 8px 0 8px;max-height:75vh;overflow-x:hidden;'>";
+      for (var f = 0; f < jsons.length; f++) {
+        html +=
+          "<table class='button' style='width:412px;margin:8px 0px;' onclick='load_story_edit(open_file(\"" +
+          jsons[f][1] +
+          "\"));modal_window(\"close\");'><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;'>" +
+          jsons[f][1] +
+          "</div></td></tr></tbody></table>";
+      }
+      html += "</div></div>";
+      modal_window("open", html);
+    } else if (jsons.length == 0) {
+      alert("JSON file not found");
+    }
+  }
 }
+
 window.addEventListener('load',function(){
     var dropEvent=function(e){e.stopPropagation();e.preventDefault();return false;};
     var dragEnter=function(e){e.stopPropagation();e.preventDefault();};
@@ -199,26 +273,107 @@ window.addEventListener('load',function(){
     window.addEventListener('drop',dropEvent,false);
 });
 function open_file(name){
-    for(var f=0;f<project_files.length;f++){if(project_files[f][0]==name){name=(project_files[f][1]);break;}} return name;
-}
-function new_novel(){
-    story_script={"parameters":{"text_panel":{"size":["95%","25%"],"position":[],"color":"rgba(242,242,242,0.7)","style": "border-radius:8px;backdrop-filter: blur(12px);","color_text":"#000","indent_text":"8px","indent_bottom":"32px","dialog_speed":"10"},"name_panel":{"size":["","32px"],"position":["0","0","-36px","0"],"style": "border-radius:8px;","indent_text":"0 8px","color_text":"#fff","align":["start","center"],"color":"#000"},"title":{"en":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["en"],"buttons":[{"name":"tue_back","position":["2.5%",0,0,"32px"],"size":["25%","25%"],"color_text":"#000","size_text":"28px","text":"<","hotspot":["0%","0%"],"align":["start","end"],"indent_text":"8px 14px"},{"name":"tue_next","position":[0,"2.5%",0,"32px"],"size":["25%","25%"],"color_text":"#000","size_text":"28px","text":">","hotspot":["0%","0%"],"align":["end","end"],"indent_text":"8px 14px"}],"autosave":false,"font":"Arial","font_size":"18px"},"blocks":{}};
-    update_novel();
-    state_num=0;back_up=[];state_save();
-}
-function update_novel(){
-    if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}
-    else{
-        menu_add.style.visibility="hidden";
-        story_blocks.innerHTML=""
-        line_controll=[];
-        search_block.value=""
-        while(story_lines.hasChildNodes()){story_lines.removeChild(story_lines.firstChild);}
-        parse_story();
-        lines();
-        if(block_active&&story_script[block_active]){story_blocks.appendChild(document.getElementById(block_active))}
+  for (var f = 0; f < project_files.length; f++) {
+    if (project_files[f][0] == name) {
+      name = project_files[f][1];
+      break;
     }
+  }
+  return name;  
 }
+function new_novel() {
+  story_script = {
+    parameters: {
+      text_panel: {
+        size: ["95%", "25%"],
+        position: [],
+        color: "rgba(242,242,242,0.7)",
+        style: "border-radius:8px;backdrop-filter: blur(12px);",
+        color_text: "#000",
+        indent_text: "8px",
+        indent_bottom: "32px",
+        dialog_speed: "10",
+      },
+      name_panel: {
+        size: ["", "32px"],
+        position: ["0", "0", "-36px", "0"],
+        style: "border-radius:8px;",
+        indent_text: "0 8px",
+        color_text: "#fff",
+        align: ["start", "center"],
+        color: "#000",
+      },
+      title: { en: "new novel" },
+      launch_story: "",
+      key: {
+        next: "",
+        back: "",
+        save: "",
+        load: "",
+        full_screen: "",
+        launch_story: "",
+        load_autosave: "",
+      },
+      languares: ["en"],
+      buttons: [
+        {
+          name: "tue_back",
+          position: ["2.5%", 0, 0, "32px"],
+          size: ["25%", "25%"],
+          color_text: "#000",
+          size_text: "28px",
+          text: "<",
+          hotspot: ["0%", "0%"],
+          align: ["start", "end"],
+          indent_text: "8px 14px",
+        },
+        {
+          name: "tue_next",
+          position: [0, "2.5%", 0, "32px"],
+          size: ["25%", "25%"],
+          color_text: "#000",
+          size_text: "28px",
+          text: ">",
+          hotspot: ["0%", "0%"],
+          align: ["end", "end"],
+          indent_text: "8px 14px",
+        },
+      ],
+      autosave: false,
+      font: "Arial",
+      font_size: "18px",
+    },
+    blocks: {},
+  };
+  update_novel();
+  state_num = 0;
+  back_up = [];
+  state_save();
+}
+
+function update_novel() {
+  if (scene_screen) {
+    if (!tool_update) {
+      scen_edit_update(true);
+    } else {
+      eval(tool_update);
+    }
+  } else {
+    menu_add.style.visibility = "hidden";
+    story_blocks.innerHTML = "";
+    line_controll = [];
+    search_block.value = "";
+    while (story_lines.hasChildNodes()) {
+      story_lines.removeChild(story_lines.firstChild);
+    }
+    parse_story();
+    lines();
+    if (block_active && story_script[block_active]) {
+      story_blocks.appendChild(document.getElementById(block_active));
+    }
+  }
+}
+
 function load_story_edit(url){
     var xmlhttp=new XMLHttpRequest();
     if(scene_screen){scen_edit_update(false);open_tool()};
