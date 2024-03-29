@@ -3210,10 +3210,10 @@ function edit_code(vol,n){
     +"<td style='width:40px;height:40px;'></td>"
     +"<td align='center' style='white-space:nowrap;'>"+n+" редактор</td>"
     +"<td class='icon icon_close' style='width:40px;' onclick='modal_window(\"close\")'></td>"
-    +"</tr></tbody></table><p><div class='codeView'><pre class='code_show'></pre><textarea id='editcode' class='code_text' spellcheck='false' wrap='off' oninput='code_edit(this,this.previousElementSibling,"+(vol=="script_js"?"\"js\"":"false")+")'>"+code+"</textarea></div>"
+    +"</tr></tbody></table><p><div class='codeView'><pre class='code_show'></pre><textarea id='editcode' class='code_text' spellcheck='false' wrap='off' oninput='code_edit(this,this.previousElementSibling,"+(vol=="script_js"?"\"js\"":"\""+vol+"\"")+")'>"+code+"</textarea></div>"
     +"</p><br><table class='big_button' width='256px' onclick='"+((vol=="script_js")?"story_script.parameters.js":(vol=="script_css")?"story_script.parameters.css":"copy_arr[\""+vol+"\"]")+"=editcode.value;update_novel();state_save();modal_window(\"close\");menu_add.style.visibility=\"hidden\";'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Применить</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
-    code_edit(editcode,editcode.previousElementSibling,(vol=="script_js")?"js":false)
+    code_edit(editcode,editcode.previousElementSibling,(vol=="script_js")?"js":vol)
 }
 function edit_toast(){
     copy_arr=JSON.parse(JSON.stringify(arr_l));
