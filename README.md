@@ -13,14 +13,13 @@ There is a version of the editor available as a standalone application for Andro
 > Run in browser: https://kirilllive.github.io/tuesday-js/translate/en_tuesday_visual.html
 
 
-Download
+Download builds for macOS, Windows, Android, Web
 -------------------------
 > GitHub: https://github.com/Kirilllive/tuesday-js/releases
 
-> Steam: https://store.steampowered.com/app/1575970/Tuesday_JS_visual_novel_engine/
+> Patreon: https://www.patreon.com/kirill_live
 
-> itch.io: https://kirill-live.itch.io/tuesday-js
-
+> Boosty: https://boosty.to/kirilllive
 
 Tutorials
 -------------------------
