@@ -4908,11 +4908,8 @@ var scale_scene=1;
 document.addEventListener('keydown',function(event){
     let elem=document.getElementsByClassName("code_text")[0];
     if(elem&&event.key=='Tab'){
-        event.preventDefault();
-        let start=elem.selectionStart,end=elem.selectionEnd;
-        elem.value=elem.value.substring(0,start)+"\t"+elem.value.substring(end);
-        elem.selectionStart=elem.selectionEnd=start+1;
-        code_edit(elem,elem.previousElementSibling,last_code);
+			event.preventDefault();
+            document.execCommand("insertText", false, '\t');
     }
     if(event.altKey){
         if(!scroll_block||scene_screen){
