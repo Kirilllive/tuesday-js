@@ -2419,7 +2419,10 @@ function ho_new(s){
         var a=story_script[scen_data[0]][scen_data[1]][arr_n],p=[(ho_canvas.offsetWidth-ho_room.offsetWidth)/2,(ho_canvas.offsetHeight-ho_room.offsetHeight)/2];
         if(arr_n=="hidden_objects"){a.objects.push({"position":[(ho_preview.scrollLeft-p[0])+(ho_preview.clientWidth/2),(ho_preview.scrollTop-p[1])+(ho_preview.clientHeight/2)],"size":[128,128],"art":"","fit":"contain","name":""});
             file_catalog('','img','hois_art'+(a.objects.length-1),'','story_script[scen_data[0]][scen_data[1]].'+arr_n+'.objects['+(a.objects.length-1)+'].art');}
-        else{a.objects.push({"go_to":"tue_go","position":[(ho_preview.scrollLeft-p[0])+(ho_preview.clientWidth/2),(ho_preview.scrollTop-p[1])+(ho_preview.clientHeight/2)],"size":[128,128],"art":"","fit":"contain","name":"label","indent_text":"8px"});}
+        else{
+            let c=a.objects[a.objects.length-1];
+            if(c){c=JSON.parse(JSON.stringify(c));c.go_to="tue_go";c.position=[(ho_preview.scrollLeft-p[0])+(ho_preview.clientWidth/2),(ho_preview.scrollTop-p[1])+(ho_preview.clientHeight/2)];c.name="label";a.objects.push(c);}
+            else {a.objects.push({"go_to":"tue_go","position":[(ho_preview.scrollLeft-p[0])+(ho_preview.clientWidth/2),(ho_preview.scrollTop-p[1])+(ho_preview.clientHeight/2)],"size":[128,128],"art":"","fit":"contain","name":"label","indent_text":"8px"});}}
         tool_update='ho_new(1)';ho_update();
     }else if(s==1){
         var a=story_script[scen_data[0]][scen_data[1]][arr_n].objects,image = new Image();
