@@ -6,13 +6,13 @@ tuesday.addEventListener('creation_dialog', function(event) {
 });
 function select_choice(i){
     if( gamepad_cursor==0 ){
-        gamepad_choices = ( story_json[tue_story][scene].terrain_map ) ? tuesday.getElementsByClassName("tue_map_item") : tuesday.getElementsByClassName("tue_choice");
+        gamepad_choices = ( story_json[tue_story][scene].terrain_map ) ? tuesday.getElementsByClassName("tue_map_item") : tuesday.getElementsByClassName("tue_choice");.
         gamepad_cursor=document.createElement("div");
         gamepad_cursor.style.position="absolute";
         gamepad_cursor.style.pointerEvents="none";
         gamepad_cursor.id="gamepad_cursor";
         let c=story_json.parameters.gamepad.cursor;
-        gamepad_cursor.innerHTML="<div "+((c[6].length>0)?"class='"+c[6]+"'":"")+" style='"+((c[5].length>0)?c[5]+";":"")+((c[0]!="")?" background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url("+art_data(c[0])+");":"")+"pointer-events:none;position:absolute;top:"+c[1]+";left:"+c[2]+";"+((c[3]!=0)?"width:"+c[3]+";":"")+((c[3]!=0)?"height:"+c[3]+";":"")+"'></div>";
+        gamepad_cursor.innerHTML="<div "+((c[6].length>0)?"class='"+c[6]+"'":"")+" style='"+((c[5].length>0)?c[5]+";":"")+((c[0]!="")?" background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url("+art_data(c[0])+");":"")+"pointer-events:none;position:absolute;top:"+c[1]+";left:"+c[2]+";"+((c[3]!=0)?"width:"+c[3]+";":"")+((c[3]!=0)?"height:"+c[4]+";":"")+"'></div>";
         if(story_json[tue_story][scene].terrain_map){
             tue_map.appendChild(gamepad_cursor)
         }else{tuesday.appendChild(gamepad_cursor)}
