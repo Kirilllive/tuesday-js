@@ -104,7 +104,6 @@ function name_block_update(){
     tue_text_block=document.getElementById("tue_text_block");
 	tue_text_element=document.getElementById("tue_text_element");
 	tue_text_element.style.position="relative";
-	//tue_text_element.style.verticalAlign="top";
     if(story_json.parameters.text_panel.className){tue_text_block.className=story_json.parameters.text_panel.className;}
     if(story_json.parameters.text_panel.style){tue_text_block.style=story_json.parameters.text_panel.style;}
     tue_text_block.style.position="absolute";
