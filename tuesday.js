@@ -1,4 +1,4 @@
-let story_json=new Array();
+var story_json=new Array();
 var tuesday=document.getElementById("tuesday");
 var tue_text_view;
 var tue_text_block;
@@ -22,7 +22,7 @@ var ruby_rt=[];
 document.oncontextmenu = cmenu; function cmenu(){return false;}
 window.onmousedown = window.onselectstart = function(){return false;};
 document.addEventListener('keydown',function(event){
-    var k=event.code;
+    let k=event.code;
     if(k == story_json.parameters.key.next && controll){go_story();}
     else if(k == story_json.parameters.key.back && controll){back_story();}
     else if(k == story_json.parameters.key.main){var g=story_json.parameters.launch_story;go_to(g);}
@@ -35,7 +35,7 @@ document.addEventListener('keydown',function(event){
 function get_lang(){
     if(navigator.languages != undefined){languare=navigator.languages[0].substring(0,2);}
     else {languare=navigator.languagesubstring(0,2)}
-    var support;
+    let support;
     for(var i=0;i < story_json.parameters.languares.length;i++){
         if(languare == story_json.parameters.languares[i]){support=true }
     }
@@ -192,8 +192,7 @@ function name_block_update(){
         }
 } function creation_buttons(){
     for(i=0;i < story_json.parameters.buttons.length;i++){
-        var button=document.createElement("div");
-        var v='';
+        let button=document.createElement("div"),v='';
         if(story_json.parameters.buttons[i].sound){v+=(story_json.parameters.buttons[i].sound)?get_sound(story_json.parameters.buttons[i].sound):((story_json.parameters.buttons[i].sound_stop)?";"+get_stop_sound(story_json.parameters.buttons[i].sound_stop):"")+";"}
         if(story_json.parameters.buttons[i].js){v+=story_json.parameters.buttons[i].js}
         button.setAttribute("onclick",v+";"
@@ -300,14 +299,12 @@ function name_block_update(){
             else {document.getElementById("tue_home").style.visibility="visible";}
         }
         if (arr_dialog.html){
-            if (arr_dialog.html[languare]){
-                var html=document.createElement("div");
+            let html=document.createElement("div");
                 html.className='tue_html_scene';
+            if (arr_dialog.html[languare]){
                 html.innerHTML=arr_dialog.html[languare];
                 tuesday.appendChild(html);
             } else {
-                var html=document.createElement("div");
-                html.className='tue_html_scene';
                 html.innerHTML=arr_dialog.html;
                 tuesday.appendChild(html);
             }
@@ -322,12 +319,12 @@ function name_block_update(){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog];
 		if(arr_dialog.controll == 'hidden' || arr_dialog.controll == 'hidden_here' || (tue_story == story_json.parameters.launch_story && !arr_dialog && dialog==0 && scene==0)){
             if (arr_dialog.controll != 'hidden_here') {controll=false;} else {controll=true;}
-			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
-			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="hidden";}
+			let buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
+			for(let i=0;i < buttons.length;i++){buttons[i].style.visibility="hidden";}
 		} else if(arr_dialog.controll == 'visible' || !arr_dialog.controll || controll==true) {
             controll=true;
-			var buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
-			for(var i=0;i < buttons.length;i++){buttons[i].style.visibility="visible";}
+			let buttons=document.getElementById("tuesday").getElementsByClassName("tue_controll");
+			for(let i=0;i < buttons.length;i++){buttons[i].style.visibility="visible";}
 		}
         if(document.getElementById('tue_next')){
             if(scene == story_json[tue_story].length-1 && dialog == story_json[tue_story][scene].dialogs.length-1 && !arr_dialog.go_to){document.getElementById('tue_next').style.visibility='hidden';}
@@ -382,7 +379,7 @@ function name_block_update(){
             tue_name_block.style.visibility='visible';
         }else{tue_name_block.style.visibility='hidden';}
         if(arr_dialog.video){
-            var video=document.getElementById("tue_video");
+            let video=document.getElementById("tue_video");
             if(!video){
                 video=document.createElement("video");
                 video.id="tue_video"
