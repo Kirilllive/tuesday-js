@@ -434,8 +434,8 @@ function name_block_update(){
             tuesday.appendChild(video);
         }else{del_element("tue_v");}
         if(arr_dialog.art){
-            var old=document.getElementById("tuesday").getElementsByClassName("tue_art");
-            var src=false
+            let old=document.getElementById("tuesday").getElementsByClassName("tue_art");
+            let src=false
             if (old.length>0){
                 for(d=0;d<old.length;d++){old[d].classList.add("img_del");}
                 for(i=0;i<arr_dialog.art.length;i++){
