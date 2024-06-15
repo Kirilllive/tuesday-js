@@ -25,7 +25,7 @@ document.addEventListener('keydown',function(event){
     let k=event.code;
     if(k == story_json.parameters.key.next && controll){go_story();}
     else if(k == story_json.parameters.key.back && controll){back_story();}
-    else if(k == story_json.parameters.key.main){var g=story_json.parameters.launch_story;go_to(g);}
+    else if(k == story_json.parameters.key.main){let g=story_json.parameters.launch_story;go_to(g);}
     else if(k == story_json.parameters.key.save){save_stag('bookmark');}
     else if(k == story_json.parameters.key.load){load_stag('bookmark');}
     else if(k == story_json.parameters.key.autosave){load_stag('auto');}
@@ -36,7 +36,7 @@ function get_lang(){
     if(navigator.languages != undefined){languare=navigator.languages[0].substring(0,2);}
     else {languare=navigator.languagesubstring(0,2)}
     let support;
-    for(var i=0;i < story_json.parameters.languares.length;i++){
+    for(let i=0;i < story_json.parameters.languares.length;i++){
         if(languare == story_json.parameters.languares[i]){support=true }
     }
     if(!support){languare=story_json.parameters.languares[0]}
@@ -47,7 +47,7 @@ function get_lang(){
         tuesday.dispatchEvent(new Event('script_loaded'));
 		if(story_json.parameters.sounds){creation_sound();}
     } else if(tip == 'file'){
-        var xmlhttp=new XMLHttpRequest();
+        let xmlhttp=new XMLHttpRequest();
         xmlhttp.onreadystatechange=function(){
             if(this.readyState == 4 &&(this.status == 200 || this.status == 0)){
 				try {story_json=JSON.parse(this.responseText);} 
@@ -156,7 +156,7 @@ function name_block_update(){
     if(story_json.parameters.launch_story){
         tue_story=story_json.parameters.launch_story;
 	}else{
-		for(var i=0;i < 2;i++){
+		for(let i=0;i < 2;i++){
 			if(Object.getOwnPropertyNames(story_json)[i] != "parameters"){
 				story_json.parameters.launch_story=Object.getOwnPropertyNames(story_json)[1] ;
 				tue_story=story_json.parameters.launch_story;
