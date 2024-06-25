@@ -264,11 +264,11 @@ function name_block_update(){
         let choice_g=arr_dialog.random_choice[Math.floor(Math.random() * arr_dialog.random_choice.length)][1];
         if(choice_g!="tue_go"){go_to(choice_g);}else{scene++;dialog=0;creation_scene();}
     } else if(arr_dialog.legacy_choice){
-        for(var i=0;i < arr_dialog.legacy_choice.length;i++){
-            var choice_n=arr_dialog.legacy_choice[i][0];
-            var choice_s=arr_dialog.legacy_choice[i][1];
-            var choice_v=arr_dialog.legacy_choice[i][2];
-            var choice_g=arr_dialog.legacy_choice[i][3];
+        for(let i=0;i < arr_dialog.legacy_choice.length;i++){
+            let choice_n=arr_dialog.legacy_choice[i][0];
+            let choice_s=arr_dialog.legacy_choice[i][1];
+            let choice_v=arr_dialog.legacy_choice[i][2];
+            let choice_g=arr_dialog.legacy_choice[i][3];
             if(choice_s == ">" && story_json.parameters.variables[choice_n] > choice_v){
                 if(choice_g!="tue_go"){go_to(choice_g);}else{next_scene();}
                 break;
