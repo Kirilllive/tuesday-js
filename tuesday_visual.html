@@ -30,6 +30,16 @@
   --tx:#000;
   --ls:20;
 }
+*::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background-color:var(--cw);
+	display:none;
+}
+*::-webkit-scrollbar-thumb {
+	background: var(--cb);
+	border-radius:3px;
+}
 #boosty{fill:var(--tx);}
 .panel{box-shadow:0px 2px 24px var(--cs);border-radius:16px;padding:4px;}
 @keyframes flash{0%{box-shadow:0px 2px 32px var(--cf);background-color:var(--cb);}25%{box-shadow:0px 2px 32px var(--cf);background-color:var(--cb);}100%{box-shadow:0px 2px 24px var(--cs);background-color:var(--wn);}}
