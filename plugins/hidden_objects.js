@@ -7,7 +7,7 @@ function hidden_objects(){
     findobjects=(story_json.parameters.hidden_objects.label.items>arr_dialog.objects.length)?arr_dialog.objects.length:story_json.parameters.hidden_objects.label.items;
     var view=document.createElement("div");
     view.id='tue_hiddenobjects';
-    view.style='height:100%;width:100%;overflow:auto;';
+    view.style='height:100%;width:100%;'+((navigator.userAgent.indexOf('Firefox')>0)?'overflow:hidden;':'overflow:auto;');
     var room=document.createElement("div"),step=Math.round(arr_dialog.objects.length/findobjects),s=0,z=0;
     if(findobjects<arr_dialog.objects.length&&step<2){step=2}
     var r=Math.round(Math.random()*(step-1));

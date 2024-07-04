@@ -6,7 +6,7 @@ function terrain_map(){
     tuesday.style.backgroundImage='none'
     var view=document.createElement("div");
     view.id='tue_world';
-    view.style='height:100%;width:100%;overflow:auto;';
+    view.style='height:100%;width:100%;'+((navigator.userAgent.indexOf('Firefox')>0)?'overflow:hidden;':'overflow:auto;');
     view.className="tue_html_scene";
     var map=document.createElement("div");
     if(arr_dialog.scale){wmap.scale=arr_dialog.scale}
