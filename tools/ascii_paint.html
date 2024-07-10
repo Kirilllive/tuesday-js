@@ -20,6 +20,7 @@
 	user-select:none;
 	outline:none;
     color:var(--tx);
+    overscroll-behavior: none;
 }
 :root {
     --cw:#efefff;
@@ -33,6 +34,17 @@
     --at:rgba(240,240,240,0.8);
     --bh:#efefff;
     --font:Arial;
+}
+*::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background-color:var(--cw);
+	display:none;
+}
+*::-webkit-scrollbar-thumb {
+	background: var(--cb);
+	border-radius:3px;
+	display:none;
 }
 hr{border-top:1px solid var(--cb);margin:4px 0px;}
 option{color:#000;}
@@ -573,6 +585,51 @@ function select_tool(n){
     for (e=0;e<tools_ele.length;e++){if(e!=n){tools_ele[e].style.backgroundColor="";}else{tools_ele[e].style.backgroundColor="var(--cb)";}}
     modal_tool(false)
 }
+
+// Keyboard shortcut for tool
+document.onkeyup = function () {
+    var e = e || window.event; // for IE to cover IEs window event-object
+    // Shortcut for Hand/Move tool
+    if ((e.altKey && e.which == 104) || (e.altKey && e.which == 72) || (e.altKey && e.which == 49)) {
+        e.preventDefault()
+        select_tool(0)
+        return false;
+    }
+    // Shortcut for Brush tool
+    else if ((e.altKey && e.which == 98) || (e.altKey && e.which == 66) || (e.altKey && e.which == 50)) {
+        e.preventDefault()
+        select_tool(1)
+        return false;
+    }
+    // Shortcut for Eraser tool
+    else if ((e.altKey && e.which == 101) || (e.altKey && e.which == 69) || (e.altKey && e.which == 51)) {
+        e.stopPropagation()
+        e.returnValue = false;
+        e.cancelBubble = true;
+        e.preventDefault()
+        select_tool(2)
+        return false;
+    }
+    // Shortcut for Fill tool
+    else if ((e.altKey && e.which == 102) || (e.altKey && e.which == 70) || (e.altKey && e.which == 52)) {
+        e.preventDefault()
+        select_tool(3)
+        return false;
+    }
+    // Shortcut for Pipette tool
+    else if ((e.altKey && e.which == 112) || (e.altKey && e.which == 80) || (e.altKey && e.which == 53)) {
+        e.preventDefault()
+        select_tool(4)
+        return false;
+    }
+    // Shortcut for Selection tool
+    else if ((e.altKey && e.which == 115) || (e.altKey && e.which == 83) || (e.altKey && e.which == 54)) {
+        e.preventDefault()
+        select_tool(5)
+        return false;
+    }
+}
+
 function add_cells(u,s){
     var x,y,w=0,h=0,a;db=[];
     tr=canvas.getElementsByTagName('tr');
@@ -699,7 +756,7 @@ function getallChar(){
     fonts_palette.innerHTML=fonts.innerHTML;
     fonts_palette.selectedIndex=fonts.selectedIndex;
     e.innerHTML="";
-    palette_apply.setAttribute("onclick","applyChar();modal_window(false);");
+    //palette_apply.setAttribute("onclick","applyChar();modal_window(false);");
     for (var c=range_font[0];c<range_font[1];c++){
         s=String.fromCharCode(c)
         p=false;for(t=0;t<f.length;t++){if(f[t]==s){p=true;break}}
@@ -764,7 +821,7 @@ function get_selected(){
         if(selected[1]>selected[3]){y1=selected[3];y2=selected[1]}else{y1=selected[1];y2=selected[3];}
     }return se;
 }
-function save_art(c){
+async function save_art(c){
     var text="";
     tr=canvas.getElementsByTagName('tr');
     if(!get_selected()){x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length;}else{y2++;}
@@ -774,10 +831,22 @@ function save_art(c){
         if(y<y2-1){text.trim();text+="\n";}
     }
     if(c){
-        var a=document.getElementById("get_file");
-        a.setAttribute("href","data:text/json;charset=utf-8,"+encodeURIComponent(text));
-        a.setAttribute("download","text_art.txt");
-        a.click();
+        if("showSaveFilePicker" in window&&window.self===window.top) {
+            const opt={
+                suggestedName:"text_art.txt",
+                id:'ASCIIart',
+                types:[{description:'Text Files',accept:{'text/plain':['.txt']}}],
+            };
+            const file = await window.showSaveFilePicker(opt);
+            const content = await file.createWritable();
+            await content.write(text);
+            await content.close();
+        } else {
+            var a=document.getElementById("get_file");
+            a.setAttribute("href","data:text/json;charset=utf-8,"+encodeURIComponent(text));
+            a.setAttribute("download","text_art.txt");
+            a.click();
+        }
     }else if(window_zone.style.display=="grid"){
         state_save();window_zone.getElementsByClassName('edittext')[0].value=text;
     }else{
