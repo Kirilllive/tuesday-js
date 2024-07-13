@@ -947,13 +947,13 @@ if(setup_editor.ferst){
     modal_window("open",sel);
 }else{editor_setup();}
 function editor_setup(){
-    world.className=setup_editor.fon;
+ 
+    world.className=setup_editor.fon;	
     screen_preview.className=setup_editor.fon;
-    //preview_size(true);
     if(setup_editor.wheel){html.style.overflow='hidden';}
     if(setup_editor.ui&&setup_editor.ui!=0){set_ui(setup_editor.ui);}
     if(!setup_editor.pvw){setup_editor.pvw=[640,480];}
-    else{html.style.overflow='auto';}
+    else{html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';}
     if(setup_editor.lines_anim){document.querySelector(':root').style.setProperty('--ls','20');}else{document.querySelector(':root').style.setProperty('--ls','0');}
     document.getElementById('screen_size').getElementsByTagName('option')[1].value=(setup_editor.pvw[0]>=setup_editor.pvw[1])?setup_editor.pvw[0]:setup_editor.pvw[1]
 }
@@ -1367,6 +1367,7 @@ var block_active=false;
 function movie_dlock(id){
     var focus_block=document.getElementById(id);
     focus_block.onmousedown=function(e){
+		if(e.button==1){e.preventDefault();}
         story_blocks.appendChild(focus_block);
         menu_add.style.visibility="hidden";
         var coords=getCoords(focus_block);
@@ -1443,7 +1444,7 @@ function block_open(id){
 var startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null,scroll_xz=null,scroll_yz=null,dictat_m=0,dictat_s=0;
 html.ontouchstart=function(e){
     if(!scroll_block||(scene_screen&&!scene_scroll)){
-        html.style.overflow='scroll';
+        html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'scroll';
         if(e.touches.length>1){dictat_s=Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2)}
         html.ontouchmove=function(e){
             if(e.touches.length>1&&!scene_screen){
@@ -1457,7 +1458,7 @@ html.ontouchstart=function(e){
             startmove_y=null;
             html.ontouchmove=null;
             html.ontouchend=null;
-            scene_view.style.overflow="auto";
+            scene_view.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';
             scale=Math.min(2,Math.max(0.25,(scale+dictat_m)));dictat_m=0;
             scroll_z();
         };
@@ -1478,13 +1479,14 @@ scene_view.ontouchstart=function(e){
             startmove_y=null;
             scene_view.ontouchmove=null;
             scene_view.ontouchend=null;
-            scene_view.style.overflow="auto";
+            scene_view.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';
             scale_scene=Math.min(2,Math.max(0.25,(scale_scene+dictat_m)));dictat_m=0;
             scroll_z();
         };
     }
 }
 world.onmousedown=function(e){
+	if(e.button==1){e.preventDefault();}
     if(!scroll_block&&!scene_screen){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
@@ -1510,6 +1512,7 @@ world.onmousedown=function(e){
     }
 }
 scene_view.onmousedown=function(e){
+	if(e.button==1){e.preventDefault();}
     if(scene_screen&&scene_scroll){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
@@ -1544,7 +1547,7 @@ function modal_window(action,content){
         menu_add.style.visibility="hidden";
         window_zone.style.visibility="hidden"
         window_zone.style.backgroundColor='rgba(110,95,165,0)';
-        if(!scene_screen){html.style.overflow='scroll';scroll_block=false;}
+        if(!scene_screen){html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'scroll';;scroll_block=false;}
         window_zone.innerHTML="";
     }else if(action=='open'&&window_zone.style.visibility!="visible"){
         window_zone.style.visibility="visible";
@@ -2671,7 +2674,7 @@ function open_tool(content,update){
     }else{
         tool_update=false;
         tools_zone.style.visibility="hidden";
-        html.style.overflow='scroll';
+        html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'scroll';;
         menu_panel.style.zIndex=null;
         tools_zone.innerHTML="";
         scroll_block=false;scene_screen=false;
@@ -2690,6 +2693,7 @@ function adden_sizer(id,f){
 }
 function adden_scroll(id,z){
     id.onmousedown=function(e){
+	if(e.button==1){e.preventDefault();}
     if(scene_scroll){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
@@ -2727,7 +2731,7 @@ function adden_scroll(id,z){
             startmove_y=null;
             this.ontouchmove=null;
             this.ontouchend=null;
-            scene_view.style.overflow="auto";
+            scene_view.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';
             tool_scale=Math.min(2,Math.max(0.25,(tool_scale+dictat_m)));dictat_m=0;
         };
     }}
@@ -3435,7 +3439,8 @@ function scen_editor(block,i,n){
     scene_layout.style.backgroundSize=((!story_script[block][i].background_size)?"cover":story_script[block][i].background_size);
     scene_layout.style.backgroundPosition=((!story_script[block][i].background_align)?"center":story_script[block][i].background_align);
     scene_layout.style.backgroundColor=story_script[block][i].background_color;
-    if(!scene_screen){
+    scene_view.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';
+	if(!scene_screen){
         scene_view.scrollTop=(screen_preview.clientHeight/2)-(scene_view.clientHeight/2);
         scene_view.scrollLeft=(screen_preview.clientWidth/2)-(scene_view.clientWidth/2);
     }
@@ -5183,6 +5188,7 @@ function make_resizable(s,f){
         else if(e.keyCode == '39'){if(objFocus){scene_view.style.overflow='scroll'}}
     }
     s.onmousedown=function(e){
+		if(e.button==1){e.preventDefault();}
         if(moveSize){
             e=e||window.event;
             e.preventDefault();
@@ -5628,7 +5634,7 @@ function translation_edit(){
     if(tools_zone.style.visibility=="visible"){
         tool_update=false;
         tools_zone.style.visibility="hidden";
-        html.style.overflow='scroll';
+        html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'scroll';;
         menu_panel.style.zIndex=null;
         tools_zone.innerHTML="";
         scroll_block=false;scene_screen=false;
