@@ -481,7 +481,7 @@ function name_block_update(){
                 for(i=0;i<arr_dialog.art.length;i++){creation_art(i);}
             }
             function creation_art(i){
-                var art=document.createElement("img"),img=art_data(arr_dialog.art[i].url);
+                let art=document.createElement("img"),img=art_data(arr_dialog.art[i].url);
                 if(arr_dialog.art[i].className){art.classList=arr_dialog.art[i].className}
                 art.src=(typeof img==='string'&&img.length>0)?img:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'></svg>";
                 art.setAttribute("volume",((arr_dialog.art[i].url[languare])?arr_dialog.art[i].url[languare]:arr_dialog.art[i].url));
@@ -507,7 +507,7 @@ function name_block_update(){
                 tuesday.appendChild(art);
             }
         } else {del_element("tue_art");}
-        var button_ui=document.getElementsByClassName("tue_controll");
+        let button_ui=document.getElementsByClassName("tue_controll");
         for(i=0;i<button_ui.length;i++){
             if(story_json.parameters.buttons[i].name=="tue_audio"){show_audio(button_ui[i],story_json.parameters.buttons[i]);}
             else if(story_json.parameters.buttons[i].name=="tue_fullScreen"){show_fullscreen(button_ui[i],story_json.parameters.buttons[i])}
@@ -516,7 +516,7 @@ function name_block_update(){
             }
         }
         if(arr_dialog.choice){
-            var interfaces=false;
+            let interfaces=false;
             for(i=0;i < arr_dialog.choice.length;i++){
                 var choice=document.createElement("div");
                 if(arr_dialog.choice[i].className){choice.className=arr_dialog.choice[i].className;}
