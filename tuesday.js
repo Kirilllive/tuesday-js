@@ -623,12 +623,12 @@ function name_block_update(){
         if(!next_scene||arr_dialog.html){del_element("tue_html_dialog")};
         if (arr_dialog.html){
             if (arr_dialog.html[languare]){
-                var html=document.createElement("div");
+                let html=document.createElement("div");
                 html.className='tue_html_dialog';
                 html.innerHTML=arr_dialog.html[languare];
                 tuesday.appendChild(html);
             } else {
-                var html=document.createElement("div");
+                let html=document.createElement("div");
                 html.className='tue_html_dialog';
                 html.innerHTML=arr_dialog.html;
                 tuesday.appendChild(html);
@@ -636,7 +636,7 @@ function name_block_update(){
         }
 		if(arr_dialog.variables){
 			for(var i=0;i < arr_dialog.variables.length;i++){
-				var choice_n=arr_dialog.variables[i][0]
+				let choice_n=arr_dialog.variables[i][0]
 				if(arr_dialog.variables[i][1] == "add"){
 					story_json.parameters.variables[choice_n] += arr_dialog.variables[i][2];
                     tuesday.dispatchEvent(new Event( arr_dialog.variables[i][0]+'_add'));
