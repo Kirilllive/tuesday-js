@@ -739,7 +739,7 @@ function name_block_update(){
 	del_element("tue_choice")
     del_element("tue_html_dialog")
     if(story_json[tue_story][scene].dialogs.length!=0 && arr_dialog.back_to){
-        var go=arr_dialog.back_to;
+        let go=arr_dialog.back_to;
         go_to(go)
     } else if(dialog>0){
         dialog-=1;
