@@ -872,7 +872,7 @@ const plugins_list={"tue_aspect_ratio":{
     },"screen_control":{
         "name":"Screen control",
         "text":"switches dialogue by click to screen.",
-        "code":"let tue_screen_control=!0;tuesday.addEventListener(\"mouseup\",function(e){tue_screen_control&&e.pageX>tuesday.offsetWidth/3?(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs))&&go_story():(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs)&&tue_screen_control)&&back_story(),tue_screen_control=!0}),tuesday.addEventListener(\"script_loaded\",function(e){document.getElementById(\"tue_back\")&&(tue_back.style.pointerEvents=\"none\"),document.getElementById(\"tue_next\")&&(tue_next.style.pointerEvents=\"none\");for(var t=document.getElementById(\"tuesday\").getElementsByClassName(\"tue_controll\"),n=0;n<t.length;n++)t[n].setAttribute(\"onmouseup\",\"tue_screen_control=false;\")});"
+        "code":"let tue_screen_control=!0;tuesday.addEventListener('mouseup',function(e){(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs))&&go_story(),tue_screen_control=!0}),tuesday.addEventListener('script_loaded',function(e){document.getElementById('tue_back')&&(tue_back.style.pointerEvents='none'),document.getElementById('tue_next')&&(tue_next.style.pointerEvents='none');for(var t=document.getElementById('tuesday').getElementsByClassName('tue_controll'),n=0;n<t.length;n++)t[n].setAttribute('onmouseup','tue_screen_control=false;')});"
     },"speech":{
         "name":"Speech",
         "text":"Speech synthesis TTS<br>reading text with a synthesized voice",

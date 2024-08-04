@@ -1,7 +1,8 @@
 let tue_screen_control=true;
 tuesday.addEventListener('mouseup',function(e){
-    if(tue_screen_control && e.pageX > tuesday.offsetWidth/3 ){if(story_json[tue_story][scene].dialogs==0 || check_choice(story_json[tue_story][scene].dialogs)){go_story()}}
-    else if( story_json[tue_story][scene].dialogs==0 || check_choice(story_json[tue_story][scene].dialogs) && tue_screen_control){back_story()};
+    // if(tue_screen_control && e.pageX > tuesday.offsetWidth/3 ){
+        if(story_json[tue_story][scene].dialogs==0 || check_choice(story_json[tue_story][scene].dialogs)){go_story()}
+    // } else if( story_json[tue_story][scene].dialogs==0 || check_choice(story_json[tue_story][scene].dialogs) && tue_screen_control){back_story()};
     tue_screen_control=true;
 });
 tuesday.addEventListener('script_loaded',function(event){

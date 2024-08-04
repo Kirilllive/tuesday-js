@@ -453,6 +453,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
     outline:none;
     resize:none;
     padding:8px;
+    tab-size:4;
     margin:0;
 }
 .code_text{
@@ -871,7 +872,7 @@ const plugins_list={"tue_aspect_ratio":{
     },"screen_control":{
         "name":"Нажатие на экран",
         "text":"переключение диалогов по клику или нажатию на экран.",
-        "code":"let tue_screen_control=!0;tuesday.addEventListener(\"mouseup\",function(e){tue_screen_control&&e.pageX>tuesday.offsetWidth/3?(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs))&&go_story():(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs)&&tue_screen_control)&&back_story(),tue_screen_control=!0}),tuesday.addEventListener(\"script_loaded\",function(e){document.getElementById(\"tue_back\")&&(tue_back.style.pointerEvents=\"none\"),document.getElementById(\"tue_next\")&&(tue_next.style.pointerEvents=\"none\");for(var t=document.getElementById(\"tuesday\").getElementsByClassName(\"tue_controll\"),n=0;n<t.length;n++)t[n].setAttribute(\"onmouseup\",\"tue_screen_control=false;\")});"
+        "code":"let tue_screen_control=!0;tuesday.addEventListener('mouseup',function(e){(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs))&&go_story(),tue_screen_control=!0}),tuesday.addEventListener('script_loaded',function(e){document.getElementById('tue_back')&&(tue_back.style.pointerEvents='none'),document.getElementById('tue_next')&&(tue_next.style.pointerEvents='none');for(var t=document.getElementById('tuesday').getElementsByClassName('tue_controll'),n=0;n<t.length;n++)t[n].setAttribute('onmouseup','tue_screen_control=false;')});"
     },"speech":{
         "name":"Речь",
         "text":"Синтез речи TTS чтение текста синтезированным голосом",
@@ -947,13 +948,13 @@ if(setup_editor.ferst){
     modal_window("open",sel);
 }else{editor_setup();}
 function editor_setup(){
-    world.className=setup_editor.fon;
+ 
+    world.className=setup_editor.fon;	
     screen_preview.className=setup_editor.fon;
-    //preview_size(true);
     if(setup_editor.wheel){html.style.overflow='hidden';}
     if(setup_editor.ui&&setup_editor.ui!=0){set_ui(setup_editor.ui);}
     if(!setup_editor.pvw){setup_editor.pvw=[640,480];}
-    else{html.style.overflow='auto';}
+    else{html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';}
     if(setup_editor.lines_anim){document.querySelector(':root').style.setProperty('--ls','20');}else{document.querySelector(':root').style.setProperty('--ls','0');}
     document.getElementById('screen_size').getElementsByTagName('option')[1].value=(setup_editor.pvw[0]>=setup_editor.pvw[1])?setup_editor.pvw[0]:setup_editor.pvw[1]
 }
@@ -1367,6 +1368,7 @@ var block_active=false;
 function movie_dlock(id){
     var focus_block=document.getElementById(id);
     focus_block.onmousedown=function(e){
+		if(e.button==1){e.preventDefault();}
         story_blocks.appendChild(focus_block);
         menu_add.style.visibility="hidden";
         var coords=getCoords(focus_block);
@@ -1443,7 +1445,7 @@ function block_open(id){
 var startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null,scroll_xz=null,scroll_yz=null,dictat_m=0,dictat_s=0;
 html.ontouchstart=function(e){
     if(!scroll_block||(scene_screen&&!scene_scroll)){
-        html.style.overflow='scroll';
+        html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'scroll';
         if(e.touches.length>1){dictat_s=Math.sqrt((e.touches[0].clientX-e.touches[1].clientX)**2+(e.touches[0].clientY-e.touches[1].clientY)**2)}
         html.ontouchmove=function(e){
             if(e.touches.length>1&&!scene_screen){
@@ -1457,7 +1459,7 @@ html.ontouchstart=function(e){
             startmove_y=null;
             html.ontouchmove=null;
             html.ontouchend=null;
-            scene_view.style.overflow="auto";
+            scene_view.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';
             scale=Math.min(2,Math.max(0.25,(scale+dictat_m)));dictat_m=0;
             scroll_z();
         };
@@ -1478,13 +1480,14 @@ scene_view.ontouchstart=function(e){
             startmove_y=null;
             scene_view.ontouchmove=null;
             scene_view.ontouchend=null;
-            scene_view.style.overflow="auto";
+            scene_view.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';
             scale_scene=Math.min(2,Math.max(0.25,(scale_scene+dictat_m)));dictat_m=0;
             scroll_z();
         };
     }
 }
 world.onmousedown=function(e){
+	if(e.button==1){e.preventDefault();}
     if(!scroll_block&&!scene_screen){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
@@ -1510,6 +1513,7 @@ world.onmousedown=function(e){
     }
 }
 scene_view.onmousedown=function(e){
+	if(e.button==1){e.preventDefault();}
     if(scene_screen&&scene_scroll){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
@@ -1544,7 +1548,7 @@ function modal_window(action,content){
         menu_add.style.visibility="hidden";
         window_zone.style.visibility="hidden"
         window_zone.style.backgroundColor='rgba(110,95,165,0)';
-        if(!scene_screen){html.style.overflow='scroll';scroll_block=false;}
+        if(!scene_screen){html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'scroll';;scroll_block=false;}
         window_zone.innerHTML="";
     }else if(action=='open'&&window_zone.style.visibility!="visible"){
         window_zone.style.visibility="visible";
@@ -1634,7 +1638,7 @@ function about(){
     +"<td width='25%' align='center'>Onigi</td>"
     +"<td width='25%' align='center'>Arne Krause</td></tr><tr>"
     +"</tr></tbody></table>"
-    +"<p><a href='https://boosty.to/kirilllive' target='_blank'><svg height='40' width='200' viewBox='0 0 200 40' style='filter:var(--ft);' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M53.9 10.1C53.9 9 54.6 8.3 55.8 8.3H61.5C66.7 8.3 70.2 11.2 70.2 15.4C70.2 19.5 66.7 22.5 61.5 22.5H60.7C58.8 22.5 57.7 23.5 57.7 25.2V29.9C57.7 31.2 57 32 55.8 32.0C54.6 32 53.9 31.2 53.9 29.9V10.1ZM57.7 16.0C57.7 18.1 58.8 19.1 60.8 19.1H61.3C64.1 19.1 66.2 17.9 66.2 15.4C66.2 12.8 64.2 11.7 61.3 11.7H60.8C58.8 11.7 57.7 12.7 57.7 14.7V16.0H57.7ZM70.2 30.2C70.2 31.3 71 32 72.2 32.0C72.9 32 73.6 31.5 74 30.5L74.7 28.6C75.3 27.1 76.3 26.4 77.4 26.4H83.7C84.7 26.4 85.7 27.1 86.3 28.6L87 30.5C87.4 31.5 88.1 32 88.9 32.0C90 32 90.8 31.3 90.8 30.2C90.8 29.9 90.7 29.5 90.6 29.2L83.1 9.6C82.6 8.4 81.6 7.8 80.5 7.8C79.5 7.8 78.4 8.4 78 9.6L70.5 29.2C70.3 29.5 70.2 29.9 70.2 30.2ZM77.6 21.3C77.6 21 77.7 20.6 77.8 20.1L79.2 16.2C79.5 15.4 80 15.1 80.5 15.1C81 15.1 81.5 15.4 81.8 16.2L83.2 20.1C83.4 20.6 83.5 21 83.5 21.3C83.5 22.3 82.9 23 81.4 23.0H79.6C78.1 23 77.6 22.3 77.6 21.3ZM89.5 10.1C89.5 9.1 90.3 8.4 91.5 8.4H106.8C108 8.4 108.8 9.1 108.8 10.1C108.8 11.2 108 11.9 106.8 11.9H104.2C102.2 11.9 101.1 12.9 101.1 15.3V29.8C101.1 31.2 100.3 32 99.1 32.0C98 32 97.2 31.2 97.2 29.8V15.3C97.2 12.9 96.1 11.9 94.1 11.9H91.5C90.3 11.9 89.5 11.2 89.5 10.1ZM112.3 29.9C112.3 31.2 113.1 32 114.3 32.0C115.4 32 116.2 31.2 116.2 29.9V24.6C116.2 23.1 117 22.5 118.1 22.5H118.4C119.1 22.5 119.8 22.9 120.2 23.5L125.2 30.9C125.7 31.6 126.3 32 127 32.0C128 32 128.8 31.2 128.8 30.2C128.8 29.8 128.7 29.4 128.4 28.9L125 24.2C124.6 23.7 124.5 23.2 124.5 22.8C124.5 22 125.2 21.4 126.1 20.8C127.6 19.6 129.3 18.1 129.3 15.2C129.3 11.1 126.1 8.3 120.9 8.3H114.2C113 8.3 112.3 9 112.3 10.1V29.9H112.3ZM116.2 15.7V14.7C116.2 12.5 117.3 11.7 119 11.7H120.7C123.5 11.7 125.3 12.7 125.3 15.2C125.3 17.6 123.4 18.7 120.6 18.7H119.0C117.3 18.7 116.2 17.8 116.2 15.7ZM134.2 29.8V10.1C134.2 9 135 8.3 136.2 8.3H148.7C149.9 8.3 150.6 9 150.6 10.1C150.6 11.1 149.9 11.8 148.7 11.8H140.8C139.2 11.8 138.1 12.7 138.1 14.5V15.2C138.1 16.9 139.2 17.9 140.8 17.9H146.9C148.1 17.9 148.8 18.6 148.8 19.6C148.8 20.6 148.1 21.3 146.9 21.3H141.0C139.5 21.3 138.1 22.3 138.1 24.2V25.2C138.1 27.1 139.5 28.1 141 28.1H148.7C149.9 28.1 150.6 28.8 150.6 29.8C150.6 30.8 149.9 31.5 148.7 31.5H136.2C135 31.5 134.2 30.8 134.2 29.8ZM152.9 19.9C152.9 12.8 158.3 7.8 164.6 7.8C170.9 7.8 176.2 12.8 176.2 19.9C176.2 27.1 170.9 32 164.6 32.0C158.3 32 152.9 27.1 152.9 19.9ZM157.3 19.9C157.3 25 160.3 28.2 164.6 28.2C168.9 28.2 171.9 25 171.9 19.9C171.9 14.9 168.9 11.7 164.6 11.7C160.3 11.7 157.3 14.9 157.3 19.9ZM180.8 29.9C180.8 31.2 181.6 32 182.8 32.0C183.9 32 184.7 31.2 184.7 29.9V19.7C184.7 18.5 185.4 17.9 186.2 17.9C186.8 17.9 187.3 18.2 187.6 18.8L194 29.5C194.9 30.9 195.6 32 197.3 32.0C198.8 32 200 30.9 200 29.1V10.0C200 8.7 199.2 7.8 198 7.8C196.9 7.8 196.1 8.7 196.1 10.0V20.1C196.1 21.3 195.4 21.9 194.6 21.9C194 21.9 193.5 21.6 193.2 21.0L186.8 10.4C185.9 8.9 185.1 7.8 183.5 7.8C182 7.8 180.8 9 180.8 10.8V29.9Z M36.5 12.0C36.5 6.9 32.5 2.7 27.9 1.2C22.1 -0.6 14.4 -0.3 8.9 2.2C2.1 5.3 0 12.3 0 19.2C-0 24.9 0.5 39.8 8.9 39.9C15.2 40 16.1 31.9 19 28.0C21.1 25.3 23.8 24.5 27.1 23.7C32.7 22.3 36.5 17.9 36.5 12Z' fill='#000'/></svg></a></p><br><br></div></div>"
+    +"<p><a href='https://boosty.to/kirilllive' target='_blank'><svg width='145' height='40' viewBox='0 0 145 40' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><path style='fill:var(--tx);' d='M138.1,13.1 L132.0,22.6 L131.3,13.1 L122.5,13.1 C123.3,10.3 124.0,8.1 124.0,8.1 L124.3,7 L117.6,7 L117.3,8.1 L115.8,13.1 L108.6,13.1 C102.7,13.1 99.4,14.8 98.0,18 C97.2,15 94.6,13.1 90.5,13.1 C87.2,13.1 84.1,14.3 81.6,16.5 C80.4,14.4 78.1,13.1 74.8,13.1 C71.2,13.1 67.9,14.5 65.4,16.9 C64.3,14.6 61.8,13.1 58.3,13.1 C57.1,13.1 55.9,13.3 54.8,13.6 L55.3,11.7 C55.4,11.7 55.4,11.7 55.4,11.6 L56.7,7 L50.0,7 L45.7,21.7 C45.6,22 45.5,22.3 45.4,22.6 C45.2,23.2 45.1,23.9 45.0,24.6 C44.5,28.7 46.3,31.8 51.3,32 C51.8,32 52.3,32.1 52.8,32.1 C56.2,32 59.6,30.7 62.1,28.3 C63.1,30.6 65.5,32.1 69.2,32.1 C72.5,32 75.6,30.8 78.1,28.7 C79.2,30.8 81.5,32.1 85.0,32.1 L101.9,32.1 C107.1,32.1 110.0,31 111.6,28.8 C111.6,30.9 112.8,32.1 115.9,32.1 C118.4,32.1 121.7,31.5 126.3,30.4 L119.6,39.9 L126.4,39.9 L144.8,13.1 L138.1,13.1 Z M58.9,22.6 C58.3,24.7 56.2,26.5 54.4,26.5 C52.5,26.5 51.5,24.7 52.1,22.6 C52.8,20.4 54.8,18.7 56.6,18.7 C58.5,18.7 59.5,20.4 58.9,22.6 Z M75.4,22.6 C74.7,24.7 72.7,26.5 70.9,26.5 C69.0,26.5 68.0,24.7 68.6,22.6 C69.3,20.4 71.3,18.7 73.2,18.7 C75.0,18.7 76.0,20.4 75.4,22.6 Z M84.4,22.6 C85.0,20.4 87.1,18.7 88.9,18.7 C90.7,18.7 91.8,20.4 91.1,22.6 C90.5,24.7 88.5,26.4 86.7,26.5 L86.6,26.5 C84.8,26.4 83.8,24.7 84.4,22.6 Z M106.1,25.8 C105.7,26.6 103.1,26.5 102.4,26.5 L95.9,26.5 C96.8,25.3 97.4,24 97.8,22.6 C97.9,22.4 97.9,22.3 98.0,22.2 C98.7,23.2 100.2,24.1 103.1,24.6 C105.8,25.2 106.3,25 106.1,25.8 Z M112.7,23.7 C112.2,21.4 109.7,20.6 106.2,20.2 C104.7,20 103.9,19.9 104.1,19.3 C104.2,18.8 105.0,18.7 106.5,18.7 L114.2,18.7 L112.7,23.7 Z M119.4,23.7 C119.4,23.7 120.1,21.4 120.9,18.7 L125.2,18.7 L125.9,25.8 C118.8,27.3 118.7,26.9 119.4,23.7 L119.4,23.7 Z' fill-rule='nonzero'/><path d='M1.0,23.8 L7.8,0 L18.2,0 L16.1,7.4 C16.0,7.4 16.0,7.4 16.0,7.5 L10.5,27.1 L15.6,27.1 C13.5,32.5 11.8,36.8 10.6,40 C1.1,39.8 -1.5,32.9 0.7,24.7 L1.0,23.8 Z M10.6,40 L23.2,21.6 L17.8,21.6 L22.5,9.8 C30.4,10.6 34.1,17 31.9,24.7 C29.6,33 20.1,40 10.8,40 L10.6,40 Z' style='fill:var(--tx);'/></svg></a></p><br><br></div></div>"
     modal_window("open",html);
 }
 function build_choice(){
@@ -1662,7 +1666,7 @@ function new_project(){
         +"<tr><td style='padding-right:8px; border-right:1px solid var(--cb); width:40%; padding-top:10px;'><select class='title_lang'>"+big_languares('ru')+"</select></td><td><input class='title_name input_text' placeholder='переведенное название' style='padding-top:10px;' type='text' value='"
         +story_script.parameters.title.ru+"'></td><td onclick=\"var a=this.closest('tr'); a.parentElement.removeChild(a);\" style='width:40px; cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"
         +"</tbody></table><div onclick=\"add_tr('new_title')\" class='icon icon_add' style='margin-top:16px;height:26px; width:26px; cursor:pointer;'></div>"
-        +"</div><br><br><table class='big_button' width='256px' onclick='scen_editor_apply();open_tool();create_project();new_novel();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Создать проект</td><td width='42px'></td></tr></tbody></table></div>"
+        +"</div><br><br><table class='big_button' width='256px' onclick='scen_editor_apply();open_tool();new_novel();create_project();'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Создать проект</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);
 }
 function build(tip){
@@ -2671,7 +2675,7 @@ function open_tool(content,update){
     }else{
         tool_update=false;
         tools_zone.style.visibility="hidden";
-        html.style.overflow='scroll';
+        html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'scroll';;
         menu_panel.style.zIndex=null;
         tools_zone.innerHTML="";
         scroll_block=false;scene_screen=false;
@@ -2690,6 +2694,7 @@ function adden_sizer(id,f){
 }
 function adden_scroll(id,z){
     id.onmousedown=function(e){
+	if(e.button==1){e.preventDefault();}
     if(scene_scroll){
         startmove_x=e.clientX;
         startmove_y=e.clientY;
@@ -2727,7 +2732,7 @@ function adden_scroll(id,z){
             startmove_y=null;
             this.ontouchmove=null;
             this.ontouchend=null;
-            scene_view.style.overflow="auto";
+            scene_view.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';
             tool_scale=Math.min(2,Math.max(0.25,(tool_scale+dictat_m)));dictat_m=0;
         };
     }}
@@ -3435,7 +3440,8 @@ function scen_editor(block,i,n){
     scene_layout.style.backgroundSize=((!story_script[block][i].background_size)?"cover":story_script[block][i].background_size);
     scene_layout.style.backgroundPosition=((!story_script[block][i].background_align)?"center":story_script[block][i].background_align);
     scene_layout.style.backgroundColor=story_script[block][i].background_color;
-    if(!scene_screen){
+    scene_view.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'auto';
+	if(!scene_screen){
         scene_view.scrollTop=(screen_preview.clientHeight/2)-(scene_view.clientHeight/2);
         scene_view.scrollLeft=(screen_preview.clientWidth/2)-(scene_view.clientWidth/2);
     }
@@ -5183,6 +5189,7 @@ function make_resizable(s,f){
         else if(e.keyCode == '39'){if(objFocus){scene_view.style.overflow='scroll'}}
     }
     s.onmousedown=function(e){
+		if(e.button==1){e.preventDefault();}
         if(moveSize){
             e=e||window.event;
             e.preventDefault();
@@ -5628,7 +5635,7 @@ function translation_edit(){
     if(tools_zone.style.visibility=="visible"){
         tool_update=false;
         tools_zone.style.visibility="hidden";
-        html.style.overflow='scroll';
+        html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'scroll';;
         menu_panel.style.zIndex=null;
         tools_zone.innerHTML="";
         scroll_block=false;scene_screen=false;
