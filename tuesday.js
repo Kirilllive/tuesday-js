@@ -518,7 +518,7 @@ function name_block_update(){
         if(arr_dialog.choice){
             let interfaces=false;
             for(i=0;i < arr_dialog.choice.length;i++){
-                var choice=document.createElement("div");
+                let choice=document.createElement("div");
                 if(arr_dialog.choice[i].className){choice.className=arr_dialog.choice[i].className;}
                 if(arr_dialog.choice[i].style){choice.style=arr_dialog.choice[i].style;}
                 choice.classList.add("tue_choice");
