@@ -569,9 +569,9 @@ function name_block_update(){
                 }
                 if(arr_dialog.choice[i].go_to=="tue_audio"){show_audio(choice,arr_dialog.choice[i]);}
                 else if(arr_dialog.choice[i].go_to=="tue_fullScreen"){show_fullscreen(choice,arr_dialog.choice[i])}
-				var v='';
+				let v='';
 				if(arr_dialog.choice[i].variables){
-					for(var g=0;g < arr_dialog.choice[i].variables.length;g++){
+					for(let g=0;g < arr_dialog.choice[i].variables.length;g++){
 						if(arr_dialog.choice[i].variables[g][1] == "add"){
 							v += "story_json.parameters.variables."+arr_dialog.choice[i].variables[g][0]+"+="+((typeof story_json.parameters.variables[arr_dialog.choice[i].variables[g][2]]!=="undefined")?((typeof story_json.parameters.variables[arr_dialog.choice[i].variables[g][2]]=="number")?story_json.parameters.variables[arr_dialog.choice[i].variables[g][2]]:"'"+story_json.parameters.variables[arr_dialog.choice[i].variables[g][2]]+"'"):((typeof arr_dialog.choice[i].variables[g][2]=="number")?arr_dialog.choice[i].variables[g][2]:"'"+arr_dialog.choice[i].variables[g][2]+"'"))+";"
 						}
