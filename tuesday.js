@@ -612,7 +612,7 @@ function name_block_update(){
                 } else {choice.setAttribute("onclick",v+"go_story(true);del_element('tue_choice');"+add_sound());}
                 tuesday.appendChild(choice);
 				function add_sound(){
-					var s='';
+					let s='';
 					if(arr_dialog.choice[i].sound){s=get_sound(arr_dialog.choice[i].sound)};
 					if(arr_dialog.choice[i].sound_stop){s += get_stop_sound(arr_dialog.choice[i].sound_stop)};
 					return s;
