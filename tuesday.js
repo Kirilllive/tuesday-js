@@ -635,7 +635,7 @@ function name_block_update(){
             }
         }
 		if(arr_dialog.variables){
-			for(var i=0;i < arr_dialog.variables.length;i++){
+			for(let i=0;i < arr_dialog.variables.length;i++){
 				let choice_n=arr_dialog.variables[i][0]
 				if(arr_dialog.variables[i][1] == "add"){
 					story_json.parameters.variables[choice_n] += arr_dialog.variables[i][2];
