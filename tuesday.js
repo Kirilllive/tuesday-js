@@ -582,10 +582,10 @@ function name_block_update(){
 				}
                 if (arr_dialog.choice[i].js){v+=arr_dialog.choice[i].js+";"}
                 if (arr_dialog.choice[i].go_to){
-                    var g=arr_dialog.choice[i].go_to;
+                    let g=arr_dialog.choice[i].go_to;
                     if (!interfaces){interfaces=(arr_dialog.choice[i].url)?false:(g!="tue_no")?true:false;}
                     if (story_json.parameters.languares.length>1){
-                        for(var l=0;l<story_json.parameters.languares.length;l++){
+                        for(let l=0;l<story_json.parameters.languares.length;l++){
                             if(g == "tue_"+story_json.parameters.languares[l]){
                                 g=8;choice.setAttribute("onclick",v+"languare='"+story_json.parameters.languares[l]+"';if(story_json.parameters.title&&story_json.parameters.title[languare]){document.title=story_json.parameters.title[languare];};del_element('tue_choice');go_story(true);"+add_sound());
                             }
@@ -612,7 +612,7 @@ function name_block_update(){
                 } else {choice.setAttribute("onclick",v+"go_story(true);del_element('tue_choice');"+add_sound());}
                 tuesday.appendChild(choice);
 				function add_sound(){
-					var s='';
+					let s='';
 					if(arr_dialog.choice[i].sound){s=get_sound(arr_dialog.choice[i].sound)};
 					if(arr_dialog.choice[i].sound_stop){s += get_stop_sound(arr_dialog.choice[i].sound_stop)};
 					return s;
@@ -635,7 +635,7 @@ function name_block_update(){
             }
         }
 		if(arr_dialog.variables){
-			for(var i=0;i < arr_dialog.variables.length;i++){
+			for(let i=0;i < arr_dialog.variables.length;i++){
 				let choice_n=arr_dialog.variables[i][0]
 				if(arr_dialog.variables[i][1] == "add"){
 					story_json.parameters.variables[choice_n] += arr_dialog.variables[i][2];
