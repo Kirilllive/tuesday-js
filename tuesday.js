@@ -648,15 +648,15 @@ function name_block_update(){
             tuesday.dispatchEvent(new Event( arr_dialog.event ));
         }
 		if(arr_dialog.sound_stop){
-  			var s=(arr_dialog.sound_stop[languare])?arr_dialog.sound_stop[languare]:arr_dialog.sound_stop;
+  			let s=(arr_dialog.sound_stop[languare])?arr_dialog.sound_stop[languare]:arr_dialog.sound_stop;
             if(typeof s=='object'){
-                for(var i=0;i<s.length;i++){sound_stop(s[i])}
+                for(let i=0;i<s.length;i++){sound_stop(s[i])}
             }else{sound_stop((s[languare])?s[languare]:s)}
 		}
 		if(arr_dialog.sound&&tue_set_audio<2){
-			var s=(arr_dialog.sound[languare])?arr_dialog.sound[languare]:arr_dialog.sound;
+			let s=(arr_dialog.sound[languare])?arr_dialog.sound[languare]:arr_dialog.sound;
             if(typeof s=='object'){
-                for(var i=0;i<s.length;i++){sound_play(s[i])}
+                for(let i=0;i<s.length;i++){sound_play(s[i])}
             }else{sound_play((s[languare])?s[languare]:s)}
 		}
         if(arr_dialog.js){eval(arr_dialog.js)}
