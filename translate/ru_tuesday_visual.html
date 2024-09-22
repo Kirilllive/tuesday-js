@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Тьюсдей JS Движок визуальных новелл</title>
+<title>Tuesday JS Движок визуальных новелл</title>
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
 <meta charset="UTF-8">
 <meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'/>
@@ -637,7 +637,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                         <table onclick="block_open('text_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Текстовая панель</td></tr></tbody></table>
                         <div class="set_panel" id="text_panel_g" style="width:100%;display:none;">
                         <table style="width:100%;"><tbody>
-                            <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширины</td><td style='padding-right:8px;' colspan='3'>
+                            <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширина</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='size_w' class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.text_panel.size[0]=this.value;scen_edit_update(true);state_save()' type="text" value='95%' style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Высота</td><td style='padding-right:8px;' colspan='3'>
@@ -700,7 +700,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                 <td colspan='2'><input id="etc_i" class="input_text" onchange='if(!story_script.parameters.text_panel.end_text_cursor){story_script.parameters.text_panel.end_text_cursor=[0,0,0,""]};story_script.parameters.text_panel.end_text_cursor[0]=this.value;scen_edit_update(true);' type="text" style="width:100%;height:28px" ></td>
                                 <td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="if(!story_script.parameters.text_panel.end_text_cursor){story_script.parameters.text_panel.end_text_cursor=[0,0,0,'']};file_catalog('','img','etc_i',1,'story_script.parameters.text_panel.end_text_cursor[0]')">
                             </td></tr>
-                            <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширины</td><td style='padding-right:8px;' colspan='3'>
+                            <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширина</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='etc_w' class='input_text' onchange='if(!story_script.parameters.text_panel.end_text_cursor){story_script.parameters.text_panel.end_text_cursor=[0,0,0,""]};this.value=correct_value(this.value);story_script.parameters.text_panel.end_text_cursor[1]=this.value;scen_edit_update(true);state_save()' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Высота</td><td style='padding-right:8px;' colspan='3'>
@@ -718,7 +718,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                         <table onclick="block_open('name_panel_g');" class="set_title" height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Панель имени</td></tr></tbody></table>
                         <div class="set_panel" id="name_panel_g" style="width:100%;display:none;">
                         <table style="width:100%;"><tbody>
-                            <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширины</td><td style='padding-right:8px;' colspan='3'>
+                            <tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширина</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='n_size_w' class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.name_panel.size[0]=this.value;scen_edit_update(true);state_save();' type="text" style='width:100%;'>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Высота</td><td style='padding-right:8px;' colspan='3'>
@@ -875,7 +875,7 @@ const plugins_list={"tue_aspect_ratio":{
         "code":"let tue_screen_control=!0;tuesday.addEventListener('mouseup',function(e){(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs))&&go_story(),tue_screen_control=!0}),tuesday.addEventListener('script_loaded',function(e){document.getElementById('tue_back')&&(tue_back.style.pointerEvents='none'),document.getElementById('tue_next')&&(tue_next.style.pointerEvents='none');for(var t=document.getElementById('tuesday').getElementsByClassName('tue_controll'),n=0;n<t.length;n++)t[n].setAttribute('onmouseup','tue_screen_control=false;')});"
     },"speech":{
         "name":"Речь",
-        "text":"Синтез речи TTS чтение текста синтезированным голосом",
+        "text":"Синтез речи(TTS), чтение текста синтезированным голосом",
         "code":"const synth=window.speechSynthesis;function play_synth(e,t,s){if(e=e?e=\"object\"==typeof e?e[languare]:e:arr_dialog.text_add?arr_dialog.text_add:dialog_text,\"hidden\"!=tue_text_block.style.visibility&&(story_json.parameters.text_panel.speech||arr_dialog.speech)){let n=new SpeechSynthesisUtterance(e||dialog_text);synth.speaking&&synth.cancel();let a=t&&t.length>0?[t,s||1]:arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],p=speechSynthesis.getVoices(),h=a[0].split(\",\").map(e=>e.trim()),c=!1;for(v=0;v<p.length&&(p.filter(e=>{e.name==h[v]&&(c=e)}),!c);v++);n.voice=c,n.rate=a[1],synth.speak(n)}}tuesday.addEventListener(\"creation_dialog\",()=>{story_json.parameters.text_panel.speech_play&&tue_set_audio<2?play_synth():synth.cancel()});"
     },"show_toast":{
         "name":"Тост",
@@ -886,8 +886,8 @@ const plugins_list={"tue_aspect_ratio":{
         "text":"локация с отметками на другие блоки сюжета.",
         "code":"var wmap={startmove_x:null,startmove_y:null,scroll_x:null,scroll_y:null,scale:1};function terrain_map(){clearTimeout(dialog_timeout),arr_dialog=story_json[tue_story][scene].terrain_map,tue_text_view.innerHTML=\"\",tuesday.style.backgroundImage=\"none\";var e=document.createElement(\"div\");e.id=\"tue_world\",e.style=\"height:100%;width:100%;\"+(navigator.userAgent.indexOf(\"Firefox\")>0?\"overflow:hidden;\":\"overflow:auto;\"),e.className=\"tue_html_scene\";var t=document.createElement(\"div\");arr_dialog.scale&&(wmap.scale=arr_dialog.scale),t.id=\"tue_map\",t.className=arr_dialog.className,t.style=arr_dialog.style,t.style.width=arr_dialog.size[0]+\"px\",t.style.height=arr_dialog.size[1]+\"px\",t.style.backgroundRepeat=arr_dialog.repeat?arr_dialog.repeat:\"no-repeat\",arr_dialog.art_align&&(t.style.backgroundPosition=arr_dialog.art_align),arr_dialog.fit&&(t.style.backgroundSize=\"object\"==typeof arr_dialog.fit?arr_dialog.fit[0]+\" \"+arr_dialog.fit[1]:arr_dialog.fit),arr_dialog.color&&(e.style.backgroundColor=art_data(arr_dialog.color)),arr_dialog.art&&art_data(arr_dialog.art).length>0&&(t.style.backgroundImage='url(\"'+art_data(arr_dialog.art)+'\")'),t.style.position=\"relative\",t.style.overflow=\"hidden\",t.style.transformOrigin=\"left top\";for(var o=0;o<arr_dialog.objects.length;o++){var s=document.createElement(\"div\");s.className=arr_dialog.objects[o].className+\" tue_map_item\",s.style=arr_dialog.objects[o].style,s.style.width=arr_dialog.objects[o].size[0]+\"px\",s.style.height=arr_dialog.objects[o].size[1]+\"px\",\"patch\"!=arr_dialog.objects[o].fit?(s.style.backgroundRepeat=\"no-repeat\",s.style.backgroundPosition=\"center\",s.style.backgroundSize=\"object\"==typeof arr_dialog.objects[o].fit?arr_dialog.objects[o].fit[0]+\" \"+arr_dialog.objects[o].fit[1]:arr_dialog.objects[o].fit,s.style.backgroundImage='url(\"'+art_data(arr_dialog.objects[o].art)+'\")',s.style.backgroundPosition=arr_dialog.objects[o].art_align?arr_dialog.objects[o].art_align[0]+\" \"+arr_dialog.objects[o].art_align[1]:\"center\"):\"patch\"==arr_dialog.objects[o].fit?(s.style.backgroundImage=\"none\",s.style.backgroundSize=\"none\",s.style.backgroundClip=\"padding-box\",s.style.borderStyle=\"solid\",s.style.borderWidth=arr_dialog.objects[o].patch[0]+\"px \"+arr_dialog.objects[o].patch[1]+\"px \"+arr_dialog.objects[o].patch[2]+\"px \"+arr_dialog.objects[o].patch[3]+\"px\",s.style.borderImage=\"url('\"+art_data(arr_dialog.objects[o].art)+\"') \"+arr_dialog.objects[o].patch[0]+\" \"+arr_dialog.objects[o].patch[1]+\" \"+arr_dialog.objects[o].patch[2]+\" \"+arr_dialog.objects[o].patch[3]+\" stretch stretch\"):tue_id.style.backgroundSize=arr_dialog.objects[o].art_size,s.style.position=\"absolute\",s.style.transformOrigin=\"top left\",s.style.transform=\"rotate(\"+arr_dialog.objects[o].angle+\"deg)\",s.style.top=arr_dialog.objects[o].position[1]+\"px\",s.style.left=arr_dialog.objects[o].position[0]+\"px\",s.style.display=\"flex\",arr_dialog.objects[o].color&&(s.style.backgroundColor=arr_dialog.objects[o].color),arr_dialog.objects[o].name&&(s.innerHTML=art_data(arr_dialog.objects[o].name),arr_dialog.objects[o].indent_text&&(s.style.padding=arr_dialog.objects[o].indent_text),arr_dialog.objects[o].color_text&&(s.style.color=arr_dialog.objects[o].color_text),arr_dialog.objects[o].size_text&&(s.style.fontSize=arr_dialog.objects[o].size_text),arr_dialog.objects[o].font_family&&(s.style.fontFamily=arr_dialog.objects[o].font_family),s.style.whiteSpace=\"pre-wrap\",arr_dialog.objects[o].align?(s.style.justifyContent=arr_dialog.objects[o].align?arr_dialog.objects[o].align[0]:\"center\",s.style.alignItems=arr_dialog.objects[o].align?arr_dialog.objects[o].align[1]:\"center\"):(s.style.justifyContent=\"center\",s.style.alignItems=\"center\")),story_json.parameters.cursors&&story_json.parameters.cursors.choice&&(s.style.cursor=\"url(\"+art_data(story_json.parameters.cursors.choice[0])+\") \"+story_json.parameters.cursors.choice[1]+\" \"+story_json.parameters.cursors.choice[2]+\",auto\"),arr_dialog.objects[o].show_if&&show_if(arr_dialog.objects[o].show_if,s);var l=\"\";arr_dialog.objects[o].sound?l+=\"sound_play('\"+arr_dialog.objects[o].sound+\"');\":arr_dialog.sound&&(l+=\"sound_play('\"+arr_dialog.sound+\"');\"),arr_dialog.objects[o].js&&(l+=arr_dialog.objects[o].js+\";\"),arr_dialog.objects[o].go_to&&(arr_dialog.objects[o].text_from?l+=\"tue_story='\"+arr_dialog.objects[o].go_to+\"';scene=0;dialog=0;creation_dialog();\":arr_dialog.objects[o].url?l+=\"window.open('\"+(arr_dialog.objects[o].go_to[languare]?arr_dialog.objects[o].go_to[languare]:arr_dialog.objects[o].go_to)+\"','_\"+arr_dialog.objects[o].url+\"');\":l+=\"tue_world.remove();\"+(\"tue_go\"==arr_dialog.objects[o].go_to?\"scene++;dialog=0;creation_scene();\":\"go_to('\"+arr_dialog.objects[o].go_to+\"');\")),s.setAttribute(\"onclick\",l),t.appendChild(s)}e.onmousedown=function(t){wmap.startmove_x=t.clientX,wmap.startmove_y=t.clientY,wmap.scroll_x=e.scrollTop,wmap.scroll_y=e.scrollLeft,document.onmousemove=function(t){e.scrollTop=wmap.scroll_x-(t.clientY-wmap.startmove_y),e.scrollLeft=wmap.scroll_y-(t.clientX-wmap.startmove_x)},document.onmouseup=function(t){document.onmousemove=null,document.onmouseup=null,arr_dialog.scroll&&(arr_dialog.scroll[1]=e.scrollTop,arr_dialog.scroll[0]=e.scrollLeft)},document.onmouseleave=function(){document.onmousemove=null,document.onmouseup=null,arr_dialog.scroll[1]=e.scrollTop,arr_dialog.scroll[0]=e.scrollLeft}},0==tue_set_audio&&arr_dialog.background_music&&!tue_bg_music.src.includes(encodeURI(arr_dialog.background_music))?(tue_bg_music.canPlayType(\"audio/mpeg\")?arr_dialog.background_music.includes(\"blob:\")?tue_bg_music.src=arr_dialog.background_music:arr_dialog.background_music.includes(\".mp3\")?tue_bg_music.src=arr_dialog.background_music:tue_bg_music.src=arr_dialog.background_music+\".mp3\":tue_bg_music.src=arr_dialog.background_music+\".ogg\",tue_bg_music.loop=!0,tue_bg_music.play()):arr_dialog.background_music&&\"\"!=arr_dialog.background_music?0==tue_set_audio&&tue_bg_music.play():tue_bg_music.pause(),document.getElementById(\"tue_next\")&&(tue_next.style.visibility=\"hidden\"),document.getElementById(\"tue_back\")&&(tue_back.style.visibility=\"hidden\"),e.appendChild(t),tuesday.appendChild(e),worldmap_resize(),arr_dialog.scroll&&(e.scrollTop=arr_dialog.scroll[1],e.scrollLeft=arr_dialog.scroll[0])}function worldmap_resize(){if(!story_json.parameters.resolutions){var e=tuesday.getBoundingClientRect();arr_dialog.size[0]/arr_dialog.size[1]>e.width/e.height?tue_map.style.transform=\"scale(\"+e.height/arr_dialog.size[1]*wmap.scale+\")\":tue_map.style.transform=\"scale(\"+e.width/arr_dialog.size[0]*wmap.scale+\")\",tue_map.style.marginBottom=\"-\"+(e.height+arr_dialog.size[1])+\"px\",tue_map.style.marginRight=\"-\"+(e.width+arr_dialog.size[0])+\"px\",tue_map.style.marginTop=\"0px\",tue_map.style.marginLeft=\"0px\"}}tuesday.addEventListener(\"terrain_map\",function(e){terrain_map()}),window.addEventListener(\"resize\",worldmap_resize,!0);"
     },"touch_swipe":{
-        "name":"Свайп-жес",
-        "text":"переключает диалогов используя жест смахивания (свайп) влево или право",
+        "name":"Свайп-жест",
+        "text":"переключение диалогов используя жест смахивания (свайп) влево или право",
         "code":"var endTime,starttouch=null;window.addEventListener(\"touchstart\",function(t){startTime=new Date,starttouch=1===t.touches.length?t.touches.item(0).clientX:null}),window.addEventListener(\"touchend\",function(t){var e=new Date-startTime;if(starttouch&&e<500&&controll){var n=t.changedTouches.item(0).clientX;n>starttouch+40&&back_story(),n<starttouch-40&&check_choice(story_json[tue_story][scene].dialogs)&&go_story()}});"
     }
 }
@@ -907,7 +907,7 @@ const texts={"tutorials":[{
         },{
         "en":"Выберите подходящее вам устройство ввода. Изменить устройство можно в настройках в разделе «редактор»."
         },{
-        "en":"Мышь<br>управление зума колесиком "
+        "en":"Мышь<br>управление зума колесиком"
         },{
         "en":"Тачпад<br>рекомендуется для ноутбуков и MacBook"
         },{
@@ -2209,7 +2209,7 @@ function ho_edit(){
     tool+="<table onclick='block_open(\"ho_label\");' class='set_title' height='40px' width='100%'><tbody><tr><td width='40px' class='icon_m icon_more'></td><td align='left' valign='center'>Лейблы</td></tr></tbody></table>"
     +"<div class='set_panel' id='ho_label' style='width:100%;display:none;'>"
     +"<table style='width:100%;'><tbody>"
-        +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширины</td><td style='padding-right:8px;' colspan='3'>"
+        +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширина</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='this.value=correct_value(this.value);story_script.parameters.hidden_objects.label.size[0]=this.value;' type='text' value='"+p.label.size[0]+"' style='width:100%;'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Высота</td><td style='padding-right:8px;' colspan='3'>"
@@ -2266,7 +2266,7 @@ function ho_edit(){
             +"</td>"
         +"</tr><tr>"
         +"</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Label image</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Ширины</td><td style='padding-right:8px;' colspan='3'>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Ширина</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='this.value=correct_value(this.value);if(!story_script.parameters.hidden_objects.label.art_size){story_script.parameters.hidden_objects.label.art_size=[this.value,this.value]};story_script.parameters.hidden_objects.label.art_size[0]=this.value;' type='text' value='"+((p.label.art_size)?p.label.art_size[0]:"")+"' style='width:100%;'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Высота</td><td style='padding-right:8px;' colspan='3'>"
@@ -2329,7 +2329,7 @@ function ho_edit(){
         +"<td><input id='ho_rf' class='input_text' onchange='var v=document.getElementById(\"ho_rl\");arr_l."+arr_n+".art[v.value]=this.value;ho_room.style.backgroundImage=\"url(\"+open_file(this.value)+\")\";' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].art[languare]&&arr_l[arr_n].art[languare].length>0)?arr_l[arr_n].art[languare]:'')+"'></td>"
         +"<td height='40px' align='right' style='width:40px;' class='icon icon_load' onclick=\"file_catalog('ho_rf','img','ho_rf','ho_room','arr_l."+arr_n+".art[ho_rl.value]')\">"
         +"</td></tr>"
-        +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширины</td><td style='padding-right:8px;' colspan='2'>"
+        +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширина</td><td style='padding-right:8px;' colspan='2'>"
         +"<input id='ho_w' class='input_text' onchange='var s=parseInt(correct_value(this.value,true));if(ho_bs.checked){arr_l."+arr_n+".size[1]=parseInt(arr_l."+arr_n+".size[1]*(s/arr_l."+arr_n+".size[0]))};arr_l."+arr_n+".size[0]=s;ho_size();state_save();' type='text' value='"+arr_l[arr_n].size[0]+"' style='width:100%;'>"
         +'<td height="40px" align="right" rowspan="2"><input id="ho_bs" type="checkbox" class="proportion_c" checked></td>'
         +"</td></tr>"
@@ -2364,7 +2364,7 @@ function ho_edit(){
             +"<option "+((arr_l[arr_n].repeat=="repeat-x")?"selected":"")+" value='repeat-x'>горизонтально</option>"
             +"<option "+((arr_l[arr_n].repeat=="repeat-y")?"selected":"")+" value='repeat-y'>вертикально</option>"
         +"</select></td></tr></tbody></table>"
-        +"<table id='ho_size_art' style='width:100%;display:"+((!arr_l[arr_n].fit||(arr_l[arr_n].fit!="cover"&&arr_l[arr_n].fit!="contain"&&arr_l[arr_n].fit!="100% 100%"))?"table":"none")+";'><tbody><tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширины</td><td style='padding-right:8px;' colspan='3'>"
+        +"<table id='ho_size_art' style='width:100%;display:"+((!arr_l[arr_n].fit||(arr_l[arr_n].fit!="cover"&&arr_l[arr_n].fit!="contain"&&arr_l[arr_n].fit!="100% 100%"))?"table":"none")+";'><tbody><tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширина</td><td style='padding-right:8px;' colspan='3'>"
         +"<input id='ho_sw' class='input_text' onchange='if(typeof arr_l."+arr_n+".fit!==\"object\"){arr_l."+arr_n+".fit=[correct_value(this.value),\"auto\"]}else{arr_l."+arr_n+".fit[0]=correct_value(this.value)};if(arr_l."+arr_n+".fit[1].length==0){arr_l."+arr_n+".fit[1]=\"auto\"};ho_size();state_save();' type='text' value='"+((typeof arr_l[arr_n].fit==="object")?arr_l[arr_n].fit[0]:"")+"' style='width:100%;'>"
         +"</td></tr>"
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Высота</td><td style='padding-right:8px;' colspan='3'>"
@@ -2520,7 +2520,7 @@ function ho_update(){
             +"</tr><tr>"
             +"<td height='40px' align='right' style='width:40%;padding-right:8px;'>Название</td><td style='width:28px;' align='center'><select id='ho_tl"+i+"' onchange='ho_t"+i+".value=story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name[this.value];' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);'>"+project_languares(languare)+"</select></td><td colspan='2'><input id='ho_t"+i+"' class='input_text' onchange='var v=document.getElementById(\"ho_tl"+i+"\");if(!story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name={}};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name[v.value]=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px;' value='"+((arr_l[arr_n].objects[i].name&&arr_l[arr_n].objects[i].name[languare])?arr_l[arr_n].objects[i].name[languare]:"")+"'></td>"
             +"</tr><tr>"
-            +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширины</td><td style='padding-right:8px;' colspan='2'>"
+            +"<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширина</td><td style='padding-right:8px;' colspan='2'>"
             +"<input id='ho_w"+i+"' class='input_text' onchange='var s=parseInt(correct_value(this.value,true));if(ho_bs"+i+".checked){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]=parseInt(story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[1]*(s/story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]))};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].size[0]=s;item"+i+".style.width=s+\"px\";state_save();if(ho_bs"+i+".checked){ho_update()}' type='text' value='"+arr_l[arr_n].objects[i].size[0]+"' style='width:100%;'>"
             +"<td height='40px' align='right' rowspan='2'><input id='ho_bs"+i+"' type='checkbox' class='proportion_c' checked></td>"
             +"</td></tr>"
@@ -2579,7 +2579,7 @@ function ho_update(){
                 +"<option "+((arr_l[arr_n].objects[i].fit=="100% 100%")?"selected":"")+" value='100% 100%'>Заполнить</option>"
                 +'<option '+((arr_l[arr_n].objects[i].fit=='patch')?'selected':'')+' value="patch">9-patch</option>'
             +"</select></td></tr>"
-        if(arr_n=="terrain_map"){if(!arr_l[arr_n].objects[i].fit||(arr_l[arr_n].objects[i].fit!='patch'&&arr_l[arr_n].objects[i].fit!='cover'&&arr_l[arr_n].objects[i].fit!='contain'&&arr_l[arr_n].objects[i].fit!='100% 100%')){k+="<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширины</td><td style='padding-right:8px;' colspan='3'>"
+        if(arr_n=="terrain_map"){if(!arr_l[arr_n].objects[i].fit||(arr_l[arr_n].objects[i].fit!='patch'&&arr_l[arr_n].objects[i].fit!='cover'&&arr_l[arr_n].objects[i].fit!='contain'&&arr_l[arr_n].objects[i].fit!='100% 100%')){k+="<tr><td height='40px' align='right' style='width:40%;padding-right:8px;'>Ширина</td><td style='padding-right:8px;' colspan='3'>"
                 +"<input id='ho_aw"+i+"' class='input_text' onchange='if(typeof story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].fit!==\"object\"){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].fit=[correct_value(this.value),\"auto\"]}else{story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].fit[0]=correct_value(this.value)};if(ho_ah"+i+".value.length==0){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].fit[1]=\"auto\"};ho_update();state_save();' type='text' value='"+((arr_l[arr_n].objects[i].fit)?arr_l[arr_n].objects[i].fit[0]:"")+"' style='width:100%;'>"
             +"</td></tr>"
                 +"<tr><td height='40px' align='right' style='padding-right:8px;'>Высота</td><td style='padding-right:8px;' colspan='3'>"
@@ -3006,7 +3006,7 @@ function dialog_text_edit(){
 	+"<tr><td height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);' colspan='3'>Курсор в конце текста</td></tr>"
     +"<tr><td align='right' style='padding-right:8px;'>Изображение</td><td><input id='e_art' class='input_text' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[0]:"")+"' type='text'></td>"
     +"<td class='icon icon_load' style='height:40px;width:40px;' onclick='file_catalog(\"e_art\",\"img\",\"e_art\",0);'></td></tr>"
-    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Ширины</td><td><input id='e_width' class='input_text' onchange='this.value=correct_value(this.value);if(e_height.value.length==0){e_height.value=\"auto\"}' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[1]:"")+"' type='text'></td><td></td></tr>"
+    +"<tr><td height='40px' align='right' style='padding-right:8px;'>Ширина</td><td><input id='e_width' class='input_text' onchange='this.value=correct_value(this.value);if(e_height.value.length==0){e_height.value=\"auto\"}' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[1]:"")+"' type='text'></td><td></td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Высота</td><td><input id='e_height' class='input_text' onchange='this.value=correct_value(this.value);if(e_width.value.length==0){e_width.value=\"auto\"};' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[2]:"")+"' type='text'></td><td></td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Стиль CSS</td><td><input id='e_style' class='input_text' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[3]:"")+"' type='text'></td><td></td></tr>"
     if(v){
@@ -3634,7 +3634,7 @@ function panel_art(id){
     +'</select></td></tr>'
     if(!arr_s.art_size||arr_s.art_size==' '||typeof arr_s.art_size==='object'||(arr_s.art_size!='patch'&&arr_s.art_size!='100% 100%')){
         if(arr_s.art_size==' '){delete arr_s.art_size};
-        if(arr_s.art_size!='cover'&&arr_s.art_size!='contain'){tbody.innerHTML+='<tr><td height="40px" align="right" style="padding-right:8px;">Ширины</td>'
+        if(arr_s.art_size!='cover'&&arr_s.art_size!='contain'){tbody.innerHTML+='<tr><td height="40px" align="right" style="padding-right:8px;">Ширина</td>'
             +'<td colspan="3"><input class="input_text" onchange="if(!'+arr_t+'.art_size){'+arr_t+'.art_size=[correct_value(this.value),\'auto\']};'+arr_t+'.art_size[0]=correct_value(this.value);scen_edit_update(true);" type="text" style="width:100%;height:28px" value="'+((arr_s.art_size)?arr_s.art_size[0]:'')+'"></td>'
         +'</tr><tr><td height="40px" align="right" style="padding-right:8px;">Высота</td>'
             +'<td colspan="3"><input class="input_text" onchange="if(!'+arr_t+'.art_size){'+arr_t+'.art_size=[\'auto\',correct_value(this.value)]};'+arr_t+'.art_size[1]=correct_value(this.value);scen_edit_update(true);" type="text" style="width:100%;height:28px" value="'+((arr_s.art_size)?arr_s.art_size[1]:'')+'"></td>'
@@ -3777,7 +3777,7 @@ function art_panel_edit(block,i,n,b){
         +'<td ><input id="artt'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[artl'+b+'.value]=this.value;art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s.art[b].url[languare])?arr_s.art[b].url[languare]:arr_s.art[b].url)+'"></td>'
         +'<td height="40px" align="right" style="width:30px;" class="icon icon_load" onclick="file_catalog(\'artt'+b+'\',\'img\',\'artt'+b+'\',\'artpre'+b+'\',\'story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].url[artl'+b+'.value]\');"></td>'
     +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Ширины</td>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Ширина</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].art['+b+'].size[0]=correct_value(this.value);art_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+arr_s.art[b].size[0]+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Высота</td>'
@@ -4002,7 +4002,7 @@ function choice_panel_edit(block,i,n,b){
         +'<td height="40px" align="right" style="padding-right:8px;">Отступы текста</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].indent_text=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].indent_text)?arr_s[b].indent_text:'')+'"></td>'
     +'</tr><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;">Ширины</td>'
+        +'<td height="40px" align="right" style="padding-right:8px;">Ширина</td>'
         +'<td colspan="3"><input class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].size[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[0]:'')+'"></td>'
     +'</tr><tr>'
         +'<td height="40px" align="right" style="padding-right:8px;">Высота</td>'
@@ -4117,7 +4117,7 @@ function choice_panel_edit(block,i,n,b){
     if(!arr_s[b].art_size||arr_s[b].art_size==''||(arr_s[b].art_size!='patch'&&arr_s[b].art_size!='100% 100%')){
         if(arr_s[b].art_size==''){delete arr_s[b].art_size};
         if(arr_s[b].art_size!='cover'&&arr_s[b].art_size!='contain'){html+='</tr><tr>'
-                +'<td height="40px" align="right" style="padding-right:8px;">Ширины</td>'
+                +'<td height="40px" align="right" style="padding-right:8px;">Ширина</td>'
                 +'<td colspan="3"><input class="input_text" onchange="if(!story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size=[correct_value(this.value),\'auto\']};story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].art_size[0]=correct_value(this.value);choice_panel_update(\''+block+'\','+i+','+n+');state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].art_size)?arr_s[b].art_size[0]:'')+'"></td>'
             +'</tr><tr>'
                 +'<td height="40px" align="right" style="padding-right:8px;">Высота</td>'
@@ -4298,7 +4298,7 @@ function button_panel_edit(b){
             +'<td><input id="btsv'+b+'" class="input_text" onchange="story_script.parameters.buttons['+b+'].text2[btsvs'+b+'.value]=this.value;button_panel_update(true);state_save();" type="text" style="width:100%;height:28px;" value="'+((arr_s[b].text2[languare])?arr_s[b].text2[languare]:'')+'"></td>'
             +'<td height="40px" align="right" style="width:30px;" class="icon icon_edit" onclick="let l=document.getElementById(\'btsvs'+b+'\').value;voicesSynthesis(l,\'btsv'+b+'\',\'story_script.parameters.buttons['+b+'].text2[btsvs'+b+'.value]\',((\'btsvt'+b+'.value.length>0\')?btsvt'+b+'.value:\'hello\'))"></td>':"")
         +'</tr><tr>'
-            +'<td height="40px" align="right" style="padding-right:8px;">Ширины</td>'
+            +'<td height="40px" align="right" style="padding-right:8px;">Ширина</td>'
             +'<td colspan="3"><input class="input_text" onchange="story_script.parameters.buttons['+b+'].size[0]=correct_value(this.value);button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].size)?arr_s[b].size[0]:'')+'"></td>'
         +'</tr><tr>'
             +'<td height="40px" align="right" style="padding-right:8px;">Высота</td>'
@@ -4416,7 +4416,7 @@ function button_panel_edit(b){
         if(!arr_s[b].art_size||arr_s[b].art_size==''||(arr_s[b].art_size!='patch'&&arr_s[b].art_size!='100% 100%')){
             if(arr_s[b].art_size==''){delete arr_s[b].art_size};
             if(arr_s[b].art_size!='cover'&&arr_s[b].art_size!='contain'){html+='</tr><tr>'
-                    +'<td height="40px" align="right" style="padding-right:8px;">Ширины</td>'
+                    +'<td height="40px" align="right" style="padding-right:8px;">Ширина</td>'
                     +'<td colspan="3"><input class="input_text" onchange="if(!story_script.parameters.buttons['+b+'].art_size){story_script.parameters.buttons['+b+'].art_size=[correct_value(this.value),\'auto\']}else{story_script.parameters.buttons['+b+'].art_size[0]=correct_value(this.value)};button_panel_update();state_save();" type="text" style="width:100%;height:28px" value="'+((arr_s[b].art_size)?arr_s[b].art_size[0]:'')+'"></td>'
                 +'</tr><tr>'
                     +'<td height="40px" align="right" style="padding-right:8px;">Высота</td>'
@@ -4643,7 +4643,7 @@ function setup(){
             return "<br><br><p align='left' style='margin-left:8px;'>D-pad курсор</p><hr>"+
             "<table style='margin-left:10px;width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
             "<tr><td align='right' style='width:1%;'>Изображение курсора</td><td align='left'><input id='gamepad_image' class='input_text' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[0] :'')+"' type='text'><td class='icon icon_load' onclick=' file_catalog(\"gamepad_image\",\"img\",\"gamepad_image\",0) ' style='width:40px;' ></td></tr>"+
-            "<tr><td align='right'>Ширины</td><td align='left'><input id='gamepad_width' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[3] :'')+"' type='text'><td></td></tr>"+
+            "<tr><td align='right'>Ширина</td><td align='left'><input id='gamepad_width' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[3] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Высота</td><td align='left'><input id='gamepad_height' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[4] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Слева</td><td align='left'><input id='gamepad_left' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[2] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Сверху</td><td align='left'><input id='gamepad_top' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.gamepad)?story_script.parameters.gamepad.cursor[1] :'')+"' type='text'><td></td></tr>"+
@@ -4693,12 +4693,12 @@ function setup(){
         "<div id='blank_8' style='visibility:hidden;' class='set_blank'>"+font_list+"</div>"+
         //
         "<div id='blank_9' style='visibility:hidden;' class='set_blank'><br><p align='left' style=' margin-left:8px;'>Устройство управления</p><hr><form id='devices'><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'>"+
-        "<tr><td align='right' style='padding-top:4px;height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==true)?'checked' :'')+"></td><td align='left' style='width:80px;'>Мышь </td><td> прокрутка курсором мыши, масштабирование колесиком</td></tr>"+
-        "<tr><td align='right' style='padding-top:4px;height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==false)?'checked' :'')+"></td><td align='left' style='width:80px;'>Тачпад </td><td> прокрутка свайпом, рекомендуется для ноутбуков и MacBook.</td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==true)?'checked' :'')+"></td><td align='left' style='width:80px;'>Мышь </td><td> Перемещение курсором мыши, масштабирование колесиком</td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'><input type='radio' name='devices' class='chec_plugin checkbox_a' "+((setup_editor.wheel==false)?'checked' :'')+"></td><td align='left' style='width:80px;'>Тачпад </td><td> Перемещение свайпом, рекомендуется для ноутбуков и MacBook.</td></tr>"+
         "</tbody></table></form><br>"+
         "<p align='left' style='margin-left:8px;'>Размер окна предварительного просмотра</p><hr>"+
         "<table style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
-        "<tr><td align='right'>Ширины</td><td align='left' colspan='2'><input id='pv_v' class='input_text' value='"+setup_editor.pvw[0]+"' type='text'></td></tr>"+
+        "<tr><td align='right'>Ширина</td><td align='left' colspan='2'><input id='pv_v' class='input_text' value='"+setup_editor.pvw[0]+"' type='text'></td></tr>"+
         "<tr><td align='right'>Высота</td><td align='left' colspan='2'><input id='pv_h' class='input_text' value='"+setup_editor.pvw[1]+"' type='text'></td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style=' margin-left:8px;'>Отображение сценария</p><hr><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
