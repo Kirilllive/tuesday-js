@@ -122,7 +122,7 @@
 	[
 		"switches dialogue by swiping your finger across the touchscreen",
 		{
-			"ru": "переключает диалогов используя жест смахивания (свайп) влево или право",
+			"ru": "переключение диалогов используя жест смахивания (свайп) влево или право",
 			"ja": "スワイプ操作でダイアログを進行",
 			"es": "cambia los dialogos deslizando tu dedo a traves de la pantalla táctil"
 		}
@@ -130,7 +130,7 @@
 	[
 		"Speech synthesis TTS<br>reading text with a synthesized voice",
 		{
-			"ru": "Синтез речи TTS чтение текста синтезированным голосом",
+			"ru": "Синтез речи(TTS), чтение текста синтезированным голосом",
 			"ja": "音声合成「Text to Speach」で作成した音声 による読み上げ機能"
 		}
 	],
@@ -145,7 +145,7 @@
 	[
 		"<p style='font-size:22px;'>Tuesday JS visual novel engine",
 		{
-			"ru": "<p style='font-size:18px;'>Тьюсдей JS Движок визуальных новелл",
+			"ru": "<p style='font-size:18px;'>Tuesday JS Движок визуальных новелл",
 			"ja": "<p style='font-size:18px;'>ビジュアルノベル制作エンジン「Tuesday JS」",
 			"es": "<p style='font-size:22px;'>Tuesday JS motor de novela visual"
 		}
@@ -161,7 +161,7 @@
 	[
 		"scrolling with the mouse cursor, zooming with the wheel",
 		{
-			"ru": "прокрутка курсором мыши, масштабирование колесиком",
+			"ru": "Перемещение курсором мыши, масштабирование колесиком",
 			"ja": "スクロールはマウスカーソルとボタン。拡大と縮小はホイールで操作",
 			"es": "desplazando con el cursor del mouse, haciendo zoom con la rueda"
 		}
@@ -169,7 +169,7 @@
 	[
 		"swipe scrolling is recommended for Laptops and MacBooks",
 		{
-			"ru": "прокрутка свайпом, рекомендуется для ноутбуков и MacBook.",
+			"ru": "Перемещение свайпом, рекомендуется для ноутбуков и MacBook.",
 			"ja": "スワイプで操作。ノートパソコン又はマックブック以外の動作環境ではお薦めできません",
 			"es": "el desplazamiento por deslizamiento es recomendado para Laptops y MacBooks"
 		}
@@ -239,7 +239,7 @@
 	[
 		"Mouse<br>control with the zoom wheel",
 		{
-			"ru": "Мышь<br>управление зума колесиком ",
+			"ru": "Мышь<br>управление зума колесиком",
 			"ja": "マウス<br>拡大と縮小はホイールで操作",
 			"es": "Mouse<br>controla con la rueda del zoom"
 		}
@@ -1539,7 +1539,7 @@
 	[
 		">Width size<",
 		{
-			"ru": ">Ширины<",
+			"ru": ">Ширина<",
 			"ja": ">横幅<",
 			"es": ">Tamaño del ancho<"
 		}
@@ -1731,7 +1731,7 @@
 	[
 		"Touch swipe",
 		{
-			"ru": "Свайп-жес",
+			"ru": "Свайп-жест",
 			"ja": "タッチスワイプ操作",
 			"es": "Desplazamiento táctil"
 		}
@@ -1779,7 +1779,7 @@
 	[
 		">Width art<",
 		{
-			"ru": ">Ширины<",
+			"ru": ">Ширина<",
 			"ja": ">横幅<",
 			"es": ">Anchura del arte<"
 		}
@@ -2718,7 +2718,7 @@
 	[
 		">Width<",
 		{
-			"ru": ">Ширины<",
+			"ru": ">Ширина<",
 			"ja": ">横幅<",
 			"es": ">Ancho<"
 		}
