@@ -697,7 +697,7 @@ function name_block_update(){
     }
     return e
 } function ruby(n){
-    var r=n.split('=');return "<ruby>"+r[0]+"<rt>"+r[1]+"</rt></ruby>"
+    let r=n.split('=');return "<ruby>"+r[0]+"<rt>"+r[1]+"</rt></ruby>"
 } function go_story(choice){
 	if(story_json[tue_story][scene].dialogs.length!=0 && (check_choice(story_json[tue_story][scene].dialogs) || choice)){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog]
