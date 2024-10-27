@@ -5851,10 +5851,11 @@ function slideMove(e){
     left_block.style.width=pos+"px";
 }
 var state_num=0;
-function state_save(){
+function state_save(s){
     if(state_num>0){back_up.splice(0,state_num);state_num=0;}
     back_up.unshift(JSON.stringify(story_script));
     if(back_up.length>10){back_up.pop();}
+    window.addEventListener("beforeunload",(e)=>{ if(back_up.length>1){e.preventDefault();e.returnValue=""}});
 }
 function state_back(n){
     state_num+=n
@@ -5929,6 +5930,7 @@ function syntax_javascipt(code){
     }
     return output.replace(/\n/gm,'<br>').replace(/\t/g,'&Tab;').replace(/^\s+|\s{2,}/g,(a)=>new Array(a.length+1).join('&nbsp;')); //let symbol_tab=Array(4).join('\u00a0'); //.replace(/\t/g,document.createTextNode('\u00a0'))
 }
+
 </script>
 </body>
 </html>
