@@ -4,12 +4,32 @@ function hidden_objects(){
     arr_dialog=story_json[tue_story][scene].hidden_objects
     tue_text_view.innerHTML='';
     tuesday.style.backgroundImage='none'
-    findobjects=(story_json.parameters.hidden_objects.label.items>arr_dialog.objects.length)?arr_dialog.objects.length:story_json.parameters.hidden_objects.label.items;
+    let room=document.createElement("div");
+    let arr_item=[];
+    arr_dialog.objects.forEach((e,i)=>{if(!e.type){e.index=i;arr_item.push(e)}else{
+        var item=document.createElement("div");
+        if(e.className){item.className=e.className}
+        item.style=e.style;
+        item.style.width=e.size[0]+"px";
+        item.style.height=e.size[1]+"px";
+        item.style.backgroundRepeat="no-repeat";
+        item.style.backgroundPosition="center";
+        item.style.backgroundSize=e.fit;
+        item.style.backgroundImage='url("'+art_data(e.art)+'")';
+        item.style.position="absolute";
+        item.style.transformOrigin="top left";
+        item.style.transform='rotate('+e.angle+'deg)';
+        item.style.top=e.position[1]+"px";
+        item.style.left=e.position[0]+"px";
+        item.style.zIndex=i;
+        room.appendChild(item);
+    }})
+    findobjects=(story_json.parameters.hidden_objects.label.items>arr_item.length)?arr_item.length:story_json.parameters.hidden_objects.label.items;
     var view=document.createElement("div");
     view.id='tue_hiddenobjects';
     view.style='height:100%;width:100%;'+((navigator.userAgent.indexOf('Firefox')>0)?'overflow:hidden;':'overflow:auto;');
-    var room=document.createElement("div"),step=Math.round(arr_dialog.objects.length/findobjects),s=0,z=0;
-    if(findobjects<arr_dialog.objects.length&&step<2){step=2}
+    var step=Math.round(arr_item.length/findobjects),s=0,z=0;
+    if(findobjects<arr_item.length&&step<2){step=2}
     var r=Math.round(Math.random()*(step-1));
     if(arr_dialog.scale){ho.scale=arr_dialog.scale}
     room.id="tue_objectsroom";
@@ -24,28 +44,29 @@ function hidden_objects(){
     room.style.backgroundImage='url("'+art_data(arr_dialog.art)+'")';
     room.style.position="relative";
     room.style.overflow="hidden";
-    var sound=(story_json.parameters.hidden_objects.label_find.sound)?story_json.parameters.hidden_objects.label_find.sound:""
-    for(var i=0;i<arr_dialog.objects.length;i++){
+    var sound=(story_json.parameters.hidden_objects.label_find.sound)?story_json.parameters.hidden_objects.label_find.sound:"";
+    for(var i=0;i<arr_item.length;i++){
         var item=document.createElement("div");
-        item.className=arr_dialog.objects[i].className;
-        item.style=arr_dialog.objects[i].style;
-        item.style.width=arr_dialog.objects[i].size[0]+"px";
-        item.style.height=arr_dialog.objects[i].size[1]+"px";
+        if(arr_item[i].className){item.className=arr_item[i].className}
+        item.style=arr_item[i].style;
+        item.style.width=arr_item[i].size[0]+"px";
+        item.style.height=arr_item[i].size[1]+"px";
         item.style.backgroundRepeat="no-repeat";
         item.style.backgroundPosition="center";
-        item.style.backgroundSize=arr_dialog.objects[i].fit;
-        item.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
+        item.style.backgroundSize=arr_item[i].fit;
+        item.style.backgroundImage='url("'+art_data(arr_item[i].art)+'")';
         item.style.position="absolute";
         item.style.transformOrigin="top left";
-        item.style.transform='rotate('+arr_dialog.objects[i].angle+'deg)';
-        item.style.top=arr_dialog.objects[i].position[1]+"px";
-        item.style.left=arr_dialog.objects[i].position[0]+"px";
+        item.style.transform='rotate('+arr_item[i].angle+'deg)';
+        item.style.top=arr_item[i].position[1]+"px";
+        item.style.left=arr_item[i].position[0]+"px";
+        item.style.zIndex=arr_item[i].index;
         var name=document.createElement("div");
         if(story_json.parameters.hidden_objects.label.style){name.style=story_json.parameters.hidden_objects.label.style}
         if(story_json.parameters.hidden_objects.label.className){name.className=story_json.parameters.hidden_objects.label.className}
         if(i==r && z<findobjects){
             s+=step;
-            item.setAttribute("onclick",'sound_play("'+((arr_dialog.objects[i].sound)?arr_dialog.objects[i].sound:sound)+'");'+((!story_json.parameters.hidden_objects.label_find.no_del_item)?'this.remove();':'this.setAttribute(\'onclick\',\'\')')+((arr_dialog.objects[i].js)?arr_dialog.objects[i].js:'')+';find_item("item'+i+'");');
+            item.setAttribute("onclick",'sound_play("'+((arr_item[i].sound)?arr_item[i].sound:sound)+'");'+((!story_json.parameters.hidden_objects.label_find.no_del_item)?'this.remove();':'this.setAttribute(\'onclick\',\'\')')+((arr_item[i].js)?arr_item[i].js:'')+';find_item("item'+i+'");');
             name.style.width=story_json.parameters.hidden_objects.label.size[0];
             name.style.height=story_json.parameters.hidden_objects.label.size[1];
             name.style.float="left";
@@ -54,7 +75,7 @@ function hidden_objects(){
                 name.style.display="flex";
                 name.style.justifyContent=(story_json.parameters.hidden_objects.label.align)?story_json.parameters.hidden_objects.label.align[0]:"center";
                 name.style.alignItems=(story_json.parameters.hidden_objects.label.align)?story_json.parameters.hidden_objects.label.align[1]:"center";
-                name.innerHTML=art_data(arr_dialog.objects[i].name)
+                name.innerHTML=art_data(arr_item[i].name)
             }
             if(story_json.parameters.hidden_objects.label.tip=="art"||!story_json.parameters.hidden_objects.label.tip){
                 name.style.backgroundRepeat="no-repeat";
@@ -65,10 +86,10 @@ function hidden_objects(){
                     if (typeof story_json.parameters.hidden_objects.label.art_size==='object'){name.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size[0]+" "+story_json.parameters.hidden_objects.label.art_size[1];}
                     else {name.style.backgroundSize=story_json.parameters.hidden_objects.label.art_size;}
                 }
-                name.style.backgroundImage='url("'+art_data(arr_dialog.objects[i].art)+'")';
+                name.style.backgroundImage='url("'+art_data(arr_item[i].art)+'")';
             }
             if(step>1){r=s+Math.round(Math.random()*(step-1))}
-            if((arr_dialog.objects.length-s)<(findobjects-z)){r=s;step=1}
+            if((arr_item.length-s)<(findobjects-z)){r=s;step=1}
             if(story_json.parameters.hidden_objects.label.color){name.style.backgroundColor=story_json.parameters.hidden_objects.label.color}
             tue_text_view.appendChild(name);
             z++
