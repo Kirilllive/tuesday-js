@@ -138,21 +138,6 @@ Tuesday JS предоставляет обширные возможности д
 ![Tuesday JS localization](screenshots/localization.jpg)
 
 
-# Creating a СhatBot / チャットボット作成機能
-The project can be exported as a bot for the Telegram messenger. 
-You can easily create an online assistant for your business to automate customer service and improve service levels.
-Step-by-step guide to running a local server with Node.JS: https://kirilllive.github.io/tuesday-js/doc_editor.html#bot_telegram
-
-Tuesday JSで作成したプロジェクトは、チャットアプリTelegram上で動作するチャットボットとして出力可能なので、アクセスして来たお客様に24時間自動で応対するサービスが楽々制作できます。
-従来より一段階優れた顧客対応の実現に役立つこと間違い無しです。
-
-Проект можно экспортировать как бота для мессенджера Telegram.
-Вы можете легко создать онлайн-помощника для вашего бизнеса чтобы автоматизировать обслуживания клиентов и повысить уровень своего сервиса.
-
-
-![Tuesday JS localization](screenshots/telegram_bot.jpg)
-
-
 # Warning for Android version
 
 Minimum version of Android 5.1
