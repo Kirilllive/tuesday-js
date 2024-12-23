@@ -2148,10 +2148,10 @@ function random_choice_add(arr){
 	random_choice_edit();
     state_save();
 }
-function option_var(d){
+function option_var(d,n){
 	var var_list='';
 	if(story_script.parameters.variables){for(let l=0;l<Object.keys(story_script.parameters.variables).length;l++){var_list+="<option value='"+Object.keys(story_script.parameters.variables)[l]+"' "+((d==Object.keys(story_script.parameters.variables)[l])?"selected" :"")+">"+Object.keys(story_script.parameters.variables)[l]+"</option>"}}
-	return var_list
+	return var_list+((n)?"<option value=1>New variable</option>":"");
 }
 function project_languares(d){
 	var lang='';
@@ -4514,7 +4514,7 @@ function scen_editor_apply(){
 function variables_set_edit(){
     copy_arr=JSON.parse(JSON.stringify(arr_l));
     var t=""
-    for(var c=0;c<copy_arr.variables.length;c++){t+="<tr><td style='width:128px;' valign='bottom'><select class='var_name'>"+option_var(arr_l.variables[c][0])+"</select></td><td style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);'><select class='var_operation'><option value='add'>add</option><option value='set' "+((arr_l.variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' value='"+ arr_l.variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\");a.parentElement.removeChild(a);' style='width:40px;cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"};
+    for(var c=0;c<copy_arr.variables.length;c++){t+="<tr><td style='width:128px;' valign='bottom'><select class='var_name' onchange='let v=document.createElement(\"input\");v.className=\"var_name input_text\";v.value=\"variable_new\";this.parentNode.replaceChild(v,this);'>"+option_var(arr_l.variables[c][0],true)+"</select></td><td style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);'><select class='var_operation'><option value='add'>add</option><option value='set' "+((arr_l.variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' value='"+ arr_l.variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\");a.parentElement.removeChild(a);' style='width:40px;cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"};
     var html="<div class='window' style='width:480px;'><div class='win_head'>Changes to variables<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[4].en+"</p>"
     +"<div style='max-height:60vh;overflow-x:hidden;overflow-y:auto;'><table id='var_table' width='100%'><tbody>"+t+"</tbody></table>"
     +"<div onclick=\"variables_set_add('var_table')\" class='icon icon_add' style='margin-top:16px;height:26px;width:100%;cursor:pointer;'></div></div>"
@@ -4528,7 +4528,7 @@ function variables_set_add(id){
     var td2=document.createElement("td");
     var td3=document.createElement("td");
     var td4=document.createElement("td");
-    td1.innerHTML="<select class='var_name'>"+option_var()+"</select>";
+    td1.innerHTML="<select class='var_name' onchange='let v=document.createElement(\"input\");v.className=\"var_name input_text\";v.value=\"variable_new\";this.parentNode.replaceChild(v,this);'>"+option_var(false,true)+"</select>";
     td2.innerHTML="<select class='var_operation'><option value='add'>add</option><option value='set'>set</option></select>";
     td2.style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);';
     td3.innerHTML="<input class='input_text var_value' value='0' type='text'>";
@@ -4547,7 +4547,13 @@ function variables_set_apply(){
     li_c=document.getElementsByClassName("var_operation");
     li_z=document.getElementsByClassName("var_value");
     copy_arr.variables=[];
-    for(var i=0;i<li_v.length;i++){copy_arr.variables.push([li_v[i].value,li_c[i].value,((parseFloat(li_z[i].value)==li_z[i].value)?parseFloat(li_z[i].value):li_z[i].value)])};
+    for(var i=0;i<li_v.length;i++){
+        if(li_v[i].tagName=="INPUT"&&!story_script.parameters.variables[li_v[i].value]){
+            alert(li_v[i].value)
+            story_script.parameters.variables[li_v[i].value]=li_z[i].value;
+        }
+        copy_arr.variables.push([li_v[i].value,li_c[i].value,((parseFloat(li_z[i].value)==li_z[i].value)?parseFloat(li_z[i].value):li_z[i].value)])
+    };
     arr_l.variables=JSON.parse(JSON.stringify(copy_arr.variables));
     modal_window("close");
     update_novel();state_save();
@@ -4595,6 +4601,14 @@ function scen_compres(block,i,n){
     var v=document.getElementById('scen_video');if(v){v.pause();}
 }
 function correct_name(name){return name.trim().replace(/[\s.,':;]/g,'_');};
+
+
+function correct_rename(name){
+    if(name.length<5){toast('Name at least 5 characters'); name=name+"_var" }
+    if( /^[\w\s]+$/i.test(name) ){return name.trim().replace(/[\s.,':;]/g,'_')}else{ toast("Only latin characters & numbers");t=new Date();return "variable_"+t.toLocaleTimeString().replace(/:/g,'') };
+};
+
+
 let units=['px','%','em',"pc","pt","in","mm","cm","ex","ch","rem","vw","vh"];
 function correct_value(name,unit){
     var l=((!unit)?"px":"")
@@ -4618,7 +4632,7 @@ function setup(){
     if(!story_script.parameters.key){story_script.parameters.key=[]}
     for(i=0;i<li.length;i++){block_list+="<option value='"+li[i].id+"' "+((li[i].id==story_script.parameters.launch_story)?"selected" :"")+">"+li[i].id+"</option>"}
     var var_list="<table width='100%' id='var_tablet'><tbody>";
-    if(story_script.parameters.variables){for(i=0;i<Object.keys(story_script.parameters.variables).length;i++){var_list+="<tr><td style='padding-right:8px;border-right:1px solid var(--cb);width:40%;padding-top:10px;'><input class='var_name input_text' onchange='this.value=correct_name(this.value)' placeholder='Name' value='"+Object.keys(story_script.parameters.variables)[i]+"' type='text'></td><td><input class='var_vol input_text' placeholder='Value' style='padding-top:10px;' value='"+story_script.parameters.variables[Object.keys(story_script.parameters.variables)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr');a.parentElement.removeChild(a);\" style='width:40px;cursor:pointer;' title='delet "+Object.keys(story_script.parameters.variables)[i]+"' class='icon icon_del'></td></tr>";}}
+    if(story_script.parameters.variables){for(i=0;i<Object.keys(story_script.parameters.variables).length;i++){var_list+="<tr><td style='padding-right:8px;border-right:1px solid var(--cb);width:40%;padding-top:10px;'><input class='var_name input_text' onchange='this.value=correct_rename(correct_name(this.value))' placeholder='Name' value='"+Object.keys(story_script.parameters.variables)[i]+"' type='text'></td><td><input class='var_vol input_text' placeholder='Value' style='padding-top:10px;' value='"+story_script.parameters.variables[Object.keys(story_script.parameters.variables)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr');a.parentElement.removeChild(a);\" style='width:40px;cursor:pointer;' title='delet "+Object.keys(story_script.parameters.variables)[i]+"' class='icon icon_del'></td></tr>";}}
     var_list+="</tbody></table><div onclick=\"add_tr('var_tablet')\" class='icon icon_add' style='margin:16px 0 0 45%;height:26px;width:26px;cursor:pointer;'></div>"
     var sound_list="<table width='100%' id='var_sounds'><tbody>";
     if(story_script.parameters.sounds){for(i=0;i<Object.keys(story_script.parameters.sounds).length;i++){sound_list+="<tr><td style='padding-right:8px;border-right:1px solid var(--cb);width:40%;padding-top:10px;'><input class='sound_name input_text' placeholder='Name' value='"+Object.keys(story_script.parameters.sounds)[i]+"' type='text'></td><td><input class='sound_path input_text' placeholder='path to audio file' style='padding-top:10px;' value='"+story_script.parameters.sounds[Object.keys(story_script.parameters.sounds)[i]]+"' type='text'></td><td onclick=\"var a=this.closest('tr');a.parentElement.removeChild(a);\" style='width:40px;cursor:pointer;' title='delet "+Object.keys(story_script.parameters.sounds)[i]+"' class='icon icon_del'></td></tr>";}}
@@ -4802,7 +4816,7 @@ function add_tr(id){
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;padding-top:10px;";
         td2.innerHTML="<input class='title_name input_text' value='"+languare_data(story_script.parameters.title)+"' style='padding-top:10px;' type='text' placeholder='translated title'>";
     }else if(id=='var_tablet'){
-        td1.innerHTML="<input class='var_name input_text' value='variable"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name variable' onchange='this.value=correct_name(this.value)' style='padding-top:10px;' type='text'>";
+        td1.innerHTML="<input class='var_name input_text' value='variable_"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name variable' onchange='this.value=correct_rename(correct_name(this.value))' style='padding-top:10px;' type='text'>";
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:40%;";
         td2.innerHTML="<input class='var_vol input_text' style='padding-top:10px;' type='text' placeholder='value'>";
     }else if(id=='var_sounds'){
