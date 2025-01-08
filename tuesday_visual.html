@@ -948,7 +948,7 @@ if(setup_editor.ferst){
     modal_window("open",sel);
 }else{editor_setup();}
 function editor_setup(){
-    world.className=setup_editor.fon;	
+    world.className=setup_editor.fon;
     screen_preview.className=setup_editor.fon;
     if(setup_editor.wheel){html.style.overflow='hidden';}
     if(setup_editor.ui&&setup_editor.ui!=0){set_ui(setup_editor.ui);}
@@ -998,39 +998,37 @@ function selectJson(jsons){
     }else if(jsons.length==0){alert('JSON file not found')}
 }
 window.addEventListener('load',()=>{
-    var dropEvent =(e)=>{
-        let target={target:{files:[]}},open=false,reading=0;
-        wf=e.dataTransfer.items[0].webkitGetAsEntry().name+"/";
-        let jsons=[];clear_Files();countBytes=0;
-        function traverseFileTree(item,path){
-            path=path||"";
-            if(item.isFile){
-                item.file((file)=>{
-                    reading--;
-                    countBytes+=file.size;
-                    project_files.push([file.webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(file),file.type]);
-                    if(file.type=="application/json"&&file.webkitRelativePath.split("/").length==2){jsons.push([project_files.length-1,file.name]);}
-                    if(!open && reading==0 && jsons.length>0){open=true;selectJson(jsons)}
-                })
-            } else if (item.isDirectory){
-                var dirReader = item.createReader();
-                dirReader.readEntries((entries)=>{
-                    reading=0;
-                    for (var i = 0; i < entries.length; i++) {reading++;
-                        traverseFileTree(entries[i], path + item.name + "/")
-                    }
-                });
-            }
-        };
-        traverseFileTree(e.dataTransfer.items[0].webkitGetAsEntry())
+    var dropEvent=(e)=>{
+//        let target={target:{files:[]}},open=false,reading=0;
+//        wf=e.dataTransfer.items[0].webkitGetAsEntry().name+"/";
+//        let jsons=[];clear_Files();countBytes=0;
+//        function traverseFileTree(item,path){
+//            path=path||"";
+//            if(item.isFile){
+//                item.file((file)=>{
+//                    reading--;
+//                    countBytes+=file.size;
+//                    project_files.push([file.webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(file),file.type]);
+//                    if(file.type=="application/json"&&file.webkitRelativePath.split("/").length==2){jsons.push([project_files.length-1,file.name]);}
+//                    if(!open && reading==0 && jsons.length>0){open=true;selectJson(jsons)}
+//                })
+//            } else if (item.isDirectory){
+//                var dirReader = item.createReader();
+//                dirReader.readEntries((entries)=>{
+//                    reading=0;
+//                    for (var i = 0; i < entries.length; i++) {reading++;
+//                        traverseFileTree(entries[i], path + item.name + "/")
+//                    }
+//                });
+//            }
+//        };
+//        traverseFileTree(e.dataTransfer.items[0].webkitGetAsEntry())
         e.stopPropagation();e.preventDefault();return false;
     };
-    var dragEnter = function(e) {e.stopPropagation();e.preventDefault();};
-    var dragOver = function(e){e.stopPropagation();e.preventDefault();};
-    var dragLeave=function(e){e.stopPropagation();e.preventDefault();};
-    window.addEventListener('dragenter',dragEnter,false);
-    window.addEventListener('dragover',dragOver,false);
-    window.addEventListener('dragleave',dragLeave,false);
+    let disabled=(e)=>{e.stopPropagation();e.preventDefault();};
+    window.addEventListener('dragenter',disabled,false);
+    window.addEventListener('dragover',disabled,false);
+    window.addEventListener('dragleave',disabled,false);
     window.addEventListener('drop',dropEvent,false);
 });
 function open_file(name){
@@ -4543,7 +4541,7 @@ function scen_editor_apply(){
 function variables_set_edit(){
     copy_arr=JSON.parse(JSON.stringify(arr_l));
     var t=""
-    for(var c=0;c<copy_arr.variables.length;c++){t+="<tr><td style='width:128px;' valign='bottom'><select class='var_name' onchange='let v=document.createElement(\"input\");v.className=\"var_name input_text\";v.value=\"variable_new\";this.parentNode.replaceChild(v,this);'>"+option_var(arr_l.variables[c][0],true)+"</select></td><td style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);'><select class='var_operation'><option value='add'>add</option><option value='set' "+((arr_l.variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' value='"+ arr_l.variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\");a.parentElement.removeChild(a);' style='width:40px;cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"};
+    for(var c=0;c<copy_arr.variables.length;c++){t+="<tr><td style='width:128px;' valign='bottom'><select class='var_name' onchange='let v=document.createElement(\"input\");v.className=\"var_name input_text\";v.value=\"variable_new\";v.setAttribute(\"onchange\",\"this.value=correct_rename(correct_name(this.value))\");this.parentNode.replaceChild(v,this);'>"+option_var(arr_l.variables[c][0],true)+"</select></td><td style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);'><select class='var_operation'><option value='add'>add</option><option value='set' "+((arr_l.variables[c][1]=="set")?"selected":"")+">set</option></select></td><td><input class='input_text var_value' value='"+ arr_l.variables[c][2] +"' type='text'></td><td onclick='var a=this.closest(\"tr\");a.parentElement.removeChild(a);' style='width:40px;cursor:pointer;' title='delet' class='icon icon_del'></td></tr>"};
     var html="<div class='window' style='width:480px;'><div class='win_head'>Changes to variables<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[4].en+"</p>"
     +"<div style='max-height:60vh;overflow-x:hidden;overflow-y:auto;'><table id='var_table' width='100%'><tbody>"+t+"</tbody></table>"
     +"<div onclick=\"variables_set_add('var_table')\" class='icon icon_add' style='margin-top:16px;height:26px;width:100%;cursor:pointer;'></div></div>"
@@ -4557,7 +4555,7 @@ function variables_set_add(id){
     var td2=document.createElement("td");
     var td3=document.createElement("td");
     var td4=document.createElement("td");
-    td1.innerHTML="<select class='var_name' onchange='let v=document.createElement(\"input\");v.className=\"var_name input_text\";v.value=\"variable_new\";this.parentNode.replaceChild(v,this);'>"+option_var(false,true)+"</select>";
+    td1.innerHTML="<select class='var_name' onchange='let v=document.createElement(\"input\");v.className=\"var_name input_text\";v.value=\"variable_new\";v.setAttribute(\"onchange\",\"this.value=correct_rename(correct_name(this.value))\");this.parentNode.replaceChild(v,this);'>"+option_var(false,true)+"</select>";
     td2.innerHTML="<select class='var_operation'><option value='add'>add</option><option value='set'>set</option></select>";
     td2.style='width:48px;border-right:1px solid var(--cb);border-left:1px solid var(--cb);';
     td3.innerHTML="<input class='input_text var_value' value='0' type='text'>";
@@ -4578,7 +4576,6 @@ function variables_set_apply(){
     copy_arr.variables=[];
     for(var i=0;i<li_v.length;i++){
         if(li_v[i].tagName=="INPUT"&&!story_script.parameters.variables[li_v[i].value]){
-            alert(li_v[i].value)
             story_script.parameters.variables[li_v[i].value]=li_z[i].value;
         }
         copy_arr.variables.push([li_v[i].value,li_c[i].value,((parseFloat(li_z[i].value)==li_z[i].value)?parseFloat(li_z[i].value):li_z[i].value)])
@@ -4630,14 +4627,10 @@ function scen_compres(block,i,n){
     var v=document.getElementById('scen_video');if(v){v.pause();}
 }
 function correct_name(name){return name.trim().replace(/[\s.,':;]/g,'_');};
-
-
 function correct_rename(name){
     if(name.length<5){toast('Name at least 5 characters'); name=name+"_var" }
     if( /^[\w\s]+$/i.test(name) ){return name.trim().replace(/[\s.,':;]/g,'_')}else{ toast("Only latin characters & numbers");t=new Date();return "variable_"+t.toLocaleTimeString().replace(/:/g,'') };
 };
-
-
 let units=['px','%','em',"pc","pt","in","mm","cm","ex","ch","rem","vw","vh"];
 function correct_value(name,unit){
     var l=((!unit)?"px":"")
