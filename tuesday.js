@@ -393,7 +393,7 @@ function name_block_update(){
                 video.style.top="50%";
                 video.style.transform='translate(-50%,-50%)';
             }else{
-                if(!video.src.includes(arr_dialog.video.url)){video.src=art_data(arr_dialog.video.url)}
+                if(!video.src.includes(arr_dialog.video.url)){encodeURI(video.src)==encodeURI(art_data(arr_dialog.video.url))}
             }
             if(arr_dialog.video.fit){
                 if(arr_dialog.video.fit=='contain'){
