@@ -389,13 +389,19 @@ function name_block_update(){
                 if(arr_dialog.video.className){video.style=arr_dialog.video.className+" tue_v"};
                 video.style.position="absolute";
                 video.setAttribute('onloadedmetadata','');
+                video.style.transform='translate(-50%,-50%)';
                 video.style.left="50%";
                 video.style.top="50%";
-                video.style.transform='translate(-50%,-50%)';
             }else{
-                if(!video.src.includes(arr_dialog.video.url)){encodeURI(video.src)==encodeURI(art_data(arr_dialog.video.url))}
+                if(!video.src.includes(encodeURI(art_data(arr_dialog.video.url)))){video.src=art_data(arr_dialog.video.url)}
+                if(arr_dialog.video.time_start){video.currentTime=arr_dialog.video.time_start;}
+                if(!arr_dialog.video.fit){video_size();window.addEventListener('resize',video_size,true);}
+                video.style.transform='translate(-50%,-50%)';
+                video.style.left="50%";
+                video.style.top="50%";
             }
             if(arr_dialog.video.fit){
+                window.removeEventListener('resize',video_size,true);
                 if(arr_dialog.video.fit=='contain'){
                     video.style.width="100%";
                     video.style.height="100%";
@@ -412,8 +418,8 @@ function name_block_update(){
             }
             if(arr_dialog.video.loop){video.loop=arr_dialog.video.loop;}else{video.loop=false;}
             if(arr_dialog.video.sound && arr_dialog.video.sound>0){video.muted=false;video.volume=arr_dialog.video.sound/100;}else{video.muted=true;}
-            if(arr_dialog.video.time_start){video.onloadedmetadata = function() { this.currentTime=arr_dialog.video.time_start;if(!arr_dialog.video.fit||arr_dialog.video.fit=='cover'){video_size();}if(arr_dialog.video.stop){this.pause();}};}
-            else if(arr_dialog.video.fit=='cover'||!arr_dialog.video.fit){video.onloadedmetadata=function(){video_size();window.addEventListener('script_executed',video_size,true);window.addEventListener('resize',video_size,true);}}
+            if(arr_dialog.video.time_start){video.onloadedmetadata=function(){this.currentTime=arr_dialog.video.time_start;if(!arr_dialog.video.fit){video_size();}if(arr_dialog.video.stop){this.pause();}};}
+            else if(!arr_dialog.video.fit){video.onloadedmetadata=function(){video_size();window.addEventListener('script_executed',video_size,true);window.addEventListener('resize',video_size,true);}}
             if(arr_dialog.video.time_end){
                 if(arr_dialog.video.loop){
                     video.ontimeupdate=function(){if(video.currentTime>=arr_dialog.video.time_end){video.currentTime=((arr_dialog.video.time_start)?arr_dialog.video.time_start:0)}}
