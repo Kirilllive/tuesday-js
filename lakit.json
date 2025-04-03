@@ -4,7 +4,8 @@
 		{
 			"ru": "Настройки текста и имени персонажа для текстовой области. Чтобы использовать данные из переменной, используйте  \\< var_name \\>. Чтобы добавить фуригану или аннотации, используйте \\< 簡単 = かんたん \\>. Если написать skip то фраза в локализации будет пропущена.",
 			"ja": "テキストエリアに表示するテキストと、発言者を表わすキャラクター名を設定します。変数の値を表示するには、\\< var_name \\>のように記述してください。読み仮名や補足文として、文や語の上に小さなテキストを表示させることもできます。\\< 任意の語や文 = 小さなテキスト \\>のように記述します。例えば\\< 簡単 = かんたん \\>とすれば、「簡単」の上に「かんたん」という語が振り仮名のように加わります。テキスト欄にテキストが無い箇所は、その言語設定時は省略されます。",
-			"es": "Los ajustes de texto y nombre del personaje se mostrarán en el área de texto. Para usar datos de variables, usar \\< var_name \\>. Para agregar furigana o anotaciones usar \\< 簡単 = かんたん \\>. Si solo escribes skip, la frase en la traducción será omitida."
+			"es": "Los ajustes de texto y nombre del personaje se mostrarán en el área de texto. Para usar datos de variables, usar \\< var_name \\>. Para agregar furigana o anotaciones usar \\< 簡単 = かんたん \\>. Si solo escribes skip, la frase en la traducción será omitida.",
+			"zh": "将显示在文本区域中的文本和角色名称设置。要使用变量中的数据，请使用 <var_name>。要添加注音或注释，请使用 < 簡単 = かんたん >。如果只写 “skip”，那么本地化中的该短语将被跳过。"
 		}
 	],
 	[
@@ -13,7 +14,7 @@
 			"ru": "Максимально допустимый размера курсора 128×128px, изображения большего размера будут игнорироваться. Рекомендуемый размер 32х32 для максимальной совместимости.",
 			"ja": "カーソルとして設定できる画像のサイズは128ピクセル×128ピクセルまでです。ただし、推奨は32ビクセル×32ビクセル以下です。これを上回る画像は、OSやデバイスの互換性に支障が出る可能性があります。",
 			"es": "El tamaño limite del cursor es de 128×128px. Las imágenes más grandes que el cursor son ignoradas. Sin embargo, deberías limitarte al tamaño de 32×32 para mayor compatibilidad con sistemas operativos y plataformas.",
-			"en": ""
+			"zh": "光标尺寸的限制为 128×128 像素。尺寸更大的光标图像将被忽略。不过，为了与操作系统和平台实现最大程度的兼容，你应将光标尺寸限制在 32×32 像素。"
 		}
 	],
 	[
@@ -21,7 +22,8 @@
 		{
 			"ru": "Изменения в значениях переменных, эти значения могут отображаться в тексте как \\<var_name\\> или использоваться в \\''Последствие выбора\\'' для перехода к другому блоку.",
 			"ja": "変数の値を変更します。変数は\\< var_name \\> と入力してテキスト欄に表示したり、<br>「分岐(変数依拠)」処理を別なブロックに進めるのに使います。",
-			"es": "Los cambios en los valores de las variables, pueden ser mostrados en el texto como \\<var_name\\> o en \\\"Decisión de destino\\\"  para ir a otro bloque del código."
+			"es": "Los cambios en los valores de las variables, pueden ser mostrados en el texto como \\<var_name\\> o en \\\"Decisión de destino\\\"  para ir a otro bloque del código.",
+			"zh": "变量值发生变化时，它们的值可以在文本中以 <var_name> 的形式显示，或者在 “传统选项” 中用于跳转到脚本的另一个代码块。"
 		}
 	],
 	[
@@ -29,7 +31,8 @@
 		{
 			"ru": "Автоматический переход к следующему блоку на основе значений в переменных. Переменные создаются в «Настройки проекта» в разделе «Переменные».",
 			"ja": "変数の値で次に処理するブロックが決まります。変数は設定ウィンドウの【変数】で作成します",
-			"es": "Desplaza al siguiente bloque basado en el valor de las variables. Las variables son creadas en la sección de \\\"Ajustes del Proyecto\\\", en la sección \\\"Variables\\\"."
+			"es": "Desplaza al siguiente bloque basado en el valor de las variables. Las variables son creadas en la sección de \\\"Ajustes del Proyecto\\\", en la sección \\\"Variables\\\".",
+			"zh": "根据变量值移动到下一个块。变量可以在「项目设置」的「变量」部分中创建。"
 		}
 	],
 	[
@@ -37,7 +40,8 @@
 		{
 			"ru": "Будет создан только index.html, после его создания необходимо перенести его в рабочую папку проекта.",
 			"ja": "プロジェクトの内容と各ファイルの位置(パス)を記述したindex.htmlのみ作成。ゲームを起動するには、作成したindex.htmlが作業フォルダーにある必要があります。",
-			"es": "Solo los archivos .hml indexados serán creados, y después de ello es necesario transferirlo a la carpeta de trabajo del proyecto."
+			"es": "Solo los archivos .hml indexados serán creados, y después de ello es necesario transferirlo a la carpeta de trabajo del proyecto.",
+			"zh": "只会创建 index.html 文件，创建后需要将其转移到项目的工作文件夹中。"
 		}
 	],
 	[
@@ -45,7 +49,8 @@
 		{
 			"ru": "Не рекомендуется! Все файлы будут объединены в один файл. Используйте только в не больших проектах.",
 			"ja": "非推奨です。使用する全リソース・ファイル(画像や音楽)をbase64形式に変換して組み込んだhtmlファイルを作成します。総ファイル数が少ないプロジェクト以外では不具合の原因になります。",
-			"es": "¡No recomendado! Todos los archivos serán combinados en un solo archivo html en formato base64. Solo usa un número ínfimo de archivos."
+			"es": "¡No recomendado! Todos los archivos serán combinados en un solo archivo html en formato base64. Solo usa un número ínfimo de archivos.",
+			"zh": "不推荐！所有文件将被合并为一个 base64 格式的 html 文件。仅适用于文件数量较少的情况。"
 		}
 	],
 	[
@@ -53,7 +58,8 @@
 		{
 			"ru": "Вы может изменить токен для бота в настройках проекта. пошаговую инструкцию по запуску бота можно найти в",
 			"ja": "ボット用の認証トークンは、プロジェクト設定画面で変更できます。ボット稼働までの手順を一つ一つ説明した文章を",
-			"es": "Puede cambiar el token para bot en la configuración del proyecto. las instrucciones paso a paso para iniciar el bot se pueden encontrar en"
+			"es": "Puede cambiar el token para bot en la configuración del proyecto. las instrucciones paso a paso para iniciar el bot se pueden encontrar en",
+			"zh": "你可以在项目设置中更改机器人的令牌。启动机器人的详细步骤说明可以在此找到"
 		}
 	],
 	[
@@ -61,7 +67,8 @@
 		{
 			"ru": "Выберите подходящее вам устройство ввода. Изменить устройство можно в настройках в разделе «редактор».",
 			"ja": "操作に使用するデバイスを選びましょう。設定画面の「エディター」タブからいつでも変更できます。",
-			"es": "Escoge la entrada del dispositivo que más se acomode a ti. Puedes cambiar el dispositivo en los ajustes en la sección de \\\"Editor\\\"."
+			"es": "Escoge la entrada del dispositivo que más se acomode a ti. Puedes cambiar el dispositivo en los ajustes en la sección de \\\"Editor\\\".",
+			"zh": "选择适合你的输入设备。你可以在设置的「编辑器」部分更改设备。"
 		}
 	],
 	[
@@ -69,7 +76,8 @@
 		{
 			"ru": "Экспорт проекта в чат-бот для мессенджера Telegram<br>Внимание! некоторые функции могут не поддерживаться ботом",
 			"ja": "メッセンジャーアプリ「Telegram」用のチャットボットとして出力<br>ボットとして出力した場合、一部機能が動作しない可能性があります。",
-			"es": "Exportación de proyecto a bot de chat para Telegram Messenger<br>¡Advertencia! algunas funciones pueden no ser compatibles con el bot"
+			"es": "Exportación de proyecto a bot de chat para Telegram Messenger<br>¡Advertencia! algunas funciones pueden no ser compatibles con el bot",
+			"zh": "将项目导出为 Telegram 聊天机器人<br>警告！某些功能可能不被机器人支持"
 		}
 	],
 	[
@@ -77,7 +85,8 @@
 		{
 			"ru": "Настройка внешнего вида сцены, ее фоновое изображение и музыка для последующих диалогов и действий.",
 			"ja": "シーンの背景画像や背景色、音楽について設定します。",
-			"es": "Personaliza la apariencia de la escena, su imagen de fondo y música, para posteriores dialogos y acciones."
+			"es": "Personaliza la apariencia de la escena, su imagen de fondo y música, para posteriores dialogos y acciones.",
+			"zh": "自定义场景的外观、背景图片和音乐，用于后续的对话和动作。"
 		}
 	],
 	[
@@ -85,7 +94,8 @@
 		{
 			"ja": "任意のシーンやダイアログに進行順序を無視して処理を飛ばします。想定外の不具合を引き起こすこともあるので、注意して使用してください。",
 			"ru": "Вы можете указать переход к определенной сцене и диалогу в блоке (функция может вызывать ошибки)",
-			"es": "Puede configurar la transición a una escena y diálogo específicos en bloque (la función puede causar errores)"
+			"es": "Puede configurar la transición a una escena y diálogo específicos en bloque (la función puede causar errores)",
+			"zh": "你可以设置转换到特定场景和对话块（此功能可能会导致错误）"
 		}
 	],
 	[
@@ -93,7 +103,8 @@
 		{
 			"ru": "Все файлы из рабочей папки и index.html будут упакованы в zip-архив.",
 			"ja": "作業フォルダーの全ファイルとindex.htmlを纏めたzipアーカイブを作成します。",
-			"es": "Todos los archivos de la carpeta de trabajo y del archivo .html indexado serán comprimidos en un zip. "
+			"es": "Todos los archivos de la carpeta de trabajo y del archivo .html indexado serán comprimidos en un zip. ",
+			"zh": "工作文件夹中的所有文件和 index.html 将被打包成 zip 压缩文件。"
 		}
 	],
 	[
@@ -108,7 +119,8 @@
 		"The variables are in story_json.parameters.variables[var_name] array",
 		{
 			"ru": "Переменные находятся в массиве story_json.parameters.variables[var_name]",
-			"ja": "変数は、jsonファイル内に次のように配列(array)として保存します。【story_json.parameters.variables[変数名]】"
+			"ja": "変数は、jsonファイル内に次のように配列(array)として保存します。【story_json.parameters.variables[変数名]】",
+			"zh": "变量存储在【story_json.parameters.variables[变量名]】"
 		}
 	],
 	[
@@ -116,7 +128,8 @@
 		{
 			"ru": "игровая механика где игрок должен найти в сцене элементы из списка.",
 			"ja": "配置したオブジェクトをプレイヤーが見つけると処理が進む仕掛けです。",
-			"es": "el jugador debe encontrar los objetos de una lista que están ocultos dentro de una escena"
+			"es": "el jugador debe encontrar los objetos de una lista que están ocultos dentro de una escena",
+			"zh": "玩家必须在场景中找到列表中隐藏的物品"
 		}
 	],
 	[
@@ -124,14 +137,16 @@
 		{
 			"ru": "переключение диалогов используя жест смахивания (свайп) влево или право",
 			"ja": "スワイプ操作でダイアログを進行",
-			"es": "cambia los dialogos deslizando tu dedo a traves de la pantalla táctil"
+			"es": "cambia los dialogos deslizando tu dedo a traves de la pantalla táctil",
+			"zh": "通过在触摸屏上滑动手指切换对话"
 		}
 	],
 	[
 		"Speech synthesis TTS<br>reading text with a synthesized voice",
 		{
 			"ru": "Синтез речи(TTS), чтение текста синтезированным голосом",
-			"ja": "音声合成「Text to Speach」で作成した音声 による読み上げ機能"
+			"ja": "音声合成「Text to Speach」で作成した音声 による読み上げ機能",
+			"zh": "语音合成（TTS）<br>使用合成语音朗读文本"
 		}
 	],
 	[
@@ -139,7 +154,8 @@
 		{
 			"ru": "локация с отметками на другие блоки сюжета.",
 			"ja": "別のプロックに処理が移行する際、地図とマーカーを表示して現在位置を示す演出が可能です",
-			"es": "ubicación con marcadores para la transición a otros bloques de la trama."
+			"es": "ubicación con marcadores para la transición a otros bloques de la trama.",
+			"zh": "带有标记点的位置图，用于转换到其他剧情块。"
 		}
 	],
 	[
@@ -147,7 +163,8 @@
 		{
 			"ru": "<p style='font-size:18px;'>Tuesday JS Движок визуальных новелл",
 			"ja": "<p style='font-size:18px;'>ビジュアルノベル制作エンジン「Tuesday JS」",
-			"es": "<p style='font-size:22px;'>Tuesday JS motor de novela visual"
+			"es": "<p style='font-size:22px;'>Tuesday JS motor de novela visual",
+			"zh": "<p style='font-size:22px;'>Tuesday JS 视觉小说引擎"
 		}
 	],
 	[
@@ -155,7 +172,8 @@
 		{
 			"ru": "Выберите рабочую папку с ресурсами для проекта.",
 			"ja": "このプロジェクトに使用する作業フォルダーを指定してください",
-			"es": "Selecciona una carpeta de trabajo con recursos para el proyecto."
+			"es": "Selecciona una carpeta de trabajo con recursos para el proyecto.",
+			"zh": "选择包含项目资源的工作文件夹。"
 		}
 	],
 	[
@@ -163,7 +181,8 @@
 		{
 			"ru": "Перемещение курсором мыши, масштабирование колесиком",
 			"ja": "スクロールはマウスカーソルとボタン。拡大と縮小はホイールで操作",
-			"es": "desplazando con el cursor del mouse, haciendo zoom con la rueda"
+			"es": "desplazando con el cursor del mouse, haciendo zoom con la rueda",
+			"zh": "使用鼠标光标滚动，使用滚轮缩放"
 		}
 	],
 	[
@@ -171,7 +190,8 @@
 		{
 			"ru": "Перемещение свайпом, рекомендуется для ноутбуков и MacBook.",
 			"ja": "スワイプで操作。ノートパソコン又はマックブック以外の動作環境ではお薦めできません",
-			"es": "el desplazamiento por deslizamiento es recomendado para Laptops y MacBooks"
+			"es": "el desplazamiento por deslizamiento es recomendado para Laptops y MacBooks",
+			"zh": "推荐在笔记本电脑和 MacBook 上使用滑动滚动"
 		}
 	],
 	[
@@ -179,7 +199,8 @@
 		{
 			"ru": "показать все линии связей или только выделенный блок",
 			"ja": "接続ラインを全て表示(オン)。選択したブロックに繋がるラインのみ(オフ)",
-			"es": "muestra todas las líneas de un bloque o solo un bloque seleccionado"
+			"es": "muestra todas las líneas de un bloque o solo un bloque seleccionado",
+			"zh": "显示所有代码块的连线或仅显示选中代码块的连线"
 		}
 	],
 	[
@@ -187,21 +208,24 @@
 		{
 			"ru": "Тачпад<br>рекомендуется для ноутбуков и MacBook",
 			"ja": "タッチパッド<br>ノートパソコンとマックブックでのみ推奨。",
-			"es": "Panel Táctil<br>recomendado para laptops and MacBooks"
+			"es": "Panel Táctil<br>recomendado para laptops and MacBooks",
+			"zh": "触控板<br>推荐用于笔记本电脑和 MacBook"
 		}
 	],
 	[
 		"Warning! Voices may vary across OS and browsers.",
 		{
 			"ru": "Внимание! Голоса могут различаться в зависимости от ОС и браузера.",
-			"ja": "合成 音声 は、OSとブラウザーによって挙動が異なることがあります。"
+			"ja": "合成 音声 は、OSとブラウザーによって挙動が異なることがあります。",
+			"zh": "警告！语音在不同操作系统和浏览器上可能会有所不同。"
 		}
 	],
 	[
 		"fixed screen size while maintaining aspect ratio",
 		{
 			"ru": "фиксированный размер экрана с сохранением соотношения сторон",
-			"ja": "スクリーン・サイズ変更時、アスペクト比を保持"
+			"ja": "スクリーン・サイズ変更時、アスペクト比を保持",
+			"zh": "固定屏幕尺寸并保持宽高比"
 		}
 	],
 	[
@@ -209,7 +233,8 @@
 		{
 			"ru": "анимация линий от элемента к следующему блоку",
 			"ja": "要素と移動先のブロックを繋ぐラインがアニメーションします",
-			"es": "lineas de animación del elemento al siguiente bloque"
+			"es": "lineas de animación del elemento al siguiente bloque",
+			"zh": "从元素到下一个代码块的连线动画"
 		}
 	],
 	[
@@ -217,7 +242,8 @@
 		{
 			"ru": "Поддержка внешних игровых контроллеров",
 			"es": "Compatibilidad con controladores de juegos externos",
-			"ja": "ゲーム用コントローラーを使った操作を有効にします"
+			"ja": "ゲーム用コントローラーを使った操作を有効にします",
+			"zh": "支持外部游戏控制器"
 		}
 	],
 	[
@@ -225,7 +251,8 @@
 		{
 			"ru": "переключение диалогов по клику или нажатию на экран.",
 			"es": "cambia el diálogo haciendo clic en la pantalla.",
-			"ja": "画面のクリック又はタップでダイアログを進行します"
+			"ja": "画面のクリック又はタップでダイアログを進行します",
+			"zh": "通过点击屏幕切换对话。"
 		}
 	],
 	[
@@ -233,7 +260,8 @@
 		{
 			"ru": "placeholder='путь к js файлу расширения'",
 			"ja": "placeholder='jsプラグインファイルの位置'",
-			"es": "placeholder='ruta al archivo js del plugin'"
+			"es": "placeholder='ruta al archivo js del plugin'",
+			"zh": "placeholder='插件 js 文件的路径'"
 		}
 	],
 	[
@@ -241,7 +269,8 @@
 		{
 			"ru": "Мышь<br>управление зума колесиком",
 			"ja": "マウス<br>拡大と縮小はホイールで操作",
-			"es": "Mouse<br>controla con la rueda del zoom"
+			"es": "Mouse<br>controla con la rueda del zoom",
+			"zh": "使用鼠标滚轮缩放"
 		}
 	],
 	[
@@ -249,7 +278,8 @@
 		{
 			"ru": "title='Экспорт текстов в CSV'",
 			"ja": "title='テキストをスプレッドシート形式で出力'",
-			"es": "title='Exporta texto a una hoja de cálculo'"
+			"es": "title='Exporta texto a una hoja de cálculo'",
+			"zh": "title='导出文本到CSV'"
 		}
 	],
 	[
@@ -257,7 +287,8 @@
 		{
 			"ru": "небольшое сообщение которое появляется на короткое время",
 			"ja": "「toast」というポップアップのようなメッセージを一時的に表示します",
-			"es": "pequeño mensaje aparece por un momento"
+			"es": "pequeño mensaje aparece por un momento",
+			"zh": "短时显示消息"
 		}
 	],
 	[
@@ -265,7 +296,8 @@
 		{
 			"ru": "Это имя блока уже используется",
 			"ja": "他のブロックと同じ名前にはできません",
-			"es": "Este nombre es usado por otros bloques"
+			"es": "Este nombre es usado por otros bloques",
+			"zh": "该名称已被其他块使用"
 		}
 	],
 	[
@@ -279,7 +311,8 @@
 		{
 			"ru": "placeholder='путь к аудио-файлу'",
 			"ja": "placeholder='音声ファイルの位置'",
-			"es": "placeholder='ruta al archivo de audio'"
+			"es": "placeholder='ruta al archivo de audio'",
+			"zh": "placeholder='音频文件的位置'"
 		}
 	],
 	[
@@ -288,7 +321,8 @@
 			"ru": "story_script.parameters.title.ru",
 			"ja": "story_script.parameters.title.ja",
 			"es": "story_script.parameters.title.es",
-			"pt": "story_script.parameters.title.pt"
+			"pt": "story_script.parameters.title.pt",
+			"zh": "story_script.parameters.title.zh"
 		}
 	],
 	[
@@ -296,7 +330,8 @@
 		{
 			"ru": "placeholder='путь к файлу шрифта'",
 			"ja": "placeholder='フォントファイルの位置'",
-			"es": "placeholder='ruta al archivo de fuente'"
+			"es": "placeholder='ruta al archivo de fuente'",
+			"zh": "placeholder='字体文件的位置'"
 		}
 	],
 	[
@@ -304,7 +339,8 @@
 		{
 			"ru": "Только латинские буквы и цифры",
 			"ja": "ラテン・アルファベットと半角数字のみ使用可能",
-			"es": "Solo caracteres latinos y números"
+			"es": "Solo caracteres latinos y números",
+			"zh": "仅限拉丁字母和数字"
 		}
 	],
 	[
@@ -312,7 +348,8 @@
 		{
 			"ru": ">Тьюсдей JS Движок визуальных новелл<",
 			"ja": ">Tuesday JS ビジュアルノベル・エンジン<",
-			"es": ">Editor visual web Tuesday JS<"
+			"es": ">Editor visual web Tuesday JS<",
+			"zh": ">Tuesday JS 视觉小说编辑器<"
 		}
 	],
 	[
@@ -320,7 +357,8 @@
 		{
 			"ru": "placeholder='переведенное название'",
 			"ja": "placeholder='異言語版のタイトル(未使用)'",
-			"es": "placeholder='traducir título'"
+			"es": "placeholder='traducir título'",
+			"zh": "placeholder='翻译标题'"
 		}
 	],
 	[
@@ -328,15 +366,26 @@
 		{
 			"ru": "Спасибо за помощь пользователям",
 			"ja": "お世話になったユーザーの方々",
-			"es": "Gracias a la ayuda de los usuarios"
+			"es": "Gracias a la ayuda de los usuarios",
+			"zh": "感谢用户们的帮助"
 		}
 	],
 	[
-		"title='Load project folder '",
+		"title='Load project folder'",
 		{
 			"ru": "title='Загрузить папку проекта'",
 			"ja": "title='プロジェクトフォルダーの読込'",
-			"es": "title='Cargar carpeta del proyecto '"
+			"es": "title='Cargar carpeta del proyecto '",
+			"zh": "title='加载项目文件夹'"
+		}
+	],
+	[
+		"title='Project code'",
+		{
+			"ru": "title='Проект код'",
+			"ja": "title='プロジェクトコード'",
+			"es": "title='Código del proyecto'",
+			"zh": "title='项目代码'"
 		}
 	],
 	[
@@ -344,7 +393,8 @@
 		{
 			"ru": "title='О программе'",
 			"ja": "title='Tuesday JSについて'",
-			"es": "title='Acerca del editor visual'"
+			"es": "title='Acerca del editor visual'",
+			"zh": "title='关于编辑器'"
 		}
 	],
 	[
@@ -352,7 +402,8 @@
 		{
 			"ru": "title='Запустить проект'",
 			"ja": "title='テストプレイ'",
-			"es": "title='Vista previa del Proyecto'"
+			"es": "title='Vista previa del Proyecto'",
+			"zh": "title='运行项目'"
 		}
 	],
 	[
@@ -361,7 +412,7 @@
 			"ru": "Данные JSON загружаны успешно",
 			"ja": "JSONファイルを読み込みました",
 			"es": "Carga completada del archivo JSON",
-			"en": ""
+			"zh": "JSON文件加载成功"
 		}
 	],
 	[
@@ -369,7 +420,8 @@
 		{
 			"ru": "CSV разделение запятыми.",
 			"ja": "CSVコンマ区切り方式で出力",
-			"es": "CSV Valores Delimitados por Comas."
+			"es": "CSV Valores Delimitados por Comas.",
+			"zh": "CSV逗号分隔方式"
 		}
 	],
 	[
@@ -383,7 +435,8 @@
 		">Converting data to base64<",
 		{
 			"ru": ">Преобразование данных в base64<",
-			"ja": ">データをbase64形式に変換<"
+			"ja": ">データをbase64形式に変換<",
+			"zh": ">数据转换为base64<"
 		}
 	],
 	[
@@ -391,7 +444,8 @@
 		{
 			"ru": "placeholder=\"Поиск блока\"",
 			"ja": "placeholder=\"ブロック検索\"",
-			"es": "placeholder=\"Buscar bloque\""
+			"es": "placeholder=\"Buscar bloque\"",
+			"zh": "placeholder=\"搜索块\""
 		}
 	],
 	[
@@ -399,7 +453,8 @@
 		{
 			"ru": "Экспорт текста в таблицу",
 			"ja": "テキストをスプレッドシート形式で出力",
-			"es": "Exportar texto a hoja de cálculo"
+			"es": "Exportar texto a hoja de cálculo",
+			"zh": "将文本导出到电子表格"
 		}
 	],
 	[
@@ -407,7 +462,8 @@
 		{
 			"ru": "файл index.html создан",
 			"ja": "index.htmlを作成します",
-			"es": "El archivo index.html está creado"
+			"es": "El archivo index.html está creado",
+			"zh": "创建index.html文件"
 		}
 	],
 	[
@@ -416,7 +472,8 @@
 			"ru": "\"title\":{\"ru\":\"new novel\"}",
 			"ja": "\"title\":{\"ja\":\"new novel\"}",
 			"es": "\"title\":{\"es\":\"new novel\"}",
-			"pt": "\"title\":{\"pt\":\"new novel\"}"
+			"pt": "\"title\":{\"pt\":\"new novel\"}",
+			"zh": "\"title\":{\"zh\":\"新小说\"}"
 		}
 	],
 	[
@@ -424,7 +481,8 @@
 		{
 			"ru": "placeholder='Поиск'",
 			"ja": "placeholder='テキスト検索'",
-			"es": "placeholder='Buscar texto'"
+			"es": "placeholder='Buscar texto'",
+			"zh": "placeholder='搜索文本'"
 		}
 	],
 	[
@@ -432,7 +490,8 @@
 		{
 			"ru": "TSV разделение табуляцией",
 			"ja": "TSVタブ区切り方式で出力",
-			"es": "TSV Valores Separados por Tabulaciones"
+			"es": "TSV Valores Separados por Tabulaciones",
+			"zh": "TSV制表符分隔方式"
 		}
 	],
 	[
@@ -440,7 +499,8 @@
 		{
 			"ru": "Инструмент перевода диалогов",
 			"ja": "ダイアログ翻訳支援ツール",
-			"es": "Herramienta de traducción de diálogos"
+			"es": "Herramienta de traducción de diálogos",
+			"zh": "对话翻译工具"
 		}
 	],
 	[
@@ -448,7 +508,8 @@
 		{
 			"ru": "placeholder=\"поиск\"",
 			"ja": "placeholder=\"ファイル検索\"",
-			"es": "placeholder=\"buscar archivo\""
+			"es": "placeholder=\"buscar archivo\"",
+			"zh": "placeholder=\"搜索文件\""
 		}
 	],
 	[
@@ -456,7 +517,8 @@
 		{
 			"ru": "title='Диалоги и тексты'",
 			"ja": "title='対話とテキスト'",
-			"es": "title='Diálogos y texto'"
+			"es": "title='Diálogos y texto'",
+			"zh": "title='对话和文本'"
 		}
 	],
 	[
@@ -464,7 +526,8 @@
 		{
 			"ru": "Сохранить JSON проект",
 			"ja": "スクリプトを記述したJSONファイルを保存",
-			"es": "Guardar script del projecto JSON"
+			"es": "Guardar script del projecto JSON",
+			"zh": "保存JSON项目文件"
 		}
 	],
 	[
@@ -472,7 +535,8 @@
 		{
 			"ru": "Выберите JSON файл проекта",
 			"ja": "プロジェクトファイル(JSON形式)を指定してください",
-			"es": "Seleccionar archivo JSON del proyecto"
+			"es": "Seleccionar archivo JSON del proyecto",
+			"zh": "选择JSON项目文件"
 		}
 	],
 	[
@@ -480,7 +544,8 @@
 		{
 			"ru": "Папка проекта",
 			"ja": "プロジェクトフォルダーの位置",
-			"es": "Carpeta del proyecto/ubicación"
+			"es": "Carpeta del proyecto/ubicación",
+			"zh": "项目文件夹位置"
 		}
 	],
 	[
@@ -488,14 +553,16 @@
 		{
 			"ru": "title='Редактор JSON'",
 			"ja": "title='JSONファイル検索'",
-			"es": "title='Editar texto json'"
+			"es": "title='Editar texto json'",
+			"zh": "title='JSON文件搜索'"
 		}
 	],
 	[
 		">Creation ZIP archive<",
 		{
 			"ru": ">Создание ZIP-архива<",
-			"ja": ">Zipアーカイブを出力<"
+			"ja": ">Zipアーカイブを出力<",
+			"zh": ">创建ZIP文件<"
 		}
 	],
 	[
@@ -503,7 +570,8 @@
 		{
 			"ru": "align=\"right\">Символы",
 			"ja": "align=\"right\">文字数",
-			"es": "align=\"right\">Símbolos"
+			"es": "align=\"right\">Símbolos",
+			"zh": "align=\"right\">字符数"
 		}
 	],
 	[
@@ -511,7 +579,8 @@
 		{
 			"ru": "Добавить элемент",
 			"ja": "ダイアログに要素を追加",
-			"es": "Agregar elementos al diálogo"
+			"es": "Agregar elementos al diálogo",
+			"zh": "添加元素到对话"
 		}
 	],
 	[
@@ -519,7 +588,8 @@
 		{
 			"ru": "Выберите папку проекта",
 			"ja": "プロジェクトフォルダーを指定してください",
-			"es": "Seleccionar carpeta del proyecto"
+			"es": "Seleccionar carpeta del proyecto",
+			"zh": "选择项目文件夹"
 		}
 	],
 	[
@@ -527,7 +597,8 @@
 		{
 			"ru": ">Условия отображения<",
 			"ja": ">表示条件<",
-			"es": ">Mostrar condiciones<"
+			"es": ">Mostrar condiciones<",
+			"zh": ">显示条件<"
 		}
 	],
 	[
@@ -535,7 +606,8 @@
 		{
 			"ru": "Изменения в переменных",
 			"ja": "変数の操作",
-			"es": "Cambia a variables"
+			"es": "Cambia a variables",
+			"zh": "更改变量"
 		}
 	],
 	[
@@ -543,7 +615,9 @@
 		{
 			"ru": "Создан zip-архив",
 			"ja": "Zipアーカイブを作成しました",
-			"es": "archivo comrpimido completado"
+			"es": "archivo comrpimido completado",
+			"en": "zip archive complete",
+			"zh": "zip创建完毕"
 		}
 	],
 	[
@@ -551,7 +625,8 @@
 		{
 			"ru": "JSON-файл не загружен",
 			"ja": "JSONファイルを読み込んでいません",
-			"es": "El archivo JSON no está cargado"
+			"es": "El archivo JSON no está cargado",
+			"zh": "JSON文件未加载"
 		}
 	],
 	[
@@ -559,7 +634,8 @@
 		{
 			"ru": "ID блока не введен",
 			"ja": "ブロックIDを入力していません",
-			"es": "id del bloque no ingresado"
+			"es": "id del bloque no ingresado",
+			"zh": "未输入块ID"
 		}
 	],
 	[
@@ -567,7 +643,8 @@
 		{
 			"ru": "title='Новый проект'",
 			"ja": "title='新規プロジェクト'",
-			"es": "title='Nuevo Proyecto'"
+			"es": "title='Nuevo Proyecto'",
+			"zh": "title='新建项目'"
 		}
 	],
 	[
@@ -575,7 +652,8 @@
 		{
 			"ru": "Размер окна предварительного просмотра",
 			"ja": "テストプレイ用ウィンドウの大きさ",
-			"es": "Tamaño de la ventana de vista previa"
+			"es": "Tamaño de la ventana de vista previa",
+			"zh": "预览窗口大小"
 		}
 	],
 	[
@@ -583,7 +661,8 @@
 		{
 			"ru": "placeholder='значение'",
 			"ja": "placeholder='値'",
-			"es": "placeholder='valor'"
+			"es": "placeholder='valor'",
+			"zh": "placeholder='值'"
 		}
 	],
 	[
@@ -591,7 +670,8 @@
 		{
 			"ru": "align=\"right\">Слов",
 			"ja": "align=\"right\">単語数",
-			"es": "align=\"right\">Palabras"
+			"es": "align=\"right\">Palabras",
+			"zh": "align=\"right\">字数"
 		}
 	],
 	[
@@ -599,7 +679,8 @@
 		{
 			"ru": "стартовый блок ",
 			"ja": "始点ブロック",
-			"es": "bloque de inicio de la historia"
+			"es": "bloque de inicio de la historia",
+			"zh": "故事起始块"
 		}
 	],
 	[
@@ -608,7 +689,8 @@
 			"ru": ">Кнопки интерфейса<",
 			"ja": ">インターフェイスボタン<",
 			"es": ">Botones de la Interfaz<",
-			"pt": ">Botões da Interface<"
+			"pt": ">Botões da Interface<",
+			"zh": ">界面按钮<"
 		}
 	],
 	[
@@ -616,7 +698,8 @@
 		{
 			"ru": "Цвет лейбла",
 			"ja": "ラベル色[デフォルト]",
-			"es": "Etiqueta del color por defecto"
+			"es": "Etiqueta del color por defecto",
+			"zh": "默认标签颜色"
 		}
 	],
 	[
@@ -624,7 +707,8 @@
 		{
 			"ru": "Новый проект создан ",
 			"ja": "新規プロジェクトを作成しました",
-			"es": "Nuevo proyecto creado"
+			"es": "Nuevo proyecto creado",
+			"zh": "新建项目"
 		}
 	],
 	[
@@ -632,7 +716,8 @@
 		{
 			"ru": "Добавлен новый персонаж",
 			"ja": "キャラクターを追加しました",
-			"es": "Nuevo personaje agregado"
+			"es": "Nuevo personaje agregado",
+			"zh": "新建角色"
 		}
 	],
 	[
@@ -640,7 +725,8 @@
 		{
 			"ru": "JSON-файл не найден",
 			"ja": "JSONファイルが見つかりません",
-			"es": "Archivo JSON no encontrado"
+			"es": "Archivo JSON no encontrado",
+			"zh": "未找到JSON文件"
 		}
 	],
 	[
@@ -648,7 +734,8 @@
 		{
 			"ru": "Настройки текстовой панели",
 			"ja": "テキストパネル設定",
-			"es": "Ajustes del panel de texto"
+			"es": "Ajustes del panel de texto",
+			"zh": "文本面板设置"
 		}
 	],
 	[
@@ -656,7 +743,8 @@
 		{
 			"ru": "Настроек панели имени",
 			"ja": "ネームパネル設定",
-			"es": "Ajustes del panel de nombre"
+			"es": "Ajustes del panel de nombre",
+			"zh": "名称面板设置"
 		}
 	],
 	[
@@ -671,7 +759,8 @@
 		{
 			"ru": "Ошибка в файле JSON",
 			"ja": "JSONファイルに問題があります",
-			"es": "Error en archivo JSON"
+			"es": "Error en archivo JSON",
+			"zh": "JSON文件有问题"
 		}
 	],
 	[
@@ -679,7 +768,8 @@
 		{
 			"ru": ">Фоновое изображение<",
 			"ja": ">背景画像<",
-			"es": ">Imagen de Fondo<"
+			"es": ">Imagen de Fondo<",
+			"zh": ">背景图片<"
 		}
 	],
 	[
@@ -687,7 +777,17 @@
 		{
 			"ru": "Цвет текста",
 			"ja": "テキスト色[デフォルト]",
-			"es": "Color de texto por defecto"
+			"es": "Color de texto por defecto",
+			"zh": "默认文本颜色"
+		}
+	],
+	[
+		">Class name<",
+		{
+			"ru": ">Имя класса<",
+			"es": ">Nombre de la clase<",
+			"pt": ">Nome da classe<",
+			"zh": ">类名<"
 		}
 	],
 	[
@@ -695,7 +795,8 @@
 		{
 			"ru": "Class name",
 			"ja": "デフォルトクラス名",
-			"es": "Nombre de la clase por defecto"
+			"es": "Nombre de la clase por defecto",
+			"zh": "默认类名"
 		}
 	],
 	[
@@ -703,7 +804,8 @@
 		{
 			"ru": "Редактировать наследие выбора",
 			"ja": "分岐(変数依拠)の編集",
-			"es": "Edición de la elección del destino"
+			"es": "Edición de la elección del destino",
+			"zh": "编辑选择分支"
 		}
 	],
 	[
@@ -711,7 +813,8 @@
 		{
 			"ru": "Параметры обновлены",
 			"ja": "パラメーターを更新しました",
-			"es": "Parametros actualizados"
+			"es": "Parametros actualizados",
+			"zh": "参数已更新"
 		}
 	],
 	[
@@ -719,7 +822,8 @@
 		{
 			"ru": "LocalStorage очищен",
 			"ja": "ローカル・デバイス上のバックアップを削除しました",
-			"es": "Almacenamiento local vacio"
+			"es": "Almacenamiento local vacio",
+			"zh": "本地存储已清空"
 		}
 	],
 	[
@@ -727,14 +831,16 @@
 		{
 			"ru": "Закрыть приложение?",
 			"ja": "アプリを終了しますか？",
-			"es": "¿Cierra la aplicación?"
+			"es": "¿Cierra la aplicación?",
+			"zh": "关闭应用程序？"
 		}
 	],
 	[
 		">documentation</a>",
 		{
 			"ja": ">リンク先に掲載しています。</a>",
-			"ru": ">Документации</a>"
+			"ru": ">Документации</a>",
+			"zh": ">文档</a>"
 		}
 	],
 	[
@@ -743,14 +849,16 @@
 			"ru": "var languare=\"ru\";",
 			"ja": "var languare=\"ja\";",
 			"es": "var languare=\"es\";",
-			"pt": "var languare=\"pt\";"
+			"pt": "var languare=\"pt\";",
+			"zh": "var languare=\"zh\";"
 		}
 	],
 	[
 		">Speech synthesis<",
 		{
 			"ru": ">Синтез речи<",
-			"ja": ">合成音声の読み上げ機能<"
+			"ja": ">合成音声の読み上げ機能<",
+			"zh": ">语音合成<"
 		}
 	],
 	[
@@ -758,7 +866,8 @@
 		{
 			"ru": ">Прокрутка текста<",
 			"ja": ">テキスト自動スクロール<",
-			"es": ">Desplazamiento automático del texto<"
+			"es": ">Desplazamiento automático del texto<",
+			"zh": ">文本自动滚动<"
 		}
 	],
 	[
@@ -766,7 +875,8 @@
 		{
 			"ru": ">Снизу<",
 			"ja": ">下端からの距離<",
-			"es": ">Posición Inferior<"
+			"es": ">Posición Inferior<",
+			"zh": ">底部位置<"
 		}
 	],
 	[
@@ -774,7 +884,8 @@
 		{
 			"ru": ">Курсор в конце текста<",
 			"ja": ">カーソル[テキスト末尾]<",
-			"es": ">Finalizar cursor de texto<"
+			"es": ">Finalizar cursor de texto<",
+			"zh": ">文本末尾光标<"
 		}
 	],
 	[
@@ -782,7 +893,26 @@
 		{
 			"ru": ">JavaScript код<",
 			"ja": ">JavaScriptコード<",
-			"es": ">Código JavaScript<"
+			"es": ">Código JavaScript<",
+			"zh": ">JavaScript 代码<"
+		}
+	],
+	[
+		">CSS classes<",
+		{
+			"ru": ">CSS классы<",
+			"ja": ">CSSクラス<",
+			"es": ">Clases CSS<",
+			"zh": ">CSS 样式<"
+		}
+	],
+	[
+		">JSON project<",
+		{
+			"ru": ">JSON проект<",
+			"ja": ">JSONプロジェクト<",
+			"es": ">Proyecto JSON<",
+			"zh": ">JSON 工程<"
 		}
 	],
 	[
@@ -790,7 +920,8 @@
 		{
 			"ru": "Создан новый блок",
 			"ja": "ブロックを作成しました",
-			"es": "Nuevo bloque creado"
+			"es": "Nuevo bloque creado",
+			"zh": "创建新块"
 		}
 	],
 	[
@@ -798,7 +929,8 @@
 		{
 			"ru": "Диалоги и тексты",
 			"ja": "ダイアログとテキスト",
-			"es": "Diálogo y textos"
+			"es": "Diálogo y textos",
+			"zh": "对话和文本"
 		}
 	],
 	[
@@ -806,14 +938,17 @@
 		{
 			"ru": ">Скрипты проекта<",
 			"ja": ">スクリプト編集<",
-			"es": ">Códigos de proyecto<"
+			"es": ">Códigos de proyecto<",
+			"zh": ">项目脚本<"
 		}
 	],
 	[
 		">Voice selection<",
 		{
 			"ru": ">Выбор голоса<",
-			"ja": ">音声の選択<"
+			"ja": ">音声の選択<",
+			"es": ">Selección de voz<",
+			"zh": ">语音选择<"
 		}
 	],
 	[
@@ -821,7 +956,8 @@
 		{
 			"ru": "Редактирование блока",
 			"ja": "ストーリーブロック編集",
-			"es": "Editar bloque de historia"
+			"es": "Editar bloque de historia",
+			"zh": "编辑故事块"
 		}
 	],
 	[
@@ -829,7 +965,8 @@
 		{
 			"ru": "Настройки проекта",
 			"ja": "プロジェクト設定",
-			"es": "Ajustes del proyecto"
+			"es": "Ajustes del proyecto",
+			"zh": "项目设置"
 		}
 	],
 	[
@@ -837,7 +974,8 @@
 		{
 			"ru": "файл стилей css ",
 			"ja": "CSSスタイルシート",
-			"es": "archivos de estilos css "
+			"es": "archivos de estilos css ",
+			"zh": "css样式文件"
 		}
 	],
 	[
@@ -845,7 +983,8 @@
 		{
 			"ru": ">По умолчанию<",
 			"ja": ">標準<",
-			"es": ">Pantalla por defecto<"
+			"es": ">Pantalla por defecto<",
+			"zh": ">默认屏幕<"
 		}
 	],
 	[
@@ -853,7 +992,8 @@
 		{
 			"ru": ">Справа<",
 			"ja": ">右端からの距離<",
-			"es": ">Posición derecha<"
+			"es": ">Posición derecha<",
+			"zh": ">右侧位置<"
 		}
 	],
 	[
@@ -862,7 +1002,8 @@
 			"ru": "Кнопки и выборы",
 			"ja": "ボタンと選択肢",
 			"es": "Botones y Elección",
-			"pt": "Botões e Escolhas"
+			"pt": "Botões e Escolhas",
+			"zh": "按钮和选择"
 		}
 	],
 	[
@@ -870,7 +1011,8 @@
 		{
 			"ru": ">Только текст из<",
 			"ja": ">テキスト表示専用<",
-			"es": ">Solo forma de texto<"
+			"es": ">Solo forma de texto<",
+			"zh": ">仅显示文本<"
 		}
 	],
 	[
@@ -878,7 +1020,8 @@
 		{
 			"ru": "Предметов поиска",
 			"ja": "捜索オブジェクト数",
-			"es": "Elementos a buscar"
+			"es": "Elementos a buscar",
+			"zh": "搜索项目"
 		}
 	],
 	[
@@ -886,7 +1029,8 @@
 		{
 			"ru": "Цвет найденого лейбла",
 			"ja": "ラベル色[発見済み]",
-			"es": "Encontrar color de la etiqueta"
+			"es": "Encontrar color de la etiqueta",
+			"zh": "查找标签颜色"
 		}
 	],
 	[
@@ -894,7 +1038,8 @@
 		{
 			"ru": ">Настройки сцены<",
 			"ja": ">シーンの設定<",
-			"es": ">Ajustes de escena<"
+			"es": ">Ajustes de escena<",
+			"zh": ">场景设置<"
 		}
 	],
 	[
@@ -902,7 +1047,8 @@
 		{
 			"ru": "Скрыто только здесь",
 			"ja": "このダイアログの間だけ非表示",
-			"es": "Oculto solo aquí"
+			"es": "Oculto solo aquí",
+			"zh": "仅在此处隐藏"
 		}
 	],
 	[
@@ -910,7 +1056,8 @@
 		{
 			"ja": "プロジェクト・メタデータ",
 			"ru": "Данные проекта",
-			"es": "Metadatos del Proyecto"
+			"es": "Metadatos del Proyecto",
+			"zh": "项目元数据"
 		}
 	],
 	[
@@ -918,7 +1065,8 @@
 		{
 			"ru": "язык по умолчанию",
 			"ja": "標準言語",
-			"es": "idioma predeterminado"
+			"es": "idioma predeterminado",
+			"zh": "默认语言"
 		}
 	],
 	[
@@ -927,7 +1075,8 @@
 			"ru": "Создать блок",
 			"ja": "ストーリーブロックの追加",
 			"es": "Agregar bloque de historia",
-			"pt": "Adicionar bloco de história"
+			"pt": "Adicionar bloco de história",
+			"zh": "添加故事块"
 		}
 	],
 	[
@@ -935,7 +1084,8 @@
 		{
 			"ru": "Создать новый блок",
 			"ja": "ストーリーブロックを作成",
-			"es": "Nuevo bloque de historia"
+			"es": "Nuevo bloque de historia",
+			"zh": "新建故事块"
 		}
 	],
 	[
@@ -943,7 +1093,8 @@
 		{
 			"ru": "рабочая папка ",
 			"ja": "作業フォルダ―",
-			"es": "carpeta de trabajo"
+			"es": "carpeta de trabajo",
+			"zh": "工作文件夹 "
 		}
 	],
 	[
@@ -951,7 +1102,8 @@
 		{
 			"ru": ">Слева<",
 			"ja": ">左端からの距離<",
-			"es": ">Posición Izquierda<"
+			"es": ">Posición Izquierda<",
+			"zh": ">左侧位置<"
 		}
 	],
 	[
@@ -959,7 +1111,8 @@
 		{
 			"ru": ">Содержимое сцены<",
 			"ja": ">シーンのコンテンツ<",
-			"es": ">Contenido de la Escena<"
+			"es": ">Contenido de la Escena<",
+			"zh": ">场景内容<"
 		}
 	],
 	[
@@ -967,7 +1120,8 @@
 		{
 			"ru": "Стиль анимации",
 			"ja": "速度変化",
-			"es": "Transformación de la velocidad"
+			"es": "Transformación de la velocidad",
+			"zh": "动画速度"
 		}
 	],
 	[
@@ -975,7 +1129,8 @@
 		{
 			"ru": ">Для кнопок<",
 			"ja": ">ボタン重ね時<",
-			"es": ">Cursor de botón<"
+			"es": ">Cursor de botón<",
+			"zh": ">按钮光标<"
 		}
 	],
 	[
@@ -983,7 +1138,8 @@
 		{
 			"ru": ">Для выборов<",
 			"ja": ">選択肢重ね時<",
-			"es": ">Cursor de selección<"
+			"es": ">Cursor de selección<",
+			"zh": ">选择光标<"
 		}
 	],
 	[
@@ -991,7 +1147,8 @@
 		{
 			"ru": ">Стартовый экран<",
 			"ja": ">起動画面に戻る<",
-			"es": ">Pantalla de Inicio<"
+			"es": ">Pantalla de Inicio<",
+			"zh": ">启动屏幕<"
 		}
 	],
 	[
@@ -999,7 +1156,8 @@
 		{
 			"ru": "Редактор JavaScript",
 			"ja": "JavaScript編集",
-			"es": "Edición de JavaScript"
+			"es": "Edición de JavaScript",
+			"zh": "JavaScript编辑"
 		}
 	],
 	[
@@ -1007,7 +1165,8 @@
 		{
 			"ru": "Устройство управления",
 			"ja": "操作デバイス",
-			"es": "Dispotivos de control"
+			"es": "Dispotivos de control",
+			"zh": "设备控制"
 		}
 	],
 	[
@@ -1015,7 +1174,8 @@
 		{
 			"ru": "Цвет найденого текста",
 			"ja": "テキスト色[発見済み]",
-			"es": "Encontrar texto de color"
+			"es": "Encontrar texto de color",
+			"zh": "查找颜色文本"
 		}
 	],
 	[
@@ -1023,7 +1183,8 @@
 		{
 			"ru": "Class name найденого",
 			"ja": "発見済みクラス名",
-			"es": "Encontrar nombre de clase"
+			"es": "Encontrar nombre de clase",
+			"zh": "查找类名"
 		}
 	],
 	[
@@ -1031,7 +1192,8 @@
 		{
 			"ru": "Функции",
 			"ja": "システム機能実行",
-			"es": "Función del Sistema"
+			"es": "Función del Sistema",
+			"zh": "系统功能执行"
 		}
 	],
 	[
@@ -1039,7 +1201,8 @@
 		{
 			"ru": "Языки",
 			"ja": "言語切り替え",
-			"es": "Cambiar lenguaje"
+			"es": "Cambiar lenguaje",
+			"zh": "切换语言"
 		}
 	],
 	[
@@ -1055,7 +1218,8 @@
 			"ru": "big_languares('ru')",
 			"ja": "big_languares('ja')",
 			"es": "big_languares('es')",
-			"pt": "big_languares('pt')"
+			"pt": "big_languares('pt')",
+			"zh": "big_languares('zh')"
 		}
 	],
 	[
@@ -1063,7 +1227,8 @@
 		{
 			"ru": ">Последствие выбора",
 			"ja": ">分岐(変数依拠)",
-			"es": ">Elección del destino"
+			"es": ">Elección del destino",
+			"zh": ">选择结果"
 		}
 	],
 	[
@@ -1071,7 +1236,8 @@
 		{
 			"ru": ">Персонажей: <",
 			"ja": ">キャラクター:<",
-			"es": ">Personajes: <"
+			"es": ">Personajes: <",
+			"zh": ">角色数量: <"
 		}
 	],
 	[
@@ -1079,7 +1245,8 @@
 		{
 			"ru": "Поиск предметов",
 			"ja": "オブジェクト探し",
-			"es": "Objetos ocultos"
+			"es": "Objetos ocultos",
+			"zh": "隐藏物品"
 		}
 	],
 	[
@@ -1087,7 +1254,8 @@
 		{
 			"ru": "Выбор файла",
 			"ja": "ファイル選択",
-			"es": "Selección de archivo"
+			"es": "Selección de archivo",
+			"zh": "文件选择"
 		}
 	],
 	[
@@ -1095,7 +1263,8 @@
 		{
 			"ru": ">Предварительный просмотр<",
 			"ja": ">テストプレイ用サイズ<",
-			"es": ">Vista Previa<"
+			"es": ">Vista Previa<",
+			"zh": ">预览大小<"
 		}
 	],
 	[
@@ -1103,7 +1272,8 @@
 		{
 			"ru": ">Скорость диалога<",
 			"ja": ">ダイアログ速度<",
-			"es": ">Velocidad de diálogos<"
+			"es": ">Velocidad de diálogos<",
+			"zh": ">对话速度<"
 		}
 	],
 	[
@@ -1111,7 +1281,8 @@
 		{
 			"ru": ">Режим консоли<",
 			"ja": ">コンソール・モード<",
-			"es": ">Modo Consola<"
+			"es": ">Modo Consola<",
+			"zh": ">控制台模式<"
 		}
 	],
 	[
@@ -1119,7 +1290,8 @@
 		{
 			"ru": ">Сверху<",
 			"ja": ">上端からの距離<",
-			"es": ">Posición Superior<"
+			"es": ">Posición Superior<",
+			"zh": ">顶部位置<"
 		}
 	],
 	[
@@ -1127,7 +1299,8 @@
 		{
 			"ru": "Время анимации",
 			"ja": "時間変化",
-			"es": "Tiempo de transformación"
+			"es": "Tiempo de transformación",
+			"zh": "时间变化"
 		}
 	],
 	[
@@ -1135,7 +1308,8 @@
 		{
 			"ru": ">снизу справа<",
 			"ja": ">右下<",
-			"es": ">Inferior derecha<"
+			"es": ">Inferior derecha<",
+			"zh": ">右下<"
 		}
 	],
 	[
@@ -1143,7 +1317,8 @@
 		{
 			"ru": ">Основной <",
 			"ja": ">標準カーソル<",
-			"es": ">Cursor principal <"
+			"es": ">Cursor principal <",
+			"zh": ">主光标 <"
 		}
 	],
 	[
@@ -1151,7 +1326,8 @@
 		{
 			"ru": "Отображение сценария",
 			"ja": "画面表示とスクリプト",
-			"es": "Mostrar script"
+			"es": "Mostrar script",
+			"zh": "显示脚本"
 		}
 	],
 	[
@@ -1159,7 +1335,8 @@
 		{
 			"ru": "Показывать все линии",
 			"ja": "接続ライン<br>全表示",
-			"es": "Mostrar todas las líneas"
+			"es": "Mostrar todas las líneas",
+			"zh": "显示所有行"
 		}
 	],
 	[
@@ -1167,7 +1344,8 @@
 		{
 			"ru": "Анимация линий",
 			"ja": "接続ラインのアニメーション",
-			"es": "línea de animación"
+			"es": "línea de animación",
+			"zh": "显示连接线动画"
 		}
 	],
 	[
@@ -1177,7 +1355,8 @@
 			"ja": "プロジェクト作成",
 			"en": "",
 			"es": "Crear proyecto",
-			"pt": "Criar Projeto"
+			"pt": "Criar Projeto",
+			"zh": "创建项目"
 		}
 	],
 	[
@@ -1185,7 +1364,8 @@
 		{
 			"ru": "Скрыть интерфейс",
 			"ja": "インターフェイス非表示",
-			"es": "Ocultar interfaz"
+			"es": "Ocultar interfaz",
+			"zh": "隐藏界面"
 		}
 	],
 	[
@@ -1193,7 +1373,8 @@
 		{
 			"ru": "Стартовая позиция Y",
 			"ja": "スクロール基準座標(Y)",
-			"es": "Inicar desplazamiento Y"
+			"es": "Inicar desplazamiento Y",
+			"zh": "开始Y轴滚动"
 		}
 	],
 	[
@@ -1201,7 +1382,8 @@
 		{
 			"ru": "Стартовая позиция X",
 			"ja": "スクロール基準座標(X)",
-			"es": "Iniciar desplazamiento X"
+			"es": "Iniciar desplazamiento X",
+			"zh": "开始X轴滚动"
 		}
 	],
 	[
@@ -1209,7 +1391,8 @@
 		{
 			"ru": "Имя персонажа",
 			"ja": "新規キャラクター",
-			"es": "Nombre del personaje"
+			"es": "Nombre del personaje",
+			"zh": "新角色"
 		}
 	],
 	[
@@ -1217,7 +1400,8 @@
 		{
 			"ru": "Сценарий обновлен",
 			"ja": "スクリプトを更新しました",
-			"es": "Script actualizado"
+			"es": "Script actualizado",
+			"zh": "脚本已更新"
 		}
 	],
 	[
@@ -1225,7 +1409,8 @@
 		{
 			"ru": "Текст без звука",
 			"ja": "テキスト(ミュート)",
-			"es": "Sonido desactivado"
+			"es": "Sonido desactivado",
+			"zh": "关闭文本语音"
 		}
 	],
 	[
@@ -1233,7 +1418,8 @@
 		{
 			"ru": "Текст без музыки",
 			"ja": " テキスト(BGMオフ)",
-			"es": "Music desactivado"
+			"es": "Music desactivado",
+			"zh": "关闭文本音乐"
 		}
 	],
 	[
@@ -1241,7 +1427,8 @@
 		{
 			"ru": "Пропустить диалоги ",
 			"ja": "スキップ",
-			"es": "Saltar diálogo"
+			"es": "Saltar diálogo",
+			"zh": "跳过对话"
 		}
 	],
 	[
@@ -1249,7 +1436,26 @@
 		{
 			"ru": ">Обновить сцену<",
 			"ja": ">処理の更新<",
-			"es": ">Actualización de escena<"
+			"es": ">Actualización de escena<",
+			"zh": ">场景更新<"
+		}
+	],
+	[
+		"screen color",
+		{
+			"ru": "Цвет экрана",
+			"ja": "画面の色",
+			"es": "Color de pantalla",
+			"zh": "屏幕颜色"
+		}
+	],
+	[
+		"screen image",
+		{
+			"ru": "Изображение экрана",
+			"ja": "画面の画像",
+			"es": "Imagen de pantalla",
+			"zh": "屏幕图片"
 		}
 	],
 	[
@@ -1257,28 +1463,32 @@
 		{
 			"ru": "Нажатие на экран",
 			"es": "control de pantalla",
-			"ja": "画面操作"
+			"ja": "画面操作",
+			"zh": "屏幕控制"
 		}
 	],
 	[
 		">screen size <",
 		{
 			"ja": ">スクリーン・サイズ <",
-			"ru": ">размер экрана <"
+			"ru": ">размер экрана <",
+			"zh": ">屏幕大小<"
 		}
 	],
 	[
 		">Button click<",
 		{
 			"ru": ">По нажатию кнопки<",
-			"ja": ">ボタンで再生<"
+			"ja": ">ボタンで再生<",
+			"zh": ">点击按钮<"
 		}
 	],
 	[
 		">Dialog start<",
 		{
 			"ru": ">На диалоге<",
-			"ja": ">ダイアログ開始時<"
+			"ja": ">ダイアログ開始時<",
+			"zh": ">对话开始<"
 		}
 	],
 	[
@@ -1286,7 +1496,8 @@
 		{
 			"ru": "Автосохранение",
 			"ja": "自動セーブファイル読込",
-			"es": "Cargar autoguardado"
+			"es": "Cargar autoguardado",
+			"zh": "加载自动保存文件"
 		}
 	],
 	[
@@ -1294,7 +1505,8 @@
 		{
 			"ru": "Собрать проект",
 			"ja": "パッケージ作成 / Build",
-			"es": "Construir proyecto"
+			"es": "Construir proyecto",
+			"zh": "构建项目"
 		}
 	],
 	[
@@ -1302,7 +1514,8 @@
 		{
 			"ru": ">Цвет блока<",
 			"ja": ">ブロックの色<",
-			"es": ">Color del Bloque<"
+			"es": ">Color del Bloque<",
+			"zh": ">颜色块<"
 		}
 	],
 	[
@@ -1310,7 +1523,8 @@
 		{
 			"ru": "масштабирование ",
 			"ja": "モバイル用サイズ比",
-			"es": "escala movil"
+			"es": "escala movil",
+			"zh": "移动端缩放"
 		}
 	],
 	[
@@ -1318,7 +1532,8 @@
 		{
 			"ru": "скорость текста ",
 			"ja": "ダイアログ速度",
-			"es": "velocidad de diálogos"
+			"es": "velocidad de diálogos",
+			"zh": "对话速度"
 		}
 	],
 	[
@@ -1326,7 +1541,8 @@
 		{
 			"ru": ">Ориентация<",
 			"ja": ">画面の向き<",
-			"es": ">Orientación<"
+			"es": ">Orientación<",
+			"zh": ">方向<"
 		}
 	],
 	[
@@ -1334,7 +1550,8 @@
 		{
 			"ru": ">Высота<",
 			"ja": ">縦幅<",
-			"es": ">Tamaño de altura<"
+			"es": ">Tamaño de altura<",
+			"zh": ">高度<"
 		}
 	],
 	[
@@ -1342,7 +1559,8 @@
 		{
 			"ru": ">Отступы текста<",
 			"ja": ">インデント<",
-			"es": ">Texto con sangría<"
+			"es": ">Texto con sangría<",
+			"zh": ">文本缩进<"
 		}
 	],
 	[
@@ -1350,7 +1568,8 @@
 		{
 			"ru": ">Шрифт<",
 			"ja": ">フォントファミリー<",
-			"es": ">Familia de fuentes<"
+			"es": ">Familia de fuentes<",
+			"zh": ">字体<"
 		}
 	],
 	[
@@ -1358,7 +1577,8 @@
 		{
 			"ru": ">Цвет панели<",
 			"ja": ">カラーパネル<",
-			"es": ">Color del panel<"
+			"es": ">Color del panel<",
+			"zh": ">颜色面板<"
 		}
 	],
 	[
@@ -1366,7 +1586,8 @@
 		{
 			"ru": ">Замедление в середине<",
 			"ja": ">遅→早→遅<",
-			"es": ">Suavizado de entrada-salida<"
+			"es": ">Suavizado de entrada-salida<",
+			"zh": ">缓入缓出<"
 		}
 	],
 	[
@@ -1374,7 +1595,8 @@
 		{
 			"ru": ">снизу слева<",
 			"ja": ">左下<",
-			"es": ">inferior izquierda<"
+			"es": ">inferior izquierda<",
+			"zh": ">左下<"
 		}
 	],
 	[
@@ -1382,7 +1604,8 @@
 		{
 			"ru": ">Редактор выбора<",
 			"ja": ">選択肢編集<",
-			"es": ">editar decisión<"
+			"es": ">editar decisión<",
+			"zh": ">选择编辑<"
 		}
 	],
 	[
@@ -1390,7 +1613,8 @@
 		{
 			"ru": "Блок удален",
 			"ja": "ブロックを削除しました",
-			"es": "Bloque removido"
+			"es": "Bloque removido",
+			"zh": "块已移除"
 		}
 	],
 	[
@@ -1398,7 +1622,8 @@
 		{
 			"ru": "Блок обновлен",
 			"ja": "ブロック情報を更新しました",
-			"es": "Bloque actualizado"
+			"es": "Bloque actualizado",
+			"zh": "块已更新"
 		}
 	],
 	[
@@ -1406,7 +1631,8 @@
 		{
 			"ru": "Текст диалога",
 			"ja": "ダイアログテキスト",
-			"es": "Dialogo de texto"
+			"es": "Dialogo de texto",
+			"zh": "对话文本"
 		}
 	],
 	[
@@ -1414,7 +1640,8 @@
 		{
 			"ja": "分岐(変数依拠)",
 			"ru": "Последствие выбора",
-			"es": "Decisión de destino"
+			"es": "Decisión de destino",
+			"zh": "传统选项"
 		}
 	],
 	[
@@ -1422,7 +1649,8 @@
 		{
 			"ja": ">新規プロジェクト<",
 			"ru": ">Новый проект<",
-			"es": ">Nuevo Proyecto<"
+			"es": ">Nuevo Proyecto<",
+			"zh": ">新建项目<"
 		}
 	],
 	[
@@ -1430,7 +1658,8 @@
 		{
 			"ru": "Заменить сцену",
 			"es": "Reemplazar escena",
-			"ja": "この シーンに 上書き貼り付け"
+			"ja": "この シーンに 上書き貼り付け",
+			"zh": "替换场景"
 		}
 	],
 	[
@@ -1438,7 +1667,8 @@
 		{
 			"ru": "Арт без музыки",
 			"ja": "画像(ミュート)",
-			"es": "Music desactivado"
+			"es": "Music desactivado",
+			"zh": "图片(关闭音乐)"
 		}
 	],
 	[
@@ -1446,7 +1676,8 @@
 		{
 			"ru": "Арт без звука",
 			"ja": "画像(BGMオフ)",
-			"es": "Sonido desactivado"
+			"es": "Sonido desactivado",
+			"zh": "图片(关闭音效)"
 		}
 	],
 	[
@@ -1454,7 +1685,8 @@
 		{
 			"es": ">Estilo<",
 			"ja": ">スタイル<",
-			"ru": ">Стиль<"
+			"ru": ">Стиль<",
+			"zh": ">样式面板<"
 		}
 	],
 	[
@@ -1462,7 +1694,8 @@
 		{
 			"ru": ">Звук нажатия<",
 			"es": ">Haga clic en sonido<",
-			"ja": ">クリック(選択)音<"
+			"ja": ">クリック(選択)音<",
+			"zh": ">点击(选择)音效<"
 		}
 	],
 	[
@@ -1471,21 +1704,24 @@
 			"ru": "ru\"],\"buttons",
 			"ja": "ja\"],\"buttons",
 			"es": "es\"],\"buttons",
-			"pt": "pt,\"buttons"
+			"pt": "pt\"],\"buttons",
+			"zh": "zh\"],\"buttons"
 		}
 	],
 	[
 		"name variable",
 		{
 			"ja": "変数名入力欄",
-			"ru": "имя переменной"
+			"ru": "имя переменной",
+			"zh": "变量名"
 		}
 	],
 	[
 		"Random choice",
 		{
 			"ru": "Случайный выбор",
-			"ja": "ランダム分岐"
+			"ja": "ランダム分岐",
+			"zh": "随机选择"
 		}
 	],
 	[
@@ -1493,7 +1729,8 @@
 		{
 			"ru": "title='Отменить'",
 			"ja": "title='やり直す'",
-			"es": "title='Deshacer'"
+			"es": "title='Deshacer'",
+			"zh": "title='撤销'"
 		}
 	],
 	[
@@ -1501,7 +1738,8 @@
 		{
 			"ru": "title='Повторить'",
 			"ja": "title='一つ戻す'",
-			"es": "title='Rehacer'"
+			"es": "title='Rehacer'",
+			"zh": "title='重做'"
 		}
 	],
 	[
@@ -1509,7 +1747,8 @@
 		{
 			"ru": "Удалить блок",
 			"ja": "ブロック削除",
-			"es": "Borrar bloque"
+			"es": "Borrar bloque",
+			"zh": "删除块"
 		}
 	],
 	[
@@ -1517,7 +1756,8 @@
 		{
 			"ru": "Обновить блок",
 			"ja": "ブロック情報更新",
-			"es": "Actualizar bloque"
+			"es": "Actualizar bloque",
+			"zh": "更新块"
 		}
 	],
 	[
@@ -1526,7 +1766,8 @@
 			"ru": "Создать блок",
 			"ja": "ブロック作成",
 			"es": "Crear bloque",
-			"pt": "Criar bloco"
+			"pt": "Criar bloco",
+			"zh": "创建块"
 		}
 	],
 	[
@@ -1534,7 +1775,8 @@
 		{
 			"ru": "Файлов:",
 			"ja": "総ファイル数",
-			"es": "Conteo de archivos:"
+			"es": "Conteo de archivos:",
+			"zh": "文件数:"
 		}
 	],
 	[
@@ -1542,7 +1784,8 @@
 		{
 			"ru": "Добавить в",
 			"ja": "ブロックに追加",
-			"es": "Agregar al bloque"
+			"es": "Agregar al bloque",
+			"zh": "添加到区块"
 		}
 	],
 	[
@@ -1550,7 +1793,8 @@
 		{
 			"ru": "шрифт ",
 			"ja": "フォントファミリー",
-			"es": "familia de fuentes"
+			"es": "familia de fuentes",
+			"zh": "字体"
 		}
 	],
 	[
@@ -1558,7 +1802,8 @@
 		{
 			"ru": ">Ширина<",
 			"ja": ">横幅<",
-			"es": ">Tamaño del ancho<"
+			"es": ">Tamaño del ancho<",
+			"zh": ">宽度<"
 		}
 	],
 	[
@@ -1566,7 +1811,8 @@
 		{
 			"ru": ">Высота<",
 			"ja": ">縦幅<",
-			"es": ">Altura del arte<"
+			"es": ">Altura del arte<",
+			"zh": ">图像高度<"
 		}
 	],
 	[
@@ -1574,7 +1820,8 @@
 		{
 			"ru": ">Цвет текста<",
 			"ja": ">テキスト色<",
-			"es": ">Color del texto<"
+			"es": ">Color del texto<",
+			"zh": ">文字颜色<"
 		}
 	],
 	[
@@ -1583,7 +1830,8 @@
 			"ru": ">Текстовая панель<",
 			"ja": ">テキストパネル<",
 			"es": ">Panel de texto<",
-			"pt": ">Painel de texto<"
+			"pt": ">Painel de texto<",
+			"zh": ">文本面板<"
 		}
 	],
 	[
@@ -1592,7 +1840,8 @@
 			"ru": ">Панель имени<",
 			"ja": ">ネームパネル<",
 			"es": ">Nombre del panel<",
-			"pt": ">Painel de Nomes<"
+			"pt": ">Painel de Nomes<",
+			"zh": ">名称面板<"
 		}
 	],
 	[
@@ -1600,7 +1849,8 @@
 		{
 			"ru": ">Позиция<",
 			"ja": ">テキスト位置<",
-			"es": ">Alinear texto<"
+			"es": ">Alinear texto<",
+			"zh": ">对齐文本<"
 		}
 	],
 	[
@@ -1608,7 +1858,8 @@
 		{
 			"ru": ">Фоновая картинка<",
 			"ja": ">作業画面の背景<",
-			"es": ">Fondo<"
+			"es": ">Fondo<",
+			"zh": ">背景<"
 		}
 	],
 	[
@@ -1616,7 +1867,8 @@
 		{
 			"ru": "Название проекта",
 			"ja": "プロジェクト名",
-			"es": "Nombre del proyecto"
+			"es": "Nombre del proyecto",
+			"zh": "项目名称"
 		}
 	],
 	[
@@ -1624,7 +1876,8 @@
 		{
 			"ru": "Звук кнопки",
 			"ja": "ボタンサウンド",
-			"es": "Botón de sonido"
+			"es": "Botón de sonido",
+			"zh": "按钮声音"
 		}
 	],
 	[
@@ -1632,7 +1885,8 @@
 		{
 			"ru": "Удалить лейбл",
 			"ja": "ラベルを消去",
-			"es": "Borrar etiqueta"
+			"es": "Borrar etiqueta",
+			"zh": "删除标签"
 		}
 	],
 	[
@@ -1640,7 +1894,8 @@
 		{
 			"ru": "Блоки",
 			"ja": "ストーリーブロック",
-			"es": "Bloques de historia"
+			"es": "Bloques de historia",
+			"zh": "故事块"
 		}
 	],
 	[
@@ -1648,7 +1903,8 @@
 		{
 			"ru": ">Насыщенность<",
 			"ja": ">彩度<",
-			"es": ">Saturación<"
+			"es": ">Saturación<",
+			"zh": ">饱和度<"
 		}
 	],
 	[
@@ -1656,7 +1912,8 @@
 		{
 			"ru": "\"Позиция X\"",
 			"ja": "\"X座標\"",
-			"es": "\"Posición X\""
+			"es": "\"Posición X\"",
+			"zh": "\"X坐标\""
 		}
 	],
 	[
@@ -1664,7 +1921,8 @@
 		{
 			"ru": "Добавить в сцену",
 			"ja": "シーンに追加",
-			"es": "Agregar a la escena"
+			"es": "Agregar a la escena",
+			"zh": "添加到场景"
 		}
 	],
 	[
@@ -1679,7 +1937,8 @@
 		{
 			"ja": "音声設定",
 			"ru": "Переключатель звука",
-			"es": "Palanca de Sonido"
+			"es": "Palanca de Sonido",
+			"zh": "声音设置"
 		}
 	],
 	[
@@ -1687,7 +1946,8 @@
 		{
 			"ja": ">横方向のみ<",
 			"ru": ">горизонтально<",
-			"es": ">horizontal<"
+			"es": ">horizontal<",
+			"zh": ">横向<"
 		}
 	],
 	[
@@ -1695,7 +1955,8 @@
 		{
 			"ru": "Изображение курсора",
 			"es": "Cursor de imagen",
-			"ja": "カーソル用イメージ"
+			"ja": "カーソル用イメージ",
+			"zh": "图像光标"
 		}
 	],
 	[
@@ -1703,14 +1964,16 @@
 		{
 			"ja": "十時キー操作時のカーソル",
 			"ru": "D-pad курсор",
-			"es": "Cursor D-pad"
+			"es": "Cursor D-pad",
+			"zh": "方向键光标"
 		}
 	],
 	[
 		"Aspect ratio",
 		{
 			"ru": "Размер экрана",
-			"ja": "アスペクト比"
+			"ja": "アスペクト比",
+			"zh": "画面比例"
 		}
 	],
 	[
@@ -1718,7 +1981,8 @@
 		{
 			"ru": "Полный экран",
 			"ja": "フルスクリーン",
-			"es": "Pantalla completa"
+			"es": "Pantalla completa",
+			"zh": "全屏"
 		}
 	],
 	[
@@ -1726,7 +1990,8 @@
 		{
 			"ru": ">ID блока <",
 			"ja": ">ブロックID<",
-			"es": ">id del bloque <"
+			"es": ">id del bloque <",
+			"zh": ">块ID<"
 		}
 	],
 	[
@@ -1734,7 +1999,8 @@
 		{
 			"ru": "Размер:",
 			"ja": "ファイルのサイズ",
-			"es": "Tamaño de archivos:"
+			"es": "Tamaño de archivos:",
+			"zh": "文件大小:"
 		}
 	],
 	[
@@ -1742,7 +2008,8 @@
 		{
 			"ru": "вставить сцену",
 			"ja": "シーンの貼りつけ",
-			"es": "pegar escena"
+			"es": "pegar escena",
+			"zh": "粘贴场景"
 		}
 	],
 	[
@@ -1750,7 +2017,8 @@
 		{
 			"ru": "Свайп-жест",
 			"ja": "タッチスワイプ操作",
-			"es": "Desplazamiento táctil"
+			"es": "Desplazamiento táctil",
+			"zh": "触摸滑动操作"
 		}
 	],
 	[
@@ -1758,7 +2026,8 @@
 		{
 			"ru": "Карта местности",
 			"ja": "地図表示",
-			"es": "Mapa del terreno"
+			"es": "Mapa del terreno",
+			"zh": "地图表示"
 		}
 	],
 	[
@@ -1766,7 +2035,8 @@
 		{
 			"ru": ">Переменные<",
 			"ja": ">変数<",
-			"es": ">Variables<"
+			"es": ">Variables<",
+			"zh": ">变量<"
 		}
 	],
 	[
@@ -1774,7 +2044,8 @@
 		{
 			"ru": "Пиксель арт ",
 			"ja": "アンチエイリアス無効",
-			"es": "Modo pixelado"
+			"es": "Modo pixelado",
+			"zh": "像素模式 "
 		}
 	],
 	[
@@ -1782,7 +2053,8 @@
 		{
 			"ru": ">Позиция:<",
 			"ja": ">位置:<",
-			"es": ">Posición:<"
+			"es": ">Posición:<",
+			"zh": ">位置:<"
 		}
 	],
 	[
@@ -1790,7 +2062,8 @@
 		{
 			"ru": ">Альбомная<",
 			"ja": ">横<",
-			"es": ">paisaje<"
+			"es": ">paisaje<",
+			"zh": ">横向<"
 		}
 	],
 	[
@@ -1798,7 +2071,8 @@
 		{
 			"ru": ">Ширина<",
 			"ja": ">横幅<",
-			"es": ">Anchura del arte<"
+			"es": ">Anchura del arte<",
+			"zh": ">图像宽度<"
 		}
 	],
 	[
@@ -1806,7 +2080,8 @@
 		{
 			"ru": ">Размер шрифта<",
 			"ja": ">フォントサイズ<",
-			"es": ">Tamaño de la fuente<"
+			"es": ">Tamaño de la fuente<",
+			"zh": ">字体大小<"
 		}
 	],
 	[
@@ -1814,7 +2089,8 @@
 		{
 			"ru": ">Стиль CSS<",
 			"ja": ">CSSスタイルシート<",
-			"es": ">Estilo CSS<"
+			"es": ">Estilo CSS<",
+			"zh": ">CSS样式<"
 		}
 	],
 	[
@@ -1822,7 +2098,8 @@
 		{
 			"ru": ">Позиция<",
 			"ja": ">画像の位置調整<",
-			"es": ">Alinear arte<"
+			"es": ">Alinear arte<",
+			"zh": ">对齐图像<"
 		}
 	],
 	[
@@ -1830,7 +2107,8 @@
 		{
 			"ru": ">скрыть если<",
 			"ja": ">以下の場合は非表示<",
-			"es": ">oculto si<"
+			"es": ">oculto si<",
+			"zh": ">以下条件隐藏<"
 		}
 	],
 	[
@@ -1838,7 +2116,8 @@
 		{
 			"ru": ">сверху справа<",
 			"ja": ">右上<",
-			"es": ">superior derecha<"
+			"es": ">superior derecha<",
+			"zh": ">右上<"
 		}
 	],
 	[
@@ -1846,7 +2125,8 @@
 		{
 			"ru": ">Тачпад <",
 			"ja": ">タッチパッド<",
-			"es": ">Panel Táctil <"
+			"es": ">Panel Táctil <",
+			"zh": ">触摸板 <"
 		}
 	],
 	[
@@ -1854,7 +2134,8 @@
 		{
 			"ru": "Без автосохранения",
 			"ja": "自動セーブ機能停止",
-			"es": "No hay autoguardado"
+			"es": "No hay autoguardado",
+			"zh": "无自动保存"
 		}
 	],
 	[
@@ -1862,7 +2143,8 @@
 		{
 			"ru": ">HTML код<",
 			"ja": ">HTMLコード<",
-			"es": ">código HTML<"
+			"es": ">código HTML<",
+			"zh": ">HTML代码<"
 		}
 	],
 	[
@@ -1870,7 +2152,8 @@
 		{
 			"ru": "Копировать диалог",
 			"ja": "ダイアログをコピー",
-			"es": "Copiar diálogo"
+			"es": "Copiar diálogo",
+			"zh": "复制对话"
 		}
 	],
 	[
@@ -1878,7 +2161,8 @@
 		{
 			"ru": "Удалить предмет",
 			"ja": "アイテムを削除",
-			"es": "Borrar elemento"
+			"es": "Borrar elemento",
+			"zh": "删除项目"
 		}
 	],
 	[
@@ -1886,7 +2170,8 @@
 		{
 			"ru": "Стартовый блок",
 			"ja": "初期ブロック",
-			"es": "Iniciar bloque"
+			"es": "Iniciar bloque",
+			"zh": "开始块"
 		}
 	],
 	[
@@ -1894,7 +2179,8 @@
 		{
 			"ru": ">Яркость<",
 			"ja": ">明るさ<",
-			"es": ">Luminosidad<"
+			"es": ">Luminosidad<",
+			"zh": ">亮度<"
 		}
 	],
 	[
@@ -1902,7 +2188,8 @@
 		{
 			"ru": "\"или же {\"",
 			"ja": "\"あるいは以下の条件を満たせば {\"",
-			"es": "\"else if {\""
+			"es": "\"else if {\"",
+			"zh": "\"或者如果满足以下条件的话 {\""
 		}
 	],
 	[
@@ -1910,7 +2197,8 @@
 		{
 			"ru": "Время начала:",
 			"ja": "再生開始地点:",
-			"es": "Tiempo de inicio:"
+			"es": "Tiempo de inicio:",
+			"zh": "开始时间:"
 		}
 	],
 	[
@@ -1918,7 +2206,8 @@
 		{
 			"ru": "Цвет панели",
 			"ja": "パネルの色",
-			"es": "Color del panel"
+			"es": "Color del panel",
+			"zh": "面板颜色"
 		}
 	],
 	[
@@ -1926,7 +2215,8 @@
 		{
 			"ja": "初期ブロック",
 			"ru": "стартовый блок",
-			"es": "iniciar bloque"
+			"es": "iniciar bloque",
+			"zh": "开始块"
 		}
 	],
 	[
@@ -1934,7 +2224,8 @@
 		{
 			"ru": ">Изображение<",
 			"ja": ">画像<",
-			"es": ">Arte<"
+			"es": ">Arte<",
+			"zh": ">图像面板<"
 		}
 	],
 	[
@@ -1942,7 +2233,8 @@
 		{
 			"ru": ">Вне сцены<",
 			"ja": ">画面外オブジェクト<",
-			"es": ">Afuera del escenario<"
+			"es": ">Afuera del escenario<",
+			"zh": ">画面外<"
 		}
 	],
 	[
@@ -1950,7 +2242,8 @@
 		{
 			"ja": ">アニメｰション<",
 			"ru": ">Анимация<",
-			"es": ">Animación<"
+			"es": ">Animación<",
+			"zh": ">动画<"
 		}
 	],
 	[
@@ -1958,7 +2251,8 @@
 		{
 			"ja": ">リンクの開き方<",
 			"ru": ">Открыть ссылку<",
-			"es": ">Abrir enlace<"
+			"es": ">Abrir enlace<",
+			"zh": ">打开链接<"
 		}
 	],
 	[
@@ -1966,7 +2260,8 @@
 		{
 			"ru": "Сохранить стадию",
 			"ja": "セーブ",
-			"es": "Guardar escenario"
+			"es": "Guardar escenario",
+			"zh": "保存关卡"
 		}
 	],
 	[
@@ -1974,7 +2269,8 @@
 		{
 			"ru": "Загрузить стадию",
 			"ja": "ロード",
-			"es": "Cargar escenario"
+			"es": "Cargar escenario",
+			"zh": "加载关卡"
 		}
 	],
 	[
@@ -1982,7 +2278,8 @@
 		{
 			"ru": ">Блоков: <",
 			"ja": ">ブロック:<",
-			"es": ">Bloques: <"
+			"es": ">Bloques: <",
+			"zh": ">区块: <"
 		}
 	],
 	[
@@ -1990,7 +2287,8 @@
 		{
 			"ru": "Тост",
 			"ja": "トースト",
-			"es": "Mostrar aviso"
+			"es": "Mostrar aviso",
+			"zh": "显示通知"
 		}
 	],
 	[
@@ -1998,7 +2296,8 @@
 		{
 			"ru": "Персонажи",
 			"ja": "キャラクター",
-			"es": "Personajes"
+			"es": "Personajes",
+			"zh": "角色"
 		}
 	],
 	[
@@ -2006,7 +2305,17 @@
 		{
 			"ru": "размер шрифта ",
 			"ja": "フォントのサイズ",
-			"es": "tamaño de la fuente"
+			"es": "tamaño de la fuente",
+			"zh": "字体大小"
+		}
+	],
+	[
+		"Clear all save",
+		{
+			"ru": "Очистить все сохранения",
+			"ja": "全てのセーブを削除",
+			"es": "Borrar todos los guardados",
+			"zh": "清除所有本地存储"
 		}
 	],
 	[
@@ -2014,7 +2323,8 @@
 		{
 			"ru": "Автосохранение ",
 			"ja": "自動セーブ",
-			"es": "Autoguardado"
+			"es": "Autoguardado",
+			"zh": "自动保存 "
 		}
 	],
 	[
@@ -2022,7 +2332,8 @@
 		{
 			"ru": ">Позиция<",
 			"ja": ">固定位置<",
-			"es": ">Posición<"
+			"es": ">Posición<",
+			"zh": ">位置<"
 		}
 	],
 	[
@@ -2030,7 +2341,8 @@
 		{
 			"ru": ">позиция<",
 			"ja": ">位置<",
-			"es": ">posición<"
+			"es": ">posición<",
+			"zh": ">位置<"
 		}
 	],
 	[
@@ -2038,7 +2350,8 @@
 		{
 			"ru": ">Портретная<",
 			"ja": ">縦<",
-			"es": ">Presentación<"
+			"es": ">Presentación<",
+			"zh": ">纵向<"
 		}
 	],
 	[
@@ -2046,7 +2359,8 @@
 		{
 			"ru": ">Ускорение в начале<",
 			"ja": ">早→遅<",
-			"es": ">Suavizado-salida<"
+			"es": ">Suavizado-salida<",
+			"zh": ">缓出<"
 		}
 	],
 	[
@@ -2054,7 +2368,8 @@
 		{
 			"ru": ">оригинал<",
 			"ja": ">オリジナル<",
-			"es": ">original<"
+			"es": ">original<",
+			"zh": ">原始<"
 		}
 	],
 	[
@@ -2062,7 +2377,8 @@
 		{
 			"ru": ">сверху слева<",
 			"ja": ">左上<",
-			"es": ">superior izquierda<"
+			"es": ">superior izquierda<",
+			"zh": ">左上<"
 		}
 	],
 	[
@@ -2071,7 +2387,8 @@
 			"ru": "Редактор сцен",
 			"ja": "シーン編集",
 			"es": "Edición de escena",
-			"pt": "Editor de Cena"
+			"pt": "Editor de Cena",
+			"zh": "场景编辑"
 		}
 	],
 	[
@@ -2079,7 +2396,8 @@
 		{
 			"ru": "Воспроизвести звук",
 			"ja": "音声再生",
-			"es": "Reproducir sonido"
+			"es": "Reproducir sonido",
+			"zh": "播放声音"
 		}
 	],
 	[
@@ -2087,7 +2405,8 @@
 		{
 			"ru": "Остановить звук",
 			"ja": "音声停止",
-			"es": "Detener sonido"
+			"es": "Detener sonido",
+			"zh": "停止声音"
 		}
 	],
 	[
@@ -2095,7 +2414,8 @@
 		{
 			"ru": ">Изменение переменных<",
 			"ja": ">変数<",
-			"es": ">Variable<"
+			"es": ">Variable<",
+			"zh": ">变量<"
 		}
 	],
 	[
@@ -2103,7 +2423,8 @@
 		{
 			"ru": "Светлая тема ",
 			"ja": "ライトモード",
-			"es": "Tema claro"
+			"es": "Tema claro",
+			"zh": "浅色主题"
 		}
 	],
 	[
@@ -2111,7 +2432,8 @@
 		{
 			"ru": "Разделители: значения",
 			"ja": "区切り文字(separater)",
-			"es": "Separado:"
+			"es": "Separado:",
+			"zh": "分隔符:"
 		}
 	],
 	[
@@ -2119,7 +2441,8 @@
 		{
 			"ru": " строки",
 			"ja": "区切り括弧(delimiter)",
-			"es": "Delimitador:"
+			"es": "Delimitador:",
+			"zh": "定界符:"
 		}
 	],
 	[
@@ -2127,7 +2450,8 @@
 		{
 			"ru": ">Идентификатор события<",
 			"ja": ">IDイベント<",
-			"es": ">ID del evento<"
+			"es": ">ID del evento<",
+			"zh": ">事件ID<"
 		}
 	],
 	[
@@ -2135,7 +2459,8 @@
 		{
 			"ru": ">Добавить текст<",
 			"ja": ">テキスト追加<",
-			"es": ">Agregar texto<"
+			"es": ">Agregar texto<",
+			"zh": ">添加文本<"
 		}
 	],
 	[
@@ -2144,7 +2469,8 @@
 			"ru": "Добавить диалог",
 			"ja": "ダイアログを追加",
 			"es": "Agregar diálogo",
-			"pt": "Adicionar Diálogo"
+			"pt": "Adicionar Diálogo",
+			"zh": "添加对话"
 		}
 	],
 	[
@@ -2152,7 +2478,8 @@
 		{
 			"ru": ">Заполнить<",
 			"ja": ">引き延ばし調整<",
-			"es": ">Relleno del arte<"
+			"es": ">Relleno del arte<",
+			"zh": ">填充<"
 		}
 	],
 	[
@@ -2160,7 +2487,8 @@
 		{
 			"ru": "Текст и картинка",
 			"ja": "画像とネームを表示",
-			"es": "Arte y texto"
+			"es": "Arte y texto",
+			"zh": "艺术和文本"
 		}
 	],
 	[
@@ -2169,7 +2497,8 @@
 			"ru": "Следующая сцена",
 			"ja": "次のシーン",
 			"es": "Siguiente escena",
-			"pt": "Próxima cena"
+			"pt": "Próxima cena",
+			"zh": "下一个场景"
 		}
 	],
 	[
@@ -2177,7 +2506,8 @@
 		{
 			"ru": ">Функция<",
 			"ja": ">作動<",
-			"es": ">Función<"
+			"es": ">Función<",
+			"zh": ">动作<"
 		}
 	],
 	[
@@ -2185,7 +2515,8 @@
 		{
 			"ru": "Копировать сцену",
 			"ja": "シーンをコピー",
-			"es": "Copiar escena"
+			"es": "Copiar escena",
+			"zh": "复制场景"
 		}
 	],
 	[
@@ -2193,7 +2524,8 @@
 		{
 			"ru": "Цвет текста",
 			"ja": "テキストの色",
-			"es": "Color del texto"
+			"es": "Color del texto",
+			"zh": "文本颜色"
 		}
 	],
 	[
@@ -2208,14 +2540,16 @@
 		{
 			"ru": "Редактировать тост",
 			"ja": "トースト設定",
-			"es": "Editar tostada?"
+			"es": "Editar tostada?",
+			"zh": "编辑通知"
 		}
 	],
 	[
 		">Timeline<",
 		{
 			"ja": ">時間転移<",
-			"ru": ""
+			"ru": "",
+			"zh": ">时间轴<"
 		}
 	],
 	[
@@ -2223,7 +2557,8 @@
 		{
 			"ja": ">既存タブ<",
 			"ru": ">В этом окне<",
-			"es": ">This ventana<"
+			"es": ">This ventana<",
+			"zh": ">当前标签<"
 		}
 	],
 	[
@@ -2231,21 +2566,24 @@
 		{
 			"ja": ">縦方向のみ<",
 			"ru": ">вертикально<",
-			"es": ">vertical<"
+			"es": ">vertical<",
+			"zh": ">纵向<"
 		}
 	],
 	[
 		">Adaptive<",
 		{
 			"ru": ">Адаптивный<",
-			"ja": ">環境に応じて変化<"
+			"ja": ">環境に応じて変化<",
+			"zh": ">自适应<"
 		}
 	],
 	[
 		">Diagonal<",
 		{
 			"ru": ">Диагонали<",
-			"ja": ">対角線<"
+			"ja": ">対角線<",
+			"zh": ">对角线<"
 		}
 	],
 	[
@@ -2253,7 +2591,8 @@
 		{
 			"ru": "язык:",
 			"ja": "言語",
-			"es": "idioma:"
+			"es": "idioma:",
+			"zh": "语言:"
 		}
 	],
 	[
@@ -2261,7 +2600,8 @@
 		{
 			"ru": "Редактор JSON",
 			"ja": "JSON編集",
-			"es": "Edición del JSON"
+			"es": "Edición del JSON",
+			"zh": "JSON编辑"
 		}
 	],
 	[
@@ -2269,7 +2609,8 @@
 		{
 			"ru": "Языки",
 			"ja": "言語",
-			"es": "Idiomas"
+			"es": "Idiomas",
+			"zh": "语言"
 		}
 	],
 	[
@@ -2277,7 +2618,8 @@
 		{
 			"ru": ">Проект<",
 			"ja": ">プロジェクト<",
-			"es": ">Proyecto<"
+			"es": ">Proyecto<",
+			"zh": ">项目<"
 		}
 	],
 	[
@@ -2285,15 +2627,17 @@
 		{
 			"ru": ">Предварительный просмотр<",
 			"ja": ">テストプレイ<",
-			"es": ">Vista Previa<"
+			"es": ">Vista Previa<",
+			"zh": ">预览<"
 		}
 	],
 	[
 		">Opacity<",
 		{
-			"ru": "Прозрачность",
+			"ru": ">Прозрачность<",
 			"ja": ">不透明度<",
-			"es": ">Opacidad<"
+			"es": ">Opacidad<",
+			"zh": ">不透明度<"
 		}
 	],
 	[
@@ -2301,7 +2645,8 @@
 		{
 			"ru": ">Ускорение в конце<",
 			"ja": ">遅→早<",
-			"es": ">suavizado-entrada<"
+			"es": ">suavizado-entrada<",
+			"zh": ">缓入<"
 		}
 	],
 	[
@@ -2309,7 +2654,8 @@
 		{
 			"ru": ">показать если<",
 			"ja": ">以下の条件を満たせば表示<",
-			"es": ">mostrar si<"
+			"es": ">mostrar si<",
+			"zh": ">如果满足以下条件就显示<"
 		}
 	],
 	[
@@ -2317,7 +2663,8 @@
 		{
 			"ru": ">По большей стороне<",
 			"ja": ">縮小で調整<",
-			"es": ">contenido<"
+			"es": ">contenido<",
+			"zh": ">缩小以容纳<"
 		}
 	],
 	[
@@ -2325,7 +2672,8 @@
 		{
 			"ru": ">9-patch<",
 			"ja": ">9-Patch<",
-			"es": ">parche-9<"
+			"es": ">parche-9<",
+			"zh": ">九宫格<"
 		}
 	],
 	[
@@ -2334,7 +2682,8 @@
 			"ru": "Редактор текста",
 			"ja": "テキスト編集",
 			"es": "Edición de texto",
-			"pt": "Editar texto"
+			"pt": "Editar texto",
+			"zh": "文本编辑"
 		}
 	],
 	[
@@ -2342,7 +2691,8 @@
 		{
 			"ru": "Редактор HTML",
 			"ja": "HTML編集",
-			"es": "Edición de HTML"
+			"es": "Edición de HTML",
+			"zh": "HTML编辑"
 		}
 	],
 	[
@@ -2350,7 +2700,8 @@
 		{
 			"ru": "редактор",
 			"ja": "コード編集",
-			"es": "edición de código"
+			"es": "edición de código",
+			"zh": "代码编辑"
 		}
 	],
 	[
@@ -2358,7 +2709,8 @@
 		{
 			"ru": "Темная тема",
 			"ja": "ダークモード",
-			"es": "Tema oscuro"
+			"es": "Tema oscuro",
+			"zh": "深色主题"
 		}
 	],
 	[
@@ -2366,7 +2718,8 @@
 		{
 			"ru": "Html файл",
 			"ja": "HTMLファイル",
-			"es": "Archivo HTML"
+			"es": "Archivo HTML",
+			"zh": "HTML文件"
 		}
 	],
 	[
@@ -2374,7 +2727,8 @@
 		{
 			"ru": ">Вернуться в<",
 			"ja": ">指定先に戻る<",
-			"es": ">Volver a<"
+			"es": ">Volver a<",
+			"zh": ">返回到<"
 		}
 	],
 	[
@@ -2383,7 +2737,8 @@
 			"ru": "Дублировать",
 			"ja": "複製",
 			"es": "Duplicar",
-			"pt": "Duplicar"
+			"pt": "Duplicar",
+			"zh": "复制"
 		}
 	],
 	[
@@ -2392,7 +2747,8 @@
 			"ru": "дублировать",
 			"ja": "複製",
 			"es": "duplicar",
-			"pt": "duplicar"
+			"pt": "duplicar",
+			"zh": "复制"
 		}
 	],
 	[
@@ -2400,7 +2756,8 @@
 		{
 			"ru": "Тип лейбла",
 			"ja": "捜索ラベル方法",
-			"es": "Etiqueta de consejo"
+			"es": "Etiqueta de consejo",
+			"zh": "提示标签"
 		}
 	],
 	[
@@ -2408,7 +2765,8 @@
 		{
 			"ru": ">секунды<",
 			"ja": ">秒<",
-			"es": ">segundos<"
+			"es": ">segundos<",
+			"zh": ">秒<"
 		}
 	],
 	[
@@ -2416,7 +2774,8 @@
 		{
 			"ru": ">Показать<",
 			"ja": ">表示<",
-			"es": ">Visible<"
+			"es": ">Visible<",
+			"zh": ">可见<"
 		}
 	],
 	[
@@ -2424,7 +2783,8 @@
 		{
 			"ru": "Автозапуск:",
 			"ja": "オートプレイ",
-			"es": "Reproducción automática:"
+			"es": "Reproducción automática:",
+			"zh": "自动播放:"
 		}
 	],
 	[
@@ -2432,7 +2792,8 @@
 		{
 			"ru": "Время конца:",
 			"ja": "終了時間:",
-			"es": "Tiempo de finalización:"
+			"es": "Tiempo de finalización:",
+			"zh": "结束时间:"
 		}
 	],
 	[
@@ -2440,7 +2801,8 @@
 		{
 			"ru": "Нет сцены",
 			"ja": "シーンがありません",
-			"es": "No hay escena"
+			"es": "No hay escena",
+			"zh": "无场景"
 		}
 	],
 	[
@@ -2448,7 +2810,8 @@
 		{
 			"ru": ">Сохранить как<",
 			"ja": ">保存名<",
-			"es": ">Guardar como<"
+			"es": ">Guardar como<",
+			"zh": ">另存为<"
 		}
 	],
 	[
@@ -2457,7 +2820,8 @@
 			"en": "",
 			"ja": "チュートリアル:",
 			"ru": "Руководство:",
-			"es": "Tutorial:"
+			"es": "Tutorial:",
+			"zh": "教程:"
 		}
 	],
 	[
@@ -2465,7 +2829,8 @@
 		{
 			"ja": ">新規タブ<",
 			"ru": ">Новое окно<",
-			"es": ">Nueva ventana<"
+			"es": ">Nueva ventana<",
+			"zh": ">新标签页<"
 		}
 	],
 	[
@@ -2473,7 +2838,8 @@
 		{
 			"ja": "'>名前 \"+",
 			"ru": "'>Имя \"+",
-			"es": "'>Nombre \"+"
+			"es": "'>Nombre \"+",
+			"zh": "'>名称 \"+"
 		}
 	],
 	[
@@ -2481,7 +2847,8 @@
 		{
 			"ru": "символов:",
 			"ja": "文字数:",
-			"es": "símbolos:"
+			"es": "símbolos:",
+			"zh": "字符:"
 		}
 	],
 	[
@@ -2489,7 +2856,8 @@
 		{
 			"ru": "Смещение X",
 			"ja": "ホットスポット X",
-			"es": "Desplazamiento X"
+			"es": "Desplazamiento X",
+			"zh": "X偏移量"
 		}
 	],
 	[
@@ -2497,7 +2865,8 @@
 		{
 			"ru": "Смещение Y",
 			"ja": "ホットスポット Y",
-			"es": "Desplazamiento Y"
+			"es": "Desplazamiento Y",
+			"zh": "Y偏移量"
 		}
 	],
 	[
@@ -2505,7 +2874,8 @@
 		{
 			"ru": "Релиз:",
 			"ja": "公開バージョン",
-			"es": "Lanzamiento:"
+			"es": "Lanzamiento:",
+			"zh": "发布:"
 		}
 	],
 	[
@@ -2513,7 +2883,8 @@
 		{
 			"ru": "Сайт:",
 			"ja": "ウェブサイト:",
-			"es": "Sitio Web:"
+			"es": "Sitio Web:",
+			"zh": "网站:"
 		}
 	],
 	[
@@ -2521,7 +2892,8 @@
 		{
 			"ru": ">Отмена<",
 			"ja": ">キャンセル<",
-			"es": ">Cancelar<"
+			"es": ">Cancelar<",
+			"zh": ">取消<"
 		}
 	],
 	[
@@ -2529,7 +2901,8 @@
 		{
 			"ru": "Клавиатура",
 			"ja": "キーボード",
-			"es": "Teclado"
+			"es": "Teclado",
+			"zh": "键盘"
 		}
 	],
 	[
@@ -2537,7 +2910,8 @@
 		{
 			"ru": ">Редактор<",
 			"ja": ">エディター<",
-			"es": ">Editor<"
+			"es": ">Editor<",
+			"zh": ">编辑器<"
 		}
 	],
 	[
@@ -2545,7 +2919,8 @@
 		{
 			"ru": ">Картинка:<",
 			"ja": ">画像:<",
-			"es": ">Imagen:<"
+			"es": ">Imagen:<",
+			"zh": ">图片:<"
 		}
 	],
 	[
@@ -2553,7 +2928,8 @@
 		{
 			"ru": ">Музыка:<",
 			"ja": ">音楽 / BGM:<",
-			"es": ">Musica:<"
+			"es": ">Musica:<",
+			"zh": ">音乐:<"
 		}
 	],
 	[
@@ -2561,7 +2937,8 @@
 		{
 			"ru": ">Цвет:<",
 			"ja": ">背景色:<",
-			"es": ">Color:<"
+			"es": ">Color:<",
+			"zh": ">颜色:<"
 		}
 	],
 	[
@@ -2569,7 +2946,8 @@
 		{
 			"ru": ">Экран<",
 			"ja": ">画面比率<",
-			"es": ">Pantalla<"
+			"es": ">Pantalla<",
+			"zh": ">屏幕<"
 		}
 	],
 	[
@@ -2577,7 +2955,8 @@
 		{
 			"ru": ">Высота<",
 			"ja": ">縦幅<",
-			"es": ">Altura<"
+			"es": ">Altura<",
+			"zh": ">高度<"
 		}
 	],
 	[
@@ -2585,7 +2964,8 @@
 		{
 			"ru": ">Не менять скорость<",
 			"ja": ">等速<",
-			"es": ">lineal<"
+			"es": ">lineal<",
+			"zh": ">匀速<"
 		}
 	],
 	[
@@ -2593,7 +2973,8 @@
 		{
 			"ru": ">центр<",
 			"ja": ">中央<",
-			"es": ">centro<"
+			"es": ">centro<",
+			"zh": ">中心<"
 		}
 	],
 	[
@@ -2601,7 +2982,8 @@
 		{
 			"ru": ">снизу<",
 			"ja": ">下<",
-			"es": ">inferior<"
+			"es": ">inferior<",
+			"zh": ">底部<"
 		}
 	],
 	[
@@ -2609,7 +2991,8 @@
 		{
 			"ru": ">Мышь <",
 			"ja": ">マウス<",
-			"es": ">Mouse <"
+			"es": ">Mouse <",
+			"zh": ">鼠标<"
 		}
 	],
 	[
@@ -2617,7 +3000,8 @@
 		{
 			"ru": "Zip файл",
 			"ja": "Zipファイル",
-			"es": "Archivo zip"
+			"es": "Archivo zip",
+			"zh": "Zip文件"
 		}
 	],
 	[
@@ -2625,7 +3009,8 @@
 		{
 			"ru": ">Выбор<",
 			"ja": ">選択肢<",
-			"es": ">Elección<"
+			"es": ">Elección<",
+			"zh": ">选择<"
 		}
 	],
 	[
@@ -2633,7 +3018,8 @@
 		{
 			"ru": ">Удалить<",
 			"ja": ">削除<",
-			"es": ">Borrar<"
+			"es": ">Borrar<",
+			"zh": ">删除<"
 		}
 	],
 	[
@@ -2641,7 +3027,8 @@
 		{
 			"ru": ">Лейблы<",
 			"ja": ">ラベル<",
-			"es": ">Etiquetas<"
+			"es": ">Etiquetas<",
+			"zh": ">标签<"
 		}
 	],
 	[
@@ -2649,7 +3036,8 @@
 		{
 			"ru": "\"Выбор\"",
 			"ja": "\"下\"",
-			"es": "\"inferior\""
+			"es": "\"inferior\"",
+			"zh": "\"下\""
 		}
 	],
 	[
@@ -2657,7 +3045,8 @@
 		{
 			"ru": ">Скрыть<",
 			"ja": ">非表示<",
-			"es": ">Oculto<"
+			"es": ">Oculto<",
+			"zh": ">隐藏<"
 		}
 	],
 	[
@@ -2665,7 +3054,8 @@
 		{
 			"ja": ">背景の繰返し<",
 			"ru": ">Повторить<",
-			"es": ">Repetir<"
+			"es": ">Repetir<",
+			"zh": ">重复<"
 		}
 	],
 	[
@@ -2673,21 +3063,24 @@
 		{
 			"ru": "прочесть:<",
 			"es": "leer:<",
-			"ja": "音声読み上げ:<"
+			"ja": "音声読み上げ:<",
+			"zh": "语音:<"
 		}
 	],
 	[
 		"\"Speech\"",
 		{
 			"ru": "\"Речь\"",
-			"ja": "\"合成音声\""
+			"ja": "\"合成音声\"",
+			"zh": "\"语音\""
 		}
 	],
 	[
 		">Thirds<",
 		{
 			"ru": ">Третей<",
-			"ja": ">三分割<"
+			"ja": ">三分割<",
+			"zh": ">三分割<"
 		}
 	],
 	[
@@ -2695,7 +3088,8 @@
 		{
 			"ru": "диалог:",
 			"ja": "ダイアログ:",
-			"es": "diálogo:"
+			"es": "diálogo:",
+			"zh": "对话:"
 		}
 	],
 	[
@@ -2703,7 +3097,8 @@
 		{
 			"ru": "Почта:",
 			"ja": "メールアドレス:",
-			"es": "Correo:"
+			"es": "Correo:",
+			"zh": "电子邮件:"
 		}
 	],
 	[
@@ -2711,7 +3106,8 @@
 		{
 			"ru": "Курсоры",
 			"ja": "カーソル",
-			"es": "Cursores"
+			"es": "Cursores",
+			"zh": "光标"
 		}
 	],
 	[
@@ -2719,7 +3115,8 @@
 		{
 			"ru": ">иконка <",
 			"ja": ">アイコン<",
-			"es": ">icono <"
+			"es": ">icono <",
+			"zh": ">图标<"
 		}
 	],
 	[
@@ -2727,7 +3124,8 @@
 		{
 			"ru": ">Цвет<",
 			"ja": ">カラー<",
-			"es": ">Color<"
+			"es": ">Color<",
+			"zh": ">颜色<"
 		}
 	],
 	[
@@ -2735,7 +3133,8 @@
 		{
 			"ru": ">Размер:<",
 			"ja": ">サイズ比率調整:<",
-			"es": ">Tamaño:<"
+			"es": ">Tamaño:<",
+			"zh": ">大小<"
 		}
 	],
 	[
@@ -2743,7 +3142,8 @@
 		{
 			"ru": ">Пропорции<",
 			"ja": ">サイズ比<",
-			"es": ">Razón<"
+			"es": ">Razón<",
+			"zh": ">比例<"
 		}
 	],
 	[
@@ -2751,7 +3151,8 @@
 		{
 			"ru": ">Ширина<",
 			"ja": ">横幅<",
-			"es": ">Ancho<"
+			"es": ">Ancho<",
+			"zh": ">宽度<"
 		}
 	],
 	[
@@ -2759,7 +3160,8 @@
 		{
 			"ru": ">Стиль<",
 			"ja": ">スタイル<",
-			"es": ">Estilo<"
+			"es": ">Estilo<",
+			"zh": ">风格<"
 		}
 	],
 	[
@@ -2767,7 +3169,8 @@
 		{
 			"ru": ">Угол наклона<",
 			"ja": ">角度<",
-			"es": ">Ángulo<"
+			"es": ">Ángulo<",
+			"zh": ">角度<"
 		}
 	],
 	[
@@ -2776,7 +3179,8 @@
 			"ru": ">Перейти в<",
 			"ja": ">移動 / go to<",
 			"es": ">Ir a<",
-			"pt": ">Ir para<"
+			"pt": ">Ir para<",
+			"zh": ">去往<"
 		}
 	],
 	[
@@ -2784,7 +3188,8 @@
 		{
 			"ru": ">По меньшей стороне<",
 			"ja": ">トリミング調整<",
-			"es": ">portada<"
+			"es": ">portada<",
+			"zh": ">按较小边<"
 		}
 	],
 	[
@@ -2792,7 +3197,8 @@
 		{
 			"ru": ">справа<",
 			"ja": ">右<",
-			"es": ">derecha<"
+			"es": ">derecha<",
+			"zh": ">右<"
 		}
 	],
 	[
@@ -2800,7 +3206,8 @@
 		{
 			"ru": ">Далее <",
 			"ja": ">次へ<",
-			"es": ">Siguiente<"
+			"es": ">Siguiente<",
+			"zh": ">下一个 <"
 		}
 	],
 	[
@@ -2808,7 +3215,8 @@
 		{
 			"ru": ">Таймер<",
 			"ja": ">タイマー<",
-			"es": ">Temporizador<"
+			"es": ">Temporizador<",
+			"zh": ">计时器<"
 		}
 	],
 	[
@@ -2816,7 +3224,8 @@
 		{
 			"ru": ">Музыка<",
 			"ja": ">音楽<",
-			"es": ">Musica<"
+			"es": ">Musica<",
+			"zh": ">音乐<"
 		}
 	],
 	[
@@ -2824,7 +3233,8 @@
 		{
 			"ru": ">Масштаб<",
 			"ja": ">スケール<",
-			"es": ">Escala<"
+			"es": ">Escala<",
+			"zh": ">比例<"
 		}
 	],
 	[
@@ -2832,7 +3242,8 @@
 		{
 			"ru": ">Предметы<",
 			"ja": ">アイテム<",
-			"es": ">Elementos<"
+			"es": ">Elementos<",
+			"zh": ">物品<"
 		}
 	],
 	[
@@ -2840,7 +3251,8 @@
 		{
 			"ru": ">Сцена<",
 			"ja": ">シーン<",
-			"es": ">Escena<"
+			"es": ">Escena<",
+			"zh": ">场景<"
 		}
 	],
 	[
@@ -2848,7 +3260,8 @@
 		{
 			"ru": ">Зеленый<",
 			"ja": ">グリーン<",
-			"es": ">Verde<"
+			"es": ">Verde<",
+			"zh": ">绿色<"
 		}
 	],
 	[
@@ -2856,7 +3269,8 @@
 		{
 			"ru": ">Прозрачность<",
 			"ja": ">透過度<",
-			"es": ">Alfa<"
+			"es": ">Alfa<",
+			"zh": ">透明度<"
 		}
 	],
 	[
@@ -2864,7 +3278,8 @@
 		{
 			"ru": ">Диалог",
 			"ja": ">ダイアログ",
-			"es": ">Diálogo"
+			"es": ">Diálogo",
+			"zh": ">对话框"
 		}
 	],
 	[
@@ -2872,7 +3287,8 @@
 		{
 			"ru": "Заменить",
 			"es": "Reemplazar",
-			"ja": "上書き貼り付け"
+			"ja": "上書き貼り付け",
+			"zh": "替换"
 		}
 	],
 	[
@@ -2880,7 +3296,8 @@
 		{
 			"ru": "Вставить '",
 			"ja": "この次に貼り付け「 '",
-			"es": "Pegar '"
+			"es": "Pegar '",
+			"zh": "粘贴 '"
 		}
 	],
 	[
@@ -2888,7 +3305,8 @@
 		{
 			"ru": "' ниже",
 			"ja": "'」",
-			"es": "' debajo"
+			"es": "' debajo",
+			"zh": "' 下"
 		}
 	],
 	[
@@ -2896,7 +3314,8 @@
 		{
 			"ja": ">ブロック<",
 			"es": ">Bloquear<",
-			"ru": ">Блок<"
+			"ru": ">Блок<",
+			"zh": ">区块<"
 		}
 	],
 	[
@@ -2904,42 +3323,48 @@
 		{
 			"ru": ">Собрать<",
 			"ja": ">パッケージ作成 / Build<",
-			"es": ">Recolectar<"
+			"es": ">Recolectar<",
+			"zh": ">构建<"
 		}
 	],
 	[
 		"GamePad",
 		{
 			"ru": "",
-			"ja": "ゲームパッド"
+			"ja": "ゲームパッド",
+			"zh": "游戏手柄"
 		}
 	],
 	[
 		">Voice<",
 		{
 			"ru": ">Голос<",
-			"ja": ">音声<"
+			"ja": ">音声<",
+			"zh": ">语音<"
 		}
 	],
 	[
 		">Speed<",
 		{
 			"ru": ">Скорость<",
-			"ja": ">読み上げ速度<"
+			"ja": ">読み上げ速度<",
+			"zh": ">速度<"
 		}
 	],
 	[
 		">Fixed<",
 		{
 			"ru": ">Фиксированный<",
-			"ja": ">固定<"
+			"ja": ">固定<",
+			"zh": ">固定<"
 		}
 	],
 	[
 		">Lines<",
 		{
 			"ru": ">Линии<",
-			"ja": ">補助線<"
+			"ja": ">補助線<",
+			"zh": ">辅助线<"
 		}
 	],
 	[
@@ -2947,7 +3372,8 @@
 		{
 			"ru": "слов:",
 			"ja": "単語数",
-			"es": "palabras:"
+			"es": "palabras:",
+			"zh": "字符:"
 		}
 	],
 	[
@@ -2956,7 +3382,8 @@
 			"ru": "перейти в:",
 			"ja": "移動:",
 			"es": "Ir a:",
-			"pt": "ir para:"
+			"pt": "ir para:",
+			"zh": "跳转:"
 		}
 	],
 	[
@@ -2964,7 +3391,8 @@
 		{
 			"ru": "сцена:",
 			"ja": "シーン:",
-			"es": "Escena:"
+			"es": "Escena:",
+			"zh": "场景:"
 		}
 	],
 	[
@@ -2972,7 +3400,8 @@
 		{
 			"ru": "Дополнения",
 			"ja": "アドオン",
-			"es": "Complemento"
+			"es": "Complemento",
+			"zh": "插件"
 		}
 	],
 	[
@@ -2980,7 +3409,8 @@
 		{
 			"ru": ">Размер<",
 			"ja": ">サイズ比率調整<",
-			"es": ">Tamaño<"
+			"es": ">Tamaño<",
+			"zh": ">尺寸<"
 		}
 	],
 	[
@@ -2989,7 +3419,8 @@
 			"ru": ">Текст<",
 			"ja": ">テキスト<",
 			"es": ">Texto<",
-			"pt": ">Texto<"
+			"pt": ">Texto<",
+			"zh": ">文字<"
 		}
 	],
 	[
@@ -2998,7 +3429,8 @@
 			"ru": ">Изображения<",
 			"ja": ">画像<",
 			"es": ">Artes<",
-			"pt": ">Artes<"
+			"pt": ">Artes<",
+			"zh": ">艺术<"
 		}
 	],
 	[
@@ -3006,7 +3438,8 @@
 		{
 			"ru": ">Ускорение в середине<",
 			"ja": ">普→早→普<",
-			"es": ">facilidad<"
+			"es": ">facilidad<",
+			"zh": ">渐动<"
 		}
 	],
 	[
@@ -3014,7 +3447,8 @@
 		{
 			"ru": ">Заполнить<",
 			"ja": ">引き延ばし調整<",
-			"es": ">llenar<"
+			"es": ">llenar<",
+			"zh": ">填充<"
 		}
 	],
 	[
@@ -3022,7 +3456,8 @@
 		{
 			"ru": ">слева<",
 			"ja": ">左<",
-			"es": ">izquierda<"
+			"es": ">izquierda<",
+			"zh": ">左<"
 		}
 	],
 	[
@@ -3030,7 +3465,8 @@
 		{
 			"ru": "Звуки",
 			"ja": "音声ファイル",
-			"es": "Sonidos"
+			"es": "Sonidos",
+			"zh": "音效"
 		}
 	],
 	[
@@ -3038,7 +3474,8 @@
 		{
 			"ru": ">Запустить<",
 			"ja": ">プレイ<",
-			"es": ">Reproducir<"
+			"es": ">Reproducir<",
+			"zh": ">播放<"
 		}
 	],
 	[
@@ -3046,7 +3483,8 @@
 		{
 			"ru": ">Название<",
 			"ja": ">ネーム<",
-			"es": ">Nombre<"
+			"es": ">Nombre<",
+			"zh": ">名称<"
 		}
 	],
 	[
@@ -3054,7 +3492,8 @@
 		{
 			"ru": ">нет<",
 			"ja": ">無し<",
-			"es": ">ninguno<"
+			"es": ">ninguno<",
+			"zh": ">无<"
 		}
 	],
 	[
@@ -3062,7 +3501,8 @@
 		{
 			"ru": ">Синий<",
 			"ja": ">ブルー<",
-			"es": ">Azul<"
+			"es": ">Azul<",
+			"zh": ">蓝色<"
 		}
 	],
 	[
@@ -3070,7 +3510,8 @@
 		{
 			"ru": "\"если {\"",
 			"ja": "\"次の条件を満たす {\"",
-			"es": "\"si {\""
+			"es": "\"si {\"",
+			"zh": "\"如果 {\""
 		}
 	],
 	[
@@ -3078,7 +3519,8 @@
 		{
 			"ru": ">иначе<",
 			"ja": ">その他<",
-			"es": ">else<"
+			"es": ">else<",
+			"zh": ">或<"
 		}
 	],
 	[
@@ -3086,7 +3528,8 @@
 		{
 			"ru": ">Сцена",
 			"ja": ">シーン",
-			"es": ">Escena"
+			"es": ">Escena",
+			"zh": ">场景"
 		}
 	],
 	[
@@ -3094,7 +3537,8 @@
 		{
 			"ru": ">Изменить<",
 			"ja": ">編集<",
-			"es": ">Editar<"
+			"es": ">Editar<",
+			"zh": ">编辑<"
 		}
 	],
 	[
@@ -3102,7 +3546,8 @@
 		{
 			"ru": ">Показать<",
 			"ja": ">表示<",
-			"es": ">Mostrar<"
+			"es": ">Mostrar<",
+			"zh": ">显示<"
 		}
 	],
 	[
@@ -3110,7 +3555,8 @@
 		{
 			"ja": ">URLリンク<",
 			"ru": ">Ссылка<",
-			"es": ">Enlace<"
+			"es": ">Enlace<",
+			"zh": ">链接<"
 		}
 	],
 	[
@@ -3119,7 +3565,8 @@
 			"ru": ">Назад",
 			"ja": ">戻る",
 			"es": ">Atrás",
-			"pt": ">Voltar"
+			"pt": ">Voltar",
+			"zh": ">返回"
 		}
 	],
 	[
@@ -3127,7 +3574,8 @@
 		{
 			"ru": "Видео",
 			"ja": "動画",
-			"es": "Video"
+			"es": "Video",
+			"zh": "视频"
 		}
 	],
 	[
@@ -3135,7 +3583,8 @@
 		{
 			"ru": "Шрифты",
 			"ja": "フォント",
-			"es": "Fuentes"
+			"es": "Fuentes",
+			"zh": "字体"
 		}
 	],
 	[
@@ -3144,7 +3593,8 @@
 			"ru": "Применить",
 			"ja": "適用",
 			"es": "Aplicar",
-			"pt": "Aplicar"
+			"pt": "Aplicar",
+			"zh": "应用"
 		}
 	],
 	[
@@ -3152,7 +3602,8 @@
 		{
 			"ru": ">Нет<",
 			"ja": ">オフ<",
-			"es": ">Desactivado<"
+			"es": ">Desactivado<",
+			"zh": ">关闭<"
 		}
 	],
 	[
@@ -3160,7 +3611,8 @@
 		{
 			"ru": ">Изображение<",
 			"ja": ">画像<",
-			"es": ">Arte<"
+			"es": ">Arte<",
+			"zh": ">艺术<"
 		}
 	],
 	[
@@ -3168,7 +3620,8 @@
 		{
 			"ru": ">+<",
 			"ja": ">追加<",
-			"es": ">agregar<"
+			"es": ">agregar<",
+			"zh": ">添加<"
 		}
 	],
 	[
@@ -3176,7 +3629,8 @@
 		{
 			"ru": ">=<",
 			"ja": ">セット<",
-			"es": ">ajustar<"
+			"es": ">ajustar<",
+			"zh": ">设置<"
 		}
 	],
 	[
@@ -3184,7 +3638,8 @@
 		{
 			"ru": ">сверху<",
 			"ja": ">上<",
-			"es": ">superior<"
+			"es": ">superior<",
+			"zh": ">顶部<"
 		}
 	],
 	[
@@ -3192,7 +3647,8 @@
 		{
 			"ru": "Звук",
 			"ja": "音量",
-			"es": "Sonido"
+			"es": "Sonido",
+			"zh": "声音"
 		}
 	],
 	[
@@ -3200,7 +3656,8 @@
 		{
 			"ru": "Вставить",
 			"ja": "ペースト",
-			"es": "Pegar"
+			"es": "Pegar",
+			"zh": "粘贴"
 		}
 	],
 	[
@@ -3208,7 +3665,8 @@
 		{
 			"ru": ">Вырезать<",
 			"ja": ">カット<",
-			"es": ">Cortar<"
+			"es": ">Cortar<",
+			"zh": ">剪切<"
 		}
 	],
 	[
@@ -3216,7 +3674,8 @@
 		{
 			"ru": ">Красный<",
 			"ja": ">レッド<",
-			"es": ">Rojo<"
+			"es": ">Rojo<",
+			"zh": ">红色<"
 		}
 	],
 	[
@@ -3224,7 +3683,8 @@
 		{
 			"ru": "Зациклить:",
 			"ja": "ループ",
-			"es": "Bucle:"
+			"es": "Bucle:",
+			"zh": "循环:"
 		}
 	],
 	[
@@ -3232,7 +3692,8 @@
 		{
 			"ru": ">Да<",
 			"ja": ">はい<",
-			"es": ">Sí<"
+			"es": ">Sí<",
+			"zh": ">是<"
 		}
 	],
 	[
@@ -3240,7 +3701,8 @@
 		{
 			"ja": ">はい<",
 			"ru": ">да<",
-			"es": "> sí<"
+			"es": "> sí<",
+			"zh": ">是<"
 		}
 	],
 	[
@@ -3248,7 +3710,8 @@
 		{
 			"ru": "Копировать",
 			"ja": "コピー",
-			"es": "Copiar"
+			"es": "Copiar",
+			"zh": "复制"
 		}
 	],
 	[
@@ -3256,7 +3719,8 @@
 		{
 			"ru": ">Нет<",
 			"ja": ">いいえ<",
-			"es": ">No<"
+			"es": ">No<",
+			"zh": ">不<"
 		}
 	],
 	[
@@ -3264,7 +3728,8 @@
 		{
 			"ja": ">いいえ<",
 			"ru": ">нет<",
-			"es": ">no<"
+			"es": ">no<",
+			"zh": ">不<"
 		}
 	]
 ]
