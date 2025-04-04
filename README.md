@@ -295,4 +295,6 @@ The goal of Tuesday JS is to make project development no more difficult than wor
 
 [Portuguese translation and adaptation by Sarah Camargo](https://www.linkedin.com/in/sarah-carolina-camargo/)
 
+[China translation and adaptation by  榕城小林囝](https://github.com/jymusic0663/)
+
 [![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
