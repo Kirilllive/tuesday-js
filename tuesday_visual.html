@@ -1424,13 +1424,16 @@ function movie_dlock(id){
         var shiftY=(e.pageY-coords.top);
         let allBlocks=document.getElementsByClassName("story_block");
         for (const story_block of allBlocks){story_block.style.zIndex="auto"}
-        scroll_block=true;
-        focus_block.style.position='absolute';
+        //focus_block.style.position='absolute';
         focus_block.style.animation=false;
         focus_block.style.WebkitAnimation=false;
         focus_block.style.zIndex=allBlocks.length;
-        moveAt(e);
         function moveAt(e){
+            if(!scroll_block){
+                scroll_block=true;
+                story_blocks.appendChild(focus_block);
+                return false;
+            };
             focus_block.style.left=((e.pageX-shiftX)/scale)+'px';
             focus_block.style.top=((e.pageY-shiftY)/scale)+'px';
             lines(id)
@@ -1545,8 +1548,10 @@ world.onmousedown=function(e){
         scroll_x=html.scrollTop;
         scroll_y=html.scrollLeft;
         html.onmousemove=function(e){
-            html.scrollTop=scroll_x-(e.clientY-startmove_y);
-            html.scrollLeft=scroll_y-(e.clientX-startmove_x);
+            if(!scroll_block){
+                html.scrollTop=scroll_x-(e.clientY-startmove_y);
+                html.scrollLeft=scroll_y-(e.clientX-startmove_x);
+            }
         }
         html.onmouseup=function(e){
             startmove_x=null;
