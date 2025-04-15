@@ -8,13 +8,6 @@
 <meta name="keywords" content="วิชวลโนเวลเอ็นจิ้น,웹 비주얼 노벨 노블 엔진,Interactive Fiction,Visual Novel,Fairy Tale,Kinetic Novel,Open Source,视觉小说引擎,ビジュアルノベル・エンジン,движок визуальных новелл,motor de novelas visuales,moteur de roman visuel">
 <meta name='viewport' content='width=device-width, initial-scale=1'/>
 <meta name="author" content="Kirill Live">
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166622340-2"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'UA-166622340-2');
-</script>
 <style>
 * {
     font-family: Arial;
@@ -536,7 +529,7 @@ body {
                                         <td align='right' style='width:25%;'>Portuguese translator:&nbsp;</td>
                                         <td align='left' style='width:25%;'><a href="https://www.linkedin.com/in/sarah-carolina-camargo/" target="_blank">Sarah Camargo</a></td>
                                         <td align='right' style='width:25%;'>China translator:&nbsp;</td>
-                                        <td align='left' style='width:25%;'>黔岭苗七哥</td>
+                                        <td align='left' style='width:25%;'>jymusic0663</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -866,29 +859,6 @@ let translation = {
         ["tool_2", "<b>Conversion des couleurs</b></a><br><br>la conversion des formats de couleurs RVB en HEX et vice versa. Vous pouvez également prélever une couleur directement dans une image.Il existe des fonctions supplémentaires pour calculer le rapport de proportions lors du redimensionnement de l'image"],
         ["tool_3", "<b>Conversion de texte</b></a><br><br>Vous pouvez convertir le texte brut de l'histoire en JSON pour Tuesday JS. Le convertisseur de texte divisera le texte de l'histoire en petites parties à utiliser dans les dialogues."]
     ],
-    "zh": [
-        ["title", "Tuesday JS 视觉小说引擎"],
-        ["play_online", "<a href='translate/zh_tuesday_visual.html' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_play'></td><td align='left' style='padding-right:14px;'>免下载运行</td></tr></tbody></table></a>"],
-        ["play_tutorial", "<a href='doc_editor.html#quick_tutorial_zh' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_about'></td><td align='left' style='padding-right:14px;'>快速指南</td></tr></tbody></table></a>"],
-        ["download_txt", "客户端下载"],
-        ["description", "是一个免费的开源引擎，用于创建视觉小说，互动故事和基于文本的冒险游戏。 使用JavaScript编写，无需使用任何第三方库。 可以将项目导出到Apache Cordova，以创建移动应用程序或PC程序。 该引擎使用标准HTML文档元素DOM（例如div和img），从而允许使用浏览器支持的任何媒体格式，包括矢量图形svg，gif动画和CSS样式。</p><br><p> 该编辑器结合了拖放工具以创建场景和界面，以及以流程图节点形式显示的可视场景编辑器，该编辑器显示了所有情节元素和故事的分支。 这样可以更轻松地浏览脚本，并有助于创建具有许多绘图选项的大型</p>"],
-        ["title_1", "直观的编辑体验"],
-        ["screen_1", "与大多数类似编辑器的主要区别在于，脚本结构通过包含所有对话框、选项和其他绘图元素的块进行图形显示。为了获得最好的清晰度，可以根据情节的情绪或这样一幅图像中角色的各个分支来为区块分配 colored颜色 ，这对于从事游戏开发的编剧来说很重要。"],
-        ["title_6", "场景编辑的灵活性"],
-        ["screen_6", "场景编辑器不仅允许创作者安排元素的位置，还能实时显示场景在不同屏幕上的变化。编辑器支持以百分比像素或厘米为单位的标准HTML单位，确保场景在不同屏幕上的适应性。"],
-        ["title_2", "翻译"],
-        ["screen_2", "该环境提供了一个将你的故事本地化为其他语言的充分机会，你可以为几乎任何元素设置翻译，无论是文本还是图像，这样你就可以用另一种语言充分表达你的想法，不仅是用文字，还可以通过位置动作。为了便于翻译，您可以以CSVElectron 表格格式导出所有文本(将来我还计划将翻译文本导入回)。"],
-        ["title_3", "JSON脚本的可移植性"],
-        ["screen_3", "故事脚本以JSON结构存储，这种格式几乎可以被所有编程语言读取，使得脚本可以在不同的引擎或平台上移植。编辑器提供了处理JSON的内置工具，方便创作者编辑脚本的全部内容或仅编辑选定的元素。"],
-        ["title_4", "媒体格式的多样性"],
-        ["screen_4", "该引擎利用DOM（文档对象模型）来处理标准HTML文档元素，如div和img，支持包括SVG矢量图形、GIF动画和CSS样式在内的多种媒体格式，为视觉小说的丰富表现提供了可能。"],
-        ["title_5", "ASCII艺术的支持"],
-        ["screen_5", "Tuesday JS引擎适合使用ASCII图形，创作者可以通过由文本字符组成的图像和图案来丰富文本内容。"],
-        ["title_7", "翻译与本地化"],
-        ["screen_7", "内置的翻译编辑工具让创作者能够快速添加新翻译并编辑项目中的所有文本。此外，它还支持将故事本地化为其他语言，为几乎任何元素设置翻译，包括文本和图像，让创作者的思想跨越语言的界限。"],
-        ["title_8", "ChatBot的集成及本地服务器的运行"],
-        ["screen_8", "项目可以导出为Telegram Messenger的机器人，为创作者提供了一个创建在线助手的机会，用于自动化客户服务，提升服务水平。创作者可以使用Node.JS运行本地服务器，为项目提供稳定的运行环境。<br><br><a href='doc_editor.html#bot_telegram' target='_blank'>bot for telegram tutorial</a>"],
-    ],
     "ko": [
         ["title", "Tuesday JS 웹 비주얼 노벨 노블 엔진"],
         ["description", "튜즈데이JS(TuesdayJS)는 웹 브라우저에서 사용할 수 있는 간단한 웹 기반의 무료 오픈 소스 비주얼 노벨 노블 엔진이다. 타사 라이브러리를 사용하지 않고 자바스크립트(JavaScript)로 작성되어 별도의 추가 소프트웨어 설치가 필요없다. 엔진은 div 및 img와 같은 표준 HTML 문서 요소를 사용, 이를 통해 벡터 그래픽 svg, gif 애니메이션 및 CSS 스타일을 포함하여 브라우저에서 지원하는 모든 미디어 형식을 사용할 수 있다.</p><br><p>편집기는 프로그래밍 언어에 대한 지식 없이도 인터랙티브 픽션, 비주얼 노벨(Visual Novel) 또는 키네틱 노블(Kinetic Novel)을 만들 수 있도록 설계됐다. 장면 편집 및 인터페이스를 만들기 위해 드래그 &amp; 드롭 인터페이스를 사용하며, 스토리 스크립트는 모든 플롯 요소를 비롯해 분기 순서도 노드로 표시됩니다. 쉬운 탐색과 탐색이 다양한 플롯 옵션으로 멋진 스토리를 만드는 데 도움이 되도록 설계했다.</p><br><p>안드로이드(Android) 장치 및 데스크탑용 애플리케이션으로 사용할 수 있는 편집기 버전이 있으며, 모든 버전은 서로 완벽하게 호환되며 동일한 인터페이스로 구성됐다</p>"],
@@ -945,7 +915,30 @@ let translation = {
         ["tool_4", "<b>Конвертер base64</b></a><br><br>Группа схем кодирования двоичного кода в текст, которые представляют двоичные данные в строку ASCII. Затем эти данные могут быть добавлены в текст документа вместо адреса файла."],
         ["tool_5","<b>Ascii Art Paint</b><br><br>Графический редактор ASCII, который сочетает в себе графический редактор и преобразователь изображения в текст."],
         ["tool_6","<b>Инструмент замены</b><br><br>Очень простая программа способная заменить неограниченное количество значений в нескольких текстовых файлах, которые может прочитать браузер. Значения для замены могут храниться в файле JSON."]
-    ]
+    ],
+    "zh": [
+        ["title", "Tuesday JS 视觉小说引擎"],
+        ["play_online", "<a href='translate/zh_tuesday_visual.html' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_play'></td><td align='left' style='padding-right:14px;'>免下载运行</td></tr></tbody></table></a>"],
+        ["play_tutorial", "<a href='doc_editor.html#quick_tutorial_zh' target='_blank'><table class='bottom_m' ><tbody><tr><td class='icon_m icon_about'></td><td align='left' style='padding-right:14px;'>快速指南</td></tr></tbody></table></a>"],
+        ["download_txt", "客户端下载"],
+        ["description", "<p>这是一款基于网络的简单、免费且开源的视觉小说编辑器，可在网络浏览器中使用。它是用 JavaScript 编写的，不使用任何第三方库，因此无需安装额外的软件。该引擎使用标准的 HTML5 文档元素，如 div 和 img。这使得它能够使用浏览器所支持的任何媒体格式，包括矢量图形 svg、gif 动画以及 css 样式。</p><p>还有一个版本的编辑器可作为独立应用程序，适用于安卓设备和桌面端。所有版本之间完全兼容，并且拥有相同的界面。</p>"],
+        ["title_1", "直观的编辑体验"],
+        ["screen_1", "这款可视化编辑器让你无需任何编程知识就能创作图像小说或动态小说。如有必要，还可以使用 JavaScript 和 CSS 来扩展其基本功能。"],
+        ["title_6", "场景编辑的灵活性"],
+        ["screen_6", "场景编辑器可以将所有元素放置在合适的位置。它还能展示该场景在不同屏幕上会如何变化。<p>在场景布局中，你可以使用以百分比、像素或厘米为单位的标准 HTML 度量单位，以便让场景更好地适配不同的屏幕。</p>"],
+        ["title_2", "翻译"],
+        ["screen_2", "Tuesday JS也具备丰富的用于制作翻译版本的功能。<p>可以为构成游戏的文本、图形等每一个元素设置翻译版本的文件，并且能够通过预览功能来确认所准备的翻译版本的运行情况。</p><p>由于可以输出为CSV格式的表格数据，所以也能够在其他文本编辑器中编辑或添加翻译文本。 </p>"],
+        ["title_3", "JSON脚本的可移植性"],
+        ["screen_3", "一个故事脚本的所有元素都存储在一个JSON结构中。几乎任何编程语言都可以处理这种格式。这使得你能够将脚本移植到另一个引擎或平台上。该编辑器有一个内置的用于处理JSON的工具。这能让你编辑脚本的全部内容，或者仅仅编辑所选的元素。"],
+        ["title_4", "媒体格式的多样性"],
+        ["screen_4", "预览功能可让你从脚本中的某个特定点开始，并以所选的本地化设置来启动项目。"],
+        ["title_5", "ASCII艺术的支持"],
+        ["screen_5", "该引擎适用于使用ASCII图形。借助它，你可以用由文本字符组成的图像和图案来丰富文本内容。 "],
+        ["title_7", "翻译与本地化"],
+        ["screen_7", "内置的翻译编辑工具使你无需离开编辑器，就能快速添加新的翻译内容，并编辑项目中的所有文本。此外，它还会显示每种语言已完成的翻译数量。"],
+        ["title_8", "ChatBot的集成及本地服务器的运行"],
+        ["screen_8", "项目可以导出为Telegram Messenger的机器人，为创作者提供了一个创建在线助手的机会，用于自动化客户服务，提升服务水平。创作者可以使用Node.JS运行本地服务器，为项目提供稳定的运行环境。<br><br><a href='doc_editor.html#bot_telegram' target='_blank'>bot for telegram tutorial</a>"],
+    ],
 }
 function getLang(){
     if (window.location.hash.length!=0 && translation[window.location.hash.slice(1,3)]){

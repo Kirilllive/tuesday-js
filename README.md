@@ -37,16 +37,6 @@ Tutorials
 > PT - [Um guia rápido para criar uma visual novel](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_pt)
 
 
-Blogs
--------------------------
-> Twitter: https://twitter.com/TuesdayJS_vn
-
-> Reddit: https://www.reddit.com/r/TuesdayJS/
-
-
-[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
-
-
 
 # Visualization /ビジュアライゼーション
 The visual editor allows you to create graphics or kinetic novels without any programming knowledge. If is necessary, it is possible to expand the basic functionality using JavaScript and css.
@@ -295,6 +285,4 @@ The goal of Tuesday JS is to make project development no more difficult than wor
 
 [Portuguese translation and adaptation by Sarah Camargo](https://www.linkedin.com/in/sarah-carolina-camargo/)
 
-[China translation and adaptation by  榕城小林囝](https://github.com/jymusic0663/)
-
-[![Patreon](http://odin-interactive.com/img/patron.svg)](https://www.patreon.com/kirill_live)
+[China translation and adaptation by jymusic0663](https://github.com/jymusic0663/)
