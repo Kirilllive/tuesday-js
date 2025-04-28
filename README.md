@@ -20,8 +20,6 @@ Download builds for macOS, Windows, Android, Web
 -------------------------
 > GitHub: https://github.com/Kirilllive/tuesday-js/releases
 
-> Patreon: https://www.patreon.com/kirill_live
-
 > Boosty: https://boosty.to/kirilllive
 
 Tutorials
