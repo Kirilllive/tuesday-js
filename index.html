@@ -190,22 +190,23 @@ body {
 
 @supports selector(:has(*)){:not(:has(.page:target)) #home{display:block;}}
 .page{display:none;}
-.page:target{display:block;}
+.page:target{display:block;scroll-margin: 128px;}
 
 </style>
 </head>
-<body style="position:relative;">
+<body>
 
 
      
      
      
-     
-<div id="lang" style="position: absolute;top:24px;right:48px;padding:8px;background-color: rgba(110,95,165,0.7);border-radius: 18px;">
+<div style="width:100%;display:flex;justify-content:end;padding:32px 32px 0 0;">
+<div id="lang" style="padding:8px;background-color: rgba(110,95,165,0.7);border-radius: 18px;">
     <a href='#home'>EN</a>
     <a href='#ru'>RU</a>
 <!--    <a href='#ja'>JA</a>-->
 <!--    <a href='#zh'>ZH</a>-->
+</div>
 </div>
      
      
