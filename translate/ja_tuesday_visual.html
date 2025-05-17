@@ -1625,7 +1625,7 @@ function play_novel(bl,se){
         }else{plugins_file+=((plugins_list[story_script.parameters.plugins[i]])?"<script type='text/javascript' src='"+open_file(plugins_list[story_script.parameters.plugins[i]].file)+"'><\/script>":"<script type='text/javascript' src='"+open_file(story_script.parameters.plugins[i])+"'><\/script>")}
     }}
     if(story_script.parameters.font_files){for(var i=0;i<Object.keys(story_script.parameters.font_files).length;i++){fonts+="@font-face{font-family:"+Object.keys(story_script.parameters.font_files)[i]+";src:url("+open_file(story_script.parameters.font_files[Object.keys(story_script.parameters.font_files)[i]])+");} "}}
-    preview=window.open("","preview","location=no,scrollbars=no,width="+setup_editor.pvw[0]+",height="+setup_editor.pvw[1]);
+    preview=window.open("","preview","location=no,menubar=no,toolbar=no,scrollbars=no,resizable=yes,width="+setup_editor.pvw[0]+",height="+setup_editor.pvw[1]);
     preview.document.write("<html><head><title>"+languare_data(story_script.parameters.title)+"</title><style>*::-webkit-scrollbar{display:none;}*::-webkit-scrollbar-thumb{display:none;}"+css+fonts+" "+((story_script.parameters.font)?"*{overscroll-behavior:none;} ":"")+"body{font-size:"+story_script.parameters.font_size+";background-color:var(--wn);border-collapse:collapse;border:none;margin:0;padding:0;border:0;border-spacing:0px;-webkit-touch-callout:none;user-select:none;height:100vh;}<\/style><\/head><body><div id='tuesday' style='width:100%;height:100vh;'> <\/div><script type='text/javascript'>"+runtime+plugins_code+"<\/script>"+plugins_file+"<script src='true'><\/script><script type='text/javascript'>let story_preview="+story_preview+";tuesday.addEventListener('script_executed',function(event){languare='"+languare+"'});"+((bl)?"tuesday.addEventListener('script_loaded',function(event){go_to('"+bl+"');"+((se)?"scene="+scen_data[1]+";dialog="+(scen_data[2]-1)+";del_element('tue_choice');creation_scene();":"")+" });" :"")+" load_story('data',story_preview);<\/script><\/body><\/html>");
 }
 function search_block(){
@@ -4564,7 +4564,7 @@ function scen_editor_apply(){
     scene_maker.style.display="none";
     scroll_block=false;
     scene_screen=false;
-    html.style.overflow="auto";
+    html.style.overflow=(navigator.userAgent.indexOf('Firefox')>0)?'hidden':'scroll';
     html.scrollLeft=script_scroll[0];
     html.scrollTop=script_scroll[1];
     update_novel();
