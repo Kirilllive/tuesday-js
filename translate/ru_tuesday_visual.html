@@ -509,7 +509,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                     <td title='Проект код' onclick='global_scripts();menu_add.style.visibility="hidden";' class='icon button_menu icon_json'></td>
                     <td title='Диалоги и тексты' onclick='text_export();menu_add.style.visibility="hidden";' class='icon button_menu icon_text'></td>
                     <td title='О программе' onclick='about();menu_add.style.visibility="hidden";' class='icon button_menu icon_about small_menu'></td>
-                    <td style='width:88px;' class="small_menu"><input type="text" id="search_block" class="search" oninput="search_block()" onkeyup="search_block()" placeholder="Поиск блока" list="list_blocks"><datalist id="list_blocks"></datalist></td>
+                    <td style='width:88px;' class="small_menu"><input type="text" id="search_block" class="search" oninput="search_block()" onkeyup="search_block()" placeholder="Поиск блока" list="list_blocks"><datalist id="list_blocks" style="overflow-y: auto"></datalist></td>
                     <td style='width:40px;'><select id='language_view' style='height:40px;border-right:1px solid var(--cb);border-bottom:0;'><option value='en'>EN</option></select></td>
 					<td title='Собрать проект' onclick='build_choice();menu_add.style.visibility="hidden";' class='icon button_menu icon_build'></td>
 					<td title='Запустить проект' style='border-radius:0 0 16px 0;' onclick='play_novel();menu_add.style.visibility="hidden";' class='icon button_menu icon_play'></td>
@@ -1883,8 +1883,9 @@ function create_block(){
             break;}
         }
         var new_id=correct_name(block_id.value);
-        if(new_id!=''&&!story_script[new_id]){
+        if(new_id!=''){
             if(Object.keys(story_script).length<=2){story_script.parameters.launch_story=new_id}
+            else if(story_script[new_id]){new_id=new_id+"_"+(Object.keys(story_script).length-1)}
             story_script[new_id]=[];
             for(var i=0 ;i<Object.keys(story_script).length;i++){if(Object.keys(story_script)[i]==new_id){creation_block(i);break;}}
             new_id=document.getElementById(new_id)
@@ -1894,15 +1895,12 @@ function create_block(){
             new_id.style.top=html.scrollTop+((html.clientHeight/2)-(rect.height/2))+"px";
             new_id.style.animation="flash 2s 1";
             new_id.style.WebkitAnimation="flash 2s 1";
-            control_dlock()
+            control_dlock();
+            new_id.style.zIndex=Object.keys(story_script).length-1;
             toast("Создан новый блок");
             modal_window('close');
-        }else if(story_script[new_id]){
-            toast("Это имя блока уже используется");
-            modal_window('close');
-        }else{
+        }  else{
             toast("ID блока не введен");
-            modal_window('close');
         }
         story_script.blocks[new_id.id]=[new_id.style.left,new_id.style.top,document.getElementById(new_id.id+"_content").style.display,((typeof color_chec==='object')?false:color_chec)]
         state_save();
