@@ -1891,8 +1891,8 @@ function create_block(){
             new_id=document.getElementById(new_id)
             var rect=new_id.getBoundingClientRect();
             new_id.style.backgroundColor=color_chec;
-            new_id.style.left=html.scrollLeft+((html.clientWidth/2)-(rect.width/2))+"px";
-            new_id.style.top=html.scrollTop+((html.clientHeight/2)-(rect.height/2))+"px";
+            new_id.style.left=(html.scrollLeft+((html.clientWidth/2)-(rect.width/2)))/scale+"px";
+            new_id.style.top=(html.scrollTop+((html.clientHeight/2)-(rect.height/2)))/scale+"px";
             new_id.style.animation="flash 2s 1";
             new_id.style.WebkitAnimation="flash 2s 1";
             control_dlock();
