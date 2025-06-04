@@ -143,8 +143,9 @@ function objectsroom_resize(){
         tue_objectsroom.style.marginBottom="-"+(rect.height+arr_dialog.size[1])+"px";
         tue_objectsroom.style.marginRight="-"+(rect.width+arr_dialog.size[0])+"px"
         tue_objectsroom.style.marginTop="0px";
-        tue_objectsroom.style.marginLeft="0px"
-    }
+        tue_objectsroom.style.marginLeft="0px";
+        window.addEventListener('resize',objectsroom_resize,true);
+    } else {tue_objectsroom.style.transform='scale('+ho.scale+')'}
 }
 function find_item(id){
     findobjects--
@@ -164,4 +165,3 @@ function find_item(id){
     }
 }
 tuesday.addEventListener('hidden_objects',function(event){hidden_objects();});
-window.addEventListener('resize',objectsroom_resize,true);

@@ -125,7 +125,7 @@ function worldmap_resize(){
         tue_map.style.marginRight="-"+(rect.width+arr_dialog.size[0])+"px"
         tue_map.style.marginTop="0px";
         tue_map.style.marginLeft="0px"
-    }
+        window.addEventListener('resize',worldmap_resize,true);
+    } else {tue_map.style.transform='scale('+wmap.scale+')'}
 }
 tuesday.addEventListener('terrain_map',function(event){terrain_map();});
-window.addEventListener('resize',worldmap_resize,true);
