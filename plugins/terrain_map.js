@@ -114,7 +114,7 @@ function terrain_map(){
     view.appendChild(map);
     tuesday.appendChild(view);
     worldmap_resize();
-    if(arr_dialog.scroll){view.scrollTop=arr_dialog.scroll[1];view.scrollLeft=arr_dialog.scroll[0];}
+    if(arr_dialog.scroll){view.scrollTop=arr_dialog.scroll[1]*wmap.scale;view.scrollLeft=arr_dialog.scroll[0]*wmap.scale;}
 }
 function worldmap_resize(){
     if(!story_json.parameters.resolutions){
