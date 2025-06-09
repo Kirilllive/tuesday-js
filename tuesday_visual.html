@@ -1436,8 +1436,9 @@ function movie_dlock(id){
             };
             focus_block.style.left=((e.pageX-shiftX)/scale)+'px';
             focus_block.style.top=((e.pageY-shiftY)/scale)+'px';
-            lines(id)
+            lines(id);
         }
+        lines(id);
         document.onmousemove=function(e){moveAt(e);};
         focus_block.onmouseup=function(){
 			story_script.blocks[focus_block.id][0]=focus_block.style.left;
@@ -1462,8 +1463,9 @@ function movie_dlock(id){
         function moveAt(e){
             focus_block.style.left=((e.touches[0].pageX-shiftX)/scale)+'px';
             focus_block.style.top=((e.touches[0].pageY-shiftY)/scale)+'px';
-            lines(id)
+            lines(id);
         }
+        lines(id);
         document.ontouchmove=function(e){moveAt(e);};
         focus_block.ontouchend=function(){
 			story_script.blocks[focus_block.id][0]=focus_block.style.left;
