@@ -22,6 +22,7 @@ Download builds for macOS, Windows, Android, Web
 
 > Boosty: https://boosty.to/kirilllive
 
+
 Tutorials
 -------------------------
 > EN - [A quick tutorial to create a visual novel ](https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial)
@@ -140,9 +141,20 @@ Tuesday JS也具备丰富的用于制作翻译版本的功能。
 ![Tuesday JS localization](screenshots/localization.jpg)
 
 
+# System requirements for desktop version
+
+CPU: x86_64
+RAM: 512 MB
+Minimum OS version:
+- MS Windows 7 
+- MacOS 10.13 (Apple Silicon / Intel)
+- Debian 11
+- Ubuntu 20.04
+
+
 # Warning for Android version
 
-Minimum version of Android 5.1
+Minimum Android version: 5.1
 
 If you have problems with files on Android 10 and higher, then you need to specify 'Allow access to manage all files' in the application settings in 'Permissions' section.
 

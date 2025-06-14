@@ -134,6 +134,10 @@ function hidden_objects(){
 			document.onmouseup=null;
 		};
     }
+    if(arr_dialog.scroll){
+        view.scrollTop=arr_dialog.scroll[1]*ho.scale;
+        view.scrollLeft=arr_dialog.scroll[0]*ho.scale;
+    }
 }
 function objectsroom_resize(){
     if(!story_json.parameters.resolutions){
