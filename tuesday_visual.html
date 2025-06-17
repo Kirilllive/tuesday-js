@@ -1424,7 +1424,6 @@ function movie_dlock(id){
         var shiftY=(e.pageY-coords.top);
         let allBlocks=document.getElementsByClassName("story_block");
         for (const story_block of allBlocks){story_block.style.zIndex="auto"}
-        //focus_block.style.position='absolute';
         focus_block.style.animation=false;
         focus_block.style.WebkitAnimation=false;
         focus_block.style.zIndex=allBlocks.length;
