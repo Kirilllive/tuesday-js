@@ -20,7 +20,7 @@ var timers;
 var controll=true;
 var ruby_rt=[];
 document.oncontextmenu = cmenu; function cmenu(){return false;}
-window.onmousedown = window.onselectstart = function(){return false;};
+tuesday.onmousedown = window.onselectstart = function(){return false;};
 document.addEventListener('keydown',function(event){
     let k=event.code;
     if(k == story_json.parameters.key.next && controll){go_story();}
