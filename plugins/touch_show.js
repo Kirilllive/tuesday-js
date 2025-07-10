@@ -1,7 +1,7 @@
 tuesday.addEventListener('script_loaded',function(){
     var tuesday_cursor_style = document.createElement('style');
     tuesday_cursor_style.type='text/css';
-    tuesday_cursor_style.innerHTML=".cursor{background: center / contain no-repeat url('"+story_json.parameters.touch_show[0]+"');"+story_json.parameters.touch_show[4]+";transform:translate(-50%,-50%);position:absolute;display:block;animation-name:cursor_anim;animation-fill-mode:forwards;}@keyframes cursor_anim{from{opacity:1;}to{opacity:0;}}";
+    tuesday_cursor_style.innerHTML=".cursor{background: center / contain no-repeat url('"+story_json.parameters.touch_show[0]+"');"+story_json.parameters.touch_show[4]+";transform:translate(-50%,-50%);position:absolute;display:block;animation-name:cursor_anim;animation-fill-mode:forwards;z-index:1010;}@keyframes cursor_anim{from{opacity:1;}to{opacity:0;}}";
     document.getElementsByTagName('head')[0].appendChild(tuesday_cursor_style);
     tuesday.addEventListener((story_json.parameters.touch_show[6]?'touchstart':'mousedown'),(e)=>{
         const click=story_json.parameters.touch_show;
