@@ -3211,6 +3211,7 @@ function dialog_text_apply(){
 }
 function scene_edit(){
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
+    let c=(/[0-9]/.test(copy_arr[arr_n].background_align))?copy_arr[arr_n].background_align.split(' '):false;
     if(!copy_arr[arr_n].background_image){copy_arr[arr_n].background_image=""}
     if(!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
     var html="<div class='window' style='max-width:640px;width:calc(100% - 32px);'><div class='win_head'>Settings scene<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[2].en+"</p><br><br>"
@@ -3237,7 +3238,7 @@ function scene_edit(){
     +"</select></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Position:</td>"
-    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value'>"
+    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value;this.nextElementSibling.style.display=(this.selectedIndex==9)?\"inline-grid\":\"none\";this.style.width=(this.selectedIndex==9)?\"128px\":\"100%\";' style='display:inline;width:"+((c)?'128px':'100%')+";'>"
 		+"<option value='center'>center</option>"
         +"<option value='top left' "+((copy_arr[arr_n].background_align=='top left')?'selected':'')+">top left</option>"
         +"<option value='top' "+((copy_arr[arr_n].background_align=='top')?'selected':'')+">top</option>"
@@ -3247,7 +3248,8 @@ function scene_edit(){
         +"<option value='bottom left' "+((copy_arr[arr_n].background_align=='bottom left')?'selected':'')+">bottom left</option>"
         +"<option value='bottom' "+((copy_arr[arr_n].background_align=='bottom')?'selected':'')+">bottom</option>"
         +"<option value='bottom right' "+((copy_arr[arr_n].background_align=='bottom right')?'selected':'')+">bottom right</option>"
-    +"</select></td>"
+        +"<option value='' "+((c)?'selected':'')+">custom position</option>"
+    +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 128px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text'>Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text'></div></td>"
     +"<td style='height:40px;width:40px;'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Class:</td>"
@@ -3277,7 +3279,7 @@ function scene_edit_apply(){
     if(scene_color.value!=""){arr_l[arr_n].background_color=scene_color.value;}else{delete arr_l[arr_n].background_color};
     if(scene_class.value!=""){arr_l[arr_n].background_class=scene_class.value;}else{delete arr_l[arr_n].background_class};
     if(scene_size.value!="cover"){arr_l[arr_n].background_size=scene_size.value;}else{delete arr_l[arr_n].background_size};
-    if(scene_pos.value!="center"){arr_l[arr_n].background_align=scene_pos.value;}else{delete arr_l[arr_n].background_align};
+    if(scene_pos.value!="center"){arr_l[arr_n].background_align=(scene_pos.selectedIndex==9)?bg_x.value+" "+bg_y.value:scene_pos.value;}else{delete arr_l[arr_n].background_align};
     modal_window("close");state_save();
     if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
     else{update_novel();}
