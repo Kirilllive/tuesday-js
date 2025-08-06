@@ -48,7 +48,7 @@
 .story_block{min-height:28px;width:256px;position:absolute;cursor:all-scroll; background-color:var(--wn);}
 #world{position:absolute;-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;background-color:var(--cw);background-blend-mode:overlay;}
 #search_block::placeholder{color: var(--cb);}
-line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4s linear infinite;}
+path{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4s linear infinite;fill: none;}
 @keyframes dash{from{stroke-dashoffset:0} to{stroke-dashoffset:200;}}
 #toast{
 	position:fixed;
@@ -1323,10 +1323,11 @@ function data_only(arr,key){
                 else{n=arr[key][story_script.parameters.languares[i]]}
             }else{a++}
         }if(a==story_script.parameters.languares.length){arr[key]=n}
-    }else if(arr[key]&&arr[key].length==0){delete arr[key];if(key=='art'){delete arr.art_size}}}
+    }else if(arr[key]&&arr[key].length==0){delete arr[key];if(key=='art'){delete arr.art_size}}
+}
 function creaton_line(id,go,chapter){
     line_controll.push([go,chapter,id]);
-    var newLine=document.createElementNS("http://www.w3.org/2000/svg",'line');
+    var newLine=document.createElementNS("http://www.w3.org/2000/svg",'path');
     if(story_script.blocks[go]&&story_script.blocks[go][3]){newLine.style.stroke=(setup_editor.ui<7)? colorLuminance(story_script.blocks[go][3],-0x222222):story_script.blocks[go][3];}
     newLine.id=id+"l";
     story_lines.appendChild(newLine);
@@ -1365,7 +1366,8 @@ function data_time(){
     return d.getFullYear()+'_'+(dm.length<2?'0'+dm :dm)+'_'+(dd.length<2?'0'+dd :dd)+'_'+(dh.length<2?'0'+dh :dh)+"-"+(di.length<2?'0'+di:di)+"-"+(ds.length<2?'0'+ds:ds)
 }
 function lines(elem){
-    var rect,rect2,title_block,l1,l2,line
+    var rect,rect2,title_block,l1,l2,line,boxs=[0,0,0,0];
+    const g=128;
     for(var x=0;x<line_controll.length;x++){
         line=document.getElementById(line_controll[x][2]+"l")
         if(!document.getElementById(line_controll[x][0])){delete line_controll[x][0];}
@@ -1375,43 +1377,40 @@ function lines(elem){
             if(!setup_editor.lines){if((elem==line_controll[x][1]||elem==line_controll[x][0])&&title_block.top!=0){line.style.visibility='visible'}else{line.style.visibility='hidden'}}else if(title_block.top==0){line.style.visibility='hidden'}else{line.style.visibility='visible'}
             if(document.getElementById(line_controll[x][1]+"_content").style.display=='none'){
                 rect=document.getElementById(line_controll[x][1]).getBoundingClientRect();
+                boxs[1]=(rect.top+html.scrollTop+(22*scale)-3)/scale;
+                boxs[3]=(title_block.top+html.scrollTop+(22*scale)-3)/scale;
                 l1=(html.scrollLeft+rect.left)/scale;
                 l2=(html.scrollLeft+title_block.left)/scale
                 if(l1>l2){
-                    moveSlider(l1,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(22*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider((l2+((l1-264>l2)?264:0)),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1;
+                    boxs[2]=l2+((l1-264>l2)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+g:boxs[2]-g)+' '+boxs[3]+', '+(boxs[0]-g)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }else{
-                    moveSlider(l1+264,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(22*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider(l2+((l1>l2-264)?264:0),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1+264;
+                    boxs[2]=l2+((l1>l2-264)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+g:boxs[2]-g)+' '+boxs[3]+', '+(boxs[0]+g)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }
             }else{
                 rect=document.getElementById(line_controll[x][2]).getBoundingClientRect();
                 rect2=document.getElementById(line_controll[x][1]).getBoundingClientRect();
+                boxs[1]=(rect.top+html.scrollTop+(22*scale)-3)/scale;
+                boxs[3]=(title_block.top+html.scrollTop+(22*scale)-3)/scale;
                 l1=(html.scrollLeft+rect2.left)/scale;
                 l2=(html.scrollLeft+title_block.left)/scale
                 if(l1>l2){
-                    moveSlider(l1,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(12*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider((l2+((l1-264>l2)?264:0)),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1;
+                    boxs[2]=l2+((l1-264>l2)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+g:boxs[2]-g)+' '+boxs[3]+', '+(boxs[0]-g)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }else{
-                    moveSlider(l1+264,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(12*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider(l2+((l1>l2-264)?264:0),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1+264;
+                    boxs[2]=l2+((l1>l2-264)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+g:boxs[2]-g)+' '+boxs[3]+', '+(boxs[0]+g)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }
             }
         }
     }
 }
-var moveSlider=function(slider,direction,id){
-    var element=document.getElementById(id+"l");
-    element.setAttributeNS(null,direction,slider);
-}
+
 function control_dlock(){
     all_blocks=document.getElementsByClassName("story_block");
     for(var i=0;i<all_blocks.length;i++){movie_dlock(all_blocks[i].id)}
@@ -3238,7 +3237,7 @@ function scene_edit(){
     +"</select></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Position:</td>"
-    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value;this.nextElementSibling.style.display=(this.selectedIndex==9)?\"inline-grid\":\"none\";this.style.width=(this.selectedIndex==9)?\"128px\":\"100%\";' style='display:inline;width:"+((c)?'128px':'100%')+";'>"
+    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value;this.nextElementSibling.style.display=(this.selectedIndex==9)?\"inline-grid\":\"none\";this.style.width=(this.selectedIndex==9)?\"92px\":\"100%\";' style='display:inline;width:"+((c)?'92px':'100%')+";'>"
 		+"<option value='center'>center</option>"
         +"<option value='top left' "+((copy_arr[arr_n].background_align=='top left')?'selected':'')+">top left</option>"
         +"<option value='top' "+((copy_arr[arr_n].background_align=='top')?'selected':'')+">top</option>"
@@ -3248,8 +3247,8 @@ function scene_edit(){
         +"<option value='bottom left' "+((copy_arr[arr_n].background_align=='bottom left')?'selected':'')+">bottom left</option>"
         +"<option value='bottom' "+((copy_arr[arr_n].background_align=='bottom')?'selected':'')+">bottom</option>"
         +"<option value='bottom right' "+((copy_arr[arr_n].background_align=='bottom right')?'selected':'')+">bottom right</option>"
-        +"<option value='' "+((c)?'selected':'')+">custom position</option>"
-    +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 128px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text'>Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text'></div></td>"
+        +"<option value='' "+((c)?'selected':'')+">custom</option>"
+    +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 92px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text'>Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text'></div></td>"
     +"<td style='height:40px;width:40px;'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Class:</td>"
