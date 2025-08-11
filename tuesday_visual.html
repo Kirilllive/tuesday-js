@@ -963,7 +963,7 @@ const texts={"tutorials":[{
         "en":"Warning! Voices may vary across OS and browsers."
         }
 ]}
-let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true};
+let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true,'smooth':64};
 let buf=['',''],back_up=[];
 if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"))};
 if(setup_editor.ferst){
@@ -1367,7 +1367,8 @@ function data_time(){
 }
 function lines(elem){
     var rect,rect2,title_block,l1,l2,line,boxs=[0,0,0,0];
-    const g=128;
+    //setup_editor.smooth=128;
+    //console.log(setup_editor.smooth)
     for(var x=0;x<line_controll.length;x++){
         line=document.getElementById(line_controll[x][2]+"l")
         if(!document.getElementById(line_controll[x][0])){delete line_controll[x][0];}
@@ -1384,11 +1385,11 @@ function lines(elem){
                 if(l1>l2){
                     boxs[0]=l1;
                     boxs[2]=l2+((l1-264>l2)?264:0);
-                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+g:boxs[2]-g)+' '+boxs[3]+', '+(boxs[0]-g)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]-setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }else{
                     boxs[0]=l1+264;
                     boxs[2]=l2+((l1>l2-264)?264:0);
-                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+g:boxs[2]-g)+' '+boxs[3]+', '+(boxs[0]+g)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]+setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }
             }else{
                 rect=document.getElementById(line_controll[x][2]).getBoundingClientRect();
@@ -1400,11 +1401,11 @@ function lines(elem){
                 if(l1>l2){
                     boxs[0]=l1;
                     boxs[2]=l2+((l1-264>l2)?264:0);
-                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+g:boxs[2]-g)+' '+boxs[3]+', '+(boxs[0]-g)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]-setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }else{
                     boxs[0]=l1+264;
                     boxs[2]=l2+((l1>l2-264)?264:0);
-                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+g:boxs[2]-g)+' '+boxs[3]+', '+(boxs[0]+g)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]+setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }
             }
         }
@@ -4803,6 +4804,7 @@ function setup(){
         "<p align='left' style=' margin-left:8px;'>Display script</p><hr><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='all_lines' class='chec_plugin' "+((setup_editor.lines)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>Show all lines </td><td> show all lines of a block or only a selected block</td></tr>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='ani_lines' class='chec_plugin' "+((setup_editor.lines_anim)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>line animation </td><td> animate lines from element to next block</td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>Smooth lines</td><td><input id='pv_s' class='input_text' value='"+(setup_editor.smooth?setup_editor.smooth:0)+"' type='text'></td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style='margin-left:8px;'>Light them</p><hr><form id='ui_color'>"+thems+
         "</form><br>"+
@@ -4978,6 +4980,7 @@ function apply_setup(){
     setup_editor.lines=all_lines.checked;
     setup_editor.lines_anim=ani_lines.checked;
     setup_editor.pvw=[pv_v.value,pv_h.value];
+    setup_editor.smooth=parseFloat(pv_s.value);
     forms=document.forms.bg_edit;
     for(i=0;i<forms.length;i++){if(forms[i].checked){setup_editor.fon=forms[i].value;break;}}
     forms=document.forms.ui_color;
