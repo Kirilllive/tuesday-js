@@ -1367,8 +1367,6 @@ function data_time(){
 }
 function lines(elem){
     var rect,rect2,title_block,l1,l2,line,boxs=[0,0,0,0];
-    //setup_editor.smooth=128;
-    //console.log(setup_editor.smooth)
     for(var x=0;x<line_controll.length;x++){
         line=document.getElementById(line_controll[x][2]+"l")
         if(!document.getElementById(line_controll[x][0])){delete line_controll[x][0];}
@@ -1411,7 +1409,6 @@ function lines(elem){
         }
     }
 }
-
 function control_dlock(){
     all_blocks=document.getElementsByClassName("story_block");
     for(var i=0;i<all_blocks.length;i++){movie_dlock(all_blocks[i].id)}
