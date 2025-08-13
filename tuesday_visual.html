@@ -48,7 +48,7 @@
 .story_block{min-height:28px;width:256px;position:absolute;cursor:all-scroll; background-color:var(--wn);}
 #world{position:absolute;-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;background-color:var(--cw);background-blend-mode:overlay;}
 #search_block::placeholder{color: var(--cb);}
-path{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4s linear infinite;fill: none;}
+#story_lines path{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4s linear infinite;fill: none;}
 @keyframes dash{from{stroke-dashoffset:0} to{stroke-dashoffset:200;}}
 #toast{
 	position:fixed;
@@ -965,7 +965,7 @@ const texts={"tutorials":[{
 ]}
 let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true,'smooth':64};
 let buf=['',''],back_up=[];
-if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"))};
+if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"));if(!setup_editor.smooth){setup_editor.smooth=64})};
 if(setup_editor.ferst){
     var sel="<div class='window' style='padding:24px 8px;'><p>Devices control</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[5].en+"</p>"
     +"<table style=' border-spacing:10px;border-collapse:separate;'><tbody><tr>"
@@ -4801,7 +4801,7 @@ function setup(){
         "<p align='left' style=' margin-left:8px;'>Display script</p><hr><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='all_lines' class='chec_plugin' "+((setup_editor.lines)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>Show all lines </td><td> show all lines of a block or only a selected block</td></tr>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='ani_lines' class='chec_plugin' "+((setup_editor.lines_anim)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>line animation </td><td> animate lines from element to next block</td></tr>"+
-        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>Smooth lines</td><td><input id='pv_s' class='input_text' value='"+(setup_editor.smooth?setup_editor.smooth:0)+"' type='text'></td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>Smooth lines</td><td><input id='pv_s' class='input_text' value='"+setup_editor.smooth+"' type='text'></td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style='margin-left:8px;'>Light them</p><hr><form id='ui_color'>"+thems+
         "</form><br>"+
