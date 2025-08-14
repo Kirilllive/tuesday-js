@@ -963,7 +963,7 @@ const texts={"tutorials":[{
         "en":"Warning! Voices may vary across OS and browsers."
         }
 ]}
-let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true},'smooth':64};
+let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true,'smooth':64};
 let buf=['',''],back_up=[];
 if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"));if(!setup_editor.smooth){setup_editor.smooth=64;}};
 if(setup_editor.ferst){
@@ -6057,3 +6057,4 @@ function syntax_javascipt(code){
 </script>
 </body>
 </html>
+
