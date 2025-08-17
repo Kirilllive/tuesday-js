@@ -48,7 +48,7 @@
 .story_block{min-height:28px;width:256px;position:absolute;cursor:all-scroll; background-color:var(--wn);}
 #world{position:absolute;-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;background-color:var(--cw);background-blend-mode:overlay;}
 #search_block::placeholder{color: var(--cb);}
-line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4s linear infinite;}
+#story_lines path{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4s linear infinite;fill: none;}
 @keyframes dash{from{stroke-dashoffset:0} to{stroke-dashoffset:200;}}
 #toast{
 	position:fixed;
@@ -905,8 +905,8 @@ const plugins_list={"tue_aspect_ratio":{
         "text":"небольшое сообщение которое появляется на короткое время",
         "code":"let tue_toast;function creation_tost(){var t=document.createElement(\"style\");t.type=\"text/css\",t.innerHTML=\"#toast{position: fixed;opacity: 0;top: -96px;z-index: 1000;}.toast_anim{left: 50%;transform: translateX(-50%);animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;}@keyframes viwe {from {opacity: 0;top: 3em}to {opacity: 1;top: 3em}}@keyframes stop {from {opacity: 1;top: 3em}to {opacity: 1;top: 3em}}@keyframes close {from {opacity: 1;top: 3em}to {opacity: 0;top: -96px}}\",document.getElementsByTagName(\"head\")[0].appendChild(t),(tue_toast=document.createElement(\"div\")).id=\"toast\",tue_toast.innerHTML=\"<table border=\'0\' height=\'100%\' width=\'100%\'><tbody><tr><td id=\'toast_message\' align=\'center\' valign=\'center\' ></td></tr></tbody></table>\",document.body.appendChild(tue_toast)}function toast(t){tue_toast.classList.remove(\"toast_anim\"),document.getElementById(\"toast_message\").innerHTML=t,tue_toast.offsetParent,tue_toast.classList.add(\"toast_anim\")}creation_tost(),tuesday.addEventListener(\"creation_dialog\",function(t){story_json[tue_story][scene].dialogs[dialog].toast&&(story_json[tue_story][scene].dialogs[dialog].toast[languare]?toast(story_json[tue_story][scene].dialogs[dialog].toast[languare]):toast(story_json[tue_story][scene].dialogs[dialog].toast))});"
     },"touch_show":{
-        "name":"Show touch",
-        "text":"displays the location of the click on the screen",
+        "name":"Показать нажатие",
+        "text":"отображает место нажатия на экране",
         "code":"tuesday.addEventListener(\"script_loaded\",function(){var e=document.createElement(\"style\");e.type=\"text/css\",e.innerHTML=\".cursor{background: center / contain no-repeat url('\"+story_json.parameters.touch_show[0]+\"');\"+story_json.parameters.touch_show[4]+\";transform:translate(-50%,-50%);position:absolute;display:block;animation-name:cursor_anim;animation-fill-mode:forwards;pointer-events:none;z-index:3010;}@keyframes cursor_anim{from{opacity:1;}to{opacity:0;}}\",document.getElementsByTagName(\"head\")[0].appendChild(e),tuesday.addEventListener(story_json.parameters.touch_show[6]?\"touchstart\":\"mousedown\",e=>{let t=story_json.parameters.touch_show,a=document.createElement(\"div\"),o=tuesday.getBoundingClientRect(),s=t[6]?[e.touches[0].pageX,e.touches[0].pageY]:[e.clientX,e.clientY];if(a.className=\"cursor \"+story_json.parameters.touch_show[5],a.style.width=t[1],a.style.height=t[2],a.style.animationDuration=t[3]+\"s\",story_json.parameters.resolutions){let r=story_json.parameters.resolutions;a.style.left=(r[0]/o.width>r[1]/o.height?r[0]/o.width:r[1]/o.height)*(s[0]-o.left)+\"px\",a.style.top=(r[0]/o.width>r[1]/o.height?r[0]/o.width:r[1]/o.height)*(s[1]-o.top)+\"px\"}else a.style.left=s[0]-o.left+\"px\",a.style.top=s[1]-o.top+\"px\";setTimeout(function(e){a.remove()},1e3*t[3]),tuesday.appendChild(a)})});"
     },"terrain_map":{
         "name":"Карта местности",
@@ -963,9 +963,9 @@ const texts={"tutorials":[{
         "en":"Внимание! Голоса могут различаться в зависимости от ОС и браузера."
         }
 ]}
-let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true};
+let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true,'smooth':64};
 let buf=['',''],back_up=[];
-if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"))};
+if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"));if(!setup_editor.smooth){setup_editor.smooth=64;}};
 if(setup_editor.ferst){
     var sel="<div class='window' style='padding:24px 8px;'><p>Устройство управления</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[5].en+"</p>"
     +"<table style=' border-spacing:10px;border-collapse:separate;'><tbody><tr>"
@@ -1323,10 +1323,11 @@ function data_only(arr,key){
                 else{n=arr[key][story_script.parameters.languares[i]]}
             }else{a++}
         }if(a==story_script.parameters.languares.length){arr[key]=n}
-    }else if(arr[key]&&arr[key].length==0){delete arr[key];if(key=='art'){delete arr.art_size}}}
+    }else if(arr[key]&&arr[key].length==0){delete arr[key];if(key=='art'){delete arr.art_size}}
+}
 function creaton_line(id,go,chapter){
     line_controll.push([go,chapter,id]);
-    var newLine=document.createElementNS("http://www.w3.org/2000/svg",'line');
+    var newLine=document.createElementNS("http://www.w3.org/2000/svg",'path');
     if(story_script.blocks[go]&&story_script.blocks[go][3]){newLine.style.stroke=(setup_editor.ui<7)? colorLuminance(story_script.blocks[go][3],-0x222222):story_script.blocks[go][3];}
     newLine.id=id+"l";
     story_lines.appendChild(newLine);
@@ -1365,7 +1366,7 @@ function data_time(){
     return d.getFullYear()+'_'+(dm.length<2?'0'+dm :dm)+'_'+(dd.length<2?'0'+dd :dd)+'_'+(dh.length<2?'0'+dh :dh)+"-"+(di.length<2?'0'+di:di)+"-"+(ds.length<2?'0'+ds:ds)
 }
 function lines(elem){
-    var rect,rect2,title_block,l1,l2,line
+    var rect,rect2,title_block,l1,l2,line,boxs=[0,0,0,0];
     for(var x=0;x<line_controll.length;x++){
         line=document.getElementById(line_controll[x][2]+"l")
         if(!document.getElementById(line_controll[x][0])){delete line_controll[x][0];}
@@ -1375,42 +1376,38 @@ function lines(elem){
             if(!setup_editor.lines){if((elem==line_controll[x][1]||elem==line_controll[x][0])&&title_block.top!=0){line.style.visibility='visible'}else{line.style.visibility='hidden'}}else if(title_block.top==0){line.style.visibility='hidden'}else{line.style.visibility='visible'}
             if(document.getElementById(line_controll[x][1]+"_content").style.display=='none'){
                 rect=document.getElementById(line_controll[x][1]).getBoundingClientRect();
+                boxs[1]=(rect.top+html.scrollTop+(22*scale)-3)/scale;
+                boxs[3]=(title_block.top+html.scrollTop+(22*scale)-3)/scale;
                 l1=(html.scrollLeft+rect.left)/scale;
                 l2=(html.scrollLeft+title_block.left)/scale
                 if(l1>l2){
-                    moveSlider(l1,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(22*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider((l2+((l1-264>l2)?264:0)),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1;
+                    boxs[2]=l2+((l1-264>l2)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]-setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }else{
-                    moveSlider(l1+264,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(22*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider(l2+((l1>l2-264)?264:0),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1+264;
+                    boxs[2]=l2+((l1>l2-264)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]+setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }
             }else{
                 rect=document.getElementById(line_controll[x][2]).getBoundingClientRect();
                 rect2=document.getElementById(line_controll[x][1]).getBoundingClientRect();
+                boxs[1]=(rect.top+html.scrollTop+(22*scale)-3)/scale;
+                boxs[3]=(title_block.top+html.scrollTop+(22*scale)-3)/scale;
                 l1=(html.scrollLeft+rect2.left)/scale;
                 l2=(html.scrollLeft+title_block.left)/scale
                 if(l1>l2){
-                    moveSlider(l1,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(12*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider((l2+((l1-264>l2)?264:0)),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1;
+                    boxs[2]=l2+((l1-264>l2)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]-setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }else{
-                    moveSlider(l1+264,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(12*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider(l2+((l1>l2-264)?264:0),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1+264;
+                    boxs[2]=l2+((l1>l2-264)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]+setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }
             }
         }
     }
-}
-var moveSlider=function(slider,direction,id){
-    var element=document.getElementById(id+"l");
-    element.setAttributeNS(null,direction,slider);
 }
 function control_dlock(){
     all_blocks=document.getElementsByClassName("story_block");
@@ -3211,6 +3208,7 @@ function dialog_text_apply(){
 }
 function scene_edit(){
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
+    let c=(/[0-9]/.test(copy_arr[arr_n].background_align))?copy_arr[arr_n].background_align.split(' '):false;
     if(!copy_arr[arr_n].background_image){copy_arr[arr_n].background_image=""}
     if(!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
     var html="<div class='window' style='max-width:640px;width:calc(100% - 32px);'><div class='win_head'>Настройки сцены<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[2].en+"</p><br><br>"
@@ -3237,7 +3235,7 @@ function scene_edit(){
     +"</select></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Позиция:</td>"
-    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value'>"
+    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value;this.nextElementSibling.style.display=(this.selectedIndex==9)?\"inline-grid\":\"none\";this.style.width=(this.selectedIndex==9)?\"92px\":\"100%\";' style='display:inline;width:"+((c)?'92px':'100%')+";'>"
 		+"<option value='center'>центр</option>"
         +"<option value='top left' "+((copy_arr[arr_n].background_align=='top left')?'selected':'')+">сверху слева</option>"
         +"<option value='top' "+((copy_arr[arr_n].background_align=='top')?'selected':'')+">сверху</option>"
@@ -3247,7 +3245,8 @@ function scene_edit(){
         +"<option value='bottom left' "+((copy_arr[arr_n].background_align=='bottom left')?'selected':'')+">снизу слева</option>"
         +"<option value='bottom' "+((copy_arr[arr_n].background_align=='bottom')?'selected':'')+">снизу</option>"
         +"<option value='bottom right' "+((copy_arr[arr_n].background_align=='bottom right')?'selected':'')+">снизу справа</option>"
-    +"</select></td>"
+        +"<option value='' "+((c)?'selected':'')+">cвой</option>"
+    +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 92px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text'>Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text'></div></td>"
     +"<td style='height:40px;width:40px;'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Class:</td>"
@@ -3277,7 +3276,7 @@ function scene_edit_apply(){
     if(scene_color.value!=""){arr_l[arr_n].background_color=scene_color.value;}else{delete arr_l[arr_n].background_color};
     if(scene_class.value!=""){arr_l[arr_n].background_class=scene_class.value;}else{delete arr_l[arr_n].background_class};
     if(scene_size.value!="cover"){arr_l[arr_n].background_size=scene_size.value;}else{delete arr_l[arr_n].background_size};
-    if(scene_pos.value!="center"){arr_l[arr_n].background_align=scene_pos.value;}else{delete arr_l[arr_n].background_align};
+    if(scene_pos.value!="center"){arr_l[arr_n].background_align=(scene_pos.selectedIndex==9)?bg_x.value+" "+bg_y.value:scene_pos.value;}else{delete arr_l[arr_n].background_align};
     modal_window("close");state_save();
     if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
     else{update_novel();}
@@ -4724,15 +4723,15 @@ function setup(){
 
     function add_touch_show(){
         if(story_script.parameters.touch_show){
-            return "<br><br><p align='left' style='margin-left:8px;'>Show touch</p><hr>"+
+            return "<br><br><p align='left' style='margin-left:8px;'>Показать нажатие</p><hr>"+
             "<table style='margin-left:10px;width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
             "<tr><td align='right' style='width:1%;'>Изображение курсора</td><td align='left'><input id='touch_show_image' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[0] :'')+"' type='text'><td class='icon icon_load' onclick='file_catalog(\"touch_show_image\",\"img\",\"touch_show_image\",0)' style='width:40px;' ></td></tr>"+
             "<tr><td align='right'>Ширина</td><td align='left'><input id='touch_show_width' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[1] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Высота</td><td align='left'><input id='touch_show_height' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[2] :'')+"' type='text'><td></td></tr>"+
-            "<tr><td align='right'>Time</td><td align='left'><input id='touch_show_time' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[3] :'')+"' type='text'><td></td></tr>"+
+            "<tr><td align='right'>Время</td><td align='left'><input id='touch_show_time' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[3] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Стиль</td><td align='left'><input id='touch_show_style' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[4] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Имя класса</td><td align='left'><input id='touch_show_class' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[5] :'')+"' type='text'><td></td></tr>"+
-            "<tr><td align='right'>Touch only</td><td align='left'><label class='switchbox'><input type='checkbox' id='touch_only' class='chec_plugin' "+((story_script.parameters.touch_show[6])?'checked' :'')+"><span class='toggle round'></span></label></td></tr></tbody></table>"
+            "<tr><td align='right'>Только тач</td><td align='left'><label class='switchbox'><input type='checkbox' id='touch_only' class='chec_plugin' "+((story_script.parameters.touch_show[6])?'checked' :'')+"><span class='toggle round'></span></label></td></tr></tbody></table>"
         }else{return ""}
     }
     
@@ -4802,6 +4801,7 @@ function setup(){
         "<p align='left' style=' margin-left:8px;'>Отображение сценария</p><hr><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='all_lines' class='chec_plugin' "+((setup_editor.lines)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>Показывать все линии </td><td> показать все линии связей или только выделенный блок</td></tr>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='ani_lines' class='chec_plugin' "+((setup_editor.lines_anim)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>Анимация линий </td><td> анимация линий от элемента к следующему блоку</td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>Сглаживание линий</td><td><input id='pv_s' class='input_text' value='"+setup_editor.smooth+"' type='text'></td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style='margin-left:8px;'>Светлая тема </p><hr><form id='ui_color'>"+thems+
         "</form><br>"+
@@ -4977,6 +4977,7 @@ function apply_setup(){
     setup_editor.lines=all_lines.checked;
     setup_editor.lines_anim=ani_lines.checked;
     setup_editor.pvw=[pv_v.value,pv_h.value];
+    setup_editor.smooth=parseFloat(pv_s.value);
     forms=document.forms.bg_edit;
     for(i=0;i<forms.length;i++){if(forms[i].checked){setup_editor.fon=forms[i].value;break;}}
     forms=document.forms.ui_color;
@@ -6056,3 +6057,4 @@ function syntax_javascipt(code){
 </script>
 </body>
 </html>
+

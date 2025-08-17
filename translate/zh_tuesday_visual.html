@@ -48,7 +48,7 @@
 .story_block{min-height:28px;width:256px;position:absolute;cursor:all-scroll; background-color:var(--wn);}
 #world{position:absolute;-ms-transform:scale(1);transform:scale(1);-webkit-transform-origin: 0 0;-moz-transform-origin: 0 0;background-color:var(--cw);background-blend-mode:overlay;}
 #search_block::placeholder{color: var(--cb);}
-line{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4s linear infinite;}
+#story_lines path{stroke:var(--cl);stroke-dasharray:var(--ls);stroke-width:2;animation:dash 4s linear infinite;fill: none;}
 @keyframes dash{from{stroke-dashoffset:0} to{stroke-dashoffset:200;}}
 #toast{
 	position:fixed;
@@ -963,9 +963,9 @@ const texts={"tutorials":[{
         "en":"警告！语音在不同操作系统和浏览器上可能会有所不同。"
         }
 ]}
-let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true};
+let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true,'smooth':64};
 let buf=['',''],back_up=[];
-if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"))};
+if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"));if(!setup_editor.smooth){setup_editor.smooth=64;}};
 if(setup_editor.ferst){
     var sel="<div class='window' style='padding:24px 8px;'><p>设备控制</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[5].en+"</p>"
     +"<table style=' border-spacing:10px;border-collapse:separate;'><tbody><tr>"
@@ -1323,10 +1323,11 @@ function data_only(arr,key){
                 else{n=arr[key][story_script.parameters.languares[i]]}
             }else{a++}
         }if(a==story_script.parameters.languares.length){arr[key]=n}
-    }else if(arr[key]&&arr[key].length==0){delete arr[key];if(key=='art'){delete arr.art_size}}}
+    }else if(arr[key]&&arr[key].length==0){delete arr[key];if(key=='art'){delete arr.art_size}}
+}
 function creaton_line(id,go,chapter){
     line_controll.push([go,chapter,id]);
-    var newLine=document.createElementNS("http://www.w3.org/2000/svg",'line');
+    var newLine=document.createElementNS("http://www.w3.org/2000/svg",'path');
     if(story_script.blocks[go]&&story_script.blocks[go][3]){newLine.style.stroke=(setup_editor.ui<7)? colorLuminance(story_script.blocks[go][3],-0x222222):story_script.blocks[go][3];}
     newLine.id=id+"l";
     story_lines.appendChild(newLine);
@@ -1365,7 +1366,7 @@ function data_time(){
     return d.getFullYear()+'_'+(dm.length<2?'0'+dm :dm)+'_'+(dd.length<2?'0'+dd :dd)+'_'+(dh.length<2?'0'+dh :dh)+"-"+(di.length<2?'0'+di:di)+"-"+(ds.length<2?'0'+ds:ds)
 }
 function lines(elem){
-    var rect,rect2,title_block,l1,l2,line
+    var rect,rect2,title_block,l1,l2,line,boxs=[0,0,0,0];
     for(var x=0;x<line_controll.length;x++){
         line=document.getElementById(line_controll[x][2]+"l")
         if(!document.getElementById(line_controll[x][0])){delete line_controll[x][0];}
@@ -1375,42 +1376,38 @@ function lines(elem){
             if(!setup_editor.lines){if((elem==line_controll[x][1]||elem==line_controll[x][0])&&title_block.top!=0){line.style.visibility='visible'}else{line.style.visibility='hidden'}}else if(title_block.top==0){line.style.visibility='hidden'}else{line.style.visibility='visible'}
             if(document.getElementById(line_controll[x][1]+"_content").style.display=='none'){
                 rect=document.getElementById(line_controll[x][1]).getBoundingClientRect();
+                boxs[1]=(rect.top+html.scrollTop+(22*scale)-3)/scale;
+                boxs[3]=(title_block.top+html.scrollTop+(22*scale)-3)/scale;
                 l1=(html.scrollLeft+rect.left)/scale;
                 l2=(html.scrollLeft+title_block.left)/scale
                 if(l1>l2){
-                    moveSlider(l1,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(22*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider((l2+((l1-264>l2)?264:0)),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1;
+                    boxs[2]=l2+((l1-264>l2)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]-setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }else{
-                    moveSlider(l1+264,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(22*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider(l2+((l1>l2-264)?264:0),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1+264;
+                    boxs[2]=l2+((l1>l2-264)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]+setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }
             }else{
                 rect=document.getElementById(line_controll[x][2]).getBoundingClientRect();
                 rect2=document.getElementById(line_controll[x][1]).getBoundingClientRect();
+                boxs[1]=(rect.top+html.scrollTop+(22*scale)-3)/scale;
+                boxs[3]=(title_block.top+html.scrollTop+(22*scale)-3)/scale;
                 l1=(html.scrollLeft+rect2.left)/scale;
                 l2=(html.scrollLeft+title_block.left)/scale
                 if(l1>l2){
-                    moveSlider(l1,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(12*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider((l2+((l1-264>l2)?264:0)),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1;
+                    boxs[2]=l2+((l1-264>l2)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]-setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }else{
-                    moveSlider(l1+264,'x2',line_controll[x][2]);
-                    moveSlider((rect.top+html.scrollTop+(12*scale)-3)/scale,'y2',line_controll[x][2]);
-                    moveSlider(l2+((l1>l2-264)?264:0),'x1',line_controll[x][2]);
-                    moveSlider((title_block.top+html.scrollTop+(22*scale)-3)/scale,'y1',line_controll[x][2]);
+                    boxs[0]=l1+264;
+                    boxs[2]=l2+((l1>l2-264)?264:0);
+                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]+setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
                 }
             }
         }
     }
-}
-var moveSlider=function(slider,direction,id){
-    var element=document.getElementById(id+"l");
-    element.setAttributeNS(null,direction,slider);
 }
 function control_dlock(){
     all_blocks=document.getElementsByClassName("story_block");
@@ -3211,6 +3208,7 @@ function dialog_text_apply(){
 }
 function scene_edit(){
 	copy_arr=JSON.parse(JSON.stringify(arr_l));
+    let c=(/[0-9]/.test(copy_arr[arr_n].background_align))?copy_arr[arr_n].background_align.split(' '):false;
     if(!copy_arr[arr_n].background_image){copy_arr[arr_n].background_image=""}
     if(!copy_arr[arr_n].background_image[languare]){data_la(copy_arr[arr_n],'background_image')}
     var html="<div class='window' style='max-width:640px;width:calc(100% - 32px);'><div class='win_head'>场景设置<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[2].en+"</p><br><br>"
@@ -3237,7 +3235,7 @@ function scene_edit(){
     +"</select></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>位置:</td>"
-    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value'>"
+    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value;this.nextElementSibling.style.display=(this.selectedIndex==9)?\"inline-grid\":\"none\";this.style.width=(this.selectedIndex==9)?\"92px\":\"100%\";' style='display:inline;width:"+((c)?'92px':'100%')+";'>"
 		+"<option value='center'>中心</option>"
         +"<option value='top left' "+((copy_arr[arr_n].background_align=='top left')?'selected':'')+">左上</option>"
         +"<option value='top' "+((copy_arr[arr_n].background_align=='top')?'selected':'')+">顶部</option>"
@@ -3247,7 +3245,8 @@ function scene_edit(){
         +"<option value='bottom left' "+((copy_arr[arr_n].background_align=='bottom left')?'selected':'')+">左下</option>"
         +"<option value='bottom' "+((copy_arr[arr_n].background_align=='bottom')?'selected':'')+">底部</option>"
         +"<option value='bottom right' "+((copy_arr[arr_n].background_align=='bottom right')?'selected':'')+">右下</option>"
-    +"</select></td>"
+        +"<option value='' "+((c)?'selected':'')+">custom</option>"
+    +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 92px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text'>Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text'></div></td>"
     +"<td style='height:40px;width:40px;'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Class:</td>"
@@ -3277,7 +3276,7 @@ function scene_edit_apply(){
     if(scene_color.value!=""){arr_l[arr_n].background_color=scene_color.value;}else{delete arr_l[arr_n].background_color};
     if(scene_class.value!=""){arr_l[arr_n].background_class=scene_class.value;}else{delete arr_l[arr_n].background_class};
     if(scene_size.value!="cover"){arr_l[arr_n].background_size=scene_size.value;}else{delete arr_l[arr_n].background_size};
-    if(scene_pos.value!="center"){arr_l[arr_n].background_align=scene_pos.value;}else{delete arr_l[arr_n].background_align};
+    if(scene_pos.value!="center"){arr_l[arr_n].background_align=(scene_pos.selectedIndex==9)?bg_x.value+" "+bg_y.value:scene_pos.value;}else{delete arr_l[arr_n].background_align};
     modal_window("close");state_save();
     if(scene_screen){scen_editor(scen_data[0],scen_data[1],scen_data[2])}
     else{update_novel();}
@@ -4802,6 +4801,7 @@ function setup(){
         "<p align='left' style=' margin-left:8px;'>显示脚本</p><hr><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='all_lines' class='chec_plugin' "+((setup_editor.lines)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>显示所有行 </td><td> 显示所有代码块的连线或仅显示选中代码块的连线</td></tr>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='ani_lines' class='chec_plugin' "+((setup_editor.lines_anim)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>显示连接线动画 </td><td> 从元素到下一个代码块的连线动画</td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>Smooth lines</td><td><input id='pv_s' class='input_text' value='"+setup_editor.smooth+"' type='text'></td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style='margin-left:8px;'>浅色主题</p><hr><form id='ui_color'>"+thems+
         "</form><br>"+
@@ -4977,6 +4977,7 @@ function apply_setup(){
     setup_editor.lines=all_lines.checked;
     setup_editor.lines_anim=ani_lines.checked;
     setup_editor.pvw=[pv_v.value,pv_h.value];
+    setup_editor.smooth=parseFloat(pv_s.value);
     forms=document.forms.bg_edit;
     for(i=0;i<forms.length;i++){if(forms[i].checked){setup_editor.fon=forms[i].value;break;}}
     forms=document.forms.ui_color;
@@ -6056,3 +6057,4 @@ function syntax_javascipt(code){
 </script>
 </body>
 </html>
+
