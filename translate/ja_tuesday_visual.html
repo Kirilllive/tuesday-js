@@ -905,8 +905,8 @@ const plugins_list={"tue_aspect_ratio":{
         "text":"「toast」というポップアップのようなメッセージを一時的に表示します",
         "code":"let tue_toast;function creation_tost(){var t=document.createElement(\"style\");t.type=\"text/css\",t.innerHTML=\"#toast{position: fixed;opacity: 0;top: -96px;z-index: 1000;}.toast_anim{left: 50%;transform: translateX(-50%);animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;}@keyframes viwe {from {opacity: 0;top: 3em}to {opacity: 1;top: 3em}}@keyframes stop {from {opacity: 1;top: 3em}to {opacity: 1;top: 3em}}@keyframes close {from {opacity: 1;top: 3em}to {opacity: 0;top: -96px}}\",document.getElementsByTagName(\"head\")[0].appendChild(t),(tue_toast=document.createElement(\"div\")).id=\"toast\",tue_toast.innerHTML=\"<table border=\'0\' height=\'100%\' width=\'100%\'><tbody><tr><td id=\'toast_message\' align=\'center\' valign=\'center\' ></td></tr></tbody></table>\",document.body.appendChild(tue_toast)}function toast(t){tue_toast.classList.remove(\"toast_anim\"),document.getElementById(\"toast_message\").innerHTML=t,tue_toast.offsetParent,tue_toast.classList.add(\"toast_anim\")}creation_tost(),tuesday.addEventListener(\"creation_dialog\",function(t){story_json[tue_story][scene].dialogs[dialog].toast&&(story_json[tue_story][scene].dialogs[dialog].toast[languare]?toast(story_json[tue_story][scene].dialogs[dialog].toast[languare]):toast(story_json[tue_story][scene].dialogs[dialog].toast))});"
     },"touch_show":{
-        "name":"Show touch",
-        "text":"displays the location of the click on the screen",
+        "name":"タッチ位置表示",
+        "text":"数秒間、ユーザーがタッチまたはクリックしたポイントを強調表示します。",
         "code":"tuesday.addEventListener(\"script_loaded\",function(){var e=document.createElement(\"style\");e.type=\"text/css\",e.innerHTML=\".cursor{background: center / contain no-repeat url('\"+story_json.parameters.touch_show[0]+\"');\"+story_json.parameters.touch_show[4]+\";transform:translate(-50%,-50%);position:absolute;display:block;animation-name:cursor_anim;animation-fill-mode:forwards;pointer-events:none;z-index:3010;}@keyframes cursor_anim{from{opacity:1;}to{opacity:0;}}\",document.getElementsByTagName(\"head\")[0].appendChild(e),tuesday.addEventListener(story_json.parameters.touch_show[6]?\"touchstart\":\"mousedown\",e=>{let t=story_json.parameters.touch_show,a=document.createElement(\"div\"),o=tuesday.getBoundingClientRect(),s=t[6]?[e.touches[0].pageX,e.touches[0].pageY]:[e.clientX,e.clientY];if(a.className=\"cursor \"+story_json.parameters.touch_show[5],a.style.width=t[1],a.style.height=t[2],a.style.animationDuration=t[3]+\"s\",story_json.parameters.resolutions){let r=story_json.parameters.resolutions;a.style.left=(r[0]/o.width>r[1]/o.height?r[0]/o.width:r[1]/o.height)*(s[0]-o.left)+\"px\",a.style.top=(r[0]/o.width>r[1]/o.height?r[0]/o.width:r[1]/o.height)*(s[1]-o.top)+\"px\"}else a.style.left=s[0]-o.left+\"px\",a.style.top=s[1]-o.top+\"px\";setTimeout(function(e){a.remove()},1e3*t[3]),tuesday.appendChild(a)})});"
     },"terrain_map":{
         "name":"地図表示",
@@ -3235,7 +3235,7 @@ function scene_edit(){
     +"</select></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>位置:</td>"
-    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value;this.nextElementSibling.style.display=(this.selectedIndex==9)?\"inline-grid\":\"none\";this.style.width=(this.selectedIndex==9)?\"92px\":\"100%\";' style='display:inline;width:"+((c)?'92px':'100%')+";'>"
+    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=(this.selectedIndex==9)?bg_x.value+\" \"+bg_y.value:this.value;this.nextElementSibling.style.display=(this.selectedIndex==9)?\"inline-grid\":\"none\";this.style.width=(this.selectedIndex==9)?\"92px\":\"100%\";' style='display:inline;width:"+((c)?'92px':'100%')+";'>"
 		+"<option value='center'>中央</option>"
         +"<option value='top left' "+((copy_arr[arr_n].background_align=='top left')?'selected':'')+">左上</option>"
         +"<option value='top' "+((copy_arr[arr_n].background_align=='top')?'selected':'')+">上</option>"
@@ -3245,8 +3245,8 @@ function scene_edit(){
         +"<option value='bottom left' "+((copy_arr[arr_n].background_align=='bottom left')?'selected':'')+">左下</option>"
         +"<option value='bottom' "+((copy_arr[arr_n].background_align=='bottom')?'selected':'')+">下</option>"
         +"<option value='bottom right' "+((copy_arr[arr_n].background_align=='bottom right')?'selected':'')+">右下</option>"
-        +"<option value='' "+((c)?'selected':'')+">custom</option>"
-    +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 92px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text'>Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text'></div></td>"
+        +"<option value='' "+((c)?'selected':'')+">指定 座標</option>"
+    +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 92px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text' onchange='this.value=correct_value(this.value);scene_bg_preview.style.backgroundPosition=this.value+\" \"+bg_y.value' >Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text' onchange='this.value=correct_value(this.value);scene_bg_preview.style.backgroundPosition=bg_x.value+\" \"+this.value'></div></td>"
     +"<td style='height:40px;width:40px;'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Class:</td>"
@@ -4723,15 +4723,15 @@ function setup(){
 
     function add_touch_show(){
         if(story_script.parameters.touch_show){
-            return "<br><br><p align='left' style='margin-left:8px;'>Show touch</p><hr>"+
+            return "<br><br><p align='left' style='margin-left:8px;'>タッチ位置表示</p><hr>"+
             "<table style='margin-left:10px;width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
             "<tr><td align='right' style='width:1%;'>カーソル用イメージ</td><td align='left'><input id='touch_show_image' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[0] :'')+"' type='text'><td class='icon icon_load' onclick='file_catalog(\"touch_show_image\",\"img\",\"touch_show_image\",0)' style='width:40px;' ></td></tr>"+
             "<tr><td align='right'>横幅</td><td align='left'><input id='touch_show_width' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[1] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>縦幅</td><td align='left'><input id='touch_show_height' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[2] :'')+"' type='text'><td></td></tr>"+
-            "<tr><td align='right'>タイマー</td><td align='left'><input id='touch_show_time' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[3] :'')+"' type='text'><td></td></tr>"+
+            "<tr><td align='right'>表示時間</td><td align='left'><input id='touch_show_time' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[3] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>スタイル</td><td align='left'><input id='touch_show_style' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[4] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Class name</td><td align='left'><input id='touch_show_class' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[5] :'')+"' type='text'><td></td></tr>"+
-            "<tr><td align='right'>Touch only</td><td align='left'><label class='switchbox'><input type='checkbox' id='touch_only' class='chec_plugin' "+((story_script.parameters.touch_show[6])?'checked' :'')+"><span class='toggle round'></span></label></td></tr></tbody></table>"
+            "<tr><td align='right'>タッチ限定</td><td align='left'><label class='switchbox'><input type='checkbox' id='touch_only' class='chec_plugin' "+((story_script.parameters.touch_show[6])?'checked' :'')+"><span class='toggle round'></span></label></td></tr></tbody></table>"
         }else{return ""}
     }
     
@@ -4801,7 +4801,7 @@ function setup(){
         "<p align='left' style=' margin-left:8px;'>画面表示とスクリプト</p><hr><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='all_lines' class='chec_plugin' "+((setup_editor.lines)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>接続ライン<br>全表示 </td><td> 接続ラインを全て表示(オン)。選択したブロックに繋がるラインのみ(オフ)</td></tr>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='ani_lines' class='chec_plugin' "+((setup_editor.lines_anim)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>接続ラインのアニメーション </td><td> 要素と移動先のブロックを繋ぐラインがアニメーションします</td></tr>"+
-        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>Smooth lines</td><td><input id='pv_s' class='input_text' value='"+setup_editor.smooth+"' type='text'></td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>ブロック接続線の 曲線度</td><td><input id='pv_s' class='input_text' value='"+setup_editor.smooth+"' type='text'></td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style='margin-left:8px;'>ライトモード</p><hr><form id='ui_color'>"+thems+
         "</form><br>"+

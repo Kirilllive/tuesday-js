@@ -2369,7 +2369,7 @@ function ho_edit(){
         +"<input class='input_text' onchange='story_script.parameters.hidden_objects.label_find.style=this.value;' type='text' value='"+((p.label.style)?p.label_find.style:"")+"' style='width:100%;'>"
         +"</td><td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='copy_arr=story_script.parameters.hidden_objects.label_find;edit_code(\"style\",\"Style CSS\",\"ho_update()\");'>"
         +'</tr><tr>'
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Class name</td><td style='padding-right:8px;' colspan='3'>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Имя класса</td><td style='padding-right:8px;' colspan='3'>"
         +"<input class='input_text' onchange='story_script.parameters.hidden_objects.label.className=this.value;' type='text' value='"+((p.label.className)?p.label.className:"")+"' style='width:100%;'>"
         +'</tr><tr>'
         +"<tr><td height='40px' align='right' style='padding-right:8px;'>Class name найденого</td><td style='padding-right:8px;' colspan='3'>"
@@ -3235,7 +3235,7 @@ function scene_edit(){
     +"</select></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Позиция:</td>"
-    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=this.value;this.nextElementSibling.style.display=(this.selectedIndex==9)?\"inline-grid\":\"none\";this.style.width=(this.selectedIndex==9)?\"92px\":\"100%\";' style='display:inline;width:"+((c)?'92px':'100%')+";'>"
+    +"<td colspan='2'><select id='scene_pos' oninput='scene_bg_preview.style.backgroundPosition=(this.selectedIndex==9)?bg_x.value+\" \"+bg_y.value:this.value;this.nextElementSibling.style.display=(this.selectedIndex==9)?\"inline-grid\":\"none\";this.style.width=(this.selectedIndex==9)?\"92px\":\"100%\";' style='display:inline;width:"+((c)?'92px':'100%')+";'>"
 		+"<option value='center'>центр</option>"
         +"<option value='top left' "+((copy_arr[arr_n].background_align=='top left')?'selected':'')+">сверху слева</option>"
         +"<option value='top' "+((copy_arr[arr_n].background_align=='top')?'selected':'')+">сверху</option>"
@@ -3246,7 +3246,7 @@ function scene_edit(){
         +"<option value='bottom' "+((copy_arr[arr_n].background_align=='bottom')?'selected':'')+">снизу</option>"
         +"<option value='bottom right' "+((copy_arr[arr_n].background_align=='bottom right')?'selected':'')+">снизу справа</option>"
         +"<option value='' "+((c)?'selected':'')+">cвой</option>"
-    +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 92px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text'>Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text'></div></td>"
+    +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 92px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text' onchange='this.value=correct_value(this.value);scene_bg_preview.style.backgroundPosition=this.value+\" \"+bg_y.value' >Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text' onchange='this.value=correct_value(this.value);scene_bg_preview.style.backgroundPosition=bg_x.value+\" \"+this.value'></div></td>"
     +"<td style='height:40px;width:40px;'></td>"
     +"</tr><tr>"
     +"<td width='50px' height='40px' align='right' style='padding:0 8px;white-space:nowrap;'>Class:</td>"

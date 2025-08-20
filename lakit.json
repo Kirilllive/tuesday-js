@@ -108,6 +108,13 @@
 		}
 	],
 	[
+		"displays the location of the touch or the click on the screen for a few seconds",
+		{
+			"ru": "отображает место нажатия на экране",
+			"ja": "数秒間、ユーザーがタッチまたはクリックしたポイントを強調表示します。"
+		}
+	],
+	[
 		"https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial",
 		{
 			"ru": "https://kirilllive.github.io/tuesday-js/doc_editor.html#quick_tutorial_ru",
@@ -380,15 +387,6 @@
 		}
 	],
 	[
-		"title='Project code'",
-		{
-			"ru": "title='Проект код'",
-			"ja": "title='プロジェクトコード'",
-			"es": "title='Código del proyecto'",
-			"zh": "title='项目代码'"
-		}
-	],
-	[
 		"title='About visual editor'",
 		{
 			"ru": "title='О программе'",
@@ -593,6 +591,15 @@
 		}
 	],
 	[
+		"title='Project code'",
+		{
+			"ru": "title='Проект код'",
+			"ja": "title='プロジェクトコード'",
+			"es": "title='Código del proyecto'",
+			"zh": "title='项目代码'"
+		}
+	],
+	[
 		">Display conditions<",
 		{
 			"ru": ">Условия отображения<",
@@ -782,15 +789,6 @@
 		}
 	],
 	[
-		">Class name<",
-		{
-			"ru": ">Имя класса<",
-			"es": ">Nombre de la clase<",
-			"pt": ">Nome da classe<",
-			"zh": ">类名<"
-		}
-	],
-	[
 		"Default class name",
 		{
 			"ru": "Class name",
@@ -895,24 +893,6 @@
 			"ja": ">JavaScriptコード<",
 			"es": ">Código JavaScript<",
 			"zh": ">JavaScript 代码<"
-		}
-	],
-	[
-		">CSS classes<",
-		{
-			"ru": ">CSS классы<",
-			"ja": ">CSSクラス<",
-			"es": ">Clases CSS<",
-			"zh": ">CSS 样式<"
-		}
-	],
-	[
-		">JSON project<",
-		{
-			"ru": ">JSON проект<",
-			"ja": ">JSONプロジェクト<",
-			"es": ">Proyecto JSON<",
-			"zh": ">JSON 工程<"
 		}
 	],
 	[
@@ -1223,6 +1203,15 @@
 		}
 	],
 	[
+		">JSON project<",
+		{
+			"ru": ">JSON проект<",
+			"ja": ">JSONプロジェクト<",
+			"es": ">Proyecto JSON<",
+			"zh": ">JSON 工程<"
+		}
+	],
+	[
 		">Legacy choice",
 		{
 			"ru": ">Последствие выбора",
@@ -1441,24 +1430,6 @@
 		}
 	],
 	[
-		"screen color",
-		{
-			"ru": "Цвет экрана",
-			"ja": "画面の色",
-			"es": "Color de pantalla",
-			"zh": "屏幕颜色"
-		}
-	],
-	[
-		"screen image",
-		{
-			"ru": "Изображение экрана",
-			"ja": "画面の画像",
-			"es": "Imagen de pantalla",
-			"zh": "屏幕图片"
-		}
-	],
-	[
 		"Screen control",
 		{
 			"ru": "Нажатие на экран",
@@ -1489,6 +1460,24 @@
 			"ru": ">На диалоге<",
 			"ja": ">ダイアログ開始時<",
 			"zh": ">对话开始<"
+		}
+	],
+	[
+		"Clear all save",
+		{
+			"ru": "Очистить все сохранения",
+			"ja": "全てのセーブを削除",
+			"es": "Borrar todos los guardados",
+			"zh": "清除所有本地存储"
+		}
+	],
+	[
+		">CSS classes<",
+		{
+			"ru": ">CSS классы<",
+			"ja": ">CSSクラス<",
+			"es": ">Clases CSS<",
+			"zh": ">CSS 样式<"
 		}
 	],
 	[
@@ -1722,6 +1711,33 @@
 			"ru": "Случайный выбор",
 			"ja": "ランダム分岐",
 			"zh": "随机选择"
+		}
+	],
+	[
+		">Class name<",
+		{
+			"ru": ">Имя класса<",
+			"es": ">Nombre de la clase<",
+			"pt": ">Nome da classe<",
+			"zh": ">类名<"
+		}
+	],
+	[
+		"screen color",
+		{
+			"ru": "Цвет экрана",
+			"ja": "画面の色",
+			"es": "Color de pantalla",
+			"zh": "屏幕颜色"
+		}
+	],
+	[
+		"screen image",
+		{
+			"ru": "Изображение экрана",
+			"ja": "画面の画像",
+			"es": "Imagen de pantalla",
+			"zh": "屏幕图片"
 		}
 	],
 	[
@@ -1974,6 +1990,13 @@
 			"ru": "Размер экрана",
 			"ja": "アスペクト比",
 			"zh": "画面比例"
+		}
+	],
+	[
+		"Smooth lines",
+		{
+			"ru": "Сглаживание линий",
+			"ja": "ブロック接続線の 曲線度"
 		}
 	],
 	[
@@ -2310,15 +2333,6 @@
 		}
 	],
 	[
-		"Clear all save",
-		{
-			"ru": "Очистить все сохранения",
-			"ja": "全てのセーブを削除",
-			"es": "Borrar todos los guardados",
-			"zh": "清除所有本地存储"
-		}
-	],
-	[
 		"Auto save ",
 		{
 			"ru": "Автосохранение ",
@@ -2584,6 +2598,20 @@
 			"ru": ">Диагонали<",
 			"ja": ">対角線<",
 			"zh": ">对角线<"
+		}
+	],
+	[
+		"Show touch",
+		{
+			"ru": "Показать нажатие",
+			"ja": "タッチ位置表示"
+		}
+	],
+	[
+		"Touch only",
+		{
+			"ru": "Только тач",
+			"ja": "タッチ限定"
 		}
 	],
 	[
@@ -3084,6 +3112,13 @@
 		}
 	],
 	[
+		">custom<",
+		{
+			"ru": ">cвой<",
+			"ja": ">指定 座標<"
+		}
+	],
+	[
 		"dialog:",
 		{
 			"ru": "диалог:",
@@ -3560,6 +3595,13 @@
 		}
 	],
 	[
+		">Time<",
+		{
+			"ja": ">表示時間<",
+			"ru": ">Время<"
+		}
+	],
+	[
 		">Back",
 		{
 			"ru": ">Назад",
@@ -3730,43 +3772,6 @@
 			"ru": ">нет<",
 			"es": ">no<",
 			"zh": ">不<"
-		}
-	],
-	[
-		"Show touch",
-		{
-			"ru": "Показать нажатие"
-		}
-	],
-	[
-		"displays the location of the click on the screen",
-		{
-			"ru": "отображает место нажатия на экране"
-		}
-	],
-	[
-		"Touch only",
-		{
-			"ru": "Только тач"
-		}
-	],
-	[
-		">Time<",
-		{
-			"ja": ">タイマー<",
-			"ru": ">Время<"
-		}
-	],
-	[
-		"Smooth lines",
-		{
-			"ru": "Сглаживание линий"
-		}
-	],
-	[
-		">custom<",
-		{
-			"ru": ">cвой<"
 		}
 	]
 ]
