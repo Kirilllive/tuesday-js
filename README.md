@@ -144,9 +144,11 @@ Tuesday JS也具备丰富的用于制作翻译版本的功能。
 # System requirements for desktop version
 
 CPU: x86_64
+
 RAM: 512 MB
+
 Minimum OS version:
-- MS Windows 7 
+- Windows 7 
 - MacOS 10.13 (Apple Silicon / Intel)
 - Debian 11
 - Ubuntu 20.04
