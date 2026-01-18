@@ -4,7 +4,11 @@ function TueAspectRatio(){
     let rect=elem.getBoundingClientRect();
     let scale;
     if(tue_size[4]){
-        scale=(window.innerWidth<window.innerHeight)?window.innerWidth/tue_size[0]:window.innerHeight/tue_size[1];
+        if(rect.height==0||rect.width==0){
+            scale=(window.innerWidth<window.innerHeight)?window.innerWidth/tue_size[0]:window.innerHeight/tue_size[1];
+        }else{
+            scale=(rect.width<rect.height)?rect.width/tue_size[0]:rect.height/tue_size[1];
+        }
         elem.style.margin="0";
         elem.style.overscrollBehavior="none";
     } else {
@@ -26,8 +30,8 @@ function TueAspectRatio(){
     elem.style.position='relative';
     tuesday.style.position='absolute';
     tuesday.style.transformOrigin='left top';
-    tuesday.style.width =(tue_size[4]?window.innerWidth/scale:tue_size[0])+'px';
-    tuesday.style.height=(tue_size[4]?window.innerHeight/scale:tue_size[1])+'px';
+    tuesday.style.width =(tue_size[4]?(rect.width==0?window.innerWidth:rect.width)/scale:tue_size[0])+'px';
+    tuesday.style.height=(tue_size[4]?(rect.height==0?window.innerHeight:rect.height)/scale:tue_size[1])+'px';
     tuesday.style.transform='scale('+scale+')';
 }
 window.addEventListener('script_executed',TueAspectRatio,true);
