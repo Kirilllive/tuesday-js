@@ -23,6 +23,10 @@ function terrain_map(){
     map.style.position="relative";
     map.style.overflow="hidden";
     map.style.transformOrigin="left top";
+    if(story_json.parameters.resolutions[4]){
+        let tue_size=story_json.parameters.resolutions;
+        arr_dialog.size[2]=(window.innerWidth<window.innerHeight)?window.innerWidth/tue_size[0]:window.innerHeight/tue_size[1];
+    }
     for(var i=0;i<arr_dialog.objects.length;i++){
         var item=document.createElement("div");
         item.className=arr_dialog.objects[i].className+" tue_map_item";
@@ -69,7 +73,7 @@ function terrain_map(){
         else if (arr_dialog.sound){v+="sound_play('"+arr_dialog.sound+"');"}
         if (arr_dialog.objects[i].js){v+=arr_dialog.objects[i].js+";"}
         if (arr_dialog.objects[i].go_to && arr_dialog.objects[i].go_to!="tue_no"){
-            if (arr_dialog.objects[i].text_from){v+="tue_story='"+arr_dialog.objects[i].go_to+"';scene=0;dialog=0;creation_dialog();"}
+            if (arr_dialog.objects[i].text_from){v+="tue_story='"+arr_dialog.objects[i].go_to+"';scene=0;dialog=0;creation_dialog();"+(story_json.parameters.resolutions[4]?"arr_dialog.size=["+arr_dialog.size[0]+","+arr_dialog.size[1]+","+arr_dialog.size[2]+"]":"")}
             else if(arr_dialog.objects[i].url){v+="window.open('"+((arr_dialog.objects[i].go_to[languare])?arr_dialog.objects[i].go_to[languare]:arr_dialog.objects[i].go_to)+"','_"+arr_dialog.objects[i].url+"');"}
             else {v+="tue_world.remove();"+((arr_dialog.objects[i].go_to=="tue_go")?"scene++;dialog=0;creation_scene();":"go_to('"+arr_dialog.objects[i].go_to+"');")}
         }
@@ -82,19 +86,18 @@ function terrain_map(){
         wmap.scroll_x=view.scrollTop;
         wmap.scroll_y=view.scrollLeft;
         document.onmousemove=function(e) {
-            view.scrollTop=wmap.scroll_x-(e.clientY-wmap.startmove_y);
-            view.scrollLeft=wmap.scroll_y-(e.clientX-wmap.startmove_x);
+            view.scrollTop=wmap.scroll_x-((e.clientY-wmap.startmove_y)/(arr_dialog.size[2]));
+            view.scrollLeft=wmap.scroll_y-((e.clientX-wmap.startmove_x)/(arr_dialog.size[2]));
         };
         document.onmouseup=function(e){
             document.onmousemove=null;
             document.onmouseup=null;
-            if(arr_dialog.scroll){arr_dialog.scroll[1]=view.scrollTop;arr_dialog.scroll[0]=view.scrollLeft;}
+            arr_dialog.scroll=[view.scrollLeft,view.scrollTop];
         };
         document.onmouseleave=function(){
 			document.onmousemove=null;
 			document.onmouseup=null;
-            arr_dialog.scroll[1]=view.scrollTop;
-            arr_dialog.scroll[0]=view.scrollLeft;
+            arr_dialog.scroll=[view.scrollLeft,view.scrollTop];
 		};
     }
     if(tue_set_audio==0&&arr_dialog.background_music&&!tue_bg_music.src.includes(encodeURI(arr_dialog.background_music))){
@@ -114,7 +117,10 @@ function terrain_map(){
     view.appendChild(map);
     tuesday.appendChild(view);
     worldmap_resize();
-    if(arr_dialog.scroll){view.scrollTop=arr_dialog.scroll[1]*wmap.scale;view.scrollLeft=arr_dialog.scroll[0]*wmap.scale;}
+    if(arr_dialog.scroll){
+        view.scrollTop=arr_dialog.scroll[1]*wmap.scale;
+        view.scrollLeft=arr_dialog.scroll[0]*wmap.scale;
+    }
 }
 function worldmap_resize(){
     if(!story_json.parameters.resolutions){
@@ -128,11 +134,11 @@ function worldmap_resize(){
         window.addEventListener('resize',worldmap_resize,true);
     } else if( story_json.parameters.resolutions[4]){
         let tue_size=story_json.parameters.resolutions;
-        let scale=(window.innerWidth<window.innerHeight)?window.innerWidth/tue_size[0]:window.innerHeight/tue_size[1];
-        if( ( arr_dialog.size[0] / arr_dialog.size[1] ) > ( window.innerWidth / window.innerHeight )){
-            tue_map.style.transform='scale('+(window.innerHeight/arr_dialog.size[1])*(wmap.scale/scale)+')';
+        arr_dialog.size[2]=(window.innerWidth<window.innerHeight)?window.innerWidth/tue_size[0]:window.innerHeight/tue_size[1];
+        if((arr_dialog.size[0]/arr_dialog.size[1])>(window.innerWidth/window.innerHeight)){
+            tue_map.style.transform='scale('+((window.innerHeight/arr_dialog.size[1])*wmap.scale)/arr_dialog.size[2]+')';
         } else {
-            tue_map.style.transform='scale('+(window.innerWidth/arr_dialog.size[0])*(wmap.scale/scale)+')';
+            tue_map.style.transform='scale('+((window.innerWidth/arr_dialog.size[0])*wmap.scale)/arr_dialog.size[2]+')';
         }
         tue_map.style.marginBottom="-"+(window.innerHeight+arr_dialog.size[1])+"px";
         tue_map.style.marginRight="-"+(window.innerWidth+arr_dialog.size[0])+"px";

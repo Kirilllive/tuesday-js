@@ -709,7 +709,7 @@ function name_block_update(){
 } function go_story(choice){
 	if(story_json[tue_story][scene].dialogs.length!=0 && (check_choice(story_json[tue_story][scene].dialogs) || choice)){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog]
-        if(story_json.parameters.text_panel.show_all_text && dialog_letter < dialog_text.length){
+        if((!timers && story_json.parameters.text_panel.show_all_text) && dialog_letter < dialog_text.length){
             dialog_letter=dialog_text.length;
             clearTimeout(dialog_timeout);
             anim_text();
@@ -939,7 +939,7 @@ function name_block_update(){
 }
 function fast_rewind(){
     let d=story_json[tue_story][scene].dialogs;
-    timers=setTimeout(function(){go_story(true);if(dialog<d.length&&check_choice(d)){fast_rewind()}else{timers=false}},350)
+    timers=setTimeout(function(){go_story(true);if(dialog<d.length&&check_choice(d)){fast_rewind()}else{timers=false}},250)
 }
 function check_choice(d){
     if(d[dialog].choice){
