@@ -9,6 +9,7 @@ function terrain_map(){
     view.style='height:100%;width:100%;'+((navigator.userAgent.indexOf('Firefox')>0)?'overflow:hidden;':'overflow:auto;');
     view.className="tue_html_scene";
     var map=document.createElement("div");
+    let tue_size=story_json.parameters.resolutions;
     if(arr_dialog.scale){wmap.scale=arr_dialog.scale}
     map.id="tue_map";
     map.className=arr_dialog.className;
@@ -23,8 +24,7 @@ function terrain_map(){
     map.style.position="relative";
     map.style.overflow="hidden";
     map.style.transformOrigin="left top";
-    if(story_json.parameters.resolutions[4]){
-        let tue_size=story_json.parameters.resolutions;
+    if(tue_size&&tue_size[4]){
         arr_dialog.size[2]=(window.innerWidth<window.innerHeight)?window.innerWidth/tue_size[0]:window.innerHeight/tue_size[1];
     }
     for(var i=0;i<arr_dialog.objects.length;i++){
@@ -73,7 +73,7 @@ function terrain_map(){
         else if (arr_dialog.sound){v+="sound_play('"+arr_dialog.sound+"');"}
         if (arr_dialog.objects[i].js){v+=arr_dialog.objects[i].js+";"}
         if (arr_dialog.objects[i].go_to && arr_dialog.objects[i].go_to!="tue_no"){
-            if (arr_dialog.objects[i].text_from){v+="tue_story='"+arr_dialog.objects[i].go_to+"';scene=0;dialog=0;creation_dialog();"+(story_json.parameters.resolutions[4]?"arr_dialog.size=["+arr_dialog.size[0]+","+arr_dialog.size[1]+","+arr_dialog.size[2]+"]":"")}
+            if (arr_dialog.objects[i].text_from){v+="tue_story='"+arr_dialog.objects[i].go_to+"';scene=0;dialog=0;creation_dialog();"+(tue_size&&tue_size[4]?"arr_dialog.size=["+arr_dialog.size[0]+","+arr_dialog.size[1]+","+arr_dialog.size[2]+"]":"")}
             else if(arr_dialog.objects[i].url){v+="window.open('"+((arr_dialog.objects[i].go_to[languare])?arr_dialog.objects[i].go_to[languare]:arr_dialog.objects[i].go_to)+"','_"+arr_dialog.objects[i].url+"');"}
             else {v+="tue_world.remove();"+((arr_dialog.objects[i].go_to=="tue_go")?"scene++;dialog=0;creation_scene();":"go_to('"+arr_dialog.objects[i].go_to+"');")}
         }
@@ -86,8 +86,13 @@ function terrain_map(){
         wmap.scroll_x=view.scrollTop;
         wmap.scroll_y=view.scrollLeft;
         document.onmousemove=function(e) {
-            view.scrollTop=wmap.scroll_x-((e.clientY-wmap.startmove_y)/(arr_dialog.size[2]));
-            view.scrollLeft=wmap.scroll_y-((e.clientX-wmap.startmove_x)/(arr_dialog.size[2]));
+            if(tue_size&&tue_size[4]){
+                view.scrollTop=wmap.scroll_x-((e.clientY-wmap.startmove_y)/(arr_dialog.size[2]));
+                view.scrollLeft=wmap.scroll_y-((e.clientX-wmap.startmove_x)/(arr_dialog.size[2]));
+            } else {
+                view.scrollTop=wmap.scroll_x-(e.clientY-wmap.startmove_y);
+                view.scrollLeft=wmap.scroll_y-(e.clientX-wmap.startmove_x);
+            }
         };
         document.onmouseup=function(e){
             document.onmousemove=null;

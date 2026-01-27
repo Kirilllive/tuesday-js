@@ -3,7 +3,7 @@ function TueAspectRatio(){
     let elem=tuesday.parentNode;
     let rect=elem.getBoundingClientRect();
     let scale;
-    if(tue_size[4]){
+    if(tue_size&&tue_size[4]){
         if(rect.height==0||rect.width==0){
             scale=(window.innerWidth<window.innerHeight)?window.innerWidth/tue_size[0]:window.innerHeight/tue_size[1];
         }else{
@@ -11,7 +11,7 @@ function TueAspectRatio(){
         }
         elem.style.margin="0";
         elem.style.overscrollBehavior="none";
-    } else {
+    } else if(tue_size){
         if(rect.height==0||rect.width==0){
             scale=((tue_size[0]/window.innerWidth)>(tue_size[1]/window.innerHeight))?window.innerWidth/tue_size[0]:window.innerHeight/tue_size[1];
             tuesday.style.left=(window.innerWidth-(tue_size[0]*scale))/2+'px';
@@ -22,16 +22,18 @@ function TueAspectRatio(){
             tuesday.style.top=(rect.height-(tue_size[1]*scale))/2+'px';
         }
     }
-    elem.style.backgroundColor=(tue_size[2]&&tue_size[2].length>0)?tue_size[2]:'#000';
-    elem.style.backgroundImage="url('"+tue_size[3]+"')";
+    elem.style.backgroundColor=(tue_size&&tue_size[2]&&tue_size[2].length>0)?tue_size[2]:'#000';
+    if(tue_size){elem.style.backgroundImage="url('"+tue_size[3]+"')";}
     elem.style.backgroundPosition="center";
     elem.style.backgroundSize="cover";
     elem.style.overflow='hidden';
     elem.style.position='relative';
     tuesday.style.position='absolute';
     tuesday.style.transformOrigin='left top';
-    tuesday.style.width =(tue_size[4]?(rect.width==0?window.innerWidth:rect.width)/scale:tue_size[0])+'px';
-    tuesday.style.height=(tue_size[4]?(rect.height==0?window.innerHeight:rect.height)/scale:tue_size[1])+'px';
+    if(tue_size){
+        tuesday.style.width =(tue_size[4]?(rect.width==0?window.innerWidth:rect.width)/scale:tue_size[0])+'px';
+        tuesday.style.height=(tue_size[4]?(rect.height==0?window.innerHeight:rect.height)/scale:tue_size[1])+'px';
+    }
     tuesday.style.transform='scale('+scale+')';
 }
 window.addEventListener('script_executed',TueAspectRatio,true);
