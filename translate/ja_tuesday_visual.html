@@ -282,12 +282,15 @@ input[type="text"]{text-indent:4px;}
 select{
     border:0;
     text-align-last:center;
-	font-family:Arial;
-	font-size:12px;
-	-webkit-appearance:none;
-	border-bottom:1px solid var(--cb);
-	background-color:transparent;
-	height:28px;width:100%;
+    font-family:Arial;
+    font-size:12px;
+    -webkit-appearance:none;
+    border-bottom:1px solid var(--cb);
+    background: var(--wn);
+    height:28px;width:100%;
+}
+select option:checked, select option:hover{
+    background: var(--cb);
 }
 .input_text:focus{border-bottom:1px solid #fff;}
 hr{border-top:1px solid var(--cb);margin:4px 0px;}
@@ -697,7 +700,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>全文表示</td><td style='padding-right:8px;' colspan='3'>
                                 <select id="show_all_text" oninput="if(this.selectedIndex!=0){story_script.parameters.text_panel.show_all_text=true}else{delete story_script.parameters.text_panel.show_all_text};state_save()">
-                                    <option class='show_all_text'>いいえ</option>
+                                    <option class='show_all_text'>禁止 </option>
                                     <option>クリック</option>
                                 </select>
                             </td></tr>

@@ -282,12 +282,15 @@ input[type="text"]{text-indent:4px;}
 select{
     border:0;
     text-align-last:center;
-	font-family:Arial;
-	font-size:12px;
-	-webkit-appearance:none;
-	border-bottom:1px solid var(--cb);
-	background-color:transparent;
-	height:28px;width:100%;
+    font-family:Arial;
+    font-size:12px;
+    -webkit-appearance:none;
+    border-bottom:1px solid var(--cb);
+    background: var(--wn);
+    height:28px;width:100%;
+}
+select option:checked, select option:hover{
+    background: var(--cb);
 }
 .input_text:focus{border-bottom:1px solid #fff;}
 hr{border-top:1px solid var(--cb);margin:4px 0px;}
