@@ -1335,8 +1335,7 @@ function save_file(){
     var n;
     not_save=false;
     if(story_script.parameters.title){
-        n=name_file?name_file.substring(0,name_file.lastIndexOf('.')):(story_script.parameters.title.en)?story_script.parameters.title.en:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
-        alert(n)
+        n=name_file?name_file.substring(0,name_file.lastIndexOf('.')):(story_script.parameters.title.en)?story_script.parameters.title.en:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title;
         n=correct_name(String(n).toLowerCase());
     }else{n="new_novel";}
     create_json_files(n+'.json',JSON.stringify(story_script))

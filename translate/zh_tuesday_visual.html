@@ -699,10 +699,10 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>对话速度</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='dialog_speed' class='input_text' onchange='this.value=correct_value(this.value,true);story_script.parameters.text_panel.dialog_speed=this.value;state_save()' type="text" style='width:100%;'>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Show all text</td><td style='padding-right:8px;' colspan='3'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>显示全部文本</td><td style='padding-right:8px;' colspan='3'>
                                 <select id="show_all_text" oninput="if(this.selectedIndex!=0){story_script.parameters.text_panel.show_all_text=true}else{delete story_script.parameters.text_panel.show_all_text};state_save()">
                                     <option class='show_all_text'>不</option>
-                                    <option>On click</option>
+                                    <option>点击时</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>控制台模式</td><td style='padding-right:8px;' colspan='3'>
@@ -926,8 +926,8 @@ const plugins_list={"tue_aspect_ratio":{
         "text":"短时显示消息",
         "code":"let tue_toast;function creation_tost(){var t=document.createElement(\"style\");t.type=\"text/css\",t.innerHTML=\"#toast{position: fixed;opacity: 0;top: -96px;z-index: 1000;}.toast_anim{left: 50%;transform: translateX(-50%);animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;}@keyframes viwe {from {opacity: 0;top: 3em}to {opacity: 1;top: 3em}}@keyframes stop {from {opacity: 1;top: 3em}to {opacity: 1;top: 3em}}@keyframes close {from {opacity: 1;top: 3em}to {opacity: 0;top: -96px}}\",document.getElementsByTagName(\"head\")[0].appendChild(t),(tue_toast=document.createElement(\"div\")).id=\"toast\",tue_toast.innerHTML=\"<table border=\'0\' height=\'100%\' width=\'100%\'><tbody><tr><td id=\'toast_message\' align=\'center\' valign=\'center\' ></td></tr></tbody></table>\",document.body.appendChild(tue_toast)}function toast(t){tue_toast.classList.remove(\"toast_anim\"),document.getElementById(\"toast_message\").innerHTML=t,tue_toast.offsetParent,tue_toast.classList.add(\"toast_anim\")}creation_tost(),tuesday.addEventListener(\"creation_dialog\",function(t){story_json[tue_story][scene].dialogs[dialog].toast&&(story_json[tue_story][scene].dialogs[dialog].toast[languare]?toast(story_json[tue_story][scene].dialogs[dialog].toast[languare]):toast(story_json[tue_story][scene].dialogs[dialog].toast))});"
     },"touch_show":{
-        "name":"Show touch",
-        "text":"displays the location of the touch or the click on the screen for a few seconds",
+        "name":"显示触摸位置",
+        "text":"显示触摸或点击的位置在屏幕上持续几秒钟。",
         "code":"tuesday.addEventListener(\"script_loaded\",function(){var e=document.createElement(\"style\");e.type=\"text/css\",e.innerHTML=\".cursor{background: center / contain no-repeat url('\"+story_json.parameters.touch_show[0]+\"');\"+story_json.parameters.touch_show[4]+\";transform:translate(-50%,-50%);position:absolute;display:block;animation-name:cursor_anim;animation-fill-mode:forwards;pointer-events:none;z-index:3010;}@keyframes cursor_anim{from{opacity:1;}to{opacity:0;}}\",document.getElementsByTagName(\"head\")[0].appendChild(e),tuesday.addEventListener(story_json.parameters.touch_show[6]?\"touchstart\":\"mousedown\",e=>{let t=story_json.parameters.touch_show,a=document.createElement(\"div\"),o=tuesday.getBoundingClientRect(),s=t[6]?[e.touches[0].pageX,e.touches[0].pageY]:[e.clientX,e.clientY];if(a.className=\"cursor \"+story_json.parameters.touch_show[5],a.style.width=t[1],a.style.height=t[2],a.style.animationDuration=t[3]+\"s\",story_json.parameters.resolutions){let r=story_json.parameters.resolutions;a.style.left=(r[0]/o.width>r[1]/o.height?r[0]/o.width:r[1]/o.height)*(s[0]-o.left)+\"px\",a.style.top=(r[0]/o.width>r[1]/o.height?r[0]/o.width:r[1]/o.height)*(s[1]-o.top)+\"px\"}else a.style.left=s[0]-o.left+\"px\",a.style.top=s[1]-o.top+\"px\";setTimeout(function(e){a.remove()},1e3*t[3]),tuesday.appendChild(a)})});"
     },"terrain_map":{
         "name":"地图表示",
@@ -985,7 +985,7 @@ const texts={"tutorials":[{
         }
 ]}
 let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true,'smooth':64};
-let buf=['',''],back_up=[];
+let buf=['',''],back_up=[],not_save=false,state_num=0;
 if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"));if(!setup_editor.smooth){setup_editor.smooth=64;}};
 if(setup_editor.ferst){
     var sel="<div class='window' style='padding:24px 8px;'><p>设备控制</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[5].en+"</p>"
@@ -1010,7 +1010,8 @@ function editor_setup(){
 //    
 document.addEventListener("wheel",function(e){if(setup_editor.wheel&&(!scroll_block||(scene_screen&&scene_view.tabindex==1))){if(e.deltaY>0) world_scale(false);else world_scale(2);}});
 let project_files=[];
-var load_files
+var load_files;
+let name_file;
 img_file.addEventListener('change',loadFiles);
 var load_new=false;
 var wf;
@@ -1037,40 +1038,16 @@ function loadFiles(e){
 }
 function selectJson(jsons){
     open_tool();new_novel();scen_edit_update(false);
-    if(jsons.length==1){load_story_edit(open_file(jsons[0][1]))}
+    if(jsons.length==1){ name_file=jsons[0][1]; load_story_edit(open_file(jsons[0][1]))}
     else if(jsons.length>1){
         var html="<div class='window'><div class='win_head'>选择JSON项目文件<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><div style='margin:0 8px 0 8px;max-height:75vh;overflow-x:hidden;'>"
-        for(var f=0;f<jsons.length;f++){html+="<table class='button' style='width:412px;margin:8px 0px;' onclick='load_story_edit(open_file(\""+jsons[f][1]+"\"));modal_window(\"close\");'><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
+        for(var f=0;f<jsons.length;f++){html+="<table class='button' style='width:412px;margin:8px 0px;' onclick='let n=\""+jsons[f][1]+"\";name_file=n;load_story_edit(open_file(n));modal_window(\"close\");'><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
         html+="</div></div>"
         modal_window("open",html)
     }else if(jsons.length==0){alert('未找到JSON文件')}
 }
 window.addEventListener('load',()=>{
     var dropEvent=(e)=>{
-//        let target={target:{files:[]}},open=false,reading=0;
-//        wf=e.dataTransfer.items[0].webkitGetAsEntry().name+"/";
-//        let jsons=[];clear_Files();countBytes=0;
-//        function traverseFileTree(item,path){
-//            path=path||"";
-//            if(item.isFile){
-//                item.file((file)=>{
-//                    reading--;
-//                    countBytes+=file.size;
-//                    project_files.push([file.webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(file),file.type]);
-//                    if(file.type=="application/json"&&file.webkitRelativePath.split("/").length==2){jsons.push([project_files.length-1,file.name]);}
-//                    if(!open && reading==0 && jsons.length>0){open=true;selectJson(jsons)}
-//                })
-//            } else if (item.isDirectory){
-//                var dirReader = item.createReader();
-//                dirReader.readEntries((entries)=>{
-//                    reading=0;
-//                    for (var i = 0; i < entries.length; i++) {reading++;
-//                        traverseFileTree(entries[i], path + item.name + "/")
-//                    }
-//                });
-//            }
-//        };
-//        traverseFileTree(e.dataTransfer.items[0].webkitGetAsEntry())
         e.stopPropagation();e.preventDefault();return false;
     };
     let disabled=(e)=>{e.stopPropagation();e.preventDefault();};
@@ -1085,7 +1062,7 @@ function open_file(name){
 function new_novel(){
     story_script={"parameters":{"plugins":["tue_aspect_ratio"],"resolutions": [800,600,"#000",""],"text_panel":{"size":["95%","27%"],"position":[],"color":"rgba(242,242,242,0.7)","style": "border-radius:16px;backdrop-filter:blur(12px);border-top:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(0,0,0,.15);box-shadow: 0px 4px 14px rgba(0,0,0,.15);","color_text":"#000","indent_text":"8px 16px","indent_bottom":"3.5%","dialog_speed":"10","show_all_text":true},"name_panel":{"style": "border-radius:16px;border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(0,0,0,.2);box-shadow: 0px 4px 14px rgba(0,0,0,.15);","size":["","32px"],"position":["0","0","-42px","0"],"indent_text":"0 16px","color_text":"#fff","align":["start","center"],"color":"#555"},"title":{"zh":"新小说"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["zh"],"buttons":[{"name":"tue_back","position":["2.5%",0,0,"32px"],"size":["25%","25%"],"color_text":"#000","text":"<","hotspot":["0%","0%"],"align":["start","end"],"indent_text":"8px 14px"},{"name":"tue_next","position":[0,"2.5%",0,"32px"],"size":["25%","25%"],"color_text":"#000","text":">","hotspot":["0%","0%"],"align":["end","end"],"indent_text":"8px 14px"}],"autosave":false,"font":"Arial","font_size":"18px"},"blocks":{}};
     update_novel();
-    state_num=0;back_up=[];state_save();
+    not_save=false;state_num=0;back_up=[];state_save();
 }
 function update_novel(){
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}
@@ -1353,11 +1330,12 @@ function creaton_line(id,go,chapter){
     newLine.id=id+"l";
     story_lines.appendChild(newLine);
 }
-new_novel()
+new_novel();
 function save_file(){
     var n;
+    not_save=false;
     if(story_script.parameters.title){
-        n=(story_script.parameters.title.zh)?story_script.parameters.title.zh:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
+        n=name_file?name_file.substring(0,name_file.lastIndexOf('.')):(story_script.parameters.title.zh)?story_script.parameters.title.zh:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title;
         n=correct_name(String(n).toLowerCase());
     }else{n="new_novel";}
     create_json_files(n+'.json',JSON.stringify(story_script))
@@ -3265,7 +3243,7 @@ function scene_edit(){
         +"<option value='bottom left' "+((copy_arr[arr_n].background_align=='bottom left')?'selected':'')+">左下</option>"
         +"<option value='bottom' "+((copy_arr[arr_n].background_align=='bottom')?'selected':'')+">底部</option>"
         +"<option value='bottom right' "+((copy_arr[arr_n].background_align=='bottom right')?'selected':'')+">右下</option>"
-        +"<option value='' "+((c)?'selected':'')+">custom</option>"
+        +"<option value='' "+((c)?'selected':'')+">可定制</option>"
     +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 92px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text' onchange='this.value=correct_value(this.value);scene_bg_preview.style.backgroundPosition=this.value+\" \"+bg_y.value' >Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text' onchange='this.value=correct_value(this.value);scene_bg_preview.style.backgroundPosition=bg_x.value+\" \"+this.value'></div></td>"
     +"<td style='height:40px;width:40px;'></td>"
     +"</tr><tr>"
@@ -4734,15 +4712,15 @@ function setup(){
 
     function add_touch_show(){
         if(story_script.parameters.touch_show){
-            return "<br><br><p align='left' style='margin-left:8px;'>Show touch</p><hr>"+
+            return "<br><br><p align='left' style='margin-left:8px;'>显示触摸位置</p><hr>"+
             "<table style='margin-left:10px;width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
             "<tr><td align='right' style='width:1%;'>图像光标</td><td align='left'><input id='touch_show_image' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[0] :'')+"' type='text'><td class='icon icon_load' onclick='file_catalog(\"touch_show_image\",\"img\",\"touch_show_image\",0)' style='width:40px;' ></td></tr>"+
             "<tr><td align='right'>宽度</td><td align='left'><input id='touch_show_width' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[1] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>高度</td><td align='left'><input id='touch_show_height' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[2] :'')+"' type='text'><td></td></tr>"+
-            "<tr><td align='right'>Time</td><td align='left'><input id='touch_show_time' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[3] :'')+"' type='text'><td></td></tr>"+
+            "<tr><td align='right'>时间</td><td align='left'><input id='touch_show_time' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[3] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>风格</td><td align='left'><input id='touch_show_style' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[4] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>类名</td><td align='left'><input id='touch_show_class' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[5] :'')+"' type='text'><td></td></tr>"+
-            "<tr><td align='right'>Touch only</td><td align='left'><label class='switchbox'><input type='checkbox' id='touch_only' class='chec_plugin' "+((story_script.parameters.touch_show[6])?'checked' :'')+"><span class='toggle round'></span></label></td></tr></tbody></table>"
+            "<tr><td align='right'>仅触摸</td><td align='left'><label class='switchbox'><input type='checkbox' id='touch_only' class='chec_plugin' "+((story_script.parameters.touch_show[6])?'checked' :'')+"><span class='toggle round'></span></label></td></tr></tbody></table>"
         }else{return ""}
     }
     
@@ -4770,7 +4748,7 @@ function setup(){
         "<tr><td align='right' style='white-space:nowrap;'>css样式文件</td><td align='left'><input id='style_file' class='input_text' value='"+((story_script.parameters.style_file)?story_script.parameters.style_file:'')+"' type='text'></td><td id='l_css' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\".css\",\"style_file\",0,\"story_script.parameters.style_file\")'></td></tr>"+
         "<tr><td align='right' style='white-space:nowrap;'>移动端缩放</td><td align='left'><input id='mobile_scale' class='input_text' onchange='this.value=correct_value(this.value,true)' value='"+((story_script.parameters.scale)?story_script.parameters.scale:1)+"' type='text'></td></tr>"+
         //"<tr><td align='right' style='white-space:nowrap;'>对话速度</td><td align='left'><input id='dialog_speed_s' onchange='this.value=parseInt(correct_value(this.value,true))' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:'')+"' type='text'></td></tr>"+
-        "<tr><td align='right' style='white-space:nowrap;'>屏幕大小</td><td align='left' style='height:29px;'><select id='set_aspect_ratio' style='height:28px;width:"+((sar)?"74px;margin-right:6px":"100%")+";display:inline;' oninput='let r=this.selectedIndex>0;tue_aspect_ratio.checked=r;this.style.marginRight=(r)?\"6px\":\"0\";this.style.width=(r)?\"74px\":\"100%\";this.nextElementSibling.style.display=(r)?\"inline-grid\":\"none\";let d=(this.selectedIndex==1)?\"table-row\":\"none\";scol.style.display=d;sima.style.display=d;if(r&&!story_script.parameters.resolutions){screen_w.value=800;screen_h.value=600;}'><option value=0>自适应</option><option value=1 "+((sar&&!story_script.parameters.resolutions[4])?"selected":"")+">固定</option><option value=2 "+((sar&&story_script.parameters.resolutions[4])?"selected":"")+">Dynamic</option></select><div style='width:calc(100% - 80px);display:"+((sar)?"inline-grid":"none")+"; grid-template-columns:auto auto auto auto;grid-column-gap:8px;justify-content:center;align-items:center;  '>W<input id='screen_w' class='input_text' style='height:27px;' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[0]:"")+"' type='text'>H<input id='screen_h' class='input_text' style='height:27px;' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[1]:"")+"' type='text'></div></td></tr>"+
+        "<tr><td align='right' style='white-space:nowrap;'>屏幕大小</td><td align='left' style='height:29px;'><select id='set_aspect_ratio' style='height:28px;width:"+((sar)?"74px;margin-right:6px":"100%")+";display:inline;' oninput='let r=this.selectedIndex>0;tue_aspect_ratio.checked=r;this.style.marginRight=(r)?\"6px\":\"0\";this.style.width=(r)?\"74px\":\"100%\";this.nextElementSibling.style.display=(r)?\"inline-grid\":\"none\";let d=(this.selectedIndex==1)?\"table-row\":\"none\";scol.style.display=d;sima.style.display=d;if(r&&!story_script.parameters.resolutions){screen_w.value=800;screen_h.value=600;}'><option value=0>自适应</option><option value=1 "+((sar&&!story_script.parameters.resolutions[4])?"selected":"")+">固定</option><option value=2 "+((sar&&story_script.parameters.resolutions[4])?"selected":"")+">灵活</option></select><div style='width:calc(100% - 80px);display:"+((sar)?"inline-grid":"none")+"; grid-template-columns:auto auto auto auto;grid-column-gap:8px;justify-content:center;align-items:center;  '>W<input id='screen_w' class='input_text' style='height:27px;' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[0]:"")+"' type='text'>H<input id='screen_h' class='input_text' style='height:27px;' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[1]:"")+"' type='text'></div></td></tr>"+
         "<tr id='scol' style='display:"+((sar&&!story_script.parameters.resolutions[4])?"table-row":"none")+";'><td align='right' style='white-space:nowrap;'>屏幕颜色 </td><td align='left' style='height:29px;'><input id='screen_color' class='input_text' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[2]:'#000')+"' type='text' onchange=''></td><td style='width:14px;cursor:pointer;' class='icon icon_color' onclick='edit_color(\"screen_color\",screen_color.value)'></td></tr>"+
         "<tr id='sima' style='display:"+((sar&&!story_script.parameters.resolutions[4])?"table-row":"none")+";'><td align='right' style='white-space:nowrap;'>屏幕图片 </td><td align='left' style='height:29px;'><input id='screen_image' class='input_text' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[3]:'')+"' type='text'></td><td style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\"img\",\"screen_image\",0)'></td></tr>"+
         "<tr><td align='right'>字体</td><td align='left'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr><tr><td align='right' style='white-space:nowrap;'>字体大小</td><td align='left'><input id='font_size' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size:'')+"' type='text'></td></tr>"+
@@ -4812,7 +4790,7 @@ function setup(){
         "<p align='left' style=' margin-left:8px;'>显示脚本</p><hr><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='all_lines' class='chec_plugin' "+((setup_editor.lines)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>显示所有行 </td><td> 显示所有代码块的连线或仅显示选中代码块的连线</td></tr>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='ani_lines' class='chec_plugin' "+((setup_editor.lines_anim)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>显示连接线动画 </td><td> 从元素到下一个代码块的连线动画</td></tr>"+
-        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>Smooth lines</td><td><input id='pv_s' class='input_text' value='"+setup_editor.smooth+"' type='text'></td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>柔和线条</td><td><input id='pv_s' class='input_text' value='"+setup_editor.smooth+"' type='text'></td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style='margin-left:8px;'>浅色主题</p><hr><form id='ui_color'>"+thems+
         "</form><br>"+
@@ -5989,13 +5967,16 @@ function slideMove(e){
     translation_slider.style.left=pos+(translation_id.offsetWidth-5)+"px";
     left_block.style.width=pos+"px";
 }
-var state_num=0;
 function state_save(){
     if(state_num>0){back_up.splice(0,state_num);state_num=0;}
     back_up.unshift(JSON.stringify(story_script));
     if(back_up.length>10){back_up.pop();}
-    window.addEventListener("beforeunload",(e)=>{if(back_up.length>1){e.preventDefault();e.returnValue=""}});
+    not_save=true;
 }
+window.addEventListener("beforeunload",(e)=>{
+    if(not_save){e.preventDefault();e.returnValue=""}
+});
+
 function state_back(n){
     state_num+=n
     if(state_num<0){state_num=0}else if(state_num>=back_up.length-1){state_num=back_up.length-1};
