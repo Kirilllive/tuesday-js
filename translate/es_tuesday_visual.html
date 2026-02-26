@@ -618,7 +618,7 @@ input:checked+.toggle:before{transform:translateX(14px);}
                                     <option value="1">Mostrar</option>
                                 </select>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Lines</td><td style='padding-right:8px;'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Líneas</td><td style='padding-right:8px;'>
                                <select id='set_grid' oninput='scene_layout.className=this.value;setup_editor.preview[4]=this.selectedIndex;localStorage.setItem("editor_setup",JSON.stringify(setup_editor));' style='width:100%;'>
                                     <option value="">ninguno</option>
                                     <option value="grid_thirds">Thirds</option>
@@ -699,10 +699,10 @@ input:checked+.toggle:before{transform:translateX(14px);}
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Velocidad de diálogos</td><td style='padding-right:8px;' colspan='3'>
                                 <input id='dialog_speed' class='input_text' onchange='this.value=correct_value(this.value,true);story_script.parameters.text_panel.dialog_speed=this.value;state_save()' type="text" style='width:100%;'>
                             </td></tr>
-                            <tr><td height='40px' align='right' style='padding-right:8px;'>Show all text</td><td style='padding-right:8px;' colspan='3'>
+                            <tr><td height='40px' align='right' style='padding-right:8px;'>Mostrar todo el texto</td><td style='padding-right:8px;' colspan='3'>
                                 <select id="show_all_text" oninput="if(this.selectedIndex!=0){story_script.parameters.text_panel.show_all_text=true}else{delete story_script.parameters.text_panel.show_all_text};state_save()">
                                     <option class='show_all_text'>No</option>
-                                    <option>On click</option>
+                                    <option>En clic</option>
                                 </select>
                             </td></tr>
                             <tr><td height='40px' align='right' style='padding-right:8px;'>Modo Consola</td><td style='padding-right:8px;' colspan='3'>
@@ -902,8 +902,8 @@ let scen_data=[];
 let copy_arr={};
 let scen_element={};
 const plugins_list={"tue_aspect_ratio":{
-        "name":"Aspect ratio",
-        "text":"fixed screen size while maintaining aspect ratio",
+        "name":"Relación de aspecto",
+        "text":"Tamaño de pantalla fijo manteniendo la relación de aspecto.",
         "code":"function TueAspectRatio(){let e=story_json.parameters.resolutions,t=tuesday.parentNode,i=t.getBoundingClientRect(),n;e&&e[4]?(n=0==i.height||0==i.width?window.innerWidth<window.innerHeight?window.innerWidth/e[0]:window.innerHeight/e[1]:i.width<i.height?i.width/e[0]:i.height/e[1],t.style.margin=\"0\",t.style.overscrollBehavior=\"none\"):e&&(0==i.height||0==i.width?(n=e[0]/window.innerWidth>e[1]/window.innerHeight?window.innerWidth/e[0]:window.innerHeight/e[1],tuesday.style.left=(window.innerWidth-e[0]*n)/2+\"px\",tuesday.style.top=(window.innerHeight-e[1]*n)/2+\"px\"):(n=e[0]/i.width>e[1]/i.height?i.width/e[0]:i.height/e[1],tuesday.style.left=(i.width-e[0]*n)/2+\"px\",tuesday.style.top=(i.height-e[1]*n)/2+\"px\")),t.style.backgroundColor=e&&e[2]&&e[2].length>0?e[2]:\"#000\",e&&(t.style.backgroundImage=\"url('\"+e[3]+\"')\"),t.style.backgroundPosition=\"center\",t.style.backgroundSize=\"cover\",t.style.overflow=\"hidden\",t.style.position=\"relative\",tuesday.style.position=\"absolute\",tuesday.style.transformOrigin=\"left top\",e&&(tuesday.style.width=(e[4]?(0==i.width?window.innerWidth:i.width)/n:e[0])+\"px\",tuesday.style.height=(e[4]?(0==i.height?window.innerHeight:i.height)/n:e[1])+\"px\"),tuesday.style.transform=\"scale(\"+n+\")\"}window.addEventListener(\"script_executed\",TueAspectRatio,!0),window.addEventListener(\"resize\",TueAspectRatio,!0);"
     },"game_pad":{
         "name":"GamePad",
@@ -918,16 +918,16 @@ const plugins_list={"tue_aspect_ratio":{
         "text":"cambia el diálogo haciendo clic en la pantalla.",
         "code":"let tue_screen_control=!0;tuesday.addEventListener(\"mouseup\",function(e){tue_screen_control&&(0==story_json[tue_story][scene].dialogs||check_choice(story_json[tue_story][scene].dialogs))&&go_story(),tue_screen_control=!0}),tuesday.addEventListener(\"script_loaded\",function(e){document.getElementById(\"tue_next\")&&(tue_next.style.pointerEvents=\"none\");for(var t=document.getElementById(\"tuesday\").getElementsByClassName(\"tue_controll\"),n=0;n<t.length;n++)t[n].setAttribute(\"onmousedown\",\"tue_screen_control=false;\")});"
     },"speech":{
-        "name":"Speech",
-        "text":"Speech synthesis TTS<br>reading text with a synthesized voice",
+        "name":"Discurso",
+        "text":"Síntesis de voz TTS<br>Lectura de texto con una voz sintetizada.",
         "code":"const synth=window.speechSynthesis;function play_synth(e,t,s){if(e=e&&e.length>0?e=\"object\"==typeof e?e[languare]:e:\"hidden\"!=tue_text_block.style.visibility&&(arr_dialog.text_add?arr_dialog.text_add:arr_dialog.text)){let n=new SpeechSynthesisUtterance(e);synth.speaking&&synth.cancel();let a=t&&t.length>0?[t,s||1]:arr_dialog.speech&&arr_dialog.speech[languare][0].length>0?arr_dialog.speech[languare]:story_json.parameters.text_panel.speech[languare],c=speechSynthesis.getVoices(),l=a[0].split(\",\").map(e=>e.trim()),h=!1;for(v=0;v<c.length&&(c.filter(e=>{e.name==l[v]&&(h=e)}),!h);v++);n.voice=h,n.rate=a[1],synth.speak(n)}}tuesday.addEventListener(\"creation_dialog\",()=>{story_json.parameters.text_panel.speech_play&&tue_set_audio<2?play_synth():synth.cancel()}),play_synth(art_data(story_json.block_1[0].dialogs[0].choice[0].text1),art_data(story_json.block_1[0].dialogs[0].choice[0].text2)),tue_set_audio<2&&sound_play(\"[object Object]\");"
     },"show_toast":{
         "name":"Mostrar aviso",
         "text":"pequeño mensaje aparece por un momento",
         "code":"let tue_toast;function creation_tost(){var t=document.createElement(\"style\");t.type=\"text/css\",t.innerHTML=\"#toast{position: fixed;opacity: 0;top: -96px;z-index: 1000;}.toast_anim{left: 50%;transform: translateX(-50%);animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;}@keyframes viwe {from {opacity: 0;top: 3em}to {opacity: 1;top: 3em}}@keyframes stop {from {opacity: 1;top: 3em}to {opacity: 1;top: 3em}}@keyframes close {from {opacity: 1;top: 3em}to {opacity: 0;top: -96px}}\",document.getElementsByTagName(\"head\")[0].appendChild(t),(tue_toast=document.createElement(\"div\")).id=\"toast\",tue_toast.innerHTML=\"<table border=\'0\' height=\'100%\' width=\'100%\'><tbody><tr><td id=\'toast_message\' align=\'center\' valign=\'center\' ></td></tr></tbody></table>\",document.body.appendChild(tue_toast)}function toast(t){tue_toast.classList.remove(\"toast_anim\"),document.getElementById(\"toast_message\").innerHTML=t,tue_toast.offsetParent,tue_toast.classList.add(\"toast_anim\")}creation_tost(),tuesday.addEventListener(\"creation_dialog\",function(t){story_json[tue_story][scene].dialogs[dialog].toast&&(story_json[tue_story][scene].dialogs[dialog].toast[languare]?toast(story_json[tue_story][scene].dialogs[dialog].toast[languare]):toast(story_json[tue_story][scene].dialogs[dialog].toast))});"
     },"touch_show":{
-        "name":"Show touch",
-        "text":"displays the location of the touch or the click on the screen for a few seconds",
+        "name":"Mostrar toque",
+        "text":"Visualiza la posición del toque o el clic en la pantalla por unos segundos.",
         "code":"tuesday.addEventListener(\"script_loaded\",function(){var e=document.createElement(\"style\");e.type=\"text/css\",e.innerHTML=\".cursor{background: center / contain no-repeat url('\"+story_json.parameters.touch_show[0]+\"');\"+story_json.parameters.touch_show[4]+\";transform:translate(-50%,-50%);position:absolute;display:block;animation-name:cursor_anim;animation-fill-mode:forwards;pointer-events:none;z-index:3010;}@keyframes cursor_anim{from{opacity:1;}to{opacity:0;}}\",document.getElementsByTagName(\"head\")[0].appendChild(e),tuesday.addEventListener(story_json.parameters.touch_show[6]?\"touchstart\":\"mousedown\",e=>{let t=story_json.parameters.touch_show,a=document.createElement(\"div\"),o=tuesday.getBoundingClientRect(),s=t[6]?[e.touches[0].pageX,e.touches[0].pageY]:[e.clientX,e.clientY];if(a.className=\"cursor \"+story_json.parameters.touch_show[5],a.style.width=t[1],a.style.height=t[2],a.style.animationDuration=t[3]+\"s\",story_json.parameters.resolutions){let r=story_json.parameters.resolutions;a.style.left=(r[0]/o.width>r[1]/o.height?r[0]/o.width:r[1]/o.height)*(s[0]-o.left)+\"px\",a.style.top=(r[0]/o.width>r[1]/o.height?r[0]/o.width:r[1]/o.height)*(s[1]-o.top)+\"px\"}else a.style.left=s[0]-o.left+\"px\",a.style.top=s[1]-o.top+\"px\";setTimeout(function(e){a.remove()},1e3*t[3]),tuesday.appendChild(a)})});"
     },"terrain_map":{
         "name":"Mapa del terreno",
@@ -971,7 +971,7 @@ const texts={"tutorials":[{
         },{
         "en":"El tamaño limite del cursor es de 128×128px. Las imágenes más grandes que el cursor son ignoradas. Sin embargo, deberías limitarte al tamaño de 32×32 para mayor compatibilidad con sistemas operativos y plataformas."
         },{
-        "en":"The variables are in story_json.parameters.variables[var_name] array"
+        "en":"Las variables se encuentran en el array story_json.parameters.variables[var_name]."
         },{
         "en":"More settings for appearance and position of the choice on layout are located in the scene editor"
         },{
@@ -979,13 +979,13 @@ const texts={"tutorials":[{
         },{
         "en":"Telegram bot<br><br>Exportación de proyecto a bot de chat para Telegram Messenger<br>¡Advertencia! algunas funciones pueden no ser compatibles con el bot"
         },{
-        "en":"Puede cambiar el token para bot en la configuración del proyecto. las instrucciones paso a paso para iniciar el bot se pueden encontrar en <a href='https://kirilllive.github.io/tuesday-js/doc_editor.html#bot_telegram' target='_blank'>documentation</a>"
+        "en":"Puede cambiar el token para bot en la configuración del proyecto. las instrucciones paso a paso para iniciar el bot se pueden encontrar en <a href='https://kirilllive.github.io/tuesday-js/doc_editor.html#bot_telegram' target='_blank'>documentación</a>"
         },{
-        "en":"Warning! Voices may vary across OS and browsers."
+        "en":"¡Advertencia! Las voces pueden variar según el sistema operativo y los navegadores."
         }
 ]}
 let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true,'smooth':64};
-let buf=['',''],back_up=[];
+let buf=['',''],back_up=[],not_save=false,state_num=0;
 if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"));if(!setup_editor.smooth){setup_editor.smooth=64;}};
 if(setup_editor.ferst){
     var sel="<div class='window' style='padding:24px 8px;'><p>Dispotivos de control</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[5].en+"</p>"
@@ -1010,7 +1010,8 @@ function editor_setup(){
 //    
 document.addEventListener("wheel",function(e){if(setup_editor.wheel&&(!scroll_block||(scene_screen&&scene_view.tabindex==1))){if(e.deltaY>0) world_scale(false);else world_scale(2);}});
 let project_files=[];
-var load_files
+var load_files;
+let name_file;
 img_file.addEventListener('change',loadFiles);
 var load_new=false;
 var wf;
@@ -1037,40 +1038,16 @@ function loadFiles(e){
 }
 function selectJson(jsons){
     open_tool();new_novel();scen_edit_update(false);
-    if(jsons.length==1){load_story_edit(open_file(jsons[0][1]))}
+    if(jsons.length==1){ name_file=jsons[0][1]; load_story_edit(open_file(jsons[0][1]))}
     else if(jsons.length>1){
         var html="<div class='window'><div class='win_head'>Seleccionar archivo JSON del proyecto<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><div style='margin:0 8px 0 8px;max-height:75vh;overflow-x:hidden;'>"
-        for(var f=0;f<jsons.length;f++){html+="<table class='button' style='width:412px;margin:8px 0px;' onclick='load_story_edit(open_file(\""+jsons[f][1]+"\"));modal_window(\"close\");'><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
+        for(var f=0;f<jsons.length;f++){html+="<table class='button' style='width:412px;margin:8px 0px;' onclick='let n=\""+jsons[f][1]+"\";name_file=n;load_story_edit(open_file(n));modal_window(\"close\");'><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
         html+="</div></div>"
         modal_window("open",html)
     }else if(jsons.length==0){alert('Archivo JSON no encontrado')}
 }
 window.addEventListener('load',()=>{
     var dropEvent=(e)=>{
-//        let target={target:{files:[]}},open=false,reading=0;
-//        wf=e.dataTransfer.items[0].webkitGetAsEntry().name+"/";
-//        let jsons=[];clear_Files();countBytes=0;
-//        function traverseFileTree(item,path){
-//            path=path||"";
-//            if(item.isFile){
-//                item.file((file)=>{
-//                    reading--;
-//                    countBytes+=file.size;
-//                    project_files.push([file.webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(file),file.type]);
-//                    if(file.type=="application/json"&&file.webkitRelativePath.split("/").length==2){jsons.push([project_files.length-1,file.name]);}
-//                    if(!open && reading==0 && jsons.length>0){open=true;selectJson(jsons)}
-//                })
-//            } else if (item.isDirectory){
-//                var dirReader = item.createReader();
-//                dirReader.readEntries((entries)=>{
-//                    reading=0;
-//                    for (var i = 0; i < entries.length; i++) {reading++;
-//                        traverseFileTree(entries[i], path + item.name + "/")
-//                    }
-//                });
-//            }
-//        };
-//        traverseFileTree(e.dataTransfer.items[0].webkitGetAsEntry())
         e.stopPropagation();e.preventDefault();return false;
     };
     let disabled=(e)=>{e.stopPropagation();e.preventDefault();};
@@ -1085,7 +1062,7 @@ function open_file(name){
 function new_novel(){
     story_script={"parameters":{"plugins":["tue_aspect_ratio"],"resolutions": [800,600,"#000",""],"text_panel":{"size":["95%","27%"],"position":[],"color":"rgba(242,242,242,0.7)","style": "border-radius:16px;backdrop-filter:blur(12px);border-top:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(0,0,0,.15);box-shadow: 0px 4px 14px rgba(0,0,0,.15);","color_text":"#000","indent_text":"8px 16px","indent_bottom":"3.5%","dialog_speed":"10","show_all_text":true},"name_panel":{"style": "border-radius:16px;border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(0,0,0,.2);box-shadow: 0px 4px 14px rgba(0,0,0,.15);","size":["","32px"],"position":["0","0","-42px","0"],"indent_text":"0 16px","color_text":"#fff","align":["start","center"],"color":"#555"},"title":{"es":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["es"],"buttons":[{"name":"tue_back","position":["2.5%",0,0,"32px"],"size":["25%","25%"],"color_text":"#000","text":"<","hotspot":["0%","0%"],"align":["start","end"],"indent_text":"8px 14px"},{"name":"tue_next","position":[0,"2.5%",0,"32px"],"size":["25%","25%"],"color_text":"#000","text":">","hotspot":["0%","0%"],"align":["end","end"],"indent_text":"8px 14px"}],"autosave":false,"font":"Arial","font_size":"18px"},"blocks":{}};
     update_novel();
-    state_num=0;back_up=[];state_save();
+    not_save=false;state_num=0;back_up=[];state_save();
 }
 function update_novel(){
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}
@@ -1158,7 +1135,7 @@ function creation_block(b){
         for(var i=0;i<story_script[chapter.id].length;i++){
             element+="<div id='s_"+chapter.id+"_"+i+"' class='scene' align='center'>"
             if(story_script[chapter.id][i].random_choice){
-				element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>Random choice:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";element_m(this.id,\"random choice\");' title='Edición de escena'></td></tr></tbody></table><div width='100%'>"
+				element+="<table height='22px' width='100%' style='margin:4px;'><tbody><tr><td width='24px' class='icon_m icon_up' title='Scene up' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",-1)'></td><td width='24px' class='icon_m icon_down' title='Scene down' onmouseup='move_elenetn(story_script."+chapter.id+","+i+",1)'></td><td><p class='namber'>Elección aleatoria:"+(i+1)+"</p></td><td width='48px' class='icon_m icon_show' id='"+chapter.id+"_"+i+"_edit' onmouseup='arr_l=story_script."+chapter.id+";arr_n="+i+";element_m(this.id,\"random choice\");' title='Edición de escena'></td></tr></tbody></table><div width='100%'>"
                 for(var l=0;l<story_script[chapter.id][i].random_choice.length;l++){
                     go=story_script[chapter.id][i].random_choice[l][1];
                     if(story_script[go]){
@@ -1353,11 +1330,12 @@ function creaton_line(id,go,chapter){
     newLine.id=id+"l";
     story_lines.appendChild(newLine);
 }
-new_novel()
+new_novel();
 function save_file(){
     var n;
+    not_save=false;
     if(story_script.parameters.title){
-        n=(story_script.parameters.title.es)?story_script.parameters.title.es:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
+        n=name_file?name_file.substring(0,name_file.lastIndexOf('.')):(story_script.parameters.title.es)?story_script.parameters.title.es:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title;
         n=correct_name(String(n).toLowerCase());
     }else{n="new_novel";}
     create_json_files(n+'.json',JSON.stringify(story_script))
@@ -1790,7 +1768,7 @@ function build(tip){
     }
 }
 function build_base_start(){
-    modal_window("open","<div class='window' style='padding:24px 24px;'><table><tbody><tr><td style='width:32px;height:32px;background-repeat:no-repeat;background-size: 32px 32px;background-position:center;' class='img_wait'></td><td align='center' style='width:188px;'>Converting data to base64</td></tr></tbody></table></div>");
+    modal_window("open","<div class='window' style='padding:24px 24px;'><table><tbody><tr><td style='width:32px;height:32px;background-repeat:no-repeat;background-size: 32px 32px;background-position:center;' class='img_wait'></td><td align='center' style='width:188px;'>Convirtiendo datos a base64.</td></tr></tbody></table></div>");
     copy_arr=JSON.stringify(story_script);arr_n=0;build_base(arr_n);
 }
 function build_base(){
@@ -1814,7 +1792,7 @@ function build_base(){
     }
 }
 function build_zip(dataStr){
-    modal_window("open","<div class='window' style='padding:24px 24px;'><table><tbody><tr><td style='width:32px;height:32px;background-repeat:no-repeat;background-size: 32px 32px;background-position:center;' class='img_wait'></td><td align='center' style='width:144px;'>Creation ZIP archive</td></tr></tbody></table></div>");
+    modal_window("open","<div class='window' style='padding:24px 24px;'><table><tbody><tr><td style='width:32px;height:32px;background-repeat:no-repeat;background-size: 32px 32px;background-position:center;' class='img_wait'></td><td align='center' style='width:144px;'>Creación de archivo ZIP.</td></tr></tbody></table></div>");
     var arhiv = new JSZip();
     arhiv.file("index.html", dataStr);
     for(var f=0;f<project_files.length;f++){if(project_files[f][2]!="application/json"&&dataStr.includes(project_files[f][0])){arhiv.file(((project_files[f][2].includes('audio/mpeg'))?project_files[f][0]+'.mp3':project_files[f][0]),load_files[f],{binary:true});}}
@@ -2037,7 +2015,7 @@ function add_element_b(id,arr){
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="add_plugin(\'terrain_map\');menu_add.style.visibility=\'hidden\';ho_add(\''+arr+'\',\'terrain_map\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_map"></td><td>'+plugins_list.terrain_map.name+'</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="add_plugin(\'hidden_objects\');menu_add.style.visibility=\'hidden\';ho_add(\''+arr+'\',\'hidden_objects\');"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_search"></td><td>'+plugins_list.hidden_objects.name+'</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="'+((story_script.parameters.variables&&Object.keys(story_script.parameters.variables).length>0)?'legacy_choice_add(\''+arr+'\')':'setup();set_menu(4);')+';menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_choice"></td><td>Elección del destino</td></tr></tbody></table></td></tr>'
-        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="random_choice_add(\''+arr+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_random"></td><td>Random choice</td></tr></tbody></table></td></tr>'
+        +'<tr><td class="add_el" style="border-bottom:1px solid var(--cb);" onclick="random_choice_add(\''+arr+'\');menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_random"></td><td>Elección aleatoria</td></tr></tbody></table></td></tr>'
         +'<tr><td class="add_el" style="border-radius:0 0 16px 16px;" onclick="menu_add.style.visibility=\'hidden\';"><table><tbody><tr><td width="40px" height="26px" class="icon_m icon_close"></td><td>Cancelar</td></tr></tbody></table></td></tr>'
         +'</tbody></table></div>'
 	menu_view(id,code,48)
@@ -2602,7 +2580,7 @@ function ho_update(){
             +"</tr><tr><td colspan='4' align='center' height='40px'><div id='ho_ip"+i+"' style='background-image:url("+open_file((arr_l[arr_n].objects[i].art[languare])?arr_l[arr_n].objects[i].art[languare]:arr_l[arr_n].objects[i].art)+");background-position:center;background-repeat:no-repeat;background-size:contain;height:100%;width:100%;text-overflow:clip;overflow:hidden;max-width:254px;max-height:512px;display:grid;justify-content:center;align-items:center;'>"+ ((arr_l[arr_n].objects[i].name&&arr_l[arr_n].objects[i].name[languare])?arr_l[arr_n].objects[i].name[languare]:"")+" </div></td></tr><tr>"
             +"<td class='icon_m icon_more' height='22px' onclick='block_open(\"ho_is"+i+"\");scen_element.ho_is"+i+"=ho_is"+i+".style.display;menu_objects.style.visibility=\"hidden\"'></td><td colspan='2'></td></tr></tbody></table>"
             +"<table width='100%' id=ho_is"+i+" style='display:"+((scen_element["ho_is"+i])?scen_element["ho_is"+i]:"none")+";border-top:1px solid var(--cb);margin-top:8px;'><tbody><tr>"
-            +((arr_n=="terrain_map")?"<tr><td height='40px' align='right' style='padding-right:8px;'><select style='height:28px;width:100%;border-bottom:1px solid var(--cb);background-color:var(--cw);' onchange='if(this.selectedIndex==2){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=[story_script.parameters.launch_story,0,0]}else if((this.selectedIndex==1||this.selectedIndex==0)&&typeof story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to===\"object\"){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=story_script.parameters.launch_story;}if(this.selectedIndex==1){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from=true;}else{delete story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from;}if(this.selectedIndex==3){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].url=\"self\";}else{delete story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].url;};ho_update()'><option "+((!arr_l[arr_n].objects[i].text_from&&typeof arr_l[arr_n].objects[i].go_to!="object")?"selected":"")+">Ir a</option><option "+((arr_l[arr_n].objects[i].text_from)?"selected":"")+">Solo forma de texto</option><option "+((typeof arr_l[arr_n].objects[i].go_to==="object")?"selected":"")+">Timeline</option><option "+((arr_l[arr_n].objects[i].url)?"selected":"")+">Enlace</option></select></td>"+((!arr_l[arr_n].objects[i].url&&typeof arr_l[arr_n].objects[i].go_to==="object")?"<td colspan='3' id='tl_show"+i+"' align='center' onclick='timeline_edit(story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"],this.id)'><div style='border-bottom:1px solid var(--cb);height:27px;display:flex;justify-content:center;align-items:center;'>"+arr_l[arr_n].objects[i].go_to[0]+" / "+arr_l[arr_n].objects[i].go_to[1]+" / "+arr_l[arr_n].objects[i].go_to[2]+"</div></td>":((arr_l[arr_n].objects[i].url)?"<td style='width:28px;' align='center'><select id='urll"+i+"' onchange='urlt"+i+".value=((story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to[this.value].length>0)?story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to[this.value]:\"\")' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color:var(--cw);'>"+project_languares(languare)+"</select></td><td colspan='2'><input id='urlt"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to[urll"+i+".value]=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].objects[i].go_to[languare])?arr_l[arr_n].objects[i].go_to[languare]:"")+"'></td>":"<td style='padding-right:8px;' colspan='3'><select style='height:28px;width:100%;border-bottom:1px solid var(--cb);background-color:var(--cw);' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=this.value'>"+option_block( arr_l[arr_n].objects[i].go_to,1)+"</select></td>"))+((arr_l[arr_n].objects[i].url)?"</tr><tr id><td height='40px' align='right' style='padding-right:8px;'>Abrir enlace</td><td colspan='3'><select oninput='story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].url=this.value;state_save();' style='background-color:var(--cw);'><option value='self'>This ventana</option><option "+((arr_l[arr_n].objects[i].url=="blank")?"selected":"")+" value='blank'>Nueva ventana</option></select></td>":""):"")
+            +((arr_n=="terrain_map")?"<tr><td height='40px' align='right' style='padding-right:8px;'><select style='height:28px;width:100%;border-bottom:1px solid var(--cb);background-color:var(--cw);' onchange='if(this.selectedIndex==2){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=[story_script.parameters.launch_story,0,0]}else if((this.selectedIndex==1||this.selectedIndex==0)&&typeof story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to===\"object\"){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=story_script.parameters.launch_story;}if(this.selectedIndex==1){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from=true;}else{delete story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].text_from;}if(this.selectedIndex==3){story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].url=\"self\";}else{delete story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].url;};ho_update()'><option "+((!arr_l[arr_n].objects[i].text_from&&typeof arr_l[arr_n].objects[i].go_to!="object")?"selected":"")+">Ir a</option><option "+((arr_l[arr_n].objects[i].text_from)?"selected":"")+">Solo forma de texto</option><option "+((typeof arr_l[arr_n].objects[i].go_to==="object")?"selected":"")+">Línea de tiempo</option><option "+((arr_l[arr_n].objects[i].url)?"selected":"")+">Enlace</option></select></td>"+((!arr_l[arr_n].objects[i].url&&typeof arr_l[arr_n].objects[i].go_to==="object")?"<td colspan='3' id='tl_show"+i+"' align='center' onclick='timeline_edit(story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"],this.id)'><div style='border-bottom:1px solid var(--cb);height:27px;display:flex;justify-content:center;align-items:center;'>"+arr_l[arr_n].objects[i].go_to[0]+" / "+arr_l[arr_n].objects[i].go_to[1]+" / "+arr_l[arr_n].objects[i].go_to[2]+"</div></td>":((arr_l[arr_n].objects[i].url)?"<td style='width:28px;' align='center'><select id='urll"+i+"' onchange='urlt"+i+".value=((story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to[this.value].length>0)?story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to[this.value]:\"\")' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color:var(--cw);'>"+project_languares(languare)+"</select></td><td colspan='2'><input id='urlt"+i+"' class='input_text' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to[urll"+i+".value]=this.value;' type='text' style='width:100%;height:28px' value='"+((arr_l[arr_n].objects[i].go_to[languare])?arr_l[arr_n].objects[i].go_to[languare]:"")+"'></td>":"<td style='padding-right:8px;' colspan='3'><select style='height:28px;width:100%;border-bottom:1px solid var(--cb);background-color:var(--cw);' onchange='story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].go_to=this.value'>"+option_block( arr_l[arr_n].objects[i].go_to,1)+"</select></td>"))+((arr_l[arr_n].objects[i].url)?"</tr><tr id><td height='40px' align='right' style='padding-right:8px;'>Abrir enlace</td><td colspan='3'><select oninput='story_script."+scen_data[0]+"["+scen_data[1]+"].terrain_map.objects["+i+"].url=this.value;state_save();' style='background-color:var(--cw);'><option value='self'>This ventana</option><option "+((arr_l[arr_n].objects[i].url=="blank")?"selected":"")+" value='blank'>Nueva ventana</option></select></td>":""):"")
             +"</tr><tr>"
             +"<td height='40px' align='right' style='width:48%;padding-right:8px;'>Nombre</td><td style='width:28px;' align='center'><select id='ho_tl"+i+"' onchange='ho_t"+i+".value=story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name[this.value];' style='height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color:var(--cw);'>"+project_languares(languare)+"</select></td><td colspan='2'><input id='ho_t"+i+"' class='input_text' onchange='var v=document.getElementById(\"ho_tl"+i+"\");if(!story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name){story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name={}};story_script."+scen_data[0]+"["+scen_data[1]+"]."+arr_n+".objects["+i+"].name[v.value]=this.value;ho_update();state_save();' type='text' style='width:100%;height:28px;' value='"+((arr_l[arr_n].objects[i].name&&arr_l[arr_n].objects[i].name[languare])?arr_l[arr_n].objects[i].name[languare]:"")+"'></td>"
             +"</tr><tr>"
@@ -2830,7 +2808,7 @@ function adden_scroll(id,z){
 function random_choice_edit(){
     let var_if="";
     for(var i=0;i<arr_l[arr_n].random_choice.length;i++){var_if+="<tr><td><select class='random_block'>"+option_block(arr_l[arr_n].random_choice[i][1],0)+"</select></td><td style='width:24px;cursor:pointer;background-position:right center;' onclick=\"var a=this.closest('tr');a.parentElement.removeChild(a);\" title='delet' class='icon icon_del'></td></tr>"}
-    var html="<div class='window' style='min-width:128px;padding-bottom:8px;'><div class='win_head'>Random choice<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'> <br><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'><table width='100%' id='random_choice_edit'><tbody>"
+    var html="<div class='window' style='min-width:128px;padding-bottom:8px;'><div class='win_head'>Elección aleatoria<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'> <br><div style='max-height:70vh;overflow-x:hidden;overflow-y:auto;'><table width='100%' id='random_choice_edit'><tbody>"
     +var_if+"</tbody></table><div aling='center' onclick=\"random_choice_new()\" class='icon icon_add' style='margin-top:16px;height:26px;width:26px;cursor:pointer;'></div> </div><br><table class='big_button' width='256px' onclick='random_choice_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Aplicar</td><td width='42px'></td></tr></tbody></table></div>"
 	modal_window("open",html);
 }
@@ -3105,10 +3083,10 @@ function dialog_text_edit(){
             for(var i=0;i<story_script.parameters.languares.length;i++){copy_arr.speech[story_script.parameters.languares[i]]=["",1];}
             copy_arr.speech[languare]=["",1]
         };
-        html+="<tr><td height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);' colspan='3'>Speech synthesis</td></tr>"
-        +"<tr><td align='right' style='padding-right:8px;'>Voice</td><td><input id='voices_data' class='input_text' onchange='copy_arr.speech[text_la.value][0]=this.value' value='"+copy_arr.speech[languare][0]+"' type='text'></td>"
+        html+="<tr><td height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);' colspan='3'>Síntesis de voz</td></tr>"
+        +"<tr><td align='right' style='padding-right:8px;'>Voz</td><td><input id='voices_data' class='input_text' onchange='copy_arr.speech[text_la.value][0]=this.value' value='"+copy_arr.speech[languare][0]+"' type='text'></td>"
         +"<td class='icon icon_edit' style='height:40px;width:40px;' onclick='voicesSynthesis(text_la.value,\"voices_data\",\"copy_arr.speech[text_la.value][0]\",dialogtext.value)'></td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Speed</td><td><input id='voices_speed' class='input_slider input_slider_progress' type='range' min='0' max='2' step='0.1' style='width:100%;' onchange='copy_arr.speech[text_la.value][1]=this.value' value='"+copy_arr.speech[languare][1]+"'></td><td></td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Velocidad</td><td><input id='voices_speed' class='input_slider input_slider_progress' type='range' min='0' max='2' step='0.1' style='width:100%;' onchange='copy_arr.speech[text_la.value][1]=this.value' value='"+copy_arr.speech[languare][1]+"'></td><td></td></tr>"
     }
     html+="</tbody></table></div></td></tr></tbody></table><br><table class='big_button' width='256px' onclick='dialog_text_apply()'><tbody><tr><td width='42px' class='icon icon_ok'></td><td align='center'>Aplicar</td><td width='42px'></td></tr></tbody></table></div>"
     modal_window("open",html);if('speechSynthesis' in window){loadVoices();window.speechSynthesis.onvoiceschanged=function(e){loadVoices()}};
@@ -3265,7 +3243,7 @@ function scene_edit(){
         +"<option value='bottom left' "+((copy_arr[arr_n].background_align=='bottom left')?'selected':'')+">inferior izquierda</option>"
         +"<option value='bottom' "+((copy_arr[arr_n].background_align=='bottom')?'selected':'')+">inferior</option>"
         +"<option value='bottom right' "+((copy_arr[arr_n].background_align=='bottom right')?'selected':'')+">Inferior derecha</option>"
-        +"<option value='' "+((c)?'selected':'')+">custom</option>"
+        +"<option value='' "+((c)?'selected':'')+">costumbre</option>"
     +"</select><div style='display:"+((c)?'inline-grid':'none')+";grid-template-columns:auto auto auto auto;column-gap:8px;justify-content:center;align-items:center;width: calc(100% - 92px);'>X<input id='bg_x' class='input_text' style='height:27px;' value='"+((c[0])?c[0]:"")+"' type='text' onchange='this.value=correct_value(this.value);scene_bg_preview.style.backgroundPosition=this.value+\" \"+bg_y.value' >Y<input id='bg_y' class='input_text' style='height:27px;' value='"+((c[1])?c[1]:"")+"' type='text' onchange='this.value=correct_value(this.value);scene_bg_preview.style.backgroundPosition=bg_x.value+\" \"+this.value'></div></td>"
     +"<td style='height:40px;width:40px;'></td>"
     +"</tr><tr>"
@@ -3762,15 +3740,15 @@ function panel_art(id){
             for(var i=0;i<story_script.parameters.languares.length;i++){arr_t.speech[story_script.parameters.languares[i]]=["",1];}
             arr_t.speech[languare]=["",1]
         };
-        tbody.innerHTML+="</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Speech synthesis</td></tr>"
-        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Voice</td>"
+        tbody.innerHTML+="</td></tr><td colspan='4' height='40px' align='left' style='padding-left:8px;border-bottom:1px solid var(--cb);'>Síntesis de voz</td></tr>"
+        +"<tr><td height='40px' align='right' style='padding-right:8px;'>Voz</td>"
             +'<td style="width:28px;" align="center"><select id="vols" onchange="vot.value=story_script.parameters.text_panel.speech[this.value][0];vots.value=story_script.parameters.text_panel.speech[this.value][1];" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);">'+project_languares(languare)+'</select></td>'
             +"<td><input id='vot' class='input_text' onchange='story_script.parameters.text_panel.speech[document.getElementById(\"vols\").value][0]=this.value' type='text' style='width:100%;height:28px' value='"+arr_t.speech[languare][0]+"'></td>"
             +"<td height='40px' align='right' style='width:30px;' class='icon icon_edit' onclick='let l=document.getElementById(\"vols\").value;voicesSynthesis(l,\"vot\",\"story_script.parameters.text_panel.speech.\"+l+\"[0]\",tue_text_view.textContent)'></td>"
-        +"<tr></tr><tr><td height='40px' align='right' style='width:48%;padding-right:8px;'>Speed</td><td style='padding-right:8px;' colspan='3'>"
+        +"<tr></tr><tr><td height='40px' align='right' style='width:48%;padding-right:8px;'>Velocidad</td><td style='padding-right:8px;' colspan='3'>"
             +"<input id='vots' class='input_slider input_slider_progress' onchange='let l=document.getElementById(\"vols\").value;story_script.parameters.text_panel.speech[l][1]=this.value' type='range' min='0' max='2' step='0.1' value='"+arr_t.speech[languare][1]+"' style='width:100%;'>"
         +"<tr></tr><tr><td height='40px' align='right' style='width:48%;padding-right:8px;'>Reproducir</td><td style='padding-right:8px;' colspan='3'>"
-            +"<select class='choice_var_operation' onchange='story_script.parameters.text_panel.speech_play=(this.selectedIndex==0)?true:false'><option>Diálogo start</option><option "+((arr_t.speech_play)?"":"selected")+">Button click</option></select>"
+            +"<select class='choice_var_operation' onchange='story_script.parameters.text_panel.speech_play=(this.selectedIndex==0)?true:false'><option>Inicio del diálogo</option><option "+((arr_t.speech_play)?"":"selected")+">Clic en el botón</option></select>"
         +"</td></tr>"
     }
 }
@@ -4053,7 +4031,7 @@ function choice_panel_edit(block,i,n,b){
     +'</tr><tr><td id="chdbn'+b+'" colspan="4" height="40px" align="center" style="background-image:url('+open_file((arr_s[b].art[languare])?arr_s[b].art[languare]:arr_s[b].art)+');background-position:center;background-repeat:no-repeat;background-size:contain;"><div style="display:block;text-overflow:clip;overflow:hidden;max-width:254px;max-height:512px;display:grid;justify-content:center;align-items:center;">'+((arr_s[b].text[languare])?arr_s[b].text[languare]:((arr_s[b].text.length>0)?arr_s[b].text:((arr_s[b].art[languare])?'':arr_s[b].go_to)))+'<div></td></tr><tr>'
     +'<td class="icon_m icon_more" height="22px" onclick="menu_element.style.visibility=\'hidden\';block_open(\'chosp'+b+'\');scen_element.chosp'+b+'=chosp'+b+'.style.display;"></td><td colspan="3"></td></tr></tbody></table>'
     +'<table id="chosp'+b+'" width="100%" style="display:'+((scen_element['chosp'+b])?scen_element['chosp'+b]:'none')+';border-top:1px solid var(--cb);margin-top:8px;"><tbody><tr>'
-        +'<td height="40px" align="right" style="padding-right:8px;"><select style="height:28px;width:100%;border-bottom:1px solid var(--cb);background-color:var(--cw);" onchange="if(this.selectedIndex==2){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=[story_script.parameters.launch_story,0,0]}else if((this.selectedIndex==1||this.selectedIndex==0)&&typeof story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to===\'object\'){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=story_script.parameters.launch_story} if(this.selectedIndex==1){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text_from=true;}else{delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text_from;} if(this.selectedIndex==3){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].url=\'self\';}else{delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].url;};choice_panel_update(\''+block+'\','+i+','+n+');state_save();"><option '+((!arr_s[b].text_from)?'selected':'')+'>Ir a</option><option '+((arr_s[b].text_from&&typeof arr_s[b].go_to!='object')?'selected':'')+'>Solo forma de texto</option><option '+((typeof arr_s[b].go_to==='object')?'selected':'')+'>Timeline</option><option '+((arr_s[b].url)?'selected':'')+'>Enlace</option> </select></td>'
+        +'<td height="40px" align="right" style="padding-right:8px;"><select style="height:28px;width:100%;border-bottom:1px solid var(--cb);background-color:var(--cw);" onchange="if(this.selectedIndex==2){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=[story_script.parameters.launch_story,0,0]}else if((this.selectedIndex==1||this.selectedIndex==0)&&typeof story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to===\'object\'){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=story_script.parameters.launch_story} if(this.selectedIndex==1){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text_from=true;}else{delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].text_from;} if(this.selectedIndex==3){story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].url=\'self\';}else{delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].url;};choice_panel_update(\''+block+'\','+i+','+n+');state_save();"><option '+((!arr_s[b].text_from)?'selected':'')+'>Ir a</option><option '+((arr_s[b].text_from&&typeof arr_s[b].go_to!='object')?'selected':'')+'>Solo forma de texto</option><option '+((typeof arr_s[b].go_to==='object')?'selected':'')+'>Línea de tiempo</option><option '+((arr_s[b].url)?'selected':'')+'>Enlace</option> </select></td>'
         +((!arr_s[b].url&&typeof arr_s[b].go_to==='object')?'<td id="tl_show'+b+'" colspan="3" align="center" onclick="timeline_edit(story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'],this.id)"><div style="border-bottom:1px solid var(--cb);height:28px;display:flex;justify-content:center;align-items:center;">'+arr_s[b].go_to[0]+' / '+arr_s[b].go_to[1]+' / '+arr_s[b].go_to[2]+'</div></td>':((arr_s[b].url)?'<td style="width:28px;" align="center"><select id="urll'+b+'" onchange="urlt'+b+'.value=((story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to[this.value].length>0)?story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to[this.value]:\'\')" style="height:28px;width:100%;border-left:1px solid var(--cb);border-right:1px solid var(--cb);border-bottom:1px solid var(--cb);background-color:var(--cw);">'+project_languares(languare)+'</select></td><td colspan="2"><input id="urlt'+b+'" class="input_text" onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to[urll'+b+'.value]=this.value;" type="text" style="width:100%;height:28px" value="'+((arr_s[b].go_to[languare])?arr_s[b].go_to[languare]:'')+'"></td>':'<td colspan="3"><select onchange="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].go_to=this.value;choice_panel_update(\''+block+'\','+i+','+n+');state_save();" style="width:100%;height:28px;background-color:var(--cw);">'+option_block(arr_s[b].go_to,2)+'</select></td>'))
     +((arr_s[b].text_from)?'</tr><tr id><td height="40px" align="right" style="padding-right:8px;">Borrar</td><td colspan="3"><select oninput="if(this.selectedIndex==0){delete story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].delete}else{story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].delete=this.value};choice_panel_update(\''+block+'\','+i+','+n+');state_save();" style="background-color:var(--cw);"><option value=false>no</option><option '+((arr_s[b].delete)?'selected':'')+' value=true>after click</option></select></td>':'')
     +((arr_s[b].url)?'</tr><tr id><td height="40px" align="right" style="padding-right:8px;">Abrir enlace</td><td colspan="3"><select oninput="story_script.'+block+'['+i+'].dialogs['+(n-1)+'].choice['+b+'].url=this.value;state_save();" style="background-color:var(--cw);"><option value="self">This ventana</option><option '+((arr_s[b].url=='blank')?'selected':'')+' value="blank">Nueva ventana</option></select></td>':'')
@@ -4734,15 +4712,15 @@ function setup(){
 
     function add_touch_show(){
         if(story_script.parameters.touch_show){
-            return "<br><br><p align='left' style='margin-left:8px;'>Show touch</p><hr>"+
+            return "<br><br><p align='left' style='margin-left:8px;'>Mostrar toque</p><hr>"+
             "<table style='margin-left:10px;width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
             "<tr><td align='right' style='width:1%;'>Cursor de imagen</td><td align='left'><input id='touch_show_image' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[0] :'')+"' type='text'><td class='icon icon_load' onclick='file_catalog(\"touch_show_image\",\"img\",\"touch_show_image\",0)' style='width:40px;' ></td></tr>"+
             "<tr><td align='right'>Tamaño del ancho</td><td align='left'><input id='touch_show_width' class='input_text'   onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[1] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Tamaño de altura</td><td align='left'><input id='touch_show_height' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[2] :'')+"' type='text'><td></td></tr>"+
-            "<tr><td align='right'>Time</td><td align='left'><input id='touch_show_time' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[3] :'')+"' type='text'><td></td></tr>"+
+            "<tr><td align='right'>Tiempo</td><td align='left'><input id='touch_show_time' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[3] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Estilo</td><td align='left'><input id='touch_show_style' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[4] :'')+"' type='text'><td></td></tr>"+
             "<tr><td align='right'>Nombre de la clase</td><td align='left'><input id='touch_show_class' class='input_text' value='"+((story_script.parameters.touch_show)?story_script.parameters.touch_show[5] :'')+"' type='text'><td></td></tr>"+
-            "<tr><td align='right'>Touch only</td><td align='left'><label class='switchbox'><input type='checkbox' id='touch_only' class='chec_plugin' "+((story_script.parameters.touch_show[6])?'checked' :'')+"><span class='toggle round'></span></label></td></tr></tbody></table>"
+            "<tr><td align='right'>Solo táctil</td><td align='left'><label class='switchbox'><input type='checkbox' id='touch_only' class='chec_plugin' "+((story_script.parameters.touch_show[6])?'checked' :'')+"><span class='toggle round'></span></label></td></tr></tbody></table>"
         }else{return ""}
     }
     
@@ -4770,7 +4748,7 @@ function setup(){
         "<tr><td align='right' style='white-space:nowrap;'>archivos de estilos css </td><td align='left'><input id='style_file' class='input_text' value='"+((story_script.parameters.style_file)?story_script.parameters.style_file:'')+"' type='text'></td><td id='l_css' style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\".css\",\"style_file\",0,\"story_script.parameters.style_file\")'></td></tr>"+
         "<tr><td align='right' style='white-space:nowrap;'>escala movil</td><td align='left'><input id='mobile_scale' class='input_text' onchange='this.value=correct_value(this.value,true)' value='"+((story_script.parameters.scale)?story_script.parameters.scale:1)+"' type='text'></td></tr>"+
         //"<tr><td align='right' style='white-space:nowrap;'>velocidad de diálogos</td><td align='left'><input id='dialog_speed_s' onchange='this.value=parseInt(correct_value(this.value,true))' class='input_text' value='"+((story_script.parameters.text_panel.dialog_speed)?story_script.parameters.text_panel.dialog_speed:'')+"' type='text'></td></tr>"+
-        "<tr><td align='right' style='white-space:nowrap;'>screen size </td><td align='left' style='height:29px;'><select id='set_aspect_ratio' style='height:28px;width:"+((sar)?"74px;margin-right:6px":"100%")+";display:inline;' oninput='let r=this.selectedIndex>0;tue_aspect_ratio.checked=r;this.style.marginRight=(r)?\"6px\":\"0\";this.style.width=(r)?\"74px\":\"100%\";this.nextElementSibling.style.display=(r)?\"inline-grid\":\"none\";let d=(this.selectedIndex==1)?\"table-row\":\"none\";scol.style.display=d;sima.style.display=d;if(r&&!story_script.parameters.resolutions){screen_w.value=800;screen_h.value=600;}'><option value=0>Adaptive</option><option value=1 "+((sar&&!story_script.parameters.resolutions[4])?"selected":"")+">Fixed</option><option value=2 "+((sar&&story_script.parameters.resolutions[4])?"selected":"")+">Dynamic</option></select><div style='width:calc(100% - 80px);display:"+((sar)?"inline-grid":"none")+"; grid-template-columns:auto auto auto auto;grid-column-gap:8px;justify-content:center;align-items:center;  '>W<input id='screen_w' class='input_text' style='height:27px;' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[0]:"")+"' type='text'>H<input id='screen_h' class='input_text' style='height:27px;' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[1]:"")+"' type='text'></div></td></tr>"+
+        "<tr><td align='right' style='white-space:nowrap;'>tamaño de pantalla </td><td align='left' style='height:29px;'><select id='set_aspect_ratio' style='height:28px;width:"+((sar)?"74px;margin-right:6px":"100%")+";display:inline;' oninput='let r=this.selectedIndex>0;tue_aspect_ratio.checked=r;this.style.marginRight=(r)?\"6px\":\"0\";this.style.width=(r)?\"74px\":\"100%\";this.nextElementSibling.style.display=(r)?\"inline-grid\":\"none\";let d=(this.selectedIndex==1)?\"table-row\":\"none\";scol.style.display=d;sima.style.display=d;if(r&&!story_script.parameters.resolutions){screen_w.value=800;screen_h.value=600;}'><option value=0>Adaptado</option><option value=1 "+((sar&&!story_script.parameters.resolutions[4])?"selected":"")+">Fijado</option><option value=2 "+((sar&&story_script.parameters.resolutions[4])?"selected":"")+">Dinamizable</option></select><div style='width:calc(100% - 80px);display:"+((sar)?"inline-grid":"none")+"; grid-template-columns:auto auto auto auto;grid-column-gap:8px;justify-content:center;align-items:center;  '>W<input id='screen_w' class='input_text' style='height:27px;' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[0]:"")+"' type='text'>H<input id='screen_h' class='input_text' style='height:27px;' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[1]:"")+"' type='text'></div></td></tr>"+
         "<tr id='scol' style='display:"+((sar&&!story_script.parameters.resolutions[4])?"table-row":"none")+";'><td align='right' style='white-space:nowrap;'>Color de pantalla </td><td align='left' style='height:29px;'><input id='screen_color' class='input_text' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[2]:'#000')+"' type='text' onchange=''></td><td style='width:14px;cursor:pointer;' class='icon icon_color' onclick='edit_color(\"screen_color\",screen_color.value)'></td></tr>"+
         "<tr id='sima' style='display:"+((sar&&!story_script.parameters.resolutions[4])?"table-row":"none")+";'><td align='right' style='white-space:nowrap;'>Imagen de pantalla </td><td align='left' style='height:29px;'><input id='screen_image' class='input_text' value='"+((story_script.parameters.resolutions)?story_script.parameters.resolutions[3]:'')+"' type='text'></td><td style='width:14px;cursor:pointer;' class='icon icon_load' onclick='file_catalog(this.id,\"img\",\"screen_image\",0)'></td></tr>"+
         "<tr><td align='right'>familia de fuentes</td><td align='left'><input id='font' class='input_text' value='"+((story_script.parameters.font)?story_script.parameters.font :'')+"' type='text'></td></tr><tr><td align='right' style='white-space:nowrap;'>tamaño de la fuente</td><td align='left'><input id='font_size' class='input_text' onchange='this.value=correct_value(this.value)' value='"+((story_script.parameters.font_size)?story_script.parameters.font_size:'')+"' type='text'></td></tr>"+
@@ -4812,7 +4790,7 @@ function setup(){
         "<p align='left' style=' margin-left:8px;'>Mostrar script</p><hr><table id='controll' style='width:100%;border-spacing:10px;border-collapse:separate;'><tbody>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='all_lines' class='chec_plugin' "+((setup_editor.lines)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>Mostrar todas las líneas </td><td> muestra todas las líneas de un bloque o solo un bloque seleccionado</td></tr>"+
         "<tr><td align='right' style='padding-top:4px;height:40px;'><label class='switchbox'><input type='checkbox' id='ani_lines' class='chec_plugin' "+((setup_editor.lines_anim)?'checked' :'')+"><span class='toggle round'></span></label></td><td align='left' style='width:90px;'>línea de animación </td><td> lineas de animación del elemento al siguiente bloque</td></tr>"+
-        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>Smooth lines</td><td><input id='pv_s' class='input_text' value='"+setup_editor.smooth+"' type='text'></td></tr>"+
+        "<tr><td align='right' style='padding-top:4px;height:40px;'> </td><td align='left' style='width:90px;'>Líneas suaves</td><td><input id='pv_s' class='input_text' value='"+setup_editor.smooth+"' type='text'></td></tr>"+
         "</tbody></table><br>"+
         "<p align='left' style='margin-left:8px;'>Tema claro</p><hr><form id='ui_color'>"+thems+
         "</form><br>"+
@@ -4900,7 +4878,7 @@ function add_tr(id){
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:48%;padding-top:10px;";
         td2.innerHTML="<input class='title_name input_text' value='"+languare_data(story_script.parameters.title)+"' style='padding-top:10px;' type='text' placeholder='traducir título'>";
     }else if(id=='var_tablet'){
-        td1.innerHTML="<input class='var_name input_text' value='variable_"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='name variable' onchange='this.value=correct_rename(correct_name(this.value))' style='padding-top:10px;' type='text'>";
+        td1.innerHTML="<input class='var_name input_text' value='variable_"+(tbody.getElementsByTagName('tr').length+1)+"' placeholder='variable de nombre' onchange='this.value=correct_rename(correct_name(this.value))' style='padding-top:10px;' type='text'>";
         td1.style="padding-right:8px;border-right:1px solid var(--cb);width:48%;";
         td2.innerHTML="<input class='var_vol input_text' style='padding-top:10px;' type='text' placeholder='valor'>";
     }else if(id=='var_sounds'){
@@ -5788,7 +5766,7 @@ function translation_edit(){
 var left_block;
 function timeline_edit(n,u){
     copy_arr=n;
-    var html="<div class='window' style='width:320px;'><div class='win_head'>Timeline<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[16].en+"</p>"
+    var html="<div class='window' style='width:320px;'><div class='win_head'>Línea de tiempo<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[16].en+"</p>"
     +"<table width='100%'><tbody><tr>"
     +"<td height='40px' width='64px' align='right' style='padding-right:8px;' oninput='timeline_edit(0)'>Bloquear</td><td><select id='tl_block' style='width:100%;' oninput='timeline_update(0),timeline_update(1)'>"+option_block(n.go_to[0],0)+"</select></td>"
     +"</tr><tr>"
@@ -5989,13 +5967,16 @@ function slideMove(e){
     translation_slider.style.left=pos+(translation_id.offsetWidth-5)+"px";
     left_block.style.width=pos+"px";
 }
-var state_num=0;
 function state_save(){
     if(state_num>0){back_up.splice(0,state_num);state_num=0;}
     back_up.unshift(JSON.stringify(story_script));
     if(back_up.length>10){back_up.pop();}
-    window.addEventListener("beforeunload",(e)=>{if(back_up.length>1){e.preventDefault();e.returnValue=""}});
+    not_save=true;
 }
+window.addEventListener("beforeunload",(e)=>{
+    if(not_save){e.preventDefault();e.returnValue=""}
+});
+
 function state_back(n){
     state_num+=n
     if(state_num<0){state_num=0}else if(state_num>=back_up.length-1){state_num=back_up.length-1};

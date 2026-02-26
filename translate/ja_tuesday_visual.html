@@ -985,7 +985,7 @@ const texts={"tutorials":[{
         }
 ]}
 let setup_editor={'wheel':true,'fon':'','ui':0,'lines':false,'preview':[76,0,0,1],'ferst':true,'pvw':[640,480],'lines_anim':true,'smooth':64};
-let buf=['',''],back_up=[];
+let buf=['',''],back_up=[],not_save=false,state_num=0;
 if(localStorage.getItem("editor_setup")){setup_editor=JSON.parse(localStorage.getItem("editor_setup"));if(!setup_editor.smooth){setup_editor.smooth=64;}};
 if(setup_editor.ferst){
     var sel="<div class='window' style='padding:24px 8px;'><p>操作デバイス</p><br><hr style='margin:0;'><p class='text_tutorials_a select_tutorials'>"+texts.tutorials[5].en+"</p>"
@@ -1010,7 +1010,8 @@ function editor_setup(){
 //    
 document.addEventListener("wheel",function(e){if(setup_editor.wheel&&(!scroll_block||(scene_screen&&scene_view.tabindex==1))){if(e.deltaY>0) world_scale(false);else world_scale(2);}});
 let project_files=[];
-var load_files
+var load_files;
+let name_file;
 img_file.addEventListener('change',loadFiles);
 var load_new=false;
 var wf;
@@ -1037,40 +1038,16 @@ function loadFiles(e){
 }
 function selectJson(jsons){
     open_tool();new_novel();scen_edit_update(false);
-    if(jsons.length==1){load_story_edit(open_file(jsons[0][1]))}
+    if(jsons.length==1){ name_file=jsons[0][1]; load_story_edit(open_file(jsons[0][1]))}
     else if(jsons.length>1){
         var html="<div class='window'><div class='win_head'>プロジェクトファイル(JSON形式)を指定してください<div class='window_close icon icon_close' onclick='modal_window(\"close\")'></div></div><hr><div style='margin:0 8px 0 8px;max-height:75vh;overflow-x:hidden;'>"
-        for(var f=0;f<jsons.length;f++){html+="<table class='button' style='width:412px;margin:8px 0px;' onclick='load_story_edit(open_file(\""+jsons[f][1]+"\"));modal_window(\"close\");'><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
+        for(var f=0;f<jsons.length;f++){html+="<table class='button' style='width:412px;margin:8px 0px;' onclick='let n=\""+jsons[f][1]+"\";name_file=n;load_story_edit(open_file(n));modal_window(\"close\");'><tbody><tr><td width='48px' height='48px' class='icon icon_new'> </td><td align='left'><div style='width:364px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;'>"+jsons[f][1]+"</div></td></tr></tbody></table>"}
         html+="</div></div>"
         modal_window("open",html)
     }else if(jsons.length==0){alert('JSONファイルが見つかりません')}
 }
 window.addEventListener('load',()=>{
     var dropEvent=(e)=>{
-//        let target={target:{files:[]}},open=false,reading=0;
-//        wf=e.dataTransfer.items[0].webkitGetAsEntry().name+"/";
-//        let jsons=[];clear_Files();countBytes=0;
-//        function traverseFileTree(item,path){
-//            path=path||"";
-//            if(item.isFile){
-//                item.file((file)=>{
-//                    reading--;
-//                    countBytes+=file.size;
-//                    project_files.push([file.webkitRelativePath.replace(wf,'').replace('.mp3','').replace('.MP3',''),URL.createObjectURL(file),file.type]);
-//                    if(file.type=="application/json"&&file.webkitRelativePath.split("/").length==2){jsons.push([project_files.length-1,file.name]);}
-//                    if(!open && reading==0 && jsons.length>0){open=true;selectJson(jsons)}
-//                })
-//            } else if (item.isDirectory){
-//                var dirReader = item.createReader();
-//                dirReader.readEntries((entries)=>{
-//                    reading=0;
-//                    for (var i = 0; i < entries.length; i++) {reading++;
-//                        traverseFileTree(entries[i], path + item.name + "/")
-//                    }
-//                });
-//            }
-//        };
-//        traverseFileTree(e.dataTransfer.items[0].webkitGetAsEntry())
         e.stopPropagation();e.preventDefault();return false;
     };
     let disabled=(e)=>{e.stopPropagation();e.preventDefault();};
@@ -1085,7 +1062,7 @@ function open_file(name){
 function new_novel(){
     story_script={"parameters":{"plugins":["tue_aspect_ratio"],"resolutions": [800,600,"#000",""],"text_panel":{"size":["95%","27%"],"position":[],"color":"rgba(242,242,242,0.7)","style": "border-radius:16px;backdrop-filter:blur(12px);border-top:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(0,0,0,.15);box-shadow: 0px 4px 14px rgba(0,0,0,.15);","color_text":"#000","indent_text":"8px 16px","indent_bottom":"3.5%","dialog_speed":"10","show_all_text":true},"name_panel":{"style": "border-radius:16px;border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(0,0,0,.2);box-shadow: 0px 4px 14px rgba(0,0,0,.15);","size":["","32px"],"position":["0","0","-42px","0"],"indent_text":"0 16px","color_text":"#fff","align":["start","center"],"color":"#555"},"title":{"ja":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["ja"],"buttons":[{"name":"tue_back","position":["2.5%",0,0,"32px"],"size":["25%","25%"],"color_text":"#000","text":"<","hotspot":["0%","0%"],"align":["start","end"],"indent_text":"8px 14px"},{"name":"tue_next","position":[0,"2.5%",0,"32px"],"size":["25%","25%"],"color_text":"#000","text":">","hotspot":["0%","0%"],"align":["end","end"],"indent_text":"8px 14px"}],"autosave":false,"font":"Arial","font_size":"18px"},"blocks":{}};
     update_novel();
-    state_num=0;back_up=[];state_save();
+    not_save=false;state_num=0;back_up=[];state_save();
 }
 function update_novel(){
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}
@@ -1353,11 +1330,12 @@ function creaton_line(id,go,chapter){
     newLine.id=id+"l";
     story_lines.appendChild(newLine);
 }
-new_novel()
+new_novel();
 function save_file(){
     var n;
+    not_save=false;
     if(story_script.parameters.title){
-        n=(story_script.parameters.title.ja)?story_script.parameters.title.ja:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title
+        n=name_file?name_file.substring(0,name_file.lastIndexOf('.')):(story_script.parameters.title.ja)?story_script.parameters.title.ja:(story_script.parameters.title[story_script.parameters.languares[0]])?story_script.parameters.title[story_script.parameters.languares[0]]:n=story_script.parameters.title;
         n=correct_name(String(n).toLowerCase());
     }else{n="new_novel";}
     create_json_files(n+'.json',JSON.stringify(story_script))
@@ -5989,13 +5967,16 @@ function slideMove(e){
     translation_slider.style.left=pos+(translation_id.offsetWidth-5)+"px";
     left_block.style.width=pos+"px";
 }
-var state_num=0;
 function state_save(){
     if(state_num>0){back_up.splice(0,state_num);state_num=0;}
     back_up.unshift(JSON.stringify(story_script));
     if(back_up.length>10){back_up.pop();}
-    window.addEventListener("beforeunload",(e)=>{if(back_up.length>1){e.preventDefault();e.returnValue=""}});
+    not_save=true;
 }
+window.addEventListener("beforeunload",(e)=>{
+    if(not_save){e.preventDefault();e.returnValue=""}
+});
+
 function state_back(n){
     state_num+=n
     if(state_num<0){state_num=0}else if(state_num>=back_up.length-1){state_num=back_up.length-1};
