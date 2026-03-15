@@ -1063,7 +1063,7 @@ function new_novel(){
     story_script={"parameters":{"plugins":["tue_aspect_ratio"],"resolutions": [800,600,"#000",""],"text_panel":{"size":["95%","27%"],"position":[],"color":"rgba(242,242,242,0.7)","style": "border-radius:16px;backdrop-filter:blur(12px);border-top:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(0,0,0,.15);box-shadow: 0px 4px 14px rgba(0,0,0,.15);","color_text":"#000","indent_text":"8px 16px","indent_bottom":"3.5%","dialog_speed":"10","show_all_text":true},"name_panel":{"style": "border-radius:16px;border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(0,0,0,.2);box-shadow: 0px 4px 14px rgba(0,0,0,.15);","size":["","32px"],"position":["0","0","-42px","0"],"indent_text":"0 16px","color_text":"#fff","align":["start","center"],"color":"#555"},"title":{"es":"new novel"},"launch_story":"","key":{"next":"","back":"","save":"","load":"","full_screen":"","launch_story":"","load_autosave":""},"languares":["es"],"buttons":[{"name":"tue_back","position":["2.5%",0,0,"32px"],"size":["25%","25%"],"color_text":"#000","text":"<","hotspot":["0%","0%"],"align":["start","end"],"indent_text":"8px 14px"},{"name":"tue_next","position":[0,"2.5%",0,"32px"],"size":["25%","25%"],"color_text":"#000","text":">","hotspot":["0%","0%"],"align":["end","end"],"indent_text":"8px 14px"}],"autosave":false,"font":"Arial","font_size":"18px"},"blocks":{}};
     update_novel();
     name_file=false;
-    not_save=false;state_num=0;back_up=[];state_save();
+    state_num=0;back_up=[];state_save();not_save=false;
 }
 function update_novel(){
     if(scene_screen){if(!tool_update){scen_edit_update(true)}else{eval(tool_update)}}
