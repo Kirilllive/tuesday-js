@@ -2,14 +2,6 @@
 
 # Tuesday JS visual novel engine 
 
-Development team
-
-> Kirill Live
-
-> Ivan Loktionov
-
-> Onigi
-
 is a simple web-based, free and open-source visual novel editor that can be used in a web browser. It is written in JavaScript without using any third party libraries and thus does not require additional software installation. The engine uses standard HTML5 document elements such as div and img. This allows the use of any media format supported by browsers including vector graphics svg, gif animations and css styles.
 There is a version of the editor available as a standalone application for Android devices and desktops. All versions are fully compatible with each other and have the same interface.
 
