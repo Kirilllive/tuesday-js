@@ -963,7 +963,7 @@ function set_audio(el,arr){
     show_audio(el,arr);
 }
 function show_audio(el,arr){
-    var n=(tue_set_audio!=0)?tue_set_audio:"";
+    let n=(tue_set_audio!=0)?tue_set_audio:"";
     if(arr["text"+n]&&art_data(arr["text"+n]).length>0){el.innerHTML=values_button(art_data(arr["text"+n]))}
     if(arr["art"+n]&&art_data(arr["art"+n]).length>0){el.style.backgroundImage="url('"+art_data(arr["art"+n])+"')"}
 }
