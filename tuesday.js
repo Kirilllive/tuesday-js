@@ -674,7 +674,7 @@ function name_block_update(){
         tuesday.dispatchEvent(new Event('creation_dialog'));
 } function values_in_text(add){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
-	var str=""
+	let str=""
     if(!add){
 		dialog_letter=0
 		str=(arr_dialog.text[languare])?arr_dialog.text[languare]:arr_dialog.text;
