@@ -1,20 +1,1077 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
-    <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
-    <title>ASCII Art Paint</title>
-    <style>
-       *{ font-family: Arial; font-size: 12px; border-collapse: collapse; border: none; margin: 0; padding: 0; border-spacing: 0px; outline: none; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; outline: none; color: var(--tx);} :root{ --cw: #efefff; --cb: #cec8e3; --cs: rgba(110, 95, 165, 0.25); --cm: rgba(110, 95, 165, 0.5); --wn: #fff; --ft: none; --tx: #000; --ac: rgba(255, 255, 255, 0.8); --at: rgba(240, 240, 240, 0.8); --bh: #efefff; --font: Arial;} hr{ border-top: 1px solid var(--cb); margin: 4px 0px;} option{ color: #000;} .cls-2{ stroke: #000; stroke-width: 8px;} body{ height: 100vh; width: 100vw; overflow: hidden;} .icon{ background-size: 22px 22px; background-repeat: no-repeat; background-position: center;} .icon_new{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M223,52V249H35V6H176ZM223,53H176V6'/%3e%3c/svg%3e")} .icon_load{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M48,85H252L208,226H5ZM48,85L5,226V51L18,34H65l13,17H208V85H48Z'/%3e%3c/svg%3e")} .icon_save{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M238,51V228a10,10,0,0,1-10,10H27a10,10,0,0,1-10-10V27A10,10,0,0,1,27,17H203ZM39,238V127a10,10,0,0,1,10-10H205a10,10,0,0,1,10,10V238H39ZM174,95H79a10,10,0,0,1-10-10V17H184V85A10,10,0,0,1,174,95ZM168,42a10,10,0,0,0-10-10H144a10,10,0,0,0-10,10V71a10,10,0,0,0,10,10h14a10,10,0,0,0,10-10V42ZM63,162H192m0,49H63'/%3e%3c/svg%3e")} .icon_equal{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M47,127h161M128,208V47'/%3e%3c/svg%3e")} .icon_minus{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M47,127h161'/%3e%3c/svg%3e")} .icon_copy{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M8,61L29,40M30,53V39H16M17,31V14a4,4,0,0,1,4-4h6v4H45V10h6a4,4,0,0,1,4,4V48a4,4,0,0,1-4,4H37M27,18V7h5a4,4,0,0,1,8,0h5V18H27Z'/%3e%3c/svg%3e")} .icon_paste{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M33,39L54,60M55,47V61H41M46,38V14a4,4,0,0,0-4-4H36v4H18V10H12a4,4,0,0,0-4,4V48a4,4,0,0,0,4,4H31M36,18V7H31a4,4,0,0,0-8,0H18V18H36Z'/%3e%3c/svg%3e")} .icon_about{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cg fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' %3e%3cpath d='M106,104h22v86M106,192h42'/%3e%3ccircle fill='none' cx='128' cy='64' r='6'/%3e%3ccircle cx='128' cy='128' r='120'/%3e%3c/g%3e%3c/svg%3e")} .icon_edit{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' d='M164,37l53,53-131,131L33,169ZM225,16L238,29a28,28,0,0,1,0,40l-20,20L164,37,185,16A28,28,0,0,1,225,16ZM59,195L190,64M9,245h0l73-22L32,173Z'/%3e%3c/svg%3e")} .icon_clear{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 128 128'%3e%3cpath fill='none' stroke='%23000' stroke-width='6' stroke-linejoin='round' d='M53,113H24L3,92V73L73,3l45,45ZM20,56l45,45M74,28L45,58M9,123H64M120,112h6M105,112h6M70,112H96'/%3e%3c/svg%3e")} .icon_undo{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M17,29L5,17,17,5M6,17H37c11.322,0,20,6.678,20,18S48.322,53,37,53H17'/%3e%3c/svg%3e")} .icon_fill{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M22,3L54,35M55,42s6,10,6,14a6,6,0,0,1-12,0C49,52,55,42,55,42ZM29,10L54,35,29,60a7,7,0,0,1-10,0L4,45A7,7,0,0,1,4,35ZM52,35H19'/%3e%3c/svg%3e")} .icon_cursor{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath stroke='%23000' stroke-width='2px' fill='none' d='M49,45c0,7-8,13-17,13S15,52,15,45V20a3,3,0,0,1,6,0V35h1V13a3,3,0,0,1,6,0V32h1V9a3,3,0,0,1,6,0V32h1V13a3,3,0,0,1,6,0V34l1,1V28a3,3,0,0,1,6,0V45Z'/%3e%3c/svg%3e")} .icon_close{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3ccircle fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' cx='128' cy='128' r='120'/%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M71,184L184,70M184,184L71,70'/%3e%3c/svg%3e")} .icon_pipette{ filter: var(--ft); transform: scaleX(-1); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M31,13L14,30M29,20L54,45v5l4,4-3,3-4-4H46L21,28m-3-3L8,15C6,13,5,8,7,6s6.852-1.1,9,1L26,17'/%3e%3c/svg%3e")} .icon_edit2{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='10' stroke-linejoin='round' d='M150.5,44.71h60.03a20,20,0,0,1,20,20V227.63a20,20,0,0,1-20,20H46.47a20,20,0,0,1-20-20V64.71a20,20,0,0,1,20-20H107M105.13,9.37h46.74V160.99H105.13V9.37ZM129.07,160.99V9.37M127.369,204.31h2.279l22.222-43.32H105.147Z'/%3e%3c/svg%3e")} .icon_setting{ filter: var(--ft); background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="2 2 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.99 18C15.0276 18 17.49 15.5376 17.49 12.5C17.49 9.46243 15.0276 7 11.99 7C8.95242 7 6.48999 9.46243 6.48999 12.5C6.48999 15.5376 8.95242 18 11.99 18Z" stroke="%230F0F0F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.2 4.2L14.28 3C15.69 3.58 15.69 3.58 17.1 4.17L17.02 5.78C16.97 6.74 17.76 7.53 18.72 7.48L20.33 7.4C20.91 8.81 20.91 8.81 21.5 10.22L20.3 11.3C19.59 11.94 19.59 13.06 20.3 13.7L21.5 14.78C20.92 16.19 20.92 16.19 20.33 17.6L18.72 17.52C17.76 17.47 16.97 18.26 17.02 19.22L17.1 20.83C15.69 21.41 15.69 21.41 14.28 22L13.2 20.8C12.56 20.09 11.44 20.09 10.8 20.8L9.72 22C8.31 21.42 8.30999 21.42 6.89999 20.83L6.98 19.22C7.03 18.26 6.24 17.47 5.28 17.52L3.67 17.6C3.09 16.19 3.09 16.19 2.5 14.78L3.7 13.7C4.41 13.06 4.41 11.94 3.7 11.3L2.5 10.22C3.08 8.81 3.08 8.81 3.67 7.4L5.28 7.48C6.24 7.53 7.03 6.74 6.98 5.78L6.89999 4.17C8.30999 3.59 8.31 3.59 9.72 3L10.8 4.2C11.44 4.91 12.55 4.91 13.2 4.2Z" stroke="%230F0F0F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>')} .show{ filter: var(--ft); content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M25.266,39.378A9.989,9.989,0,1,1,39.378,25.266m2.584,5.975C41.981,31.493,42,31.744,42,32A10,10,0,0,1,32,42c-0.256,0-.507-0.019-0.759-0.038M2,32S12,16,32,16a35.006,35.006,0,0,1,13.84,2.8m5.585,2.974A37.4,37.4,0,0,1,62,32M8.8,55.84l45.41-45.41'/%3e%3c/svg%3e"); -webkit-appearance: none; -moz-appearance: none; appearance: none;} .show:checked{ filter: var(--ft); content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cg fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round'%3e%3ccircle cx='32' cy='32' r='10'/%3e%3cpath d='M2,32S12,16,32,16,62,32,62,32'/%3e%3c/g%3e%3c/svg%3e");} .icon_del{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M194,62V230H63V62M47,45H210M108,23h39V45H108V23ZM128,62V213M92,62V213M164,62V213'/%3e%3c/svg%3e")} .icon_size{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' d='M56,41V56H41M8,41V56H23M56,23V8H41M8,23V8H23M21,21H43V43H21V21Z'/%3e%3c/svg%3e")} .icon_equal{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M47,127h161M128,208V47'/%3e%3c/svg%3e")} .icon_minus{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3cpath fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' d='M47,127h161'/%3e%3c/svg%3e")} .icon_scale{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3ccircle fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' cx='128' cy='128' r='92'/%3e%3c/svg%3e")} .icon_diag{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' d='M47,47L4,4M47,32V47H32M62,32V62H32'/%3e%3c/svg%3e")} .icon_selected{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M47,5h7v7M5,12V5h7m0,49H5V47M54,33v7m0-21v7M40,54H33M33,5h7M19,5h7m0,49H19M5,40V33m0-7V19M54,47v7H47m7,7V54h7'/%3e%3c/svg%3e")} .icon_replaces{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M47,9L57,19,47,29M17,36L7,46,17,56M56,46H8M8,19H56'/%3e%3c/svg%3e")} .icon_them{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 256'%3e%3ccircle fill='none' stroke='%23000' stroke-width='12' stroke-linejoin='round' cx='128' cy='128' r='120'/%3e%3cpath fill='%23000' stroke='%23000' stroke-width='16' stroke-linejoin='round' d='M128,215.175V38.825A88.18,88.18,0,0,1,128,215.175Z'/%3e%3c/svg%3e")} .icon_cut{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cg fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round'%3e%3cpath d='M34,34V2l6,12V34m0,6V54m-6-8V40M53.984,40.016h-40l-12-6h44'/%3e%3ccircle cx='32' cy='54' r='8'/%3e%3ccircle cx='54' cy='32' r='8'/%3e%3c/g%3e%3c/svg%3e")} .icon_cent{ filter: var(--ft); background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' d='M56,41V56H41M8,41V56H23M56,23V8H41M8,23V8H23M21,21H43V43H21V21Z'/%3e%3c/svg%3e")} .button_s{ filter: var(--ft); height: 22px; width: 22px; background-size: 22px 22px; background-repeat: no-repeat; background-position: center; cursor: pointer;} #asciiscreen{ position: relative; box-shadow: 0px 2px 24px var(--cs); image-rendering: pixelated;} .add_lines{ position: absolute; border-radius: 16px; background: var(--wn); box-shadow: 0px 2px 24px var(--cs);} #asciicanvas td{ text-align: center; height: 14px; width: 8px; font-size: 12px; border-style: solid; border-width: 1px; border-color: var(--at); background-color: var(--ac); font-family: var(--font), monospace;} #asciicanvas td:hover{ background-color: var(--cb);} #menu_panel{ top: 0; left: 0; background-color: var(--wn); box-shadow: 0px 2px 24px var(--cs); border-radius: 0 0 16px 0; position: fixed; height: 40px; overflow: hidden;} #tool_panel{ top: 50%; left: 20px; transform: translateY(-50%); background-color: var(--wn); box-shadow: 0px 2px 24px var(--cs); border-radius: 16px; position: fixed; width: 40px;} .button_menu{ background-position: center; cursor: pointer; width: 40px; height: 40px;} .button_menu:hover{ background-color: var(--bh);} #tool_zone{ position: fixed; left: 76px; top: 50vh; z-index: 10020; transform: translateY(-50%); justify-content: center; align-items: center;} #window_zone{ height: 100vh; width: 100%; position: fixed; left: 0; top: 0; background-color: var(--cm); transition-duration: 0.5s; z-index: 10020; justify-content: center; align-items: center;} .window_close{ position: absolute; right: 0px; top: 0px; height: 40px; width: 40px; cursor: pointer;} .window_title{ position: absolute; right: 50%; top: 0px; height: 40px; transform: translateX(50%); display: grid; justify-content: center; align-items: center;} .window{ position: relative; background-color: var(--wn) !important; border-radius: 16px; box-shadow: 0px 2px 24px var(--cs); padding: 2px 8px 24px 8px;} #toast{ position: fixed; opacity: 0; bottom: -10%; transform: translateX(-50%); padding: 0px 32px; height: 40px; min-width: 128px; box-shadow: 0px 2px 24px var(--cs); z-index: 20000; background-color: var(--wn); display: grid; justify-content: center; align-items: center;} .toast_anim{ left: 50%; border-radius: 32px; animation: viwe 0.25s, stop 2s 0.25s, close 0.5s 2s linear;} @keyframes viwe{ from{ opacity: 0; bottom: 64px} to{ opacity: 1; bottom: 64px}} @keyframes stop{ from{ opacity: 1; bottom: 64px} to{ opacity: 1; bottom: 64px}} @keyframes close{ from{ opacity: 1; bottom: 64px} to{ opacity: 0; bottom: -32px}} .symbol{ height: 32px; width: 32px; display: grid; justify-content: center; align-items: center; float: left; font-family: var(--font), monospace;} .symbol:hover{ background-color: var(--cw);} .edittext{ font-family: monospace; height: calc(100% - 40px); width: 100%; resize: none; white-space: pre; padding: 8px; box-sizing: border-box; border-top: 1px solid var(--cb); border-bottom: 1px solid var(--cb); background-color: var(--wn); -webkit-touch-callout: text; -webkit-user-select: text; -khtml-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text;} .button{ background-size: 20px 20px; background-repeat: no-repeat; width: 128px; height: 36px; border-radius: 20px; cursor: pointer; background-color: var(--cw); display: grid; justify-content: center; align-items: center; background-position: left 9px center;} .button:hover{ background-color: var(--cb);} .symbol_select{ cursor: pointer; position: relative; height: 32px; width: 32px; float: left;} .symbol_select input{ position: absolute; display: none; cursor: pointer;} .symbol_select span{ position: absolute; display: grid; justify-content: center; align-items: center; top: 0; left: 0; height: 100%; width: 100%;} .symbol_select:hover input~span{ background-color: var(--cw);} .symbol_select input:checked~span{ background-color: var(--cb);} .input_text{ border: 0; font-family: Arial; font-size: 12px; -webkit-appearance: none; border-bottom: 1px solid var(--cb); background-color: transparent; cursor: text; height: 28px; width: 100%; -webkit-touch-callout: text; -webkit-user-select: text; -khtml-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text;} #scene_controll{ position: fixed; height: 40px; z-index: 10000; bottom: 32px; right: 288px; border-radius: 20px; background-color: var(--wn); box-shadow: 0px 2px 24px var(--cs); cursor: pointer;} .align{ -webkit-appearance: none; -moz-appearance: none; appearance: none; height: 32px; width: 32px; border-radius: 4px; cursor: pointer;} .align:checked{ background-color: var(--cb);} #context_menu{ background-color: var(--wn); box-shadow: 0px 2px 24px var(--cs); border-radius: 8px;} #context_menu td{ height: 32px; padding-left: 32px; cursor: pointer; position: relative;} #context_menu td div{ height: 32px; width: 32px; position: absolute; top: 0; left: 0; display: inline-block; background-size: 16px 16px; background-repeat: no-repeat; background-position: 8px center;} #context_menu td:hover{ background-color: var(--cw);} input[type=range]{ appearance: none; height: 8px; background: var(--cw); outline: none; border-radius: 8px;} input[type=range]::-webkit-slider-thumb{ -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--cb); cursor: pointer; border: 3px solid var(--wn);} input[type=range]::-moz-range-thumb{ -moz-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--cb); cursor: pointer; border: 3px solid var(--wn);} input[type=range]::-moz-range-progress{ -moz-appearance: none; height: 8px; background: var(--cb); outline: none; border-radius: 8px;} .proportion{ filter: var(--ft); width: 32px; cursor: pointer; content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 512'%3e%3cg fill='none' stroke='%23000' stroke-width='10' stroke-linejoin='round'%3e%3cpath d='M128,188a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V200A12,12,0,0,1,128,188Z M128,268a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V280A12,12,0,0,1,128,268Z M128,283V232'/%3e%3ccircle cx='16' cy='85' r='12'/%3e%3ccircle cx='16' cy='428' r='12'/%3e%3c/g%3e%3c/svg%3e"); background: none; -webkit-appearance: none; -moz-appearance: none; appearance: none;} .proportion:checked{ filter: var(--ft); content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 256 512'%3e%3cg fill='none' stroke='%23000' stroke-width='10' stroke-linejoin='round' %3e%3cpath d='M128,355.5V398a30,30,0,0,1-30,30H29M29,85H98a30,30,0,0,1,30,30v42.5 M128,188a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V200A12,12,0,0,1,128,188Z M128,268a12,12,0,0,1,12,12v32a12,12,0,0,1-24,0V280A12,12,0,0,1,128,268Z M128,283V232'/%3e%3ccircle cx='16' cy='85' r='12'/%3e%3ccircle cx='16' cy='428' r='12'/%3e%3c/g%3e%3c/svg%3e");} #boosty{ fill: var(--tx);}
-    </style>
+<html><head><meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+<link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
+<title>ASCII Art Paint</title>
+<style>
+*{
+	font-family:Arial;
+    font-size:12px;
+	border-collapse:collapse;
+	border:none;
+	margin:0;
+	padding:0;
+	border-spacing:0px;
+	outline:none;
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	outline:none;
+    color:var(--tx);
+    overscroll-behavior: none;
+}
+:root {
+    --cw:#efefff;
+    --cb:#cec8e3;
+    --cs:rgba(110,95,165,0.25);
+    --cm:rgba(110,95,165,0.5);
+    --wn:#fff;
+    --ft:none;
+    --tx:#000;
+    --ac:rgba(255,255,255,0.8);
+    --at:rgba(240,240,240,0.8);
+    --bh:#efefff;
+    --font:Arial;
+}
+*::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background-color:var(--cw);
+	display:none;
+}
+*::-webkit-scrollbar-thumb {
+	background: var(--cb);
+	border-radius:3px;
+	display:none;
+}
+hr{border-top:1px solid var(--cb);margin:4px 0px;}
+option{color:#000;}
+.cls-2 {stroke:#000;stroke-width: 8px;}
+body{height:100vh;width:100vw;}
+.icon{background-size:22px 22px;background-repeat:no-repeat;background-position:center;}
+.icon_new{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M17 6.5H12.5V2M17.5 6.5V19.5H4.5V1.5H12.5L17.5 6.5Z' stroke='black' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3e%3c/svg%3e")}
+.icon_load{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M20 9.5L16.5 19.5H2L5.5 9.5H20Z' stroke='black'/%3e%3cpath d='M17.5 9V5.5H9.5L7.5 3.5H3.5L1.5 5.5V20' stroke='black'/%3e%3c/svg%3e")}
+.icon_save{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath vector-effect='non-scaling-stroke' d='M19.5 19.5V6L16 2.5H2.5V19.5H19.5Z' stroke='black' stroke-linejoin='round'/%3e%3crect vector-effect='non-scaling-stroke' x='7.5' y='2.5' width='7' height='5' rx='0.5' stroke='black'/%3e%3crect vector-effect='non-scaling-stroke' x='5.5' y='10.5' width='11' height='9' rx='0.5' stroke='black'/%3e%3c/svg%3e")}
+.icon_equal{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath vector-effect='non-scaling-stroke' d='M19 10.5H4M11.5 18V3' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e")}
+.icon_minus{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath vector-effect='non-scaling-stroke' d='M19 10.5H4' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e")}
+.icon_copy{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg stroke='black' vector-effect='non-scaling-stroke'%3e%3cpath d='M5.5 11V4.5C5.5 3.5 6.5 2.5 7.5 2.5H8.5M12 17.5H15.5C16.5 17.5 17.5 16.5 17.5 15.5V4.5C17.5 3.5 16.5 2.5 15.5 2.5H14.5'/%3e%3cpath d='M3.5 19.5L7.5 15.5M9.5 17.5V13.5H5.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3crect x='8.5' y='1.5' width='6' height='2' rx='1' stroke='black'/%3e%3c/g%3e%3c/svg%3e")}
+.icon_paste{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg vector-effect='non-scaling-stroke' stroke='black'%3e%3cpath d='M12.5 13.5L16.5 17.5M18.5 15.5074V19.5H14.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3cpath d='M16.5 13V4.5C16.5 3.5 15.5 2.5 14.5 2.5H13.5M12 17.5H6.5C5.5 17.5 4.5 16.5 4.5 15.5V4.5C4.5 3.5 5.5 2.5 6.5 2.5H7.5 M8.5 1.5H12.5C13 1.5 13.5 2 13.5 2.5C13.5 3 13 3.5 12.5 3.5H8.5C8 3.5 7.5 3 7.5 2.5C7.5 2 8 1.5 8.5 1.5Z'/%3e%3c/g%3e%3c/svg%3e")}
+.icon_about{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg vector-effect='non-scaling-stroke'%3e%3cpath d='M10 9.5H11.5L11.5 16 M10 16H13' stroke='black' stroke-linejoin='round'/%3e%3ccircle cx='11' cy='11' r='9.5' stroke='black'/%3e%3ccircle cx='11' cy='6' r='0.5' stroke='black'/%3e%3c/g%3e%3c/svg%3e")}
+.icon_edit{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M17.5 1.5C18.5 1.5 19 2 19.5 2.5C20 3 20.5 3.5 20.5 4.5C20.5 5.5 20 6 19.5 6.5L7.5 18.5L2 20L3.5 14.5L15.5 2.5C15.5 2 16.5 1.5 17.5 1.5Z M3.5 14.5L7.5 18.5 M14.5 3.5L18.5 7.5' vector-effect='non-scaling-stroke' stroke='black' stroke-linecap='round'/%3e%3c/svg%3e")}
+.icon_clear{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M8.5 19.5H4.5L1.5 16.5V12.5L11.5 2.5L18.5 9.5L8.5 19.5Z' stroke='black' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3e%3cpath d='M4 11L10 17M19 19.5H21M12 19.5H16' stroke='black' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3e%3c/svg%3e")}
+.icon_undo{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M7.5 10.5L3 6.5L7.5 2.5M7.5 6.5H11C15.5 6.5 18.5 7.5 18.5 12C18.5 16.5 15.5 17.5 11 17.5H7.5' stroke='black' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3e%3c/svg%3e")}
+.icon_fill{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M9.5 4.5L3 11C2 12 2 14 3 15L7 19C8 20 10 20 11 19L17.5 12.5' stroke='black' vector-effect='non-scaling-stroke'/%3e%3cpath d='M7.5 2.5L17.5 12.5M18.5 19L18.5 14.5 M7 12.5L17.5 12.5' stroke='black' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3e%3c/svg%3e")}
+.icon_cursor{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.5 10.5L16.5 10.5M17 12.5L19 10.5L17 8.5M4 12.5L2 10.5L4 8.5 M10.5 16.5V4.5M12.5 4L10.5 2L8.5 4M12.5 17L10.5 19L8.5 17' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e")}
+.icon_close{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M7 15L15 7M15 15L7 7' vector-effect='non-scaling-stroke' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3e%3ccircle cx='11' cy='11' r='9.5' vector-effect='non-scaling-stroke' stroke='black'/%3e%3c/svg%3e")}
+.icon_pipette{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M2 19L3.5 17.5V15.5L11 8M3 20L4.5 18.5H6.5L14 11M16 9L19 6C20 5 20.5 3.5 19.5 2.5C18.5 1.5 17 2 16 3L13 6' stroke='black' stroke-linecap='round'/%3e%3cpath d='M11.5 5.5L16.5 10.5' vector-effect='non-scaling-stroke' stroke='black' stroke-linecap='round'/%3e%3c/svg%3e")}
+.icon_edit2{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath vector-effect='non-scaling-stroke' d='M15.5 8.5H19C20.1046 8.5 20.5 9 20.5 10V18C20.5 19.1046 20.1046 19.5 19 19.5H3C2 19.5 1.5 19 1.5 18V10C1.5 9 2 8.5 3 8.5H6.5 M11 1.5C12 1.5 12.5 2 12.5 3V13L11 16L9.5 13V3C9.5 2 10 1.5 11 1.5Z' stroke='black' stroke-linecap='round'/%3e%3c/svg%3e")}
+.show{filter:var(--ft);content:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cpath fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round' d='M25.266,39.378A9.989,9.989,0,1,1,39.378,25.266m2.584,5.975C41.981,31.493,42,31.744,42,32A10,10,0,0,1,32,42c-0.256,0-.507-0.019-0.759-0.038M2,32S12,16,32,16a35.006,35.006,0,0,1,13.84,2.8m5.585,2.974A37.4,37.4,0,0,1,62,32M8.8,55.84l45.41-45.41'/%3e%3c/svg%3e");-webkit-appearance:none;-moz-appearance:none;appearance:none;}
+.show:checked {filter:var(--ft);content:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 64 64'%3e%3cg fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='round'%3e%3ccircle cx='32' cy='32' r='10'/%3e%3cpath d='M2,32S12,16,32,16,62,32,62,32'/%3e%3c/g%3e%3c/svg%3e");}
+.icon_del{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath vector-effect='non-scaling-stroke' d='M16.5 7V18.5C16.5 19.6046 15.5 20.5 14.5 20.5H6.5C5.5 20.5 4.5 19.5 4.5 18.5V7M3 4.5H18M13.5 4V3.5C13.5 2.39543 12.5 1.5 11.5 1.5H9.5C8.5 1.5 7.5 2.5 7.5 3.5V4M8.5 7V18.5M12.5 7V18.5' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e")}
+.icon_size{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M17.5 13V17.5H13 M15 15L7 7M4.5 9V4.5H9' stroke='black' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3e%3crect x='1.5' y='1.5' width='19' height='19' rx='1.5' stroke='black' vector-effect='non-scaling-stroke'/%3e%3c/svg%3e")}
+.icon_scale{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle vector-effect='non-scaling-stroke' cx='11' cy='11' r='9.5' stroke='black'/%3e%3c/svg%3e")}
+.icon_diag{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath vector-effect='non-scaling-stroke' d='M20.5 10.5V20.5H10.5 M2 2L6 6M8.5 4V8.5H4' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e")}
+.icon_selected{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath vector-effect='non-scaling-stroke' d='M16 1.5H18.5V4M1.5 4V1.5H4M4 18.5H1.5V16M18.5 8V12M21 18.5H16M8 1.5H12M12 18.5H8M1.5 12V8M18.5 16V21' stroke='black' stroke-linejoin='round'/%3e%3c/svg%3e")}
+.icon_replaces{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath vector-effect='non-scaling-stroke' d='M6 15.5L16 15.5M16 18.5L19 15.5L16 12.5 M16 6.5L6 6.5M6 9.5L3 6.5L6 3.5' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e")}
+.icon_them{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle vector-effect='non-scaling-stroke' cx='11' cy='11' r='9.5' stroke='black'/%3e%3cpath d='M18 11C18 14.5 14.866 18 11 18V4C14.5 4 18 7 18 11Z' fill='black'/%3e%3c/svg%3e")}
+.icon_crop{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath vector-effect='non-scaling-stroke' d='M16.5 20V16.5M2 5.5H5.5M8 5.5L16.5 5.57V14 M5.5 2L5.5 16.5H20' stroke='black' stroke-linecap='round'/%3e%3c/svg%3e")}
+.icon_cut{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M11.5 12.5L2.5 12.5 M13.5 2V15 M15.5 10C15.5 8.5 16.5 7.5 18 7.5C19.5 7.5 20.5 8.5 20.5 10C20.5 11.5 19.5 12.5 18 12.5H15.5V10Z M11 15.5C9.5 15.5 8.5 16.5 8.5 18C8.5 19.5 9.5 20.5 11 20.5C12.5 20.5 13.5 19.5 13.5 18V15.5H11Z' stroke='black' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3e%3c/svg%3e ")}
+.icon_cent{filter:var(--ft);background-image:url("data:image/svg+xml,%3csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg vector-effect='non-scaling-stroke' stroke='black' %3e%3cpath d='M20.5 16V20.5H16 M1.5 16V20.5H6 M20.5 6V1.5H16 M1.5 6V1.5H6' stroke-linecap='round' stroke-linejoin='round'/%3e%3crect x='7' y='7' width='8' height='8' rx='4'/%3e%3c/g%3e%3c/svg%3e")}
+.button_s{filter:var(--ft);height:22px;width:22px;background-size:22px 22px;background-repeat:no-repeat;background-position:center;cursor:pointer;}
+#asciiscreen{
+    position:relative;
+    box-shadow:0px 2px 24px var(--cs);
+    image-rendering:pixelated;
+}
+.add_lines{
+    position:absolute;
+    border-radius:16px;
+    background:var(--wn);
+    box-shadow:0px 2px 24px var(--cs);
+}
+#asciicanvas td{
+    text-align:center;
+    height:14px;
+    width:8px;
+    font-size: 12px;
+    border-style:solid;
+    border-width:1px;
+    border-color:var(--at);
+    background-color:var(--ac);
+    font-family:var(--font),monospace;
+}
+#asciicanvas td:hover{background-color:var(--cb);}
+#menu_panel{
+	top:0;
+	left:0;
+	background-color:var(--wn);
+	box-shadow:0px 2px 24px var(--cs);
+	border-radius:0 0 16px 0;
+	position:fixed;
+	height:40px;
+    overflow:hidden;
+}
+#tool_panel{
+	top:50%;
+	left:20px;
+    transform:translateY(-50%);
+	background-color:var(--wn);
+	box-shadow:0px 2px 24px var(--cs);
+	border-radius:16px;
+	position:fixed;
+	width:40px;
+}
+.button_menu{background-position:center;cursor:pointer;width:40px;height:40px;}
+.button_menu:hover{background-color:var(--bh);}
+#tool_zone{
+    position:fixed;
+    left:76px;top:50vh;
+    z-index:10020;
+    transform:translateY(-50%);
+    justify-content:center;align-items:center;
+}
+#window_zone{
+    height:100vh;width:100%;
+    position:fixed;
+    left:0;top:0;
+    background-color:var(--cm);
+    transition-duration:0.5s;z-index:10020;
+    justify-content:center;align-items:center;
+}
+.window_close{position:absolute;right:0px;top:0px;height:40px;width:40px;cursor:pointer;}
+.window_title{position:absolute;right:50%;top:0px;height:40px;transform:translateX(50%);display:grid;justify-content:center;align-items:center;}
+.window{
+    position:relative;
+	background-color: var(--wn) !important;
+	border-radius:16px;
+	box-shadow:0px 2px 24px var(--cs);
+    padding:2px 8px 24px 8px;
+}
+#toast{
+	position:fixed;
+	opacity:0;
+	bottom:-10%;
+	transform:translateX(-50%);
+	padding:0px 32px;
+	height:40px;
+	min-width:128px;
+	box-shadow:0px 2px 24px var(--cs);
+	z-index:20000;
+    background-color:var(--wn);
+    display:grid;justify-content:center;align-items:center;
+}
+.toast_anim{left:50%;border-radius:32px;animation:viwe 0.25s,stop 2s 0.25s,close 0.5s 2s linear;}
+@keyframes viwe{from{opacity:0;bottom:64px}to{opacity:1;bottom:64px}}
+@keyframes stop{from{opacity:1;bottom:64px}to{opacity:1;bottom:64px}}
+@keyframes close{from{opacity:1;bottom:64px}to{opacity:0;bottom:-32px}}
+.symbol{
+    height:32px;
+    width:32px;
+    display:grid;justify-content:center;align-items:center;
+    float:left;
+    font-family:var(--font),monospace;
+}
+.symbol:hover{background-color:var(--cw);}
+.edittext{
+    font-family:monospace;
+    height:calc(100% - 40px);width:100%;
+    resize:none;white-space: pre;
+    padding:8px;box-sizing:border-box;
+    border-top:1px solid var(--cb);
+    border-bottom:1px solid var(--cb);
+    background-color:var(--wn);
+	-webkit-touch-callout:text;
+	-webkit-user-select:text;
+	-khtml-user-select:text;
+	-moz-user-select:text;
+	-ms-user-select:text;
+	user-select:text;
+}
+.button{
+    background-size:20px 20px;
+    background-repeat:no-repeat;
+    width:128px;height:36px;
+    border-radius:20px;cursor:pointer;
+    background-color:var(--cw);display:grid;justify-content:center;align-items:center;
+    background-position:left 9px center;
+}
+.button:hover{background-color:var(--cb);}
+.symbol_select{
+    cursor:pointer;
+    position:relative;
+    height:32px;
+    width:32px;
+    float:left;
+}
+.symbol_select input{
+    position:absolute;
+    display:none;
+    cursor:pointer;
+}
+.symbol_select span{
+    position: absolute;
+    display:grid;justify-content:center;align-items:center;
+    top:0;left:0;
+    height:100%;width:100%;
+}
+.symbol_select:hover input ~ span{background-color: var(--cw);}
+.symbol_select input:checked ~ span{background-color: var(--cb);}
+.input_text{
+	border:0;
+	font-family:Arial;
+	font-size:12px;
+	-webkit-appearance:none;
+	border-bottom:1px solid var(--cb);
+	background-color:transparent;
+	cursor:text;
+	height:28px;
+	width:100%;
+	-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
+}
+#scene_controll{
+	position:fixed;
+	height:40px;
+	z-index:10000;
+	bottom:32px;
+	right:288px;
+    border-radius:20px;
+    background-color:var(--wn);
+    box-shadow:0px 2px 24px var(--cs);
+    cursor:pointer;
+}
+.align{
+    -webkit-appearance:none;-moz-appearance:none;appearance:none;
+    height:32px;width:32px;
+    border-radius:4px;cursor:pointer;
+}
+.align:checked{background-color:var(--cb);}
+#context_menu{
+    background-color:var(--wn);
+    box-shadow:0px 2px 24px var(--cs);
+    border-radius:8px;
+}
+#context_menu td{
+    height:38px;padding-left:38px;
+    cursor:pointer;
+    position:relative;
+}
+#context_menu td div{
+    height:38px;
+	width:38px;
+    position: absolute;
+    top:0;left:0;
+    display:inline-block;
+    background-repeat:no-repeat;background-position:center;
+}
+#context_menu td:hover{background-color:var(--cw);}
+input[type=range]{appearance:none;height:8px;background:var(--cw);outline:none;border-radius:8px;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cb);cursor:pointer;border:3px solid var(--wn);}
+input[type=range]::-moz-range-thumb{-moz-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--cb);cursor:pointer;border:3px solid var(--wn);}
+input[type=range]::-moz-range-progress{-moz-appearance:none;height:8px;background: var(--cb);outline:none;border-radius:8px;}
+.proportion{filter:var(--ft);content:url("data:image/svg+xml,%3csvg width='32' height='64' viewBox='0 0 32 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg stroke='black' stroke-linecap='round'%3e%3ccircle cx='3.5' cy='53.5' r='2'/%3e%3ccircle cx='3.5' cy='10.5' r='2'/%3e%3crect x='13.5' y='23.5' width='4' height='7' rx='1.5'/%3e%3crect x='13.5' y='33.5' width='4' height='7' rx='1.5'/%3e%3cpath d='M15.5 28.5V35.5'/%3e %3c/g%3e%3c/svg%3e");height:64px;width:32px;background:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;}
+.proportion:checked{filter:var(--ft);content:url("data:image/svg+xml,%3csvg width='32' height='64' viewBox='0 0 32 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg stroke='black' stroke-linecap='round'%3e%3ccircle cx='3.5' cy='53.5' r='2'/%3e%3ccircle cx='3.5' cy='10.5' r='2'/%3e%3crect x='13.5' y='23.5' width='4' height='7' rx='1.5'/%3e%3crect x='13.5' y='33.5' width='4' height='7' rx='1.5'/%3e%3cpath d='M15.5 28.5V35.5 M5.5 10.5H13.5C14.5 10.5 15.5 11.5 15.5 12.5V19.5M5.5 53.5H13.5C14.5 53.5 15.5 52.5 15.5 51.5V44.5' /%3e%3c/g%3e%3c/svg%3e");}
+#boosty, #patreon{fill:var(--tx);}
+</style>
 </head>
+<body onload="new_canvas(60,30);" style="overflow:hidden;">
+<canvas id="preview" style="display:none;"></canvas>
+<a id="get_file" style="display:none;position:fixed;"></a>
+<input id="file" type="file" style="display:none;position:fixed;"/>
+<textarea id="copytext" style="position:fixed;height:1px;width:1px;left:-10px;top:-10px;"></textarea>
+<table style="height:100vh;width:100vw;">
+<tbody>
+<tr><td rowspan="3">
+<div id="viewport" style="height:100vh;width:calc(100vw - 256px);box-sizing:border-box;overflow:auto;background-color:var(--cw);">
+    <div id="asciiview" style="transform-origin:left top;display:grid;justify-content:center;align-items:center;min-width:100vw;min-height:100vh;">
+    <div id="asciiscreen">
+        <table class="add_lines" style="left:-80px;top:50%;transform:translateY(-50%);width:64px;height:32px;"><tbody>
+            <tr><td onclick="add_cells(1,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td>
+                <td onclick="del_cells(1,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td></tr>
+        </tbody></table>
+        <table class="add_lines" style="left:50%;top:-80px;transform:translateX(-50%);width:32px;height:64px;"><tbody>
+            <tr><td onclick="add_cells(2,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td></tr>
+            <tr><td onclick="del_cells(2,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td></tr>
+        </tbody></table>
+        <table class="add_lines" style="right:-80px;bottom:50%;transform:translateY(50%);width:64px;height:32px;"><tbody>
+            <tr><td onclick="del_cells(3,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td>
+                <td onclick="add_cells(3,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td></tr>
+        </tbody></table>
+        <table class="add_lines" style="right:50%;bottom:-80px;transform:translateX(50%);width:32px;height:64px;"><tbody>
+            <tr><td onclick="del_cells(4,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td></tr>
+            <tr><td onclick="add_cells(4,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td></tr>
+        </tbody></table>
+        <table id="asciicanvas">
+        <tbody>
+        </tbody>
+        </table>
+        <table id='context_menu' style='position:absolute;left:0;top:0;visibility:hidden;width:92px;'>
+            <tbody>
+            <tr><td onmousedown="save_art(false);delete_data()" style="border-radius:8px 8px 0 0;"><div class="icon_cut"></div>Cut</td></tr>
+            <tr><td onmousedown="save_art(false)"><div class="icon_copy"></div>Copy</td></tr>
+            <tr><td onmousedown="paste_data(targetcell[0],targetcell[1],true)"><div class="icon_paste"></div>Paste</td></tr>
+            <tr><td onmousedown="delete_data()"><div class="icon_clear"></div>Delete</td></tr>
+            <tr><td onmousedown="modal_window(true,'text_edit');save_art(false)"><div class="icon_edit2"></div>Text</td></tr>
+            <tr><td onmousedown="crop_cells()"><div class="icon_crop"></div>Crop</td></tr>
+            <tr><td onmousedown="selected=[0,0,0,0];select_arr();" style="border-radius:0 0 8px 8px;"><div class="icon_close"></div>Deselect</td></tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+</td><td style="height:40px;background-color:var(--wn);"> </td></tr>
+<tr><td style="height:calc(100vh - 80px);">
+    <div id="right_menu" style="height:calc(100vh - 80px);width:256px;overflow-y:scroll;background-color:var(--wn);text-align:center;">
+        <select id="fonts" class="input_text" style="width:calc(100% - 28px);margin-bottom:16px;" oninput='root_style.style.setProperty("--font",this.value);'>
+            <option value="Arial">Arial</option>
+            <option value="Lucida Console" selected>Lucida Console</option>
+            <option value="Courier New" selected>Courier New</option>
+        </select>
+        <div id="symbols_view" style="display:inline-block;"></div>
+        <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="modal_window(true,'palette_edit');edit_p=false;getallChar()">Edit symbol palette</div>
+        <div id="img_preview" style="display:none;width:100%;text-align:center;border-top:1px solid var(--cb);"><br>
+            <img id="img_icon" style="background-color:var(--cw);width:90%;height:auto;border-radius:8px;text-align:center;cursor:pointer;image-rendering:pixelated;" onclick="file.click();"><br>
+            <div style="text-align:left;width:calc(100% - 28px);margin:14px 0 0 14px;">Palette</div>
+            <div style="margin:0 14px 14px 14px;display:grid;grid-template-columns: auto 32px;width:calc(100% - 28px);">
+                <input type="text" id="art_palette" style="width:100%;font-family:var(--font),monospace;" class="input_text palette_simbols" onchange="localStorage.setItem('art_palette',this.value);">
+                <div class="button_s icon_edit2" style="background-position:right;width:32px;" onclick="modal_window(true,'palette_edit');edit_p=true;getallChar()"></div>
+            </div>
+            <div style="text-align:left;width:calc(100% - 28px);margin-left:14px;">Brightness</div>
+            <input type="range" id="brightness" oninput="img_icon.style.filter='contrast('+contrast.value+'%) brightness('+this.value+'%)'" name="vol" min="0" max="500" value="100" step='1' style="margin:14px;width:calc(100% - 28px);">
+            <div style="text-align:left;width:calc(100% - 28px);margin-left:14px;">Contrast</div>
+            <input type="range" id="contrast" oninput="img_icon.style.filter='contrast('+this.value+'%) brightness('+brightness.value+'%)'" name="vol" min="0" max="500" value="100" step='1' style="margin:14px;width:calc(100% - 28px);">
+            <table style="margin:14px;width:calc(100% - 28px);">
+            <tbody>
+                <tr>
+                    <td style="width:33%;" align="center"><input id="img_show" title="Show / Hide image" class="button_s show" checked onchange="frame.style.backgroundSize=(this.checked)?'100% 100%':'0% 0%'" type="checkbox"></td>
+                    <td align="center"><div title="original image size" class="button_s icon_size" onclick="original_size();"></div></td>
+                    <td style="width:33%;" align="center"><div title="Delete image" class="button_s icon_del" onclick="delete_img();"></div></td>
+                </tr>
+            </tbody>
+            </table>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="img_to_ascii(0);">image to ASCII</div>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="img_to_ascii(1);">image to Braille</div>
+        </div>
+        <div style="width:100%;text-align:center; border-top:1px solid var(--cb);">
+            <table style="margin:14px;width:calc(100% - 28px);">
+            <tbody>
+                <tr><td align="center" colspan='2'>
+                    <form id="align">
+                    <table style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td align="right"><input type="radio" name="align" class="icon icon_diag align button_menu" style="transform:scaleX(-1) scaleY(-1);"></td>
+                                <td align="left"> <input type="radio" name="align" class="icon icon_diag align button_menu" style="transform:scaleY(-1);"></td>
+                            </tr><tr>
+                                <td align="right"><input type="radio" name="align" class="icon icon_diag align button_menu" style="transform:scaleX(-1);"></td>
+                                <td align="left"> <input type="radio" name="align" class="icon icon_diag align button_menu" checked></td>
+                            </tr>
+                       </tbody>
+                    </table>
+                    </form>
+                </td></tr>
+                <tr>
+                    <td style="padding-right:10px;width:33%;" align="right">Width</td>
+                    <td style="" align="center"><input type="text" id="canvasWidth" onchange="this.value=correct_value(this.value);if(canvasProportion.checked){canvasHeight.value=Math.round(tr.length*(this.value/td.length))}" class="input_text palette_simbols"></td>
+                    <td rowspan="2"><input id="canvasProportion" class="proportion" type="checkbox" checked></td>
+                </tr>
+                <tr>
+                    <td style="padding-right:10px;" align="right">Height</td>
+                    <td style="" align="center"><input type="text" id="canvasHeight" onchange="this.value=correct_value(this.value);if(canvasProportion.checked){canvasWidth.value=Math.round(td.length*(this.value/tr.length))}" class="input_text palette_simbols"></td>
+                </tr>
+            </tbody>
+            </table>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="resize_canvas();">Resize canvas</div>
+        </div>
+        <div style="width:100%;text-align:center;border-top:1px solid var(--cb);">
+            <table style="margin:14px;width:calc(100% - 28px);">
+            <tbody>
+                <tr>
+                    <td style="padding-right:10px;" align="right">Replace</td>
+                    <td style="padding-right:10px;"><input type="text" id="replaces_what" style="text-align:center;" oninput="this.value=this.value.charAt(0)" class="input_text palette_simbols"></td>
+                    <td align="center" class="icon_replaces icon align button_menu" style="cursor:pointer;" onclick="var a=[replaces_what.value,replaces_than.value];replaces_what.value=a[1];replaces_than.value=a[0]"></td>
+                    <td style="padding-left:10px;"><input type="text" id="replaces_than" style="text-align:center;" oninput="this.value=this.value.charAt(0)" class="input_text palette_simbols"></td>
+                </tr>
+            </tbody>
+            </table>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="replaces(replaces_what.value,replaces_than.value)">Replace symbols</div>
+        </div>
+        <div style="width:100%;text-align:center;border-top:1px solid var(--cb);">
+            <table style="margin:14px;width:calc(100% - 28px);">
+            <tbody>
+                <tr>
+                    <td style="padding-right:10px;width:33%;" align="right">Width</td>
+                    <td style="" align="center"><input type="text" id="imgWidth" onchange="this.value=correct_value(this.value);if(imgProportion.checked){imgHeight.value=Math.round((tr.length*14)*(this.value/(td.length*8)))}" class="input_text palette_simbols"></td>
+                    <td rowspan="2"><input id="imgProportion" class="proportion" type="checkbox" checked></td>
+                </tr>
+                <tr>
+                    <td style="padding-right:10px;" align="right">Height</td>
+                    <td style="" align="center"><input type="text" id="imgHeight" onchange="this.value=correct_value(this.value);if(imgProportion.checked){imgWidth.value=Math.round((td.length*8)*(this.value/(tr.length*14)))}" class="input_text palette_simbols"></td>
+                </tr>
+            </tbody>
+            </table>
+            <div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="save_png()">Save image png</div>
+        </div>
+    </div>
+</td></tr><tr><td style="height:40px;border-top:1px solid var(--cb);background-color:var(--wn);" align="center">
+<table style="width:256px;">
+    <tbody>
+        <tr>
+        <td align="right" style="padding-right:4px;width:32px;">Cells</td>
+        <td id="cells" align="left" style="width:40px;"></td>
+        <td align="right" style="padding-right:4px;width:16px;">X</td>
+        <td id="cur_x" align="left" style="width:24px;"></td>
+        <td align="right" style="padding-right:4px;width:16px;">Y</td>
+        <td id="cur_y" align="left" style="width:24px;"></td>
+        <td align="right" style="padding-right:4px;width:32px;">Size</td>
+        <td id="arr_size" align="left" style="width:72px;"></td>
+        </tr>
+    </tbody>
+</table>
+</td></tr>
+</tbody></table>
+<table id="menu_panel">
+    <tbody>
+        <tr>
+            <td title='New txt file' onclick='new_canvas(60,30);' class='icon button_menu icon_new'></td>
+            <td title='Load txt file (Alt+O)' onclick='file.click();' class='icon button_menu icon_load'></td>
+            <td title='Save txt file (Alt+S)' onclick='save_art(true);' class='icon button_menu icon_save'></td>
+            <td title='Undo (Alt+Z)' onclick='state_back(1);' class='icon button_menu icon_undo'></td>
+            <td title='Redo (Alt+Shift+Z)' onclick='state_back(-1);' class='icon button_menu icon_undo' style='transform:scaleX(-1);'></td>
+            <td title='About ASCII Art paint' onclick="modal_window(true,'about');" class='icon button_menu icon_about'></td>
+            <td title='Text input' onclick="modal_window(true,'text_edit');save_art(false)" class='icon button_menu icon_edit2'></td>
+            <td title='Copy text (Alt+C)' onclick="save_art(false);toast('Copied to clipboard');" class='icon button_menu icon_copy'></td>
+            <td title='light dark theme' onclick="if(!localStorage.getItem('them')){localStorage.setItem('them','1');set_ui(1);}else{localStorage.removeItem('them');set_ui(0);}" class='icon button_menu icon_them' style='border-radius:0 0 16px 0;'></td>
+        </tr>
+    </tbody>
+</table>
+<table id="tool_panel">
+    <tbody>
+        <tr><td title='Scroll (Alt+H)' onclick='select_tool(0);' class='tools icon button_menu icon_cursor' style="border-radius:16px 16px 0 0;"></td></tr>
+        <tr><td title='Pencil (Alt+B)' onclick="select_tool(1);" class='tools icon button_menu icon_edit' style="background-color:var(--cb);"></td></tr>
+        <tr><td title='Eraser (Alt+E)' onclick="select_tool(2);" class='tools icon button_menu icon_clear'></td></tr>
+        <tr><td title='Fill (Alt+G)' onclick="select_tool(3);" class='tools icon button_menu icon_fill'></td></tr>
+        <tr><td title='Pipette (Alt+I)' onclick="select_tool(4);" class='tools icon button_menu icon_pipette'></td></tr>
+        <tr><td title='Selected (Alt+M)' onclick="select_tool(5);" class='tools icon button_menu icon_selected'></td></tr>
+        <tr><td id="active_brush" align='center' valign='center' class="tools icon" style="font-size:18px;border-radius:0 0 16px 16px; width:40px;height:40px;border-top:1px solid var(--cb);"></td></tr>
+    </tbody>
+</table>
+<div id="scene_controll">
+    <table height="100%">
+    <tbody>
+        <tr>
+            <td width="42px" class="icon button_menu icon_equal" onclick="canvas_scale(2)" style="border-radius:20px 0 0 20px;"></td>
+            <td width="42px" class="icon button_menu icon_scale" onclick="canvas_scale(false)"></td>
+            <td width="42px" class="icon button_menu icon_minus" onclick="canvas_scale(1)" style="border-radius:0 20px 20px 0;"></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<div id='window_zone' style="display:none"></div>
+<div id='tool_zone' style="display:none"></div>
+<div id="toast"></div>
+<div id='about' style="display:none"><div class='window' style='padding:24px 16px;width:412px;'>
+    <div><div class='window_close icon icon_close' onclick='modal_window(false)'></div></div>
+    <div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><p style=''>Release: 12</p><br><br>
+        <table style='border-spacing:10px;border-collapse:separate; width: 100%;'>
+            <tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr>
+            <tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://github.com/Kirilllive/ASCII_Art_Paint' target='_blank'>https://github.com/Kirilllive/ASCII_Art_Paint</a></td></tr>
+        </table><br><br><p>Thanks for the help from users</p><hr><br>
+        <table width='100%' align='center'><tbody><tr>
+            <td width='25%' align='center'><a href="https://twitter.com/Suki_Novels" target="_blank">Suki Novels</a></td>
+            <td width='25%' align='center'>Argosa</td>
+            <td width='25%' align='center'><a href='https://twitter.com/onigi123' target='_blank'>Onigi</a></td>
+            <td width='25%' align='center'>Arne Krause</td>
+        </tr></tbody></table><br><br>
+<!--        <p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg width="180" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path id="patreon" d="M53.9 10.1C53.9 9 54.6 8.3 55.8 8.3H61.5C66.7 8.3 70.2 11.2 70.2 15.4C70.2 19.5 66.7 22.5 61.5 22.5H60.7C58.8 22.5 57.7 23.5 57.7 25.2V29.9C57.7 31.2 57 32 55.8 32.0C54.6 32 53.9 31.2 53.9 29.9V10.1ZM57.7 16.0C57.7 18.1 58.8 19.1 60.8 19.1H61.3C64.1 19.1 66.2 17.9 66.2 15.4C66.2 12.8 64.2 11.7 61.3 11.7H60.8C58.8 11.7 57.7 12.7 57.7 14.7V16.0H57.7ZM70.2 30.2C70.2 31.3 71 32 72.2 32.0C72.9 32 73.6 31.5 74 30.5L74.7 28.6C75.3 27.1 76.3 26.4 77.4 26.4H83.7C84.7 26.4 85.7 27.1 86.3 28.6L87 30.5C87.4 31.5 88.1 32 88.9 32.0C90 32 90.8 31.3 90.8 30.2C90.8 29.9 90.7 29.5 90.6 29.2L83.1 9.6C82.6 8.4 81.6 7.8 80.5 7.8C79.5 7.8 78.4 8.4 78 9.6L70.5 29.2C70.3 29.5 70.2 29.9 70.2 30.2ZM77.6 21.3C77.6 21 77.7 20.6 77.8 20.1L79.2 16.2C79.5 15.4 80 15.1 80.5 15.1C81 15.1 81.5 15.4 81.8 16.2L83.2 20.1C83.4 20.6 83.5 21 83.5 21.3C83.5 22.3 82.9 23 81.4 23.0H79.6C78.1 23 77.6 22.3 77.6 21.3ZM89.5 10.1C89.5 9.1 90.3 8.4 91.5 8.4H106.8C108 8.4 108.8 9.1 108.8 10.1C108.8 11.2 108 11.9 106.8 11.9H104.2C102.2 11.9 101.1 12.9 101.1 15.3V29.8C101.1 31.2 100.3 32 99.1 32.0C98 32 97.2 31.2 97.2 29.8V15.3C97.2 12.9 96.1 11.9 94.1 11.9H91.5C90.3 11.9 89.5 11.2 89.5 10.1ZM112.3 29.9C112.3 31.2 113.1 32 114.3 32.0C115.4 32 116.2 31.2 116.2 29.9V24.6C116.2 23.1 117 22.5 118.1 22.5H118.4C119.1 22.5 119.8 22.9 120.2 23.5L125.2 30.9C125.7 31.6 126.3 32 127 32.0C128 32 128.8 31.2 128.8 30.2C128.8 29.8 128.7 29.4 128.4 28.9L125 24.2C124.6 23.7 124.5 23.2 124.5 22.8C124.5 22 125.2 21.4 126.1 20.8C127.6 19.6 129.3 18.1 129.3 15.2C129.3 11.1 126.1 8.3 120.9 8.3H114.2C113 8.3 112.3 9 112.3 10.1V29.9H112.3ZM116.2 15.7V14.7C116.2 12.5 117.3 11.7 119 11.7H120.7C123.5 11.7 125.3 12.7 125.3 15.2C125.3 17.6 123.4 18.7 120.6 18.7H119.0C117.3 18.7 116.2 17.8 116.2 15.7ZM134.2 29.8V10.1C134.2 9 135 8.3 136.2 8.3H148.7C149.9 8.3 150.6 9 150.6 10.1C150.6 11.1 149.9 11.8 148.7 11.8H140.8C139.2 11.8 138.1 12.7 138.1 14.5V15.2C138.1 16.9 139.2 17.9 140.8 17.9H146.9C148.1 17.9 148.8 18.6 148.8 19.6C148.8 20.6 148.1 21.3 146.9 21.3H141.0C139.5 21.3 138.1 22.3 138.1 24.2V25.2C138.1 27.1 139.5 28.1 141 28.1H148.7C149.9 28.1 150.6 28.8 150.6 29.8C150.6 30.8 149.9 31.5 148.7 31.5H136.2C135 31.5 134.2 30.8 134.2 29.8ZM152.9 19.9C152.9 12.8 158.3 7.8 164.6 7.8C170.9 7.8 176.2 12.8 176.2 19.9C176.2 27.1 170.9 32 164.6 32.0C158.3 32 152.9 27.1 152.9 19.9ZM157.3 19.9C157.3 25 160.3 28.2 164.6 28.2C168.9 28.2 171.9 25 171.9 19.9C171.9 14.9 168.9 11.7 164.6 11.7C160.3 11.7 157.3 14.9 157.3 19.9ZM180.8 29.9C180.8 31.2 181.6 32 182.8 32.0C183.9 32 184.7 31.2 184.7 29.9V19.7C184.7 18.5 185.4 17.9 186.2 17.9C186.8 17.9 187.3 18.2 187.6 18.8L194 29.5C194.9 30.9 195.6 32 197.3 32.0C198.8 32 200 30.9 200 29.1V10.0C200 8.7 199.2 7.8 198 7.8C196.9 7.8 196.1 8.7 196.1 10.0V20.1C196.1 21.3 195.4 21.9 194.6 21.9C194 21.9 193.5 21.6 193.2 21.0L186.8 10.4C185.9 8.9 185.1 7.8 183.5 7.8C182 7.8 180.8 9 180.8 10.8V29.9Z M36.5 12.0C36.5 6.9 32.5 2.7 27.9 1.2C22.1 -0.6 14.4 -0.3 8.9 2.2C2.1 5.3 0 12.3 0 19.2C-0 24.9 0.5 39.8 8.9 39.9C15.2 40 16.1 31.9 19 28.0C21.1 25.3 23.8 24.5 27.1 23.7C32.7 22.3 36.5 17.9 36.5 12Z"/></svg></a></p><br>-->
+<!--        <p><a href='https://boosty.to/kirilllive' target='_blank'><svg width='145' height='40' viewBox='0 0 145 40' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><path  id="boosty" d='M138.1,13.1 L132.0,22.6 L131.3,13.1 L122.5,13.1 C123.3,10.3 124.0,8.1 124.0,8.1 L124.3,7 L117.6,7 L117.3,8.1 L115.8,13.1 L108.6,13.1 C102.7,13.1 99.4,14.8 98.0,18 C97.2,15 94.6,13.1 90.5,13.1 C87.2,13.1 84.1,14.3 81.6,16.5 C80.4,14.4 78.1,13.1 74.8,13.1 C71.2,13.1 67.9,14.5 65.4,16.9 C64.3,14.6 61.8,13.1 58.3,13.1 C57.1,13.1 55.9,13.3 54.8,13.6 L55.3,11.7 C55.4,11.7 55.4,11.7 55.4,11.6 L56.7,7 L50.0,7 L45.7,21.7 C45.6,22 45.5,22.3 45.4,22.6 C45.2,23.2 45.1,23.9 45.0,24.6 C44.5,28.7 46.3,31.8 51.3,32 C51.8,32 52.3,32.1 52.8,32.1 C56.2,32 59.6,30.7 62.1,28.3 C63.1,30.6 65.5,32.1 69.2,32.1 C72.5,32 75.6,30.8 78.1,28.7 C79.2,30.8 81.5,32.1 85.0,32.1 L101.9,32.1 C107.1,32.1 110.0,31 111.6,28.8 C111.6,30.9 112.8,32.1 115.9,32.1 C118.4,32.1 121.7,31.5 126.3,30.4 L119.6,39.9 L126.4,39.9 L144.8,13.1 L138.1,13.1 Z M58.9,22.6 C58.3,24.7 56.2,26.5 54.4,26.5 C52.5,26.5 51.5,24.7 52.1,22.6 C52.8,20.4 54.8,18.7 56.6,18.7 C58.5,18.7 59.5,20.4 58.9,22.6 Z M75.4,22.6 C74.7,24.7 72.7,26.5 70.9,26.5 C69.0,26.5 68.0,24.7 68.6,22.6 C69.3,20.4 71.3,18.7 73.2,18.7 C75.0,18.7 76.0,20.4 75.4,22.6 Z M84.4,22.6 C85.0,20.4 87.1,18.7 88.9,18.7 C90.7,18.7 91.8,20.4 91.1,22.6 C90.5,24.7 88.5,26.4 86.7,26.5 L86.6,26.5 C84.8,26.4 83.8,24.7 84.4,22.6 Z M106.1,25.8 C105.7,26.6 103.1,26.5 102.4,26.5 L95.9,26.5 C96.8,25.3 97.4,24 97.8,22.6 C97.9,22.4 97.9,22.3 98.0,22.2 C98.7,23.2 100.2,24.1 103.1,24.6 C105.8,25.2 106.3,25 106.1,25.8 Z M112.7,23.7 C112.2,21.4 109.7,20.6 106.2,20.2 C104.7,20 103.9,19.9 104.1,19.3 C104.2,18.8 105.0,18.7 106.5,18.7 L114.2,18.7 L112.7,23.7 Z M119.4,23.7 C119.4,23.7 120.1,21.4 120.9,18.7 L125.2,18.7 L125.9,25.8 C118.8,27.3 118.7,26.9 119.4,23.7 L119.4,23.7 Z' fill-rule='nonzero'/><path d='M1.0,23.8 L7.8,0 L18.2,0 L16.1,7.4 C16.0,7.4 16.0,7.4 16.0,7.5 L10.5,27.1 L15.6,27.1 C13.5,32.5 11.8,36.8 10.6,40 C1.1,39.8 -1.5,32.9 0.7,24.7 L1.0,23.8 Z M10.6,40 L23.2,21.6 L17.8,21.6 L22.5,9.8 C30.4,10.6 34.1,17 31.9,24.7 C29.6,33 20.1,40 10.8,40 L10.6,40 Z' style='fill:var(--tx);'/></svg>-->
+    </div>
+</div></div>
+<div id='text_edit' style="display:none">
+    <div class='window' align='center' style='padding-top:40px;height:calc(100vh - 128px);width:calc(100vw - 128px);'>
+        <div class="window_title">Text input</div>
+        <div class='window_close icon icon_close' onclick='modal_window(false)'></div>
+        <textarea class="edittext"></textarea>
+        <div class="button" style="margin:14px;" onclick="text_apply();">Apply</div>
+    </div>
+</div>
+<div id='palette_edit' style="display:none">
+    <div class='window' align='center' style='padding: 40px 8px 16px 8px;width:calc(100vw - 128px);'>
+        <div class='window_close icon icon_close' onclick='modal_window(false)'></div>
+        <div class="window_title">Edit symbol palette</div>
+        <table style="width:100%;"><tbody><tr>
+        <td><input type="text" class="input_text palette_simbols" style="font-family:var(--font),monospace;"></td>
+        <td style="width:128px;" rowspan="3" valign="top">
+        <table style="border-collapse: collapse; width: 100%; margin-top:40px;"><tbody><tr>
+        <td align="left">Font</td><td align="center"><select id="fonts_palette" class="input_text" oninput='root_style.style.setProperty("--font",this.value);'></select></td></tr>
+        <td align="left">Size</td><td align="center"><input style="margin:16px 0;border-bottom:none;" onchange="var symbol_ele=document.getElementsByClassName('char');for (var e=0;e<symbol_ele.length;e++){symbol_ele[e].style.fontSize=this.value+'px';}" class="input_text" type="range" value="12" min="12" max="22" step="1"></td></tr>
+        <td colspan="2" style="padding:14px 0 4px 0;" align="left">Character range</td></tr>
+        <tr><td style="padding:0 12px 0 0;" align="right">from</td>
+        <td><input type="text" class="input_text range"></td></tr>
+        <tr><td align="right" style="padding-right:10px;">to</td>
+        <td><input type="text" class="input_text range"></td></tr>
+        <tr><td colspan="2"><div class="button" style="margin:14px;" onclick="if(edit_p){art_palette.value=window_zone.getElementsByClassName('palette_simbols')[0].value}else{palette=window_zone.getElementsByClassName('palette_simbols')[0].value}range_font=[parseInt(window_zone.getElementsByClassName('range')[0].value),parseInt(window_zone.getElementsByClassName('range')[1].value)];getallChar();">Update</div></td>
+        </tr></tbody></table></td></tr>
+        <tr><td><div class="all_simbols" style="display:none;height:calc(100vh - 256px);width:100%;overflow:auto;border-bottom:1px solid var(--cb);"></div></td></tr></tbody></table>
+        <div id="palette_apply" class="button" style="margin-top:16px;" onclick="applyChar();modal_window(false);">Apply</div>
+    </div>
+</div>
+<div id="cursor_text" style="position:fixed;background-color:var(--ac);padding:4px 6px;border-radius:6px;display:none;"></div>
+<div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
+<script>
+var range_font=[33,11969],edit_p=false,palette="██▓▒░☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼`⌂ÇæÆ¢£¥₧ƒªº¿⌐¬½¼¡«»│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙⋅√ⁿ²■";
+var se,x1,x2,y1,y2;
+var db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById('asciicanvas'),canvas=frame.getElementsByTagName('tbody')[0],mouseclick=false,files=document.getElementById('file'),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0],targetcell=[0,0],copydb="",root_style=document.querySelector(':root');
+var contextmenushow=false,doc;
+if(asciicanvas.addEventListener){asciicanvas.addEventListener('contextmenu',function(e){menu_right(e);e.preventDefault();},false);}
+else{asciicanvas.attachEvent('oncontextmenu',function(){window.event.returnValue=false;});}
+function menu_right(e){
+    contextmenushow=true;
+    doc=asciiscreen.getBoundingClientRect();
+    context_menu.style.visibility='visible';
+    context_menu.style.left=(e.clientX+asciiscreen.scrollLeft-doc.left)/scale+"px";
+    context_menu.style.top=(e.clientY+asciiscreen.scrollTop-doc.top)/scale+"px";
+}
+window.addEventListener('mousemove',function(e){if(tool==5){cursor_text.style.left=(e.clientX+16)+"px";cursor_text.style.top=(e.clientY+16)+"px";}})
+window.addEventListener('mousedown',function(e){if(e.button==0){if(tool==0||tool==3||tool==5){mouseclick=true;};if(contextmenushow){contextmenushow=false;context_menu.style.visibility='hidden';mouseclick=false;}} })
+window.addEventListener('mouseup',function(){mouseclick=false;cursor_text.style.display="none"})
+window.addEventListener('keypress',function(e){ if(!e.altKey){let n=String.fromCharCode(e.charCode);brush=n;active_brush.innerHTML=brush;}})
+asciicanvas.addEventListener('mouseup',function(){if(tool!=2&&tool!=5){state_save()};})
+var vNode={
+	"elem":document.getElementById('asciiview'),
+	"sx":0,
+	"sy":0,
+	"mx":0,
+	"my":0,
+	"scale":1,
+	"py":0,
+	"px":0
+};
 
-<body onload="new_canvas(60,30);">
-    <canvas id="preview" style="display:none;"></canvas><a id="get_file" style="display:none;position:fixed;"></a><input id="file" type="file" style="display:none;position:fixed;" /><textarea id="copytext" style="position:fixed;height:1px;width:1px;left:-10px;top:-10px;"></textarea><table style="height:100vh;width:100vw;"><tbody><tr><td rowspan="3"><div id="viewport" style="height:100vh;width:calc(100vw - 256px);box-sizing:border-box;overflow:hidden;background-color:var(--cw);"><div id="asciiview" style="transform-origin:left top;display:grid;justify-content:center;align-items:center;min-width:100vw;min-height:100vh;"><div id="asciiscreen"><table class="add_lines" style="left:-80px;top:50%;transform:translateY(-50%);width:64px;height:32px;"><tbody><tr><td onclick="add_cells(1,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td><td onclick="del_cells(1,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td></tr></tbody></table><table class="add_lines" style="left:50%;top:-80px;transform:translateX(-50%);width:32px;height:64px;"><tbody><tr><td onclick="add_cells(2,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td></tr><tr><td onclick="del_cells(2,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td></tr></tbody></table><table class="add_lines" style="right:-80px;bottom:50%;transform:translateY(50%);width:64px;height:32px;"><tbody><tr><td onclick="del_cells(3,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td><td onclick="add_cells(3,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td></tr></tbody></table><table class="add_lines" style="right:50%;bottom:-80px;transform:translateX(50%);width:32px;height:64px;"><tbody><tr><td onclick="del_cells(4,1)" class="button_menu icon_minus icon" style="height:32px;border-radius:16px;"></td></tr><tr><td onclick="add_cells(4,1)" class="button_menu icon_equal icon" style="height:32px;border-radius:16px;"></td></tr></tbody></table><table id="asciicanvas"><tbody></tbody></table><table id='context_menu' style='position:absolute;left:0;top:0;visibility:hidden;width:92px;'><tbody><tr><td onmousedown="save_art(false);delete_data()" style="border-radius:8px 8px 0 0;"><div class="icon_cut"></div>Cut </td></tr><tr><td onmousedown="save_art(false)"><div class="icon_copy"></div>Copy </td></tr><tr><td onmousedown="paste_data(targetcell[0],targetcell[1],true)"><div class="icon_paste"></div>Paste </td></tr><tr><td onmousedown="delete_data()"><div class="icon_clear"></div>Delete </td></tr><tr><td onmousedown="modal_window(true,'text_edit');save_art(false)"><div class="icon_edit2"></div>Text </td></tr><tr><td onmousedown="crop_cells()"><div class="icon_cent"></div>Crop </td></tr><tr><td onmousedown="selected=[0,0,0,0];select_arr();" style="border-radius:0 0 8px 8px;"><div class="icon_close"></div>Deselect </td></tr></tbody></table></div></div></div></td><td style="height:40px;background-color:var(--wn);"></td></tr><tr><td style="height:calc(100vh - 80px);"><div id="right_menu" style="height:calc(100vh - 80px);width:256px;overflow-y:scroll;background-color:var(--wn);text-align:center;"><select id="fonts" class="input_text" style="width:calc(100% - 28px);margin-bottom:16px;" oninput='root_style.style.setProperty("--font",this.value);'><option value="Arial">Arial</option><option value="Lucida Console" selected>Lucida Console</option><option value="Courier New" selected>Courier New</option></select><div id="symbols_view" style="display:inline-block;"></div><div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="modal_window(true,'palette_edit');edit_p=false;getallChar()">Edit symbol palette</div><div id="img_preview" style="display:none;width:100%;text-align:center;border-top:1px solid var(--cb);"><br><img id="img_icon" style="background-color:var(--cw);width:90%;height:auto;border-radius:8px;text-align:center;cursor:pointer;image-rendering:pixelated;" onclick="file.click();"><br><div style="text-align:left;width:calc(100% - 28px);margin:14px 0 0 14px;">Palette</div><div style="margin:0 14px 14px 14px;display:grid;grid-template-columns: auto 32px;width:calc(100% - 28px);"><input type="text" id="art_palette" style="width:100%;font-family:var(--font),monospace;" class="input_text palette_simbols" onchange="localStorage.setItem('art_palette',this.value);"><div class="button_s icon_edit2" style="background-position:right;width:32px;" onclick="modal_window(true,'palette_edit');edit_p=true;getallChar()"></div></div><div style="text-align:left;width:calc(100% - 28px);margin-left:14px;">Brightness</div><input type="range" id="brightness" oninput="img_icon.style.filter='contrast('+contrast.value+'%) brightness('+this.value+'%)'" name="vol" min="0" max="500" value="100" step='1' style="margin:14px;width:calc(100% - 28px);"><div style="text-align:left;width:calc(100% - 28px);margin-left:14px;">Contrast</div><input type="range" id="contrast" oninput="img_icon.style.filter='contrast('+this.value+'%) brightness('+brightness.value+'%)'" name="vol" min="0" max="500" value="100" step='1' style="margin:14px;width:calc(100% - 28px);"><table style="margin:14px;width:calc(100% - 28px);"><tbody><tr><td style="width:33%;" align="center"><input id="img_show" title="Show / Hide image" class="button_s show" checked onchange="frame.style.backgroundSize=(this.checked)?'100% 100%':'0% 0%'" type="checkbox"></td><td align="center"><div title="original image size" class="button_s icon_size" onclick="original_size();"></div></td><td style="width:33%;" align="center"><div title="Delete image" class="button_s icon_del" onclick="delete_img();"></div></td></tr></tbody></table><div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="img_to_ascii(0);">image to ASCII</div><div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="img_to_ascii(1);">image to Braille</div></div><div style="width:100%;text-align:center; border-top:1px solid var(--cb);"><table style="margin:14px;width:calc(100% - 28px);"><tbody><tr><td align="center" colspan='2'><form id="align"><table style="width:100%;"><tbody><tr><td align="right"><input type="radio" name="align" class="icon icon_diag align button_menu" style="transform:scaleX(-1) scaleY(-1);"></td><td align="left"><input type="radio" name="align" class="icon icon_diag align button_menu" style="transform:scaleY(-1);"></td></tr><tr><td align="right"><input type="radio" name="align" class="icon icon_diag align button_menu" style="transform:scaleX(-1);"></td><td align="left"><input type="radio" name="align" class="icon icon_diag align button_menu" checked></td></tr></tbody></table></form></td></tr><tr><td style="padding-right:10px;width:33%;" align="right">Width</td><td align="center"><input type="text" id="canvasWidth" onchange="this.value=correct_value(this.value);if(canvasProportion.checked){canvasHeight.value=Math.round(tr.length*(this.value/td.length))}" class="input_text palette_simbols"></td><td rowspan="2"><input id="canvasProportion" class="proportion" type="checkbox" checked></td></tr><tr><td style="padding-right:10px;" align="right">Height</td><td align="center"><input type="text" id="canvasHeight" onchange="this.value=correct_value(this.value);if(canvasProportion.checked){canvasWidth.value=Math.round(td.length*(this.value/tr.length))}" class="input_text palette_simbols"></td></tr></tbody></table><div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="resize_canvas();">Resize canvas</div></div><div style="width:100%;text-align:center;border-top:1px solid var(--cb);"><table style="margin:14px;width:calc(100% - 28px);"><tbody><tr><td style="padding-right:10px;" align="right">Replace</td><td style="padding-right:10px;"><input type="text" id="replaces_what" style="text-align:center;" oninput="this.value=this.value.charAt(0)" class="input_text palette_simbols"></td><td align="center" class="icon_replaces icon align button_menu" style="cursor:pointer;" onclick="var a=[replaces_what.value,replaces_than.value];replaces_what.value=a[1];replaces_than.value=a[0]"></td><td style="padding-left:10px;"><input type="text" id="replaces_than" style="text-align:center;" oninput="this.value=this.value.charAt(0)" class="input_text palette_simbols"></td></tr></tbody></table><div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="replaces(replaces_what.value,replaces_than.value)">Replace symbols</div></div><div style="width:100%;text-align:center;border-top:1px solid var(--cb);"><table style="margin:14px;width:calc(100% - 28px);"><tbody><tr><td style="padding-right:10px;width:33%;" align="right">Width</td><td align="center"><input type="text" id="imgWidth" onchange="this.value=correct_value(this.value);if(imgProportion.checked){imgHeight.value=Math.round((tr.length*14)*(this.value/(td.length*8)))}" class="input_text palette_simbols"></td><td rowspan="2"><input id="imgProportion" class="proportion" type="checkbox" checked></td></tr><tr><td style="padding-right:10px;" align="right">Height</td><td align="center"><input type="text" id="imgHeight" onchange="this.value=correct_value(this.value);if(imgProportion.checked){imgWidth.value=Math.round((td.length*8)*(this.value/(tr.length*14)))}" class="input_text palette_simbols"></td></tr></tbody></table><div class="button" style="margin:14px;width:calc(100% - 28px);" onclick="save_png()">Save image png</div></div></div></td></tr><tr><td style="height:40px;border-top:1px solid var(--cb);background-color:var(--wn);" align="center"><table style="width:256px;"><tbody><tr><td align="right" style="padding-right:4px;width:32px;">Cells</td><td id="cells" align="left" style="width:40px;"></td><td align="right" style="padding-right:4px;width:16px;">X</td><td id="cur_x" align="left" style="width:24px;"></td><td align="right" style="padding-right:4px;width:16px;">Y</td><td id="cur_y" align="left" style="width:24px;"></td><td align="right" style="padding-right:4px;width:32px;">Size</td><td id="arr_size" align="left" style="width:72px;"></td></tr></tbody></table></td></tr></tbody></table><table id="menu_panel"><tbody><tr><td title='New txt file' onclick='new_canvas(60,30);' class='icon button_menu icon_new'></td><td title='Load txt file' onclick='file.click();' class='icon button_menu icon_load'></td><td title='Save txt file' onclick='save_art(true);' class='icon button_menu icon_save'></td><td title='Undo' onclick='state_back(1);' class='icon button_menu icon_undo'></td><td title='Redo' onclick='state_back(-1);' class='icon button_menu icon_undo' style='transform:scaleX(-1);'></td><td title='About ASCII Art paint' onclick="modal_window(true,'about');" class='icon button_menu icon_about'></td><td title='Text input' onclick="modal_window(true,'text_edit');save_art(false)" class='icon button_menu icon_edit2'></td><td title='Copy text' onclick="save_art(false);toast('Copied to clipboard');" class='icon button_menu icon_copy'></td><td title='light dark theme' onclick="if(!localStorage.getItem('them')){localStorage.setItem('them','1');set_ui(1)}else{localStorage.removeItem('them');set_ui(0)}" class='icon button_menu icon_them' style='border-radius:0 0 16px 0;'></td><td title='light dark theme' class='icon button_menu icon_setting' style="display: none;"></td></tr></tbody></table><table id="tool_panel"><tbody><tr><td title='Hand/Scroll (Alt+H / Alt+1)' onclick='select_tool(0);' class='tools icon button_menu icon_cursor' style="border-radius:16px 16px 0 0;background-size:32px 32px;"></td></tr><tr><td title='Brush/Pencil (Alt+B / Alt+2)' onclick="select_tool(1);" class='tools icon button_menu icon_edit' style="background-color:var(--cb);"></td></tr><tr><td title='Eraser (Ctrl+Alt+E / Alt+3)' onclick="select_tool(2);" class='tools icon button_menu icon_clear'></td></tr><tr><td title='Fill (Ctrl+Alt+F / Alt+4)' onclick="select_tool(3);" class='tools icon button_menu icon_fill'></td></tr><tr><td title='Pipette (Alt+P / Alt+5)' onclick="select_tool(4);" class='tools icon button_menu icon_pipette'></td></tr><tr><td title='Selection (Alt+S / Alt+6)' onclick="select_tool(5);" class='tools icon button_menu icon_selected'></td></tr><tr><td id="active_brush" align='center' valign='center' class="tools icon" style="font-size:18px;border-radius:0 0 16px 16px; width:40px;height:40px;border-top:1px solid var(--cb);"></td></tr></tbody></table><div id="scene_controll"><table height="100%"><tbody><tr><td width="42px" class="icon button_menu icon_equal" onclick="canvas_scale(2)" style="border-radius:20px 0 0 20px;"></td><td width="42px" class="icon button_menu icon_scale" onclick="canvas_scale(false)"></td><td width="42px" class="icon button_menu icon_minus" onclick="canvas_scale(1)"></td><td width="42px" class="icon button_menu " style="border-radius:0 20px 20px 0;padding: 0 10px;"><input type="range" id="scale_range" min="0.25" max="2" value="1" step="0.05" onchange="update_canvas_scale(this.value)"></td></tr></tbody></table></div><div id='window_zone' style="display:none"></div><div id='tool_zone' style="display:none"></div><div id="toast"></div><div id='about' style="display:none"><div class='window' style='padding:24px 16px;width:412px;'><div><div class='window_close icon icon_close' onclick='modal_window(false)'></div></div><div align='center'><p style='font-size:22px;'>ASCII Art Paint</p><hr><p>Release: 11</p><br><br><table style='border-spacing:10px;border-collapse:separate; width: 100%;'><tr><td align='right' colspan='1'>E-Mail:</td><td align='left' colspan='3'><a href='mailto:tuesdayjsengine@gmail.com' target='_blank'>tuesdayjsengine@gmail.com</a></td></tr><tr><td align='right' colspan='1'>WebSite:</td><td align='left' colspan='3'><a href='https://github.com/Kirilllive/ASCII_Art_Paint' target='_blank'>https://github.com/Kirilllive/ASCII_Art_Paint</a></td></tr></table><br><br><p>Thanks for the help from users</p><hr><br><table width='100%' align='center'><tbody><tr><td width='25%' align='center'><a href="https://twitter.com/Suki_Novels" target="_blank">Suki Novels</a></td><td width='25%' align='center'>Argosa</td><td width='25%' align='center'><a href='https://twitter.com/onigi123' target='_blank'>Onigi</a></td><td width='25%' align='center'>Arne Krause</td></tr></tbody></table><br><br><p><a href='https://www.patreon.com/kirill_live' target='_blank'><svg height='40' width='198' viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'><rect width='1000' height='200' fill='#FF424D' /><path d='M310 129V72h19c7 0 12 1 15 4 4 2 5 6 5 11 0 3 0 5-2 7-1 3-3 4-6 5a13 13 0 0110 13c0 6-2 10-6 13-3 2-8 4-14 4zm10-26v18h11l7-2c2-2 3-4 3-7 0-6-3-9-9-9zm0-7h10l7-2c2-2 2-4 2-6 0-3 0-5-2-6l-8-2h-9zm58 34c-6 0-11-2-14-6-4-4-6-9-6-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-27c0 3 1 6 3 8s5 3 8 3c4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c0-3-1-5-3-7-1-2-3-3-6-3zm43 29l6-2 2-5h9l-2 7-7 6-8 2c-6 0-11-2-14-6-4-4-5-9-5-16v-1c0-6 1-12 5-15 3-4 8-6 14-6 5 0 9 1 12 4s5 7 5 12h-9l-2-6-6-3c-3 0-6 2-7 4-2 2-3 5-3 10v1c0 5 1 8 3 11 1 2 4 3 7 3zm23-15c0-4 0-8 2-11s4-6 7-7c3-2 6-3 10-3 6 0 11 2 14 5 4 4 6 9 6 15v2c0 4-1 8-3 11-1 4-3 6-6 8s-7 3-11 3c-6 0-10-2-14-6s-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 7 4s6-1 8-4c2-2 2-6 2-11 0-4 0-7-2-10-2-2-5-4-8-4s-5 2-7 4c-2 3-3 6-3 11zm47-21v4c3-3 7-5 12-5 6 0 10 2 12 6 3-4 7-6 13-6 5 0 8 1 10 4 3 2 4 6 4 11v28h-10v-28l-1-6-6-1-6 1-2 5v29h-10v-28c0-5-3-7-8-7-3 0-6 1-8 4v31h-9V87zm79 43c-6 0-11-2-15-6-3-4-5-9-5-15v-1l2-12c2-3 4-6 7-7 3-2 6-3 10-3 6 0 10 2 13 5 4 4 5 9 5 16v4h-28l4 8c2 2 5 3 8 3 4 0 8-2 10-5l5 5-6 6zm-1-37c-3 0-5 1-6 3-2 2-3 5-3 8h18v-1c-1-3-1-5-3-7-1-2-3-3-6-3zm71 36l-1-4c-3 3-7 5-12 5-4 0-7-2-10-4s-4-5-4-9 2-8 5-10c3-3 8-4 14-4h6v-3c0-2 0-4-2-5l-5-2-6 2-2 4h-9l2-7 6-4c3-2 6-2 9-2 5 0 9 1 12 4 3 2 5 6 5 10v19l1 9v1zm-11-7l5-1 4-4v-8h-5l-8 2c-2 1-2 3-2 5l1 4zm59-14v21h-10V72h22c7 0 12 2 15 5 4 3 6 8 6 13 0 6-2 10-6 13-3 3-8 5-15 5zm0-8h12c4 0 6-1 8-3 2-1 3-4 3-7s-1-5-3-7-4-3-7-3h-13zm66 29l-1-4c-3 3-7 5-11 5s-8-2-11-4c-2-2-4-5-4-9s2-8 5-10c4-3 9-4 15-4h6v-3l-2-5-6-2-5 2c-2 1-2 2-2 4h-10c0-3 1-5 3-7 1-2 3-3 6-4 2-2 5-2 9-2 5 0 9 1 12 4 2 2 4 6 4 10v19l2 9v1zm-10-7l5-1 4-4v-8h-6l-8 2-2 5c0 2 0 3 2 4 1 1 2 2 5 2zm40-46v11h7v7h-7v23l1 4 3 1 4-1v8l-7 1c-7 0-11-4-11-12V94h-7v-7h7V76zm37 19h-4c-5 0-7 2-9 5v29h-9V87h9v4c2-3 5-5 9-5h4zm4 12l2-11c2-3 4-6 7-7 3-2 7-3 11-3 5 0 10 2 13 5 4 4 6 9 6 15v2l-2 11c-2 4-4 6-7 8s-6 3-10 3c-6 0-11-2-15-6-3-4-5-10-5-16zm9 1c0 5 1 8 3 10 2 3 4 4 8 4 3 0 5-1 7-4 2-2 3-6 3-11 0-4-1-7-3-10-2-2-4-4-7-4-4 0-6 2-8 4-2 3-3 6-3 11zm47-21v4c3-3 8-5 13-5 8 0 13 5 13 15v28h-9v-28l-2-5c-1-2-3-2-6-2-4 0-7 1-8 5v30h-10V87z' fill='#fff' /><path d='M165 39c-25 0-45 21-45 46s20 46 45 46 45-21 45-46-20-46-45-46' fill='#fff' /><path d='M83 161V39h23v122z' fill='#fff' /></svg></a></p><br><p><a href='https://boosty.to/kirilllive' target='_blank'><svg width="145" height="40" viewBox="0 0 145 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient x1="61.5370404%" y1="13%" x2="34%" y2="129%" id="line"><stop stop-color="#EF7829" offset="0%" /><stop stop-color="#F0692A" offset="28%" /><stop stop-color="#F15E2C" offset="63%" /><stop stop-color="#F15A2C" offset="100%" /></linearGradient></defs><path id="boosty" d="M138.1,13.1 L132.0,22.6 L131.3,13.1 L122.5,13.1 C123.3,10.3 124.0,8.1 124.0,8.1 L124.3,7 L117.6,7 L117.3,8.1 L115.8,13.1 L108.6,13.1 C102.7,13.1 99.4,14.8 98.0,18 C97.2,15 94.6,13.1 90.5,13.1 C87.2,13.1 84.1,14.3 81.6,16.5 C80.4,14.4 78.1,13.1 74.8,13.1 C71.2,13.1 67.9,14.5 65.4,16.9 C64.3,14.6 61.8,13.1 58.3,13.1 C57.1,13.1 55.9,13.3 54.8,13.6 L55.3,11.7 C55.4,11.7 55.4,11.7 55.4,11.6 L56.7,7 L50.0,7 L45.7,21.7 C45.6,22 45.5,22.3 45.4,22.6 C45.2,23.2 45.1,23.9 45.0,24.6 C44.5,28.7 46.3,31.8 51.3,32 C51.8,32 52.3,32.1 52.8,32.1 C56.2,32 59.6,30.7 62.1,28.3 C63.1,30.6 65.5,32.1 69.2,32.1 C72.5,32 75.6,30.8 78.1,28.7 C79.2,30.8 81.5,32.1 85.0,32.1 L101.9,32.1 C107.1,32.1 110.0,31 111.6,28.8 C111.6,30.9 112.8,32.1 115.9,32.1 C118.4,32.1 121.7,31.5 126.3,30.4 L119.6,39.9 L126.4,39.9 L144.8,13.1 L138.1,13.1 Z M58.9,22.6 C58.3,24.7 56.2,26.5 54.4,26.5 C52.5,26.5 51.5,24.7 52.1,22.6 C52.8,20.4 54.8,18.7 56.6,18.7 C58.5,18.7 59.5,20.4 58.9,22.6 Z M75.4,22.6 C74.7,24.7 72.7,26.5 70.9,26.5 C69.0,26.5 68.0,24.7 68.6,22.6 C69.3,20.4 71.3,18.7 73.2,18.7 C75.0,18.7 76.0,20.4 75.4,22.6 Z M84.4,22.6 C85.0,20.4 87.1,18.7 88.9,18.7 C90.7,18.7 91.8,20.4 91.1,22.6 C90.5,24.7 88.5,26.4 86.7,26.5 L86.6,26.5 C84.8,26.4 83.8,24.7 84.4,22.6 Z M106.1,25.8 C105.7,26.6 103.1,26.5 102.4,26.5 L95.9,26.5 C96.8,25.3 97.4,24 97.8,22.6 C97.9,22.4 97.9,22.3 98.0,22.2 C98.7,23.2 100.2,24.1 103.1,24.6 C105.8,25.2 106.3,25 106.1,25.8 Z M112.7,23.7 C112.2,21.4 109.7,20.6 106.2,20.2 C104.7,20 103.9,19.9 104.1,19.3 C104.2,18.8 105.0,18.7 106.5,18.7 L114.2,18.7 L112.7,23.7 Z M119.4,23.7 C119.4,23.7 120.1,21.4 120.9,18.7 L125.2,18.7 L125.9,25.8 C118.8,27.3 118.7,26.9 119.4,23.7 L119.4,23.7 Z" fill-rule="nonzero" /><path d="M1.0,23.8 L7.8,0 L18.2,0 L16.1,7.4 C16.0,7.4 16.0,7.4 16.0,7.5 L10.5,27.1 L15.6,27.1 C13.5,32.5 11.8,36.8 10.6,40 C1.1,39.8 -1.5,32.9 0.7,24.7 L1.0,23.8 Z M10.6,40 L23.2,21.6 L17.8,21.6 L22.5,9.8 C30.4,10.6 34.1,17 31.9,24.7 C29.6,33 20.1,40 10.8,40 L10.6,40 Z" fill="url(#line)" /></svg></a></p><br></div></div></div><div id='text_edit' style="display:none"><div class='window' align='center' style='padding-top:40px;height:calc(100vh - 128px);width:calc(100vw - 128px);'><div class="window_title">Text input</div><div class='window_close icon icon_close' onclick='modal_window(false)'></div><textarea class="edittext"></textarea><div class="button" style="margin:14px;" onclick="text_apply();">Apply</div></div></div><div id='palette_edit' style="display:none"><div class='window' align='center' style='padding: 40px 8px 16px 8px;width:calc(100vw - 128px);'><div class='window_close icon icon_close' onclick='modal_window(false)'></div><div class="window_title">Edit symbol palette</div><table style="width:100%;"><tbody><tr><td><input type="text" class="input_text palette_simbols" style="font-family:var(--font),monospace;"></td><td style="width:128px;" rowspan="3" valign="top"><table style="border-collapse: collapse; width: 100%; margin-top:40px;"><tbody><tr><td align="left">Font</td><td align="center"><select id="fonts_palette" class="input_text" oninput='root_style.style.setProperty("--font",this.value);'></select></td></tr><tr><td align="left">Size</td><td align="center"><input style="margin:16px 0;border-bottom:none;" onchange="var symbol_ele=document.getElementsByClassName('char');for (var e=0;e<symbol_ele.length;e++){symbol_ele[e].style.fontSize=this.value+'px'}" class="input_text" type="range" value="12" min="12" max="22" step="1"></td></tr><tr><td colspan="2" style="padding:14px 0 4px 0;" align="left">Character range</td></tr><tr><td style="padding:0 12px 0 0;" align="right">from</td><td><input type="text" class="input_text range"></td></tr><tr><td align="right" style="padding-right:10px;">to</td><td><input type="text" class="input_text range"></td></tr><tr><td colspan="2"><div class="button" style="margin:14px;" onclick="if(edit_p){art_palette.value=window_zone.getElementsByClassName('palette_simbols')[0].value}else{palette=window_zone.getElementsByClassName('palette_simbols')[0].value}range_font=[parseInt(window_zone.getElementsByClassName('range')[0].value),parseInt(window_zone.getElementsByClassName('range')[1].value)];getallChar();">Update</div></td></tr></tbody></table></td></tr><tr><td><div class="all_simbols" style="display:none;height:calc(100vh - 256px);width:100%;overflow:auto;border-bottom:1px solid var(--cb);"></div></td></tr></tbody></table><div id="palette_apply" class="button" style="margin-top:16px;" onclick="applyChar();modal_window(false);">Apply</div></div></div><div id="cursor_text" style="position:fixed;background-color:var(--ac);padding:4px 6px;border-radius:6px;display:none;"></div><div id="replaces" style="display:none"><div class='window' style='padding:24px 16px;width:128px;'></div></div>
-    <script>
-        var range_font=[0,13313],edit_p=!1,palette="██▓▒░☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼`⌂ÇæÆ¢£¥₧ƒªº¿⌐¬½¼¡«»│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙⋅√ⁿ²■",se,x1,x2,y1,y2,db=[[],[],[],[],[],[],[],[]],tool=0,img,scale=1,back_up=[],state_num=0,tr,td,brush="*",frame=document.getElementById("asciicanvas"),canvas=frame.getElementsByTagName("tbody")[0],mouseclick=!1,files=document.getElementById("file"),window_zone=document.getElementById("window_zone"),tool_zone=document.getElementById("tool_zone"),selected=[0,0,0,0],targetcell=[0,0],copydb="",root_style=document.querySelector(":root"),contextmenushow=!1,doc;function menu_right(e){contextmenushow=!0,doc=asciiscreen.getBoundingClientRect(),context_menu.style.visibility="visible",context_menu.style.left=(e.clientX+asciiscreen.scrollLeft-doc.left)/scale+"px",context_menu.style.top=(e.clientY+asciiscreen.scrollTop-doc.top)/scale+"px"}asciicanvas.addEventListener?asciicanvas.addEventListener("contextmenu",function(e){menu_right(e),e.preventDefault()},!1):asciicanvas.attachEvent("oncontextmenu",function(){window.event.returnValue=!1}),window.addEventListener("mousemove",function(e){5==tool&&(cursor_text.style.left=e.clientX+16+"px",cursor_text.style.top=e.clientY+16+"px")}),window.addEventListener("mousedown",function(){0!=tool&&3!=tool&&5!=tool||(mouseclick=!0),contextmenushow&&(contextmenushow=!1,context_menu.style.visibility="hidden",mouseclick=!1)}),window.addEventListener("mouseup",function(){mouseclick=!1,cursor_text.style.display="none"}),window.addEventListener("keypress",function(e){var t=String.fromCharCode(e.charCode);brush=t,active_brush.innerHTML=brush}),asciicanvas.addEventListener("mouseup",function(){2!=tool&&5!=tool&&state_save()});var startmove_x=null,startmove_y=null,scroll_x=null,scroll_y=null;viewport.addEventListener("mousedown",function(e){2==tool?(startmove_x=e.clientX,startmove_y=e.clientY,scroll_x=viewport.scrollTop,scroll_y=viewport.scrollLeft,viewport.onmousemove=function(e){viewport.scrollTop=scroll_x-(e.clientY-startmove_y),viewport.scrollLeft=scroll_y-(e.clientX-startmove_x)},viewport.onmouseup=function(e){startmove_x=null,startmove_y=null,viewport.onmousemove=null,viewport.onmouseup=null},viewport.onmouseleave=function(){viewport.onmousemove=null,viewport.onmouseup=null,document.onmousemove=null,document.onmouseup=null}):5==tool&&(cursor_text.style.display="block")});let color_ui=[["#cec8e3","#efefff","rgba(110,95,165,0.25)","rgba(110,95,165,0.5)","#fff","none","#000","rgba(255,255,255,0.8)","rgba(240,240,240,0.8)","#efefff"],["#7f7f7f","#131a1e","rgba(0,0,0,0.5)","rgba(0,0,0,0.5)","#26343d","invert(90%)","#ddd","rgba(0,0,0,0.75)","rgba(25,25,25,0.7)","#b5a49b"]];function set_ui(e){root_style.style.setProperty("--cb",color_ui[e][0]),root_style.style.setProperty("--cw",color_ui[e][1]),root_style.style.setProperty("--cs",color_ui[e][2]),root_style.style.setProperty("--cm",color_ui[e][3]),root_style.style.setProperty("--wn",color_ui[e][4]),root_style.style.setProperty("--ft",color_ui[e][5]),root_style.style.setProperty("--tx",color_ui[e][6]),root_style.style.setProperty("--ac",color_ui[e][7]),root_style.style.setProperty("--at",color_ui[e][8]),root_style.style.setProperty("--bh",color_ui[e][9])}function canvas_scale(e){scale=2==e?Math.min(2,scale+.05):1==e?Math.max(.25,scale-.05):1,console.log(e,scale),asciiscreen.style.transform="scale("+scale+")",scale_range.value=scale}function update_canvas_scale(e){console.log(Number(e)),scale=Number(e),asciiscreen.style.transform="scale("+scale+")"}function new_canvas(e,t){for(db=[],y=0;y<t;y++)for(db.push([]),x=0;x<e;x++)db[y]+=" ";buildWorld(),asciiview.scrollIntoView({block:"center",inline:"center"}),back_up=[],state_save()}function modal_window(e,t){e?e&&(modal_tool(!1),window_zone.style.display="grid",window_zone.innerHTML=document.getElementById(t).innerHTML):(window_zone.style.display="none",window_zone.innerHTML="")}function modal_tool(e,t){e?e&&(tool_zone.style.display="grid",tool_zone.innerHTML=document.getElementById(t).innerHTML):tool_zone.style.display="none"}function toast(e){var t=document.getElementById("toast");t.classList.remove("toast_anim"),t.innerHTML=e,t.offsetParent,t.classList.add("toast_anim")}function select_tool(e){var t,n=document.getElementsByClassName("tools");for(tool=0==e?2:1==e?0:2==e?3:3==e?1:e,t=0;t<n.length;t++)n[t].style.backgroundColor=t!=e?"":"var(--cb)";modal_tool(!1)}function add_cells(e,t){var n,a,l,s=0,o=0;if(db=[],tr=canvas.getElementsByTagName("tr"),4==e||2==e){for(o=t,l=0;l<o;l++)db.push([]);4==e&&(o=0)}else 3!=e&&1!=e||(s=t);for(a=0;a<tr.length;a++){if(td=tr[a].getElementsByTagName("td"),db.push([]),1==e)for(l=0;l<s;l++)db[a+o]+=" ";for(n=0;n<td.length;n++)db[a+o]+=td[n].textContent;if(3==e)for(l=0;l<s;l++)db[a+o]+=" "}buildWorld(),state_save()}function crop_cells(){get_selected(),del_cells(3,td.length-x2-1),del_cells(4,tr.length-y2-1),del_cells(1,x1),del_cells(2,y1),selected=[0,0,0,0],select_arr()}function del_cells(e,t){var n,a,l=0,s=0,o=0,r=0;for(db=[],tr=canvas.getElementsByTagName("tr"),1==e?l=t:2==e?o=t:3==e?s=t:4==e&&(r=t),a=0;a<tr.length-r-o;a++)for(db.push([]),td=tr[o+a].getElementsByTagName("td"),n=l;n<td.length-s;n++)db[a]+=td[n].textContent;buildWorld(),state_save()}function text_apply(){if(selected[1]!=selected[3]||selected[0]!=selected[2])for(var e=window_zone.getElementsByClassName("edittext")[0].value.split("\n"),t=selected[2]-selected[0]+1,n=selected[1];n<selected[3]+1;n++)e[n-selected[1]]&&(db[n]=db[n].substr(0,selected[0])+e[n-selected[1]].substr(0,t).padEnd(t," ")+db[n].substr(selected[2]+1,db[n].length));else db=window_zone.getElementsByClassName("edittext")[0].value.split("\n");buildWorld(),modal_window(!1),state_save()}function buildWorld(){var e,t,n=0;for(canvas.innerHTML="",get_selected(),t=0;t<db.length;t++)n<db[t].length&&(n=db[t].length);for(t=0;t<db.length;t++){for(tr=document.createElement("tr"),e=0;e<n;e++)(td=document.createElement("td")).setAttribute("onmouseenter","if(event.which!=3&&!contextmenushow){targetcell=["+e+","+t+"];cur_x.innerHTML="+(e+1)+";cur_y.innerHTML="+(t+1)+";if(mouseclick){if(tool==5){selected[2]="+e+";selected[3]="+t+";select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}}}"),td.setAttribute("onmousedown","if(event.which!=3&&!contextmenushow){if(tool==5){selected=["+e+","+t+","+e+","+t+"];select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}else if(tool==1){start_fill("+e+","+t+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}}"),td.setAttribute("oncontextmenu","targetcell=["+e+","+t+"]"),se&&x1<=e&&e<=x2&&y1<=t&&t<=y2&&(td.style.backgroundColor="var(--cw)"),db[t][e]&&" "!=db[t][e]?td.innerHTML=db[t][e]:td.innerHTML=" ",tr.appendChild(td);canvas.appendChild(tr)}var a=frame.getBoundingClientRect();asciiview.style.height=a.height+512+"px",asciiview.style.width=a.width+512+"px"}function select_arr(){selected[1]==selected[3]&&selected[0]==selected[2]||(arr_size.innerHTML=Math.abs(selected[2]-selected[0])+1+" X "+(Math.abs(selected[3]-selected[1])+1)),tr=canvas.getElementsByTagName("tr");for(var e=0;e<tr.length;e++){td=tr[e].getElementsByTagName("td");for(var t=0;t<td.length;t++)selected[1]==selected[3]&&selected[0]==selected[2]||!(e>selected[1]-1&&e<selected[3]+1||e>selected[3]-1&&e<selected[1]+1)?td[t].style.backgroundColor="":t>selected[0]-1&&t<selected[2]+1||t>selected[2]-1&&t<selected[0]+1?td[t].style.backgroundColor="var(--cw)":td[t].style.backgroundColor=""}cursor_text.innerHTML=Math.abs(selected[2]-selected[0])+1+" X "+(Math.abs(selected[3]-selected[1])+1)}function loadFiles(e){if(e.target.files[0].type.includes("image"))img=e.target.files[0],show_img();else if(e.target.files[0].name.includes(".ttf")||e.target.files[0].name.includes(".woff2")||e.target.files[0].name.includes(".woff")){var t=e.target.files[0].name.split(".",1);root_style.style.setProperty("--font",t),new FontFace(t,"url("+URL.createObjectURL(e.target.files[0])+")").load().then(function(e){document.fonts.add(e)}).catch(function(e){}),add_font(t)}else{var n=new XMLHttpRequest;n.onreadystatechange=function(){4!=this.readyState||200!==this.status&&0!=this.status||(db=this.responseText.split("\n"),buildWorld(),asciiview.scrollIntoView({block:"center",inline:"center"}),back_up=[],state_save(),selected=[0,0,0,0],select_arr(),toast(e.target.files[0].name+" file is open"))},n.open("GET",URL.createObjectURL(e.target.files[0]),!0),n.send(),n.onerror=function(){this.status}}}function add_font(e){var t=document.createElement("option");t.value=e,t.innerHTML=e,fonts.appendChild(t),fonts.selectedIndex=fonts.options.length-1}function getallChar(){var e,t,n,a=window_zone.getElementsByClassName("all_simbols")[0],l=window_zone.getElementsByClassName("palette_simbols")[0],s=edit_p?art_palette.value:palette;l.value=s,window_zone.getElementsByClassName("range")[0].value=range_font[0],window_zone.getElementsByClassName("range")[1].value=range_font[1],fonts_palette[0].innerHTML=fonts.innerHTML,fonts_palette[0].selectedIndex=fonts.selectedIndex,a.innerHTML="";for(var o=range_font[0];o<range_font[1];o++){for(e=String.fromCharCode(o),n=!1,t=0;t<s.length;t++)if(s[t]==e){n=!0;break}var r=document.createElement("label");r.innerHTML="<input type='checkbox' onchange='addChar(this.checked,\""+e+"\");' "+(n?"checked":"")+"><span class='char symbol'>"+e+"</span>",r.classList.add("symbol_select"),a.appendChild(r)}a.style.display="block"}function show_img(){const e=document.getElementById("img_preview");frame.style.backgroundImage="url('"+URL.createObjectURL(img)+"')",frame.style.backgroundSize="100% 100%",frame.style.backgroundPosition="center",frame.style.backgroundRepeat="no-repeat",e.style.display="block",e.getElementsByTagName("img")[0].src=URL.createObjectURL(img),img_show.checked=!0,img_icon.style.filter="contrast(100%) brightness(100%)",localStorage.getItem("art_palette")?art_palette.value=localStorage.getItem("art_palette"):art_palette.value="$#X?=>^*~-,. ",brightness.value=100,contrast.value=100}function delete_img(){img_preview.style.display="none",frame.style.backgroundImage="none"}function addChar(e,t){var n=window_zone.getElementsByClassName("palette_simbols")[0];if(e){var a=n.selectionStart;n.value=n.value.substring(0,a)+t+n.value.substring(a),n.selectionStart=a+1}else n.value=n.value.replace(new RegExp(t,"g"),"")}function applyChar(){if(edit_p){var e=window_zone.getElementsByClassName("palette_simbols")[0].value;art_palette.value=e,localStorage.setItem("art_palette",e)}else range_font=[window_zone.getElementsByClassName("range")[0].value,window_zone.getElementsByClassName("range")[1].value],palette=window_zone.getElementsByClassName("palette_simbols")[0].value,localStorage.setItem("palette",palette),createPalette(),localStorage.setItem("range_font",JSON.stringify(range_font)),fonts.selectedIndex=fonts_palette.selectedIndex}function createPalette(){var e,t;symbols_view.innerHTML="";for(var n=0;n<palette.length;n++)e=document.createElement("div"),t=palette[n],e.innerHTML=t,e.classList.add("symbol"),e.setAttribute("onclick","brush='"+(t.match(/\\/)?"\\\\":t)+"';active_brush.innerHTML=brush;select_symbol("+n+")"),brush==t&&(e.style.backgroundColor="var(--cb)"),symbols_view.appendChild(e)}function select_symbol(e){for(var t=document.getElementsByClassName("symbol"),n=0;n<t.length;n++)t[n].style.backgroundColor=n!=e?"":"var(--cb)"}function get_selected(){return(se=selected[1]!=selected[3]||selected[0]!=selected[2])&&(selected[0]>selected[2]?(x1=selected[2],x2=selected[0]):(x1=selected[0],x2=selected[2]),selected[1]>selected[3]?(y1=selected[3],y2=selected[1]):(y1=selected[1],y2=selected[3])),se}function save_art(e){var t="";for(tr=canvas.getElementsByTagName("tr"),get_selected()?y2++:(x1=0,x2=tr[0].getElementsByTagName("td").length-1,y1=0,y2=tr.length),y=y1;y<y2;y++){for(td=tr[y].getElementsByTagName("td"),x=x1;x<x2+1;x++)td[x]&&(t+=td[x].textContent);y<y2-1&&(t.trim(),t+="\n")}if(e){var n=document.getElementById("get_file");n.setAttribute("href","data:text/json;charset=utf-8,"+encodeURIComponent(t)),n.setAttribute("download","text_art.txt"),n.click()}else"grid"==window_zone.style.display?(state_save(),window_zone.getElementsByClassName("edittext")[0].value=t):(copydb=t.split("\n"),copytext.value=t,copytext.select(),copytext.setSelectionRange(0,99999),document.execCommand("copy"))}function paste_data(e,t,n){var a,l,s=copydb[0].length,o=copydb.length;for(tr=canvas.getElementsByTagName("tr"),get_selected(),se&&x1<=e&&e<=x2&&y1<=t&&t<=y2&&(s>x2-x1&&(s=x2-x1+1),o>y2-y1&&(o=y2-y1+1),e=x1,t=y1),l=0;l<o;l++)for(td=tr[l+t].getElementsByTagName("td"),a=0;a<s;a++)td.length>a+e&&(n&&" "!=copydb[l][a]?td[a+e].innerHTML=copydb[l][a]:n||(td[a+e].innerHTML=copydb[l][a]));state_save()}function delete_data(){if(get_selected(),se&&x1<=targetcell[0]&&targetcell[0]<=x2&&y1<=targetcell[1]&&targetcell[1]<=y2){for(tr=canvas.getElementsByTagName("tr"),y=y1;y<y2+1;y++)for(td=tr[y].getElementsByTagName("td"),x=x1;x<x2+1;x++)td.length>x&&(td[x].innerHTML=" ");state_save()}}function start_fill(e,t,n){tr=canvas.getElementsByTagName("tr"),get_selected(),se&&x1<=e&&e<=x2&&y1<=t&&t<=y2?fill(e,t,n):(x1=0,x2=tr[0].getElementsByTagName("td").length-1,y1=0,y2=tr.length-1,fill(e,t,n))}function fill(e,t,n){var a=canvas.getElementsByTagName("tr")[t].getElementsByTagName("td")[e],l=!!(canvas.getElementsByTagName("tr")[t]&&e-1>=x1)&&canvas.getElementsByTagName("tr")[t].getElementsByTagName("td")[e-1],s=!!(canvas.getElementsByTagName("tr")[t]&&e+1<=x2)&&canvas.getElementsByTagName("tr")[t].getElementsByTagName("td")[e+1],o=!!(canvas.getElementsByTagName("tr")[t-1]&&t-1>=y1)&&canvas.getElementsByTagName("tr")[t-1].getElementsByTagName("td")[e],r=!!(canvas.getElementsByTagName("tr")[t+1]&&t+1<=y2)&&canvas.getElementsByTagName("tr")[t+1].getElementsByTagName("td")[e];a.textContent==n&&(a.innerHTML=brush),o&&o.textContent==n&&(o.innerHTML=brush,t-1>=y1&&fill(e,t-1,n)),r&&r.textContent==n&&(r.innerHTML=brush,t+1<=y2&&fill(e,t+1,n)),s&&s.textContent==n&&(s.innerHTML=brush,e+1<=x2&&fill(e+1,t,n)),l&&l.textContent==n&&(l.innerHTML=brush,e-1>=x1&&fill(e-1,t,n))}function replaces(e,t){for(tr=canvas.getElementsByTagName("tr"),y=0;y<tr.length;y++)for(td=tr[y].getElementsByTagName("td"),x=0;x<td.length;x++)td[x].textContent==e&&(td[x].innerHTML=t)}function resize_canvas(){var e,t,n=document.forms.align;n[0].checked?(t=2,e=1):n[1].checked?(t=2,e=3):n[2].checked?(t=4,e=1):(t=4,e=3);var a=Math.floor(canvasWidth.value),l=Math.floor(canvasHeight.value);tr.length<l?add_cells(t,l-tr.length):del_cells(t,tr.length-l),td.length<a?add_cells(e,a-td.length):del_cells(e,td.length-a)}function original_size(){const e=new FileReader;e.onload=function(e){const t=new Image;t.onload=function(){var e=Math.floor(t.height/14),n=Math.floor(t.width/8);tr.length<e?add_cells(4,e-tr.length):del_cells(4,tr.length-e),td.length<n?add_cells(3,n-td.length):del_cells(3,td.length-n)},t.src=e.target.result},e.readAsDataURL(img)}function img_to_ascii(e){const t=document.getElementById("preview"),n=t.getContext("2d"),a=new FileReader;a.onload=function(a){const l=new Image;l.onload=function(){var a=canvas.getElementsByTagName("tr");let s=a[0].getElementsByTagName("td").length,o=a.length;img_icon.style.filter="contrast("+contrast.value+"%) brightness("+brightness.value+"%)",1==e&&(s*=2,o*=4),t.width=s,t.height=o,n.filter=img_icon.style.filter,n.beginPath(),n.rect(0,0,s,o),n.fillStyle="#fff",n.fill(),n.drawImage(l,0,0,s,o);const r=convertToGrayScales(n,s,o);1==e?drawBraille(s,o):drawAscii(r,s)},l.src=a.target.result},a.readAsDataURL(img)}localStorage.getItem("them")&&set_ui(1),file.addEventListener("change",loadFiles),document.onkeyup=function(){var e=e||window.event;return e.altKey&&104==e.which||e.altKey&&72==e.which||e.altKey&&49==e.which?(e.preventDefault(),select_tool(0),!1):e.altKey&&98==e.which||e.altKey&&66==e.which||e.altKey&&50==e.which?(e.preventDefault(),select_tool(1),!1):e.altKey&&101==e.which||e.altKey&&69==e.which||e.altKey&&51==e.which?(e.stopPropagation(),e.returnValue=!1,e.cancelBubble=!0,e.preventDefault(),select_tool(2),!1):e.altKey&&102==e.which||e.altKey&&70==e.which||e.altKey&&52==e.which?(e.preventDefault(),select_tool(3),!1):e.altKey&&112==e.which||e.altKey&&80==e.which||e.altKey&&53==e.which?(e.preventDefault(),select_tool(4),!1):e.altKey&&115==e.which||e.altKey&&83==e.which||e.altKey&&54==e.which?(e.preventDefault(),select_tool(5),!1):void 0},window.addEventListener("DOMContentLoaded",function(){window.File&&window.FileReader&&window.FileList&&window.Blob&&(window.addEventListener("dragover",function(e){e.preventDefault(),e.stopPropagation()}),window.addEventListener("drop",function(e){if(e.preventDefault(),e.stopPropagation(),e.dataTransfer.files[0].type.includes("image"))img=e.dataTransfer.files[0],show_img();else if(e.dataTransfer.files[0].name.includes(".ttf")||e.dataTransfer.files[0].name.includes(".woff2")||e.dataTransfer.files[0].name.includes(".woff")){var t=e.dataTransfer.files[0].name.split(".",1);root_style.style.setProperty("--font",t),new FontFace(t,"url("+URL.createObjectURL(e.dataTransfer.files[0])+")").load().then(function(e){document.fonts.add(e)}).catch(function(e){}),add_font(t)}else{var n=new XMLHttpRequest;n.onreadystatechange=function(){4!=this.readyState||200!==this.status&&0!=this.status||(db=this.responseText.split("\n"),buildWorld(),asciiview.scrollIntoView({block:"center",inline:"center"}),back_up=[],state_save(),toast(e.dataTransfer.files[0].name+" file is open"))},n.open("GET",URL.createObjectURL(e.dataTransfer.files[0]),!0),n.send(),n.onerror=function(){this.status}}})),fonts.selectedIndex=0});const toGrayScale=(e,t,n)=>.21*e+.72*t+.07*n,convertToGrayScales=(e,t,n)=>{const a=e.getImageData(0,0,t,n),l=[];for(let e=0;e<a.data.length;e+=4){const t=a.data[e],n=a.data[e+1],s=a.data[e+2],o=toGrayScale(t,n,s);a.data[e]=a.data[e+1]=a.data[e+2]=o,l.push(o)}return e.putImageData(a,0,0),l},getCharacterForGrayScale=e=>art_palette.value[Math.round((art_palette.value.length-1)*e/255)],drawAscii=function(e,t){const n=e.reduce((e,n,a)=>{let l=getCharacterForGrayScale(n);return(a+1)%t==0&&(l+="\n"),e+l},"");(db=n.split("\n")).splice(-1,1),buildWorld(),state_save()};function drawBraille(e,t){const n=document.getElementById("preview").getContext("2d");let a="";for(let s=0;s<t/4;s++){for(let t=0;t<e/2;t++){let e="";function l(){var e=0;return e+=n.getImageData(2*t,4*s+1,1,1).data[0],e+=n.getImageData(2*t,4*s+2,1,1).data[0],e+=n.getImageData(2*t+1,4*s+1,1,1).data[0],e+=n.getImageData(2*t+1,4*s+2,1,1).data[0],e/=4,"⣿⣟⣫⡮⢕⠕⠌⠂"[Math.round(7*e/255)]}e+=n.getImageData(2*t,4*s,1,1).data[0]>128?0:1,e+=n.getImageData(2*t,4*s+1,1,1).data[0]>128?0:1,e+=n.getImageData(2*t,4*s+2,1,1).data[0]>128?0:1,e+=n.getImageData(2*t,4*s+3,1,1).data[0]>128?0:1,e+=n.getImageData(2*t+1,4*s,1,1).data[0]>128?0:1,e+=n.getImageData(2*t+1,4*s+1,1,1).data[0]>128?0:1,e+=n.getImageData(2*t+1,4*s+2,1,1).data[0]>128?0:1,a+="11111111"==(e+=n.getImageData(2*t+1,4*s+3,1,1).data[0]>128?0:1)?l():"00000000"==e?l():"01000000"==e?"⠂":"10000000"==e?"⠁":"11000000"==e?"⠃":"00100000"==e?"⠄":"10100000"==e?"⠅":"01100000"==e?"⠆":"11100000"==e?"⠇":"00001000"==e?"⠈":"10001000"==e?"⠉":"01001000"==e?"⠊":"11001000"==e?"⠋":"00101000"==e?"⠌":"10101000"==e?"⠍":"01101000"==e?"⠎":"11101000"==e?"⠏":"00000100"==e?"⠐":"10000100"==e?"⠑":"01000100"==e?"⠒":"11000100"==e?"⠓":"11100110"==e?"⠷":"01100110"==e?"⠶":"01011100"==e?"⡚":"11011100"==e?"⡛":"11111110"==e?"⡿":"01111110"==e?"⡾":"01000011"==e?"⢢":"11000011"==e?"⢣":"11110001"==e?"⣇":"01110001"==e?"⣆":"01011011"==e?"⣪":"11011011"==e?"⣫":"10011011"==e?"⣩":"00011011"==e?"⣨":"01110011"==e?"⣦":"11110011"==e?"⣧":"10110011"==e?"⣥":"00110011"==e?"⣤":"11010011"==e?"⣣":"01010011"==e?"⣢":"10010011"==e?"⣡":"00010011"==e?"⣠":"11111101"==e?"⣟":"01111101"==e?"⣞":"10111101"==e?"⣝":"00111101"==e?"⣜":"11011101"==e?"⣛":"01111111"==e?"⣾":"01011101"==e?"⣚":"10011101"==e?"⣙":"10111111"==e?"⣽":"00111111"==e?"⣼":"00011101"==e?"⣘":"11110101"==e?"⣗":"11011111"==e?"⣻":"01011111"==e?"⣺":"01110101"==e?"⣖":"10110101"==e?"⣕":"10011111"==e?"⣹":"00011111"==e?"⣸":"00110101"==e?"⣔":"11010101"==e?"⣓":"11110111"==e?"⣷":"01110111"==e?"⣶":"01010101"==e?"⣒":"10010101"==e?"⣑":"10110111"==e?"⣵":"00110111"==e?"⣴":"00010101"==e?"⣐":"11111001"==e?"⣏":"11010111"==e?"⣳":"01010111"==e?"⣲":"01111001"==e?"⣎":"10111001"==e?"⣍":"10010111"==e?"⣱":"00010111"==e?"⣰":"00111001"==e?"⣌":"11011001"==e?"⣋":"11111011"==e?"⣯":"01111011"==e?"⣮":"01011001"==e?"⣊":"10011001"==e?"⣉":"10111011"==e?"⣭":"00111011"==e?"⣬":"00011001"==e?"⣈":"00100011"==e?"⢤":"00000001"==e?"⢀":"00001110"==e?"⠸":"00111100"==e?"⡜":"00100100"==e?"⠔":"10100100"==e?"⠕":"01100100"==e?"⠖":"11100100"==e?"⠗":"00001100"==e?"⠘":"10001100"==e?"⠙":"01001100"==e?"⠚":"11001100"==e?"⠛":"00101100"==e?"⠜":"10101100"==e?"⠝":"01101100"==e?"⠞":"11101100"==e?"⠟":"00000010"==e?"⠠":"10000010"==e?"⠡":"01000010"==e?"⠢":"11000010"==e?"⠣":"00100010"==e?"⠤":"10100010"==e?"⠥":"01100010"==e?"⠦":"11100010"==e?"⠧":"00001010"==e?"⠨":"10001010"==e?"⠩":"01001010"==e?"⠪":"11001010"==e?"⠫":"00101010"==e?"⠬":"10101010"==e?"⠭":"01101010"==e?"⠮":"11101010"==e?"⠯":"00000110"==e?"⠰":"10000110"==e?"⠱":"01000110"==e?"⠲":"11000110"==e?"⠳":"00100110"==e?"⠴":"10100110"==e?"⠵":"10011100"==e?"⡙":"10111110"==e?"⡽":"10000011"==e?"⢡":"10110001"==e?"⣅":"00110001"==e?"⣄":"01010001"==e?"⣂":"11010001"==e?"⣃":"10010001"==e?"⣁":"00010001"==e?"⣀":"11101111"==e?"⢿":"10101111"==e?"⢽":"01101111"==e?"⢾":"00101111"==e?"⢼":"01001111"==e?"⢺":"11001111"==e?"⢻":"10001111"==e?"⢹":"00001111"==e?"⢸":"11100111"==e?"⢷":"01100111"==e?"⢶":"10100111"==e?"⢵":"00100111"==e?"⢴":"11000111"==e?"⢳":"01000111"==e?"⢲":"10000111"==e?"⢱":"00000111"==e?"⢰":"11101011"==e?"⢯":"01101011"==e?"⢮":"10101011"==e?"⢭":"00101011"==e?"⢬":"11001011"==e?"⢫":"01001011"==e?"⢪":"10001011"==e?"⢩":"00001011"==e?"⢨":"11100011"==e?"⢧":"01100011"==e?"⢦":"10100011"==e?"⢥":"10000001"==e?"⢁":"10111100"==e?"⡝":"10001110"==e?"⠹":"01001110"==e?"⠺":"11001110"==e?"⠻":"00101110"==e?"⠼":"10101110"==e?"⠽":"01101110"==e?"⠾":"11101110"==e?"⠿":"00010000"==e?"⡀":"10010000"==e?"⡁":"01010000"==e?"⡂":"11010000"==e?"⡃":"00110000"==e?"⡄":"10110000"==e?"⡅":"01110000"==e?"⡆":"11110000"==e?"⡇":"00011000"==e?"⡈":"10011000"==e?"⡉":"01011000"==e?"⡊":"11011000"==e?"⡋":"00111000"==e?"⡌":"10111000"==e?"⡍":"01111000"==e?"⡎":"11111000"==e?"⡏":"00010100"==e?"⡐":"10010100"==e?"⡑":"01010100"==e?"⡒":"11010100"==e?"⡓":"00110100"==e?"⡔":"10110100"==e?"⡕":"01110100"==e?"⡖":"11110100"==e?"⡗":"00011100"==e?"⡘":"00111110"==e?"⡼":"00000011"==e?"⢠":"11101101"==e?"⢟":"11011110"==e?"⡻":"01011110"==e?"⡺":"01101101"==e?"⢞":"10101101"==e?"⢝":"10011110"==e?"⡹":"00011110"==e?"⡸":"00101101"==e?"⢜":"11001101"==e?"⢛":"11110110"==e?"⡷":"01110110"==e?"⡶":"01001101"==e?"⢚":"10001101"==e?"⢙":"10110110"==e?"⡵":"00110110"==e?"⡴":"00001101"==e?"⢘":"11100101"==e?"⢗":"11010110"==e?"⡳":"01010110"==e?"⡲":"01100101"==e?"⢖":"10100101"==e?"⢕":"10010110"==e?"⡱":"00010110"==e?"⡰":"00100101"==e?"⢔":"11000101"==e?"⢓":"11111010"==e?"⡯":"01111010"==e?"⡮":"01000101"==e?"⢒":"10000101"==e?"⢑":"10111010"==e?"⡭":"00111010"==e?"⡬":"00000101"==e?"⢐":"11101001"==e?"⢏":"11011010"==e?"⡫":"01011010"==e?"⡪":"01101001"==e?"⢎":"10101001"==e?"⢍":"10011010"==e?"⡩":"00011010"==e?"⡨":"00101001"==e?"⢌":"11001001"==e?"⢋":"11110010"==e?"⡧":"01110010"==e?"⡦":"01001001"==e?"⢊":"10001001"==e?"⢉":"10110010"==e?"⡥":"00110010"==e?"⡤":"00001001"==e?"⢈":"11100001"==e?"⢇":"11010010"==e?"⡣":"01010010"==e?"⡢":"01100001"==e?"⢆":"10100001"==e?"⢅":"10010010"==e?"⡡":"00010010"==e?"⡠":"00100001"==e?"⢄":"11000001"==e?"⢃":"11111100"==e?"⡟":"01111100"==e?"⡞":"01000001"==e?"⢂":" "}a+="\n"}(db=a.split("\n")).splice(-1,1),buildWorld(),state_save()}function state_save(){frame=document.getElementById("asciicanvas"),state_num>0&&(back_up.splice(0,state_num),state_num=0);var e="";for(tr=canvas.getElementsByTagName("tr"),y=0;y<tr.length;y++){for(td=tr[y].getElementsByTagName("td"),x=0;x<td.length;x++)e+=td[x].textContent;y<tr.length-1&&(e+="\n")}canvasWidth.value=td.length,canvasHeight.value=tr.length,imgWidth.value=8*td.length,imgHeight.value=14*tr.length,cells.innerHTML=td.length*tr.length,arr_size.innerHTML=td.length+" X "+tr.length,back_up.unshift(e),back_up.length>100&&back_up.pop()}function save_png(){tr=canvas.getElementsByTagName("tr"),td=tr[0].getElementsByTagName("td");var e=imgWidth.value,t=imgHeight.value,n=e/td.length,a=t/tr.length;const l=document.getElementById("preview"),s=l.getContext("2d");for(l.width=e,l.height=t,s.font=a+"px var(--font),monospace",get_selected()?y2++:(x1=0,x2=tr[0].getElementsByTagName("td").length-1,y1=0,y2=tr.length),y=y1;y<y2;y++)for(td=tr[y].getElementsByTagName("td"),x=x1;x<x2+1;x++)td[x]&&s.fillText(td[x].textContent,n*x,a*(y+1));var o=document.getElementById("get_file");o.setAttribute("href",l.toDataURL("image/png")),o.setAttribute("download","text_art.png"),o.click()}function correct_value(name){return name.includes("+")||name.includes("-")||name.includes("*")||name.includes("/")?parseInt(eval(name)):parseInt(name)}function state_back(e){(state_num+=e)<0?state_num=0:state_num>=back_up.length-1&&(state_num=back_up.length-1),db=back_up[state_num].split("\n"),buildWorld()}document.addEventListener("DOMContentLoaded",function(){createPalette(),active_brush.innerHTML=brush,localStorage.getItem("range_font")&&(range_font=JSON.parse(localStorage.getItem("range_font"))),localStorage.getItem("palette")&&(palette=localStorage.getItem("palette"),createPalette())});
-    </script>
-</body>
+viewport.onmousedown=function(e){
+	if(e.button==1 || (tool==2 && e.button==0)){
+		e.preventDefault();
+		vNode.sx=e.clientX;
+		vNode.sy=e.clientY;
+		vNode.mx=viewport.scrollTop;
+		vNode.my=viewport.scrollLeft;
+		document.onmousemove=function(e){
+			e.preventDefault();
+			viewport.scrollTop=vNode.mx-(e.clientY-vNode.sy);
+			viewport.scrollLeft=vNode.my-(e.clientX-vNode.sx);
+		};
+		document.onmouseup=function(e){
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+		document.onmouseleave=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+	}
+}
+viewport.onwheel=function(e){
+    e.preventDefault();
+    canvas_scale(3,e.pageX,e.pageY,e.deltaY)
+}
+function canvas_scale(s,x,y,d){
+    let doc=asciiscreen.getBoundingClientRect();
+    vNode.sx = (x?x:doc.width/2) - viewport.offsetLeft+viewport.scrollLeft;
+    vNode.sy = (y?y:doc.height/2) - viewport.offsetTop+viewport.scrollTop;
+    vNode.mx = vNode.sx / scale;
+    vNode.my = vNode.sy / scale;
+    if(s==2){
+        scale=Math.min(2,scale+0.05);
+    } else if(s==1){
+        scale=Math.max(0.25,scale-0.05);
+    } else if(s==3){
+        scale += -1 * Math.max(-1, Math.min(1, d)) * 0.06 * scale;
+        scale = Math.max(0.5, Math.min(4, scale));
+    } else {scale=1;}
+    vNode.px = -vNode.mx * scale + vNode.sx;
+    vNode.py = -vNode.my * scale + vNode.sy;
+    viewport.scrollTop  += -vNode.py;
+    viewport.scrollLeft += -vNode.px;
+    vNode.elem.style.zoom = scale;
+}
 
-</html>
+var color_ui=[
+    ['#cec8e3','#efefff','rgba(110,95,165,0.25)','rgba(110,95,165,0.5)','#fff','none','#000','rgba(255,255,255,0.8)','rgba(240,240,240,0.8)','#efefff'],
+    ['#7f7f7f','#131a1e','rgba(0,0,0,0.5)','rgba(0,0,0,0.5)','#26343d','invert(90%)','#ddd','rgba(0,0,0,0.75)','rgba(25,25,25,0.7)','#b5a49b']
+]
+function set_ui(t){
+    root_style.style.setProperty('--cb',color_ui[t][0]);
+    root_style.style.setProperty('--cw',color_ui[t][1]);
+    root_style.style.setProperty('--cs',color_ui[t][2]);
+    root_style.style.setProperty('--cm',color_ui[t][3]);
+    root_style.style.setProperty('--wn',color_ui[t][4]);
+    root_style.style.setProperty('--ft',color_ui[t][5]);
+    root_style.style.setProperty('--tx',color_ui[t][6]);
+    root_style.style.setProperty('--ac',color_ui[t][7]);
+    root_style.style.setProperty('--at',color_ui[t][8]);
+    root_style.style.setProperty('--bh',color_ui[t][9]);
+}
+if(localStorage.getItem("them")){set_ui(1)}
+file.addEventListener('change',loadFiles);
+
+function new_canvas(w,h){db=[];for(y=0;y<h;y++){db.push([]);for(x=0;x<w;x++){db[y]+=" "};};buildWorld();asciiview.scrollIntoView({block:"center",inline:"center"});back_up=[];state_save();}
+function modal_window(open,id){if(!open){window_zone.style.display="none";window_zone.innerHTML=""}else if(open){modal_tool(false);window_zone.style.display="grid";window_zone.innerHTML=document.getElementById(id).innerHTML;}}
+function modal_tool(open,id){
+    if(!open){tool_zone.style.display="none"}
+    else if(open){tool_zone.style.display="grid";tool_zone.innerHTML=document.getElementById(id).innerHTML;}}
+function toast(message){var toast=document.getElementById("toast");toast.classList.remove("toast_anim");toast.innerHTML=message;void toast.offsetParent;toast.classList.add("toast_anim");}
+function select_tool(n){
+    var e,tools_ele=document.getElementsByClassName('tools')
+    if(n==0){
+        tool=2
+    }else if(n==1){
+        tool=0
+    }else if(n==2){
+        tool=3
+    }else if(n==3){
+        tool=1
+    }else{
+        tool=n
+    }
+    for (e=0;e<tools_ele.length;e++){if(e!=n){tools_ele[e].style.backgroundColor="";}else{tools_ele[e].style.backgroundColor="var(--cb)";}}
+    modal_tool(false)
+}
+function add_cells(u,s){
+    var x,y,w=0,h=0,a;db=[];
+    tr=canvas.getElementsByTagName('tr');
+    if(u==4||u==2){h=s;for(a=0;a<h;a++){db.push([]);}if(u==4){h=0}}else if(u==3||u==1){w=s}
+    for(y=0;y<tr.length;y++){
+        td=tr[y].getElementsByTagName('td');
+        db.push([])
+        if(u==1){for(a=0;a<w;a++){db[y+h]+=" "}}
+        for(x=0;x<td.length;x++){db[y+h]+=td[x].textContent};
+        if(u==3){for(a=0;a<w;a++){db[y+h]+=" "}}
+    };buildWorld();state_save();
+}
+function crop_cells(){
+    get_selected();
+    del_cells(3,td.length-x2-1);del_cells(4,tr.length-y2-1);
+    del_cells(1,x1);del_cells(2,y1);
+    selected=[0,0,0,0];select_arr();
+}
+function del_cells(u,s){
+    var x,y,l=0,r=0,t=0,b=0;db=[];
+    tr=canvas.getElementsByTagName('tr');
+    if(u==1){l=s}else if(u==2){t=s}else if(u==3){r=s}else if(u==4){b=s}
+    for(y=0;y<tr.length-b-t;y++){
+        db.push([])
+        td=tr[t+y].getElementsByTagName('td');
+        for(x=l;x<td.length-r;x++){db[y]+=td[x].textContent};
+    };buildWorld();state_save();
+}
+function text_apply(){
+    if(selected[1]!=selected[3]||selected[0]!=selected[2]){
+        var dbs=window_zone.getElementsByClassName('edittext')[0].value.split('\n'),s=selected[2]-selected[0]+1;
+        for(var y=selected[1];y<selected[3]+1;y++){if(dbs[y-selected[1]]){db[y]=db[y].substr(0,selected[0])+dbs[y-selected[1]].substr(0,s).padEnd(s,' ')+db[y].substr(selected[2]+1,db[y].length)}}
+    }else{db=window_zone.getElementsByClassName('edittext')[0].value.split('\n');}
+    buildWorld();modal_window(false);state_save();
+}
+function buildWorld(){
+    var x,y,w=0;
+    canvas.innerHTML="";
+    get_selected();
+    for(y=0;y<db.length;y++){if(w<db[y].length){w=db[y].length}}
+    for(y=0;y<db.length;y++){
+        tr=document.createElement("tr");
+        for(x=0;x<w;x++){
+            td=document.createElement("td");
+            td.setAttribute("onmouseenter","if(event.which!=3&&!contextmenushow){targetcell=["+x+","+y+"];cur_x.innerHTML="+(x+1)+";cur_y.innerHTML="+(y+1)+";if(mouseclick){if(tool==5){selected[2]="+x+";selected[3]="+y+";select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}}}")
+            td.setAttribute("onmousedown","if(event.button==0&&event.which!=3&&!contextmenushow){if(tool==5){selected=["+x+","+y+","+x+","+y+"];select_arr();}else if(tool==0){this.innerHTML=brush;}else if(tool==3){this.innerHTML=' ';}else if(tool==1){start_fill("+x+","+y+",this.textContent);}else if(tool==4){brush=this.textContent;active_brush.innerHTML=brush;}}")
+            td.setAttribute("oncontextmenu","targetcell=["+x+","+y+"]")
+            if(se&&(x1<=x&&x<=x2)&&(y1<=y&&y<=y2)){td.style.backgroundColor="var(--cw)";}
+            if(db[y][x]&&db[y][x]!=" "){td.innerHTML=db[y][x]}else{td.innerHTML=" "}
+            tr.appendChild(td);
+        }canvas.appendChild(tr);
+    }
+    var rect=frame.getBoundingClientRect();
+    asciiview.style.height=rect.height+512+"px"
+    asciiview.style.width=rect.width+512+"px"
+}
+function select_arr(){
+    if(selected[1]!=selected[3]||selected[0]!=selected[2]){arr_size.innerHTML=(Math.abs(selected[2]-selected[0])+1)+" X "+(Math.abs(selected[3]-selected[1])+1)}
+    tr=canvas.getElementsByTagName('tr');
+    for(var y=0;y<tr.length;y++){
+        td=tr[y].getElementsByTagName('td');
+        for(var x=0;x<td.length;x++){
+            if((selected[1]!=selected[3]||selected[0]!=selected[2])&&((y>selected[1]-1&&y<selected[3]+1)||(y>selected[3]-1&&y<selected[1]+1))){
+                if((x>selected[0]-1&&x<selected[2]+1)||(x>selected[2]-1&&x<selected[0]+1)){
+                    td[x].style.backgroundColor="var(--cw)";
+                    //td[x].style.cursor="move";
+                }
+                else{td[x].style.backgroundColor="";td[x].style.cursor="";}
+            }else{td[x].style.backgroundColor="";td[x].style.cursor="";}
+        };
+    };cursor_text.innerHTML=(Math.abs(selected[2]-selected[0])+1)+" X "+(Math.abs(selected[3]-selected[1])+1);
+}
+window.addEventListener("DOMContentLoaded", function(){
+    if (window.File&&window.FileReader&&window.FileList&&window.Blob){
+        window.addEventListener("dragover",function(e){e.preventDefault();e.stopPropagation();});
+        window.addEventListener("drop",function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            if(e.dataTransfer.files[0].type.includes("image")){
+                img=e.dataTransfer.files[0];show_img();
+            }else if(e.dataTransfer.files[0].name.includes(".ttf")||e.dataTransfer.files[0].name.includes(".woff2")||e.dataTransfer.files[0].name.includes(".woff")){
+                var n=e.dataTransfer.files[0].name.split('.',1);
+                root_style.style.setProperty("--font",n);
+                let font = new FontFace(n, "url("+URL.createObjectURL(e.dataTransfer.files[0])+")");
+                font.load().then(function(loadedFont){document.fonts.add(loadedFont);}).catch(function(error){});
+                add_font(n);
+            }else{
+                var xmlhttp=new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function(){if(this.readyState==4&&(this.status===200 || this.status==0)){db=this.responseText.split("\n");buildWorld();asciiview.scrollIntoView({block: "center",inline: "center"});back_up=[];state_save();toast(e.dataTransfer.files[0].name+' file is open')}}
+                xmlhttp.open("GET",URL.createObjectURL(e.dataTransfer.files[0]),true);
+                xmlhttp.send();
+                xmlhttp.onerror=function(){if(this.status==0){}}
+            };
+        });
+    }
+    fonts.selectedIndex=0;
+});
+function loadFiles(e){
+    if(e.target.files[0].type.includes("image")){
+        img=e.target.files[0];show_img();
+    }else if(e.target.files[0].name.includes(".ttf")||e.target.files[0].name.includes(".woff2")||e.target.files[0].name.includes(".woff")){
+        var n=e.target.files[0].name.split('.',1);
+        root_style.style.setProperty("--font",n);
+        let font = new FontFace(n, "url("+URL.createObjectURL(e.target.files[0])+")");
+        font.load().then(function(loadedFont){document.fonts.add(loadedFont);}).catch(function(error){});
+        add_font(n);
+    }else{
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){if(this.readyState==4&&(this.status===200 || this.status==0)){db=this.responseText.split("\n");buildWorld();asciiview.scrollIntoView({block: "center",inline: "center"});back_up=[];state_save();selected=[0,0,0,0];select_arr();toast(e.target.files[0].name+' file is open')}}
+        xmlhttp.open("GET",URL.createObjectURL(e.target.files[0]),true);
+        xmlhttp.send();
+        xmlhttp.onerror=function(){if(this.status==0){}}
+    };
+}
+function add_font(n){
+    var o=document.createElement('option');
+    o.value=n;
+    o.innerHTML=n;
+    fonts.appendChild(o);
+    fonts.selectedIndex=fonts.options.length-1
+}
+function getallChar(){
+    var div,s,t,p,e=window_zone.getElementsByClassName('all_simbols')[0],r=window_zone.getElementsByClassName('palette_simbols')[0],f=edit_p?art_palette.value:palette;
+    r.value=f;
+    window_zone.getElementsByClassName('range')[0].value=range_font[0];
+    window_zone.getElementsByClassName('range')[1].value=range_font[1];
+    fonts_palette.innerHTML=fonts.innerHTML;
+    fonts_palette.selectedIndex=fonts.selectedIndex;
+    e.innerHTML="";
+    //palette_apply.setAttribute("onclick","applyChar();modal_window(false);");
+    for (var c=range_font[0];c<range_font[1];c++){
+        s=String.fromCharCode(c)
+        p=false;for(t=0;t<f.length;t++){if(f[t]==s){p=true;break}}
+        label=document.createElement("label");
+        label.innerHTML="<input type='checkbox' onchange='addChar(this.checked,\""+s+"\");' "+((p)?"checked":"")+"><span class='char symbol'>"+s+"</span>"
+        label.classList.add("symbol_select");
+        e.appendChild(label);
+    }
+    e.style.display="block";
+}
+function show_img(){
+    const img_preview=document.getElementById('img_preview');
+    frame.style.backgroundImage="url('"+URL.createObjectURL(img)+"')";
+    frame.style.backgroundSize="100% 100%";
+    frame.style.backgroundPosition="center";
+    frame.style.backgroundRepeat="no-repeat";
+    img_preview.style.display="block";
+    img_preview.getElementsByTagName('img')[0].src=URL.createObjectURL(img);
+    img_show.checked=true;
+    img_icon.style.filter="contrast(100%) brightness(100%)";
+    if(localStorage.getItem("art_palette")){art_palette.value=localStorage.getItem("art_palette");}else{art_palette.value="$#X?=>^*~-,. ";}
+    brightness.value=100;
+    contrast.value=100;
+}
+function delete_img(){img_preview.style.display="none";frame.style.backgroundImage="none";}
+function addChar(d,c){var r=window_zone.getElementsByClassName('palette_simbols')[0];if(d){var i=r.selectionStart;r.value=r.value.substring(0, i)+c+r.value.substring(i);r.selectionStart=i+1;}else{r.value=r.value.replace(new RegExp(c,'g'),"")}}
+function applyChar(){
+    if(edit_p){
+        var w=window_zone.getElementsByClassName('palette_simbols')[0].value;
+        art_palette.value=w;
+        localStorage.setItem('art_palette',w);
+    }else{
+        range_font=[window_zone.getElementsByClassName('range')[0].value,window_zone.getElementsByClassName('range')[1].value];
+        palette=window_zone.getElementsByClassName('palette_simbols')[0].value;
+        localStorage.setItem("palette",palette);
+        createPalette();localStorage.setItem("range_font",JSON.stringify(range_font));
+        fonts.selectedIndex=fonts_palette.selectedIndex;
+    
+    }
+}
+function createPalette(){
+    var div,s;
+    symbols_view.innerHTML=""
+    for (var c=0;c<palette.length;c++){
+        div=document.createElement("div");
+        s=palette[c]
+        div.innerHTML=s
+        div.classList.add("symbol");
+        div.setAttribute("onclick","brush='"+((s.match(/\\/))?"\\\\":s)+"';active_brush.innerHTML=brush;select_symbol("+c+")");
+        if(brush==s){div.style.backgroundColor="var(--cb)";}
+        symbols_view.appendChild(div);
+    }
+}
+function select_symbol(n){
+    var symbol_ele=document.getElementsByClassName('symbol')
+    for (var e=0;e<symbol_ele.length;e++){if(e!=n){symbol_ele[e].style.backgroundColor="";}else{symbol_ele[e].style.backgroundColor="var(--cb)";}}
+}
+function get_selected(){
+    se=(selected[1]!=selected[3]||selected[0]!=selected[2])?true:false;
+    if(se){
+        if(selected[0]>selected[2]){x1=selected[2];x2=selected[0]}else{x1=selected[0];x2=selected[2];}
+        if(selected[1]>selected[3]){y1=selected[3];y2=selected[1]}else{y1=selected[1];y2=selected[3];}
+    }return se;
+}
+async function save_art(c){
+    var text="";
+    tr=canvas.getElementsByTagName('tr');
+    if(!get_selected()){x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length;}else{y2++;}
+    for(y=y1;y<y2;y++){
+        td=tr[y].getElementsByTagName('td');
+        for(x=x1;x<x2+1;x++){if(td[x]){text+=td[x].textContent}};
+        if(y<y2-1){text.trim();text+="\n";}
+    }
+    if(c){
+        if("showSaveFilePicker" in window&&window.self===window.top) {
+            const opt={
+                suggestedName:"text_art.txt",
+                id:'ASCIIart',
+                types:[{description:'Text Files',accept:{'text/plain':['.txt']}}],
+            };
+            const file = await window.showSaveFilePicker(opt);
+            const content = await file.createWritable();
+            await content.write(text);
+            await content.close();
+        } else {
+            var a=document.getElementById("get_file");
+            a.setAttribute("href","data:text/json;charset=utf-8,"+encodeURIComponent(text));
+            a.setAttribute("download","text_art.txt");
+            a.click();
+        }
+    }else if(window_zone.style.display=="grid"){
+        state_save();window_zone.getElementsByClassName('edittext')[0].value=text;
+    }else{
+        copydb=text.split("\n");
+        copytext.value=text;
+    	copytext.select();
+    	copytext.setSelectionRange(0,99999)
+    	document.execCommand("copy");
+    }
+}
+function paste_data(cx,cy,a){
+    var x,y,w=copydb[0].length,h=copydb.length;
+    tr=canvas.getElementsByTagName('tr');
+    get_selected();
+    if(se&&(x1<=cx&&cx<=x2)&&(y1<=cy&&cy<=y2)){if(w>(x2-x1)){w=(x2-x1)+1};if(h>(y2-y1)){h=(y2-y1)+1}cx=x1;cy=y1;}
+    for(y=0;y<h;y++){
+        td=tr[y+cy].getElementsByTagName('td');
+        for(x=0;x<w;x++){if(td.length>(x+cx)){if(a && copydb[y][x]!=" "){td[x+cx].innerHTML=copydb[y][x]}else if(!a){td[x+cx].innerHTML=copydb[y][x]}}}
+    }state_save();
+}
+function delete_data(){
+    get_selected();
+    if(se&&(x1<=targetcell[0]&&targetcell[0]<=x2)&&(y1<=targetcell[1]&&targetcell[1]<=y2)){
+        tr=canvas.getElementsByTagName('tr');
+        for(y=y1;y<y2+1;y++){
+            td=tr[y].getElementsByTagName('td');
+            for(x=x1;x<x2+1;x++){if(td.length>(x)){td[x].innerHTML=" ";}}
+        }state_save();
+    }
+}
+function start_fill(x,y,b){
+    tr=canvas.getElementsByTagName('tr');
+    get_selected();
+    if(se&&(x1<=x&&x<=x2)&&(y1<=y&&y<=y2)){fill(x,y,b);}
+    else{x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length-1;fill(x,y,b);}
+}
+function fill(x,y,b){
+    var ec=canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x];
+    var el=(canvas.getElementsByTagName('tr')[y]&&x-1>=x1)?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x-1]:false;
+    var er=(canvas.getElementsByTagName('tr')[y]&&x+1<=x2)?canvas.getElementsByTagName('tr')[y].getElementsByTagName('td')[x+1]:false;
+    var et=(canvas.getElementsByTagName('tr')[y-1]&&y-1>=y1)?canvas.getElementsByTagName('tr')[y-1].getElementsByTagName('td')[x]:false;
+    var eb=(canvas.getElementsByTagName('tr')[y+1]&&y+1<=y2)?canvas.getElementsByTagName('tr')[y+1].getElementsByTagName('td')[x]:false;
+    if(ec.textContent==b){ec.innerHTML=brush;}
+    if(et&&et.textContent==b){et.innerHTML=brush;if(y-1>=y1){fill(x,y-1,b)}}
+    if(eb&&eb.textContent==b){eb.innerHTML=brush;if(y+1<=y2){fill(x,y+1,b)}}
+    if(er&&er.textContent==b){er.innerHTML=brush;if(x+1<=x2){fill(x+1,y,b)}}
+    if(el&&el.textContent==b){el.innerHTML=brush;if(x-1>=x1){fill(x-1,y,b)}}
+}
+function replaces(o,n){
+    tr=canvas.getElementsByTagName('tr');
+    for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){if(td[x].textContent==o){td[x].innerHTML=n}};}
+}
+function resize_canvas(){
+    var forms=document.forms.align;
+    var sw,sh
+    if(forms[0].checked){sh=2;sw=1}
+    else if(forms[1].checked){sh=2;sw=3}
+    else if(forms[2].checked){sh=4;sw=1}
+    else {sh=4;sw=3}
+    var w=Math.floor(canvasWidth.value),h=Math.floor(canvasHeight.value);
+    if(tr.length<h){add_cells(sh,h-tr.length)}
+    else{del_cells(sh,tr.length-h)}
+    if(td.length<w){add_cells(sw,w-td.length)}
+    else{del_cells(sw,td.length-w)}
+}
+function original_size(){
+    const reader=new FileReader();
+    reader.onload=function(l){
+        const image=new Image();
+        image.onload=function(){
+            var h=Math.floor(image.height/14),w=Math.floor(image.width/8);
+            if(tr.length<h){add_cells(4,h-tr.length)}
+            else{del_cells(4,tr.length-h)}
+            if(td.length<w){add_cells(3,w-td.length)}
+            else{del_cells(3,td.length-w)}
+        };image.src = l.target.result;
+    };reader.readAsDataURL(img);
+}
+function img_to_ascii(r){
+    const preview=document.getElementById("preview"),context=preview.getContext("2d");
+    const reader=new FileReader();
+    reader.onload=function(l){
+        const image=new Image();
+        image.onload=function(){
+            var tr=canvas.getElementsByTagName('tr');
+            let w=tr[0].getElementsByTagName('td').length,h=tr.length;
+            img_icon.style.filter='contrast('+contrast.value+'%) brightness('+brightness.value+'%)'
+            if(r==1){w=w*2;h=h*4}
+            preview.width=w;preview.height=h;
+            context.filter=img_icon.style.filter;
+            context.beginPath();
+            context.rect(0,0,w,h);
+            context.fillStyle="#fff";
+            context.fill();
+            context.drawImage(image,0,0,w,h);
+            const grayScales=convertToGrayScales(context,w,h);
+            if(r==1){drawBraille(w,h)}else{drawAscii(grayScales,w)}
+            
+        };image.src=l.target.result;
+    };reader.readAsDataURL(img);
+};
+const toGrayScale=(r,g,b)=>0.21*r+0.72*g+0.07*b;
+const convertToGrayScales=(context, width, height)=>{
+    const imageData=context.getImageData(0,0,width,height);
+    const grayScales=[];
+    for (let i=0;i<imageData.data.length;i+=4){
+        const r=imageData.data[i],g=imageData.data[i+1],b=imageData.data[i+2];
+        const grayScale=toGrayScale(r,g,b);
+        imageData.data[i]=imageData.data[i+1]=imageData.data[i+2]=grayScale;
+        grayScales.push(grayScale);
+    }
+    context.putImageData(imageData,0,0);
+    return grayScales;
+};
+const getCharacterForGrayScale=grayScale=>art_palette.value[Math.round((art_palette.value.length-1)*grayScale/255)];
+const drawAscii=function(grayScales,width){
+    const ascii=grayScales.reduce((asciiImage,grayScale,index)=>{
+        let nextChars=getCharacterForGrayScale(grayScale);
+        if((index+1)%width===0){nextChars+='\n';}
+        return asciiImage+nextChars;
+    }, '');
+    db=ascii.split("\n");db.splice(-1,1);buildWorld();state_save();
+};
+function drawBraille(w,h){
+    const preview=document.getElementById("preview"),context=preview.getContext("2d");let t="";
+    for (let i=0;i<(h/4);i++){
+        for (let b=0;b<(w/2);b++){
+            let c="";
+            c+=context.getImageData(b*2,i*4,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2,i*4+1,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2,i*4+2,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2,i*4+3,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2+1,i*4,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2+1,i*4+1,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2+1,i*4+2,1,1).data[0]>128?0:1;
+            c+=context.getImageData(b*2+1,i*4+3,1,1).data[0]>128?0:1;
+            function grad(){var g=0;
+                g+=context.getImageData(b*2,i*4+1,1,1).data[0];
+                g+=context.getImageData(b*2,i*4+2,1,1).data[0];
+                g+=context.getImageData(b*2+1,i*4+1,1,1).data[0];
+                g+=context.getImageData(b*2+1,i*4+2,1,1).data[0];
+                g/=4;return "⣿⣟⣫⡮⢕⠕⠌⠂"[Math.round(7*g/255)];}
+            "11111111"==c?t+=grad():"00000000"==c?t+=grad():"01000000"==c?t+="⠂":"10000000"==c?t+="⠁":"11000000"==c?t+="⠃":"00100000"==c?t+="⠄":"10100000"==c?t+="⠅":"01100000"==c?t+="⠆":"11100000"==c?t+="⠇":"00001000"==c?t+="⠈":"10001000"==c?t+="⠉":"01001000"==c?t+="⠊":"11001000"==c?t+="⠋":"00101000"==c?t+="⠌":"10101000"==c?t+="⠍":"01101000"==c?t+="⠎":"11101000"==c?t+="⠏":"00000100"==c?t+="⠐":"10000100"==c?t+="⠑":"01000100"==c?t+="⠒":"11000100"==c?t+="⠓":"11100110"==c?t+="⠷":"01100110"==c?t+="⠶":"01011100"==c?t+="⡚":"11011100"==c?t+="⡛":"11111110"==c?t+="⡿":"01111110"==c?t+="⡾":"01000011"==c?t+="⢢":"11000011"==c?t+="⢣":"11110001"==c?t+="⣇":"01110001"==c?t+="⣆":"01011011"==c?t+="⣪":"11011011"==c?t+="⣫":"10011011"==c?t+="⣩":"00011011"==c?t+="⣨":"01110011"==c?t+="⣦":"11110011"==c?t+="⣧":"10110011"==c?t+="⣥":"00110011"==c?t+="⣤":"11010011"==c?t+="⣣":"01010011"==c?t+="⣢":"10010011"==c?t+="⣡":"00010011"==c?t+="⣠":"11111101"==c?t+="⣟":"01111101"==c?t+="⣞":"10111101"==c?t+="⣝":"00111101"==c?t+="⣜":"11011101"==c?t+="⣛":"01111111"==c?t+="⣾":"01011101"==c?t+="⣚":"10011101"==c?t+="⣙":"10111111"==c?t+="⣽":"00111111"==c?t+="⣼":"00011101"==c?t+="⣘":"11110101"==c?t+="⣗":"11011111"==c?t+="⣻":"01011111"==c?t+="⣺":"01110101"==c?t+="⣖":"10110101"==c?t+="⣕":"10011111"==c?t+="⣹":"00011111"==c?t+="⣸":"00110101"==c?t+="⣔":"11010101"==c?t+="⣓":"11110111"==c?t+="⣷":"01110111"==c?t+="⣶":"01010101"==c?t+="⣒":"10010101"==c?t+="⣑":"10110111"==c?t+="⣵":"00110111"==c?t+="⣴":"00010101"==c?t+="⣐":"11111001"==c?t+="⣏":"11010111"==c?t+="⣳":"01010111"==c?t+="⣲":"01111001"==c?t+="⣎":"10111001"==c?t+="⣍":"10010111"==c?t+="⣱":"00010111"==c?t+="⣰":"00111001"==c?t+="⣌":"11011001"==c?t+="⣋":"11111011"==c?t+="⣯":"01111011"==c?t+="⣮":"01011001"==c?t+="⣊":"10011001"==c?t+="⣉":"10111011"==c?t+="⣭":"00111011"==c?t+="⣬":"00011001"==c?t+="⣈":"00100011"==c?t+="⢤":"00000001"==c?t+="⢀":"00001110"==c?t+="⠸":"00111100"==c?t+="⡜":"00100100"==c?t+="⠔":"10100100"==c?t+="⠕":"01100100"==c?t+="⠖":"11100100"==c?t+="⠗":"00001100"==c?t+="⠘":"10001100"==c?t+="⠙":"01001100"==c?t+="⠚":"11001100"==c?t+="⠛":"00101100"==c?t+="⠜":"10101100"==c?t+="⠝":"01101100"==c?t+="⠞":"11101100"==c?t+="⠟":"00000010"==c?t+="⠠":"10000010"==c?t+="⠡":"01000010"==c?t+="⠢":"11000010"==c?t+="⠣":"00100010"==c?t+="⠤":"10100010"==c?t+="⠥":"01100010"==c?t+="⠦":"11100010"==c?t+="⠧":"00001010"==c?t+="⠨":"10001010"==c?t+="⠩":"01001010"==c?t+="⠪":"11001010"==c?t+="⠫":"00101010"==c?t+="⠬":"10101010"==c?t+="⠭":"01101010"==c?t+="⠮":"11101010"==c?t+="⠯":"00000110"==c?t+="⠰":"10000110"==c?t+="⠱":"01000110"==c?t+="⠲":"11000110"==c?t+="⠳":"00100110"==c?t+="⠴":"10100110"==c?t+="⠵":"10011100"==c?t+="⡙":"10111110"==c?t+="⡽":"10000011"==c?t+="⢡":"10110001"==c?t+="⣅":"00110001"==c?t+="⣄":"01010001"==c?t+="⣂":"11010001"==c?t+="⣃":"10010001"==c?t+="⣁":"00010001"==c?t+="⣀":"11101111"==c?t+="⢿":"10101111"==c?t+="⢽":"01101111"==c?t+="⢾":"00101111"==c?t+="⢼":"01001111"==c?t+="⢺":"11001111"==c?t+="⢻":"10001111"==c?t+="⢹":"00001111"==c?t+="⢸":"11100111"==c?t+="⢷":"01100111"==c?t+="⢶":"10100111"==c?t+="⢵":"00100111"==c?t+="⢴":"11000111"==c?t+="⢳":"01000111"==c?t+="⢲":"10000111"==c?t+="⢱":"00000111"==c?t+="⢰":"11101011"==c?t+="⢯":"01101011"==c?t+="⢮":"10101011"==c?t+="⢭":"00101011"==c?t+="⢬":"11001011"==c?t+="⢫":"01001011"==c?t+="⢪":"10001011"==c?t+="⢩":"00001011"==c?t+="⢨":"11100011"==c?t+="⢧":"01100011"==c?t+="⢦":"10100011"==c?t+="⢥":"10000001"==c?t+="⢁":"10111100"==c?t+="⡝":"10001110"==c?t+="⠹":"01001110"==c?t+="⠺":"11001110"==c?t+="⠻":"00101110"==c?t+="⠼":"10101110"==c?t+="⠽":"01101110"==c?t+="⠾":"11101110"==c?t+="⠿":"00010000"==c?t+="⡀":"10010000"==c?t+="⡁":"01010000"==c?t+="⡂":"11010000"==c?t+="⡃":"00110000"==c?t+="⡄":"10110000"==c?t+="⡅":"01110000"==c?t+="⡆":"11110000"==c?t+="⡇":"00011000"==c?t+="⡈":"10011000"==c?t+="⡉":"01011000"==c?t+="⡊":"11011000"==c?t+="⡋":"00111000"==c?t+="⡌":"10111000"==c?t+="⡍":"01111000"==c?t+="⡎":"11111000"==c?t+="⡏":"00010100"==c?t+="⡐":"10010100"==c?t+="⡑":"01010100"==c?t+="⡒":"11010100"==c?t+="⡓":"00110100"==c?t+="⡔":"10110100"==c?t+="⡕":"01110100"==c?t+="⡖":"11110100"==c?t+="⡗":"00011100"==c?t+="⡘":"00111110"==c?t+="⡼":"00000011"==c?t+="⢠":"11101101"==c?t+="⢟":"11011110"==c?t+="⡻":"01011110"==c?t+="⡺":"01101101"==c?t+="⢞":"10101101"==c?t+="⢝":"10011110"==c?t+="⡹":"00011110"==c?t+="⡸":"00101101"==c?t+="⢜":"11001101"==c?t+="⢛":"11110110"==c?t+="⡷":"01110110"==c?t+="⡶":"01001101"==c?t+="⢚":"10001101"==c?t+="⢙":"10110110"==c?t+="⡵":"00110110"==c?t+="⡴":"00001101"==c?t+="⢘":"11100101"==c?t+="⢗":"11010110"==c?t+="⡳":"01010110"==c?t+="⡲":"01100101"==c?t+="⢖":"10100101"==c?t+="⢕":"10010110"==c?t+="⡱":"00010110"==c?t+="⡰":"00100101"==c?t+="⢔":"11000101"==c?t+="⢓":"11111010"==c?t+="⡯":"01111010"==c?t+="⡮":"01000101"==c?t+="⢒":"10000101"==c?t+="⢑":"10111010"==c?t+="⡭":"00111010"==c?t+="⡬":"00000101"==c?t+="⢐":"11101001"==c?t+="⢏":"11011010"==c?t+="⡫":"01011010"==c?t+="⡪":"01101001"==c?t+="⢎":"10101001"==c?t+="⢍":"10011010"==c?t+="⡩":"00011010"==c?t+="⡨":"00101001"==c?t+="⢌":"11001001"==c?t+="⢋":"11110010"==c?t+="⡧":"01110010"==c?t+="⡦":"01001001"==c?t+="⢊":"10001001"==c?t+="⢉":"10110010"==c?t+="⡥":"00110010"==c?t+="⡤":"00001001"==c?t+="⢈":"11100001"==c?t+="⢇":"11010010"==c?t+="⡣":"01010010"==c?t+="⡢":"01100001"==c?t+="⢆":"10100001"==c?t+="⢅":"10010010"==c?t+="⡡":"00010010"==c?t+="⡠":"00100001"==c?t+="⢄":"11000001"==c?t+="⢃":"11111100"==c?t+="⡟":"01111100"==c?t+="⡞":"01000001"==c?t+="⢂":t+=" "
+        }t+='\n'
+    }db=t.split("\n");db.splice(-1,1);buildWorld();state_save();
+}
+function state_save(){
+    frame=document.getElementById('asciicanvas')
+    if(state_num>0){back_up.splice(0,state_num);state_num=0;}
+    var text="";
+    tr=canvas.getElementsByTagName('tr');
+    for(y=0;y<tr.length;y++){td=tr[y].getElementsByTagName('td');for(x=0;x<td.length;x++){text+=td[x].textContent};if(y<tr.length-1){text+="\n";};}
+    canvasWidth.value=td.length
+    canvasHeight.value=tr.length
+    imgWidth.value=td.length*8
+    imgHeight.value=tr.length*14
+    cells.innerHTML=td.length*tr.length
+    arr_size.innerHTML=td.length+" X "+tr.length
+    back_up.unshift(text);
+    if(back_up.length>100){back_up.pop();}
+}
+function save_png(){
+    tr=canvas.getElementsByTagName('tr');
+    td=tr[0].getElementsByTagName('td');
+    var iw=imgWidth.value,
+        ih=imgHeight.value,
+        cw=(iw/td.length).toFixed(2),
+        ch=(ih/tr.length).toFixed(2);
+    const preview=document.getElementById("preview"),context=preview.getContext("2d");
+    preview.width=iw;preview.height=ih;
+    context.font=ch.toString()+'px '+window.getComputedStyle(document.documentElement).getPropertyValue('--font');
+    if(!get_selected()){x1=0;x2=tr[0].getElementsByTagName('td').length-1;y1=0;y2=tr.length;}else{y2++;}
+    for(y=y1;y<y2;y++){td=tr[y].getElementsByTagName('td');for(x=x1;x<x2+1;x++){if(td[x]){context.fillText(td[x].textContent,cw*x,ch*(y+1));}};}
+    var a=document.getElementById("get_file");
+    a.setAttribute("href",preview.toDataURL("image/png"));
+    a.setAttribute("download","text_art.png");
+    a.click();
+}
+function correct_value(name){if(name.includes("+")||name.includes("-")||name.includes("*")||name.includes("/")){return parseInt(eval(name))}else{return parseInt(name)}}
+function state_back(n){state_num+=n;if(state_num<0){state_num=0}else if(state_num>=back_up.length-1){state_num=back_up.length-1};db=back_up[state_num].split("\n");buildWorld();}
+document.addEventListener('DOMContentLoaded',function(){createPalette();active_brush.innerHTML=brush;if(localStorage.getItem("range_font")){range_font=JSON.parse(localStorage.getItem("range_font"))};if(localStorage.getItem("palette")){palette=localStorage.getItem("palette");createPalette();}})
+
+document.addEventListener('keydown',function(event){
+    if (event.altKey){
+        if(event.which==88){
+            save_art(false);delete_data()
+        } else if(event.which==67){
+            save_art(false);
+        } else if(event.which==86){
+            paste_data(targetcell[0],targetcell[1],true);
+        } else if(event.which==83 || event.which==115 || event.which==54){
+            save_art(true);
+        } else if(event.which==77){
+            select_tool(5);
+        } else if(event.which==73){
+            select_tool(4);
+        } else if(event.which==71 || event.which==102 || event.which==52){
+            select_tool(3);
+        } else if(event.which==69 || event.which==101 || event.which==51){
+            select_tool(2);
+        } else if(event.which==66 || event.which==98 || event.which==50){
+            select_tool(1);
+        } else if(event.which==72 || event.which==104 || event.which==49){
+            select_tool(0);
+        } else if(event.which==79){
+            file.click();
+        } else if(event.shiftKey && event.which==90){
+            state_back(-1);
+        } else if(event.which==90){
+            state_back(1);
+        }
+    } else {
+        if (event.key==="Escape"){selected=[0,0,0,0];select_arr();}
+    }
+})
+
+</script>
+</body></html>
