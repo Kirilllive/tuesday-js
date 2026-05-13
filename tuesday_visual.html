@@ -3084,7 +3084,6 @@ function dialog_text_edit(){
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Height size</td><td><input id='e_height' class='input_text' onchange='this.value=correct_value(this.value);if(e_width.value.length==0){e_width.value=\"auto\"};' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[2]:"")+"' type='text'></td><td></td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Style CSS</td><td><input id='e_style' class='input_text' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[3]:"")+"' type='text'></td><td></td></tr>"
     +"<tr><td height='40px' align='right' style='padding-right:8px;'>Class Name</td><td><input id='e_class' class='input_text' value='"+((copy_arr.end_text_cursor)?copy_arr.end_text_cursor[4]:"")+"' type='text'></td><td></td></tr>"
-
     if(v){
         if(!copy_arr.speech){copy_arr.speech={}}
         if(typeof story_script.parameters.text_panel.speech_play=="undefined"){story_script.parameters.text_panel.speech_play=true}
@@ -3605,9 +3604,7 @@ function scen_editor(block,i,n){
                 if(e_cursor[4]==""&&story_script.parameters.text_panel.end_text_cursor[4]){e_cursor[4]=story_script.parameters.text_panel.end_text_cursor[4]}
             }
             if(story_script[block][i].dialogs[n-1].text){tue_text_view.innerHTML=values_in_text(languare_data(story_script[block][i].dialogs[n-1].text)).replace(new RegExp("\n","g"),"<br>")
-            
             +((e_cursor&&e_cursor[0].length>0)?'&nbsp<img src="'+open_file(e_cursor[0])+'" style="width:'+((e_cursor[1])?e_cursor[1]:'auto')+';height:'+((e_cursor[2])?e_cursor[2]:'auto')+';'+((e_cursor[3])?e_cursor[3]:'')+'">':'&nbsp<span style="display:inline-block;width:'+(e_cursor[1])+';height:'+(e_cursor[2])+';'+((e_cursor[3])?e_cursor[3]:'')+'"></span>');}
-            
             else {tue_text_view.innerHTML=languare_data(story_script[block][i].dialogs[n-1].text_add).replace(new RegExp("\n","g"),"<br>")+((e_cursor&&e_cursor[0])?'&nbsp<img src="'+open_file(e_cursor[0])+'" style="width:'+((e_cursor[1])?e_cursor[1]:'auto')+';height:'+((e_cursor[2])?e_cursor[2]:'auto')+';'+((e_cursor[3])?e_cursor[3]:'')+'">':'');}
             if(story_script[block][i].dialogs[n-1].name&&arr_p){
                 if(arr_p.className){tue_name_block.className=arr_p.className;}else{tue_name_block.className=""};
