@@ -5040,30 +5040,77 @@ function apply_setup(){
 var scale=1;
 var scale_scene=1;
 document.addEventListener('keydown',function(event){
-    let elem=document.getElementsByClassName("code_text")[0];
-    if(elem&&event.key=='Tab'){
-        event.preventDefault();
-        const start = elem.selectionStart,
-              end = elem.selectionEnd,
-              value = elem.value;
-        if (!event.shiftKey && start === end) {
-            elem.setRangeText('\t', start, end, 'end');
-            elem.oninput();
-            return;
-        }
-        const startPos = value.lastIndexOf('\n', start - 1) + 1;
-        const endPos = value.indexOf('\n', end);
-        const finish = endPos === -1 ? value.length : endPos;
-        const target = value.substring(startPos, finish);
-        const newText = event.shiftKey?target.replace(/^\t/gm, ''):target.replace(/^/gm, '\t');
-        elem.setRangeText(newText, startPos, finish, 'select');
-        if (event.shiftKey && start === end) {
-            const wasRemoved = target.startsWith('\t');
-            const newPos = Math.max(startPos, start - (wasRemoved ? 1 : 0));
-            elem.setSelectionRange(newPos, newPos);
-        }
-        elem.oninput();
-    }
+	if(document.activeElement.classList.contains('code_text')){
+		let elem=document.activeElement;
+		if(event.key=='Tab'){
+			event.preventDefault();
+			const start = elem.selectionStart,
+				  end = elem.selectionEnd,
+				  value = elem.value;
+			if (!event.shiftKey && start === end) {
+				elem.focus();
+				document.execCommand('insertText', false, '\t');
+				return;
+			}
+			const startPos = value.lastIndexOf('\n', start - 1) + 1;
+			const endPos = value.indexOf('\n', end);
+			const finish = endPos === -1 ? value.length : endPos;
+			const target = value.substring(startPos, finish);
+			const newText = event.shiftKey
+				? target.replace(/^\t/gm, '')
+				: target.replace(/^/gm, '\t');
+			elem.setSelectionRange(startPos, finish);
+			elem.focus();
+			document.execCommand('insertText', false, newText);
+			if (event.shiftKey && start === end) {
+				const wasRemoved = target.startsWith('\t');
+				const newPos = Math.max(startPos, start - (wasRemoved ? 1 : 0));
+				elem.setSelectionRange(newPos, newPos);
+			} else {
+				const diff = newText.length - target.length;
+				elem.setSelectionRange(startPos, finish + diff);
+			}
+		} else if( event.code === 'KeyD' && event.ctrlKey ){
+			event.preventDefault();
+			const start = elem.selectionStart,
+				  end = elem.selectionEnd,
+				  value = elem.value;
+			let newText = '';
+			let newStart = 0;
+			let newEnd = 0;
+			if (start === end) {
+				const lineStart = value.lastIndexOf('\n', start - 1) + 1;
+				let lineEnd = value.indexOf('\n', end);
+				if (lineEnd === -1) lineEnd = value.length;
+				const currentLine = value.substring(lineStart, lineEnd);
+				const cursorOffset = start - lineStart; 
+				elem.setSelectionRange(lineEnd, lineEnd);
+				document.execCommand('insertText', false, '\n' + currentLine);
+				if (lineEnd === value.length) {
+					newText = value + '\n' + currentLine;
+					newStart = newEnd = start + currentLine.length + 1;
+				} else {
+					newText = value.substring(0, lineEnd) + '\n' + currentLine + value.substring(lineEnd);
+					newStart = newEnd = start + currentLine.length + 1;
+				}
+				const newPos = lineEnd + 1 + cursorOffset;
+				elem.setSelectionRange(newPos, newPos);
+			} 
+			else {
+				const selectedText = value.substring(start, end);
+				elem.setSelectionRange(end, end);
+				document.execCommand('insertText', false, selectedText);
+				newText = value.substring(0, end) + selectedText + value.substring(end);
+				newStart = end;
+				newEnd = end + selectedText.length;
+				elem.value = newText;
+				elem.setSelectionRange(end, end + selectedText.length);
+			}
+			elem.oninput();
+		}
+	}
+	
+	
     if(event.altKey){
         if(!scroll_block||scene_screen){
             if(event.code=='Equal'){world_scale(2)}
