@@ -438,7 +438,7 @@ function name_block_update(){
                     else {go_to(arr_dialog.video.go_to)}
                 }
             }
-            if(!arr_dialog.video.stop||arr_dialog.video.stop!=true){video.autoplay=true;}
+            if(!arr_dialog.video.stop||arr_dialog.video.stop!=true){video.play();video.autoplay=true;}
             tuesday.prepend(video);
         }else{del_element("tue_v");}
         if(arr_dialog.art){
