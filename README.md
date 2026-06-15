@@ -5,7 +5,8 @@
 is a simple web-based, free and open-source visual novel editor that can be used in a web browser. It is written in JavaScript without using any third party libraries and thus does not require additional software installation. The engine uses standard HTML5 document elements such as div and img. This allows the use of any media format supported by browsers including vector graphics svg, gif animations and css styles.
 There is a version of the editor available as a standalone application for Android devices and desktops. All versions are fully compatible with each other and have the same interface.
 
-> Run in browser: https://kirilllive.github.io/tuesday-js/translate/en_tuesday_visual.html
+> Run in browser:
+> https://kirilllive.github.io/tuesday-js/translate/en_tuesday_visual.html
 
 は無駄を排した作りの、無償かつオープンソースのビジュアルノベル作成ソフトウェアです。ゲームの制作もプレイもウェブブラウザ上で可能です。JavaScriptで開発したソフトウェアですが、サードパーティ製ライブラリーを一切使用していないので、他のソフトウェアをインストールする手間は不要です。divやimgといった標準HTML5文章でお馴染みのタグや要素でゲームのスクリプトを記述し、svg形式のベクターイメージ、gif形式のアニメーション、CSSスタイルシートなど、ブラウザが扱えるファイルなら何でも使用可能です。
 アンドロイド機器並びにパソコン版WindowsとMac用の単体で動作するダウンロード版もあります。各々のバージョン間には完全な互換性があり、インターフェイスも共通しています。
