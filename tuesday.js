@@ -41,7 +41,7 @@ function get_lang(){
     }
     if(!support){languare=story_json.parameters.languares[0]}
 } function load_story(tip,url){
-    if(tip == 'data'){
+    if(tip === 'data'){
         story_json=url;
         base_creation();
         tuesday.dispatchEvent(new Event('script_loaded'));
