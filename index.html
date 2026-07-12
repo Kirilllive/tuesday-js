@@ -63,6 +63,7 @@ body{
     
 .logo span{
     font-size:78px;
+    white-space: nowrap;
     text-decoration-line: underline;
     text-decoration-thickness: 8px;
     text-underline-offset: 8px;
@@ -71,21 +72,30 @@ body{
 :root:not(:has(:target)) .logo:after,
 body:has(#en:target) .logo:after{
     content:"visual novel engine";
+    white-space: nowrap;
     font-size:46px;
 }
 
 body:has(#ru:target) .logo:after{
     content:"движок визуальных новелл";
+    white-space: nowrap;
     font-size:30px;
 }
 
 body:has(#ja:target) .logo:after{
     content:"ビジュアルノベル・エンジン";
+    white-space: nowrap;
     font-size:33px;
 }
 
+body:has(#zh:target) .logo:after{
+    content:"视觉小说引擎";
+    white-space: nowrap;
+    font-size:52px;
+}
 body:has(#ko:target) .logo:after{
     content:"웹 비주얼 노벨 노블 엔진";
+    white-space: nowrap;
     font-size:44px;
 }
 
@@ -207,7 +217,7 @@ body:has(#ja:target) .lang_ja{display:block}
 .submenu > a > span:nth-child(odd) {text-align: left; padding-left:8px;}
 .submenu > a > span:nth-child(even) {text-align: right; padding-right:8px;}
 .button:hover .submenu.download {height: 224px;}
-.button:hover .submenu.lang {height: 96px;}
+.button:hover .submenu.lang {height: 160px;}
 
 .submenu .marker {
     position: absolute;
@@ -257,6 +267,20 @@ body:has(#ja:target) .lang_ja{display:block}
         animation: show_symbols calc(var(--n)*.02s) steps(var(--n)) forwards;
     }
     @keyframes show_symbols{from{background-size:0 100%}}
+}
+.anim_text::after {
+    content: "\00a0";
+    font-family: monospace;
+    animation: ascii_anim 1s linear infinite;
+}
+
+@keyframes ascii_anim {
+    0%      { content: "\00a0"; }
+    20%     { content: "\00a0•"; }
+    40%     { content: "\00a0••"; }
+    60%     { content: "\00a0•••"; }
+    80%     { content: "\00a0\00a0••"; }
+    100%    { content: "\00a0\00a0\00a0•"; }
 }
 @supports not selector(:has(+ *)){
     .type_writer {
@@ -318,7 +342,7 @@ body:has(#ja:target) .lang_ja{display:block}
         border-radius: 6px;
         box-shadow: 0px 4px 14px var(--base_a);
     }
-
+    .top_menu .hidden{display:none;}
 }
 </style>
 </head>
@@ -328,6 +352,7 @@ body:has(#ja:target) .lang_ja{display:block}
     <span id="en" class="description"></span>
     <span id="ja" class="description"></span>
     <span id="ko" class="description"></span>
+    <span id="zh" class="description"></span>
 </div>
 <div class="title">
     <div class="logo"><span>Tuesday JS</span><br></div>
@@ -340,12 +365,15 @@ body:has(#ja:target) .lang_ja{display:block}
                 <span class="lang_en">Download</span>
                 <span class="lang_ja">ダウンロード</span>
                 <span class="lang_ru">Скачать</span>
+                <span class="lang_zh">下载</span>
                 <span class="lang_ko">다운로드</span>
             </span>
         </div></a>
-        <div class="lang_ru"><span class="type_writer" style="--n:461; font-size: 16px;">Простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом. Его можно использовать прямо в браузере. Он написан на JavaScript без использования сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML-документа, такие как div и img. Это позволяет применять любой медиаформат, поддерживаемый браузерами, включая векторную графику SVG, GIF-анимацию и стили CSS.</span></div>
-        <div class="lang_en"><span class="type_writer" style="--n:461; font-size: 16px;">is a simple, free, and open-source web editor for visual novels that runs directly in your browser. It is written in pure JavaScript without any third-party libraries and requires no installation. The engine utilizes standard HTML5 document elements, such as div and img. This allows you to use any browser-supported media format, including SVG vector graphics, GIF animations, and CSS styles.</span></div>
-        <div class="lang_ja"><span class="type_writer" style="--n:461">Tuesday JS は無駄を排した作りの、無償かつオープンソースのビジュアルノベル作成ソフトウェアです。ゲームの制作もプレイもウェブブラウザ上で可能です。JavaScriptで開発したソフトウェアですが、サードパーティ製ライブラリーを一切使用していないので、他のソフトウェアをインストールする手間は不要です。divやimgといった標準HTML5文章でお馴染みのタグや要素でゲームのスクリプトを記述し、svg形式のベクターイメージ、gif形式のアニメーション、CSSスタイルシートなど、ブラウザが扱えるファイルなら何でも使用可能です。</span></div>
+        <div class="lang_ru"><span class="type_writer anim_text" style="--n:461; font-size: 16px;">Простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом. Его можно использовать прямо в браузере. Он написан на JavaScript без использования сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML-документа, такие как div и img. Это позволяет применять любой медиаформат, поддерживаемый браузерами, включая векторную графику SVG, GIF-анимацию и стили CSS</span></div>
+        <div class="lang_en"><span class="type_writer anim_text" style="--n:461; font-size: 16px;">Is a simple, free, and open-source web editor for visual novels that runs directly in your browser. It is written in pure JavaScript without any third-party libraries and requires no installation. The engine utilizes standard HTML5 document elements, such as div and img. This allows you to use any browser-supported media format, including SVG vector graphics, GIF animations, and CSS styles</span></div>
+        <div class="lang_ja"><span class="type_writer anim_text" style="--n:461">Tuesday JS は無駄を排した作りの、無償かつオープンソースのビジュアルノベル作成ソフトウェアです。ゲームの制作もプレイもウェブブラウザ上で可能です。JavaScriptで開発したソフトウェアですが、サードパーティ製ライブラリーを一切使用していないので、他のソフトウェアをインストールする手間は不要です。divやimgといった標準HTML5文章でお馴染みのタグや要素でゲームのスクリプトを記述し、svg形式のベクターイメージ、gif形式のアニメーション、CSSスタイルシートなど、ブラウザが扱えるファイルなら何でも使用可能です。</span></div>
+        <div class="lang_zh"><span class="type_writer anim_text" style="--n:461">这是一款基于网络的简单、免费且开源的视觉小说编辑器，可在网络浏览器中使用。它是用 JavaScript 编写的，不使用任何第三方库，因此无需安装额外的软件。该引擎使用标准的 HTML5 文档元素，如 div 和 img。这使得它能够使用浏览器所支持的任何媒体格式，包括矢量图形 svg、gif 动画以及 css 样式。 还有一个版本的编辑器可作为独立应用程序，适用于安卓设备和桌面端。所有版本之间完全兼容，并且拥有相同的界面。</span></div>
+        <div class="lang_ko"><span class="type_writer anim_text" style="--n:461">튜즈데이JS(TuesdayJS)는 웹 브라우저에서 사용할 수 있는 간단한 웹 기반의 무료 오픈 소스 비주얼 노벨 노블 엔진이다. 타사 라이브러리를 사용하지 않고 자바스크립트(JavaScript)로 작성되어 별도의 추가 소프트웨어 설치가 필요없다. 엔진은 div 및 img와 같은 표준 HTML 문서 요소를 사용, 이를 통해 벡터 그래픽 svg, gif 애니메이션 및 CSS 스타일을 포함하여 브라우저에서 지원하는 모든 미디어 형식을 사용할 수 있다</span></div>
     </div>
     
     <!--  en  -->
@@ -550,8 +578,126 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
     </div>
 
-</div>
+    <!--  zh  -->
+    <div class="lang_zh description">
+        <div class="function">
+            <div>
+                <img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>直观的编辑体验</b></p><br>
+                <p>这款可视化编辑器让你无需任何编程知识就能创作图像小说或动态小说。如有必要，还可以使用 JavaScript 和 CSS 来扩展其基本功能。</p>
+            </div>
+        </div>
+        <div class="function">
+            <div>
+                <img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>场景编辑的灵活性</b></p><br>
+                <p>场景编辑器可以将所有元素放置在合适的位置。它还能展示该场景在不同屏幕上会如何变化。 在场景布局中，你可以使用以百分比、像素或厘米为单位的标准 HTML 度量单位，以便让场景更好地适配不同的屏幕。</p>
+            </div>
+        </div>
+        <div class="function">
+            <div>
+                <img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>翻译与本地化</b></p><br>
+                <p>内置的翻译编辑工具使你无需离开编辑器，就能快速添加新的翻译内容，并编辑项目中的所有文本。此外，它还会显示每种语言已完成的翻译数量。</p>
+            </div>
+        </div>
+        <div class="function">
+            <div>
+                <img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>JSON脚本的可移植性</b></p><br>
+                <p>一个故事脚本的所有元素都存储在一个JSON结构中。几乎任何编程语言都可以处理这种格式。这使得你能够将脚本移植到另一个引擎或平台上。该编辑器有一个内置的用于处理JSON的工具。这能让你编辑脚本的全部内容，或者仅仅编辑所选的元素。</p>
+            </div>
+        </div>
+        <div class="function">
+            <div>
+                <img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>媒体格式的多样性</b></p><br>
+                <p>预览功能可让你从脚本中的某个特定点开始，并以所选的本地化设置来启动项目。</p>
+            </div>
+        </div>
+        <div class="function">
+            <div>
+                <img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>ASCII艺术的支持</b></p><br>
+                <p>该引擎适用于使用ASCII图形。借助它，你可以用由文本字符组成的图像和图案来丰富文本内容。</p>
+            </div>
+        </div>
+        <div class="function">
+            <div>
+                <img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>语言本地化</b></p><br>
+                <p>Tuesday JS也具备丰富的用于制作翻译版本的功能。 可以为构成游戏的文本、图形等每一个元素设置翻译版本的文件，并且能够通过预览功能来确认所准备的翻译版本的运行情况。 由于可以输出为CSV格式的表格数据，所以也能够在其他文本编辑器中编辑或添加翻译文本。</p>
+            </div>
+        </div>
+    </div>
 
+    <!--  ko  -->
+    <div class="lang_ko description">
+        <div class="function">
+            <div>
+                <img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>비주얼라이제이션</b></p><br>
+                <p>편집기는 대화 옵션 및 선택 결과와 같은 모든 요소와 함께 스크립트의 구조를 표시해 쉽게 탐색하고 편집할 수 있다.</p>
+            </div>
+        </div>
+        <div class="function">
+            <div>
+                <img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>씬 에디터</b></p><br>
+                <p>씬 에디터(장면 편집기)는 모든 요소를 ​​제자리에 정렬할 수 있다. 다른 화면에서는 장면이 어떻게 변하는지 보여주며, 씬 레이아웃에서 백분율 픽셀 또는 센티미터 단위의 표준 HTML 단위를 사용하여 씬을 다른 화면에 더 잘 적응하도록 할 수 있다.</p>
+            </div>
+        </div>
+ 
+        <div class="function">
+            <div>
+                <img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>JSON</b></p><br>
+                <p>스토리 스크립트에는 JSON 구조에 저장된 모든 요소가 있다. 거의 모든 프로그래밍 언어가 이 형식으로 작동할 수 있기 때문에, 이를 통해 스크립트를 다른 엔진이나 플랫폼으로 쉽게 이식할 수 있다.  편집기에는 JSON 작업을 위한 도구가 내장돼 있어 스크립트의 전체 내용을 편집하거나 선택한 요소만 편집 가능하다.</p>
+            </div>
+        </div>
+        <div class="function">
+            <div>
+                <img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>프리뷰</b></p><br>
+                <p>미리보기를 사용하면 선택한 현지화로 스크립트의 특정 지점에서 프로젝트를 시작할 수 있다.</p>
+            </div>
+        </div>
+        <div class="function">
+            <div>
+                <img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>로컬라이제이션</b></p><br>
+                 <p>튜즈데이JS(TuesdayJS)는 스토리를 다른 언어로 현지화하기 위한 광범위한 적응 기능을 제공한다.</p>
+                <p>텍스트 및 그래픽을 포함하여 프로젝트의 거의 모든 요소에 대해 현지화된 번역을 설정할 수 있다. 미리보기 기능을 사용하면 선택한 언어로 프로젝트를 실행할 수 있고, 다른 편집기에서 현지화를 편집하거나 추가하기 위해 모든 언어 텍스트를 csv 파일로 추출할 수 있다.</p>
+           </div>
+        </div>
+    </div>
+    
+    
+</div>
 <div class="top_menu">
     <div class="button">
         <span>Language</span>
@@ -559,42 +705,88 @@ body:has(#ja:target) .lang_ja{display:block}
             <a href='#en'><span>English</span><span>en</span></a>
             <a href='#ja'><span>日本語</span><span>ja</span></a>
             <a href='#ru'><span>Русский</span><span>ru</span></a>
+            <a href='#zh'><span>中文</span><span>ko</span></a>
             <a href='#ko'><span>한국어</span><span>ko</span></a>
             <div class="marker"></div>
         </div>
     </div>
-    <a href='https://github.com/Kirilllive/tuesday-js' target="_blank"><div class="button">GitHub</div></a>
+    <a class="hidden" href='https://github.com/Kirilllive/tuesday-js' target="_blank"><div class="button">GitHub</div></a>
     <a href='doc_editor.html' target="_blank"><div class="button">
         <span class="lang_en">Documentation</span>
-        <span class="lang_ja">文書</span>
+        <span class="lang_ja">ユーザーガイド</span>
         <span class="lang_ru">Документация</span>
+        <span class="lang_zh">使用教程</span>
         <span class="lang_ko">선적 서류 비치</span>
     </div></a>
-    <div class="button">
+    <div class="button hidden">
         <span>
             <span class="lang_en">Download</span>
             <span class="lang_ja">ダウンロード</span>
             <span class="lang_ru">Скачать</span>
+            <span class="lang_zh">下载</span>
             <span class="lang_ko">다운로드</span>
         </span>
-        <div class="submenu download">
-            <a href=''><span>Browser</span><span>html</span></a>
-            <a href=''><span>Android</span><span>apk</span></a>
-            <a href=''><span>Windows</span><span>msi</span></a>
-            <a href=''><span>macOS</span><span>dmc</span></a>
-            <a href=''><span>Linux</span><span>rpm</span></a>
-            <a href=''><span>Linux</span><span>deb</span></a>
-            <a href=''><span>Linux</span><span>AppImage</span></a>
+        <div class="submenu download lang_en lang_ko">
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_EN_web_recommend.apk' target="_blank"><span>Browser</span><span>html</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_EN_android.zip' target="_blank"><span>Android</span><span>apk</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_win.msi' target="_blank"><span>Windows</span><span>msi</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_mac.dmg' target="_blank"><span>macOS</span><span>dmc</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.rpm' target="_blank"><span>Linux</span><span>rpm</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.deb' target="_blank"><span>Linux</span><span>deb</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.AppImage' target="_blank"><span>Linux</span><span>AppImage</span></a>
             <div class="marker"></div>
         </div>
+        <div class="submenu download lang_ja">
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_JA_web_recommend.apk' target="_blank"><span>Browser</span><span>html</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_JA_android.zip' target="_blank"><span>Android</span><span>apk</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_win.msi' target="_blank"><span>Windows</span><span>msi</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_mac.dmg' target="_blank"><span>macOS</span><span>dmc</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.rpm' target="_blank"><span>Linux</span><span>rpm</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.deb' target="_blank"><span>Linux</span><span>deb</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.AppImage' target="_blank"><span>Linux</span><span>AppImage</span></a>
+            <div class="marker"></div>
+        </div>
+        <div class="submenu download lang_ru">
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_RU_web_recommend.apk' target="_blank"><span>Browser</span><span>html</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_RU_android.zip' target="_blank"><span>Android</span><span>apk</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_win.msi' target="_blank"><span>Windows</span><span>msi</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_mac.dmg' target="_blank"><span>macOS</span><span>dmc</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.rpm' target="_blank"><span>Linux</span><span>rpm</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.deb' target="_blank"><span>Linux</span><span>deb</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.AppImage' target="_blank"><span>Linux</span><span>AppImage</span></a>
+            <div class="marker"></div>
+        </div>
+        <div class="submenu download lang_zh">
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_ZH_web_recommend.apk' target="_blank"><span>Browser</span><span>html</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_ZH_android.zip' target="_blank"><span>Android</span><span>apk</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_win.msi' target="_blank"><span>Windows</span><span>msi</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_mac.dmg' target="_blank"><span>macOS</span><span>dmc</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.rpm' target="_blank"><span>Linux</span><span>rpm</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.deb' target="_blank"><span>Linux</span><span>deb</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.AppImage' target="_blank"><span>Linux</span><span>AppImage</span></a>
+            <div class="marker"></div>
+        </div>
+        <div class="submenu download lang_es">
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_ES_web_recommend.apk' target="_blank"><span>Browser ES</span><span>html</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_ES_android.zip' target="_blank"><span>Android ES</span><span>apk</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_win.msi' target="_blank"><span>Windows</span><span>msi</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_mac.dmg' target="_blank"><span>macOS</span><span>dmc</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.rpm' target="_blank"><span>Linux</span><span>rpm</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.deb' target="_blank"><span>Linux</span><span>deb</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/59.0.0/TuesdayJS_R59_linux.AppImage' target="_blank"><span>Linux</span><span>AppImage</span></a>
+            <div class="marker"></div>
+        </div>
+        
+        
     </div>
-    <a href='' target="_blank"><div class="button">
-        <span class="lang_en">Play</span>
-        <span class="lang_ja">起動する</span>
-        <span class="lang_ru">Запустить</span>
-<!--        <span class="lang_ko">시작하기</span>-->
-    </div></a>
+    <a class="hidden lang_en" href='translate/en_tuesday_visual.html' target="_blank"><div class="button"><span>Play</span></div></a>
+    <a class="hidden lang_ja" href='translate/ja_tuesday_visual.html' target="_blank"><div class="button"><span>起動する</span></div></a>
+    <a class="hidden lang_ru" href='translate/ru_tuesday_visual.html' target="_blank"><div class="button"><span>Запустить</span></div></a>
+    <a class="hidden lang_zh" href='translate/zh_tuesday_visual.html' target="_blank"><div class="button"><span>运行</span></div></a>
+    <a class="hidden lang_ko" href='translate/en_tuesday_visual.html' target="_blank"><div class="button"><span>시작하기</span></div></a>
 <div>
-
+<script>
+    window.location.hash = (navigator.language || navigator.userLanguage).split('-')[0].toLowerCase();
+</script>
 </body>
 </html>
