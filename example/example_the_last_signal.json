@@ -1,0 +1,1046 @@
+{
+    "parameters": {
+        "text_panel": {
+            "size": [
+                "calc(640px - 64px)",
+                "calc(460px - 140px)"
+            ],
+            "color": "#1a1a2e",
+            "color_text": "#c8d6e5",
+            "indent_text": "8px",
+            "indent_bottom": "108px",
+            "size_text": "14px",
+            "dialog_speed": "8",
+            "art": {
+                "en": ""
+            },
+            "className": "",
+            "position": [
+                "0",
+                "0",
+                "0"
+            ],
+            "font_family": "Lucida Console, monospace",
+            "scroll": true,
+            "end_text_cursor": [
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        "name_panel": {
+            "size": [
+                "222px",
+                "48px"
+            ],
+            "position": [
+                "0",
+                "0",
+                "-48px",
+                "0"
+            ],
+            "size_text": "18px",
+            "color_text": "#c8d6e5",
+            "art": {
+                "en": ""
+            },
+            "indent_text": 0,
+            "className": "",
+            "font_family": "Lucida Console, monospace",
+            "color": ""
+        },
+        "title": "The Last Signal",
+        "launch_story": "title_screen",
+        "key": {},
+        "languares": [
+            "en"
+        ],
+        "buttons": [
+            {
+                "name": "tue_next",
+                "style": "cursor:pointer;",
+                "position": [
+                    "",
+                    "32px",
+                    "",
+                    "32px"
+                ],
+                "size": [
+                    "46px",
+                    "46px"
+                ],
+                "color": "#1a1a2e",
+                "color_text": "#c8d6e5",
+                "size_text": "28px",
+                "text": {
+                    "en": "\u2b95"
+                },
+                "art": {
+                    "en": ""
+                },
+                "sound": {
+                    "en": ""
+                },
+                "hotspot": [
+                    "0%",
+                    "0%"
+                ],
+                "angle": "0"
+            }
+        ],
+        "style_file": "",
+        "autosave": true,
+        "font": "Lucida Console, monospace",
+        "font_size": "14px",
+        "variables": {},
+        "plugins": [
+            "tue_aspect_ratio"
+        ],
+        "icon": "",
+        "font_files": {},
+        "characters": {},
+        "resolutions": [
+            640,
+            480,
+            "#0f0f1a",
+            ""
+        ],
+        "sounds": {},
+        "gamepad": {}
+    },
+    "blocks": {
+        "title_screen": [
+            "50px",
+            "50px",
+            "block",
+            false
+        ],
+        "scene_1_station": [
+            "350px",
+            "50px",
+            "block",
+            false
+        ],
+        "scene_2_signal": [
+            "650px",
+            "50px",
+            "block",
+            false
+        ],
+        "scene_3a_respond": [
+            "350px",
+            "350px",
+            "block",
+            false
+        ],
+        "scene_3b_ignore": [
+            "650px",
+            "350px",
+            "block",
+            false
+        ],
+        "scene_4_mara_arrives": [
+            "350px",
+            "650px",
+            "block",
+            false
+        ],
+        "scene_5_the_choice": [
+            "650px",
+            "650px",
+            "block",
+            false
+        ],
+        "scene_6a_truth": [
+            "200px",
+            "950px",
+            "block",
+            false
+        ],
+        "scene_6b_silence": [
+            "500px",
+            "950px",
+            "block",
+            false
+        ],
+        "scene_6c_leave": [
+            "800px",
+            "950px",
+            "block",
+            false
+        ],
+        "scene_7_revelation": [
+            "350px",
+            "1250px",
+            "block",
+            false
+        ],
+        "scene_8_farewell": [
+            "650px",
+            "1250px",
+            "block",
+            false
+        ],
+        "ending_hope": [
+            "200px",
+            "1550px",
+            "block",
+            false
+        ],
+        "ending_silence": [
+            "500px",
+            "1550px",
+            "block",
+            false
+        ],
+        "ending_alone": [
+            "800px",
+            "1550px",
+            "block",
+            false
+        ],
+        "restart_block": [
+            "500px",
+            "1850px",
+            "block",
+            false
+        ]
+    },
+    "title_screen": [
+        {
+            "dialogs": [
+                {
+                    "text": "\n _____ _            _               _\n|_   _| |          | |             | |\n  | | | |__   ___  | |     __ _ ___| |_\n  | | | '_ \\ / _ \\ | |    / _` / __| __|\n  | | | | | |  __/ | |___| (_| \\__ \\ |_\n  \\_/ |_| |_|\\___| \\_____/\\__,_|___/\\__|\n\n ____  _                   _\n/ ___|(_) __ _ _ __   __ _| |\n\\___ \\| |/ _` | '_ \\ / _` | |\n ___) | | (_| | | | | (_| | |\n|____/|_|\\__, |_| |_|\\__,_|_|\n         |___/\n\n\n     An interactive story about connection,\n           loss, and letting go.\n\n\n              - CLICK NEXT -"
+                },
+                {
+                    "text": "\n       .  *  .   .  *    .    *   .  *  .  .\n  *       .       .    .    .       .  *\n    .   *    .  *    .    .   *  .     .  *\n\n              _____________\n             |  ___________|\n             | |  _    _\n             | | |_|  |_|\n             | |___________\n             |  ___________|\n             | |\n             | |\n             |_|\n              |\n              |\n         _____|_____\n        |           |\n        |  STATION  |\n        |   KR-7    |\n        |___________|\n     __|_____________|__\n    |___________________|\n\n\n          November 2087.\n   The world has gone quiet.\n\n\n"
+                },
+                {
+                    "text": "Three years ago, the networks collapsed. Not with an explosion or a war, but with a slow, creeping silence. One by one, the satellites went dark. The undersea cables corroded. The cell towers stopped humming.\n\nNow there are only the radio operators. People like you, sitting in lonely outposts, scanning the static for any sign that someone, somewhere, is still listening.\n\nYour name is Eli. You run Station KR-7, a small relay post on a clifftop overlooking a grey sea. You have not heard another human voice in forty-three days.\n\nUntil tonight.",
+                    "go_to": "scene_1_station"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_1_station": [
+        {
+            "dialogs": [
+                {
+                    "text": "       .  *  .   .      .    *   .  *  .  .\n  *       .       .    .    .       .  *\n    .   *    .       .    .   *  .     .  *\n\n\n              |     |\n         _____|_____|_____\n        /                 \\\n       /   [O]     [O]     \\\n      |    _______________  |\n      |   |               | |\n      |   |   ~~||~~~~    | |\n      |   |     ||        | |\n      |   |   __||__      | |\n      |   |_______________| |\n      |_____________________|\n     /  |               |   \\\n    /   |    _______    |    \\\n~~~~~~~~|___|       |___|~~~~~~~~\n            |       |\n  ~~~~~~~~~~|_______|~~~~~~~~~~~~\n\nThe station is small: a single room with a cot, a desk, a radio console, and a window facing the sea. The wind howls outside. Rain streaks across the glass.\n"
+                },
+                {
+                    "text_add": "\nYou sit at the console, turning the dial through frequencies with practiced patience. Static. Static. More static.\n"
+                },
+                {
+                    "text_add": "\nThe coffee in your mug has gone cold. The clock reads 11:47 PM. Another night of nothing. You reach for the dial to shut it down.\n"
+                },
+                {
+                    "text_add": "\nAnd then you hear it.\n",
+                    "go_to": "scene_2_signal"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_2_signal": [
+        {
+            "dialogs": [
+                {
+                    "text": "\n  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n  ~   .  '  .  '  .  '  .  '  .  '  .  '  .  '  ~\n  ~ ______________________________________________~\n  ~|  FREQUENCY: 7.125 MHz                       |~\n  ~|  SIGNAL:    |||||||||||....                  |~\n  ~|  STATUS:    INCOMING TRANSMISSION            |~\n  ~|______________________________________________|~\n  ~   .  '  .  '  .  '  .  '  .  '  .  '  .  '  ~\n  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n\nA voice. Faint, crackling, barely there -- but unmistakably human.\n"
+                },
+                {
+                    "text_add": "\n???: \"...KR-7, do you copy? This is Station MV-3. Repeat, this is Station MV-3. Is anyone there? Please...\"\n"
+                },
+                {
+                    "text_add": "\nThe voice is young. Female. Tired. There is something in it that you recognize instantly: the particular exhaustion of someone who has been calling into the void and expecting nothing back.\n"
+                },
+                {
+                    "text_add": "\nYour hand hovers over the transmit button.\n",
+                    "choice": [
+                        {
+                            "go_to": "scene_3a_respond",
+                            "position": [
+                                "25%",
+                                "0",
+                                "0",
+                                "32px"
+                            ],
+                            "size": [
+                                "160px",
+                                "32px"
+                            ],
+                            "color": "#16213e",
+                            "color_text": "#c8d6e5",
+                            "text": {
+                                "en": "Respond"
+                            },
+                            "indent_text": "8px",
+                            "hotspot": [
+                                "-50%",
+                                "0px"
+                            ],
+                            "art": {
+                                "en": ""
+                            },
+                            "sound": {
+                                "en": ""
+                            },
+                            "style": "cursor:pointer;"
+                        },
+                        {
+                            "go_to": "scene_3b_ignore",
+                            "position": [
+                                "75%",
+                                "0",
+                                "0",
+                                "32px"
+                            ],
+                            "size": [
+                                "160px",
+                                "32px"
+                            ],
+                            "color": "#16213e",
+                            "color_text": "#c8d6e5",
+                            "text": {
+                                "en": "Stay silent"
+                            },
+                            "indent_text": "8px",
+                            "hotspot": [
+                                "-50%",
+                                "0px"
+                            ],
+                            "art": {
+                                "en": ""
+                            },
+                            "sound": {
+                                "en": ""
+                            },
+                            "style": "cursor:pointer;"
+                        }
+                    ],
+                    "text": ""
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_3a_respond": [
+        {
+            "dialogs": [
+                {
+                    "text": "You press the button. Your voice is hoarse -- you have not spoken aloud in weeks.\n"
+                },
+                {
+                    "text_add": "\nEli: \"MV-3, this is KR-7. I copy. I... I'm here.\"\n"
+                },
+                {
+                    "text_add": "\nSilence. Static. Your heart hammers. Then:\n"
+                },
+                {
+                    "text_add": "\nMara: \"Oh my god. Oh my god, you're real. I thought -- I've been transmitting for months and I thought nobody was --\"\n"
+                },
+                {
+                    "text_add": "\nHer voice breaks. You hear her breathing, ragged and uneven, and you realize she is crying.\n"
+                },
+                {
+                    "text_add": "\nEli: \"I'm real. Take your time.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"I'm sorry. I'm sorry. It's just -- you have no idea what it's like to hear another voice.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I think I do.\"\n"
+                },
+                {
+                    "text_add": "\nA pause. When she speaks again, she is steadier.\n"
+                },
+                {
+                    "text_add": "\nMara: \"My name is Mara. I'm at MV-3, about sixty kilometers south of the old capital. I've been alone here for... I don't even know anymore. Since the last relay operator left.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I'm Eli. KR-7. Clifftop station, north coast. It's been forty-three days since my last contact.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Forty-three days. That's nothing. Try two hundred and eleven.\"\n"
+                },
+                {
+                    "text_add": "\nYou don't know what to say to that. So you say the only honest thing:\n"
+                },
+                {
+                    "text_add": "\nEli: \"I'm glad you kept trying.\"\n",
+                    "go_to": "scene_4_mara_arrives"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_3b_ignore": [
+        {
+            "dialogs": [
+                {
+                    "text": "Your hand stays frozen above the button. The voice calls again:\n"
+                },
+                {
+                    "text_add": "\n???: \"KR-7, please. If anyone is there. I've been alone for so long. Please.\"\n"
+                },
+                {
+                    "text_add": "\nThe desperation in her voice cuts through the static like a blade. You've heard voices before -- fragments, ghosts on the airwaves, signals bounced off the ionosphere from stations that went dark years ago. You have learned not to trust them.\n"
+                },
+                {
+                    "text_add": "\nBut this one is different. This one is present. Alive. Afraid.\n"
+                },
+                {
+                    "text_add": "\n???: \"I know someone is listening. The relay light on my board shows an active receiver at KR-7. Please don't make me beg.\"\n"
+                },
+                {
+                    "text_add": "\nShe knows you're here. There is no hiding anymore.\n"
+                },
+                {
+                    "text_add": "\nYou press the button.\n"
+                },
+                {
+                    "text_add": "\nEli: \"MV-3... this is KR-7. I'm here.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Thank you. Thank you. My name is Mara.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I'm Eli. I'm sorry I didn't answer right away.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"I understand. Trust is hard when the world has gone quiet.\"\n",
+                    "go_to": "scene_4_mara_arrives"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_4_mara_arrives": [
+        {
+            "dialogs": [
+                {
+                    "text": "\n   ___   Day 1   ___   Day 5   ___  Day 12  ___\n  |   | ------> |   | ------> |   | -----> |   |\n  | ~ |         | ~ |         | ~ |        | ~ |\n  |___|         |___|         |___|        |___|\n   KR7           KR7           KR7          KR7\n    |              |             |            |\n    |   static     |  laughter   |  stories   |\n    |              |             |            |\n   MV3            MV3           MV3          MV3\n\n\nOver the next weeks, Mara becomes the center of your days.\n"
+                },
+                {
+                    "text_add": "\nEvery evening at 10 PM, you sit at the console and she is there. You talk about everything and nothing. She tells you about the garden she planted outside her station -- tomatoes, beans, wildflowers. You tell her about the seabirds that nest on the cliff below yours.\n"
+                },
+                {
+                    "text_add": "\nMara: \"I named the biggest tomato plant 'Goliath.' He's almost a meter tall now.\"\n\nEli: \"You name your plants?\"\n\nMara: \"When they're your only company for seven months, you name everything. The spider in the corner is 'Leonard.' The leaky pipe is 'Niagara.'\"\n"
+                },
+                {
+                    "text_add": "\nYou laugh. Actually laugh. The sound startles you -- you had forgotten what it sounded like.\n"
+                },
+                {
+                    "text_add": "\nMara: \"Was that a laugh? Oh, mark the calendar. Eli laughed.\"\n\nEli: \"Don't get used to it.\"\n\nMara: \"Too late. I'm already used to it.\"\n"
+                },
+                {
+                    "text_add": "\n\n           *  .  *    .   *  .  *  .   *\n        .    *    .    *    .    *    .\n\n       Two months pass. Then one night,\n     Mara's voice sounds different. Heavier.\n\n           *  .  *    .   *  .  *  .   *\n        .    *    .    *    .    *    .\n"
+                },
+                {
+                    "text_add": "\nMara: \"Eli, I need to tell you something. The reason I was transmitting so desperately when we first connected...\"\n\nEli: \"What is it?\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"My generator is failing. I've been patching it for months, but the fuel cells are corroded beyond repair. When it dies, the radio dies. I'll lose the antenna, the heating, everything.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"How long do you have?\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Maybe two weeks. Maybe less.\"\n"
+                },
+                {
+                    "text_add": "\nThe static between you feels heavier than before.\n"
+                },
+                {
+                    "text_add": "\nMara: \"I wasn't looking for rescue when I called you, Eli. I was looking for... I just didn't want to disappear without someone knowing I existed.\"\n",
+                    "go_to": "scene_5_the_choice"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_5_the_choice": [
+        {
+            "dialogs": [
+                {
+                    "text": "\n  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n  ~|  STATION KR-7 - OPERATOR LOG                |~\n  ~|                                              |~\n  ~|  MV-3 generator: CRITICAL                    |~\n  ~|  Estimated time remaining: 10-14 days        |~\n  ~|  Distance to MV-3: ~60km south               |~\n  ~|  Terrain: mountain pass, old highway         |~\n  ~|  Travel time on foot: 4-5 days               |~\n  ~|______________________________________________|~\n  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nYou stare at the console long after Mara signs off for the night. The numbers run through your head. Sixty kilometers. Five days on foot through terrain you've never traveled. Winter approaching.\n"
+                },
+                {
+                    "text_add": "\nBut you have a spare fuel cell. Old, but functional. It's your backup -- the thing keeping your own station viable if your primary fails.\n"
+                },
+                {
+                    "text_add": "\nIf you bring it to her, you save her station but risk your own. If you stay, you're safe, but Mara goes dark. And once she goes dark, you may never hear another voice again.\n"
+                },
+                {
+                    "text_add": "\nWhat do you tell her?\n",
+                    "choice": [
+                        {
+                            "go_to": "scene_6a_truth",
+                            "position": [
+                                "16%",
+                                "0",
+                                "0",
+                                "32px"
+                            ],
+                            "size": [
+                                "180px",
+                                "42px"
+                            ],
+                            "color": "#16213e",
+                            "color_text": "#c8d6e5",
+                            "text": {
+                                "en": "\"I'm coming to you\""
+                            },
+                            "indent_text": "8px",
+                            "hotspot": [
+                                "-50%",
+                                "0px"
+                            ],
+                            "art": {
+                                "en": ""
+                            },
+                            "sound": {
+                                "en": ""
+                            },
+                            "style": "cursor:pointer;"
+                        },
+                        {
+                            "go_to": "scene_6b_silence",
+                            "position": [
+                                "50%",
+                                "0",
+                                "0",
+                                "32px"
+                            ],
+                            "size": [
+                                "180px",
+                                "42px"
+                            ],
+                            "color": "#16213e",
+                            "color_text": "#c8d6e5",
+                            "text": {
+                                "en": "\"We'll find a way\""
+                            },
+                            "indent_text": "8px",
+                            "hotspot": [
+                                "-50%",
+                                "0px"
+                            ],
+                            "art": {
+                                "en": ""
+                            },
+                            "sound": {
+                                "en": ""
+                            },
+                            "style": "cursor:pointer;"
+                        },
+                        {
+                            "go_to": "scene_6c_leave",
+                            "position": [
+                                "84%",
+                                "0",
+                                "0",
+                                "32px"
+                            ],
+                            "size": [
+                                "180px",
+                                "42px"
+                            ],
+                            "color": "#16213e",
+                            "color_text": "#c8d6e5",
+                            "text": {
+                                "en": "Say nothing yet"
+                            },
+                            "indent_text": "8px",
+                            "hotspot": [
+                                "-50%",
+                                "0px"
+                            ],
+                            "art": {
+                                "en": ""
+                            },
+                            "sound": {
+                                "en": ""
+                            },
+                            "style": "cursor:pointer;"
+                        }
+                    ],
+                    "text": ""
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_6a_truth": [
+        {
+            "dialogs": [
+                {
+                    "text": "The next evening, you tell her.\n\nEli: \"Mara, I have a spare fuel cell. It's old but it works. I can bring it to you.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Eli, no. That's sixty kilometers through the mountains. In November. You could die out there.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I could die in here too. Just slower.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"That's not funny.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I'm not being funny. Listen to me. Before you called, I was sitting in this room every night, turning a dial, listening to nothing. I was alive, technically. But I wasn't living. You changed that.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Eli...\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I'm not asking your permission. I'm telling you my plan. I leave at dawn. I'll take the coast road to the pass, then follow the old highway south. I should reach you in four days.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"And if your station fails while you're gone? If your own generator goes down and you come back to nothing?\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"Then I don't come back.\"\n"
+                },
+                {
+                    "text_add": "\nA long silence.\n"
+                },
+                {
+                    "text_add": "\nMara: \"You absolute fool.\"\n\nEli: \"Is that a yes?\"\n\nMara: \"It's a 'please be careful.'\"\n",
+                    "go_to": "scene_7_revelation"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_6b_silence": [
+        {
+            "dialogs": [
+                {
+                    "text": "Eli: \"Mara, listen. We still have time. Let's think about this. Is there anything in your station you can cannibalize? Old batteries, solar panels, anything?\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"I've tried everything. I've rewired the backup circuits, stripped the weather monitoring gear, even pulled copper from the walls. It's the fuel cells themselves, Eli. They're done.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"What about solar? The old panels on the roof?\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Cracked. And it's November. Six hours of weak daylight isn't enough to power a transmitter.\"\n"
+                },
+                {
+                    "text_add": "\nEvery solution you offer, she has already tried. You hear it in her voice -- not defeat, but the quiet clarity of someone who has accepted what's coming.\n"
+                },
+                {
+                    "text_add": "\nMara: \"Eli, it's okay. I didn't call you to be rescued. I called you so that someone would remember me. So that when my signal stops, at least one person in the world would notice.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"Don't talk like that.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Like what? Like someone who's being honest?\"\n"
+                },
+                {
+                    "text_add": "\nYou stare at the spare fuel cell on the shelf behind you. The one you've been saving. Your lifeline.\n"
+                },
+                {
+                    "text_add": "\nEli: \"...I have a spare fuel cell. I could bring it to you.\"\n\nMara: \"That's your backup. I can't take that.\"\n\nEli: \"You're not taking it. I'm giving it.\"\n",
+                    "go_to": "scene_7_revelation"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_6c_leave": [
+        {
+            "dialogs": [
+                {
+                    "text": "You don't say anything about the fuel cell. Not yet. Instead, you fill the remaining nights with conversation, storing up her voice like provisions for a winter you know is coming.\n"
+                },
+                {
+                    "text_add": "\nMara tells you about her life before the silence. She was a music teacher. She played the cello.\n"
+                },
+                {
+                    "text_add": "\nMara: \"I used to play in a quartet. Sunday afternoons at the community hall. Nothing fancy. Bach, mostly. The old ladies loved it.\"\n\nEli: \"Do you still play?\"\n\nMara: \"I brought my cello to the station. Some nights I play into the microphone, even when nobody's listening. I figure the radio waves go out forever, right? Maybe in a thousand years, some alien will hear Bach's Cello Suite No. 1 and wonder what kind of creature could make a sound like that.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"Play it for me.\"\n"
+                },
+                {
+                    "text_add": "\nAnd she does. Through the static and the distortion, through sixty kilometers of mountain air, you hear it. Imperfect, beautiful, heartbreakingly human.\n"
+                },
+                {
+                    "text_add": "\nWhen she finishes, you sit in silence for a long time.\n"
+                },
+                {
+                    "text_add": "\nEli: \"Mara, I have something to tell you. I have a spare fuel cell. I'm bringing it to you. I leave at dawn.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Eli, you can't -- \"\n"
+                },
+                {
+                    "text_add": "\nEli: \"Anyone who can play like that deserves to keep their light on.\"\n"
+                },
+                {
+                    "text_add": "\nShe is quiet. Then, softly:\n\nMara: \"Hurry.\"\n",
+                    "go_to": "scene_7_revelation"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_7_revelation": [
+        {
+            "dialogs": [
+                {
+                    "text": "\n      *  Day 1  *         *  Day 2  *\n\n     /\\                       /\\\n    /  \\    _.--._           /  \\  /\\\n   /    \\,-'      `-.   /\\ /    \\/  \\\n  /  /\\  \\           \\ /  \\  /\\  /\\\n /  /  \\  \\     ____  /    \\/  \\/  \\\n/  /    \\  \\ .-'    `/      \\      \\\n=========== '========/========\\======\n  [KR-7]                   [you are\n                             here]\n\nThe journey is brutal.\n"
+                },
+                {
+                    "text_add": "\nDay one: the coast road is crumbled in places, and you pick your way over rubble and fallen trees. The fuel cell is heavy in your pack. The wind off the sea cuts through your jacket.\n"
+                },
+                {
+                    "text_add": "\nDay two: the mountain pass. Snow on the ground. Your boots are not made for this. You radio Mara from a ridge.\n"
+                },
+                {
+                    "text_add": "\nEli: \"Halfway there. The pass is covered in snow but passable.\"\n\nMara: \"How are you holding up?\"\n\nEli: \"My feet hate me. The rest of me is fine.\"\n\nMara: \"Eli... thank you. For doing this.\"\n\nEli: \"Thank me when I get there.\"\n"
+                },
+                {
+                    "text_add": "\nDay three: the old highway. Abandoned cars line the road like a frozen procession. You sleep in a gas station, wrapped in a tarp, listening to wind whistle through broken windows.\n"
+                },
+                {
+                    "text_add": "\nDay four: late afternoon. You see it.\n"
+                },
+                {
+                    "text_add": "\n        _____|_____\n       |           |\n       |  STATION  |\n       |   MV-3    |\n       |___________|\n    __|_____________|__\n   |___________________|\n          |   |\n       ___|   |___\n      |           |\n      |  garden   |\n      |___________|\n\nA small station, smaller than yours, with a garden out front. And in the garden, standing among the last of the autumn tomatoes, is a woman.\n"
+                },
+                {
+                    "text_add": "\nShe is younger than you expected. Dark hair tied back. Dirt on her hands. She stares at you as if you are a ghost.\n"
+                },
+                {
+                    "text_add": "\nMara: \"You're real.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I keep hearing that.\"\n"
+                },
+                {
+                    "text_add": "\nShe crosses the garden in three strides and wraps her arms around you. She smells like earth and radio static, and she holds on like she's afraid you'll dissolve into the signal noise.\n"
+                },
+                {
+                    "text_add": "\nMara: \"I wasn't sure you'd make it.\"\n\nEli: \"Neither was I.\"\n",
+                    "go_to": "scene_8_farewell"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "scene_8_farewell": [
+        {
+            "dialogs": [
+                {
+                    "text": "You install the fuel cell. It takes three hours and a lot of swearing, but when you flip the switch, the console lights up. The antenna hums. Station MV-3 lives.\n"
+                },
+                {
+                    "text_add": "\nThat night, Mara cooks dinner -- real food, from her garden. Tomato soup with herbs. You eat in silence, the kind of silence that is full rather than empty.\n"
+                },
+                {
+                    "text_add": "\nMara: \"You know you can't stay.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I know.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Your station needs you. The relay network -- whatever's left of it -- needs every node it can get. If KR-7 goes dark because you're not there to maintain it...\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I know, Mara.\"\n"
+                },
+                {
+                    "text_add": "\nShe looks at you across the table. The lamplight catches her face, and you see the weight of two hundred and eleven days of solitude, and the fragile, fierce joy of someone who has been found.\n"
+                },
+                {
+                    "text_add": "\nMara: \"Before you go, I want you to know something. Whatever happens to the fuel cell, whether it lasts a year or a month, you already gave me the thing I needed most.\"\n\nEli: \"What's that?\"\n\nMara: \"Proof that connection isn't dead. That someone out there still cares enough to walk sixty kilometers through the snow for a stranger.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"You're not a stranger.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"No. Not anymore.\"\n"
+                },
+                {
+                    "text_add": "\n\n         *  .  *    .   *  .  *  .   *\n      .    *    .    *    .    *    .\n\n      Morning comes. Time to decide.\n\n         *  .  *    .   *  .  *  .   *\n\n",
+                    "choice": [
+                        {
+                            "go_to": "ending_hope",
+                            "position": [
+                                "16%",
+                                "0",
+                                "0",
+                                "32px"
+                            ],
+                            "size": [
+                                "175px",
+                                "42px"
+                            ],
+                            "color": "#16213e",
+                            "color_text": "#c8d6e5",
+                            "text": {
+                                "en": "Return to KR-7"
+                            },
+                            "indent_text": "8px",
+                            "hotspot": [
+                                "-50%",
+                                "0px"
+                            ],
+                            "art": {
+                                "en": ""
+                            },
+                            "sound": {
+                                "en": ""
+                            },
+                            "style": "cursor:pointer;"
+                        },
+                        {
+                            "go_to": "ending_silence",
+                            "position": [
+                                "50%",
+                                "0",
+                                "0",
+                                "32px"
+                            ],
+                            "size": [
+                                "175px",
+                                "42px"
+                            ],
+                            "color": "#16213e",
+                            "color_text": "#c8d6e5",
+                            "text": {
+                                "en": "Stay with Mara"
+                            },
+                            "indent_text": "8px",
+                            "hotspot": [
+                                "-50%",
+                                "0px"
+                            ],
+                            "art": {
+                                "en": ""
+                            },
+                            "sound": {
+                                "en": ""
+                            },
+                            "style": "cursor:pointer;"
+                        },
+                        {
+                            "go_to": "ending_alone",
+                            "position": [
+                                "84%",
+                                "0",
+                                "0",
+                                "32px"
+                            ],
+                            "size": [
+                                "175px",
+                                "42px"
+                            ],
+                            "color": "#16213e",
+                            "color_text": "#c8d6e5",
+                            "text": {
+                                "en": "Ask her to come"
+                            },
+                            "indent_text": "8px",
+                            "hotspot": [
+                                "-50%",
+                                "0px"
+                            ],
+                            "art": {
+                                "en": ""
+                            },
+                            "sound": {
+                                "en": ""
+                            },
+                            "style": "cursor:pointer;"
+                        }
+                    ],
+                    "text": ""
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "ending_hope": [
+        {
+            "dialogs": [
+                {
+                    "text": "You leave at dawn. Mara walks you to the edge of her garden.\n"
+                },
+                {
+                    "text_add": "\nMara: \"Same time tonight?\"\n\nEli: \"I'll be on the road, but I'll find a way to transmit.\"\n\nMara: \"You better.\"\n"
+                },
+                {
+                    "text_add": "\nYou walk north. The mountains are no easier the second time, but your pack is lighter now, and something in your chest is lighter too.\n"
+                },
+                {
+                    "text_add": "\nFour days later, you reach KR-7. The generator is still running. The console still glows. You drop into your chair, flip the switch, and tune to 7.125 MHz.\n"
+                },
+                {
+                    "text_add": "\nEli: \"MV-3, this is KR-7. I'm home.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"Welcome back, Eli.\"\n"
+                },
+                {
+                    "text_add": "\n\n       .  *  .   .  *    .    *   .  *  .  .\n  *       .       .    .    .       .  *\n    .   *    .  *    .    .   *  .     .  *\n\n"
+                },
+                {
+                    "text_add": "\nYou talk until midnight. And the next night. And the next.\n"
+                },
+                {
+                    "text_add": "\nAnd in the spring, when the snow melts and the roads clear, you make the journey again. This time, you bring seeds.\n"
+                },
+                {
+                    "text_add": "\n\n         Two stations. Sixty kilometers.\n       Two voices in the dark, holding on.\n\n              The world is quiet.\n           But it is not silent.\n"
+                },
+                {
+                    "text_add": "\n\n _____ _            _____           _\n|_   _| |          |  ___|         | |\n  | | | |__   ___  | |__ _ __   __| |\n  | | | '_ \\ / _ \\ |  __| '_ \\ / _` |\n  | | | | | |  __/ | |__| | | | (_| |\n  \\_/ |_| |_|\\___| \\____/_| |_|\\__,_|\n\n          [ ENDING: HOPE ]\n",
+                    "go_to": "restart_block"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "ending_silence": [
+        {
+            "dialogs": [
+                {
+                    "text": "Eli: \"I'm staying.\"\n\nMara: \"Eli, you can't. KR-7 needs --\"\n\nEli: \"KR-7 is a building with a radio in it. It doesn't need me. You do.\"\n"
+                },
+                {
+                    "text_add": "\nMara: \"That's not fair. Don't put that on me.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I'm not putting anything on you. I'm making a choice. For the first time in three years, I'm choosing something instead of just surviving.\"\n"
+                },
+                {
+                    "text_add": "\nShe looks at you, and you see the argument forming and dissolving behind her eyes. She knows you're right. She knows it's selfish and necessary and terrifying all at once.\n"
+                },
+                {
+                    "text_add": "\nMara: \"If you stay, KR-7 goes dark. The relay chain breaks.\"\n\nEli: \"The chain is already broken, Mara. It's been broken for years. We're not maintaining a network. We're maintaining the idea of one.\"\n"
+                },
+                {
+                    "text_add": "\nShe sits down on the edge of her cot and stares at her hands.\n"
+                },
+                {
+                    "text_add": "\nMara: \"I have a cello but no duet partner.\"\n\nEli: \"I can't play cello.\"\n\nMara: \"I'll teach you.\"\n"
+                },
+                {
+                    "text_add": "\n\n       .  *  .   .  *    .    *   .  *  .  .\n  *       .       .    .    .       .  *\n    .   *    .  *    .    .   *  .     .  *\n\n"
+                },
+                {
+                    "text_add": "\nSomewhere to the north, Station KR-7 hums alone in the dark. The generator runs for another eight months before it finally dies. The console goes dark. The antenna falls silent.\n"
+                },
+                {
+                    "text_add": "\nBut in a small station to the south, two people share a garden and a radio and a life built from the ruins of the old world. On clear nights, Mara plays her cello and Eli holds the microphone out the window, broadcasting Bach into the cosmos.\n"
+                },
+                {
+                    "text_add": "\nNobody answers. But that was never the point.\n"
+                },
+                {
+                    "text_add": "\n\n _____ _            _____           _\n|_   _| |          |  ___|         | |\n  | | | |__   ___  | |__ _ __   __| |\n  | | | '_ \\ / _ \\ |  __| '_ \\ / _` |\n  | | | | | |  __/ | |__| | | | (_| |\n  \\_/ |_| |_|\\___| \\____/_| |_|\\__,_|\n\n       [ ENDING: TOGETHER ]\n",
+                    "go_to": "restart_block"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "ending_alone": [
+        {
+            "dialogs": [
+                {
+                    "text": "Eli: \"Come with me.\"\n\nMara: \"What?\"\n\nEli: \"To KR-7. We consolidate. Two operators, one station. We share the fuel cell when you need it, and we keep the strongest signal on the coast alive.\"\n"
+                },
+                {
+                    "text_add": "\nMara looks around her station. The garden outside. Leonard the spider in his corner. The cello leaning against the wall. Two hundred and eleven days of survival, stitched into every surface.\n"
+                },
+                {
+                    "text_add": "\nMara: \"This is my home, Eli.\"\n\nEli: \"I know.\"\n\nMara: \"I planted that garden from nothing. I built the rain collector. I patched the roof four times. Every inch of this place has my fingerprints on it.\"\n"
+                },
+                {
+                    "text_add": "\nEli: \"I know. And I'm asking you to leave it.\"\n"
+                },
+                {
+                    "text_add": "\nShe closes her eyes. When she opens them, they are bright.\n"
+                },
+                {
+                    "text_add": "\nMara: \"Let me take some seeds. And the cello.\"\n\nEli: \"Of course.\"\n\nMara: \"And Leonard.\"\n\nEli: \"...the spider?\"\n\nMara: \"Non-negotiable.\"\n\nEli: \"Fine. Leonard can come.\"\n"
+                },
+                {
+                    "text_add": "\n\n       .  *  .   .  *    .    *   .  *  .  .\n  *       .       .    .    .       .  *\n    .   *    .  *    .    .   *  .     .  *\n\n"
+                },
+                {
+                    "text_add": "\nThey walk north together. The journey takes five days. They talk the entire way -- not through a radio, but face to face, their voices carried on the wind instead of radio waves.\n"
+                },
+                {
+                    "text_add": "\nAt KR-7, they build a second cot. Mara plants a new garden on the clifftop. Leonard sets up shop in the window corner and catches flies.\n"
+                },
+                {
+                    "text_add": "\nEvery night, they sit at the console together and scan the frequencies. Two operators, one signal, reaching out into the dark.\n"
+                },
+                {
+                    "text_add": "\nAnd one night, months later, a new voice answers.\n"
+                },
+                {
+                    "text_add": "\n???: \"KR-7, this is Station PL-12. Is anyone there?\"\n"
+                },
+                {
+                    "text_add": "\nEli looks at Mara. Mara smiles.\n\nMara: \"Your turn to answer.\"\n"
+                },
+                {
+                    "text_add": "\n\n _____ _            _____           _\n|_   _| |          |  ___|         | |\n  | | | |__   ___  | |__ _ __   __| |\n  | | | '_ \\ / _ \\ |  __| '_ \\ / _` |\n  | | | | | |  __/ | |__| | | | (_| |\n  \\_/ |_| |_|\\___| \\____/_| |_|\\__,_|\n\n       [ ENDING: NEW SIGNAL ]\n",
+                    "go_to": "restart_block"
+                }
+            ],
+            "background_color": "#0f0f1a"
+        }
+    ],
+    "restart_block": [
+        {
+            "dialogs": [
+                {
+                    "text_add": "\n\n    Thank you for playing The Last Signal.\n\n    A story about the distances we cross\n    for the people who matter.\n\n",
+                    "choice": [
+                        {
+                            "go_to": "title_screen",
+                            "position": [
+                                "50%",
+                                "0",
+                                "0",
+                                "32px"
+                            ],
+                            "size": [
+                                "160px",
+                                "32px"
+                            ],
+                            "color": "#16213e",
+                            "color_text": "#c8d6e5",
+                            "text": {
+                                "en": "Play again?"
+                            },
+                            "indent_text": "8px",
+                            "hotspot": [
+                                "-50%",
+                                "0px"
+                            ],
+                            "art": {
+                                "en": ""
+                            },
+                            "sound": {
+                                "en": ""
+                            },
+                            "style": "cursor:pointer;"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

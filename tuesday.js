@@ -41,7 +41,7 @@ function get_lang(){
     }
     if(!support){languare=story_json.parameters.languares[0]}
 } function load_story(tip,url){
-    if(tip == 'data'){
+    if(tip === 'data'){
         story_json=url;
         base_creation();
         tuesday.dispatchEvent(new Event('script_loaded'));
@@ -352,7 +352,7 @@ function name_block_update(){
         if(arr_dialog.color_text){tue_text_view.style.color=arr_dialog.color_text;}
 		else if(story_json.parameters.text_panel.color_text){tue_text_view.style.color=story_json.parameters.text_panel.color_text;}
         if(arr_dialog.name){
-            bg_art(story_json.parameters.name_panel,'tue_name_block',(story_json.parameters.characters[arr_dialog.name]&&story_json.parameters.characters[arr_dialog.name].art)?story_json.parameters.characters[arr_dialog.name].art:false);
+            if(story_json.parameters.characters){bg_art(story_json.parameters.name_panel,'tue_name_block',(story_json.parameters.characters[arr_dialog.name]&&story_json.parameters.characters[arr_dialog.name].art)?story_json.parameters.characters[arr_dialog.name].art:false);}
             if(arr_dialog.name[languare]){
                 tue_name_block.innerHTML=values_button(arr_dialog.name[languare])
                 tue_name_block.style.backgroundColor=arr_dialog.name.color;
@@ -438,7 +438,7 @@ function name_block_update(){
                     else {go_to(arr_dialog.video.go_to)}
                 }
             }
-            if(!arr_dialog.video.stop||arr_dialog.video.stop!=true){video.autoplay=true;}
+            if(!arr_dialog.video.stop||arr_dialog.video.stop!=true){video.play();video.autoplay=true;}
             tuesday.prepend(video);
         }else{del_element("tue_v");}
         if(arr_dialog.art){
@@ -674,7 +674,7 @@ function name_block_update(){
         tuesday.dispatchEvent(new Event('creation_dialog'));
 } function values_in_text(add){
     arr_dialog = story_json[tue_story][scene].dialogs[dialog]
-	var str=""
+	let str=""
     if(!add){
 		dialog_letter=0
 		str=(arr_dialog.text[languare])?arr_dialog.text[languare]:arr_dialog.text;
@@ -709,6 +709,12 @@ function name_block_update(){
 } function go_story(choice){
 	if(story_json[tue_story][scene].dialogs.length!=0 && (check_choice(story_json[tue_story][scene].dialogs) || choice)){
         arr_dialog = story_json[tue_story][scene].dialogs[dialog]
+        if((dialog_text && !timers && story_json.parameters.text_panel.show_all_text) && dialog_letter < dialog_text.length){
+            dialog_letter=dialog_text.length;
+            clearTimeout(dialog_timeout);
+            anim_text();
+            return false;
+        }
         if(arr_dialog.choice){del_element("tue_choice")}
 		if(arr_dialog.go_to){
 			var go=arr_dialog.go_to;
@@ -819,11 +825,13 @@ function name_block_update(){
     } else if(dialog_letter >= dialog_text.length){
         if(arr_dialog.end_text_cursor||story_json.parameters.text_panel.end_text_cursor){
             var e_cursor=JSON.parse(JSON.stringify((arr_dialog.end_text_cursor)?arr_dialog.end_text_cursor:(story_json.parameters.text_panel.end_text_cursor)?story_json.parameters.text_panel.end_text_cursor:false));
+            if(e_cursor[0]==""&&story_json.parameters.text_panel.end_text_cursor[0]){e_cursor[0]=story_json.parameters.text_panel.end_text_cursor[0]}
             if(e_cursor[1]==""&&story_json.parameters.text_panel.end_text_cursor[1]){e_cursor[1]=story_json.parameters.text_panel.end_text_cursor[1]}
             if(e_cursor[2]==""&&story_json.parameters.text_panel.end_text_cursor[2]){e_cursor[2]=story_json.parameters.text_panel.end_text_cursor[2]}
             if(e_cursor[3]==""&&story_json.parameters.text_panel.end_text_cursor[3]){e_cursor[3]=story_json.parameters.text_panel.end_text_cursor[3]}
+            if(e_cursor[4]==""&&story_json.parameters.text_panel.end_text_cursor[4]){e_cursor[4]=story_json.parameters.text_panel.end_text_cursor[4]}
         }
-        tue_text_view.innerHTML="<span style=''>"+tue_text_view.innerHTML+((e_cursor&&e_cursor[0])?'&nbsp<span style="position:relative;">&nbsp<img src="'+art_data(e_cursor[0])+'" style="position:absolute;width:'+((e_cursor[1])?e_cursor[1]:'auto')+';height:'+((e_cursor[2])?e_cursor[2]:'auto')+';'+((e_cursor[3])?e_cursor[3]:'')+'"></span></span>':'</span>');tuesday.dispatchEvent(new Event('dialog_end'));
+        tue_text_view.innerHTML="<span style=''>"+tue_text_view.innerHTML+((e_cursor&&(e_cursor[0]||e_cursor[3]||e_cursor[4]))?'&nbsp<span style="position:relative;">&nbsp'+(e_cursor[0].length>0?'<img src="'+e_cursor[0]+'"':'<span')+(e_cursor[4].length>0?' class="'+e_cursor[4]+'"':'')+' style="position:absolute;width:'+((e_cursor[1])?e_cursor[1]:'auto')+';height:'+((e_cursor[2])?e_cursor[2]:'auto')+';'+((e_cursor[3])?e_cursor[3]:'')+'">'+(e_cursor[0].length>0?'':'</span>')+'</span></span>':'</span>');tuesday.dispatchEvent(new Event('dialog_end'));
     }
     if(story_json.parameters.text_panel.scroll){tue_text_view.scrollTop=tue_text_view.scrollHeight;}
 } function add_letter(){
@@ -933,7 +941,7 @@ function name_block_update(){
 }
 function fast_rewind(){
     let d=story_json[tue_story][scene].dialogs;
-    timers=setTimeout(function(){go_story(true);if(dialog<d.length&&check_choice(d)){fast_rewind()}else{timers=false}},350)
+    timers=setTimeout(function(){go_story(true);if(dialog<d.length&&check_choice(d)){fast_rewind()}else{timers=false}},250)
 }
 function check_choice(d){
     if(d[dialog].choice){
@@ -957,7 +965,7 @@ function set_audio(el,arr){
     show_audio(el,arr);
 }
 function show_audio(el,arr){
-    var n=(tue_set_audio!=0)?tue_set_audio:"";
+    let n=(tue_set_audio!=0)?tue_set_audio:"";
     if(arr["text"+n]&&art_data(arr["text"+n]).length>0){el.innerHTML=values_button(art_data(arr["text"+n]))}
     if(arr["art"+n]&&art_data(arr["art"+n]).length>0){el.style.backgroundImage="url('"+art_data(arr["art"+n])+"')"}
 }

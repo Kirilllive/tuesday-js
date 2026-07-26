@@ -142,10 +142,26 @@ function hidden_objects(){
 function objectsroom_resize(){
     if(!story_json.parameters.resolutions){
         var rect=tuesday.getBoundingClientRect();
-        if((arr_dialog.size[0]/arr_dialog.size[1])>(rect.width/rect.height)){tue_objectsroom.style.transform='scale('+(rect.height/arr_dialog.size[1])*ho.scale+')'}
-        else{tue_objectsroom.style.transform='scale('+(rect.width/arr_dialog.size[0])*ho.scale+')'}
+        if((arr_dialog.size[0]/arr_dialog.size[1])>(rect.width/rect.height)){
+            tue_objectsroom.style.transform='scale('+(rect.height/arr_dialog.size[1])*ho.scale+')'
+        } else {
+            tue_objectsroom.style.transform='scale('+(rect.width/arr_dialog.size[0])*ho.scale+')'
+        }
         tue_objectsroom.style.marginBottom="-"+(rect.height+arr_dialog.size[1])+"px";
         tue_objectsroom.style.marginRight="-"+(rect.width+arr_dialog.size[0])+"px"
+        tue_objectsroom.style.marginTop="0px";
+        tue_objectsroom.style.marginLeft="0px";
+        window.addEventListener('resize',objectsroom_resize,true);
+    } else if( story_json.parameters.resolutions[4]){
+        let tue_size=story_json.parameters.resolutions;
+        let scale=(window.innerWidth<window.innerHeight)?window.innerWidth/tue_size[0]:window.innerHeight/tue_size[1];
+        if( ( arr_dialog.size[0] / arr_dialog.size[1] ) > ( window.innerWidth / window.innerHeight )){
+            tue_objectsroom.style.transform='scale('+(window.innerHeight/arr_dialog.size[1])*(ho.scale/scale)+')';
+        } else {
+            tue_objectsroom.style.transform='scale('+(window.innerWidth/arr_dialog.size[0])*(ho.scale/scale)+')';
+        }
+        tue_objectsroom.style.marginBottom="-"+(window.innerHeight+arr_dialog.size[1])+"px";
+        tue_objectsroom.style.marginRight="-"+(window.innerWidth+arr_dialog.size[0])+"px";
         tue_objectsroom.style.marginTop="0px";
         tue_objectsroom.style.marginLeft="0px";
         window.addEventListener('resize',objectsroom_resize,true);
@@ -168,4 +184,6 @@ function find_item(id){
         else {go_to(arr_dialog.go_to)}
     }
 }
-tuesday.addEventListener('hidden_objects',function(event){hidden_objects();});
+tuesday.addEventListener('hidden_objects',function(event){hidden_objects();
+    if(story_json.parameters.resolutions && story_json.parameters.resolutions[4]){TueAspectRatio();}
+});
