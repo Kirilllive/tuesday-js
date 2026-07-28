@@ -18,8 +18,7 @@
 
 body{
     min-width: 480px;
-    background:linear-gradient(0deg,rgba(0,0,0,0) 0%, var(--base_b) 80%, var(--base_b) 100%),
-    var(--base_b);
+    background:var(--base_b);
 }
 
 * {
@@ -77,6 +76,12 @@ body:has(#en:target) .logo:after{
     content:"visual novel engine";
     white-space: nowrap;
     font-size:46px;
+}
+
+body:has(#es:target) .logo:after{
+    content:"motor de novelas visuales";
+    white-space: nowrap;
+    font-size:34px;
 }
 
 body:has(#ru:target) .logo:after{
@@ -377,6 +382,7 @@ body:has(#ja:target) .lang_ja{display:block}
 <div style="display:none;">
     <span id="ru" class="description"></span>
     <span id="en" class="description"></span>
+    <span id="es" class="description"></span>
     <span id="ja" class="description"></span>
     <span id="ko" class="description"></span>
     <span id="zh" class="description"></span>
@@ -390,6 +396,7 @@ body:has(#ja:target) .lang_ja{display:block}
         <a href="https://github.com/Kirilllive/tuesday-js/releases" target="_blank"><div class="name_block button">
             <span>
                 <span class="lang_en">Download</span>
+                <span class="lang_es">Descargar</span>
                 <span class="lang_ja">ダウンロード</span>
                 <span class="lang_ru">Скачать</span>
                 <span class="lang_zh">下载</span>
@@ -398,6 +405,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div></a>
         <div class="lang_ru"><span class="type_writer anim_text" style="--n:461; font-size: 16px;">Простой и бесплатный веб-редактор визуальных новелл с открытым исходным кодом. Его можно использовать прямо в браузере. Он написан на JavaScript без использования сторонних библиотек и не требует установки дополнительного программного обеспечения. Движок использует стандартные элементы HTML-документа, такие как div и img. Это позволяет применять любой медиаформат, поддерживаемый браузерами, включая векторную графику SVG, GIF-анимацию и стили CSS</span></div>
         <div class="lang_en"><span class="type_writer anim_text" style="--n:461; font-size: 16px;">Is a simple, free, and open-source web editor for visual novels that runs directly in your browser. It is written in pure JavaScript without any third-party libraries and requires no installation. The engine utilizes standard HTML5 document elements, such as div and img. This allows you to use any browser-supported media format, including SVG vector graphics, GIF animations, and CSS styles</span></div>
+        <div class="lang_es"><span class="type_writer anim_text" style="--n:461; font-size: 16px;">Es un editor de novelas visuales, sencillo y de código abierto, que puede ser utilizado en navegadores web. Está escrito en JavaScript sin la utilización de ninguna biblioteca de terceros, por lo tanto, no requiere de ninguna instalación de software adicional. El motor utiliza el estándar HTML5, por ejemplo, div e img. Eso permite utilizar cualquier formato multimedia soportado por los navegadores, incluidos gráficos vectoriales svg, animaciones gif y estilos css.</span></div>
         <div class="lang_ja"><span class="type_writer anim_text" style="--n:461">Tuesday JS は無駄を排した作りの、無償かつオープンソースのビジュアルノベル作成ソフトウェアです。ゲームの制作もプレイもウェブブラウザ上で可能です。JavaScriptで開発したソフトウェアですが、サードパーティ製ライブラリーを一切使用していないので、他のソフトウェアをインストールする手間は不要です。divやimgといった標準HTML5文章でお馴染みのタグや要素でゲームのスクリプトを記述し、svg形式のベクターイメージ、gif形式のアニメーション、CSSスタイルシートなど、ブラウザが扱えるファイルなら何でも使用可能です。</span></div>
         <div class="lang_zh"><span class="type_writer anim_text" style="--n:461">这是一款基于网络的简单、免费且开源的视觉小说编辑器，可在网络浏览器中使用。它是用 JavaScript 编写的，不使用任何第三方库，因此无需安装额外的软件。该引擎使用标准的 HTML5 文档元素，如 div 和 img。这使得它能够使用浏览器所支持的任何媒体格式，包括矢量图形 svg、gif 动画以及 css 样式。 还有一个版本的编辑器可作为独立应用程序，适用于安卓设备和桌面端。所有版本之间完全兼容，并且拥有相同的界面。</span></div>
         <div class="lang_ko"><span class="type_writer anim_text" style="--n:461">튜즈데이JS(TuesdayJS)는 웹 브라우저에서 사용할 수 있는 간단한 웹 기반의 무료 오픈 소스 비주얼 노벨 노블 엔진이다. 타사 라이브러리를 사용하지 않고 자바스크립트(JavaScript)로 작성되어 별도의 추가 소프트웨어 설치가 필요없다. 엔진은 div 및 img와 같은 표준 HTML 문서 요소를 사용, 이를 통해 벡터 그래픽 svg, gif 애니메이션 및 CSS 스타일을 포함하여 브라우저에서 지원하는 모든 미디어 형식을 사용할 수 있다</span></div>
@@ -466,6 +474,74 @@ body:has(#ja:target) .lang_ja{display:block}
             <div class="specification">
                 <p><b>Localization</b></p><br>
                 <p>Tuesday.JS provides an extensive adapt to localize stories into other languages. You can set the localized translation for almost any element of your project including text and graphics. The preview function allows you to run the project in the selected language. All language texts can also be exported to a table csv file for editing or adding localizations in another editor.</p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!--  es  -->
+    <div class="lang_es description">
+        <div class="function stamp_1">
+            <div>
+                <img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>Visualización</b></p><br>
+                <p>El editor muestra la estructura completa del guión con todos sus elementos, como diálogos con diferentes opciones y las consecuencias de dichas opciones. Esto hace que sea más fácil navegar por el proyecto y editar el guión.</p>
+            </div>
+        </div>
+        <div class="function stamp_2">
+            <div>
+                <img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>Editor de escenas</b></p><br>
+                <p>El editor de escenas permite ordenar todos los elementos en su lugar. También muestra cómo cambiará la escena en las diferentes pantallas. En la disposición de escenas puedes utilizar las unidades de medida estándar de HTML, porcentajes, píxeles o centímetros, para adaptar mejor la escena a las diferentes pantallas.</p>
+            </div>
+        </div>
+        <div class="function stamp_3">
+            <div>
+                <img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>Herramienta de Traducción</b></p><br>
+                <p>La herramienta de edición de traducciones te permite agregar rápidamente una nueva traducción y editar todo los textos en tu proyecto sin dejar el editor. <br>En adición, se muestra el numero de traducciones completadas por cada lenguaje.</p>
+            </div>
+        </div>
+        <div class="function stamp_4">
+            <div>
+                <img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>JSON</b></p><br>
+                <p>El editor de escenas permite ordenar todos los elementos en su lugar. También muestra cómo cambiará la escena en las diferentes pantallas. En la disposición de escenas puedes utilizar las unidades de medida estándar de HTML, porcentajes, píxeles o centímetros, para adaptar mejor la escena a las diferentes pantallas.</p>
+            </div>
+        </div>
+        <div class="function stamp_5">
+            <div>
+                <img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>Vista previa</b></p><br>
+                <p>La función de vista previa te permite iniciar tu proyecto desde cierto punto en el script y con la localización seleccionada.</p>
+            </div>
+        </div>
+        <div class="function stamp_6">
+            <div>
+                <img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>ASCII art</b></p><br>
+                <p>La herramienta es adaptada para usar graficos ASCII. Con su ayuda, tu puedes diversificar los textos con imagenes y patrones elaborados a partir de caracteres de texto.</p>
+            </div>
+        </div>
+        <div class="function stamp_7">
+            <div>
+                <img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script">
+            </div>
+            <div class="specification">
+                <p><b>Localización</b></p><br>
+                <p>Amplias oportunidades para localizar historias a otros lenguajes. Puedes seleccionar traducciones para prácticamente todos los elementos de tu proyecto, ya sean textos o gráficos. La función de vista previa te permite probar tu proyecto en el lenguaje seleccionado. Todos los textos pueden ser exportados a un archivo csv para editarlo y añadir las localizaciones en otro editor.</p>
             </div>
         </div>
     </div>
@@ -730,8 +806,9 @@ body:has(#ja:target) .lang_ja{display:block}
         <span>Language</span>
         <div class="submenu lang">
             <a href='#en'><span>English</span><span>en</span></a>
-            <a href='#ja'><span>日本語</span><span>ja</span></a>
+            <a href='#es'><span>Español</span><span>es</span></a>
             <a href='#ru'><span>Русский</span><span>ru</span></a>
+            <a href='#ja'><span>日本語</span><span>ja</span></a>
             <a href='#zh'><span>中文</span><span>ko</span></a>
             <a href='#ko'><span>한국어</span><span>ko</span></a>
             <div class="marker"></div>
@@ -740,6 +817,7 @@ body:has(#ja:target) .lang_ja{display:block}
     <a class="hidden" href='https://github.com/Kirilllive/tuesday-js' target="_blank"><div class="button">GitHub</div></a>
     <a href='doc_editor.html' target="_blank"><div class="button">
         <span class="lang_en">Documentation</span>
+        <span class="lang_es">Documentación</span>
         <span class="lang_ja">ユーザーガイド</span>
         <span class="lang_ru">Документация</span>
         <span class="lang_zh">使用教程</span>
@@ -748,6 +826,7 @@ body:has(#ja:target) .lang_ja{display:block}
     <div class="button">
         <span>
             <span class="lang_en">Download</span>
+            <span class="lang_es">Descargar</span>
             <span class="lang_ja">ダウンロード</span>
             <span class="lang_ru">Скачать</span>
             <span class="lang_zh">下载</span>
@@ -794,8 +873,8 @@ body:has(#ja:target) .lang_ja{display:block}
             <div class="marker"></div>
         </div>
         <div class="submenu download lang_es">
-            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/60.0.0/TuesdayJS_R60_web_ES.zip'        target="_blank"><span>Browser ES</span><span>html</span></a>
-            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/60.0.0/TuesdayJS_R60_android_ES.apk'    target="_blank"><span>Android ES</span><span>apk</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/60.0.0/TuesdayJS_R60_web_ES.zip'        target="_blank"><span>Browser</span><span>html</span></a>
+            <a href='https://github.com/Kirilllive/tuesday-js/releases/download/60.0.0/TuesdayJS_R60_android_ES.apk'    target="_blank"><span>Android</span><span>apk</span></a>
             <a href='https://github.com/Kirilllive/tuesday-js/releases/download/60.0.0/TuesdayJS_R60_win.msi'           target="_blank"><span>Windows</span><span>msi</span></a>
             <a href='https://github.com/Kirilllive/tuesday-js/releases/download/60.0.0/TuesdayJS_R60_mac.dmg'           target="_blank"><span>macOS</span><span>dmc</span></a>
             <a href='https://github.com/Kirilllive/tuesday-js/releases/download/60.0.0/TuesdayJS_R60_linux.rpm'         target="_blank"><span>Linux</span><span>rpm</span></a>
@@ -807,6 +886,7 @@ body:has(#ja:target) .lang_ja{display:block}
         
     </div>
     <a class="lang_en" href='translate/en_tuesday_visual.html' target="_blank"><div class="button hidden"><span>Play</span></div></a>
+    <a class="lang_es" href='translate/es_tuesday_visual.html' target="_blank"><div class="button hidden"><span>Iniciar</span></div></a>
     <a class="lang_ja" href='translate/ja_tuesday_visual.html' target="_blank"><div class="button hidden"><span>起動する</span></div></a>
     <a class="lang_ru" href='translate/ru_tuesday_visual.html' target="_blank"><div class="button hidden"><span>Запустить</span></div></a>
     <a class="lang_zh" href='translate/zh_tuesday_visual.html' target="_blank"><div class="button hidden"><span>运行</span></div></a>
