@@ -1383,36 +1383,18 @@ function lines(elem){
             if(!setup_editor.lines){if((elem==line_controll[x][1]||elem==line_controll[x][0])&&title_block.top!=0){line.style.visibility='visible'}else{line.style.visibility='hidden'}}else if(title_block.top==0){line.style.visibility='hidden'}else{line.style.visibility='visible'}
             if(document.getElementById(line_controll[x][1]+"_content").style.display=='none'){
                 rect=document.getElementById(line_controll[x][1]).getBoundingClientRect();
-                boxs[1]=(rect.top+html.scrollTop+(22*scale)-3)/scale;
-                boxs[3]=(title_block.top+html.scrollTop+(22*scale)-3)/scale;
                 l1=(html.scrollLeft+rect.left)/scale;
-                l2=(html.scrollLeft+title_block.left)/scale
-                if(l1>l2){
-                    boxs[0]=l1;
-                    boxs[2]=l2+((l1-264>l2)?264:0);
-                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]-setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
-                }else{
-                    boxs[0]=l1+264;
-                    boxs[2]=l2+((l1>l2-264)?264:0);
-                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]+setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
-                }
             }else{
                 rect=document.getElementById(line_controll[x][2]).getBoundingClientRect();
                 rect2=document.getElementById(line_controll[x][1]).getBoundingClientRect();
-                boxs[1]=(rect.top+html.scrollTop+(22*scale)-3)/scale;
-                boxs[3]=(title_block.top+html.scrollTop+(22*scale)-3)/scale;
                 l1=(html.scrollLeft+rect2.left)/scale;
-                l2=(html.scrollLeft+title_block.left)/scale
-                if(l1>l2){
-                    boxs[0]=l1;
-                    boxs[2]=l2+((l1-264>l2)?264:0);
-                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1-264>l2)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]-setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
-                }else{
-                    boxs[0]=l1+264;
-                    boxs[2]=l2+((l1>l2-264)?264:0);
-                    line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+((l1>l2-264)?boxs[2]+setup_editor.smooth:boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]+setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
-                }
             }
+            boxs[1]=(rect.top+html.scrollTop+(22*scale)-3)/scale;
+            boxs[3]=(title_block.top+html.scrollTop+(22*scale)-3)/scale;
+            l2=(html.scrollLeft+title_block.left)/scale;
+            boxs[0]=l1+264;
+            boxs[2]=l2;
+            line.setAttribute('d','M '+(boxs[2])+' '+boxs[3]+' C '+(boxs[2]-setup_editor.smooth)+' '+boxs[3]+', '+(boxs[0]+setup_editor.smooth)+' '+boxs[1]+', '+boxs[0]+' '+boxs[1]+'')
         }
     }
 }
