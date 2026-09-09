@@ -377,6 +377,35 @@ body:has(#ja:target) .lang_ja{display:block}
 		repeat-y center top / 512px auto url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='512' height='512' viewBox='0 0 512 512'%3e%3ccircle fill='%23fff' cx='0' cy='0' r='12'%3e%3canimateTransform attributeName='transform' type='translate' values='256,0; 256,-256' begin='-2s' dur='7.4s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;.5;0;0' begin='-2s' dur='7.4s' repeatCount='indefinite'/%3e %3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='12'%3e%3canimateTransform attributeName='transform' type='translate' values='256,512; 256,256' begin='-2s' dur='7.4s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;.5;0;0' begin='-2s' dur='7.4s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='32' opacity='0'%3e%3canimateTransform attributeName='transform' type='translate' values='64,0; 64,-256' begin='3s' dur='4s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;.25;0' begin='3s' dur='4s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='32' opacity='0'%3e%3canimateTransform attributeName='transform' type='translate' values='64,512; 64,256' begin='3s' dur='4s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;.25;0' begin='3s' dur='4s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='18'%3e%3canimateTransform attributeName='transform' type='translate' values='448,0; 448,-256' begin='0s' dur='5.5s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;0;.5;0' begin='0s' dur='5.5s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='18'%3e%3canimateTransform attributeName='transform' type='translate' values='448,512; 448,256' begin='0s' dur='5.5s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;0;.5;0' begin='0s' dur='5.5s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='18'%3e%3canimateTransform attributeName='transform' type='translate' values='128,256; 128,24' begin='0s' dur='11s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;0;.5;0' begin='0s' dur='11s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='32'%3e%3canimateTransform attributeName='transform' type='translate' values='248,256; 248,24' begin='0s' dur='11s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;.3;0;0' begin='0s' dur='11s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='14'%3e%3canimateTransform attributeName='transform' type='translate' values='128,500; 128,288' begin='-2s' dur='7.4s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;0;.5;0' begin='-2s' dur='7.4s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='14'%3e%3canimateTransform attributeName='transform' type='translate' values='340,480; 340,168' begin='0s' dur='7.4s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='.5;0;.3;0' begin='0s' dur='7.4s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='22' opacity='0'%3e%3canimateTransform attributeName='transform' type='translate' values='306,480; 306,168' begin='2s' dur='16s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;.5;0;.4;0' begin='2s' dur='16s' repeatCount='indefinite'/%3e%3c/circle%3e%3ccircle fill='%23fff' cx='0' cy='0' r='28' opacity='0'%3e%3canimateTransform attributeName='transform' type='translate' values='206,480; 206,168' begin='8s' dur='12s' repeatCount='indefinite'/%3e%3canimate attributeName='opacity' values='0;.4;0;.5;0' begin='8s' dur='12s' repeatCount='indefinite'/%3e%3c/circle%3e%3c/svg%3e"),#b5add7;
 }
 
+.modal .controll:checked ~ .modal_bg {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal .controll {display:none;}
+.modal_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.5);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.modal .window label{
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+body:has(.modal .controll:checked) {overflow: hidden;}
+
 </style>
 </head>
 <body>
@@ -416,7 +445,7 @@ body:has(#ja:target) .lang_ja{display:block}
     <div class="lang_en description">
         <div class="function stamp_1">
             <div>
-                <img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification ">
                 <p><b>Visualization</b></p><br>
@@ -425,7 +454,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_2">
             <div>
-                <img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Scene editor</b></p><br>
@@ -434,7 +463,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_3">
             <div>
-                <img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Translate tool</b></p><br>
@@ -443,7 +472,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_4">
             <div>
-                <img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -452,7 +481,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_5">
             <div>
-                <img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Preview</b></p><br>
@@ -461,7 +490,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_6">
             <div>
-                <img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>ASCII art</b></p><br>
@@ -470,7 +499,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_7">
             <div>
-                <img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Localization</b></p><br>
@@ -484,7 +513,7 @@ body:has(#ja:target) .lang_ja{display:block}
     <div class="lang_es description">
         <div class="function stamp_1">
             <div>
-                <img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Visualización</b></p><br>
@@ -493,7 +522,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_2">
             <div>
-                <img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Editor de escenas</b></p><br>
@@ -502,7 +531,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_3">
             <div>
-                <img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Herramienta de Traducción</b></p><br>
@@ -511,7 +540,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_4">
             <div>
-                <img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -520,7 +549,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_5">
             <div>
-                <img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Vista previa</b></p><br>
@@ -529,7 +558,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_6">
             <div>
-                <img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>ASCII art</b></p><br>
@@ -538,7 +567,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_7">
             <div>
-                <img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Localización</b></p><br>
@@ -551,7 +580,7 @@ body:has(#ja:target) .lang_ja{display:block}
     <div class="lang_ru description">
         <div class="function stamp_1">
             <div>
-                <img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Визуализация</b></p><br>
@@ -560,7 +589,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_2">
             <div>
-                <img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script">
+                 <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Редактор сцен</b></p><br>
@@ -569,7 +598,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_3">
             <div>
-                <img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Инструмент для перевода</b></p><br>
@@ -578,7 +607,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_4">
             <div>
-                <img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script">
+               <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -587,7 +616,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_5">
             <div>
-                <img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Предварительный просмотр</b></p><br>
@@ -596,7 +625,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_6">
             <div>
-                <img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>ASCII-графика</b></p><br>
@@ -605,7 +634,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_7">
             <div>
-                <img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Локализация</b></p><br>
@@ -618,7 +647,7 @@ body:has(#ja:target) .lang_ja{display:block}
     <div class="lang_ja description">
         <div class="function stamp_1">
             <div>
-                <img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>ビジュアライゼーション(制作工程を視覚化)</b></p><br>
@@ -627,7 +656,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_2">
             <div>
-                <img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>Tuesday JSには、翻訳版を制作するための機能も豊富です。</b></p><br>
@@ -637,7 +666,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_3">
             <div>
-                <img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>内蔵翻訳支援ツール</b></p><br>
@@ -646,7 +675,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_4">
             <div>
-                <img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -655,7 +684,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_5">
             <div>
-                <img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>プレビュー</b></p><br>
@@ -664,7 +693,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_6">
             <div>
-                <img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>アスキーアート (AA)</b></p><br>
@@ -673,7 +702,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_7">
             <div>
-                <img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>ローカライゼーション(多言語対応)</b></p><br>
@@ -686,7 +715,7 @@ body:has(#ja:target) .lang_ja{display:block}
     <div class="lang_zh description">
         <div class="function stamp_1">
             <div>
-                <img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>直观的编辑体验</b></p><br>
@@ -695,7 +724,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_2">
             <div>
-                <img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>场景编辑的灵活性</b></p><br>
@@ -704,7 +733,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_3">
             <div>
-                <img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>翻译与本地化</b></p><br>
@@ -713,7 +742,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_4">
             <div>
-                <img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>JSON脚本的可移植性</b></p><br>
@@ -722,7 +751,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_5">
             <div>
-                <img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>媒体格式的多样性</b></p><br>
@@ -731,7 +760,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_6">
             <div>
-                <img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>ASCII艺术的支持</b></p><br>
@@ -740,7 +769,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_7">
             <div>
-                <img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>语言本地化</b></p><br>
@@ -753,7 +782,7 @@ body:has(#ja:target) .lang_ja{display:block}
     <div class="lang_ko description">
         <div class="function stamp_1">
             <div>
-                <img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>비주얼라이제이션</b></p><br>
@@ -762,7 +791,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_2">
             <div>
-                <img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>씬 에디터</b></p><br>
@@ -772,7 +801,7 @@ body:has(#ja:target) .lang_ja{display:block}
  
         <div class="function stamp_3">
             <div>
-                <img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -781,7 +810,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_4">
             <div>
-                <img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>프리뷰</b></p><br>
@@ -790,7 +819,7 @@ body:has(#ja:target) .lang_ja{display:block}
         </div>
         <div class="function stamp_5">
             <div>
-                <img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script">
+                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
             </div>
             <div class="specification">
                 <p><b>로컬라이제이션</b></p><br>
@@ -893,6 +922,51 @@ body:has(#ja:target) .lang_ja{display:block}
     <a class="lang_zh" href='translate/zh_tuesday_visual.html' target="_blank"><div class="button hidden"><span>运行</span></div></a>
     <a class="lang_ko" href='translate/en_tuesday_visual.html' target="_blank"><div class="button hidden"><span>시작하기</span></div></a>
 <div>
+
+<div class="modal">
+    <input type="checkbox" id="script_structure" class="controll">
+    <div class="modal_bg">
+        <div class="window"><label for="script_structure" style="background-image:url('screenshots/script_structure.jpg');"></label></div>
+    </div>
+</div>
+
+<div class="modal">
+    <input type="checkbox" id="scene_editor" class="controll">
+    <div class="modal_bg">
+        <div class="window"><label for="scene_editor" style="background-image:url('screenshots/scene_editor.jpg');"></label></div>
+     </div>
+</div>
+<div class="modal">
+    <input type="checkbox" id="translate_tool" class="controll">
+    <div class="modal_bg">
+        <div class="window"><label for="translate_tool" style="background-image:url('screenshots/translate_tool.jpg');"></label></div>
+    </div>
+</div>
+<div class="modal">
+    <input type="checkbox" id="json_edit" class="controll">
+    <div class="modal_bg">
+        <div class="window"><label for="json_edit" style="background-image:url('screenshots/json_edit.jpg');"></label></div>
+     </div>
+</div>
+<div class="modal">
+    <input type="checkbox" id="preview" class="controll">
+    <div class="modal_bg">
+        <div class="window"><label for="preview" style="background-image:url('screenshots/preview.jpg');"></label></div>
+    </div>
+</div>
+<div class="modal">
+    <input type="checkbox" id="ascii_art" class="controll">
+    <div class="modal_bg">
+        <div class="window"><label for="ascii_art" style="background-image:url('screenshots/ascii_art.jpg');"></label></div>
+     </div>
+</div>
+<div class="modal">
+    <input type="checkbox" id="localization" class="controll">
+    <div class="modal_bg">
+        <div class="window"><label for="localization" style="background-image:url('screenshots/localization.jpg');"></label></div>
+     </div>
+</div>
+
 <script>
     window.location.hash = (navigator.language || navigator.userLanguage).split('-')[0].toLowerCase();
 </script>
