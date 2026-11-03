@@ -340,6 +340,11 @@ body:has(#ja:target) .lang_ja{display:block}
         object-fit: contain;
         border-radius: 6px;
         box-shadow: 0px 4px 14px var(--base_a);
+        transition: .6s ease;
+    }
+    .description > .function img:hover{
+        transition: .3s ease;
+        transform: scale(1.05);
     }
     .description .specification{
         max-width:480px;
@@ -448,7 +453,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
     <div class="lang_en description">
         <div class="function stamp_1">
             <div>
-                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="Visualization"></label>
             </div>
             <div class="specification ">
                 <p><b>Visualization</b></p><br>
@@ -457,7 +462,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_2">
             <div>
-                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="Scene editor"></label>
             </div>
             <div class="specification">
                 <p><b>Scene editor</b></p><br>
@@ -466,7 +471,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_3">
             <div>
-                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="Translate tool"></label>
             </div>
             <div class="specification">
                 <p><b>Translate tool</b></p><br>
@@ -475,7 +480,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_4">
             <div>
-                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="JSON"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -484,7 +489,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_5">
             <div>
-                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="preview"><img src='screenshots/preview.jpg' alt="Preview"></label>
             </div>
             <div class="specification">
                 <p><b>Preview</b></p><br>
@@ -493,7 +498,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_6">
             <div>
-                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="ASCII art"></label>
             </div>
             <div class="specification">
                 <p><b>ASCII art</b></p><br>
@@ -502,7 +507,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_7">
             <div>
-                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="localization"><img src='screenshots/localization.jpg' alt="Localization"></label>
             </div>
             <div class="specification">
                 <p><b>Localization</b></p><br>
@@ -516,7 +521,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
     <div class="lang_es description">
         <div class="function stamp_1">
             <div>
-                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="Visualización"></label>
             </div>
             <div class="specification">
                 <p><b>Visualización</b></p><br>
@@ -525,7 +530,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_2">
             <div>
-                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="Editor de escenas"></label>
             </div>
             <div class="specification">
                 <p><b>Editor de escenas</b></p><br>
@@ -534,7 +539,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_3">
             <div>
-                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="Herramienta de Traducción"></label>
             </div>
             <div class="specification">
                 <p><b>Herramienta de Traducción</b></p><br>
@@ -543,7 +548,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_4">
             <div>
-                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="JSON"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -552,7 +557,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_5">
             <div>
-                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="preview"><img src='screenshots/preview.jpg' alt="Vista previa"></label>
             </div>
             <div class="specification">
                 <p><b>Vista previa</b></p><br>
@@ -561,7 +566,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_6">
             <div>
-                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="ASCII art"></label>
             </div>
             <div class="specification">
                 <p><b>ASCII art</b></p><br>
@@ -570,7 +575,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_7">
             <div>
-                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="localization"><img src='screenshots/localization.jpg' alt="Localización"></label>
             </div>
             <div class="specification">
                 <p><b>Localización</b></p><br>
@@ -583,7 +588,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
     <div class="lang_ru description">
         <div class="function stamp_1">
             <div>
-                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="Визуализация"></label>
             </div>
             <div class="specification">
                 <p><b>Визуализация</b></p><br>
@@ -592,7 +597,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_2">
             <div>
-                 <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                 <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="Редактор сцен"></label>
             </div>
             <div class="specification">
                 <p><b>Редактор сцен</b></p><br>
@@ -601,7 +606,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_3">
             <div>
-                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="Инструмент для перевода"></label>
             </div>
             <div class="specification">
                 <p><b>Инструмент для перевода</b></p><br>
@@ -610,7 +615,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_4">
             <div>
-               <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
+               <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="JSON"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -619,7 +624,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_5">
             <div>
-                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="preview"><img src='screenshots/preview.jpg' alt="Предварительный просмотр"></label>
             </div>
             <div class="specification">
                 <p><b>Предварительный просмотр</b></p><br>
@@ -628,7 +633,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_6">
             <div>
-                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="ASCII-графика"></label>
             </div>
             <div class="specification">
                 <p><b>ASCII-графика</b></p><br>
@@ -637,7 +642,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_7">
             <div>
-                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="localization"><img src='screenshots/localization.jpg' alt="Локализация"></label>
             </div>
             <div class="specification">
                 <p><b>Локализация</b></p><br>
@@ -650,7 +655,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
     <div class="lang_ja description">
         <div class="function stamp_1">
             <div>
-                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="ビジュアライゼーション(制作工程を視覚化)"></label>
             </div>
             <div class="specification">
                 <p><b>ビジュアライゼーション(制作工程を視覚化)</b></p><br>
@@ -659,7 +664,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_2">
             <div>
-                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="Tuesday JSには、翻訳版を制作するための機能も豊富です。"></label>
             </div>
             <div class="specification">
                 <p><b>Tuesday JSには、翻訳版を制作するための機能も豊富です。</b></p><br>
@@ -669,7 +674,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_3">
             <div>
-                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="内蔵翻訳支援ツール"></label>
             </div>
             <div class="specification">
                 <p><b>内蔵翻訳支援ツール</b></p><br>
@@ -678,7 +683,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_4">
             <div>
-                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="JSON"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -687,7 +692,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_5">
             <div>
-                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="preview"><img src='screenshots/preview.jpg' alt="プレビュー"></label>
             </div>
             <div class="specification">
                 <p><b>プレビュー</b></p><br>
@@ -696,7 +701,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_6">
             <div>
-                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="アスキーアート (AA)"></label>
             </div>
             <div class="specification">
                 <p><b>アスキーアート (AA)</b></p><br>
@@ -705,7 +710,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_7">
             <div>
-                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="localization"><img src='screenshots/localization.jpg' alt="ローカライゼーション(多言語対応)"></label>
             </div>
             <div class="specification">
                 <p><b>ローカライゼーション(多言語対応)</b></p><br>
@@ -718,7 +723,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
     <div class="lang_zh description">
         <div class="function stamp_1">
             <div>
-                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="直观的编辑体验"></label>
             </div>
             <div class="specification">
                 <p><b>直观的编辑体验</b></p><br>
@@ -727,7 +732,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_2">
             <div>
-                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="场景编辑的灵活性"></label>
             </div>
             <div class="specification">
                 <p><b>场景编辑的灵活性</b></p><br>
@@ -736,7 +741,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_3">
             <div>
-                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="translate_tool"><img src='screenshots/translate_tool.jpg' alt="翻译与本地化"></label>
             </div>
             <div class="specification">
                 <p><b>翻译与本地化</b></p><br>
@@ -745,7 +750,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_4">
             <div>
-                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="JSON脚本的可移植性"></label>
             </div>
             <div class="specification">
                 <p><b>JSON脚本的可移植性</b></p><br>
@@ -754,7 +759,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_5">
             <div>
-                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="preview"><img src='screenshots/preview.jpg' alt="媒体格式的多样性"></label>
             </div>
             <div class="specification">
                 <p><b>媒体格式的多样性</b></p><br>
@@ -763,7 +768,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_6">
             <div>
-                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="ascii_art"><img src='screenshots/ascii_art.jpg' alt="ASCII艺术的支持"></label>
             </div>
             <div class="specification">
                 <p><b>ASCII艺术的支持</b></p><br>
@@ -772,7 +777,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_7">
             <div>
-                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="localization"><img src='screenshots/localization.jpg' alt="语言本地化"></label>
             </div>
             <div class="specification">
                 <p><b>语言本地化</b></p><br>
@@ -785,7 +790,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
     <div class="lang_ko description">
         <div class="function stamp_1">
             <div>
-                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="script_structure"><img src='screenshots/script_structure.jpg' alt="비주얼라이제이션"></label>
             </div>
             <div class="specification">
                 <p><b>비주얼라이제이션</b></p><br>
@@ -794,7 +799,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_2">
             <div>
-                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="scene_editor"><img src='screenshots/scene_editor.jpg' alt="씬 에디터"></label>
             </div>
             <div class="specification">
                 <p><b>씬 에디터</b></p><br>
@@ -804,7 +809,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
  
         <div class="function stamp_3">
             <div>
-                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="json_edit"><img src='screenshots/json_edit.jpg' alt="JSON"></label>
             </div>
             <div class="specification">
                 <p><b>JSON</b></p><br>
@@ -813,7 +818,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_4">
             <div>
-                <label for="preview"><img src='screenshots/preview.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="preview"><img src='screenshots/preview.jpg' alt="프리뷰"></label>
             </div>
             <div class="specification">
                 <p><b>프리뷰</b></p><br>
@@ -822,7 +827,7 @@ body:has(.modal .controll:checked) {overflow: hidden;}
         </div>
         <div class="function stamp_5">
             <div>
-                <label for="localization"><img src='screenshots/localization.jpg' alt="visualization structure script" title="visualization structure script"></label>
+                <label for="localization"><img src='screenshots/localization.jpg' alt="로컬라이제이션"></label>
             </div>
             <div class="specification">
                 <p><b>로컬라이제이션</b></p><br>
